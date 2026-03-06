@@ -1,26 +1,23 @@
 # GitHub Pages Custom Subdomain Setup
 
 ## Goal
-Host Pink Hunter on a subdomain such as `pinkhunter.yourdomain.com` using GitHub Pages.
+Host Pink Hunter on the custom subdomain `pinkhunter.flalaz.com` with GitHub Pages.
 
-## What is already prepared
-- GitHub Pages deployment workflow: `.github/workflows/deploy-pages.yml`
-- Static site build: `npm run build`
-- Public data files are already committed under `public/data/`
+## Required Files
+- `public/CNAME`
+- `.github/workflows/deploy-pages.yml`
 
-## Final setup steps after the repo is on GitHub
-1. Choose the exact subdomain.
-   - Example: `pinkhunter.example.com`
-2. Create a `public/CNAME` file with only that hostname on one line.
-   - Example content: `pinkhunter.flalaz.com`
-3. Push that change to `main`.
-4. In GitHub, open the repo settings and enable Pages with `GitHub Actions` as the source.
-5. In your DNS provider, create a `CNAME` record:
-   - Host: `pinkhunter`
-   - Target: `<your-github-username>.github.io`
-6. Wait for DNS to propagate, then confirm the custom domain inside GitHub Pages settings.
-7. If GitHub offers `Enforce HTTPS`, turn it on after the certificate is issued.
+## DNS Record
+- Type: `CNAME`
+- Host: `pinkhunter`
+- Target: `FlalaGoGoGo.github.io`
+
+## GitHub Pages Settings
+1. Repo: `FlalaGoGoGo/pink-hunter`
+2. Pages source: `GitHub Actions`
+3. Custom domain: `pinkhunter.flalaz.com`
+4. Turn on `Enforce HTTPS` after GitHub finishes issuing the certificate.
 
 ## Notes
-- This app is already responsive, so the same deployed URL works on desktop and mobile.
-- If you later change the subdomain, update `public/CNAME` and the DNS record together.
+- The same deployed site is intended for both desktop and mobile access.
+- If the domain changes later, update `public/CNAME`, GitHub Pages settings, and DNS together.

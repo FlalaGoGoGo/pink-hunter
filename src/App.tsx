@@ -35,8 +35,12 @@ const POINT_LAYER_IDS = [
   "tree-crabapple"
 ] as const;
 const ALL_OWNERSHIP = ["public", "private", "unknown"] as const;
-const DEFAULT_CENTER: [number, number] = [-122.221, 47.545];
-const DEFAULT_ZOOM = 9.7;
+const WA_METRO_OVERVIEW_BOUNDS: [[number, number], [number, number]] = [
+  [-123.08, 47.02],
+  [-121.55, 48.08]
+];
+const DEFAULT_CENTER: [number, number] = [-122.315, 47.55];
+const DEFAULT_ZOOM = 8.45;
 const POSITRON_STYLE_URL = "https://basemaps.cartocdn.com/gl/positron-gl-style/style.json";
 const FALLBACK_STYLE_URL = "https://demotiles.maplibre.org/style.json";
 const ABOUT_SOURCES_PAGE_SIZE = 8;
@@ -89,6 +93,7 @@ interface UrlState {
   hasOwnershipParam: boolean;
   hasCityParam: boolean;
   hasZipParam: boolean;
+  hasViewportParam: boolean;
   zoom: number;
   lat: number;
   lon: number;
@@ -98,8 +103,7 @@ function parseLanguage(raw: string | null): Language {
   if (raw === "zh-CN" || raw === "en-US") {
     return raw;
   }
-  const navigatorLanguage = typeof navigator !== "undefined" ? navigator.language : "";
-  return navigatorLanguage.startsWith("zh") ? "zh-CN" : DEFAULT_LANGUAGE;
+  return DEFAULT_LANGUAGE;
 }
 
 function parseDelimited<T extends string>(
@@ -145,6 +149,7 @@ function parseUrlState(): UrlState {
   const zoom = Number(params.get("z"));
   const lat = Number(params.get("lat"));
   const lon = Number(params.get("lon"));
+  const hasViewportParam = params.has("z") && params.has("lat") && params.has("lon");
 
   return {
     language,
@@ -156,10 +161,15 @@ function parseUrlState(): UrlState {
     hasOwnershipParam,
     hasCityParam,
     hasZipParam,
+    hasViewportParam,
     zoom: Number.isFinite(zoom) ? zoom : DEFAULT_ZOOM,
     lat: Number.isFinite(lat) ? lat : DEFAULT_CENTER[1],
     lon: Number.isFinite(lon) ? lon : DEFAULT_CENTER[0]
   };
+}
+
+function createBoundsFromTuple(boundsTuple: [[number, number], [number, number]]): maplibregl.LngLatBounds {
+  return new maplibregl.LngLatBounds(boundsTuple[0], boundsTuple[1]);
 }
 
 function nearestSnap(value: number): number {
@@ -793,13 +803,10 @@ export default function App(): JSX.Element {
     setAboutSourcesPage((current) => Math.min(current, aboutSourcePageCount - 1));
   }, [aboutSourcePageCount]);
 
-  const coveredBoundsByRegion = useMemo(() => {
+  const regionBoundsByRegion = useMemo(() => {
     const boundsMap: Partial<Record<CoverageRegion, maplibregl.LngLatBounds>> = {};
 
     displayCoverage.features.forEach((feature) => {
-      if (feature.properties.status !== "covered") {
-        return;
-      }
       const region = regionForCity(feature.properties.jurisdiction);
       const bounds = boundsMap[region] ?? new maplibregl.LngLatBounds();
       const hasPoints = extendBoundsFromCoverageGeometry(bounds, feature.geometry);
@@ -807,6 +814,9 @@ export default function App(): JSX.Element {
         boundsMap[region] = bounds;
       }
     });
+
+    // WA overview stays focused on the Seattle metro / central Puget Sound corridor.
+    boundsMap.wa = createBoundsFromTuple(WA_METRO_OVERVIEW_BOUNDS);
 
     return boundsMap;
   }, [displayCoverage]);
@@ -1125,6 +1135,22 @@ export default function App(): JSX.Element {
             lon: Number(center.lng.toFixed(5))
           });
         });
+
+        if (!initialUrlState.hasViewportParam) {
+          const defaultBounds = regionBoundsByRegion.wa;
+          if (defaultBounds) {
+            map.fitBounds(defaultBounds, {
+              padding: isDesktopRef.current ? 80 : 48,
+              duration: 0
+            });
+            const center = map.getCenter();
+            setMapView({
+              zoom: Number(map.getZoom().toFixed(2)),
+              lat: Number(center.lat.toFixed(5)),
+              lon: Number(center.lng.toFixed(5))
+            });
+          }
+        }
       });
     })();
 
@@ -1139,7 +1165,15 @@ export default function App(): JSX.Element {
         mapRef.current = null;
       }
     };
-  }, [data, displayCoverage, initialUrlState.lat, initialUrlState.lon, initialUrlState.zoom]);
+  }, [
+    data,
+    displayCoverage,
+    initialUrlState.hasViewportParam,
+    initialUrlState.lat,
+    initialUrlState.lon,
+    initialUrlState.zoom,
+    regionBoundsByRegion
+  ]);
 
   useEffect(() => {
     const map = mapRef.current;
@@ -1427,7 +1461,7 @@ export default function App(): JSX.Element {
   }
 
   function fitCoveredArea(region: CoverageRegion): void {
-    const bounds = coveredBoundsByRegion[region];
+    const bounds = regionBoundsByRegion[region];
     if (!mapRef.current || !bounds) {
       return;
     }
@@ -1536,7 +1570,7 @@ export default function App(): JSX.Element {
               <button
                 key={option.region}
                 className="map-global-option"
-                disabled={!coveredBoundsByRegion[option.region]}
+                disabled={!regionBoundsByRegion[option.region]}
                 onClick={() => fitCoveredArea(option.region)}
                 type="button"
               >

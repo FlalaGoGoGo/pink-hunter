@@ -1,6 +1,6 @@
 import type { Language, OwnershipGroup, SpeciesGroup } from "./types";
 
-export const DEFAULT_LANGUAGE: Language = "zh-CN";
+export const DEFAULT_LANGUAGE: Language = "en-US";
 
 const copy = {
   "zh-CN": {
