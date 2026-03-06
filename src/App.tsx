@@ -57,17 +57,21 @@ const COVERAGE_COLORS = {
   unavailableFill: "#d7dbe1",
   unavailableLine: "#8f96a1"
 } as const;
-type CoverageRegion = "wa" | "dc" | "bc" | "or";
+type CoverageRegion = "wa" | "dc" | "bc" | "or" | "ca";
 
 const REGION_CITY_OVERRIDES: Partial<Record<string, CoverageRegion>> = {
   "Washington DC": "dc",
   "Vancouver BC": "bc",
   "Victoria BC": "bc",
-  Portland: "or"
+  Portland: "or",
+  Burlingame: "ca",
+  "San Francisco": "ca",
+  "San Jose": "ca"
 };
 
 const GLOBAL_REGION_OPTIONS: Array<{ region: CoverageRegion; label: string }> = [
   { region: "wa", label: "🇺🇸 WA" },
+  { region: "ca", label: "🇺🇸 CA" },
   { region: "dc", label: "🇺🇸 DC" },
   { region: "or", label: "🇺🇸 OR" },
   { region: "bc", label: "🇨🇦 BC" }
@@ -170,6 +174,13 @@ function parseUrlState(): UrlState {
 
 function createBoundsFromTuple(boundsTuple: [[number, number], [number, number]]): maplibregl.LngLatBounds {
   return new maplibregl.LngLatBounds(boundsTuple[0], boundsTuple[1]);
+}
+
+function setDocumentMeta(selector: string, content: string): void {
+  const element = document.head.querySelector<HTMLMetaElement>(selector);
+  if (element) {
+    element.setAttribute("content", content);
+  }
 }
 
 function nearestSnap(value: number): number {
@@ -275,6 +286,9 @@ function regionForCity(city: string): CoverageRegion {
   if (city.endsWith(" OR") || city.endsWith(", OR")) {
     return "or";
   }
+  if (city.endsWith(" CA") || city.endsWith(", CA")) {
+    return "ca";
+  }
   if (city.endsWith(" BC") || city.endsWith(", BC")) {
     return "bc";
   }
@@ -291,6 +305,9 @@ function stateCodeForCity(city: string): string {
   }
   if (region === "or") {
     return "OR";
+  }
+  if (region === "ca") {
+    return "CA";
   }
   return "WA";
 }
@@ -737,15 +754,15 @@ export default function App(): JSX.Element {
     ? {
         title: "关于 Pink Hunter",
         intro: [
-          "Pink Hunter 是一个春季花树地图项目，目标是在西雅图与周边粉色花季时，帮助大家更快找到樱花、李花、桃花、木兰和海棠。",
-          "它不只是找花地图，也希望教大家看懂不同花树之间的差别，减少“粉色花都叫樱花”的误认。"
+          "Pink Hunter 是一个春季粉色花树地图项目，帮助大家在花季里更快找到樱花、李花、桃花、木兰和海棠。",
+          "这个项目不只是找花，也希望教大家分辨这些常被误认的花树，让“粉色花都叫樱花”这件事少一点。"
         ],
         sourcesTitle: "数据源",
         disclaimerTitle: "数据说明",
         contactTitle: "联系方式",
         contactLead: "如果你知道新的官方公开树木数据源，欢迎发邮件给 Flala Zhang。",
         disclaimer: [
-          "当前城市级主数据优先采用官方公开单株树木数据集；这也是产品纳入覆盖城市的硬标准。",
+          "城市级覆盖优先采用官方公开的单株树木数据集；这是产品纳入覆盖城市的硬标准。",
           "但数据更新频率、树木修剪/移除、物种录入习惯、坐标偏差等问题，都会让网页显示与现实情况存在差异。",
           "UW 樱花点位目前使用补充数据来弥补官方城市树木清单的空缺，因此这一部分不是官方 city inventory。"
         ],
@@ -759,8 +776,8 @@ export default function App(): JSX.Element {
     : {
         title: "About Pink Hunter",
         intro: [
-          "Pink Hunter is a spring blossom map designed to help people find cherry, plum, peach, magnolia, and crabapple trees during the pink-flower season around Seattle and nearby cities.",
-          "The project is also meant to teach the differences between these trees, so users do not collapse every pink bloom into cherry by default."
+          "Pink Hunter is a spring map for finding pink-blossoming cherry, plum, peach, magnolia, and crabapple trees.",
+          "The project is meant to help people learn the differences between these lookalike blooms instead of calling every pink tree a cherry by default."
         ],
         sourcesTitle: "Data Sources",
         disclaimerTitle: "Data Notes",
@@ -778,6 +795,15 @@ export default function App(): JSX.Element {
         nextPage: "Next",
         pageLabel: "Page"
       };
+
+  useEffect(() => {
+    document.title = t(language, "browserTitle");
+    setDocumentMeta('meta[name="description"]', t(language, "browserDescription"));
+    setDocumentMeta('meta[property="og:title"]', t(language, "browserTitle"));
+    setDocumentMeta('meta[property="og:description"]', t(language, "browserDescription"));
+    setDocumentMeta('meta[name="twitter:title"]', t(language, "browserTitle"));
+    setDocumentMeta('meta[name="twitter:description"]', t(language, "browserDescription"));
+  }, [language]);
 
   const aboutSources = useMemo(() => {
     if (!data) {
@@ -1662,8 +1688,9 @@ export default function App(): JSX.Element {
         <div className="sheet-content">
           <section className="panel-header-card">
             <div className="panel-header-top">
-              <div className="panel-title-group">
+            <div className="panel-title-group">
                 <h1>{t(language, "appTitle")}</h1>
+                <p>{t(language, "appSubtitle")}</p>
               </div>
               <button className="icon-btn language-btn" onClick={toggleLanguage} type="button">
                 {t(language, "language")}

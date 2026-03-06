@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-03-06T22:21:45.904576+00:00",
+  "generated_at": "2026-03-06T23:38:34.681417+00:00",
   "items": [
     {
       "scientific_name_normalized": "prunus (cherry species and cultivars)",
@@ -23,7 +23,7 @@
     },
     {
       "scientific_name_normalized": "prunus virginiana",
-      "count": 2672
+      "count": 2681
     },
     {
       "scientific_name_normalized": "prunus (plum species and cultivars)",
@@ -35,11 +35,19 @@
     },
     {
       "scientific_name_normalized": "prunus laurocerasus",
-      "count": 1763
+      "count": 1813
     },
     {
       "scientific_name_normalized": "populus balsamifera ssp trichocarpa",
       "count": 1713
+    },
+    {
+      "scientific_name_normalized": "prunus spp",
+      "count": 888
+    },
+    {
+      "scientific_name_normalized": "prunus",
+      "count": 844
     },
     {
       "scientific_name_normalized": "tsuga heterophylla",
@@ -50,20 +58,24 @@
       "count": 718
     },
     {
-      "scientific_name_normalized": "prunus spp",
-      "count": 712
-    },
-    {
       "scientific_name_normalized": "prunus emarginata",
       "count": 681
+    },
+    {
+      "scientific_name_normalized": "prunus caroliniana",
+      "count": 496
     },
     {
       "scientific_name_normalized": "pyrus calleryana",
       "count": 483
     },
     {
+      "scientific_name_normalized": "prunus amygdalus",
+      "count": 471
+    },
+    {
       "scientific_name_normalized": "prunus serotina",
-      "count": 462
+      "count": 470
     },
     {
       "scientific_name_normalized": "salix species",
@@ -74,12 +86,12 @@
       "count": 439
     },
     {
-      "scientific_name_normalized": "prunus serrula",
-      "count": 386
+      "scientific_name_normalized": "prunus lusitanica",
+      "count": 398
     },
     {
-      "scientific_name_normalized": "prunus lusitanica",
-      "count": 371
+      "scientific_name_normalized": "prunus serrula",
+      "count": 389
     },
     {
       "scientific_name_normalized": "cedrus deodara",
@@ -92,6 +104,10 @@
     {
       "scientific_name_normalized": "pinus sylvestris",
       "count": 300
+    },
+    {
+      "scientific_name_normalized": "prunus armenica",
+      "count": 298
     },
     {
       "scientific_name_normalized": "acer circinatum",
@@ -108,6 +124,14 @@
     {
       "scientific_name_normalized": "zelkova serrata",
       "count": 189
+    },
+    {
+      "scientific_name_normalized": "prunus lyonii",
+      "count": 179
+    },
+    {
+      "scientific_name_normalized": "prunus armeniaca",
+      "count": 173
     },
     {
       "scientific_name_normalized": "sequoiadendron giganteum",
@@ -128,10 +152,6 @@
     {
       "scientific_name_normalized": "calocedrus decurrens",
       "count": 145
-    },
-    {
-      "scientific_name_normalized": "prunus armeniaca",
-      "count": 144
     },
     {
       "scientific_name_normalized": "acer palmatum",
@@ -195,6 +215,10 @@
     },
     {
       "scientific_name_normalized": "chamaecyparis obtusa",
+      "count": 88
+    },
+    {
+      "scientific_name_normalized": "prunus dulcis",
       "count": 88
     },
     {
@@ -334,6 +358,10 @@
       "count": 40
     },
     {
+      "scientific_name_normalized": "prunus ilicifoia",
+      "count": 40
+    },
+    {
       "scientific_name_normalized": "fraxinus angustifolia",
       "count": 39
     },
@@ -348,10 +376,6 @@
     {
       "scientific_name_normalized": "prunus pennsylvanica",
       "count": 35
-    },
-    {
-      "scientific_name_normalized": "prunus dulcis",
-      "count": 34
     },
     {
       "scientific_name_normalized": "abies procera",
@@ -470,10 +494,6 @@
       "count": 16
     },
     {
-      "scientific_name_normalized": "prunus caroliniana",
-      "count": 15
-    },
-    {
       "scientific_name_normalized": "arbutus menziesii",
       "count": 15
     },
@@ -527,6 +547,10 @@
     },
     {
       "scientific_name_normalized": "taxodium distichum",
+      "count": 11
+    },
+    {
+      "scientific_name_normalized": "prunus spp cherry",
       "count": 11
     },
     {
@@ -636,10 +660,6 @@
     {
       "scientific_name_normalized": "crataegus viridis winter king",
       "count": 6
-    },
-    {
-      "scientific_name_normalized": "prunus",
-      "count": 5
     },
     {
       "scientific_name_normalized": "ilex species",
@@ -1019,6 +1039,14 @@
     },
     {
       "scientific_name_normalized": "prunus rose",
+      "count": 1
+    },
+    {
+      "scientific_name_normalized": "prunus martimia",
+      "count": 1
+    },
+    {
+      "scientific_name_normalized": "prunus ilicifolia",
       "count": 1
     }
   ]

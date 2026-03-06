@@ -41,6 +41,17 @@ Last updated: 2026-03-06 (America/Los_Angeles)
 - Geometry arrives as GeoJSON-style points inside the `geom` field.
 - Boundary data may be published as a legal boundary line; when that happens, the official line is converted into a polygon without manual redraw.
 
+### Socrata / SODA
+- Used for `San Francisco`.
+- Metadata comes from the dataset view endpoint (`/api/views/...`).
+- Filtered row pulls use the dataset resource endpoint with SoQL parameters such as:
+  - `$where`
+  - `$select`
+  - `$order`
+  - `$limit`
+  - `$offset`
+- Scientific/common names may be packed into a single text field and need source-specific splitting before taxonomy mapping.
+
 ### TreeKeeper
 - Used for `Sammamish` and `Everett`.
 - Public access comes from `search.cfc` plus `grids.cfc`.
@@ -88,6 +99,9 @@ Last updated: 2026-03-06 (America/Los_Angeles)
 | Walla Walla | ArcGIS MapServer | `Botanical`, `Common`, `Property` | ArcGIS point geometry | Official city tree viewer layer; botanical/common fields are both public and queryable |
 | Vancouver BC | OpenDataSoft | `genus_name`, `species_name`, `common_name`, `cultivar_name` | point geometry inside ODS `geom` field | Uses official `public-trees` dataset; filtered pulls use ODS export endpoint because records API page size is capped |
 | Victoria BC | ArcGIS MapServer | `BotanicalName`, `CommonName`, `Species`, `TreeCategory`, `Parks` | ArcGIS point geometry | Official parks-tree species layer only; `Surveyed Trees` reviewed separately but excluded because it lacks species fields |
+| San Jose | ArcGIS MapServer | `NAMESCIENTIFIC`, `OWNEDBY`, `MAINTBY` | ArcGIS point geometry | Official `Street Tree` city layer; public scientific-name field is clean enough for direct taxonomy mapping |
+| San Francisco | SODA | `qspecies` parsed by `parse_san_francisco_species()`, `qcaretaker`, `qlegalstatus` | lat/lon columns in dataset rows | Official San Francisco Public Works open-data table; scientific/common are packed into one field |
+| Burlingame | ArcGIS FeatureServer | `BotanicalName`, `CommonName`, `Tree_ID` | ArcGIS point geometry | Public city-linked guest inventory hosted on a contractor ArcGIS org; accepted because the official City of Burlingame trees page explicitly publishes the inventory link |
 | Everett | TreeKeeper | `SITE_ATTR1` parsed by `parse_sammamish_species()` | direct lon/lat or `SITE_GEOMETRY` JSON | Park-tree public endpoint |
 | Kirkland | TreePlotter | `species_bo`, `species_la` with `expand_abbreviated_botanical_name()` | WKB hex -> Web Mercator -> lon/lat | Public TreePlotter session/API |
 | Washington DC | ArcGIS MapServer | `SCI_NM`, `CMMN_NM`, `OWNERSHIP` | ArcGIS point geometry | DDOT Urban Tree Canopy layer |

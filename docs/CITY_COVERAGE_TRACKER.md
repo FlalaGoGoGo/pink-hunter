@@ -6,11 +6,14 @@ Last updated: 2026-03-06 (America/Los_Angeles)
 | Done | City | Included Trees | Boundary Rule | Notes |
 |---|---|---:|---|---|
 | ✅ | Seattle | 46,114 | Official city boundary | Includes UW supplemental points; ornamental cherry keyword sweep rerun |
+| ✅ | San Francisco | 24,099 | Official city boundary | Official San Francisco Public Works `Street Tree List` integrated from the city open-data portal |
+| ✅ | San Jose | 18,021 | Official city boundary | Official City of San Jose `Street Tree` layer integrated from the city open-data ArcGIS service |
 | ✅ | Washington DC | 16,533 | Official city boundary | Urban Tree Canopy (DDOT); ornamental cherry cultivar mapping expanded |
 | ✅ | Vancouver BC | 34,369 | Official city boundary | Official City of Vancouver `public-trees` ODS dataset integrated; boundary polygon derived from official city-boundary line dataset |
 | ✅ | Spokane | 8,472 | Official city boundary | City of Spokane Parks tree inventory integrated from official open GIS service; genus-level rows normalized to generic scientific placeholders |
 | ✅ | Walla Walla | 1,167 | Official city boundary | Official City of Walla Walla `GISBaseMap_TreesVisible` layer integrated from the city ArcGIS service |
 | ✅ | Victoria BC | 6,094 | Official city boundary | Official City of Victoria Parks tree-species layer integrated; surveyed-trees layer was reviewed separately but excluded because it has no species field |
+| ✅ | Burlingame | 1,997 | Official city boundary | Official city trees page links to a public guest inventory backed by a queryable feature service; integrated under the city-linked public-source rule |
 | ✅ | Shoreline | 2,244 | Official city boundary | Public Tree Inventory public-only layer integrated |
 | ✅ | Renton | 1,879 | Official city boundary | City Tree Sites source |
 | ✅ | Sammamish | 1,163 | Official city boundary | TreeKeeper Street + Park public grid endpoints integrated; cultivar keyword rerun recovered more ornamental records |
@@ -127,6 +130,11 @@ Last updated: 2026-03-06 (America/Los_Angeles)
 - Integrated `Yakima` and `Walla Walla` from official city ArcGIS tree layers.
 - Confirmed `Poulsbo` and `Pasco` only expose partial public tree content in this round (`Historic Trees` / `Volunteer Park Tree Walk`), not citywide inventories.
 - Confirmed `Vashon`, `Kingston`, `Silverdale`, `Cottage Lake`, and `Silver Firs` are not incorporated cities in the current city-boundary workflow.
+
+## March 2026 California Expansion
+- Integrated `San Francisco` from the official San Francisco Public Works `Street Tree List` open-data dataset.
+- Integrated `San Jose` from the official City of San Jose `Street Tree` ArcGIS open-data layer.
+- Integrated `Burlingame` from the public city-linked `City Street Tree Inventory`; the source is contractor-hosted but explicitly published on the official City of Burlingame trees page and exposes a public queryable feature service.
 
 ## March 2026 BC Expansion
 - Integrated `Vancouver BC` from the official City of Vancouver OpenDataSoft `public-trees` dataset.

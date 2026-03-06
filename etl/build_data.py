@@ -63,6 +63,13 @@ WALLA_WALLA_LAYER = "https://gis2.ci.walla-walla.wa.us/arcgis/rest/services/Base
 DC_LAYER = "https://maps2.dcgis.dc.gov/dcgis/rest/services/DCGIS_DATA/Urban_Tree_Canopy/MapServer/23"
 PORTLAND_LAYER = "https://www.portlandmaps.com/od/rest/services/COP_OpenData_Environment/MapServer/1415"
 PORTLAND_BOUNDARY_LAYER = "https://www.portlandmaps.com/od/rest/services/COP_OpenData_Boundary/MapServer/10"
+SAN_JOSE_LAYER = "https://geo.sanjoseca.gov/server/rest/services/OPN/OPN_OpenDataService/MapServer/510"
+SAN_JOSE_DATASET_PAGE = "https://data.sanjoseca.gov/dataset/street-tree"
+SAN_FRANCISCO_DATASET = "https://data.sfgov.org/resource/tkzw-k3nq.json"
+SAN_FRANCISCO_METADATA = "https://data.sfgov.org/api/views/tkzw-k3nq"
+SAN_FRANCISCO_DATASET_PAGE = "https://data.sfgov.org/City-Infrastructure/Street-Tree-List/tkzw-k3nq"
+BURLINGAME_LAYER = "https://services2.arcgis.com/yrktbS5Xw87hJQvs/arcgis/rest/services/WebMap_Burlingame_AllLayers_WFL1/FeatureServer/0"
+BURLINGAME_DATASET_PAGE = "https://www.burlingame.org/466/Trees-Urban-Forest"
 VANCOUVER_BC_DATASET = "https://opendata.vancouver.ca/api/explore/v2.1/catalog/datasets/public-trees"
 VANCOUVER_BC_BOUNDARY_DATASET = "https://opendata.vancouver.ca/api/explore/v2.1/catalog/datasets/city-boundary"
 VICTORIA_PARK_TREES_LAYER = "https://maps.victoria.ca/server/rest/services/OpenData/OpenData_Parks/MapServer/15"
@@ -86,6 +93,9 @@ STRICT_CITY_BOUNDARY_ONLY = True
 CITY_BOUNDARY_HINTS: dict[str, dict[str, str]] = {
     "Washington DC": {"state": "11", "basename": "Washington"},
     "Portland": {"boundary_source": "portland_or_arcgis"},
+    "Burlingame": {"state": "06"},
+    "San Francisco": {"state": "06"},
+    "San Jose": {"state": "06"},
     "Vancouver BC": {"boundary_source": "vancouver_bc_ods"},
     "Vancouver WA": {"state": "53", "basename": "Vancouver"},
     "Victoria BC": {"boundary_source": "victoria_bc_arcgis"},
@@ -439,6 +449,50 @@ def fetch_ods_export_rows(
     return payload
 
 
+def fetch_soda_rows(
+    dataset_url: str,
+    *,
+    where: str | None = None,
+    limit: int = 50_000,
+    order: str | None = None,
+    select: str | None = None,
+) -> list[dict[str, Any]]:
+    rows: list[dict[str, Any]] = []
+    offset = 0
+
+    while True:
+        params: dict[str, Any] = {"$limit": limit, "$offset": offset}
+        if where:
+            params["$where"] = where
+        if order:
+            params["$order"] = order
+        if select:
+            params["$select"] = select
+
+        payload = fetch_json(dataset_url, params)
+        if not isinstance(payload, list):
+            raise RuntimeError(f"Expected SODA list for {dataset_url}, got: {type(payload).__name__}")
+        if not payload:
+            break
+
+        rows.extend(payload)
+        if len(payload) < limit:
+            break
+        offset += len(payload)
+
+    return rows
+
+
+def fetch_soda_count(dataset_url: str, *, where: str | None = None) -> int:
+    params: dict[str, Any] = {"$select": "count(*)"}
+    if where:
+        params["$where"] = where
+    payload = fetch_json(dataset_url, params)
+    if not isinstance(payload, list) or not payload:
+        raise RuntimeError(f"Expected SODA count list for {dataset_url}, got: {type(payload).__name__}")
+    return int(payload[0].get("count") or 0)
+
+
 def normalize_scientific_name(raw_value: str | None) -> str:
     if not raw_value:
         return ""
@@ -512,6 +566,20 @@ def parse_portland_species(raw_value: str | None) -> tuple[str, str | None]:
         return "Malus species", common_name
 
     return scientific_name, common_name
+
+
+def parse_san_francisco_species(raw_value: str | None) -> tuple[str, str | None]:
+    if not raw_value:
+        return "", None
+
+    text = raw_value.strip()
+    if "::" not in text:
+        return text, None
+
+    scientific_name, common_part = text.split("::", 1)
+    primary_common = common_part.split(":", 1)[0].strip()
+    common_name = title_case_if_upper(primary_common) or None
+    return scientific_name.strip(), common_name
 
 
 def canonical_ownership(raw_value: str | None) -> str:
@@ -776,6 +844,29 @@ def build_zip_index(
             }
         )
     return index
+
+
+def fetch_us_city_zip_index(city: str) -> list[dict[str, Any]]:
+    geometry = load_city_boundary_geometry(city)
+    if not geometry:
+        return []
+
+    min_lon, min_lat, max_lon, max_lat = geometry_bbox(geometry)
+    payload = fetch_json(
+        f"{US_CENSUS_ZCTA_LAYER}/query",
+        {
+            "where": "1=1",
+            "geometry": f"{min_lon},{min_lat},{max_lon},{max_lat}",
+            "geometryType": "esriGeometryEnvelope",
+            "inSR": "4326",
+            "spatialRel": "esriSpatialRelIntersects",
+            "outFields": "GEOID,NAME",
+            "returnGeometry": "true",
+            "outSR": "4326",
+            "f": "geojson",
+        },
+    )
+    return build_zip_index(payload.get("features", []), code_fields=("GEOID", "NAME"))
 
 
 def assign_zip_code(lon: Any, lat: Any, zip_index: list[dict[str, Any]]) -> str | None:
@@ -1882,6 +1973,9 @@ def main() -> int:
     walla_walla_info = fetch_json(WALLA_WALLA_LAYER, {"f": "pjson"})
     dc_info = fetch_json(DC_LAYER, {"f": "pjson"})
     portland_info = fetch_json(PORTLAND_LAYER, {"f": "pjson"})
+    san_jose_info = fetch_json(SAN_JOSE_LAYER, {"f": "pjson"})
+    san_francisco_info = fetch_json(SAN_FRANCISCO_METADATA)
+    burlingame_info = fetch_json(BURLINGAME_LAYER, {"f": "pjson"})
     vancouver_bc_info = fetch_json(VANCOUVER_BC_DATASET)
     victoria_info = fetch_json(VICTORIA_PARK_TREES_ITEM, {"f": "json"})
 
@@ -1900,6 +1994,9 @@ def main() -> int:
     walla_walla_last_edit = iso_from_epoch(walla_walla_info.get("editingInfo", {}).get("lastEditDate"))
     dc_last_edit = iso_from_epoch(dc_info.get("editingInfo", {}).get("lastEditDate"))
     portland_last_edit = iso_from_epoch(portland_info.get("editingInfo", {}).get("lastEditDate"))
+    san_jose_last_edit = iso_from_epoch(san_jose_info.get("editingInfo", {}).get("lastEditDate"))
+    san_francisco_last_edit = iso_from_epoch(san_francisco_info.get("rowsUpdatedAt"))
+    burlingame_last_edit = iso_from_epoch(burlingame_info.get("editingInfo", {}).get("lastEditDate"))
     vancouver_bc_last_edit = vancouver_bc_info.get("metas", {}).get("default", {}).get("modified") or ""
     victoria_last_edit = iso_from_epoch(victoria_info.get("modified"))
     everett_last_edit = ""
@@ -2108,6 +2205,47 @@ def main() -> int:
         order_by_field="OBJECTID",
     )
 
+    san_jose_features = fetch_all_features(
+        layer_url=SAN_JOSE_LAYER,
+        where="NAMESCIENTIFIC LIKE 'Prunus%' OR NAMESCIENTIFIC LIKE 'Magnolia%' OR NAMESCIENTIFIC LIKE 'Malus%'",
+        out_fields=["OBJECTID", "NAMESCIENTIFIC", "ADDRESSNUM", "STREETNAME", "OWNEDBY", "MAINTBY", "LASTUPDATE"],
+        order_by_field="OBJECTID",
+    )
+    san_jose_total = int(
+        fetch_json(
+            f"{SAN_JOSE_LAYER}/query",
+            {"where": "OBJECTID > 0", "returnCountOnly": "true", "f": "json"},
+        ).get("count")
+        or len(san_jose_features)
+    )
+
+    san_francisco_where = (
+        "planttype='Tree' AND (qspecies like 'Prunus%' OR qspecies like 'Magnolia%' OR qspecies like 'Malus%')"
+    )
+    san_francisco_features = fetch_soda_rows(
+        SAN_FRANCISCO_DATASET,
+        where=san_francisco_where,
+        order="treeid",
+    )
+    san_francisco_total = fetch_soda_count(
+        SAN_FRANCISCO_DATASET,
+        where="planttype='Tree'",
+    )
+
+    burlingame_features = fetch_all_features(
+        layer_url=BURLINGAME_LAYER,
+        where="BotanicalName LIKE 'Prunus%' OR BotanicalName LIKE 'Magnolia%' OR BotanicalName LIKE 'Malus%'",
+        out_fields=["OBJECTID_1", "Tree_ID", "Species_Name", "CommonName", "BotanicalName", "Address", "Street", "OnStreet"],
+        order_by_field="OBJECTID_1",
+    )
+    burlingame_total = int(
+        fetch_json(
+            f"{BURLINGAME_LAYER}/query",
+            {"where": "OBJECTID_1 > 0", "returnCountOnly": "true", "f": "json"},
+        ).get("count")
+        or len(burlingame_features)
+    )
+
     vancouver_bc_features = fetch_ods_export_rows(
         VANCOUVER_BC_DATASET,
         where='genus_name in ("PRUNUS","MALUS","MAGNOLIA")',
@@ -2152,6 +2290,11 @@ def main() -> int:
         )
         dc_zip_index = build_zip_index(dc_zip_payload.get("features", []), code_fields=("GEOID", "NAME"))
 
+    portland_zip_index = fetch_us_city_zip_index("Portland")
+    san_jose_zip_index = fetch_us_city_zip_index("San Jose")
+    san_francisco_zip_index = fetch_us_city_zip_index("San Francisco")
+    burlingame_zip_index = fetch_us_city_zip_index("Burlingame")
+
     uw_supplemental_payload = json.loads(UW_SUPPLEMENTAL_PATH.read_text(encoding="utf-8"))
     uw_supplemental_elements = uw_supplemental_payload.get("elements", [])
 
@@ -2168,7 +2311,7 @@ def main() -> int:
         species_group, subtype_name = classify_tree_record(scientific_raw, common_name, mapping_rows, subtype_rows)
 
         ownership_raw = (attrs.get("OWNERSHIP") or "Unknown").strip() or "Unknown"
-        zip_code = assign_zip_code(geom.get("x"), geom.get("y"), zip_index)
+        zip_code = assign_zip_code(geom.get("x"), geom.get("y"), portland_zip_index or zip_index)
 
         normalized_rows.append(
             {
@@ -3120,6 +3263,184 @@ def main() -> int:
             }
         )
 
+    for feature in san_jose_features:
+        attrs = feature.get("attributes", {})
+        geom = feature.get("geometry", {})
+        scientific_raw = (attrs.get("NAMESCIENTIFIC") or "").strip()
+        common_name = None
+        scientific_normalized = normalize_scientific_name(scientific_raw)
+        species_group, subtype_name = classify_tree_record(scientific_raw, common_name, mapping_rows, subtype_rows)
+
+        owned_by = (attrs.get("OWNEDBY") or "").strip()
+        maintained_by = (attrs.get("MAINTBY") or "").strip()
+        if owned_by and maintained_by and owned_by != maintained_by:
+            ownership_raw = f"{owned_by} / managed by {maintained_by}"
+        else:
+            ownership_raw = owned_by or maintained_by or "City of San Jose"
+        zip_code = assign_zip_code(geom.get("x"), geom.get("y"), san_jose_zip_index)
+
+        normalized_rows.append(
+            {
+                "id": f"san-jose-{attrs.get('OBJECTID')}",
+                "city": "San Jose",
+                "source_dataset": "Street Tree",
+                "scientific_raw": scientific_raw,
+                "scientific_normalized": scientific_normalized,
+                "common_name": "",
+                "subtype_name": subtype_name or "",
+                "zip_code": zip_code or "",
+                "species_group": species_group or "",
+                "ownership": canonical_ownership(ownership_raw),
+                "ownership_raw": ownership_raw,
+                "lat": geom.get("y"),
+                "lon": geom.get("x"),
+                "included": "1" if species_group else "0",
+            }
+        )
+
+        if not species_group:
+            if scientific_normalized:
+                unknown_counter[scientific_normalized] += 1
+            continue
+
+        output_features.append(
+            {
+                "type": "Feature",
+                "geometry": {"type": "Point", "coordinates": [geom.get("x"), geom.get("y")]},
+                "properties": {
+                    "id": f"san-jose-{attrs.get('OBJECTID')}",
+                    "species_group": species_group,
+                    "scientific_name": scientific_raw,
+                    "common_name": None,
+                    "subtype_name": subtype_name,
+                    "zip_code": zip_code,
+                    "ownership": canonical_ownership(ownership_raw),
+                    "ownership_raw": ownership_raw,
+                    "city": "San Jose",
+                    "source_dataset": "Street Tree",
+                    "source_department": "City of San Jose",
+                    "source_last_edit_at": san_jose_last_edit,
+                },
+            }
+        )
+
+    for row in san_francisco_features:
+        scientific_raw, common_name = parse_san_francisco_species(row.get("qspecies"))
+        scientific_normalized = normalize_scientific_name(scientific_raw)
+        species_group, subtype_name = classify_tree_record(scientific_raw, common_name, mapping_rows, subtype_rows)
+
+        lon_raw = row.get("longitude")
+        lat_raw = row.get("latitude")
+        if lon_raw in (None, "") or lat_raw in (None, ""):
+            continue
+        lon = float(lon_raw)
+        lat = float(lat_raw)
+
+        ownership_raw = (row.get("qcaretaker") or row.get("qlegalstatus") or "San Francisco Public Works").strip()
+        zip_code = assign_zip_code(lon, lat, san_francisco_zip_index)
+
+        normalized_rows.append(
+            {
+                "id": f"san-francisco-{row.get('treeid')}",
+                "city": "San Francisco",
+                "source_dataset": "Street Tree List",
+                "scientific_raw": scientific_raw,
+                "scientific_normalized": scientific_normalized,
+                "common_name": common_name or "",
+                "subtype_name": subtype_name or "",
+                "zip_code": zip_code or "",
+                "species_group": species_group or "",
+                "ownership": canonical_ownership(ownership_raw),
+                "ownership_raw": ownership_raw,
+                "lat": lat,
+                "lon": lon,
+                "included": "1" if species_group else "0",
+            }
+        )
+
+        if not species_group:
+            if scientific_normalized:
+                unknown_counter[scientific_normalized] += 1
+            continue
+
+        output_features.append(
+            {
+                "type": "Feature",
+                "geometry": {"type": "Point", "coordinates": [lon, lat]},
+                "properties": {
+                    "id": f"san-francisco-{row.get('treeid')}",
+                    "species_group": species_group,
+                    "scientific_name": scientific_raw,
+                    "common_name": common_name,
+                    "subtype_name": subtype_name,
+                    "zip_code": zip_code,
+                    "ownership": canonical_ownership(ownership_raw),
+                    "ownership_raw": ownership_raw,
+                    "city": "San Francisco",
+                    "source_dataset": "Street Tree List",
+                    "source_department": "San Francisco Public Works",
+                    "source_last_edit_at": san_francisco_last_edit,
+                },
+            }
+        )
+
+    for feature in burlingame_features:
+        attrs = feature.get("attributes", {})
+        geom = feature.get("geometry", {})
+        scientific_raw = (attrs.get("BotanicalName") or attrs.get("Species_Name") or "").strip()
+        common_name = title_case_if_upper(attrs.get("CommonName")) or None
+        scientific_normalized = normalize_scientific_name(scientific_raw)
+        species_group, subtype_name = classify_tree_record(scientific_raw, common_name, mapping_rows, subtype_rows)
+
+        ownership_raw = "City of Burlingame"
+        zip_code = assign_zip_code(geom.get("x"), geom.get("y"), burlingame_zip_index)
+        feature_suffix = attrs.get("Tree_ID") or attrs.get("OBJECTID_1")
+
+        normalized_rows.append(
+            {
+                "id": f"burlingame-{feature_suffix}",
+                "city": "Burlingame",
+                "source_dataset": "City Street Tree Inventory",
+                "scientific_raw": scientific_raw,
+                "scientific_normalized": scientific_normalized,
+                "common_name": common_name or "",
+                "subtype_name": subtype_name or "",
+                "zip_code": zip_code or "",
+                "species_group": species_group or "",
+                "ownership": canonical_ownership(ownership_raw),
+                "ownership_raw": ownership_raw,
+                "lat": geom.get("y"),
+                "lon": geom.get("x"),
+                "included": "1" if species_group else "0",
+            }
+        )
+
+        if not species_group:
+            if scientific_normalized:
+                unknown_counter[scientific_normalized] += 1
+            continue
+
+        output_features.append(
+            {
+                "type": "Feature",
+                "geometry": {"type": "Point", "coordinates": [geom.get("x"), geom.get("y")]},
+                "properties": {
+                    "id": f"burlingame-{feature_suffix}",
+                    "species_group": species_group,
+                    "scientific_name": scientific_raw,
+                    "common_name": common_name,
+                    "subtype_name": subtype_name,
+                    "zip_code": zip_code,
+                    "ownership": canonical_ownership(ownership_raw),
+                    "ownership_raw": ownership_raw,
+                    "city": "Burlingame",
+                    "source_dataset": "City Street Tree Inventory",
+                    "source_department": "City of Burlingame",
+                    "source_last_edit_at": burlingame_last_edit,
+                },
+            }
+        )
+
     for row in everett_park_rows:
         scientific_raw, parsed_common_name = parse_sammamish_species(row.get("SITE_ATTR1"))
         common_name = parsed_common_name or row.get("SITE_ATTR1")
@@ -3718,6 +4039,34 @@ def main() -> int:
             ),
         },
         {
+            "name": "Street Tree",
+            "city": "San Jose",
+            "endpoint": SAN_JOSE_DATASET_PAGE,
+            "last_edit_at": san_jose_last_edit,
+            "records_fetched": san_jose_total,
+            "records_included": len([f for f in output_features if f["properties"]["source_dataset"] == "Street Tree"]),
+        },
+        {
+            "name": "Street Tree List",
+            "city": "San Francisco",
+            "endpoint": SAN_FRANCISCO_DATASET_PAGE,
+            "last_edit_at": san_francisco_last_edit,
+            "records_fetched": san_francisco_total,
+            "records_included": len(
+                [f for f in output_features if f["properties"]["source_dataset"] == "Street Tree List"]
+            ),
+        },
+        {
+            "name": "City Street Tree Inventory",
+            "city": "Burlingame",
+            "endpoint": BURLINGAME_DATASET_PAGE,
+            "last_edit_at": burlingame_last_edit,
+            "records_fetched": burlingame_total,
+            "records_included": len(
+                [f for f in output_features if f["properties"]["source_dataset"] == "City Street Tree Inventory"]
+            ),
+        },
+        {
             "name": "Public trees",
             "city": "Vancouver BC",
             "endpoint": VANCOUVER_BC_DATASET,
@@ -3809,6 +4158,9 @@ def main() -> int:
         + len(yakima_features)
         + len(walla_walla_features)
         + portland_total
+        + san_jose_total
+        + san_francisco_total
+        + burlingame_total
         + len(vancouver_bc_features)
         + len(victoria_features)
         + sammamish_street_total

@@ -1,6 +1,6 @@
 # Pink Hunter
 
-Mobile-first blooming tree map for Cherry / Plum / Peach / Magnolia / Crabapple.
+Mobile-first pink blossom tree map for Cherry / Plum / Peach / Magnolia / Crabapple.
 
 Live domain:
 - [pinkhunter.flalaz.com](http://pinkhunter.flalaz.com/)
@@ -42,6 +42,11 @@ Live domain:
 ### Oregon
 - Portland
 
+### California
+- Burlingame
+- San Francisco
+- San Jose
+
 ### Washington, DC
 - Washington DC
 
@@ -73,6 +78,9 @@ Live domain:
 - Puyallup: [City Maintained Street Trees](https://services8.arcgis.com/5K6vnOH0GkPyJs6A/arcgis/rest/services/City_Maintained_Street_Trees/FeatureServer/0)
 - Gig Harbor: [PW Trees Public Viewer](https://services3.arcgis.com/FjNT4j1knnY5Wsw5/arcgis/rest/services/PW_Trees_Public_Viewer/FeatureServer/0)
 - Portland: [Street Tree Inventory - Active Records](https://www.portlandmaps.com/od/rest/services/COP_OpenData_Environment/MapServer/1415)
+- Burlingame: [City Street Tree Inventory](https://www.burlingame.org/466/Trees-Urban-Forest)
+- San Francisco: [Street Tree List](https://data.sfgov.org/City-Infrastructure/Street-Tree-List/tkzw-k3nq)
+- San Jose: [Street Tree](https://data.sanjoseca.gov/dataset/street-tree)
 - Washington DC: [Urban Tree Canopy](https://maps2.dcgis.dc.gov/dcgis/rest/services/DCGIS_DATA/Urban_Tree_Canopy/MapServer/23)
 - Vancouver BC: [Public trees](https://opendata.vancouver.ca/api/explore/v2.1/catalog/datasets/public-trees)
 - Victoria BC: [Tree Species (Parks trees database)](https://maps.victoria.ca/server/rest/services/OpenData/OpenData_Parks/MapServer/15)

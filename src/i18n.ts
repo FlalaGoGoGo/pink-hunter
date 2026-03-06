@@ -5,7 +5,9 @@ export const DEFAULT_LANGUAGE: Language = "en-US";
 const copy = {
   "zh-CN": {
     appTitle: "Pink Hunter",
-    appSubtitle: "",
+    appSubtitle: "找粉色花树，也分得清它们。",
+    browserTitle: "Pink Hunter - 粉色花树地图",
+    browserDescription: "帮助大家寻找并区分樱花、李花、桃花、木兰与海棠的移动端地图。",
     locate: "定位",
     filter: "筛选",
     language: "EN",
@@ -22,7 +24,7 @@ const copy = {
     noResultsTitle: "没有符合条件的树",
     noResultsBody: "尝试放宽筛选条件，或切换到其它城市。",
     selectedTree: "当前选中",
-    guideTitle: "花树辨认指南",
+    guideTitle: "粉色花树指南",
     listTitle: "附近与筛选结果",
     dataUpdated: "数据更新",
     source: "来源",
@@ -59,7 +61,10 @@ const copy = {
   },
   "en-US": {
     appTitle: "Pink Hunter",
-    appSubtitle: "",
+    appSubtitle: "Find pink blossom trees. Learn the differences.",
+    browserTitle: "Pink Hunter - Pink Blossom Tree Map",
+    browserDescription:
+      "A mobile-first map for finding and distinguishing cherry, plum, peach, magnolia, and crabapple trees.",
     locate: "Locate",
     filter: "Filter",
     language: "中",
@@ -78,7 +83,7 @@ const copy = {
     noResultsTitle: "No trees match the filters",
     noResultsBody: "Try broader filters or switch to another city.",
     selectedTree: "Selected tree",
-    guideTitle: "Flower guide",
+    guideTitle: "Pink Blossom Guide",
     listTitle: "Nearby & filtered results",
     dataUpdated: "Data updated",
     source: "Source",

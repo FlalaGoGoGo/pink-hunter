@@ -1,6 +1,6 @@
 {
   "version": "v1",
-  "generated_at": "2026-03-06T22:25:03.324699+00:00",
+  "generated_at": "2026-03-06T23:38:34.681417+00:00",
   "coverage_rule": "official_city_boundary_only",
   "coverage_skipped_cities": [],
   "coverage_official_unavailable_cities": [
@@ -65,19 +65,11 @@
     "Yarrow Point"
   ],
   "coverage_official_unavailable_skipped_cities": [],
-  "source_count": 23,
-  "total_records": 452406,
-  "included_records": 149439,
-  "unknown_records": 51985,
+  "source_count": 26,
+  "total_records": 1013313,
+  "included_records": 193556,
+  "unknown_records": 54662,
   "sources": [
-    {
-      "name": "Combined Tree Point",
-      "city": "Seattle",
-      "endpoint": "https://services.arcgis.com/ZOyb2t4B0UYuYNYH/arcgis/rest/services/Combined_Tree_Point/FeatureServer/0",
-      "last_edit_at": "2026-03-06T15:57:03.104000+00:00",
-      "records_fetched": 47962,
-      "records_included": 46084
-    },
     {
       "name": "City Trees",
       "city": "Bellevue",
@@ -85,6 +77,70 @@
       "last_edit_at": "2026-03-06T20:09:06.732000+00:00",
       "records_fetched": 342,
       "records_included": 342
+    },
+    {
+      "name": "Bellingham Trees",
+      "city": "Bellingham",
+      "endpoint": "https://maps.cob.org/arcgis3/rest/services/Parks/NotableTrees/MapServer/0",
+      "last_edit_at": "",
+      "records_fetched": 901,
+      "records_included": 645
+    },
+    {
+      "name": "City Street Tree Inventory",
+      "city": "Burlingame",
+      "endpoint": "https://www.burlingame.org/466/Trees-Urban-Forest",
+      "last_edit_at": "2025-02-25T14:28:18.205000+00:00",
+      "records_fetched": 16603,
+      "records_included": 1997
+    },
+    {
+      "name": "Everett TreeKeeper Park Sites",
+      "city": "Everett",
+      "endpoint": "https://everettwa.treekeepersoftware.com/cffiles/grids.cfc",
+      "last_edit_at": "",
+      "records_fetched": 15162,
+      "records_included": 464
+    },
+    {
+      "name": "PW Trees Public Viewer",
+      "city": "Gig Harbor",
+      "endpoint": "https://services3.arcgis.com/FjNT4j1knnY5Wsw5/arcgis/rest/services/PW_Trees_Public_Viewer/FeatureServer/0",
+      "last_edit_at": "2026-03-06T06:11:22.262000+00:00",
+      "records_fetched": 64,
+      "records_included": 63
+    },
+    {
+      "name": "Public Trees",
+      "city": "Kenmore",
+      "endpoint": "https://gwa.kenmorewa.gov/arcgis/rest/services/Public_Trees/FeatureServer/22",
+      "last_edit_at": "",
+      "records_fetched": 911,
+      "records_included": 329
+    },
+    {
+      "name": "2023-2024 Kirkland Tree Inventory",
+      "city": "Kirkland",
+      "endpoint": "https://pg-cloud.com/main/server/db.php",
+      "last_edit_at": "",
+      "records_fetched": 39014,
+      "records_included": 3122
+    },
+    {
+      "name": "Street Tree Inventory - Active Records",
+      "city": "Portland",
+      "endpoint": "https://www.portlandmaps.com/od/rest/services/COP_OpenData_Environment/MapServer/1415",
+      "last_edit_at": "",
+      "records_fetched": 252205,
+      "records_included": 24775
+    },
+    {
+      "name": "City Maintained Street Trees",
+      "city": "Puyallup",
+      "endpoint": "https://services8.arcgis.com/5K6vnOH0GkPyJs6A/arcgis/rest/services/City_Maintained_Street_Trees/FeatureServer/0",
+      "last_edit_at": "2026-01-06T23:31:01.859000+00:00",
+      "records_fetched": 76,
+      "records_included": 76
     },
     {
       "name": "TreeSite",
@@ -104,12 +160,36 @@
       "note": ""
     },
     {
-      "name": "Public Trees",
-      "city": "Kenmore",
-      "endpoint": "https://gwa.kenmorewa.gov/arcgis/rest/services/Public_Trees/FeatureServer/22",
+      "name": "TreeKeeper Park Sites",
+      "city": "Sammamish",
+      "endpoint": "https://sammamishwa.treekeepersoftware.com/cffiles/grids.cfc",
       "last_edit_at": "",
-      "records_fetched": 911,
-      "records_included": 329
+      "records_fetched": 11379,
+      "records_included": 247
+    },
+    {
+      "name": "TreeKeeper Street Sites",
+      "city": "Sammamish",
+      "endpoint": "https://sammamishwa.treekeepersoftware.com/cffiles/grids.cfc",
+      "last_edit_at": "",
+      "records_fetched": 8618,
+      "records_included": 916
+    },
+    {
+      "name": "Street Tree List",
+      "city": "San Francisco",
+      "endpoint": "https://data.sfgov.org/City-Infrastructure/Street-Tree-List/tkzw-k3nq",
+      "last_edit_at": "2026-03-05T13:44:30+00:00",
+      "records_fetched": 198096,
+      "records_included": 24099
+    },
+    {
+      "name": "Street Tree",
+      "city": "San Jose",
+      "endpoint": "https://data.sanjoseca.gov/dataset/street-tree",
+      "last_edit_at": "",
+      "records_fetched": 346208,
+      "records_included": 18021
     },
     {
       "name": "Trees",
@@ -120,20 +200,20 @@
       "records_included": 38
     },
     {
-      "name": "City Maintained Street Trees",
-      "city": "Puyallup",
-      "endpoint": "https://services8.arcgis.com/5K6vnOH0GkPyJs6A/arcgis/rest/services/City_Maintained_Street_Trees/FeatureServer/0",
-      "last_edit_at": "2026-01-06T23:31:01.859000+00:00",
-      "records_fetched": 76,
-      "records_included": 76
+      "name": "Combined Tree Point",
+      "city": "Seattle",
+      "endpoint": "https://services.arcgis.com/ZOyb2t4B0UYuYNYH/arcgis/rest/services/Combined_Tree_Point/FeatureServer/0",
+      "last_edit_at": "2026-03-06T15:57:03.104000+00:00",
+      "records_fetched": 47962,
+      "records_included": 46084
     },
     {
-      "name": "PW Trees Public Viewer",
-      "city": "Gig Harbor",
-      "endpoint": "https://services3.arcgis.com/FjNT4j1knnY5Wsw5/arcgis/rest/services/PW_Trees_Public_Viewer/FeatureServer/0",
-      "last_edit_at": "2026-03-06T06:11:22.262000+00:00",
-      "records_fetched": 64,
-      "records_included": 63
+      "name": "UW OSM Supplemental",
+      "city": "Seattle",
+      "endpoint": "OpenStreetMap Overpass supplemental file",
+      "last_edit_at": "",
+      "records_fetched": 30,
+      "records_included": 30
     },
     {
       "name": "Public Tree Inventory",
@@ -152,28 +232,12 @@
       "records_included": 856
     },
     {
-      "name": "Bellingham Trees",
-      "city": "Bellingham",
-      "endpoint": "https://maps.cob.org/arcgis3/rest/services/Parks/NotableTrees/MapServer/0",
-      "last_edit_at": "",
-      "records_fetched": 901,
-      "records_included": 645
-    },
-    {
       "name": "Spokane Tree Inventory",
       "city": "Spokane",
       "endpoint": "https://services.arcgis.com/3PDwyTturHqnGCu0/arcgis/rest/services/Tree_Inventory/FeatureServer/7",
       "last_edit_at": "2025-07-22T20:56:02.406000+00:00",
       "records_fetched": 8522,
       "records_included": 8472
-    },
-    {
-      "name": "Street Tree Inventory - Active Records",
-      "city": "Portland",
-      "endpoint": "https://www.portlandmaps.com/od/rest/services/COP_OpenData_Environment/MapServer/1415",
-      "last_edit_at": "",
-      "records_fetched": 252205,
-      "records_included": 24775
     },
     {
       "name": "Public trees",
@@ -192,36 +256,12 @@
       "records_included": 6094
     },
     {
-      "name": "TreeKeeper Street Sites",
-      "city": "Sammamish",
-      "endpoint": "https://sammamishwa.treekeepersoftware.com/cffiles/grids.cfc",
+      "name": "City of Walla Walla Trees",
+      "city": "Walla Walla",
+      "endpoint": "https://gis2.ci.walla-walla.wa.us/arcgis/rest/services/Basemap/GISBaseMap_TreesVisible/MapServer/0",
       "last_edit_at": "",
-      "records_fetched": 8618,
-      "records_included": 916
-    },
-    {
-      "name": "TreeKeeper Park Sites",
-      "city": "Sammamish",
-      "endpoint": "https://sammamishwa.treekeepersoftware.com/cffiles/grids.cfc",
-      "last_edit_at": "",
-      "records_fetched": 11379,
-      "records_included": 247
-    },
-    {
-      "name": "Everett TreeKeeper Park Sites",
-      "city": "Everett",
-      "endpoint": "https://everettwa.treekeepersoftware.com/cffiles/grids.cfc",
-      "last_edit_at": "",
-      "records_fetched": 15162,
-      "records_included": 464
-    },
-    {
-      "name": "2023-2024 Kirkland Tree Inventory",
-      "city": "Kirkland",
-      "endpoint": "https://pg-cloud.com/main/server/db.php",
-      "last_edit_at": "",
-      "records_fetched": 39014,
-      "records_included": 3122
+      "records_fetched": 1235,
+      "records_included": 1167
     },
     {
       "name": "Urban Tree Canopy",
@@ -232,28 +272,12 @@
       "records_included": 16533
     },
     {
-      "name": "UW OSM Supplemental",
-      "city": "Seattle",
-      "endpoint": "OpenStreetMap Overpass supplemental file",
-      "last_edit_at": "",
-      "records_fetched": 30,
-      "records_included": 30
-    },
-    {
       "name": "Yakima Trees",
       "city": "Yakima",
       "endpoint": "https://gis.yakimawa.gov/arcgis/rest/services/Parks/Trees/MapServer/0",
       "last_edit_at": "",
       "records_fetched": 510,
       "records_included": 509
-    },
-    {
-      "name": "City of Walla Walla Trees",
-      "city": "Walla Walla",
-      "endpoint": "https://gis2.ci.walla-walla.wa.us/arcgis/rest/services/Basemap/GISBaseMap_TreesVisible/MapServer/0",
-      "last_edit_at": "",
-      "records_fetched": 1235,
-      "records_included": 1167
     }
   ]
 }
