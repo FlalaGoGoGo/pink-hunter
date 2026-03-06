@@ -2367,7 +2367,7 @@ def main() -> int:
         species_group, subtype_name = classify_tree_record(scientific_raw, common_name, mapping_rows, subtype_rows)
 
         management = (attrs.get("Management") or "City of Bellevue").strip() or "City of Bellevue"
-        zip_code = assign_zip_code(geom.get("x"), geom.get("y"), zip_index)
+        zip_code = assign_zip_code(geom.get("x"), geom.get("y"), portland_zip_index or zip_index)
 
         normalized_rows.append(
             {
