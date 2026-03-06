@@ -1,0 +1,66 @@
+match_type,scientific_pattern,species_group,notes
+prefix,prunus serrulata,cherry,Japanese flowering cherry and cultivars
+prefix,prunus yedoensis,cherry,Yoshino cherry
+prefix,prunus x yedoensis,cherry,Yoshino hybrid notation
+prefix,prunus x yeodensis,cherry,Common data typo variant for Yoshino
+prefix,prunus x yedeoensis,cherry,Common Kirkland typo variant for Yoshino
+prefix,prunus x yodoensis,cherry,Common typo variant for Yoshino
+prefix,prunus subhirtella,cherry,Higan cherry
+prefix,prunus x subhirtella,cherry,Higan cherry hybrid notation
+prefix,prunus sargentii,cherry,Sargent cherry
+prefix,prunus campanulata,cherry,Taiwan cherry
+prefix,prunus avium,cherry,Sweet cherry
+prefix,prunus cerasus,cherry,Sour cherry
+prefix,prunus padus,cherry,Bird cherry
+prefix,prunus incisa,cherry,Fuji cherry
+prefix,prunus nipponica,cherry,Japanese alpine cherry
+prefix,prunus speciosa,cherry,Oshima cherry
+prefix,prunus pseudocerasus,cherry,Chinese flowering cherry
+prefix,prunus maackii,cherry,Amur cherry
+prefix,prunus kwanzan,cherry,Kwanzan flowering cherry cultivar
+prefix,prunus okame,cherry,Okame flowering cherry cultivar
+prefix,prunus x okame,cherry,Okame hybrid notation
+prefix,prunus snow goose,cherry,Snow Goose flowering cherry cultivar
+prefix,prunus cascade snow,cherry,Cascade Snow flowering cherry cultivar
+prefix,prunus beni-tamanishiki,cherry,Beni-tamanishiki flowering cherry cultivar
+prefix,prunus accolade,cherry,Accolade flowering cherry cultivar
+prefix,prunus amanogawa,cherry,Amanogawa flowering cherry cultivar
+prefix,prunus shirotae,cherry,Shirotae flowering cherry cultivar
+prefix,prunus shogetsu,cherry,Shogetsu flowering cherry cultivar
+prefix,prunus hokusai,cherry,Hokusai flowering cherry cultivar
+prefix,prunus pendula,cherry,Weeping cherry
+prefix,prunus x pugetensis,cherry,Puget cherry hybrid
+prefix,prunus x hillierii,cherry,Hillier cherry hybrid
+prefix,prunus dream catcher,cherry,Dream Catcher flowering cherry cultivar
+prefix,prunus cerasifera,plum,Cherry plum
+prefix,prunus x bilreiana,plum,Common typo variant of Prunus x blireiana (flowering plum)
+prefix,prunus x blireiana,plum,Flowering plum hybrid
+prefix,prunus x blireana,plum,Common typo variant of Prunus x blireiana
+prefix,prunus x domestica,plum,European plum hybrid notation
+prefix,prunus cerrasifera,plum,Common typo variant of cherry plum
+prefix,prunus newport,plum,Newport flowering plum cultivar
+prefix,prunus domestica,plum,European plum
+prefix,prunus salicina,plum,Japanese plum
+prefix,prunus americana,plum,American plum
+prefix,prunus maritima,plum,Beach plum
+prefix,prunus spinosa,plum,Sloe plum
+prefix,prunus mume,plum,Japanese apricot plum
+prefix,prunus subcordata,plum,Klamath plum
+prefix,prunus persica,peach,Peach
+prefix,magnolia,magnolia,Magnolia genus for spring ornamental magnolia
+prefix,malus,crabapple,Flowering crabapple and ornamental apple
+prefix,prunus laurocerasus,exclude,Cherry laurel not in scope
+prefix,prunus lusitanica,exclude,Portuguese laurel not in scope
+prefix,prunus caroliniana,exclude,Carolina laurel cherry not in scope
+prefix,prunus ilicifolia,exclude,Hollyleaf cherry not in scope
+prefix,prunus virginiana,exclude,Chokecherry excluded for scope
+prefix,prunus emarginata,exclude,Bitter cherry excluded for scope
+exact,prunus species,exclude,Genus-only ambiguous record
+exact,prunus sp,exclude,Genus-only ambiguous record
+exact,prunus sp.,exclude,Genus-only ambiguous record
+exact,magnolia species,magnolia,Genus-only magnolia record
+exact,magnolia sp,magnolia,Genus-only magnolia record
+exact,magnolia sp.,magnolia,Genus-only magnolia record
+exact,malus species,crabapple,Genus-only malus record
+exact,malus sp,crabapple,Genus-only malus record
+exact,malus sp.,crabapple,Genus-only malus record

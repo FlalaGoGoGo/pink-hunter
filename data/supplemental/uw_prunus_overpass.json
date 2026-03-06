@@ -1,0 +1,630 @@
+{
+  "version": 0.6,
+  "generator": "Overpass API 0.7.62.10 2d4cfc48",
+  "osm3s": {
+    "timestamp_osm_base": "2026-03-05T04:40:56Z",
+    "copyright": "The data included in this document is from www.openstreetmap.org. The data is made available under ODbL."
+  },
+  "elements": [
+
+{
+  "type": "node",
+  "id": 7797158569,
+  "lat": 47.6568834,
+  "lon": -122.3075460,
+  "tags": {
+    "denotation": "urban",
+    "genus": "Prunus",
+    "genus:en": "Cherry",
+    "genus:wikidata": "Q190545",
+    "genus:wikipedia": "en:Prunus",
+    "leaf_cycle": "deciduous",
+    "leaf_type": "broadleaved",
+    "natural": "tree",
+    "species": "Prunus × yedoensis",
+    "species:en": "Yoshino Cherry",
+    "species:ja": "ソメイヨシノ",
+    "species:wikidata": "Q163078",
+    "species:wikipedia": "en:Prunus × yedoensis"
+  }
+},
+{
+  "type": "node",
+  "id": 7797158570,
+  "lat": 47.6568053,
+  "lon": -122.3074620,
+  "tags": {
+    "denotation": "urban",
+    "genus": "Prunus",
+    "genus:en": "Cherry",
+    "genus:wikidata": "Q190545",
+    "genus:wikipedia": "en:Prunus",
+    "leaf_cycle": "deciduous",
+    "leaf_type": "broadleaved",
+    "natural": "tree",
+    "species": "Prunus × yedoensis",
+    "species:en": "Yoshino Cherry",
+    "species:ja": "ソメイヨシノ",
+    "species:wikidata": "Q163078",
+    "species:wikipedia": "en:Prunus × yedoensis"
+  }
+},
+{
+  "type": "node",
+  "id": 7797158571,
+  "lat": 47.6568659,
+  "lon": -122.3073680,
+  "tags": {
+    "denotation": "urban",
+    "genus": "Prunus",
+    "genus:en": "Cherry",
+    "genus:wikidata": "Q190545",
+    "genus:wikipedia": "en:Prunus",
+    "leaf_cycle": "deciduous",
+    "leaf_type": "broadleaved",
+    "natural": "tree",
+    "species": "Prunus × yedoensis",
+    "species:en": "Yoshino Cherry",
+    "species:ja": "ソメイヨシノ",
+    "species:wikidata": "Q163078",
+    "species:wikipedia": "en:Prunus × yedoensis"
+  }
+},
+{
+  "type": "node",
+  "id": 7797158572,
+  "lat": 47.6569845,
+  "lon": -122.3071840,
+  "tags": {
+    "denotation": "urban",
+    "genus": "Prunus",
+    "genus:en": "Cherry",
+    "genus:wikidata": "Q190545",
+    "genus:wikipedia": "en:Prunus",
+    "leaf_cycle": "deciduous",
+    "leaf_type": "broadleaved",
+    "natural": "tree",
+    "species": "Prunus × yedoensis",
+    "species:en": "Yoshino Cherry",
+    "species:ja": "ソメイヨシノ",
+    "species:wikidata": "Q163078",
+    "species:wikipedia": "en:Prunus × yedoensis"
+  }
+},
+{
+  "type": "node",
+  "id": 7797158573,
+  "lat": 47.6570589,
+  "lon": -122.3070650,
+  "tags": {
+    "denotation": "urban",
+    "genus": "Prunus",
+    "genus:en": "Cherry",
+    "genus:wikidata": "Q190545",
+    "genus:wikipedia": "en:Prunus",
+    "leaf_cycle": "deciduous",
+    "leaf_type": "broadleaved",
+    "natural": "tree",
+    "species": "Prunus × yedoensis",
+    "species:en": "Yoshino Cherry",
+    "species:ja": "ソメイヨシノ",
+    "species:wikidata": "Q163078",
+    "species:wikipedia": "en:Prunus × yedoensis"
+  }
+},
+{
+  "type": "node",
+  "id": 7797158574,
+  "lat": 47.6571667,
+  "lon": -122.3069240,
+  "tags": {
+    "denotation": "urban",
+    "genus": "Prunus",
+    "genus:en": "Cherry",
+    "genus:wikidata": "Q190545",
+    "genus:wikipedia": "en:Prunus",
+    "leaf_cycle": "deciduous",
+    "leaf_type": "broadleaved",
+    "natural": "tree",
+    "species": "Prunus × yedoensis",
+    "species:en": "Yoshino Cherry",
+    "species:ja": "ソメイヨシノ",
+    "species:wikidata": "Q163078",
+    "species:wikipedia": "en:Prunus × yedoensis"
+  }
+},
+{
+  "type": "node",
+  "id": 7797158575,
+  "lat": 47.6572585,
+  "lon": -122.3067880,
+  "tags": {
+    "denotation": "urban",
+    "genus": "Prunus",
+    "genus:en": "Cherry",
+    "genus:wikidata": "Q190545",
+    "genus:wikipedia": "en:Prunus",
+    "leaf_cycle": "deciduous",
+    "leaf_type": "broadleaved",
+    "natural": "tree",
+    "species": "Prunus × yedoensis",
+    "species:en": "Yoshino Cherry",
+    "species:ja": "ソメイヨシノ",
+    "species:wikidata": "Q163078",
+    "species:wikipedia": "en:Prunus × yedoensis"
+  }
+},
+{
+  "type": "node",
+  "id": 7797158576,
+  "lat": 47.6573083,
+  "lon": -122.3067200,
+  "tags": {
+    "denotation": "urban",
+    "genus": "Prunus",
+    "genus:en": "Cherry",
+    "genus:wikidata": "Q190545",
+    "genus:wikipedia": "en:Prunus",
+    "leaf_cycle": "deciduous",
+    "leaf_type": "broadleaved",
+    "natural": "tree",
+    "species": "Prunus × yedoensis",
+    "species:en": "Yoshino Cherry",
+    "species:ja": "ソメイヨシノ",
+    "species:wikidata": "Q163078",
+    "species:wikipedia": "en:Prunus × yedoensis"
+  }
+},
+{
+  "type": "node",
+  "id": 7797158577,
+  "lat": 47.6573594,
+  "lon": -122.3066370,
+  "tags": {
+    "denotation": "urban",
+    "genus": "Prunus",
+    "genus:en": "Cherry",
+    "genus:wikidata": "Q190545",
+    "genus:wikipedia": "en:Prunus",
+    "leaf_cycle": "deciduous",
+    "leaf_type": "broadleaved",
+    "natural": "tree",
+    "species": "Prunus × yedoensis",
+    "species:en": "Yoshino Cherry",
+    "species:ja": "ソメイヨシノ",
+    "species:wikidata": "Q163078",
+    "species:wikipedia": "en:Prunus × yedoensis"
+  }
+},
+{
+  "type": "node",
+  "id": 7797158578,
+  "lat": 47.6574323,
+  "lon": -122.3065250,
+  "tags": {
+    "denotation": "urban",
+    "genus": "Prunus",
+    "genus:en": "Cherry",
+    "genus:wikidata": "Q190545",
+    "genus:wikipedia": "en:Prunus",
+    "leaf_cycle": "deciduous",
+    "leaf_type": "broadleaved",
+    "natural": "tree",
+    "species": "Prunus × yedoensis",
+    "species:en": "Yoshino Cherry",
+    "species:ja": "ソメイヨシノ",
+    "species:wikidata": "Q163078",
+    "species:wikipedia": "en:Prunus × yedoensis"
+  }
+},
+{
+  "type": "node",
+  "id": 7797158581,
+  "lat": 47.6578578,
+  "lon": -122.3068130,
+  "tags": {
+    "denotation": "urban",
+    "genus": "Prunus",
+    "genus:en": "Cherry",
+    "genus:wikidata": "Q190545",
+    "genus:wikipedia": "en:Prunus",
+    "leaf_cycle": "deciduous",
+    "leaf_type": "broadleaved",
+    "natural": "tree",
+    "species": "Prunus × yedoensis",
+    "species:en": "Yoshino Cherry",
+    "species:ja": "ソメイヨシノ",
+    "species:wikidata": "Q163078",
+    "species:wikipedia": "en:Prunus × yedoensis"
+  }
+},
+{
+  "type": "node",
+  "id": 7797158582,
+  "lat": 47.6577940,
+  "lon": -122.3068950,
+  "tags": {
+    "denotation": "urban",
+    "genus": "Prunus",
+    "genus:en": "Cherry",
+    "genus:wikidata": "Q190545",
+    "genus:wikipedia": "en:Prunus",
+    "leaf_cycle": "deciduous",
+    "leaf_type": "broadleaved",
+    "natural": "tree",
+    "species": "Prunus × yedoensis",
+    "species:en": "Yoshino Cherry",
+    "species:ja": "ソメイヨシノ",
+    "species:wikidata": "Q163078",
+    "species:wikipedia": "en:Prunus × yedoensis"
+  }
+},
+{
+  "type": "node",
+  "id": 7797158583,
+  "lat": 47.6576728,
+  "lon": -122.3070820,
+  "tags": {
+    "denotation": "urban",
+    "genus": "Prunus",
+    "genus:en": "Cherry",
+    "genus:wikidata": "Q190545",
+    "genus:wikipedia": "en:Prunus",
+    "leaf_cycle": "deciduous",
+    "leaf_type": "broadleaved",
+    "natural": "tree",
+    "species": "Prunus × yedoensis",
+    "species:en": "Yoshino Cherry",
+    "species:ja": "ソメイヨシノ",
+    "species:wikidata": "Q163078",
+    "species:wikipedia": "en:Prunus × yedoensis"
+  }
+},
+{
+  "type": "node",
+  "id": 7797158584,
+  "lat": 47.6576112,
+  "lon": -122.3071790,
+  "tags": {
+    "denotation": "urban",
+    "genus": "Prunus",
+    "genus:en": "Cherry",
+    "genus:wikidata": "Q190545",
+    "genus:wikipedia": "en:Prunus",
+    "leaf_cycle": "deciduous",
+    "leaf_type": "broadleaved",
+    "natural": "tree",
+    "species": "Prunus × yedoensis",
+    "species:en": "Yoshino Cherry",
+    "species:ja": "ソメイヨシノ",
+    "species:wikidata": "Q163078",
+    "species:wikipedia": "en:Prunus × yedoensis"
+  }
+},
+{
+  "type": "node",
+  "id": 7797254285,
+  "lat": 47.6577347,
+  "lon": -122.3069840,
+  "tags": {
+    "denotation": "urban",
+    "genus": "Prunus",
+    "genus:en": "Cherry",
+    "genus:wikidata": "Q190545",
+    "genus:wikipedia": "en:Prunus",
+    "leaf_cycle": "deciduous",
+    "leaf_type": "broadleaved",
+    "natural": "tree",
+    "species": "Prunus × yedoensis",
+    "species:en": "Yoshino Cherry",
+    "species:ja": "ソメイヨシノ",
+    "species:wikidata": "Q163078",
+    "species:wikipedia": "en:Prunus × yedoensis"
+  }
+},
+{
+  "type": "node",
+  "id": 7797254286,
+  "lat": 47.6575453,
+  "lon": -122.3072890,
+  "tags": {
+    "denotation": "urban",
+    "genus": "Prunus",
+    "genus:en": "Cherry",
+    "genus:wikidata": "Q190545",
+    "genus:wikipedia": "en:Prunus",
+    "leaf_cycle": "deciduous",
+    "leaf_type": "broadleaved",
+    "natural": "tree",
+    "species": "Prunus × yedoensis",
+    "species:en": "Yoshino Cherry",
+    "species:ja": "ソメイヨシノ",
+    "species:wikidata": "Q163078",
+    "species:wikipedia": "en:Prunus × yedoensis"
+  }
+},
+{
+  "type": "node",
+  "id": 7797254287,
+  "lat": 47.6574616,
+  "lon": -122.3074060,
+  "tags": {
+    "denotation": "urban",
+    "genus": "Prunus",
+    "genus:en": "Cherry",
+    "genus:wikidata": "Q190545",
+    "genus:wikipedia": "en:Prunus",
+    "leaf_cycle": "deciduous",
+    "leaf_type": "broadleaved",
+    "natural": "tree",
+    "species": "Prunus × yedoensis",
+    "species:en": "Yoshino Cherry",
+    "species:ja": "ソメイヨシノ",
+    "species:wikidata": "Q163078",
+    "species:wikipedia": "en:Prunus × yedoensis"
+  }
+},
+{
+  "type": "node",
+  "id": 7797254288,
+  "lat": 47.6573789,
+  "lon": -122.3075280,
+  "tags": {
+    "denotation": "urban",
+    "genus": "Prunus",
+    "genus:en": "Cherry",
+    "genus:wikidata": "Q190545",
+    "genus:wikipedia": "en:Prunus",
+    "leaf_cycle": "deciduous",
+    "leaf_type": "broadleaved",
+    "natural": "tree",
+    "species": "Prunus × yedoensis",
+    "species:en": "Yoshino Cherry",
+    "species:ja": "ソメイヨシノ",
+    "species:wikidata": "Q163078",
+    "species:wikipedia": "en:Prunus × yedoensis"
+  }
+},
+{
+  "type": "node",
+  "id": 7797254289,
+  "lat": 47.6573027,
+  "lon": -122.3076380,
+  "tags": {
+    "denotation": "urban",
+    "genus": "Prunus",
+    "genus:en": "Cherry",
+    "genus:wikidata": "Q190545",
+    "genus:wikipedia": "en:Prunus",
+    "leaf_cycle": "deciduous",
+    "leaf_type": "broadleaved",
+    "natural": "tree",
+    "species": "Prunus × yedoensis",
+    "species:en": "Yoshino Cherry",
+    "species:ja": "ソメイヨシノ",
+    "species:wikidata": "Q163078",
+    "species:wikipedia": "en:Prunus × yedoensis"
+  }
+},
+{
+  "type": "node",
+  "id": 7797254291,
+  "lat": 47.6572378,
+  "lon": -122.3077290,
+  "tags": {
+    "denotation": "urban",
+    "genus": "Prunus",
+    "genus:en": "Cherry",
+    "genus:wikidata": "Q190545",
+    "genus:wikipedia": "en:Prunus",
+    "leaf_cycle": "deciduous",
+    "leaf_type": "broadleaved",
+    "natural": "tree",
+    "species": "Prunus × yedoensis",
+    "species:en": "Yoshino Cherry",
+    "species:ja": "ソメイヨシノ",
+    "species:wikidata": "Q163078",
+    "species:wikipedia": "en:Prunus × yedoensis"
+  }
+},
+{
+  "type": "node",
+  "id": 7797254292,
+  "lat": 47.6571554,
+  "lon": -122.3078470,
+  "tags": {
+    "denotation": "urban",
+    "genus": "Prunus",
+    "genus:en": "Cherry",
+    "genus:wikidata": "Q190545",
+    "genus:wikipedia": "en:Prunus",
+    "leaf_cycle": "deciduous",
+    "leaf_type": "broadleaved",
+    "natural": "tree",
+    "species": "Prunus × yedoensis",
+    "species:en": "Yoshino Cherry",
+    "species:ja": "ソメイヨシノ",
+    "species:wikidata": "Q163078",
+    "species:wikipedia": "en:Prunus × yedoensis"
+  }
+},
+{
+  "type": "node",
+  "id": 7797254293,
+  "lat": 47.6570839,
+  "lon": -122.3079700,
+  "tags": {
+    "denotation": "urban",
+    "genus": "Prunus",
+    "genus:en": "Cherry",
+    "genus:wikidata": "Q190545",
+    "genus:wikipedia": "en:Prunus",
+    "leaf_cycle": "deciduous",
+    "leaf_type": "broadleaved",
+    "natural": "tree",
+    "species": "Prunus × yedoensis",
+    "species:en": "Yoshino Cherry",
+    "species:ja": "ソメイヨシノ",
+    "species:wikidata": "Q163078",
+    "species:wikipedia": "en:Prunus × yedoensis"
+  }
+},
+{
+  "type": "node",
+  "id": 7797254294,
+  "lat": 47.6571148,
+  "lon": -122.3077110,
+  "tags": {
+    "denotation": "urban",
+    "genus": "Prunus",
+    "genus:en": "Cherry",
+    "genus:wikidata": "Q190545",
+    "genus:wikipedia": "en:Prunus",
+    "leaf_cycle": "deciduous",
+    "leaf_type": "broadleaved",
+    "natural": "tree",
+    "species": "Prunus × yedoensis",
+    "species:en": "Yoshino Cherry",
+    "species:ja": "ソメイヨシノ",
+    "species:wikidata": "Q163078",
+    "species:wikipedia": "en:Prunus × yedoensis"
+  }
+},
+{
+  "type": "node",
+  "id": 7797254295,
+  "lat": 47.6569294,
+  "lon": -122.3076610,
+  "tags": {
+    "denotation": "urban",
+    "genus": "Prunus",
+    "genus:en": "Cherry",
+    "genus:wikidata": "Q190545",
+    "genus:wikipedia": "en:Prunus",
+    "leaf_cycle": "deciduous",
+    "leaf_type": "broadleaved",
+    "natural": "tree",
+    "species": "Prunus × yedoensis",
+    "species:en": "Yoshino Cherry",
+    "species:ja": "ソメイヨシノ",
+    "species:wikidata": "Q163078",
+    "species:wikipedia": "en:Prunus × yedoensis"
+  }
+},
+{
+  "type": "node",
+  "id": 7797254297,
+  "lat": 47.6570550,
+  "lon": -122.3076300,
+  "tags": {
+    "denotation": "urban",
+    "genus": "Prunus",
+    "genus:en": "Cherry",
+    "genus:wikidata": "Q190545",
+    "genus:wikipedia": "en:Prunus",
+    "leaf_cycle": "deciduous",
+    "leaf_type": "broadleaved",
+    "natural": "tree",
+    "species": "Prunus × yedoensis",
+    "species:en": "Yoshino Cherry",
+    "species:ja": "ソメイヨシノ",
+    "species:wikidata": "Q163078",
+    "species:wikipedia": "en:Prunus × yedoensis"
+  }
+},
+{
+  "type": "node",
+  "id": 7797254298,
+  "lat": 47.6569751,
+  "lon": -122.3077490,
+  "tags": {
+    "denotation": "urban",
+    "genus": "Prunus",
+    "genus:en": "Cherry",
+    "genus:wikidata": "Q190545",
+    "genus:wikipedia": "en:Prunus",
+    "leaf_cycle": "deciduous",
+    "leaf_type": "broadleaved",
+    "natural": "tree",
+    "species": "Prunus × yedoensis",
+    "species:en": "Yoshino Cherry",
+    "species:ja": "ソメイヨシノ",
+    "species:wikidata": "Q163078",
+    "species:wikipedia": "en:Prunus × yedoensis"
+  }
+},
+{
+  "type": "node",
+  "id": 7797254299,
+  "lat": 47.6570614,
+  "lon": -122.3078160,
+  "tags": {
+    "denotation": "urban",
+    "genus": "Prunus",
+    "genus:en": "Cherry",
+    "genus:wikidata": "Q190545",
+    "genus:wikipedia": "en:Prunus",
+    "leaf_cycle": "deciduous",
+    "leaf_type": "broadleaved",
+    "natural": "tree",
+    "species": "Prunus × yedoensis",
+    "species:en": "Yoshino Cherry",
+    "species:ja": "ソメイヨシノ",
+    "species:wikidata": "Q163078",
+    "species:wikipedia": "en:Prunus × yedoensis"
+  }
+},
+{
+  "type": "node",
+  "id": 7797254305,
+  "lat": 47.6569308,
+  "lon": -122.3072720,
+  "tags": {
+    "denotation": "urban",
+    "genus": "Prunus",
+    "genus:en": "Cherry",
+    "genus:wikidata": "Q190545",
+    "genus:wikipedia": "en:Prunus",
+    "leaf_cycle": "deciduous",
+    "leaf_type": "broadleaved",
+    "natural": "tree",
+    "species": "Prunus × yedoensis",
+    "species:en": "Yoshino Cherry",
+    "species:ja": "ソメイヨシノ",
+    "species:wikidata": "Q163078",
+    "species:wikipedia": "en:Prunus × yedoensis"
+  }
+},
+{
+  "type": "node",
+  "id": 10107514634,
+  "lat": 47.6565158,
+  "lon": -122.3081945,
+  "tags": {
+    "denotation": "urban",
+    "leaf_cycle": "deciduous",
+    "leaf_type": "broadleaved",
+    "natural": "tree",
+    "species": "Prunus cerasifera",
+    "species:en": "Cherry Plum",
+    "species:wikidata": "Q146951"
+  }
+},
+{
+  "type": "node",
+  "id": 10107514635,
+  "lat": 47.6566315,
+  "lon": -122.3080229,
+  "tags": {
+    "denotation": "urban",
+    "leaf_cycle": "deciduous",
+    "leaf_type": "broadleaved",
+    "natural": "tree",
+    "species": "Prunus cerasifera",
+    "species:en": "Cherry Plum",
+    "species:wikidata": "Q146951"
+  }
+}
+
+  ]
+}

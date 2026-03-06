@@ -1,0 +1,127 @@
+{
+  "version": "v1",
+  "theme": "pastel-hand-drawn",
+  "generated_at": "2026-03-05T00:00:00Z",
+  "items": [
+    {
+      "id": "hero_cloud_blobs",
+      "path": "/assets/ui/placeholders/hero_cloud_blobs.svg",
+      "usage": "Drawer and hero atmospheric background",
+      "width": 2048,
+      "height": 1024,
+      "format": "PNG (target), SVG placeholder",
+      "theme": "pastel-hand-drawn",
+      "version": "v1"
+    },
+    {
+      "id": "map_pin_cherry",
+      "path": "/assets/ui/placeholders/map_pin_cherry.svg",
+      "usage": "Cherry point marker",
+      "width": 128,
+      "height": 128,
+      "format": "SVG + PNG@3x",
+      "theme": "pastel-hand-drawn",
+      "version": "v1"
+    },
+    {
+      "id": "map_pin_plum",
+      "path": "/assets/ui/placeholders/map_pin_plum.svg",
+      "usage": "Plum point marker",
+      "width": 128,
+      "height": 128,
+      "format": "SVG + PNG@3x",
+      "theme": "pastel-hand-drawn",
+      "version": "v1"
+    },
+    {
+      "id": "map_pin_peach",
+      "path": "/assets/ui/placeholders/map_pin_peach.svg",
+      "usage": "Peach point marker",
+      "width": 128,
+      "height": 128,
+      "format": "SVG + PNG@3x",
+      "theme": "pastel-hand-drawn",
+      "version": "v1"
+    },
+    {
+      "id": "cluster_badge_shell",
+      "path": "/assets/ui/placeholders/cluster_badge_shell.svg",
+      "usage": "Cluster marker shell",
+      "width": 256,
+      "height": 256,
+      "format": "SVG",
+      "theme": "pastel-hand-drawn",
+      "version": "v1"
+    },
+    {
+      "id": "guide_compare_petals",
+      "path": "/assets/ui/placeholders/guide_compare_petals.svg",
+      "usage": "Education panel - petal shape",
+      "width": 1600,
+      "height": 1200,
+      "format": "PNG (target), SVG placeholder",
+      "theme": "pastel-hand-drawn",
+      "version": "v1"
+    },
+    {
+      "id": "guide_compare_pedicel",
+      "path": "/assets/ui/placeholders/guide_compare_pedicel.svg",
+      "usage": "Education panel - pedicel and cluster",
+      "width": 1600,
+      "height": 1200,
+      "format": "PNG (target), SVG placeholder",
+      "theme": "pastel-hand-drawn",
+      "version": "v1"
+    },
+    {
+      "id": "guide_compare_bark",
+      "path": "/assets/ui/placeholders/guide_compare_bark.svg",
+      "usage": "Education panel - bark and lenticels",
+      "width": 1600,
+      "height": 1200,
+      "format": "PNG (target), SVG placeholder",
+      "theme": "pastel-hand-drawn",
+      "version": "v1"
+    },
+    {
+      "id": "empty_state_spring_tree",
+      "path": "/assets/ui/placeholders/empty_state_spring_tree.svg",
+      "usage": "No-results state",
+      "width": 1200,
+      "height": 1200,
+      "format": "PNG (target), SVG placeholder",
+      "theme": "pastel-hand-drawn",
+      "version": "v1"
+    },
+    {
+      "id": "loading_doodle_loop_frames",
+      "path": "/assets/ui/placeholders/loading_doodle_01.svg",
+      "usage": "Frame sequence entrypoint (01-12)",
+      "width": 512,
+      "height": 512,
+      "format": "PNG sequence (target), SVG placeholders",
+      "theme": "pastel-hand-drawn",
+      "version": "v1"
+    },
+    {
+      "id": "ownership_badges",
+      "path": "/assets/ui/placeholders/ownership_public.svg",
+      "usage": "Ownership badge icon set (public/private/unknown)",
+      "width": 256,
+      "height": 256,
+      "format": "SVG",
+      "theme": "pastel-hand-drawn",
+      "version": "v1"
+    },
+    {
+      "id": "share_sticker_pack",
+      "path": "/assets/ui/placeholders/share_sticker_01.svg",
+      "usage": "Share sticker set (01-06)",
+      "width": 1024,
+      "height": 1024,
+      "format": "PNG (target), SVG placeholders",
+      "theme": "pastel-hand-drawn",
+      "version": "v1"
+    }
+  ]
+}

@@ -1,0 +1,93 @@
+species_group,match_pattern,subtype_name,notes
+cherry,kwanzan,Kwanzan,Common ornamental cherry cultivar
+cherry,prunus serrulata kwanzan,Kwanzan,Scientific keyword for Kwanzan cherry
+cherry,yoshino,Yoshino,Common ornamental cherry cultivar
+cherry,prunus x yedoensis,Yoshino,Scientific keyword for Yoshino cherry
+cherry,prunus yedoensis,Yoshino,Scientific keyword for Yoshino cherry spelling variant
+cherry,akebono,Akebono,Common ornamental cherry cultivar
+cherry,okame,Okame,Common ornamental cherry cultivar
+cherry,higan,Higan,Common ornamental cherry cultivar
+cherry,prunus x subhirtella,Higan,Scientific keyword for Higan cherry
+cherry,snow goose,Snow Goose,Common ornamental cherry cultivar
+cherry,snowgoose,Snow Goose,Common ornamental cherry cultivar spelling variant
+cherry,accolade,Accolade,Common ornamental cherry cultivar
+cherry,amanogawa,Amanogawa,Common ornamental cherry cultivar
+cherry,shiro fugen,Shiro-fugen,Common ornamental cherry cultivar
+cherry,shiro-fugen,Shiro-fugen,Common ornamental cherry cultivar spelling variant
+cherry,shirotae,Shirotae,Common ornamental cherry cultivar
+cherry,shogetsu,Shogetsu,Common ornamental cherry cultivar
+cherry,hokusai,Hokusai,Common ornamental cherry cultivar
+cherry,snow fountain,Snow Fountains,Weeping ornamental cherry cultivar
+cherry,snow fountains,Snow Fountains,Weeping ornamental cherry cultivar spelling variant
+cherry,prunus snow fountain,Snow Fountains,Weeping ornamental cherry cultivar scientific variant
+cherry,prunus snow fountains,Snow Fountains,Weeping ornamental cherry cultivar scientific variant
+cherry,spire cherry,Spire,Ornamental cherry cultivar
+cherry,prunus spire,Spire,Ornamental cherry cultivar scientific variant
+cherry,autumn flowering cherry,Autumn Flowering,Autumn blooming ornamental cherry
+cherry,autumnalis,Autumnalis,Autumn blooming ornamental cherry
+cherry,subhirtella autumnalis,Autumnalis,Autumn blooming ornamental cherry scientific variant
+cherry,sargent,Sargent,Ornamental cherry species or cultivar label
+cherry,mazzard,Mazzard,Fruiting cherry often present in public inventories
+cherry,double chinese cherry,Double Chinese Cherry,Observed common-name subtype
+cherry,cascade snow,Cascade Snow,Common ornamental cherry cultivar
+cherry,taiwan cherry,Taiwan Cherry,Observed ornamental cherry label
+plum,thundercloud,Thundercloud,Common flowering plum cultivar
+plum,blireiana,Blireiana,Common flowering plum hybrid
+plum,blireana,Blireiana,Common flowering plum hybrid typo variant
+plum,newport,Newport,Common flowering plum cultivar
+plum,vesuvius,Vesuvius,Common flowering plum cultivar
+plum,krauters vesuvius,Vesuvius,Common flowering plum cultivar scientific variant
+plum,purpleleaf plum,Purpleleaf Plum,Common flowering plum label
+plum,purple leaf plum,Purpleleaf Plum,Common flowering plum label spacing variant
+plum,cherry plum,Cherry Plum,Common flowering plum label
+plum,flowering plum,Flowering Plum,Common flowering plum label
+plum,prunus mume,Mume,Japanese apricot / flowering plum label
+plum,mume,Mume,Japanese apricot / flowering plum label
+plum,prunus triloba,Flowering Almond / Prunus triloba,Observed ornamental prunus in plum-like records
+peach,frost peach,Frost Peach,Observed peach cultivar
+peach,prunus persica frost,Frost Peach,Observed peach cultivar scientific variant
+peach,flowering peach,Flowering Peach,Generic ornamental peach label
+magnolia,galaxy magnolia,Galaxy Magnolia,Common magnolia cultivar
+magnolia,magnolia galaxy,Galaxy Magnolia,Common magnolia cultivar scientific variant
+magnolia,little gem magnolia,Little Gem Magnolia,Common magnolia cultivar
+magnolia,magnolia little gem,Little Gem Magnolia,Common magnolia cultivar common-name variant
+magnolia,moonglow,Moonglow,Common magnolia cultivar
+magnolia,brackens brown beauty,Bracken's Brown Beauty Magnolia,Common magnolia cultivar
+magnolia,ann magnolia,Ann Magnolia,Common magnolia cultivar
+magnolia,magnolia ann,Ann Magnolia,Common magnolia cultivar scientific variant
+magnolia,jane magnolia,Jane Magnolia,Common magnolia cultivar
+magnolia,magnolia jane,Jane Magnolia,Common magnolia cultivar scientific variant
+magnolia,betty magnolia,Betty Magnolia,Common magnolia cultivar
+magnolia,magnolia betty,Betty Magnolia,Common magnolia cultivar scientific variant
+magnolia,loebner,Loebner Magnolia,Common magnolia hybrid group
+magnolia,star magnolia,Star Magnolia,Common magnolia subtype
+magnolia,magnolia star,Star Magnolia,Common magnolia subtype common-name variant
+magnolia,magnolia stellata,Star Magnolia,Common magnolia subtype scientific variant
+magnolia,kobus var stellata,Star Magnolia,Scientific keyword for star magnolia variant
+magnolia,saucer magnolia,Saucer Magnolia,Common magnolia subtype
+magnolia,soulangeana,Saucer Magnolia,Common magnolia subtype scientific variant
+magnolia,soulangiana,Saucer Magnolia,Common magnolia subtype scientific variant
+magnolia,kobus magnolia,Kobus Magnolia,Common magnolia subtype
+magnolia,magnolia kobus,Kobus Magnolia,Common magnolia subtype scientific variant
+magnolia,southern magnolia,Southern Magnolia,Common magnolia subtype
+magnolia,magnolia southern,Southern Magnolia,Common magnolia subtype common-name variant
+magnolia,magnolia grandiflora,Southern Magnolia,Common magnolia subtype scientific fallback
+magnolia,sweetbay magnolia,Sweetbay Magnolia,Common magnolia subtype
+magnolia,sweet bay magnolia,Sweetbay Magnolia,Common magnolia subtype spacing variant
+magnolia,magnolia virginiana,Sweetbay Magnolia,Common magnolia subtype scientific fallback
+crabapple,prairifire,Prairifire Crabapple,Common crabapple cultivar
+crabapple,royal raindrops,Royal Raindrops Crabapple,Common crabapple cultivar
+crabapple,golden raindrops,Golden Raindrops Crabapple,Common crabapple cultivar
+crabapple,snowdrift,Snowdrift Crabapple,Common crabapple cultivar
+crabapple,adirondack,Adirondack Crabapple,Common crabapple cultivar
+crabapple,profusion,Profusion Crabapple,Common crabapple cultivar
+crabapple,harvest gold,Harvest Gold Crabapple,Common crabapple cultivar
+crabapple,donald wyman,Donald Wyman Crabapple,Common crabapple cultivar
+crabapple,sugar tyme,Sugar Tyme Crabapple,Common crabapple cultivar
+crabapple,coralburst,Coralburst Crabapple,Common crabapple cultivar
+crabapple,radiant,Radiant Crabapple,Common crabapple cultivar
+crabapple,sargent crabapple,Sargent Crabapple,Common crabapple subtype
+crabapple,japanese crabapple,Japanese Crabapple,Common crabapple subtype
+crabapple,oregon crab apple,Oregon Crabapple,Observed regional crabapple label
+crabapple,oregon crabapple,Oregon Crabapple,Observed regional crabapple label spacing variant
+crabapple,largeleaf crabapple,Largeleaf Crabapple,Observed regional crabapple label
