@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-03-07T02:55:21.384368+00:00",
+  "generated_at": "2026-03-07T03:01:07.354019+00:00",
   "region": "ca",
   "strategy": "city",
   "items": [
@@ -23,6 +23,13 @@
       "tree_count": 1299,
       "raw_bytes": 633616,
       "gzip_bytes": 32029
+    },
+    {
+      "city": "Fremont",
+      "data_path": "/data/trees.ca.city.fremont.v1.geojson",
+      "tree_count": 5555,
+      "raw_bytes": 2987498,
+      "gzip_bytes": 136173
     },
     {
       "city": "Milpitas",

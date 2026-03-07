@@ -522,18 +522,14 @@ def fetch_fremont() -> dict[str, Any]:
         lon, lat = web_mercator_to_lon_lat(*point)
         species_id = row.get("species_latin", {}).get("val") or row.get("species_common", {}).get("val") or row.get("species_code", {}).get("val")
         species_info = species_lookup.get(species_id, {})
-        common_name = title_case_if_upper(row.get("species_common", {}).get("alias")) or title_case_if_upper(species_info.get("common_name")) or None
-        latin_name = row.get("species_latin", {}).get("alias") or species_info.get("latin_name") or ""
+        common_name = title_case_if_upper(species_info.get("common_name")) or None
+        latin_name = species_info.get("latin_name") or ""
         scientific_raw = expand_abbreviated_botanical_name(latin_name, common_name)
         if not scientific_raw:
             scientific_raw = generic_scientific_name_for_common_hint(common_name)
         scientific_normalized = normalize_scientific_name(scientific_raw)
         species_group, subtype_name = classify_tree_record(scientific_raw, common_name, mapping_rows, subtype_rows)
-        cultivar_name = (
-            title_case_if_upper(row.get("species_cultivar", {}).get("alias"))
-            or title_case_if_upper(species_info.get("cultivar"))
-            or None
-        )
+        cultivar_name = title_case_if_upper(species_info.get("cultivar")) or None
         if cultivar_name and not subtype_name:
             subtype_name = cultivar_name
         ownership_raw = "Not published in public inventory"

@@ -114,6 +114,7 @@ Last updated: 2026-03-06 (America/Los_Angeles)
 | Palo Alto | ArcGIS FeatureServer | `Botanical_Name`, `Common_Name`, `JURISDICTION` | ArcGIS point geometry | Official City of Palo Alto Open GIS tree layer; city boundary comes from the city-published shapefile |
 | Berkeley | Downloaded Shapefile | `SCINAME`, `COMMONNAME`, `AGENCY` | shapefile points transformed to WGS84 | Official public inventory is published as a downloadable shapefile/ArcGIS item rather than a clean query layer |
 | Cupertino | ArcGIS MapServer | `BotanicalName`, `CommonName`, `OwnedBy`, `MaintainedBy` | ArcGIS point geometry | Official City of Cupertino GIS tree layer |
+| Fremont | TreePlotter | `species_latin` / `species_common` integer foreign keys resolved through the public `species` lookup table | EWKB hex with `SRID=3857` -> Web Mercator -> lon/lat | Official City of Fremont public TreePlotter inventory; unlike Kirkland, the `trees` table stores species references as integer keys and the geometry is EWKB rather than plain WKB |
 | Milpitas | ArcGIS FeatureServer | `Species`, `Name`, `OwnedBy`, `MaintBy` | ArcGIS point geometry | Official City of Milpitas `Trees RO` service; ownership codes are decoded from field domains |
 | Oakland | SODA | `scientific_name`, `common_name`, `address`, `stewardship` | `location` point from Socrata rows | Official City of Oakland street-tree dataset; ownership is normalized from city stewardship fields |
 | Salinas | OpenDataSoft | `spp`, `geo_point_2d`, `active` | lon/lat from `geo_point_2d` | Official City of Salinas `Tree Inventory` dataset; current published path uses ODS export rows with `active=1` |
@@ -167,7 +168,7 @@ Last updated: 2026-03-06 (America/Los_Angeles)
 
 ## Incremental Publish Fallback
 - Full `npm run etl` remains the canonical path.
-- `npm run etl` now chains the stable targeted-publish refresh for `Milpitas`, `San Mateo`, `San Rafael`, and `Salinas` after the full ETL, so those city-split files are regenerated as part of the normal publish path.
+- `npm run etl` now chains the stable targeted-publish refresh for `Milpitas`, `San Mateo`, `San Rafael`, `Salinas`, and `Fremont` after the full ETL, so those city-split files are regenerated as part of the normal publish path.
 - When upstream sources are too slow and the already-published local region files are still current, refresh city-split outputs without rerunning the full ETL:
   - `python3 scripts/refresh_region_city_splits.py --data-dir public/data --region all`
 - When a new city source has been validated but is not yet folded into the main full ETL path, publish it incrementally with:

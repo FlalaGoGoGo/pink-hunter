@@ -1,6 +1,6 @@
 {
   "version": "v2",
-  "generated_at": "2026-03-07T03:01:07.354019+00:00",
+  "generated_at": "2026-03-07T03:53:31.600000+00:00",
   "default_region": "wa",
   "coverage_rule": "official_city_boundary_only",
   "coverage_skipped_cities": [],
@@ -82,9 +82,9 @@
   ],
   "coverage_official_unavailable_skipped_cities": [],
   "source_count": 35,
-  "total_records": 404270,
-  "included_records": 216322,
-  "unknown_records": 166069,
+  "total_records": 484271,
+  "included_records": 221877,
+  "unknown_records": 239945,
   "regions": [
     {
       "id": "wa",
@@ -147,12 +147,13 @@
         ]
       ],
       "data_path": null,
-      "tree_count": 66883,
-      "city_count": 11,
+      "tree_count": 72438,
+      "city_count": 12,
       "cities": [
         "Berkeley",
         "Burlingame",
         "Cupertino",
+        "Fremont",
         "Milpitas",
         "Oakland",
         "Palo Alto",
@@ -162,13 +163,13 @@
         "San Mateo",
         "San Rafael"
       ],
-      "raw_bytes": 34571895,
-      "gzip_bytes": 1477814,
-      "warning_level": "none",
+      "raw_bytes": 37559350,
+      "gzip_bytes": 1614661,
+      "warning_level": "warning",
       "city_split": {
         "strategy": "city",
         "index_path": "/data/trees.ca.city-index.v1.json",
-        "file_count": 11,
+        "file_count": 12,
         "ready": true
       }
     },
@@ -319,7 +320,7 @@
       "endpoint": "https://www.fremont.gov/government/departments/maintenance-operations/urban-forestry/tree-inventory-tree-value",
       "last_edit_at": "2019-04-25T21:50:58.870000+00:00",
       "records_fetched": 80001,
-      "records_included": 0,
+      "records_included": 5555,
       "note": "Integrated via public TreePlotter session + official species lookup table."
     },
     {

@@ -56,6 +56,7 @@ Live domain:
 - Berkeley
 - Burlingame
 - Cupertino
+- Fremont
 - Milpitas
 - Oakland
 - Palo Alto
@@ -125,6 +126,7 @@ Live domain:
 - Palo Alto: [City of Palo Alto Open GIS](https://opengis.cityofpaloalto.org/)
 - Berkeley: [Tree_Berkeley20191107](https://www.arcgis.com/home/item.html?id=88829f4ae7254b5280732e88e65e6df5)
 - Cupertino: [Cupertino Open Data GIS](https://gis-cupertino.opendata.arcgis.com/)
+- Fremont: [Tree Inventory / Tree Value](https://www.fremont.gov/government/departments/maintenance-operations/urban-forestry/tree-inventory-tree-value)
 - Milpitas: [Trees RO](https://services8.arcgis.com/OPmRdssd8jj0bT5H/arcgis/rest/services/Trees_RO/FeatureServer/0)
 - Oakland: [Oakland Street Trees](https://data.oaklandca.gov/Environmental/Oakland-Street-Trees/4jcx-enxf)
 - Salinas: [Tree Inventory](https://cityofsalinas.opendatasoft.com/explore/dataset/tree-inventory/)

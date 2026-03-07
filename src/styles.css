@@ -695,8 +695,35 @@ body {
   font-weight: 700;
 }
 
-.about-contact-email {
-  font-size: 0.82rem;
+.about-contact-links {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+}
+
+.about-contact-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.6rem;
+  height: 2.6rem;
+  border-radius: 999px;
+  border: 1px solid rgba(153, 83, 116, 0.24);
+  background: rgba(255, 255, 255, 0.9);
+  color: #6b4458;
+  transition: transform 160ms ease, border-color 160ms ease, background 160ms ease;
+}
+
+.about-contact-link:hover {
+  transform: translateY(-1px);
+  border-color: rgba(153, 83, 116, 0.42);
+  background: rgba(255, 244, 248, 0.96);
+}
+
+.about-contact-link svg {
+  width: 1.05rem;
+  height: 1.05rem;
+  fill: currentColor;
 }
 
 .guide-panel h3 {

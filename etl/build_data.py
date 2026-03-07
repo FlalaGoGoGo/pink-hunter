@@ -1466,11 +1466,23 @@ def decode_wkb_point_hex(hex_value: str | None) -> tuple[float, float] | None:
         return None
 
     byte_order = "<" if payload[0] == 1 else ">"
-    geom_type = struct.unpack(f"{byte_order}I", payload[1:5])[0]
+    geom_type_raw = struct.unpack(f"{byte_order}I", payload[1:5])[0]
+    has_srid = bool(geom_type_raw & 0x20000000)
+    geom_type = geom_type_raw & 0x000000FF
+    offset = 5
+
+    if has_srid:
+        if len(payload) < offset + 4:
+            return None
+        offset += 4
+
     if geom_type != 1:
         return None
 
-    x, y = struct.unpack(f"{byte_order}dd", payload[5:21])
+    if len(payload) < offset + 16:
+        return None
+
+    x, y = struct.unpack(f"{byte_order}dd", payload[offset : offset + 16])
     return x, y
 
 

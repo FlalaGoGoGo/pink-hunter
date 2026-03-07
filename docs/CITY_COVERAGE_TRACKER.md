@@ -12,6 +12,7 @@ Last updated: 2026-03-06 (America/Los_Angeles)
 | ✅ | Oakland | 3,977 | Official city boundary | Official City of Oakland `Oakland Street Trees` Socrata dataset integrated from the city open-data portal |
 | ✅ | Berkeley | 3,973 | Official city boundary | Official City of Berkeley public shapefile inventory integrated from the city ArcGIS item download |
 | ✅ | Cupertino | 1,299 | Official city boundary | Official City of Cupertino `Trees` layer integrated from the city GIS portal |
+| ✅ | Fremont | 5,555 | Official city boundary | Official City of Fremont public TreePlotter inventory integrated from the city urban-forestry portal plus public species lookup table |
 | ✅ | Salinas | 4,535 | Official city boundary | Official City of Salinas OpenDataSoft `Tree Inventory` dataset integrated from the city open-data portal |
 | ✅ | Washington DC | 16,533 | Official city boundary | Urban Tree Canopy (DDOT); ornamental cherry cultivar mapping expanded |
 | ✅ | Vancouver BC | 34,369 | Official city boundary | Official City of Vancouver `public-trees` ODS dataset integrated; boundary polygon derived from official city-boundary line dataset |
@@ -64,8 +65,10 @@ Last updated: 2026-03-06 (America/Los_Angeles)
 |---|---|---:|---|---|
 | ⏳ | Mercer Island | 803 (Town Center only) | Partial-only | Official urban-forestry page documents a 2018 Town Center street-tree inventory, but a verified citywide public single-tree endpoint is still not confirmed |
 | ⏳ | Bremerton | Unknown | Blocked public map | Official Park Tree Map web map exists under a city account, but the underlying feature service currently returns `403 Forbidden` to direct public queries |
+| ⏳ | Concord | Unknown | Public TreePlotter candidate | Official city tree-inventory materials expose a public TreePlotter entry point; source-family match is promising, but the ETL path is not wired yet |
 | ⏳ | Poulsbo | 75 | Partial-only | Official `Historic Trees of Poulsbo` feature service is public, but it is a curated historic-tree layer, not a citywide public inventory |
 | ⏳ | Pasco | Unknown | Partial-only | Official city content found in this round was a `Volunteer Park Tree Walk` map, not a citywide public single-tree inventory |
+| ⏳ | South San Francisco | Unknown | Public TreeKeeper candidate | Official urban-forestry materials link to a public TreeKeeper inventory, but the exact public ETL path still needs to be validated and wired |
 
 ## Investigated (Blocked / Not Usable Yet)
 | Done | City | Status | Reason |
@@ -103,6 +106,7 @@ Last updated: 2026-03-06 (America/Los_Angeles)
 | ⚠️ | Beaux Arts Village | Non-official public map | Public ArcGIS web map exists, but it is published by a contractor (`TreeSolutionsInc`), not a verified official city-hosted public dataset |
 | ⚠️ | Normandy Park | Not found yet | ArcGIS public search and city-site spot-check did not confirm an official public single-tree inventory |
 | ⚠️ | Port Orchard | Not found yet | ArcGIS public search and city-site spot-check did not confirm an official public single-tree inventory |
+| ⚠️ | Redwood City | Not found yet | Official city GIS and public-works materials were reviewed, but no verified public citywide single-tree dataset was confirmed in this round |
 | ⚠️ | Richland | False positive / non-city hits | Public search results in this round pointed to non-city or non-Washington Richland datasets, not a verified City of Richland inventory |
 | ⚠️ | Skykomish | Not found yet | ArcGIS public search and city-site spot-check did not confirm an official public single-tree inventory |
 | ⚠️ | Brier | False positive search hit | ArcGIS result was a single-address tree inventory experience, not a city inventory |
@@ -111,8 +115,10 @@ Last updated: 2026-03-06 (America/Los_Angeles)
 | ⚠️ | Marysville | False positive search hit | ArcGIS results found Marysville, Ohio forestry layers, not City of Marysville, WA |
 | ⚠️ | Lake Stevens | Not found yet | ArcGIS public search and city-site spot-check did not confirm an official public single-tree inventory |
 | ⚠️ | Arlington | False positive search hit | ArcGIS results found Arlington, Texas tree layers, not Arlington, WA |
+| ⚠️ | Alameda | Not found yet | Official city tree and urban-forest materials were reviewed, but no verified public citywide single-tree dataset was confirmed in this round |
 | ⚠️ | Wenatchee | Campus-only false positive | Public search results in this round surfaced Wenatchee Valley College campus tree maps, not a verified City of Wenatchee inventory |
 | ⚠️ | Federal Way | False positive retired | The previously accessible hosted layer reviewed in this round is a street-light inventory (`Federal_Way_20221201`), not a tree dataset; no official public single-tree species layer was confirmed after portal search |
+| ⚠️ | Hayward | Not found yet | Official city urban-forestry and GIS entry points were reviewed, but no verified public citywide single-tree dataset was confirmed in this round |
 | ⚠️ | Lakewood | Plans / reports only | Official city materials reference inventory / assessment work, but current public city pages still do not expose a raw single-tree species point layer |
 | ⚠️ | University Place | Not found yet | ArcGIS public search and city-site spot-check did not confirm an official public single-tree inventory |
 | ⚠️ | Fife | Not found yet | ArcGIS public search and city-site spot-check did not confirm an official public single-tree inventory |
@@ -122,6 +128,7 @@ Last updated: 2026-03-06 (America/Los_Angeles)
 | ⚠️ | Lacey | Open data searched, no tree layer found | Official `data.cityoflacey.org` search in this round did not surface a public single-tree species dataset |
 | ⚠️ | Tumwater | GIS pages found, no tree layer found | Official GIS/open-data entry points were reviewed in this round, but no public single-tree species point layer was confirmed |
 | ⚠️ | Vancouver WA | Not usable yet | Official city geohub search in this round surfaced urban-tree-canopy and signage inventory layers, but not a public single-tree species inventory |
+| ⚠️ | Daly City | Not found yet | Official city urban-forestry and GIS entry points were reviewed, but no verified public citywide single-tree dataset was confirmed in this round |
 | ⚠️ | Edmonds / Mukilteo / Mountlake Terrace / Mill Creek | Not found yet | No reliable official public single-tree species point layers confirmed yet |
 | ⚠️ | Tukwila / Des Moines / Maple Valley / Covington / Auburn | Not found or rejected | No reliable official city-level single-tree + species point layers, or false-geography matches |
 
@@ -174,6 +181,8 @@ Last updated: 2026-03-06 (America/Los_Angeles)
 - Rechecked `Richmond`; official boundary resolution now works, so the city moved into gray coverage rather than remaining excluded.
 
 ## March 2026 California / Oregon Expansion
-- Integrated `Milpitas`, `San Mateo`, `San Rafael`, and `Salinas` from official city-published public tree datasets.
-- `Fremont` remains under active integration work: the official public TreePlotter inventory is confirmed and public, but the current incremental ETL still needs a stable alias/session parse fix before product rows can be emitted.
+- Integrated `Milpitas`, `San Mateo`, `San Rafael`, `Salinas`, and `Fremont` from official city-published public tree datasets.
+- `Fremont` required two specific parser fixes before product rows could be emitted:
+  - EWKB point decoding with `SRID=3857`
+  - species-name resolution through the public `species` lookup table rather than integer foreign keys in `trees`
 - Added gray coverage for `Beaverton`, `Gresham`, `Hillsboro`, `Salem`, and `Tigard` after official-source review did not confirm a public citywide single-tree species dataset or raw public endpoint.

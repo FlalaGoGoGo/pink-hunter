@@ -3,7 +3,8 @@ import {
   useMemo,
   useRef,
   useState,
-  type PointerEvent as ReactPointerEvent
+  type PointerEvent as ReactPointerEvent,
+  type ReactNode
 } from "react";
 import type { FeatureCollection, Point } from "geojson";
 import { loadRegionCityIndex, loadStaticAppData, loadTreeCollection } from "./data";
@@ -71,16 +72,40 @@ const REGION_CITY_OVERRIDES: Partial<Record<string, CoverageRegion>> = {
   "Vancouver BC": "bc",
   "Victoria BC": "bc",
   Portland: "or",
+  Beaverton: "or",
+  Gresham: "or",
+  Hillsboro: "or",
+  Salem: "or",
+  Tigard: "or",
+  Monterey: "ca",
   "Mountain View": "ca",
+  Napa: "ca",
+  Richmond: "ca",
   Sacramento: "ca",
+  Salinas: "ca",
+  "San Mateo": "ca",
+  "San Rafael": "ca",
   "Santa Clara": "ca",
+  "Santa Cruz": "ca",
+  "Santa Rosa": "ca",
+  Stockton: "ca",
+  Sunnyvale: "ca",
   Burlingame: "ca",
+  Fremont: "ca",
+  Milpitas: "ca",
   "Palo Alto": "ca",
   Berkeley: "ca",
   Cupertino: "ca",
   Oakland: "ca",
   "San Francisco": "ca",
   "San Jose": "ca"
+};
+
+const REGION_SWITCH_BOUNDS: Partial<Record<CoverageRegion, [[number, number], [number, number]]>> = {
+  wa: [
+    [-122.62, 47.23],
+    [-121.86, 47.83]
+  ]
 };
 
 const GLOBAL_REGION_OPTIONS: Array<{ region: CoverageRegion; label: string }> = [
@@ -99,6 +124,52 @@ interface SelectedTree {
 interface SelectedCoverage {
   coordinates: [number, number];
   properties: CoverageFeatureProps;
+}
+
+function ContactIconLink({
+  href,
+  label,
+  children
+}: {
+  href: string;
+  label: string;
+  children: ReactNode;
+}): JSX.Element {
+  const external = href.startsWith("http");
+  return (
+    <a
+      aria-label={label}
+      className="about-contact-link"
+      href={href}
+      rel={external ? "noreferrer" : undefined}
+      target={external ? "_blank" : undefined}
+      title={label}
+    >
+      {children}
+    </a>
+  );
+}
+
+function ContactIcons(): JSX.Element {
+  return (
+    <div className="about-contact-links">
+      <ContactIconLink href="mailto:flalaz@uw.edu" label="Email Flala Zhang">
+        <svg aria-hidden="true" viewBox="0 0 24 24">
+          <path d="M3 6.75A2.75 2.75 0 0 1 5.75 4h12.5A2.75 2.75 0 0 1 21 6.75v10.5A2.75 2.75 0 0 1 18.25 20H5.75A2.75 2.75 0 0 1 3 17.25V6.75Zm2 .29v.21l7 4.83 7-4.83v-.21c0-.41-.34-.75-.75-.75H5.75c-.41 0-.75.34-.75.75Zm14 2.64-6.43 4.43a1 1 0 0 1-1.14 0L5 9.68v7.57c0 .41.34.75.75.75h12.5c.41 0 .75-.34.75-.75V9.68Z" />
+        </svg>
+      </ContactIconLink>
+      <ContactIconLink href="https://github.com/FlalaGoGoGo" label="GitHub FlalaGoGoGo">
+        <svg aria-hidden="true" viewBox="0 0 24 24">
+          <path d="M12 2.5a9.5 9.5 0 0 0-3 18.51c.48.09.66-.2.66-.46v-1.7c-2.68.58-3.24-1.14-3.24-1.14-.44-1.08-1.06-1.37-1.06-1.37-.87-.58.07-.57.07-.57.97.07 1.48.96 1.48.96.85 1.43 2.24 1.02 2.79.77.09-.61.34-1.02.62-1.25-2.14-.24-4.39-1.04-4.39-4.63 0-1.02.37-1.84.97-2.49-.1-.24-.42-1.21.09-2.53 0 0 .8-.25 2.62.95A9.8 9.8 0 0 1 12 7.14c.87 0 1.75.12 2.57.35 1.82-1.2 2.62-.95 2.62-.95.51 1.32.19 2.29.09 2.53.61.65.97 1.47.97 2.49 0 3.6-2.25 4.39-4.4 4.63.35.29.66.85.66 1.72v2.55c0 .26.18.55.67.46A9.5 9.5 0 0 0 12 2.5Z" />
+        </svg>
+      </ContactIconLink>
+      <ContactIconLink href="https://www.instagram.com/FlalaGoGoGo/" label="Instagram FlalaGoGoGo">
+        <svg aria-hidden="true" viewBox="0 0 24 24">
+          <path d="M7.25 3h9.5A4.25 4.25 0 0 1 21 7.25v9.5A4.25 4.25 0 0 1 16.75 21h-9.5A4.25 4.25 0 0 1 3 16.75v-9.5A4.25 4.25 0 0 1 7.25 3Zm0 2A2.25 2.25 0 0 0 5 7.25v9.5A2.25 2.25 0 0 0 7.25 19h9.5A2.25 2.25 0 0 0 19 16.75v-9.5A2.25 2.25 0 0 0 16.75 5h-9.5Zm9.9 1.4a1.1 1.1 0 1 1 0 2.2 1.1 1.1 0 0 1 0-2.2ZM12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10Zm0 2a3 3 0 1 0 0 6 3 3 0 0 0 0-6Z" />
+        </svg>
+      </ContactIconLink>
+    </div>
+  );
 }
 
 interface UrlState {
@@ -191,6 +262,13 @@ function parseUrlState(): UrlState {
 
 function boundsForRegion(regionMeta: RegionMeta | null): [[number, number], [number, number]] | null {
   return regionMeta?.bounds ?? null;
+}
+
+function preferredBoundsForRegion(
+  region: CoverageRegion,
+  regionMeta: RegionMeta | null
+): [[number, number], [number, number]] | null {
+  return REGION_SWITCH_BOUNDS[region] ?? boundsForRegion(regionMeta);
 }
 
 function setDocumentMeta(selector: string, content: string): void {
@@ -1692,7 +1770,7 @@ export default function App(): JSX.Element {
     }
     setActiveRegion(region);
 
-    const bounds = boundsForRegion(regionMeta);
+    const bounds = preferredBoundsForRegion(region, regionMeta);
     if (mapRef.current && bounds) {
       mapRef.current.fitBounds(bounds, {
         padding: isDesktop ? 80 : 48,
@@ -1980,11 +2058,18 @@ export default function App(): JSX.Element {
                         value={stateSearchQuery}
                       />
                       {visibleStateProvinces.map((option) => (
-                        <label className="filter-option" key={option.region}>
+                        <label
+                          className="filter-option"
+                          key={option.region}
+                          onClick={(event) => {
+                            event.preventDefault();
+                            switchRegion(option.region);
+                          }}
+                        >
                           <input
                             checked={activeRegion === option.region}
                             name="state-province"
-                            onChange={() => switchRegion(option.region)}
+                            readOnly
                             type="radio"
                           />
                           <span>{option.label}</span>
@@ -2273,11 +2358,7 @@ export default function App(): JSX.Element {
                 <h3 className="about-section-title">{aboutCopy.contactTitle}</h3>
                 <article className="about-card">
                   <p>{aboutCopy.contactLead}</p>
-                  <p>
-                    <a className="about-contact-email" href="mailto:flalaz@uw.edu">
-                      flalaz@uw.edu
-                    </a>
-                  </p>
+                  <ContactIcons />
                 </article>
               </div>
             </section>
