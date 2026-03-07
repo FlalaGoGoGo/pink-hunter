@@ -20,6 +20,7 @@ rsync -av --delete \
   --exclude 'data/tmp' \
   --exclude 'data/normalized' \
   --exclude '.DS_Store' \
+  --exclude '~$*' \
   --exclude '__pycache__' \
   --exclude '*.pyc' \
   --exclude '*.tsbuildinfo' \
