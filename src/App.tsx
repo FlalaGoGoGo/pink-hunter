@@ -6,7 +6,6 @@ import {
   type PointerEvent as ReactPointerEvent,
   type ReactNode
 } from "react";
-import type { FeatureCollection, Point } from "geojson";
 import { loadRegionCityIndex, loadStaticAppData, loadTreeCollection } from "./data";
 import {
   DEFAULT_LANGUAGE,
@@ -44,7 +43,6 @@ import type {
 } from "./types";
 
 const SNAP_POINTS = [0.4, 0.72, 1] as const;
-const USER_LOCATION_SOURCE_ID = "user-location";
 const SELECTED_MARKER_IMAGE_ID = "selected-bloom-marker";
 const ALL_SPECIES = ["cherry", "plum", "peach", "magnolia", "crabapple"] as const;
 const POINT_LAYER_IDS = [
@@ -59,7 +57,7 @@ const DEFAULT_CENTER: [number, number] = [-122.315, 47.55];
 const DEFAULT_ZOOM = 8.45;
 const POSITRON_STYLE_URL = "https://basemaps.cartocdn.com/gl/positron-gl-style/style.json";
 const FALLBACK_STYLE_URL = "https://demotiles.maplibre.org/style.json";
-const ABOUT_SOURCES_PAGE_SIZE = 8;
+const ABOUT_SOURCES_PAGE_SIZE = 4;
 const BRAND_LOGO_PATH = "/assets/brand/pink-hunter-logo.png";
 const POINT_COLORS: Record<SpeciesGroup, string> = {
   cherry: "#ef79ad",
@@ -127,6 +125,7 @@ const GUIDE_COMPARISON_ART = [
     title: {
       "en-US": "Petal Shape",
       "zh-CN": "花瓣形态",
+      "zh-TW": "花瓣形態",
       "es-ES": "Forma de los pétalos",
       "ko-KR": "꽃잎 모양",
       "ja-JP": "花びらの形",
@@ -134,13 +133,22 @@ const GUIDE_COMPARISON_ART = [
       "vi-VN": "Hình dáng cánh hoa"
     },
     body: {
-      "en-US": "Compare edge shape, petal roundness, and how open each bloom feels.",
-      "zh-CN": "对比花瓣边缘、圆润程度，以及整朵花打开后的感觉。",
-      "es-ES": "Compara el borde, la redondez del pétalo y qué tan abierta se siente cada flor.",
-      "ko-KR": "꽃잎 가장자리, 둥근 정도, 그리고 꽃이 얼마나 활짝 열린 느낌인지 비교해 보세요.",
-      "ja-JP": "花びらの縁、丸み、そして花全体の開き方を比べてみてください。",
-      "fr-FR": "Comparez le bord, la rondeur des pétales et l'impression d'ouverture de chaque fleur.",
-      "vi-VN": "So sánh mép cánh hoa, độ tròn và cảm giác nở mở của từng bông."
+      "en-US":
+        "Left to right: Cherry, Plum, Peach, Magnolia, Crabapple. Cherry petals often show a notch, plum petals look rounder, peach petals run longer, magnolia blooms are much larger, and crabapple flowers feel tighter and denser.",
+      "zh-CN":
+        "从左到右：樱花、李花、桃花、木兰、海棠。樱花花瓣常有缺口，李花更圆，桃花更狭长，木兰花朵明显更大，海棠通常更紧凑。",
+      "zh-TW":
+        "從左到右：櫻花、李花、桃花、木蘭、海棠。櫻花花瓣常有缺口，李花更圓，桃花更狹長，木蘭花朵明顯更大，海棠通常更緊湊。",
+      "es-ES":
+        "De izquierda a derecha: cerezo, ciruelo, melocotonero, magnolia y manzano ornamental. El cerezo suele mostrar una pequeña hendidura, el ciruelo se ve más redondo, el melocotonero tiene pétalos más largos, la magnolia es mucho más grande y el manzano ornamental se ve más compacto.",
+      "ko-KR":
+        "왼쪽부터 벚꽃, 자두꽃, 복숭아꽃, 목련, 꽃사과입니다. 벚꽃은 꽃잎 끝이 살짝 갈라지는 경우가 많고, 자두꽃은 더 둥글며, 복숭아꽃은 길쭉하고, 목련은 꽃 자체가 훨씬 크고, 꽃사과는 더 조밀하게 보입니다.",
+      "ja-JP":
+        "左から順に、桜、李、桃、木蓮、海棠です。桜は花びらの先に切れ込みが出やすく、李はより丸く、桃は細長く、木蓮は花そのものが大きく、海棠は全体に詰まって見えます。",
+      "fr-FR":
+        "De gauche à droite : cerisier, prunier, pêcher, magnolia, pommier d'ornement. Le cerisier montre souvent une encoche, le prunier paraît plus rond, le pêcher est plus allongé, le magnolia est bien plus grand et le pommier d'ornement paraît plus serré.",
+      "vi-VN":
+        "Từ trái sang phải: anh đào, mận, đào, mộc lan, hải đường. Hoa anh đào thường có khe nhỏ ở đầu cánh, hoa mận tròn hơn, hoa đào dài hơn, hoa mộc lan lớn hơn hẳn và hoa hải đường trông dày, gọn hơn."
     }
   },
   {
@@ -149,6 +157,7 @@ const GUIDE_COMPARISON_ART = [
     title: {
       "en-US": "Cluster & Stem Pattern",
       "zh-CN": "成串方式与花梗",
+      "zh-TW": "成串方式與花梗",
       "es-ES": "Racimos y tallos florales",
       "ko-KR": "송이 형태와 꽃자루",
       "ja-JP": "房のつき方と花柄",
@@ -156,13 +165,22 @@ const GUIDE_COMPARISON_ART = [
       "vi-VN": "Kiểu mọc thành chùm và cuống hoa"
     },
     body: {
-      "en-US": "Look for single blooms vs clusters, and whether flowers sit close to twigs or hang outward.",
-      "zh-CN": "看单朵还是成串，也看花是贴着枝条还是向外垂挂。",
-      "es-ES": "Observa si son flores solitarias o en racimo, y si quedan pegadas a la rama o cuelgan hacia fuera.",
-      "ko-KR": "꽃이 한 송이씩인지, 송이로 묶여 있는지, 또 가지에 붙어 있는지 바깥으로 늘어지는지 보세요.",
-      "ja-JP": "一輪ずつか房状か、また花が枝に寄っているのか外へ垂れるのかを見てください。",
-      "fr-FR": "Regardez si les fleurs sont solitaires ou en grappes, et si elles restent près du rameau ou pendent vers l'extérieur.",
-      "vi-VN": "Xem hoa mọc đơn hay thành chùm, và chúng bám sát cành hay buông ra phía ngoài."
+      "en-US":
+        "Left to right: Cherry, Plum, Peach, Magnolia, Crabapple. Cherry and crabapple often flower in clusters, plum and peach often sit closer to the twig in smaller groups, and magnolia usually carries one large bloom per bud.",
+      "zh-CN":
+        "从左到右：樱花、李花、桃花、木兰、海棠。樱花和海棠更常成串开放，李花和桃花更常贴着枝条、数量更少，木兰通常是一颗芽开出一朵大花。",
+      "zh-TW":
+        "從左到右：櫻花、李花、桃花、木蘭、海棠。櫻花和海棠更常成串開放，李花和桃花更常貼著枝條、數量更少，木蘭通常是一顆芽開出一朵大花。",
+      "es-ES":
+        "De izquierda a derecha: cerezo, ciruelo, melocotonero, magnolia y manzano ornamental. El cerezo y el manzano ornamental suelen florecer en racimos, el ciruelo y el melocotonero suelen quedar más pegados a la rama en grupos pequeños, y la magnolia normalmente muestra una flor grande por yema.",
+      "ko-KR":
+        "왼쪽부터 벚꽃, 자두꽃, 복숭아꽃, 목련, 꽃사과입니다. 벚꽃과 꽃사과는 송이로 피는 경우가 많고, 자두꽃과 복숭아꽃은 가지 가까이에 적은 수로 붙으며, 목련은 보통 한 개의 큰 꽃이 한 눈에서 나옵니다.",
+      "ja-JP":
+        "左から順に、桜、李、桃、木蓮、海棠です。桜と海棠は房状になりやすく、李と桃は枝に近い小さなまとまりで咲くことが多く、木蓮は一つの芽から大きな花が一輪出ることが一般的です。",
+      "fr-FR":
+        "De gauche à droite : cerisier, prunier, pêcher, magnolia, pommier d'ornement. Le cerisier et le pommier d'ornement fleurissent souvent en grappes, le prunier et le pêcher restent plus près du rameau en petits groupes, et le magnolia porte en général une grande fleur par bourgeon.",
+      "vi-VN":
+        "Từ trái sang phải: anh đào, mận, đào, mộc lan, hải đường. Anh đào và hải đường thường nở thành chùm, mận và đào thường bám sát cành với số lượng ít hơn, còn mộc lan thường có một bông lớn từ mỗi nụ."
     }
   },
   {
@@ -171,6 +189,7 @@ const GUIDE_COMPARISON_ART = [
     title: {
       "en-US": "Bark & Trunk",
       "zh-CN": "树皮与树干",
+      "zh-TW": "樹皮與樹幹",
       "es-ES": "Corteza y tronco",
       "ko-KR": "수피와 줄기",
       "ja-JP": "樹皮と幹",
@@ -178,13 +197,22 @@ const GUIDE_COMPARISON_ART = [
       "vi-VN": "Vỏ cây và thân cây"
     },
     body: {
-      "en-US": "Cherry and plum often show lenticels, while magnolia and crabapple bark feel different at a glance.",
-      "zh-CN": "樱花和李花常见皮孔，木兰和海棠的树干质感通常一眼就不一样。",
-      "es-ES": "El cerezo y el ciruelo suelen mostrar lenticelas; magnolia y manzano ornamental se sienten distintos a primera vista.",
-      "ko-KR": "벚꽃나무와 자두나무는 피목이 자주 보이고, 목련과 꽃사과는 줄기 질감이 바로 다르게 느껴집니다.",
-      "ja-JP": "桜や李には皮目が見られることが多く、木蓮や海棠は幹の質感がひと目で違うことがよくあります。",
-      "fr-FR": "Le cerisier et le prunier montrent souvent des lenticelles ; le magnolia et le pommier d'ornement donnent généralement une impression différente dès le premier regard.",
-      "vi-VN": "Anh đào và mận thường có lỗ bì rõ; mộc lan và hải đường thường cho cảm giác vỏ thân rất khác ngay từ cái nhìn đầu tiên."
+      "en-US":
+        "Left to right: Cherry, Plum, Peach, Magnolia, Crabapple. Cherry and plum often show horizontal lenticels, peach bark tends to look darker and rougher, magnolia bark is smoother and grayer, and crabapple bark usually looks finer and tighter.",
+      "zh-CN":
+        "从左到右：樱花、李花、桃花、木兰、海棠。樱花和李花常见横向皮孔，桃树树皮往往更深更粗，木兰更平滑偏灰，海棠的纹理通常更细密。",
+      "zh-TW":
+        "從左到右：櫻花、李花、桃花、木蘭、海棠。櫻花和李花常見橫向皮孔，桃樹樹皮往往更深更粗，木蘭更平滑偏灰，海棠的紋理通常更細密。",
+      "es-ES":
+        "De izquierda a derecha: cerezo, ciruelo, melocotonero, magnolia y manzano ornamental. El cerezo y el ciruelo suelen mostrar lenticelas horizontales, el melocotonero tiende a verse más oscuro y áspero, la magnolia es más lisa y gris, y el manzano ornamental suele tener una textura más fina.",
+      "ko-KR":
+        "왼쪽부터 벚꽃, 자두꽃, 복숭아꽃, 목련, 꽃사과입니다. 벚꽃과 자두는 가로 피목이 잘 보이고, 복숭아는 더 어둡고 거칠어 보이며, 목련은 더 매끈하고 회색빛이 돌고, 꽃사과는 질감이 더 촘촘하게 보입니다.",
+      "ja-JP":
+        "左から順に、桜、李、桃、木蓮、海棠です。桜と李には横向きの皮目が出やすく、桃はより濃く粗く見え、木蓮はなめらかで灰色寄り、海棠はより細かい質感に見えることが多いです。",
+      "fr-FR":
+        "De gauche à droite : cerisier, prunier, pêcher, magnolia, pommier d'ornement. Le cerisier et le prunier montrent souvent des lenticelles horizontales, le pêcher paraît plus sombre et plus rugueux, le magnolia plus lisse et plus gris, et le pommier d'ornement présente en général une texture plus fine.",
+      "vi-VN":
+        "Từ trái sang phải: anh đào, mận, đào, mộc lan, hải đường. Anh đào và mận thường có lỗ bì ngang rõ, đào có vỏ sẫm và thô hơn, mộc lan mịn và xám hơn, còn hải đường thường có bề mặt mảnh và chặt hơn."
     }
   },
   {
@@ -193,6 +221,7 @@ const GUIDE_COMPARISON_ART = [
     title: {
       "en-US": "Bud & Leaf Emergence",
       "zh-CN": "花芽与叶片时机",
+      "zh-TW": "花芽與葉片時機",
       "es-ES": "Brotes y momento de las hojas",
       "ko-KR": "눈과 잎의 시기",
       "ja-JP": "芽と葉のタイミング",
@@ -200,13 +229,22 @@ const GUIDE_COMPARISON_ART = [
       "vi-VN": "Chồi và thời điểm ra lá"
     },
     body: {
-      "en-US": "Notice whether leaves arrive with blossoms or after the main bloom flush.",
-      "zh-CN": "观察叶片是和花一起出现，还是等到主要花期之后再长出来。",
-      "es-ES": "Observa si las hojas aparecen junto con la floración o después del pico principal de flores.",
-      "ko-KR": "잎이 꽃과 함께 나오는지, 아니면 주요 개화가 지난 뒤에 나오는지 살펴보세요.",
-      "ja-JP": "葉が花と同時に出るのか、それとも主な花期のあとに出るのかを確認しましょう。",
-      "fr-FR": "Observez si les feuilles apparaissent avec les fleurs ou après la floraison principale.",
-      "vi-VN": "Hãy để ý xem lá xuất hiện cùng lúc với hoa hay chỉ mọc ra sau đợt nở chính."
+      "en-US":
+        "Left to right: Cherry, Plum, Peach, Magnolia, Crabapple. Cherry often blooms before full leaf-out, plum may flower on bare wood, peach sends out long narrow leaves, magnolia buds are large and fuzzy, and crabapple often shows leaves and flowers together.",
+      "zh-CN":
+        "从左到右：樱花、李花、桃花、木兰、海棠。樱花常在叶片大量长出前开花，李花常直接在光枝上开，桃花会带出细长新叶，木兰花芽通常又大又有绒毛，海棠则更常出现叶花同出的情况。",
+      "zh-TW":
+        "從左到右：櫻花、李花、桃花、木蘭、海棠。櫻花常在葉片大量長出前開花，李花常直接在光枝上開，桃花會帶出細長新葉，木蘭花芽通常又大又有絨毛，海棠則更常出現葉花同出的情況。",
+      "es-ES":
+        "De izquierda a derecha: cerezo, ciruelo, melocotonero, magnolia y manzano ornamental. El cerezo suele florecer antes de llenarse de hojas, el ciruelo puede florecer sobre ramas desnudas, el melocotonero saca hojas largas y estrechas, la magnolia tiene yemas grandes y vellosas, y el manzano ornamental a menudo muestra hojas y flores a la vez.",
+      "ko-KR":
+        "왼쪽부터 벚꽃, 자두꽃, 복숭아꽃, 목련, 꽃사과입니다. 벚꽃은 잎이 본격적으로 나오기 전에 피는 경우가 많고, 자두꽃은 맨가지에서 피기도 하며, 복숭아는 길고 좁은 잎이 함께 나오고, 목련은 크고 보송한 꽃눈이 특징이고, 꽃사과는 꽃과 잎이 함께 보이는 경우가 많습니다.",
+      "ja-JP":
+        "左から順に、桜、李、桃、木蓮、海棠です。桜は葉が十分に出る前に咲くことが多く、李は裸枝で咲くことがあり、桃は細長い新葉が出やすく、木蓮は大きく毛のある芽が目立ち、海棠は葉と花が同時に見えることがよくあります。",
+      "fr-FR":
+        "De gauche à droite : cerisier, prunier, pêcher, magnolia, pommier d'ornement. Le cerisier fleurit souvent avant le plein déploiement des feuilles, le prunier peut fleurir sur le bois nu, le pêcher sort de longues feuilles étroites, le magnolia a de gros bourgeons duveteux, et le pommier d'ornement montre souvent feuilles et fleurs en même temps.",
+      "vi-VN":
+        "Từ trái sang phải: anh đào, mận, đào, mộc lan, hải đường. Anh đào thường nở trước khi lá ra nhiều, mận có thể nở trên cành trụi lá, đào cho lá mới dài và hẹp, mộc lan có nụ to có lông mịn, còn hải đường thường ra lá và hoa cùng lúc."
     }
   }
 ] as const;
@@ -214,31 +252,41 @@ const GUIDE_COMPARISON_ART = [
 const GUIDE_COMPARE_COPY: Record<Language, { title: string; intro: string }> = {
   "en-US": {
     title: "Compare the details",
-    intro: "Color alone is weak. Petal shape, cluster pattern, bark, and bud timing are more reliable."
+    intro:
+      "Every panel keeps the same left-to-right order: Cherry, Plum, Peach, Magnolia, Crabapple. Color alone is weak; petal shape, cluster pattern, bark, and bud timing are more reliable."
   },
   "zh-CN": {
     title: "细节对比图",
-    intro: "除了颜色，真正稳定的区分线索通常来自花瓣、花梗、树皮和芽叶时机。"
+    intro: "每张图都按从左到右一致排列：樱花、李花、桃花、木兰、海棠。除了颜色，真正稳定的区分线索通常来自花瓣、花梗、树皮和芽叶时机。"
+  },
+  "zh-TW": {
+    title: "細節對比圖",
+    intro: "每張圖都按從左到右一致排列：櫻花、李花、桃花、木蘭、海棠。除了顏色，真正穩定的區分線索通常來自花瓣、花梗、樹皮和芽葉時機。"
   },
   "es-ES": {
     title: "Compara los detalles",
-    intro: "El color por sí solo no basta. La forma de los pétalos, el patrón de racimos, la corteza y el momento de las yemas son más fiables."
+    intro:
+      "En cada panel el orden de izquierda a derecha es el mismo: cerezo, ciruelo, melocotonero, magnolia y manzano ornamental. El color por sí solo no basta; la forma de los pétalos, el patrón de racimos, la corteza y el momento de las yemas son más fiables."
   },
   "ko-KR": {
     title: "세부 비교",
-    intro: "색만으로는 부족합니다. 꽃잎 모양, 송이 형태, 수피, 눈과 잎의 시기가 더 믿을 만한 단서입니다."
+    intro:
+      "모든 패널은 왼쪽부터 같은 순서입니다: 벚꽃, 자두꽃, 복숭아꽃, 목련, 꽃사과. 색만으로는 부족하고, 꽃잎 모양, 송이 형태, 수피, 눈과 잎의 시기가 더 믿을 만한 단서입니다."
   },
   "ja-JP": {
     title: "細部を比べる",
-    intro: "色だけでは判断しにくいです。花びらの形、房のつき方、樹皮、芽と葉のタイミングのほうが確実です。"
+    intro:
+      "どの図も左から順に、桜、李、桃、木蓮、海棠で並んでいます。色だけでは判断しにくく、花びらの形、房のつき方、樹皮、芽と葉のタイミングのほうが確実です。"
   },
   "fr-FR": {
     title: "Comparer les détails",
-    intro: "La couleur seule ne suffit pas. La forme des pétales, le port en grappe, l'écorce et le rythme des bourgeons sont plus fiables."
+    intro:
+      "Dans chaque panneau, l'ordre de gauche à droite reste le même : cerisier, prunier, pêcher, magnolia, pommier d'ornement. La couleur seule ne suffit pas ; la forme des pétales, le port en grappe, l'écorce et le rythme des bourgeons sont plus fiables."
   },
   "vi-VN": {
     title: "So sánh chi tiết",
-    intro: "Chỉ nhìn màu là chưa đủ. Hình dáng cánh hoa, kiểu mọc thành chùm, vỏ cây và thời điểm ra chồi đáng tin hơn."
+    intro:
+      "Trong mọi khung, thứ tự từ trái sang phải luôn giống nhau: anh đào, mận, đào, mộc lan, hải đường. Chỉ nhìn màu là chưa đủ; hình dáng cánh hoa, kiểu mọc thành chùm, vỏ cây và thời điểm ra chồi đáng tin hơn."
   }
 };
 
@@ -303,6 +351,28 @@ const ABOUT_COPY: Record<
     previousPage: "上一页",
     nextPage: "下一页",
     pageLabel: "页"
+  },
+  "zh-TW": {
+    title: "關於 Pink Hunter",
+    intro: [
+      "Pink Hunter 是一個春季粉色花樹地圖專案，幫助大家在花季裡更快找到櫻花、李花、桃花、木蘭和海棠。",
+      "這個專案不只是找花，也希望教大家分辨這些常被誤認的花樹，讓「粉色花都叫櫻花」這件事少一點。"
+    ],
+    sourcesTitle: "資料來源",
+    disclaimerTitle: "資料說明",
+    contactTitle: "聯絡方式",
+    contactLead: "如果你知道新的官方公開樹木資料來源，歡迎發郵件給 Flala Zhang。",
+    disclaimer: [
+      "城市級覆蓋優先採用官方公開的單株樹木資料集；這是產品納入覆蓋城市的硬標準。",
+      "但資料更新頻率、樹木修剪或移除、物種登錄習慣、座標偏差等問題，都會讓網頁顯示與現實情況存在差異。",
+      "UW 櫻花點位目前使用補充資料來彌補官方城市樹木清單的空缺，因此這一部分不是官方 city inventory。"
+    ],
+    officialBadge: "官方公開源",
+    supplementalBadge: "補充源",
+    openLink: "打開來源連結",
+    previousPage: "上一頁",
+    nextPage: "下一頁",
+    pageLabel: "頁"
   },
   "es-ES": {
     title: "Acerca de Pink Hunter",
@@ -485,6 +555,20 @@ function ContactIcons(): JSX.Element {
       </ContactIconLink>
     </div>
   );
+}
+
+function renderBoldName(text: string, name: string): ReactNode {
+  const parts = text.split(name);
+  if (parts.length === 1) {
+    return text;
+  }
+
+  return parts.flatMap((part, index) => {
+    if (index === parts.length - 1) {
+      return [part];
+    }
+    return [part, <strong key={`${name}-${index}`}>{name}</strong>];
+  });
 }
 
 interface UrlState {
@@ -739,29 +823,6 @@ function formatCityLabel(city: string, language: Language): string {
   return `${city}, ${regionLabel(language, regionForCity(city))}`;
 }
 
-function buildUserLocationData(coordinates: [number, number] | null): FeatureCollection<Point> {
-  if (!coordinates) {
-    return {
-      type: "FeatureCollection",
-      features: []
-    };
-  }
-
-  return {
-    type: "FeatureCollection",
-    features: [
-      {
-        type: "Feature",
-        geometry: {
-          type: "Point",
-          coordinates
-        },
-        properties: {}
-      }
-    ]
-  };
-}
-
 function createSelectedBloomImageData(): ImageData {
   const size = 120;
   const canvas = document.createElement("canvas");
@@ -909,13 +970,11 @@ export default function App(): JSX.Element {
   const [selectedCoverage, setSelectedCoverage] = useState<SelectedCoverage | null>(null);
   const [layoutMode, setLayoutMode] = useState<LayoutMode>(initialLayoutMode);
   const [mapStylePreset, setMapStylePreset] = useState<MapStylePreset>("positron");
-  const [globalMenuOpen, setGlobalMenuOpen] = useState(false);
   const [mapView, setMapView] = useState({
     zoom: initialUrlState.zoom,
     lat: initialUrlState.lat,
     lon: initialUrlState.lon
   });
-  const [userLocation, setUserLocation] = useState<[number, number] | null>(null);
 
   const mapContainerRef = useRef<HTMLDivElement | null>(null);
   const languageMenuRef = useRef<HTMLDivElement | null>(null);
@@ -1549,34 +1608,6 @@ export default function App(): JSX.Element {
           }
         });
 
-        map.addSource(USER_LOCATION_SOURCE_ID, {
-          type: "geojson",
-          data: buildUserLocationData(null)
-        });
-
-        map.addLayer({
-          id: "user-location-halo",
-          type: "circle",
-          source: USER_LOCATION_SOURCE_ID,
-          paint: {
-            "circle-color": "#48a7ff",
-            "circle-radius": 14,
-            "circle-opacity": 0.2
-          }
-        });
-
-        map.addLayer({
-          id: "user-location-dot",
-          type: "circle",
-          source: USER_LOCATION_SOURCE_ID,
-          paint: {
-            "circle-color": "#1976d2",
-            "circle-radius": 6,
-            "circle-stroke-color": "#ffffff",
-            "circle-stroke-width": 2
-          }
-        });
-
         map.on("click", "tree-clusters", (event: MapLayerMouseEvent) => {
           const features = map.queryRenderedFeatures(event.point, { layers: ["tree-clusters"] });
           if (features.length === 0) {
@@ -1790,18 +1821,6 @@ export default function App(): JSX.Element {
 
   useEffect(() => {
     const map = mapRef.current;
-    if (!map) {
-      return;
-    }
-
-    const source = map.getSource(USER_LOCATION_SOURCE_ID) as GeoJSONSource | undefined;
-    if (source) {
-      source.setData(buildUserLocationData(userLocation));
-    }
-  }, [userLocation]);
-
-  useEffect(() => {
-    const map = mapRef.current;
     if (!map || !mapRuntime) {
       return;
     }
@@ -1857,6 +1876,7 @@ export default function App(): JSX.Element {
         <p class="coverage-popup-eyebrow">${escapeHtml(t(language, "officialUnavailablePopupTitle"))}</p>
         <p>${escapeHtml(t(language, "officialUnavailablePopupBody"))}</p>
         <p>${escapeHtml(t(language, "officialUnavailablePopupFoot"))}</p>
+        <p>${escapeHtml(t(language, "officialUnavailablePopupContact"))}</p>
       </div>
     `;
 
@@ -2000,48 +2020,12 @@ export default function App(): JSX.Element {
     setLanguageMenuOpen(false);
   }
 
-  function zoomInMap(): void {
-    setGlobalMenuOpen(false);
-    mapRef.current?.zoomIn({ duration: 220 });
-  }
-
-  function zoomOutMap(): void {
-    setGlobalMenuOpen(false);
-    mapRef.current?.zoomOut({ duration: 220 });
-  }
-
-  function locateNearbyTrees(): void {
-    setGlobalMenuOpen(false);
-    if (!navigator.geolocation || !mapRef.current) {
-      return;
-    }
-
-    navigator.geolocation.getCurrentPosition(
-      (position) => {
-        const nextCenter: [number, number] = [position.coords.longitude, position.coords.latitude];
-        setUserLocation(nextCenter);
-        mapRef.current?.easeTo({
-          center: nextCenter,
-          zoom: Math.max(mapRef.current.getZoom(), 14)
-        });
-      },
-      () => {
-        // Ignore location errors in UI to avoid intrusive permission edge cases.
-      },
-      {
-        enableHighAccuracy: true,
-        timeout: 10_000
-      }
-    );
-  }
-
   function switchRegion(region: CoverageRegion): void {
     const regionMeta = regionMetaById.get(region) ?? null;
     if (!regionMeta?.available) {
       return;
     }
 
-    setGlobalMenuOpen(false);
     setSelectedTree(null);
     setSelectedCoverage(null);
     setStateDropdownOpen(false);
@@ -2090,10 +2074,6 @@ export default function App(): JSX.Element {
     setSelectedCoverage(null);
     setCityDropdownOpen(false);
     setZipDropdownOpen(false);
-  }
-
-  function toggleGlobalMenu(): void {
-    setGlobalMenuOpen((current) => !current);
   }
 
   function handleSheetPointerDown(event: ReactPointerEvent<HTMLButtonElement>): void {
@@ -2154,93 +2134,6 @@ export default function App(): JSX.Element {
           <span>{t(language, "officialUnavailableLegend")}</span>
         </div>
         {mapStylePreset === "demotiles" && <p>{t(language, "fallbackBasemap")}</p>}
-      </section>
-
-      <section
-        className="map-left-controls"
-        style={isDesktop ? undefined : { bottom: `calc(${sheetHeight * 100}vh + 0.75rem)` }}
-      >
-        {globalMenuOpen && (
-          <div className="map-global-menu" role="menu">
-            {GLOBAL_REGION_OPTIONS.map((option) => (
-              <button
-                key={option.region}
-                className="map-global-option"
-                disabled={!regionMetaById.get(option.region)?.available}
-                onClick={() => switchRegion(option.region)}
-                type="button"
-              >
-                {option.label}
-              </button>
-            ))}
-          </div>
-        )}
-        <div className="map-left-controls-stack">
-          <button
-            aria-label={t(language, "expand")}
-            className="map-action-btn"
-            onClick={zoomInMap}
-            title={t(language, "expand")}
-            type="button"
-          >
-            <svg aria-hidden="true" viewBox="0 0 24 24">
-              <path
-                d="M12 6.4v11.2M6.4 12h11.2"
-                fill="none"
-                stroke="currentColor"
-                strokeLinecap="round"
-                strokeWidth="2.35"
-              />
-            </svg>
-          </button>
-          <button
-            aria-label={t(language, "collapse")}
-            className="map-action-btn"
-            onClick={zoomOutMap}
-            title={t(language, "collapse")}
-            type="button"
-          >
-            <svg aria-hidden="true" viewBox="0 0 24 24">
-              <path d="M6.4 12h11.2" fill="none" stroke="currentColor" strokeLinecap="round" strokeWidth="2.35" />
-            </svg>
-          </button>
-          <button
-            aria-label={t(language, "fitCoverage")}
-            className={globalMenuOpen ? "map-action-btn active" : "map-action-btn"}
-            onClick={toggleGlobalMenu}
-            title={t(language, "fitCoverage")}
-            type="button"
-          >
-            <svg aria-hidden="true" viewBox="0 0 24 24">
-              <path
-                d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"
-                fill="none"
-                stroke="currentColor"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2.35"
-              />
-            </svg>
-          </button>
-          <button
-            aria-label={t(language, "locateNearby")}
-            className="map-action-btn"
-            onClick={locateNearbyTrees}
-            title={t(language, "locateNearby")}
-            type="button"
-          >
-            <svg aria-hidden="true" viewBox="0 0 24 24">
-              <circle cx="12" cy="12" fill="none" r="3.2" stroke="currentColor" strokeWidth="2.35" />
-              <path
-                d="M12 3.5v3.1M12 17.4v3.1M3.5 12h3.1M17.4 12h3.1"
-                fill="none"
-                stroke="currentColor"
-                strokeLinecap="round"
-                strokeWidth="2.35"
-              />
-            </svg>
-          </button>
-        </div>
       </section>
 
       <section className="sheet" style={isDesktop ? undefined : { height: `${sheetHeight * 100}vh` }}>
@@ -2639,7 +2532,7 @@ export default function App(): JSX.Element {
                                   >
                                     <svg aria-hidden="true" viewBox="0 0 24 24">
                                       <path
-                                        d="M8 16 16 8M10 8h6v6"
+                                        d="M4.75 6.25A1.5 1.5 0 0 1 6.25 4.75h6.5A1.5 1.5 0 0 1 14.25 6.25v2.25"
                                         fill="none"
                                         stroke="currentColor"
                                         strokeLinecap="round"
@@ -2647,7 +2540,15 @@ export default function App(): JSX.Element {
                                         strokeWidth="2"
                                       />
                                       <path
-                                        d="M16 13v5H5V7h5"
+                                        d="M8.75 8.75h9.5a1.5 1.5 0 0 1 1.5 1.5v7.5a1.5 1.5 0 0 1-1.5 1.5h-12a1.5 1.5 0 0 1-1.5-1.5v-5.5"
+                                        fill="none"
+                                        stroke="currentColor"
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                        strokeWidth="2"
+                                      />
+                                      <path
+                                        d="M12.5 6.5h5v5M17.5 6.5l-7 7"
                                         fill="none"
                                         stroke="currentColor"
                                         strokeLinecap="round"
@@ -2708,7 +2609,7 @@ export default function App(): JSX.Element {
               <div className="about-section">
                 <h3 className="about-section-title">{aboutCopy.contactTitle}</h3>
                 <article className="about-card">
-                  <p>{aboutCopy.contactLead}</p>
+                  <p>{renderBoldName(aboutCopy.contactLead, "Flala Zhang")}</p>
                   <ContactIcons />
                 </article>
               </div>

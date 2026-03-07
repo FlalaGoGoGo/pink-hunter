@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-03-07T05:21:57.148331+00:00",
+  "updated_at": "2026-03-07T06:53:35Z",
   "entries": [
     {
       "id": "cherry",
@@ -10,7 +10,8 @@
         "ko-KR": "벚꽃",
         "ja-JP": "桜",
         "fr-FR": "Cerisier",
-        "vi-VN": "Hoa anh đào"
+        "vi-VN": "Hoa anh đào",
+        "zh-TW": "櫻花（Cherry）"
       },
       "subtitle": {
         "en-US": "Often clustered blossoms, slender flower stalks, and bark with horizontal lenticels.",
@@ -19,7 +20,8 @@
         "ko-KR": "꽃이 송이로 달리고 꽃자루가 가늘며, 나무껍질에 가로 방향 피목이 보이는 경우가 많습니다.",
         "ja-JP": "花がまとまって咲き、花柄が細長く、樹皮に横向きの皮目が見られることが多いです。",
         "fr-FR": "Fleurs souvent groupées, pédicelles fins et écorce marquée par des lenticelles horizontales.",
-        "vi-VN": "Thường nở thành chùm, cuống hoa thon dài và vỏ cây có các lỗ bì chạy ngang."
+        "vi-VN": "Thường nở thành chùm, cuống hoa thon dài và vỏ cây có các lỗ bì chạy ngang.",
+        "zh-TW": "常見特徵：花常成簇、花梗較細長、樹皮有明顯橫向皮孔。"
       },
       "bullets": {
         "en-US": [
@@ -63,6 +65,12 @@
           "Đầu cánh hoa thường có một khe nhỏ, nhưng đây không phải quy tắc tuyệt đối.",
           "Thân cây thường có các vệt lỗ bì chạy ngang.",
           "Các nhãn subtype phổ biến gồm Yoshino, Kwanzan, Okame, Akebono, Higan, Snow Goose và Accolade."
+        ],
+        "zh-TW": [
+          "多數觀賞櫻有明顯花梗，花與花之間間距清楚。",
+          "花瓣末端常見淺缺刻（但不是絕對規則）。",
+          "樹幹常有橫向條紋狀皮孔。",
+          "常見細分類包括 Yoshino、Kwanzan、Okame、Akebono、Higan、Snow Goose、Accolade。"
         ]
       },
       "confusionTips": {
@@ -93,6 +101,10 @@
         "vi-VN": [
           "Đừng chỉ nhìn màu sắc; màu hồng không có nghĩa chắc chắn là anh đào.",
           "Hãy xem chiều dài cuống hoa và kiểu mọc thành chùm trước, rồi mới nhìn vỏ cây."
+        ],
+        "zh-TW": [
+          "不要只看顏色；粉色並不等於櫻花。",
+          "優先看花梗長度和成簇方式，再看樹皮。"
         ]
       }
     },
@@ -105,7 +117,8 @@
         "ko-KR": "자두꽃",
         "ja-JP": "李",
         "fr-FR": "Prunier",
-        "vi-VN": "Hoa mận"
+        "vi-VN": "Hoa mận",
+        "zh-TW": "李花（Plum）"
       },
       "subtitle": {
         "en-US": "Often shorter stalks, flowers closer to twigs, and earlier early-spring bloom.",
@@ -114,7 +127,8 @@
         "ko-KR": "꽃자루가 더 짧고 꽃이 가지에 더 붙어 있으며, 초봄에 더 이르게 피는 경우가 많습니다.",
         "ja-JP": "花柄が短く、花が枝に近くつき、春の早い時期に咲くことが多いです。",
         "fr-FR": "Pédicelles plus courts, fleurs plus proches des rameaux et floraison souvent plus précoce.",
-        "vi-VN": "Thường có cuống ngắn hơn, hoa bám sát cành hơn và nở sớm hơn vào đầu xuân."
+        "vi-VN": "Thường có cuống ngắn hơn, hoa bám sát cành hơn và nở sớm hơn vào đầu xuân.",
+        "zh-TW": "常見特徵：花梗較短，花更貼近枝條，早春較早開放。"
       },
       "bullets": {
         "en-US": [
@@ -158,6 +172,12 @@
           "Thời điểm nở thường sớm hơn phần lớn giống anh đào ở Seattle.",
           "Nhìn gần, tâm hoa và đế hoa thường có cảm giác gọn và chặt hơn.",
           "Các nhãn subtype phổ biến gồm Thundercloud, Blireiana, Newport, Vesuvius, Cherry Plum và Flowering Plum."
+        ],
+        "zh-TW": [
+          "很多李花幾乎貼枝開，花柄不明顯。",
+          "開花時間常早於西雅圖多數櫻花。",
+          "近看花心與花托結構通常更緊湊。",
+          "常見細分類包括 Thundercloud、Blireiana、Newport、Vesuvius、Cherry Plum、Flowering Plum。"
         ]
       },
       "confusionTips": {
@@ -188,6 +208,10 @@
         "vi-VN": [
           "Nếu hoa bám sát các cành gần như trơ lá, nhiều khả năng đó là hoa mận.",
           "Hãy dùng thời điểm nở sớm đầu xuân như một dấu hiệu hỗ trợ."
+        ],
+        "zh-TW": [
+          "如果樹上葉子很少且花緊貼枝條，優先懷疑李花。",
+          "結合開花時間（早春）一起判斷。"
         ]
       }
     },
@@ -200,7 +224,8 @@
         "ko-KR": "복숭아꽃",
         "ja-JP": "桃",
         "fr-FR": "Pêcher",
-        "vi-VN": "Hoa đào"
+        "vi-VN": "Hoa đào",
+        "zh-TW": "桃花（Peach）"
       },
       "subtitle": {
         "en-US": "Often narrower petals, saturated pink tones, and slender leaf buds on twigs.",
@@ -209,7 +234,8 @@
         "ko-KR": "꽃잎이 더 길쭉하고 색이 선명하며, 가지에 가는 잎눈이 보이는 경우가 많습니다.",
         "ja-JP": "花びらが細長く、色が鮮やかで、枝に細い葉芽が見られることが多いです。",
         "fr-FR": "Pétales souvent plus étroits, rose plus vif et bourgeons foliaires fins sur les rameaux.",
-        "vi-VN": "Thường có cánh hoa thon dài hơn, màu hồng đậm hơn và các chồi lá mảnh trên cành."
+        "vi-VN": "Thường có cánh hoa thon dài hơn, màu hồng đậm hơn và các chồi lá mảnh trên cành.",
+        "zh-TW": "常見特徵：花瓣更狹長、顏色偏鮮，枝條常見細長葉芽。"
       },
       "bullets": {
         "en-US": [
@@ -253,6 +279,12 @@
           "Trên cành có các chồi lá mảnh, nhọn và nhịp ra hoa ra lá cũng khác một chút so với anh đào.",
           "Trong dữ liệu cây công khai, số lượng thường ít hơn nhiều so với anh đào hoặc mận.",
           "Các bộ dữ liệu công khai thường có ít nhãn subtype cho đào; phổ biến nhất là Peach chung chung và một vài tên giống như Frost."
+        ],
+        "zh-TW": [
+          "桃花花瓣常較狹長，不像圓潤型櫻花。",
+          "枝條上葉芽細而尖，花葉節律與櫻花略有差異。",
+          "在公共樹木數據中數量通常遠少於櫻/李。",
+          "當前公開數據裏常見細分類不多，主要是通用 Peach 與少量 Frost 等品種名。"
         ]
       },
       "confusionTips": {
@@ -283,6 +315,10 @@
         "vi-VN": [
           "Nếu cánh hoa dài và màu sắc đậm, khả năng đó là hoa đào sẽ cao hơn.",
           "Khi có thể, hãy dùng trường tên khoa học để xác nhận cuối cùng."
+        ],
+        "zh-TW": [
+          "若花形偏細長且色彩飽和，可優先考慮桃花。",
+          "仍建議結合學名字段做最終確認。"
         ]
       }
     },
@@ -295,7 +331,8 @@
         "ko-KR": "목련",
         "ja-JP": "木蓮",
         "fr-FR": "Magnolia",
-        "vi-VN": "Hoa mộc lan"
+        "vi-VN": "Hoa mộc lan",
+        "zh-TW": "木蘭（Magnolia）"
       },
       "subtitle": {
         "en-US": "Usually much larger cup-shaped blossoms borne singly near branch tips with a heavier silhouette.",
@@ -304,7 +341,8 @@
         "ko-KR": "꽃이 훨씬 크고 컵 모양이며, 가지 끝에 하나씩 달리고 전체 윤곽이 더 묵직합니다.",
         "ja-JP": "花がかなり大きくカップ状で、枝先に一輪ずつつき、全体の印象も重厚です。",
         "fr-FR": "Fleurs généralement beaucoup plus grandes, en coupe, portées seules près de l’extrémité des branches, avec une silhouette plus lourde.",
-        "vi-VN": "Hoa thường lớn hơn nhiều, dạng chén, mọc đơn ở đầu cành và có dáng tổng thể dày, nặng hơn."
+        "vi-VN": "Hoa thường lớn hơn nhiều, dạng chén, mọc đơn ở đầu cành và có dáng tổng thể dày, nặng hơn.",
+        "zh-TW": "常見特徵：花朵更大、更杯狀，常單朵着生在枝端，整體更厚實。"
       },
       "bullets": {
         "en-US": [
@@ -348,6 +386,12 @@
           "Mộc lan thường nở trước khi ra lá, nên cành trông thưa hơn nhiều so với tán hoa dày như mây của anh đào.",
           "Các phiến bao hoa dày và rộng, thường tạo thành dáng giống tulip hoặc chiếc cốc.",
           "Các nhãn subtype phổ biến gồm Southern, Sweetbay, Saucer, Star, Galaxy, Kobus, Little Gem và Moonglow."
+        ],
+        "zh-TW": [
+          "遠看顏色也會是粉白或粉紫，但花朵尺寸通常明顯大於櫻花。",
+          "木蘭常在葉子展開前開花，枝頭會顯得比較稀疏，不像櫻花滿樹碎花。",
+          "花被片厚而寬，常有鬱金香或杯盞的輪廓。",
+          "常見細分類包括 Southern、Sweetbay、Saucer、Star、Galaxy、Kobus、Little Gem、Moonglow。"
         ]
       },
       "confusionTips": {
@@ -378,6 +422,10 @@
         "vi-VN": [
           "Nếu hoa trông lớn bất thường thay vì là nhiều bông nhỏ tụ thành chùm, khả năng cao là mộc lan.",
           "Trước khi nhìn màu sắc, hãy nhìn kích thước và hình dáng của từng bông hoa."
+        ],
+        "zh-TW": [
+          "如果你第一眼覺得花特別大、不是一簇一簇的小花，優先考慮木蘭。",
+          "先看單朵體量和花型，再看是不是滿樹密集成雲。"
         ]
       }
     },
@@ -390,7 +438,8 @@
         "ko-KR": "꽃사과",
         "ja-JP": "海棠",
         "fr-FR": "Pommier d'ornement",
-        "vi-VN": "Hoa hải đường"
+        "vi-VN": "Hoa hải đường",
+        "zh-TW": "海棠（Crabapple）"
       },
       "subtitle": {
         "en-US": "Small five-petal flowers bloom in clusters, often with emerging leaves, and are commonly mistaken for cherry.",
@@ -399,7 +448,8 @@
         "ko-KR": "작은 다섯 장 꽃이 송이로 피고 새잎이 함께 나오는 경우가 많아 벚꽃으로 자주 오인됩니다.",
         "ja-JP": "小さな五弁花が房になって咲き、新葉を伴うことも多く、桜とよく見間違えられます。",
         "fr-FR": "Petites fleurs à cinq pétales en grappes, souvent accompagnées de jeunes feuilles, et très souvent prises pour des cerisiers.",
-        "vi-VN": "Các bông nhỏ năm cánh nở thành chùm, thường đi kèm lá non và rất dễ bị nhầm với anh đào."
+        "vi-VN": "Các bông nhỏ năm cánh nở thành chùm, thường đi kèm lá non và rất dễ bị nhầm với anh đào.",
+        "zh-TW": "常見特徵：小型五瓣花成簇開放，常伴隨新葉，整體很容易和櫻花混淆。"
       },
       "bullets": {
         "en-US": [
@@ -443,6 +493,12 @@
           "Nhiều cây hải đường nở cùng lúc với lá non, khiến tán cây trông tròn và dày hơn so với anh đào.",
           "Về sau trong mùa, các quả nhỏ giống táo là một dấu hiệu rất mạnh.",
           "Các nhãn subtype phổ biến gồm Prairifire, Royal Raindrops, Golden Raindrops, Snowdrift, Adirondack và Profusion."
+        ],
+        "zh-TW": [
+          "海棠和櫻花一樣會有一樹粉花，是最容易被誤認的一類。",
+          "很多海棠開花時會同時帶葉，視覺上比櫻花更密、更圓。",
+          "花後常更容易看到蘋果樣的小果實，這是後期很重要的辨認線索。",
+          "常見細分類包括 Prairifire、Royal Raindrops、Golden Raindrops、Snowdrift、Adirondack、Profusion。"
         ]
       },
       "confusionTips": {
@@ -473,6 +529,10 @@
         "vi-VN": [
           "Nếu hoa xuất hiện cùng lá non và tán cây tròn, dày, khả năng đó là hải đường sẽ cao hơn.",
           "Khi màu sắc mùa xuân gây nhầm lẫn, hình dạng quả và lá thường hữu ích hơn màu cánh hoa."
+        ],
+        "zh-TW": [
+          "如果花和嫩葉一起出現，且樹冠很圓很密，可以優先懷疑海棠。",
+          "春季難分時，後續果實和葉片形態會比顏色更有用。"
         ]
       }
     }

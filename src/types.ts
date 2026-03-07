@@ -4,7 +4,15 @@ export type SpeciesGroup = "cherry" | "plum" | "peach" | "magnolia" | "crabapple
 
 export type OwnershipGroup = "public" | "private" | "unknown";
 
-export type Language = "zh-CN" | "en-US" | "es-ES" | "ko-KR" | "ja-JP" | "fr-FR" | "vi-VN";
+export type Language =
+  | "zh-CN"
+  | "zh-TW"
+  | "en-US"
+  | "es-ES"
+  | "ko-KR"
+  | "ja-JP"
+  | "fr-FR"
+  | "vi-VN";
 export type CoverageRegion = "wa" | "ca" | "or" | "dc" | "bc";
 export type RegionWarningLevel = "none" | "warning" | "high_warning" | "hard_fail";
 

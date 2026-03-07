@@ -5,6 +5,7 @@ export const DEFAULT_LANGUAGE: Language = "en-US";
 export const LANGUAGE_OPTIONS = [
   { id: "en-US", emoji: "🇺🇸", label: "English" },
   { id: "zh-CN", emoji: "🇨🇳", label: "简体中文" },
+  { id: "zh-TW", emoji: "🇨🇳", label: "繁體中文" },
   { id: "es-ES", emoji: "🇪🇸", label: "Español" },
   { id: "ko-KR", emoji: "🇰🇷", label: "한국어" },
   { id: "ja-JP", emoji: "🇯🇵", label: "日本語" },
@@ -31,6 +32,8 @@ const copy = {
       "This city has been researched, but no official public single-tree dataset is currently available.",
     officialUnavailablePopupFoot:
       "If an official public dataset becomes available later, this area can move into covered status.",
+    officialUnavailablePopupContact:
+      "If you know where this city's data can be found, please email flalaz@uw.edu. Thank you.",
     notCoveredLegend: "Not covered yet",
     coverageEnvelopeLegend: "Coverage Envelope",
     coverageEnvelopeBanner: "Coverage Envelope shows data coverage only, not official administrative boundaries.",
@@ -90,6 +93,8 @@ const copy = {
     officialUnavailablePopupTitle: "已核验，暂无官方数据",
     officialUnavailablePopupBody: "该城市已完成核验，但官方目前没有公开可接入的单株树木数据。",
     officialUnavailablePopupFoot: "如果未来官方公开数据上线，这里会转为粉色覆盖区。",
+    officialUnavailablePopupContact:
+      "如果你知道这个城市的数据可以在哪里找到，欢迎邮件联系 flalaz@uw.edu。非常感谢你的帮助。",
     notCoveredLegend: "待覆盖区域",
     coverageEnvelopeLegend: "Coverage Envelope",
     coverageEnvelopeBanner: "Coverage Envelope 仅表示数据覆盖包络，不是法定行政边界。",
@@ -134,6 +139,67 @@ const copy = {
     collapse: "收起",
     expand: "展开"
   },
+  "zh-TW": {
+    appTitle: "Pink Hunter",
+    appSubtitle: "找粉色花樹，也分得清它們。",
+    browserTitle: "Pink Hunter - 粉色花樹地圖",
+    browserDescription: "幫助大家尋找並區分櫻花、李花、桃花、木蘭與海棠的行動端地圖。",
+    locate: "定位",
+    filter: "篩選",
+    language: "語言",
+    loading: "正在載入地圖與樹點資料...",
+    records: "棵樹",
+    coveredLegend: "已覆蓋區域",
+    officialUnavailableLegend: "官方未公開",
+    officialUnavailablePopupTitle: "已核驗，暫無官方資料",
+    officialUnavailablePopupBody: "該城市已完成核驗，但官方目前沒有公開可接入的單株樹木資料。",
+    officialUnavailablePopupFoot: "如果未來官方公開資料上線，這裡會轉為粉色覆蓋區。",
+    officialUnavailablePopupContact:
+      "如果你知道這個城市的資料可以在哪裡找到，歡迎寄信到 flalaz@uw.edu。非常感謝你的幫助。",
+    notCoveredLegend: "待覆蓋區域",
+    coverageEnvelopeLegend: "Coverage Envelope",
+    coverageEnvelopeBanner: "Coverage Envelope 僅表示資料覆蓋包絡，不是法定行政邊界。",
+    noResultsTitle: "沒有符合條件的樹",
+    noResultsBody: "試著放寬篩選條件，或切換到其他城市。",
+    selectedTree: "目前選中",
+    guideTitle: "粉色花樹指南",
+    listTitle: "附近與篩選結果",
+    dataUpdated: "資料更新",
+    source: "來源",
+    ownership: "產權",
+    subtype: "細分類",
+    scientific: "學名",
+    common: "常用名",
+    city: "城市",
+    stateProvince: "州/省",
+    unknown: "未知",
+    filtersTitle: "篩選條件",
+    speciesFilter: "樹種",
+    stateProvinceFilter: "州/省",
+    cityFilter: "城市",
+    zipFilter: "ZIP Code",
+    ownershipFilter: "產權",
+    clearFilters: "清除全部",
+    showAll: "顯示全部",
+    clearAll: "清空全部",
+    searchStateProvincePlaceholder: "搜尋州/省",
+    searchCityPlaceholder: "搜尋城市",
+    searchZipPlaceholder: "搜尋 ZIP Code",
+    tipsTitle: "辨認提示",
+    coverageBanner: "",
+    showGuide: "科普",
+    showList: "篩選",
+    showAbout: "關於",
+    tapTreeHint: "點擊地圖上的樹點查看詳細資訊。",
+    coordinates: "座標",
+    zipCode: "郵遞區號",
+    fitCoverage: "全局",
+    locateNearby: "定位",
+    loadedCount: "已載入",
+    fallbackBasemap: "目前使用備用底圖。",
+    collapse: "收起",
+    expand: "展開"
+  },
   "es-ES": {
     appTitle: "Pink Hunter",
     appSubtitle: "Encuentra árboles de flor rosa. Aprende a diferenciarlos.",
@@ -152,6 +218,8 @@ const copy = {
       "Esta ciudad ya fue investigada, pero por ahora no existe un conjunto público oficial de árboles individuales.",
     officialUnavailablePopupFoot:
       "Si en el futuro aparece un conjunto oficial público, esta zona podrá pasar a cobertura rosa.",
+    officialUnavailablePopupContact:
+      "Si sabes dónde se puede encontrar la información de esta ciudad, escribe a flalaz@uw.edu. Muchas gracias.",
     notCoveredLegend: "Aún no cubierto",
     coverageEnvelopeLegend: "Coverage Envelope",
     coverageEnvelopeBanner:
@@ -215,6 +283,8 @@ const copy = {
       "이 도시는 이미 조사되었지만, 현재 공개된 공식 단일 수목 데이터셋이 없습니다.",
     officialUnavailablePopupFoot:
       "나중에 공식 공개 데이터가 나오면 이 구역은 분홍 커버리지로 전환될 수 있습니다.",
+    officialUnavailablePopupContact:
+      "이 도시의 데이터를 어디서 찾을 수 있는지 알고 계시다면 flalaz@uw.edu로 알려 주세요. 정말 감사합니다.",
     notCoveredLegend: "아직 미커버",
     coverageEnvelopeLegend: "Coverage Envelope",
     coverageEnvelopeBanner: "Coverage Envelope는 데이터 범위만 보여주며 공식 행정 경계가 아닙니다.",
@@ -277,6 +347,8 @@ const copy = {
       "この都市は調査済みですが、現在は公式の公開単木データセットが確認できていません。",
     officialUnavailablePopupFoot:
       "今後公式公開データが出れば、この地域はピンクのカバーエリアに変わります。",
+    officialUnavailablePopupContact:
+      "この都市のデータの所在をご存じでしたら、flalaz@uw.edu までご連絡いただけると助かります。ありがとうございます。",
     notCoveredLegend: "未カバー",
     coverageEnvelopeLegend: "Coverage Envelope",
     coverageEnvelopeBanner: "Coverage Envelope はデータ範囲を示すもので、正式な行政境界ではありません。",
@@ -339,6 +411,8 @@ const copy = {
       "Cette ville a été vérifiée, mais aucun jeu de données public officiel arbre par arbre n'est actuellement disponible.",
     officialUnavailablePopupFoot:
       "Si un jeu de données officiel devient public plus tard, cette zone pourra passer en couverture rose.",
+    officialUnavailablePopupContact:
+      "Si vous savez où trouver les données de cette ville, merci d'écrire à flalaz@uw.edu. Merci beaucoup.",
     notCoveredLegend: "Pas encore couvert",
     coverageEnvelopeLegend: "Coverage Envelope",
     coverageEnvelopeBanner:
@@ -402,6 +476,8 @@ const copy = {
       "Thành phố này đã được kiểm tra, nhưng hiện chưa có bộ dữ liệu công khai chính thức cho từng cây riêng lẻ.",
     officialUnavailablePopupFoot:
       "Nếu sau này có dữ liệu công khai chính thức, khu vực này có thể chuyển sang vùng phủ màu hồng.",
+    officialUnavailablePopupContact:
+      "Nếu bạn biết có thể tìm dữ liệu của thành phố này ở đâu, xin vui lòng gửi email tới flalaz@uw.edu. Cảm ơn bạn rất nhiều.",
     notCoveredLegend: "Chưa được phủ",
     coverageEnvelopeLegend: "Coverage Envelope",
     coverageEnvelopeBanner: "Coverage Envelope chỉ thể hiện phạm vi dữ liệu, không phải ranh giới hành chính chính thức.",
@@ -463,6 +539,13 @@ const speciesLabelMap: Record<Language, Record<SpeciesGroup, string>> = {
     magnolia: "木兰",
     crabapple: "海棠"
   },
+  "zh-TW": {
+    cherry: "櫻花",
+    plum: "李花",
+    peach: "桃花",
+    magnolia: "木蘭",
+    crabapple: "海棠"
+  },
   "es-ES": {
     cherry: "Cerezo",
     plum: "Ciruelo",
@@ -503,6 +586,7 @@ const speciesLabelMap: Record<Language, Record<SpeciesGroup, string>> = {
 const ownershipLabelMap: Record<Language, Record<OwnershipGroup, string>> = {
   "en-US": { public: "Public", private: "Private", unknown: "Unknown" },
   "zh-CN": { public: "公共", private: "私有", unknown: "未知" },
+  "zh-TW": { public: "公共", private: "私有", unknown: "未知" },
   "es-ES": { public: "Pública", private: "Privada", unknown: "Desconocido" },
   "ko-KR": { public: "공공", private: "사유", unknown: "알 수 없음" },
   "ja-JP": { public: "公共", private: "私有", unknown: "不明" },
@@ -524,6 +608,13 @@ const regionLabelMap: Record<Language, Record<CoverageRegion, string>> = {
     or: "俄勒冈州",
     dc: "华盛顿哥伦比亚特区",
     bc: "不列颠哥伦比亚省"
+  },
+  "zh-TW": {
+    wa: "華盛頓州",
+    ca: "加利福尼亞州",
+    or: "俄勒岡州",
+    dc: "華盛頓哥倫比亞特區",
+    bc: "不列顛哥倫比亞省"
   },
   "es-ES": {
     wa: "Washington",
