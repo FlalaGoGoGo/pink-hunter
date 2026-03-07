@@ -707,6 +707,16 @@ const COUNTRY_LABELS: Record<Language, Record<CountryKey, string>> = {
   "fr-FR": { us: "États-Unis", ca: "Canada" },
   "vi-VN": { us: "Hoa Kỳ", ca: "Canada" }
 };
+const LANGUAGE_LIST_CONJUNCTION: Record<Language, string> = {
+  "en-US": "and",
+  "zh-CN": "和",
+  "zh-TW": "和",
+  "es-ES": "y",
+  "ko-KR": "및",
+  "ja-JP": "と",
+  "fr-FR": "et",
+  "vi-VN": "và"
+};
 
 interface SelectedTree {
   coordinates: [number, number];
@@ -1091,6 +1101,20 @@ function regionOptionLabel(language: Language, region: CoverageRegion): string {
   return `${REGION_COUNTRY_EMOJIS[region]} ${regionLabel(language, region)}`;
 }
 
+function formatLanguageList(language: Language, items: string[]): string {
+  const values = items.filter(Boolean);
+  if (values.length <= 1) {
+    return values[0] ?? "";
+  }
+
+  const conjunction = LANGUAGE_LIST_CONJUNCTION[language];
+  if (values.length === 2) {
+    return `${values[0]} ${conjunction} ${values[1]}`;
+  }
+
+  return `${values.slice(0, -1).join(", ")}, ${conjunction} ${values[values.length - 1]}`;
+}
+
 function formatCoverageScope(language: Language, regions: CoverageRegion[]): string {
   const grouped = new Map<CountryKey, string[]>();
 
@@ -1101,14 +1125,13 @@ function formatCoverageScope(language: Language, regions: CoverageRegion[]): str
     grouped.set(country, current);
   });
 
-  const listFormatter = new Intl.ListFormat(language, { style: "long", type: "conjunction" });
   const countryOrder: CountryKey[] = ["us", "ca"];
 
   return countryOrder
     .filter((country) => grouped.has(country))
     .map((country) => {
       const labels = [...(grouped.get(country) ?? [])].sort((left, right) => SORT_COLLATOR.compare(left, right));
-      return `${COUNTRY_LABELS[language][country]} (${listFormatter.format(labels)})`;
+      return `${COUNTRY_LABELS[language][country]} (${formatLanguageList(language, labels)})`;
     })
     .join("; ");
 }
