@@ -733,6 +733,11 @@ function getTreeCoordinates(feature: TreeCollection["features"][number]): [numbe
   return [lon, lat];
 }
 
+function getOwnershipGroupsForTrees(trees: TreeCollection): OwnershipGroup[] {
+  const options = new Set<OwnershipGroup>(trees.features.map((feature) => feature.properties.ownership));
+  return (["public", "private", "unknown"] as const).filter((item) => options.has(item));
+}
+
 function buildCoverageCollection(
   coverageFeatures: CoverageCollection["features"],
   polygonClippingModule: MapRuntimeDeps["polygonClipping"]
@@ -901,12 +906,24 @@ function jurisdictionTypeForCity(city: string): JurisdictionType {
   return JURISDICTION_OVERRIDES[city]?.type ?? "city";
 }
 
+function areaTypeLabel(language: Language, city: string): string {
+  return t(language, jurisdictionTypeForCity(city) === "county" ? "countyBadge" : "cityBadge");
+}
+
+function areaTypeClassName(city: string): string {
+  return jurisdictionTypeForCity(city) === "county" ? "county" : "city";
+}
+
+function formatAreaLabel(city: string): string {
+  return `${jurisdictionDisplayName(city)}, ${stateCodeForCity(city)}`;
+}
+
 function regionOptionLabel(language: Language, region: CoverageRegion): string {
   return `${REGION_COUNTRY_EMOJIS[region]} ${regionLabel(language, region)}`;
 }
 
-function formatCityLabel(city: string, language: Language): string {
-  return `${jurisdictionDisplayName(city)}, ${regionLabel(language, regionForCity(city))}`;
+function formatCityLabel(city: string): string {
+  return formatAreaLabel(city);
 }
 
 function createSelectedBloomImageData(): ImageData {
@@ -1034,7 +1051,7 @@ export default function App(): JSX.Element {
   const [regionTreeCache, setRegionTreeCache] = useState<Partial<Record<CoverageRegion, TreeCollection>>>({});
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
-  const [regionLoading, setRegionLoading] = useState<CoverageRegion | null>(null);
+  const [, setRegionLoading] = useState<CoverageRegion | null>(null);
   const [visitorCount, setVisitorCount] = useState<number | null>(null);
 
   const [activeRegion, setActiveRegion] = useState<CoverageRegion>(initialUrlState.region);
@@ -1071,6 +1088,7 @@ export default function App(): JSX.Element {
   const isDesktopRef = useRef(layoutMode === "desktop_split");
   const initialRegionFiltersAppliedRef = useRef(false);
   const pendingRegionResetRef = useRef<CoverageRegion | null>(null);
+  const pendingRegionFitRef = useRef<CoverageRegion | null>(null);
   const dragStateRef = useRef<{ startY: number; startHeight: number; dragging: boolean }>({
     startY: 0,
     startHeight: 0.4,
@@ -1153,11 +1171,26 @@ export default function App(): JSX.Element {
   const activeLanguageOption = LANGUAGE_OPTIONS.find((option) => option.id === language) ?? LANGUAGE_OPTIONS[0];
   const activeRegionDisplayLabel = regionOptionLabel(language, activeRegion);
   const activeRegionPending = Boolean(
-    data &&
-      activeRegionMeta?.available &&
-      (!activeRegionCityIndex || !activeRegionTrees) &&
-      regionLoading === activeRegion
+    data && activeRegionMeta?.available && (!activeRegionCityIndex || !activeRegionTrees)
   );
+
+  useEffect(() => {
+    const map = mapRef.current;
+    if (!map || pendingRegionFitRef.current !== activeRegion) {
+      return;
+    }
+
+    const bounds = preferredBoundsForRegion(activeRegion, activeRegionMeta);
+    if (!bounds) {
+      return;
+    }
+
+    map.fitBounds(bounds, {
+      padding: isDesktop ? 80 : 48,
+      duration: 700
+    });
+    pendingRegionFitRef.current = null;
+  }, [activeRegion, activeRegionMeta, isDesktop]);
 
   useEffect(() => {
     if (!data) {
@@ -1309,9 +1342,10 @@ export default function App(): JSX.Element {
           city,
           displayName: jurisdictionDisplayName(city),
           jurisdictionType: jurisdictionTypeForCity(city),
-          label: formatCityLabel(city, language),
+          label: formatCityLabel(city),
           stateCode: stateCodeForCity(city),
-          sortLabel: jurisdictionDisplayName(city)
+          sortLabel: jurisdictionDisplayName(city),
+          regionSearchLabel: regionLabel(language, regionForCity(city))
         }))
         .sort((left, right) => SORT_COLLATOR.compare(left.sortLabel, right.sortLabel)),
     [cities, language]
@@ -1340,6 +1374,8 @@ export default function App(): JSX.Element {
       return;
     }
 
+    const nextOwnership = getOwnershipGroupsForTrees(currentTrees);
+
     if (!initialRegionFiltersAppliedRef.current && activeRegion === initialUrlState.region) {
       const nextCities = initialUrlState.hasCityParam
         ? cities.filter((city) => initialUrlState.cities.includes(city))
@@ -1350,17 +1386,38 @@ export default function App(): JSX.Element {
 
       setSelectedCities(nextCities);
       setSelectedZipCodes(nextZipCodes);
+      if (!initialUrlState.hasSpeciesParam) {
+        setSelectedSpecies([...ALL_SPECIES]);
+      }
+      if (!initialUrlState.hasOwnershipParam) {
+        setSelectedOwnership(nextOwnership);
+      }
       initialRegionFiltersAppliedRef.current = true;
       pendingRegionResetRef.current = null;
       return;
     }
 
     if (pendingRegionResetRef.current === activeRegion) {
+      setSelectedSpecies([...ALL_SPECIES]);
       setSelectedCities(cities);
       setSelectedZipCodes(zipCodes);
+      setSelectedOwnership(nextOwnership);
       pendingRegionResetRef.current = null;
     }
-  }, [activeRegion, activeRegionTrees, cities, initialUrlState.cities, initialUrlState.hasCityParam, initialUrlState.hasZipParam, initialUrlState.region, initialUrlState.zipCodes, zipCodes]);
+  }, [
+    activeRegion,
+    activeRegionTrees,
+    cities,
+    currentTrees,
+    initialUrlState.cities,
+    initialUrlState.hasCityParam,
+    initialUrlState.hasOwnershipParam,
+    initialUrlState.hasSpeciesParam,
+    initialUrlState.hasZipParam,
+    initialUrlState.region,
+    initialUrlState.zipCodes,
+    zipCodes
+  ]);
 
   const filteredFeatures = useMemo(() => {
     if (
@@ -1496,12 +1553,13 @@ export default function App(): JSX.Element {
       return cityOptions;
     }
 
-    return cityOptions.filter(({ city, displayName, label, stateCode }) => {
+    return cityOptions.filter(({ city, displayName, label, stateCode, regionSearchLabel }) => {
       return (
         city.toLowerCase().includes(query) ||
         displayName.toLowerCase().includes(query) ||
         label.toLowerCase().includes(query) ||
-        stateCode.toLowerCase().includes(query)
+        stateCode.toLowerCase().includes(query) ||
+        regionSearchLabel.toLowerCase().includes(query)
       );
     });
   }, [cityOptions, citySearchQuery]);
@@ -1947,12 +2005,10 @@ export default function App(): JSX.Element {
 
     if (selectedTree) {
       const [lon, lat] = selectedTree.coordinates;
-      const areaDisplayName = jurisdictionDisplayName(selectedTree.properties.city);
-      const areaType = jurisdictionTypeForCity(selectedTree.properties.city);
-      const areaBadge =
-        areaType === "county"
-          ? ` <span class="inline-badge county">${escapeHtml(t(language, "countyBadge"))}</span>`
-          : "";
+      const areaDisplayName = formatAreaLabel(selectedTree.properties.city);
+      const areaBadge = `<span class="area-type-badge ${areaTypeClassName(selectedTree.properties.city)}">${escapeHtml(
+        areaTypeLabel(language, selectedTree.properties.city)
+      )}</span>`;
       const subtypeLine = selectedTree.properties.subtype_name
         ? `<p><strong>${escapeHtml(t(language, "subtype"))}:</strong> ${escapeHtml(selectedTree.properties.subtype_name)}</p>`
         : "";
@@ -1961,7 +2017,7 @@ export default function App(): JSX.Element {
           <h4>${escapeHtml(speciesLabel(language, selectedTree.properties.species_group))}</h4>
           ${subtypeLine}
           <p>${escapeHtml(selectedTree.properties.scientific_name)}</p>
-          <p><strong>${escapeHtml(t(language, "city"))}:</strong> ${escapeHtml(areaDisplayName)}${areaBadge}</p>
+          <p><strong>${escapeHtml(t(language, "city"))}:</strong> <span class="area-value-inline">${escapeHtml(areaDisplayName)}${areaBadge}</span></p>
           <p><strong>${escapeHtml(t(language, "zipCode"))}:</strong> ${escapeHtml(selectedTree.properties.zip_code ?? t(language, "unknown"))}</p>
           <p><strong>${escapeHtml(t(language, "coordinates"))}:</strong> ${lon.toFixed(5)}, ${lat.toFixed(5)}</p>
         </div>
@@ -1992,9 +2048,13 @@ export default function App(): JSX.Element {
       return;
     }
 
+    const coverageAreaDisplayName = formatAreaLabel(selectedCoverage.properties.jurisdiction);
+    const coverageAreaBadge = `<span class="area-type-badge ${areaTypeClassName(
+      selectedCoverage.properties.jurisdiction
+    )}">${escapeHtml(areaTypeLabel(language, selectedCoverage.properties.jurisdiction))}</span>`;
     const popupHtml = `
       <div class="coverage-popup-card">
-        <h4>${escapeHtml(selectedCoverage.properties.jurisdiction)}</h4>
+        <h4><span class="area-value-inline">${escapeHtml(coverageAreaDisplayName)}${coverageAreaBadge}</span></h4>
         <p class="coverage-popup-eyebrow">${escapeHtml(t(language, "officialUnavailablePopupTitle"))}</p>
         <p>${escapeHtml(t(language, "officialUnavailablePopupBody"))}</p>
         <p>${escapeHtml(t(language, "officialUnavailablePopupFoot"))}</p>
@@ -2153,34 +2213,30 @@ export default function App(): JSX.Element {
     setStateDropdownOpen(false);
     setCityDropdownOpen(false);
     setZipDropdownOpen(false);
+    setSelectedSpecies([...ALL_SPECIES]);
     const cachedTrees = regionTreeCache[region];
     if (cachedTrees) {
       setSelectedCities(getCitiesForTrees(cachedTrees));
       setSelectedZipCodes(getZipCodesForTrees(cachedTrees));
+      setSelectedOwnership(getOwnershipGroupsForTrees(cachedTrees));
       pendingRegionResetRef.current = null;
     } else {
       setSelectedCities([]);
       setSelectedZipCodes([]);
+      setSelectedOwnership([...ALL_OWNERSHIP]);
       pendingRegionResetRef.current = region;
     }
+    pendingRegionFitRef.current = region;
     setActiveRegion(region);
-
-    const bounds = preferredBoundsForRegion(region, regionMeta);
-    if (mapRef.current && bounds) {
-      mapRef.current.fitBounds(bounds, {
-        padding: isDesktop ? 80 : 48,
-        duration: 700
-      });
-    }
   }
 
   function showAllFilters(): void {
-    const nextOwnership =
-      allOwnershipOptions.length > 0 ? [...allOwnershipOptions] : (["public", "private"] as OwnershipGroup[]);
     setSelectedSpecies([...ALL_SPECIES]);
     setSelectedCities([...cities]);
     setSelectedZipCodes([...zipCodes]);
-    setSelectedOwnership(nextOwnership);
+    setSelectedOwnership(
+      activeRegionTrees ? getOwnershipGroupsForTrees(currentTrees) : (["public", "private"] as OwnershipGroup[])
+    );
     setSelectedTree(null);
     setSelectedCoverage(null);
     setCityDropdownOpen(false);
@@ -2226,7 +2282,7 @@ export default function App(): JSX.Element {
     setSheetHeight((current) => nearestSnap(current));
   }
 
-  if (loading || activeRegionPending) {
+  if (loading) {
     return (
       <div className="loading-screen">
         <div className="loading-shell" />
@@ -2246,6 +2302,14 @@ export default function App(): JSX.Element {
   return (
     <div className={isDesktop ? "app-root desktop-mode" : "app-root mobile-mode"}>
       <div className="map-root" ref={mapContainerRef} />
+      {activeRegionPending && (
+        <div className="region-loading-overlay">
+          <div className="region-loading-pill">
+            <div className="region-loading-dot" />
+            <span>{t(language, "loading")}</span>
+          </div>
+        </div>
+      )}
       <section className="map-corner-legend">
         <div className="legend-row">
           <span className="legend-dot covered" />
@@ -2401,18 +2465,11 @@ export default function App(): JSX.Element {
                         value={stateSearchQuery}
                       />
                       {visibleStateProvinces.map((option) => (
-                        <label
-                          className="filter-option"
-                          key={option.region}
-                          onClick={(event) => {
-                            event.preventDefault();
-                            switchRegion(option.region);
-                          }}
-                        >
+                        <label className="filter-option" key={option.region}>
                           <input
                             checked={activeRegion === option.region}
                             name="state-province"
-                            readOnly
+                            onChange={() => switchRegion(option.region)}
                             type="radio"
                           />
                           <span>{option.displayLabel}</span>
@@ -2456,10 +2513,12 @@ export default function App(): JSX.Element {
                           />
                           <span className="filter-option-copy">
                             <span className="filter-option-label-row">
-                              <span>{label}</span>
-                              {jurisdictionType === "county" && (
-                                <span className="inline-badge county">{t(language, "countyBadge")}</span>
-                              )}
+                              <span className="filter-option-text">{label}</span>
+                              <span className={`area-type-badge ${jurisdictionType}`}>
+                                {jurisdictionType === "county"
+                                  ? t(language, "countyBadge")
+                                  : t(language, "cityBadge")}
+                              </span>
                             </span>
                           </span>
                         </label>
@@ -2526,7 +2585,7 @@ export default function App(): JSX.Element {
                   </div>
                 </div>
               </section>
-              {filteredFeatures.length === 0 ? (
+              {activeRegionPending ? null : filteredFeatures.length === 0 ? (
                 <div className="empty-state">
                   <img
                     src="/assets/ui/placeholders/empty_state_spring_tree.svg"
@@ -2562,10 +2621,12 @@ export default function App(): JSX.Element {
                   </p>
                   <p>
                     <strong>{t(language, "city")}: </strong>
-                    {jurisdictionDisplayName(selectedTree.properties.city)}
-                    {jurisdictionTypeForCity(selectedTree.properties.city) === "county" && (
-                      <span className="inline-badge county">{t(language, "countyBadge")}</span>
-                    )}
+                    <span className="area-value-inline">
+                      <span>{formatAreaLabel(selectedTree.properties.city)}</span>
+                      <span className={`area-type-badge ${areaTypeClassName(selectedTree.properties.city)}`}>
+                        {areaTypeLabel(language, selectedTree.properties.city)}
+                      </span>
+                    </span>
                   </p>
                   <p>
                     <strong>{t(language, "zipCode")}: </strong>
