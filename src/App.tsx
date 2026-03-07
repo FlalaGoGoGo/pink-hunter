@@ -74,6 +74,7 @@ const COVERAGE_COLORS = {
   unavailableLine: "#8f96a1"
 } as const;
 const EMPTY_TREE_COLLECTION: TreeCollection = { type: "FeatureCollection", features: [] };
+type JurisdictionType = "city" | "county";
 
 const REGION_CITY_OVERRIDES: Partial<Record<string, CoverageRegion>> = {
   Arlington: "va",
@@ -118,6 +119,13 @@ const REGION_CITY_OVERRIDES: Partial<Record<string, CoverageRegion>> = {
   "South San Francisco": "ca",
   "San Francisco": "ca",
   "San Jose": "ca"
+};
+
+const JURISDICTION_OVERRIDES: Partial<Record<string, { displayName: string; type: JurisdictionType }>> = {
+  Arlington: {
+    displayName: "Arlington County",
+    type: "county"
+  }
 };
 
 const GUIDE_FLOWER_ART: Record<SpeciesGroup, string> = {
@@ -329,7 +337,7 @@ const ABOUT_COPY: Record<
     contactTitle: "Contact",
     contactLead: "If you know an official public tree dataset that should be included, send it to Flala Zhang.",
     disclaimer: [
-      "City-level coverage is built from official public single-tree datasets whenever those datasets are available; that is a hard rule for city integration.",
+      "Jurisdiction-level coverage is built from official public single-tree datasets whenever those datasets are available; that is a hard rule for adding a covered area.",
       "What you see on the map can still differ from reality because of source refresh lag, pruning or removals, naming inconsistencies, or point-location error.",
       "UW cherry points are currently included through a supplemental dataset because the official city inventory does not fully cover that campus hotspot."
     ],
@@ -351,7 +359,7 @@ const ABOUT_COPY: Record<
     contactTitle: "联系方式",
     contactLead: "如果你知道新的官方公开树木数据源，欢迎发邮件给 Flala Zhang。",
     disclaimer: [
-      "城市级覆盖优先采用官方公开的单株树木数据集；这是产品纳入覆盖城市的硬标准。",
+      "地区级覆盖优先采用官方公开的单株树木数据集；这是产品纳入覆盖地区的硬标准。",
       "但数据更新频率、树木修剪/移除、物种录入习惯、坐标偏差等问题，都会让网页显示与现实情况存在差异。",
       "UW 樱花点位目前使用补充数据来弥补官方城市树木清单的空缺，因此这一部分不是官方 city inventory。"
     ],
@@ -373,7 +381,7 @@ const ABOUT_COPY: Record<
     contactTitle: "聯絡方式",
     contactLead: "如果你知道新的官方公開樹木資料來源，歡迎發郵件給 Flala Zhang。",
     disclaimer: [
-      "城市級覆蓋優先採用官方公開的單株樹木資料集；這是產品納入覆蓋城市的硬標準。",
+      "地區級覆蓋優先採用官方公開的單株樹木資料集；這是產品納入覆蓋地區的硬標準。",
       "但資料更新頻率、樹木修剪或移除、物種登錄習慣、座標偏差等問題，都會讓網頁顯示與現實情況存在差異。",
       "UW 櫻花點位目前使用補充資料來彌補官方城市樹木清單的空缺，因此這一部分不是官方 city inventory。"
     ],
@@ -395,7 +403,7 @@ const ABOUT_COPY: Record<
     contactTitle: "Contacto",
     contactLead: "Si conoces un conjunto oficial y público de árboles que debería incluirse, envíalo a Flala Zhang.",
     disclaimer: [
-      "La cobertura por ciudad se construye a partir de conjuntos públicos oficiales árbol por árbol siempre que estén disponibles; esa es una regla estricta del proyecto.",
+      "La cobertura por jurisdicción se construye a partir de conjuntos públicos oficiales árbol por árbol siempre que estén disponibles; esa es una regla estricta para añadir un área cubierta.",
       "Lo que ves en el mapa puede diferir de la realidad por retrasos de actualización, podas o retiros, diferencias de nomenclatura o errores de ubicación.",
       "Los puntos de cerezos de UW se incluyen hoy mediante una fuente complementaria porque el inventario oficial de la ciudad no cubre completamente ese campus."
     ],
@@ -417,7 +425,7 @@ const ABOUT_COPY: Record<
     contactTitle: "연락처",
     contactLead: "추가되어야 할 공식 공개 수목 데이터셋을 알고 있다면 Flala Zhang에게 보내 주세요.",
     disclaimer: [
-      "도시 단위 커버리지는 가능한 경우 공식 공개 단일 수목 데이터셋을 기준으로 구축합니다. 이것은 도시 통합의 하드 룰입니다.",
+      "행정 구역 단위 커버리지는 가능한 경우 공식 공개 단일 수목 데이터셋을 기준으로 구축합니다. 이것은 커버된 지역을 추가할 때의 하드 룰입니다.",
       "지도에 보이는 내용은 데이터 갱신 지연, 가지치기나 제거, 명칭 차이, 좌표 오차 때문에 실제와 다를 수 있습니다.",
       "UW 벚꽃 포인트는 해당 캠퍼스 명소를 공식 도시 인벤토리가 충분히 다루지 못하기 때문에 현재 보완 데이터셋으로 포함됩니다."
     ],
@@ -439,7 +447,7 @@ const ABOUT_COPY: Record<
     contactTitle: "連絡先",
     contactLead: "追加すべき公式公開の樹木データセットをご存じでしたら、Flala Zhang までお知らせください。",
     disclaimer: [
-      "都市ごとのカバレッジは、利用可能な場合は公式に公開された単木データセットを優先して構築しています。これは都市統合のハードルールです。",
+      "行政区画ごとのカバレッジは、利用可能な場合は公式に公開された単木データセットを優先して構築しています。これはカバー対象エリアを追加する際のハードルールです。",
       "更新遅延、剪定や撤去、名称のゆれ、座標誤差などにより、地図表示が実際の状況と異なることがあります。",
       "UW の桜ポイントは、公式な市のインベントリだけではキャンパスの名所を十分にカバーできないため、現在は補完データで追加しています。"
     ],
@@ -461,7 +469,7 @@ const ABOUT_COPY: Record<
     contactTitle: "Contact",
     contactLead: "Si vous connaissez un jeu de données public officiel sur les arbres qui devrait être inclus, envoyez-le à Flala Zhang.",
     disclaimer: [
-      "La couverture par ville repose, lorsque c'est possible, sur des jeux de données publics officiels arbre par arbre ; c'est une règle stricte du projet.",
+      "La couverture par juridiction repose, lorsque c'est possible, sur des jeux de données publics officiels arbre par arbre ; c'est une règle stricte pour ajouter une zone couverte.",
       "Ce que vous voyez sur la carte peut différer de la réalité à cause du retard de mise à jour, de la taille ou du retrait d'arbres, d'incohérences de nommage ou d'erreurs de géolocalisation.",
       "Les points de cerisiers de l'UW sont actuellement inclus via une source complémentaire, car l'inventaire officiel de la ville ne couvre pas complètement ce hotspot du campus."
     ],
@@ -483,7 +491,7 @@ const ABOUT_COPY: Record<
     contactTitle: "Liên hệ",
     contactLead: "Nếu bạn biết một bộ dữ liệu cây công khai chính thức nên được thêm vào, hãy gửi cho Flala Zhang.",
     disclaimer: [
-      "Phạm vi theo từng thành phố được xây dựng từ các bộ dữ liệu công khai chính thức cho từng cây khi những bộ dữ liệu đó tồn tại; đây là quy tắc cứng của dự án.",
+      "Phạm vi theo từng đơn vị hành chính được xây dựng từ các bộ dữ liệu công khai chính thức cho từng cây khi những bộ dữ liệu đó tồn tại; đây là quy tắc cứng để thêm một khu vực được phủ.",
       "Những gì bạn thấy trên bản đồ vẫn có thể khác thực tế do độ trễ cập nhật, việc cắt tỉa hoặc loại bỏ cây, cách ghi tên khác nhau hoặc sai số tọa độ.",
       "Các điểm hoa anh đào ở UW hiện được thêm bằng nguồn bổ sung vì bộ kiểm kê chính thức của thành phố chưa bao phủ đầy đủ điểm nóng trong khuôn viên này."
     ],
@@ -885,12 +893,20 @@ function stateCodeForCity(city: string): string {
   return "WA";
 }
 
+function jurisdictionDisplayName(city: string): string {
+  return JURISDICTION_OVERRIDES[city]?.displayName ?? city;
+}
+
+function jurisdictionTypeForCity(city: string): JurisdictionType {
+  return JURISDICTION_OVERRIDES[city]?.type ?? "city";
+}
+
 function regionOptionLabel(language: Language, region: CoverageRegion): string {
   return `${REGION_COUNTRY_EMOJIS[region]} ${regionLabel(language, region)}`;
 }
 
 function formatCityLabel(city: string, language: Language): string {
-  return `${city}, ${regionLabel(language, regionForCity(city))}`;
+  return `${jurisdictionDisplayName(city)}, ${regionLabel(language, regionForCity(city))}`;
 }
 
 function createSelectedBloomImageData(): ImageData {
@@ -1291,10 +1307,13 @@ export default function App(): JSX.Element {
       cities
         .map((city) => ({
           city,
+          displayName: jurisdictionDisplayName(city),
+          jurisdictionType: jurisdictionTypeForCity(city),
           label: formatCityLabel(city, language),
-          stateCode: stateCodeForCity(city)
+          stateCode: stateCodeForCity(city),
+          sortLabel: jurisdictionDisplayName(city)
         }))
-        .sort((left, right) => SORT_COLLATOR.compare(left.city, right.city)),
+        .sort((left, right) => SORT_COLLATOR.compare(left.sortLabel, right.sortLabel)),
     [cities, language]
   );
 
@@ -1477,9 +1496,10 @@ export default function App(): JSX.Element {
       return cityOptions;
     }
 
-    return cityOptions.filter(({ city, label, stateCode }) => {
+    return cityOptions.filter(({ city, displayName, label, stateCode }) => {
       return (
         city.toLowerCase().includes(query) ||
+        displayName.toLowerCase().includes(query) ||
         label.toLowerCase().includes(query) ||
         stateCode.toLowerCase().includes(query)
       );
@@ -1927,6 +1947,12 @@ export default function App(): JSX.Element {
 
     if (selectedTree) {
       const [lon, lat] = selectedTree.coordinates;
+      const areaDisplayName = jurisdictionDisplayName(selectedTree.properties.city);
+      const areaType = jurisdictionTypeForCity(selectedTree.properties.city);
+      const areaBadge =
+        areaType === "county"
+          ? ` <span class="inline-badge county">${escapeHtml(t(language, "countyBadge"))}</span>`
+          : "";
       const subtypeLine = selectedTree.properties.subtype_name
         ? `<p><strong>${escapeHtml(t(language, "subtype"))}:</strong> ${escapeHtml(selectedTree.properties.subtype_name)}</p>`
         : "";
@@ -1935,7 +1961,7 @@ export default function App(): JSX.Element {
           <h4>${escapeHtml(speciesLabel(language, selectedTree.properties.species_group))}</h4>
           ${subtypeLine}
           <p>${escapeHtml(selectedTree.properties.scientific_name)}</p>
-          <p><strong>${escapeHtml(t(language, "city"))}:</strong> ${escapeHtml(selectedTree.properties.city)}</p>
+          <p><strong>${escapeHtml(t(language, "city"))}:</strong> ${escapeHtml(areaDisplayName)}${areaBadge}</p>
           <p><strong>${escapeHtml(t(language, "zipCode"))}:</strong> ${escapeHtml(selectedTree.properties.zip_code ?? t(language, "unknown"))}</p>
           <p><strong>${escapeHtml(t(language, "coordinates"))}:</strong> ${lon.toFixed(5)}, ${lat.toFixed(5)}</p>
         </div>
@@ -2421,14 +2447,21 @@ export default function App(): JSX.Element {
                         type="search"
                         value={citySearchQuery}
                       />
-                      {visibleCities.map(({ city, label }) => (
+                      {visibleCities.map(({ city, jurisdictionType, label }) => (
                         <label className="filter-option" key={city}>
                           <input
                             checked={selectedCities.includes(city)}
                             onChange={() => toggleCity(city)}
                             type="checkbox"
                           />
-                          <span>{label}</span>
+                          <span className="filter-option-copy">
+                            <span className="filter-option-label-row">
+                              <span>{label}</span>
+                              {jurisdictionType === "county" && (
+                                <span className="inline-badge county">{t(language, "countyBadge")}</span>
+                              )}
+                            </span>
+                          </span>
                         </label>
                       ))}
                       {visibleCities.length === 0 && (
@@ -2526,6 +2559,13 @@ export default function App(): JSX.Element {
                   <p>
                     <strong>{t(language, "common")}: </strong>
                     {selectedTree.properties.common_name ?? t(language, "unknown")}
+                  </p>
+                  <p>
+                    <strong>{t(language, "city")}: </strong>
+                    {jurisdictionDisplayName(selectedTree.properties.city)}
+                    {jurisdictionTypeForCity(selectedTree.properties.city) === "county" && (
+                      <span className="inline-badge county">{t(language, "countyBadge")}</span>
+                    )}
                   </p>
                   <p>
                     <strong>{t(language, "zipCode")}: </strong>

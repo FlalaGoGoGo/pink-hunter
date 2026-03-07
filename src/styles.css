@@ -477,6 +477,19 @@ body {
   height: 16px;
 }
 
+.filter-option-copy {
+  display: flex;
+  flex: 1;
+  min-width: 0;
+}
+
+.filter-option-label-row {
+  display: flex;
+  align-items: center;
+  gap: 0.38rem;
+  flex-wrap: wrap;
+}
+
 .filter-empty {
   margin: 0.18rem 0 0;
   padding: 0.4rem 0.2rem 0.15rem;
@@ -539,6 +552,26 @@ body {
   color: #542f3f;
   font-weight: 800;
   font-size: 0.68rem;
+}
+
+.inline-badge {
+  display: inline-flex;
+  align-items: center;
+  min-height: 22px;
+  padding: 0.12rem 0.46rem;
+  margin-left: 0.42rem;
+  border-radius: 999px;
+  background: #ffd9e8;
+  color: #6d3550;
+  font-size: 0.66rem;
+  font-weight: 800;
+  line-height: 1;
+  vertical-align: middle;
+}
+
+.inline-badge.county {
+  background: linear-gradient(180deg, #ffdbe9, #ffcfe2);
+  border: 1px solid rgba(161, 70, 109, 0.2);
 }
 
 .empty-state {
