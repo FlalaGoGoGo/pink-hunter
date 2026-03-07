@@ -10,9 +10,11 @@ Last updated: 2026-03-06 (America/Los_Angeles)
 
 ## Required Workflow
 1. Make and verify the local change first.
-2. Sync the project into the GitHub export repo.
-3. Commit the GitHub export repo.
-4. Push the GitHub export repo to GitHub.
+2. Rebuild or refresh any published data artifacts that changed.
+3. Run the region size check and ensure no published region file reaches the hard-fail threshold.
+4. Sync the project into the GitHub export repo.
+5. Commit the GitHub export repo.
+6. Push the GitHub export repo to GitHub.
 
 ## Canonical Helper
 - Preferred sync helper: `scripts/sync_github_export.sh`
@@ -21,4 +23,11 @@ Last updated: 2026-03-06 (America/Los_Angeles)
 
 ## Notes
 - The GitHub export repo intentionally excludes local-only build caches such as `node_modules/`, `dist/`, `.DS_Store`, and `*.tsbuildinfo`.
+- Public tree data is published as regional files such as `public/data/trees.wa.v2.geojson`, not as one global `trees.v1.geojson`.
+- Every publish flow must pass `scripts/check_region_data_sizes.py`.
+- Size thresholds are hard rules for published region files:
+  - `warning`: `>= 35 MiB raw`
+  - `high_warning`: `>= 45 MiB raw`
+  - `hard_fail`: `>= 50 MiB raw`
+- Any region that reaches warning level must be reviewed for the next split step before additional expansion work continues.
 - Keep `public/CNAME` synchronized because the production custom domain is `pinkhunter.flalaz.com`.

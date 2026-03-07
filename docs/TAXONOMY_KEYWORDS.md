@@ -18,6 +18,7 @@ Last updated: 2026-03-06 (America/Los_Angeles)
 - Subtype keyword mapping: `config/blossom_subtypes.csv`
 - Missed-name review: `public/data/unknown_scientific_names.v1.json`
 - Row-level normalization audit: `data/normalized/trees_normalized.csv`
+- Card output spot-check: the relevant `public/data/trees.<region>.v2.geojson`
 
 ## Matching Order
 1. Match scientific names against `config/prunus_mapping.csv`.
@@ -106,5 +107,5 @@ Last updated: 2026-03-06 (America/Los_Angeles)
 2. Add subtype/cultivar keywords to `config/blossom_subtypes.csv`.
 3. Run `npm run etl`.
 4. Review `public/data/unknown_scientific_names.v1.json` for remaining missed in-scope names.
-5. Spot-check `public/data/trees.v1.geojson` for card-ready `subtype_name` values in at least one city per affected group.
+5. Spot-check the relevant `public/data/trees.<region>.v2.geojson` for card-ready `subtype_name` values in at least one city per affected group.
 6. Update guide copy in `etl/build_data.py` if a new subtype family becomes common enough to mention publicly.

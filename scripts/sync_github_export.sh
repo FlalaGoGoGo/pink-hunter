@@ -19,6 +19,8 @@ rsync -av --delete \
   --exclude '*.tsbuildinfo' \
   "$ROOT_DIR"/ "$EXPORT_DIR"/
 
+python3 "$ROOT_DIR/scripts/check_region_data_sizes.py" --data-dir "$EXPORT_DIR/public/data"
+
 git -C "$EXPORT_DIR" add -A
 
 if git -C "$EXPORT_DIR" diff --cached --quiet; then

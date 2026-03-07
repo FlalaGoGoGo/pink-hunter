@@ -17,6 +17,7 @@ Live domain:
 - After sync, the GitHub export repo must be committed and pushed to [FlalaGoGoGo/pink-hunter](https://github.com/FlalaGoGoGo/pink-hunter).
 - Policy doc: [docs/GITHUB_SYNC_POLICY.md](docs/GITHUB_SYNC_POLICY.md)
 - Preferred helper: `./scripts/sync_github_export.sh "Commit message"`
+- Published region data must pass `./scripts/check_region_data_sizes.py --data-dir public/data` before sync/push.
 
 ## Coverage Areas
 
@@ -96,12 +97,30 @@ Live domain:
    - `npm run build`
 
 ## Data Outputs
-- `public/data/trees.v1.geojson`
+- `public/data/trees.wa.v2.geojson`
+- `public/data/trees.ca.v2.geojson`
+- `public/data/trees.or.v2.geojson`
+- `public/data/trees.dc.v2.geojson`
+- `public/data/trees.bc.v2.geojson`
 - `public/data/coverage.v1.geojson`
 - `public/data/species-guide.v1.json`
-- `public/data/meta.v1.json`
+- `public/data/meta.v2.json`
 - `public/data/unknown_scientific_names.v1.json`
 - `data/normalized/trees_normalized.csv`
+
+## Region Publishing
+- Tree points are now published by region, not as one global GeoJSON.
+- Current regional groups:
+  - `WA`
+  - `CA`
+  - `OR`
+  - `DC`
+  - `BC`
+- `public/data/meta.v2.json` contains the region index, region bounds, region file paths, and size metadata.
+- Size guard thresholds for published region files:
+  - `warning`: `>= 35 MiB raw`
+  - `high_warning`: `>= 45 MiB raw`
+  - `hard_fail`: `>= 50 MiB raw`
 
 ## Docs
 - API: [docs/API.md](docs/API.md)

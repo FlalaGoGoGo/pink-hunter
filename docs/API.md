@@ -1,7 +1,17 @@
 # Public Data Interfaces
 
 ## `GET /data/trees.v1.geojson`
-GeoJSON `FeatureCollection` of tree points.
+Deprecated monolithic tree file. Public publishing now uses regional tree files instead.
+
+## `GET /data/trees.<region>.v2.geojson`
+GeoJSON `FeatureCollection` of tree points for one region.
+
+### Supported regions
+- `wa`
+- `ca`
+- `or`
+- `dc`
+- `bc`
 
 ### `feature.properties`
 - `id: string`
@@ -29,8 +39,21 @@ GeoJSON `FeatureCollection` for coverage overlays.
 ## `GET /data/species-guide.v1.json`
 Bilingual species education content.
 
-## `GET /data/meta.v1.json`
+## `GET /data/meta.v2.json`
 Dataset metadata and source refresh details.
+
+### `regions[]`
+- `id`
+- `label`
+- `available`
+- `bounds`
+- `data_path`
+- `tree_count`
+- `city_count`
+- `cities`
+- `raw_bytes`
+- `gzip_bytes`
+- `warning_level`
 
 ## `GET /assets/ui/manifest.v1.json`
 Asset manifest with expected dimensions and target formats.

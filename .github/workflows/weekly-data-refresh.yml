@@ -24,6 +24,9 @@ jobs:
         run: |
           python3 etl/build_data.py
 
+      - name: Check region data sizes
+        run: python3 scripts/check_region_data_sizes.py --data-dir public/data --summary-file "$GITHUB_STEP_SUMMARY"
+
       - name: Commit updated data
         run: |
           if [ -z "$(git status --porcelain public/data data/normalized)" ]; then

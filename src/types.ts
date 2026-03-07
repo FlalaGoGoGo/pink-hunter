@@ -5,6 +5,8 @@ export type SpeciesGroup = "cherry" | "plum" | "peach" | "magnolia" | "crabapple
 export type OwnershipGroup = "public" | "private" | "unknown";
 
 export type Language = "zh-CN" | "en-US";
+export type CoverageRegion = "wa" | "ca" | "or" | "dc" | "bc";
+export type RegionWarningLevel = "none" | "warning" | "high_warning" | "hard_fail";
 
 export type LayoutMode = "mobile_sheet" | "desktop_split";
 export type MapStylePreset = "positron" | "demotiles";
@@ -31,13 +33,29 @@ export interface CoverageFeatureProps {
   note: string;
 }
 
+export interface RegionMeta {
+  id: CoverageRegion;
+  label: string;
+  available: boolean;
+  bounds: [[number, number], [number, number]];
+  data_path: string;
+  tree_count: number;
+  city_count: number;
+  cities: string[];
+  raw_bytes: number;
+  gzip_bytes: number;
+  warning_level: RegionWarningLevel;
+}
+
 export interface AppMeta {
   version: string;
   generated_at: string;
+  default_region: CoverageRegion;
   source_count: number;
   total_records: number;
   included_records: number;
   unknown_records: number;
+  regions: RegionMeta[];
   sources: Array<{
     name: string;
     city: string;
@@ -45,6 +63,7 @@ export interface AppMeta {
     last_edit_at: string;
     records_fetched: number;
     records_included: number;
+    note?: string;
   }>;
 }
 
@@ -69,8 +88,7 @@ export type TreeCollection = GeoJsonCollection<TreeFeatureProps, Point>;
 export type CoverageFeature = GeoJsonFeature<CoverageFeatureProps, Polygon | MultiPolygon>;
 export type CoverageCollection = GeoJsonCollection<CoverageFeatureProps, Polygon | MultiPolygon>;
 
-export interface AppData {
-  trees: TreeCollection;
+export interface StaticAppData {
   coverage: CoverageCollection;
   guide: SpeciesGuide;
   meta: AppMeta;

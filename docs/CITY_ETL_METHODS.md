@@ -16,10 +16,10 @@ Last updated: 2026-03-06 (America/Los_Angeles)
 - Broad taxonomy is scientific-name first, then curated subtype keywords.
 - Controlled common-name fallback is allowed only when the source exposes an explicitly generic genus-level scientific value (for example `Prunus sp.` / `Malus sp.` / `Magnolia sp.`).
 - Output contract is stable:
-  - `public/data/trees.v1.geojson`
+  - `public/data/trees.<region>.v2.geojson`
   - `public/data/coverage.v1.geojson`
   - `public/data/species-guide.v1.json`
-  - `public/data/meta.v1.json`
+  - `public/data/meta.v2.json`
   - `public/data/unknown_scientific_names.v1.json`
   - `data/normalized/trees_normalized.csv`
 
@@ -131,9 +131,9 @@ Last updated: 2026-03-06 (America/Los_Angeles)
    - extend both ETL config files
 4. Run `npm run etl`.
 5. Validate:
-   - city counts in `public/data/meta.v1.json`
+   - city counts in `public/data/meta.v2.json`
    - missed names in `public/data/unknown_scientific_names.v1.json`
-   - card fields in `public/data/trees.v1.geojson`
+   - card fields in the relevant `public/data/trees.<region>.v2.geojson`
 
 ## How To Add More Cities Later
 1. Verify the city has an official public single-tree dataset with point geometry.

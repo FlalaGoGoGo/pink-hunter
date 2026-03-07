@@ -2,10 +2,10 @@
 """Build public dataset files for the Pink Hunter map.
 
 Outputs:
-- public/data/trees.v1.geojson
+- public/data/trees.<region>.v2.geojson
 - public/data/coverage.v1.geojson
 - public/data/species-guide.v1.json
-- public/data/meta.v1.json
+- public/data/meta.v2.json
 - public/data/unknown_scientific_names.v1.json
 - data/normalized/trees_normalized.csv
 """
@@ -14,6 +14,7 @@ from __future__ import annotations
 
 import csv
 import datetime as dt
+import gzip
 import json
 import math
 import re
@@ -89,6 +90,27 @@ US_CENSUS_ZCTA_LAYER = (
 # Hard rule from product requirements:
 # Coverage geometry must come from official city boundaries only.
 STRICT_CITY_BOUNDARY_ONLY = True
+DEFAULT_REGION = "wa"
+WA_METRO_OVERVIEW_BOUNDS: list[list[float]] = [[-123.08, 47.02], [-121.55, 48.08]]
+WARNING_BYTES = 35 * 1024 * 1024
+HIGH_WARNING_BYTES = 45 * 1024 * 1024
+HARD_FAIL_BYTES = 50 * 1024 * 1024
+REGION_LABELS: dict[str, str] = {
+    "wa": "WA",
+    "ca": "CA",
+    "or": "OR",
+    "dc": "DC",
+    "bc": "BC",
+}
+REGION_CITY_OVERRIDES: dict[str, str] = {
+    "Washington DC": "dc",
+    "Vancouver BC": "bc",
+    "Victoria BC": "bc",
+    "Portland": "or",
+    "Burlingame": "ca",
+    "San Francisco": "ca",
+    "San Jose": "ca",
+}
 
 CITY_BOUNDARY_HINTS: dict[str, dict[str, str]] = {
     "Washington DC": {"state": "11", "basename": "Washington"},
@@ -1265,6 +1287,82 @@ def city_boundary_query_parts(city: str) -> tuple[str, str]:
     return basename, state
 
 
+def region_for_city(city: str) -> str:
+    if city in REGION_CITY_OVERRIDES:
+        return REGION_CITY_OVERRIDES[city]
+    if city.endswith(" BC") or city.endswith(", BC"):
+        return "bc"
+    if city.endswith(" CA") or city.endswith(", CA"):
+        return "ca"
+    if city.endswith(" OR") or city.endswith(", OR"):
+        return "or"
+    if city == "Washington DC" or city.endswith(" DC"):
+        return "dc"
+    return "wa"
+
+
+def classify_warning_level(raw_bytes: int) -> str:
+    if raw_bytes >= HARD_FAIL_BYTES:
+        return "hard_fail"
+    if raw_bytes >= HIGH_WARNING_BYTES:
+        return "high_warning"
+    if raw_bytes >= WARNING_BYTES:
+        return "warning"
+    return "none"
+
+
+def geometry_points(geometry: dict[str, Any]) -> list[tuple[float, float]]:
+    points: list[tuple[float, float]] = []
+
+    def walk(node: Any) -> None:
+        if not isinstance(node, list) or not node:
+            return
+        if len(node) >= 2 and isinstance(node[0], (int, float)) and isinstance(node[1], (int, float)):
+            points.append((float(node[0]), float(node[1])))
+            return
+        for item in node:
+            walk(item)
+
+    walk(geometry.get("coordinates"))
+    return points
+
+
+def bounds_for_geometry(geometry: dict[str, Any]) -> tuple[float, float, float, float] | None:
+    points = geometry_points(geometry)
+    if not points:
+        return None
+    xs = [point[0] for point in points]
+    ys = [point[1] for point in points]
+    return min(xs), min(ys), max(xs), max(ys)
+
+
+def build_region_bounds(coverage_features: list[dict[str, Any]]) -> dict[str, list[list[float]]]:
+    region_bounds: dict[str, list[float] | None] = {region: None for region in REGION_LABELS}
+    for feature in coverage_features:
+        region = region_for_city(feature["properties"]["jurisdiction"])
+        bounds = bounds_for_geometry(feature["geometry"])
+        if not bounds:
+            continue
+        if region_bounds[region] is None:
+            region_bounds[region] = list(bounds)
+            continue
+        current = region_bounds[region]
+        assert current is not None
+        current[0] = min(current[0], bounds[0])
+        current[1] = min(current[1], bounds[1])
+        current[2] = max(current[2], bounds[2])
+        current[3] = max(current[3], bounds[3])
+
+    output: dict[str, list[list[float]]] = {}
+    for region, bounds in region_bounds.items():
+        if bounds is None:
+            continue
+        output[region] = [[bounds[0], bounds[1]], [bounds[2], bounds[3]]]
+
+    output["wa"] = WA_METRO_OVERVIEW_BOUNDS
+    return output
+
+
 def boundary_feature_matches_city(feature: dict[str, Any], city: str) -> bool:
     properties = feature.get("properties", {})
     geometry = feature.get("geometry")
@@ -1715,17 +1813,21 @@ def ensure_dir(path: Path) -> None:
 
 
 def load_cached_source_features(city: str, source_dataset: str) -> list[dict[str, Any]]:
-    trees_path = PUBLIC_DATA_DIR / "trees.v1.geojson"
-    if not trees_path.exists():
+    tree_paths = sorted(PUBLIC_DATA_DIR.glob("trees.*.v2.geojson"))
+    legacy_path = PUBLIC_DATA_DIR / "trees.v1.geojson"
+    if legacy_path.exists():
+        tree_paths.append(legacy_path)
+    if not tree_paths:
         return []
 
-    payload = json.loads(trees_path.read_text(encoding="utf-8"))
-    features = payload.get("features", [])
     matched = []
-    for feature in features:
-        props = feature.get("properties", {})
-        if props.get("city") == city and props.get("source_dataset") == source_dataset:
-            matched.append(feature)
+    for trees_path in tree_paths:
+        payload = json.loads(trees_path.read_text(encoding="utf-8"))
+        features = payload.get("features", [])
+        for feature in features:
+            props = feature.get("properties", {})
+            if props.get("city") == city and props.get("source_dataset") == source_dataset:
+                matched.append(feature)
     return matched
 
 
@@ -3887,9 +3989,13 @@ def main() -> int:
         )
 
     now_iso = dt.datetime.now(tz=dt.timezone.utc).isoformat()
-    trees_geojson = {"type": "FeatureCollection", "features": output_features}
     coverage_geojson = {"type": "FeatureCollection", "features": coverage_features}
     species_guide = build_species_guide()
+    region_bounds = build_region_bounds(coverage_features)
+
+    region_feature_map: dict[str, list[dict[str, Any]]] = {region: [] for region in REGION_LABELS}
+    for feature in output_features:
+        region_feature_map[region_for_city(feature["properties"]["city"])].append(feature)
 
     unknown_items = [
         {"scientific_name_normalized": name, "count": count}
@@ -4171,9 +4277,53 @@ def main() -> int:
         + len(uw_supplemental_elements)
     )
 
+    next_dir = PUBLIC_DATA_DIR / ".next"
+    if next_dir.exists():
+        shutil.rmtree(next_dir)
+    next_dir.mkdir(parents=True, exist_ok=True)
+
+    region_meta: list[dict[str, Any]] = []
+    region_size_summary: list[dict[str, Any]] = []
+    for region_id, label in REGION_LABELS.items():
+        features = region_feature_map[region_id]
+        trees_geojson = {"type": "FeatureCollection", "features": features}
+        payload_bytes = json.dumps(trees_geojson, ensure_ascii=False).encode("utf-8")
+        file_name = f"trees.{region_id}.v2.geojson"
+        (next_dir / file_name).write_bytes(payload_bytes)
+
+        raw_bytes = len(payload_bytes)
+        gzip_bytes = len(gzip.compress(payload_bytes))
+        warning_level = classify_warning_level(raw_bytes)
+        region_cities = sorted({feature["properties"]["city"] for feature in features})
+        region_meta.append(
+            {
+                "id": region_id,
+                "label": label,
+                "available": bool(features),
+                "bounds": region_bounds.get(region_id, WA_METRO_OVERVIEW_BOUNDS),
+                "data_path": f"/data/{file_name}",
+                "tree_count": len(features),
+                "city_count": len(region_cities),
+                "cities": region_cities,
+                "raw_bytes": raw_bytes,
+                "gzip_bytes": gzip_bytes,
+                "warning_level": warning_level,
+            }
+        )
+        region_size_summary.append(
+            {
+                "region": label,
+                "tree_count": len(features),
+                "raw_bytes": raw_bytes,
+                "gzip_bytes": gzip_bytes,
+                "warning_level": warning_level,
+            }
+        )
+
     meta = {
-        "version": "v1",
+        "version": "v2",
         "generated_at": now_iso,
+        "default_region": DEFAULT_REGION,
         "coverage_rule": "official_city_boundary_only",
         "coverage_skipped_cities": skipped_coverage_cities,
         "coverage_official_unavailable_cities": official_unavailable_cities,
@@ -4182,30 +4332,36 @@ def main() -> int:
         "total_records": total_records,
         "included_records": len(output_features),
         "unknown_records": int(sum(unknown_counter.values())),
+        "regions": region_meta,
         "sources": meta_sources,
     }
 
-    next_dir = PUBLIC_DATA_DIR / ".next"
-    if next_dir.exists():
-        shutil.rmtree(next_dir)
-    next_dir.mkdir(parents=True, exist_ok=True)
-
-    (next_dir / "trees.v1.geojson").write_text(json.dumps(trees_geojson, ensure_ascii=False), encoding="utf-8")
     (next_dir / "coverage.v1.geojson").write_text(json.dumps(coverage_geojson, ensure_ascii=False), encoding="utf-8")
     (next_dir / "species-guide.v1.json").write_text(json.dumps(species_guide, ensure_ascii=False, indent=2), encoding="utf-8")
-    (next_dir / "meta.v1.json").write_text(json.dumps(meta, ensure_ascii=False, indent=2), encoding="utf-8")
+    (next_dir / "meta.v2.json").write_text(json.dumps(meta, ensure_ascii=False, indent=2), encoding="utf-8")
     (next_dir / "unknown_scientific_names.v1.json").write_text(
         json.dumps({"generated_at": now_iso, "items": unknown_items}, ensure_ascii=False, indent=2),
         encoding="utf-8",
     )
 
-    for output_name in [
-        "trees.v1.geojson",
+    output_names = [
         "coverage.v1.geojson",
         "species-guide.v1.json",
-        "meta.v1.json",
+        "meta.v2.json",
         "unknown_scientific_names.v1.json",
-    ]:
+        *[f"trees.{region_id}.v2.geojson" for region_id in REGION_LABELS],
+    ]
+
+    for stale_path in PUBLIC_DATA_DIR.glob("trees.*.v2.geojson"):
+        stale_path.unlink()
+    legacy_trees = PUBLIC_DATA_DIR / "trees.v1.geojson"
+    if legacy_trees.exists():
+        legacy_trees.unlink()
+    legacy_meta = PUBLIC_DATA_DIR / "meta.v1.json"
+    if legacy_meta.exists():
+        legacy_meta.unlink()
+
+    for output_name in output_names:
         shutil.move(str(next_dir / output_name), str(PUBLIC_DATA_DIR / output_name))
 
     if next_dir.exists():
@@ -4242,6 +4398,7 @@ def main() -> int:
                 "total_records": total_records,
                 "unknown_scientific_names": len(unknown_items),
                 "generated_at": now_iso,
+                "regions": region_size_summary,
             },
             ensure_ascii=False,
         )

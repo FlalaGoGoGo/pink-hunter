@@ -8,17 +8,20 @@ import {
 import maplibregl, { type GeoJSONSource, type Map as MapLibreMap } from "maplibre-gl";
 import type { FeatureCollection, Point } from "geojson";
 import polygonClipping, { type MultiPolygon as ClipMultiPolygon } from "polygon-clipping";
-import { loadAppData } from "./data";
+import { loadRegionTrees, loadStaticAppData } from "./data";
 import { DEFAULT_LANGUAGE, ownershipLabel, speciesLabel, t } from "./i18n";
 import type {
-  AppData,
+  AppMeta,
   CoverageCollection,
   CoverageFeatureProps,
+  CoverageRegion,
   Language,
   LayoutMode,
   MapStylePreset,
   OwnershipGroup,
+  RegionMeta,
   SpeciesGroup,
+  StaticAppData,
   TreeCollection,
   TreeFeatureProps
 } from "./types";
@@ -35,10 +38,6 @@ const POINT_LAYER_IDS = [
   "tree-crabapple"
 ] as const;
 const ALL_OWNERSHIP = ["public", "private", "unknown"] as const;
-const WA_METRO_OVERVIEW_BOUNDS: [[number, number], [number, number]] = [
-  [-123.08, 47.02],
-  [-121.55, 48.08]
-];
 const DEFAULT_CENTER: [number, number] = [-122.315, 47.55];
 const DEFAULT_ZOOM = 8.45;
 const POSITRON_STYLE_URL = "https://basemaps.cartocdn.com/gl/positron-gl-style/style.json";
@@ -57,7 +56,7 @@ const COVERAGE_COLORS = {
   unavailableFill: "#d7dbe1",
   unavailableLine: "#8f96a1"
 } as const;
-type CoverageRegion = "wa" | "dc" | "bc" | "or" | "ca";
+const EMPTY_TREE_COLLECTION: TreeCollection = { type: "FeatureCollection", features: [] };
 
 const REGION_CITY_OVERRIDES: Partial<Record<string, CoverageRegion>> = {
   "Washington DC": "dc",
@@ -88,6 +87,7 @@ interface SelectedCoverage {
 }
 
 interface UrlState {
+  region: CoverageRegion;
   language: Language;
   species: SpeciesGroup[];
   ownership: OwnershipGroup[];
@@ -140,6 +140,8 @@ function parseStringList(raw: string | null): string[] {
 
 function parseUrlState(): UrlState {
   const params = new URLSearchParams(window.location.search);
+  const cities = parseStringList(params.get("city"));
+  const region = parseRegion(params.get("region"), cities);
   const language = parseLanguage(params.get("lang"));
   const hasSpeciesParam = params.has("species");
   const hasOwnershipParam = params.has("ownership");
@@ -147,7 +149,6 @@ function parseUrlState(): UrlState {
   const hasZipParam = params.has("zip");
   const species = parseDelimited(params.get("species"), ALL_SPECIES, ALL_SPECIES);
   const ownership = parseDelimited(params.get("ownership"), ALL_OWNERSHIP, ALL_OWNERSHIP);
-  const cities = parseStringList(params.get("city"));
   const zipCodes = parseStringList(params.get("zip"));
 
   const zoom = Number(params.get("z"));
@@ -156,6 +157,7 @@ function parseUrlState(): UrlState {
   const hasViewportParam = params.has("z") && params.has("lat") && params.has("lon");
 
   return {
+    region,
     language,
     species,
     ownership,
@@ -174,6 +176,13 @@ function parseUrlState(): UrlState {
 
 function createBoundsFromTuple(boundsTuple: [[number, number], [number, number]]): maplibregl.LngLatBounds {
   return new maplibregl.LngLatBounds(boundsTuple[0], boundsTuple[1]);
+}
+
+function boundsForRegion(regionMeta: RegionMeta | null): maplibregl.LngLatBounds | null {
+  if (!regionMeta) {
+    return null;
+  }
+  return createBoundsFromTuple(regionMeta.bounds);
 }
 
 function setDocumentMeta(selector: string, content: string): void {
@@ -274,6 +283,16 @@ function clipMultiPolygonToGeometry(
     type: "MultiPolygon",
     coordinates: geometry
   };
+}
+
+function parseRegion(raw: string | null, cities: string[]): CoverageRegion {
+  if (raw === "wa" || raw === "ca" || raw === "or" || raw === "dc" || raw === "bc") {
+    return raw;
+  }
+  if (cities.length > 0) {
+    return regionForCity(cities[0]);
+  }
+  return "wa";
 }
 
 function regionForCity(city: string): CoverageRegion {
@@ -412,33 +431,26 @@ function sortZipCodesByMasterOrder(values: Iterable<string>, order: string[]): s
   });
 }
 
-function isHttpUrl(value: string): boolean {
-  return /^https?:\/\//i.test(value);
+function getCitiesForTrees(trees: TreeCollection): string[] {
+  return Array.from(new Set(trees.features.map((feature) => feature.properties.city))).sort();
 }
 
-function extendBoundsFromCoverageGeometry(
-  bounds: maplibregl.LngLatBounds,
-  geometry: CoverageCollection["features"][number]["geometry"]
-): boolean {
-  let hasPoints = false;
-  if (geometry.type === "Polygon") {
-    geometry.coordinates.forEach((ring) => {
-      ring.forEach(([lon, lat]) => {
-        bounds.extend([lon, lat]);
-        hasPoints = true;
-      });
-    });
-  } else if (geometry.type === "MultiPolygon") {
-    geometry.coordinates.forEach((polygon) => {
-      polygon.forEach((ring) => {
-        ring.forEach(([lon, lat]) => {
-          bounds.extend([lon, lat]);
-          hasPoints = true;
-        });
-      });
-    });
-  }
-  return hasPoints;
+function getZipCodesForTrees(trees: TreeCollection): string[] {
+  return Array.from(new Set(trees.features.map((feature) => feature.properties.zip_code ?? "unknown"))).sort(
+    (left, right) => {
+      if (left === "unknown") {
+        return 1;
+      }
+      if (right === "unknown") {
+        return -1;
+      }
+      return left.localeCompare(right);
+    }
+  );
+}
+
+function isHttpUrl(value: string): boolean {
+  return /^https?:\/\//i.test(value);
 }
 
 function escapeHtml(raw: string): string {
@@ -468,10 +480,13 @@ export default function App(): JSX.Element {
   const initialLayoutMode: LayoutMode =
     typeof window !== "undefined" && window.innerWidth >= 1024 ? "desktop_split" : "mobile_sheet";
 
-  const [data, setData] = useState<AppData | null>(null);
+  const [data, setData] = useState<StaticAppData | null>(null);
+  const [regionTreeCache, setRegionTreeCache] = useState<Partial<Record<CoverageRegion, TreeCollection>>>({});
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
+  const [regionLoading, setRegionLoading] = useState<CoverageRegion | null>(null);
 
+  const [activeRegion, setActiveRegion] = useState<CoverageRegion>(initialUrlState.region);
   const [language, setLanguage] = useState<Language>(initialUrlState.language);
   const [selectedSpecies, setSelectedSpecies] = useState<SpeciesGroup[]>(initialUrlState.species);
   const [selectedOwnership, setSelectedOwnership] = useState<OwnershipGroup[]>(initialUrlState.ownership);
@@ -501,8 +516,8 @@ export default function App(): JSX.Element {
   const popupRef = useRef<maplibregl.Popup | null>(null);
   const filteredFeaturesRef = useRef<TreeCollection["features"]>([]);
   const isDesktopRef = useRef(layoutMode === "desktop_split");
-  const citiesInitializedRef = useRef(false);
-  const zipCodesInitializedRef = useRef(false);
+  const initialRegionFiltersAppliedRef = useRef(false);
+  const pendingRegionResetRef = useRef<CoverageRegion | null>(null);
   const dragStateRef = useRef<{ startY: number; startHeight: number; dragging: boolean }>({
     startY: 0,
     startHeight: 0.4,
@@ -514,7 +529,7 @@ export default function App(): JSX.Element {
   useEffect(() => {
     void (async () => {
       try {
-        const loadedData = await loadAppData();
+        const loadedData = await loadStaticAppData();
         setData(loadedData);
       } catch (loadError) {
         const message = loadError instanceof Error ? loadError.message : "Unknown loading error";
@@ -543,37 +558,81 @@ export default function App(): JSX.Element {
     mapRef.current?.resize();
   }, [isDesktop]);
 
-  const cities = useMemo(() => {
-    if (!data) {
-      return [] as string[];
-    }
-    return Array.from(new Set(data.trees.features.map((feature) => feature.properties.city))).sort();
+  const regionMetaById = useMemo(() => {
+    const entries = (data?.meta.regions ?? []).map((regionMeta) => [regionMeta.id, regionMeta]);
+    return new Map(entries as Array<[CoverageRegion, RegionMeta]>);
   }, [data]);
 
-  const zipCodes = useMemo(() => {
+  const activeRegionMeta = regionMetaById.get(activeRegion) ?? null;
+  const activeRegionTrees = regionTreeCache[activeRegion] ?? null;
+
+  useEffect(() => {
     if (!data) {
+      return;
+    }
+    const fallbackRegion = data.meta.default_region;
+    if (!regionMetaById.get(activeRegion)?.available) {
+      setActiveRegion(fallbackRegion);
+    }
+  }, [activeRegion, data, regionMetaById]);
+
+  useEffect(() => {
+    if (!activeRegionMeta || !activeRegionMeta.available || activeRegionTrees) {
+      return;
+    }
+
+    let cancelled = false;
+    setRegionLoading(activeRegion);
+    setError(null);
+
+    void (async () => {
+      try {
+        const regionTrees = await loadRegionTrees(activeRegionMeta.data_path);
+        if (cancelled) {
+          return;
+        }
+        setRegionTreeCache((current) => ({ ...current, [activeRegion]: regionTrees }));
+      } catch (loadError) {
+        if (cancelled) {
+          return;
+        }
+        const message = loadError instanceof Error ? loadError.message : "Unknown region loading error";
+        setError(message);
+      } finally {
+        if (!cancelled) {
+          setRegionLoading((current) => (current === activeRegion ? null : current));
+        }
+      }
+    })();
+
+    return () => {
+      cancelled = true;
+    };
+  }, [activeRegion, activeRegionMeta, activeRegionTrees]);
+
+  const currentTrees = activeRegionTrees ?? EMPTY_TREE_COLLECTION;
+
+  const cities = useMemo(() => {
+    if (!activeRegionTrees) {
       return [] as string[];
     }
-    return Array.from(new Set(data.trees.features.map((feature) => feature.properties.zip_code ?? "unknown"))).sort(
-      (left, right) => {
-        if (left === "unknown") {
-          return 1;
-        }
-        if (right === "unknown") {
-          return -1;
-        }
-        return left.localeCompare(right);
-      }
-    );
-  }, [data]);
+    return getCitiesForTrees(currentTrees);
+  }, [activeRegionTrees, currentTrees]);
+
+  const zipCodes = useMemo(() => {
+    if (!activeRegionTrees) {
+      return [] as string[];
+    }
+    return getZipCodesForTrees(currentTrees);
+  }, [activeRegionTrees, currentTrees]);
 
   const zipCodesByCity = useMemo(() => {
     const cityMap = new Map<string, Set<string>>();
-    if (!data) {
+    if (!activeRegionTrees) {
       return new Map<string, string[]>();
     }
 
-    data.trees.features.forEach((feature) => {
+    currentTrees.features.forEach((feature) => {
       const city = feature.properties.city;
       const zipCode = feature.properties.zip_code ?? "unknown";
       const bucket = cityMap.get(city) ?? new Set<string>();
@@ -584,7 +643,7 @@ export default function App(): JSX.Element {
     return new Map(
       Array.from(cityMap.entries()).map(([city, zipSet]) => [city, sortZipCodesByMasterOrder(zipSet, zipCodes)])
     );
-  }, [data, zipCodes]);
+  }, [activeRegionTrees, currentTrees, zipCodes]);
 
   const cityOptions = useMemo(
     () => cities.map((city) => ({ city, label: formatCityLabel(city), stateCode: stateCodeForCity(city) })),
@@ -592,12 +651,12 @@ export default function App(): JSX.Element {
   );
 
   const allOwnershipOptions = useMemo(() => {
-    if (!data) {
+    if (!activeRegionTrees) {
       return ["public", "private"] as OwnershipGroup[];
     }
-    const options = new Set<OwnershipGroup>(data.trees.features.map((feature) => feature.properties.ownership));
+    const options = new Set<OwnershipGroup>(currentTrees.features.map((feature) => feature.properties.ownership));
     return (["public", "private", "unknown"] as const).filter((item) => options.has(item));
-  }, [data]);
+  }, [activeRegionTrees, currentTrees]);
 
   const displayCoverage = useMemo(() => {
     if (!data) {
@@ -607,36 +666,35 @@ export default function App(): JSX.Element {
   }, [data]);
 
   useEffect(() => {
-    if (cities.length === 0 || citiesInitializedRef.current) {
+    if (!activeRegionTrees) {
       return;
     }
 
-    if (initialUrlState.hasCityParam) {
-      const restoredCities = cities.filter((city) => initialUrlState.cities.includes(city));
-      setSelectedCities(restoredCities);
-    } else {
+    if (!initialRegionFiltersAppliedRef.current && activeRegion === initialUrlState.region) {
+      const nextCities = initialUrlState.hasCityParam
+        ? cities.filter((city) => initialUrlState.cities.includes(city))
+        : cities;
+      const nextZipCodes = initialUrlState.hasZipParam
+        ? zipCodes.filter((zipCode) => initialUrlState.zipCodes.includes(zipCode))
+        : zipCodes;
+
+      setSelectedCities(nextCities);
+      setSelectedZipCodes(nextZipCodes);
+      initialRegionFiltersAppliedRef.current = true;
+      pendingRegionResetRef.current = null;
+      return;
+    }
+
+    if (pendingRegionResetRef.current === activeRegion) {
       setSelectedCities(cities);
-    }
-    citiesInitializedRef.current = true;
-  }, [cities, initialUrlState.cities, initialUrlState.hasCityParam]);
-
-  useEffect(() => {
-    if (zipCodes.length === 0 || zipCodesInitializedRef.current) {
-      return;
-    }
-
-    if (initialUrlState.hasZipParam) {
-      const restoredZipCodes = zipCodes.filter((zipCode) => initialUrlState.zipCodes.includes(zipCode));
-      setSelectedZipCodes(restoredZipCodes);
-    } else {
       setSelectedZipCodes(zipCodes);
+      pendingRegionResetRef.current = null;
     }
-    zipCodesInitializedRef.current = true;
-  }, [initialUrlState.hasZipParam, initialUrlState.zipCodes, zipCodes]);
+  }, [activeRegion, activeRegionTrees, cities, initialUrlState.cities, initialUrlState.hasCityParam, initialUrlState.hasZipParam, initialUrlState.region, initialUrlState.zipCodes, zipCodes]);
 
   const filteredFeatures = useMemo(() => {
     if (
-      !data ||
+      !activeRegionTrees ||
       selectedSpecies.length === 0 ||
       selectedOwnership.length === 0 ||
       selectedCities.length === 0 ||
@@ -650,7 +708,7 @@ export default function App(): JSX.Element {
     const citySet = new Set(selectedCities);
     const zipSet = new Set(selectedZipCodes);
 
-    return data.trees.features.filter((feature) => {
+    return currentTrees.features.filter((feature) => {
       const props = feature.properties;
       return (
         speciesSet.has(props.species_group) &&
@@ -659,10 +717,10 @@ export default function App(): JSX.Element {
         zipSet.has(props.zip_code ?? "unknown")
       );
     });
-  }, [data, selectedCities, selectedOwnership, selectedSpecies, selectedZipCodes]);
+  }, [activeRegionTrees, currentTrees, selectedCities, selectedOwnership, selectedSpecies, selectedZipCodes]);
 
   const ownershipOptions = useMemo(() => {
-    if (!data || selectedSpecies.length === 0 || selectedCities.length === 0 || selectedZipCodes.length === 0) {
+    if (!activeRegionTrees || selectedSpecies.length === 0 || selectedCities.length === 0 || selectedZipCodes.length === 0) {
       return [] as OwnershipGroup[];
     }
 
@@ -671,7 +729,7 @@ export default function App(): JSX.Element {
     const zipSet = new Set(selectedZipCodes);
     const options = new Set<OwnershipGroup>();
 
-    data.trees.features.forEach((feature) => {
+    currentTrees.features.forEach((feature) => {
       const props = feature.properties;
       if (
         speciesSet.has(props.species_group) &&
@@ -683,7 +741,7 @@ export default function App(): JSX.Element {
     });
 
     return (["public", "private", "unknown"] as const).filter((item) => options.has(item));
-  }, [data, selectedCities, selectedSpecies, selectedZipCodes]);
+  }, [activeRegionTrees, currentTrees, selectedCities, selectedSpecies, selectedZipCodes]);
 
   const filteredCollection = useMemo(() => toTreeCollection(filteredFeatures), [filteredFeatures]);
 
@@ -807,7 +865,7 @@ export default function App(): JSX.Element {
 
   const aboutSources = useMemo(() => {
     if (!data) {
-      return [] as AppData["meta"]["sources"];
+      return [] as AppMeta["sources"];
     }
     return [...data.meta.sources].sort(
       (left, right) => left.city.localeCompare(right.city) || left.name.localeCompare(right.name)
@@ -828,24 +886,6 @@ export default function App(): JSX.Element {
   useEffect(() => {
     setAboutSourcesPage((current) => Math.min(current, aboutSourcePageCount - 1));
   }, [aboutSourcePageCount]);
-
-  const regionBoundsByRegion = useMemo(() => {
-    const boundsMap: Partial<Record<CoverageRegion, maplibregl.LngLatBounds>> = {};
-
-    displayCoverage.features.forEach((feature) => {
-      const region = regionForCity(feature.properties.jurisdiction);
-      const bounds = boundsMap[region] ?? new maplibregl.LngLatBounds();
-      const hasPoints = extendBoundsFromCoverageGeometry(bounds, feature.geometry);
-      if (hasPoints) {
-        boundsMap[region] = bounds;
-      }
-    });
-
-    // WA overview stays focused on the Seattle metro / central Puget Sound corridor.
-    boundsMap.wa = createBoundsFromTuple(WA_METRO_OVERVIEW_BOUNDS);
-
-    return boundsMap;
-  }, [displayCoverage]);
 
   useEffect(() => {
     if (!data || mapRef.current || !mapContainerRef.current) {
@@ -1163,7 +1203,7 @@ export default function App(): JSX.Element {
         });
 
         if (!initialUrlState.hasViewportParam) {
-          const defaultBounds = regionBoundsByRegion.wa;
+          const defaultBounds = boundsForRegion(activeRegionMeta);
           if (defaultBounds) {
             map.fitBounds(defaultBounds, {
               padding: isDesktopRef.current ? 80 : 48,
@@ -1194,11 +1234,11 @@ export default function App(): JSX.Element {
   }, [
     data,
     displayCoverage,
+    activeRegionMeta,
     initialUrlState.hasViewportParam,
     initialUrlState.lat,
     initialUrlState.lon,
-    initialUrlState.zoom,
-    regionBoundsByRegion
+    initialUrlState.zoom
   ]);
 
   useEffect(() => {
@@ -1340,6 +1380,7 @@ export default function App(): JSX.Element {
     }
 
     const params = new URLSearchParams();
+    params.set("region", activeRegion);
     params.set("lang", language);
 
     if (selectedSpecies.length === 0) {
@@ -1373,6 +1414,7 @@ export default function App(): JSX.Element {
     const nextUrl = `${window.location.pathname}?${params.toString()}`;
     window.history.replaceState(null, "", nextUrl);
   }, [
+    activeRegion,
     allOwnershipOptions.length,
     cities.length,
     data,
@@ -1486,16 +1528,36 @@ export default function App(): JSX.Element {
     );
   }
 
-  function fitCoveredArea(region: CoverageRegion): void {
-    const bounds = regionBoundsByRegion[region];
-    if (!mapRef.current || !bounds) {
+  function switchRegion(region: CoverageRegion): void {
+    const regionMeta = regionMetaById.get(region) ?? null;
+    if (!regionMeta?.available) {
       return;
     }
+
     setGlobalMenuOpen(false);
-    mapRef.current.fitBounds(bounds, {
-      padding: isDesktop ? 80 : 48,
-      duration: 700
-    });
+    setSelectedTree(null);
+    setSelectedCoverage(null);
+    setCityDropdownOpen(false);
+    setZipDropdownOpen(false);
+    const cachedTrees = regionTreeCache[region];
+    if (cachedTrees) {
+      setSelectedCities(getCitiesForTrees(cachedTrees));
+      setSelectedZipCodes(getZipCodesForTrees(cachedTrees));
+      pendingRegionResetRef.current = null;
+    } else {
+      setSelectedCities([]);
+      setSelectedZipCodes([]);
+      pendingRegionResetRef.current = region;
+    }
+    setActiveRegion(region);
+
+    const bounds = boundsForRegion(regionMeta);
+    if (mapRef.current && bounds) {
+      mapRef.current.fitBounds(bounds, {
+        padding: isDesktop ? 80 : 48,
+        duration: 700
+      });
+    }
   }
 
   function showAllFilters(): void {
@@ -1554,7 +1616,11 @@ export default function App(): JSX.Element {
     setSheetHeight((current) => nearestSnap(current));
   }
 
-  if (loading) {
+  const activeRegionPending = Boolean(
+    data && activeRegionMeta?.available && !activeRegionTrees && regionLoading === activeRegion
+  );
+
+  if (loading || activeRegionPending) {
     return (
       <div className="loading-screen">
         <div className="loading-shell" />
@@ -1596,8 +1662,8 @@ export default function App(): JSX.Element {
               <button
                 key={option.region}
                 className="map-global-option"
-                disabled={!regionBoundsByRegion[option.region]}
-                onClick={() => fitCoveredArea(option.region)}
+                disabled={!regionMetaById.get(option.region)?.available}
+                onClick={() => switchRegion(option.region)}
                 type="button"
               >
                 {option.label}
