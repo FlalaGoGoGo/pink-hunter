@@ -17,6 +17,8 @@ const copy = {
   "en-US": {
     appTitle: "Pink Hunter",
     appSubtitle: "Find pink blossom trees. Learn the differences.",
+    visitorCountPrefix: "You are visitor number ",
+    visitorCountSuffix: " to this site.",
     browserTitle: "Pink Hunter - Pink Blossom Tree Map",
     browserDescription:
       "A mobile-first map for finding and distinguishing cherry, plum, peach, magnolia, and crabapple trees.",
@@ -81,6 +83,8 @@ const copy = {
   "zh-CN": {
     appTitle: "Pink Hunter",
     appSubtitle: "找粉色花树，也分得清它们。",
+    visitorCountPrefix: "你是访问这个网站的第",
+    visitorCountSuffix: "位访客。",
     browserTitle: "Pink Hunter - 粉色花树地图",
     browserDescription: "帮助大家寻找并区分樱花、李花、桃花、木兰与海棠的移动端地图。",
     locate: "定位",
@@ -142,6 +146,8 @@ const copy = {
   "zh-TW": {
     appTitle: "Pink Hunter",
     appSubtitle: "找粉色花樹，也分得清它們。",
+    visitorCountPrefix: "你是造訪這個網站的第",
+    visitorCountSuffix: "位訪客。",
     browserTitle: "Pink Hunter - 粉色花樹地圖",
     browserDescription: "幫助大家尋找並區分櫻花、李花、桃花、木蘭與海棠的行動端地圖。",
     locate: "定位",
@@ -203,6 +209,8 @@ const copy = {
   "es-ES": {
     appTitle: "Pink Hunter",
     appSubtitle: "Encuentra árboles de flor rosa. Aprende a diferenciarlos.",
+    visitorCountPrefix: "Eres la visita número ",
+    visitorCountSuffix: " de este sitio.",
     browserTitle: "Pink Hunter - Mapa de Árboles con Flores Rosadas",
     browserDescription:
       "Un mapa móvil para encontrar y distinguir cerezos, ciruelos, melocotoneros, magnolias y manzanos ornamentales.",
@@ -268,6 +276,8 @@ const copy = {
   "ko-KR": {
     appTitle: "Pink Hunter",
     appSubtitle: "분홍빛 꽃나무를 찾고, 서로 어떻게 다른지도 배워보세요.",
+    visitorCountPrefix: "당신은 이 사이트의 ",
+    visitorCountSuffix: "번째 방문자입니다.",
     browserTitle: "Pink Hunter - 분홍 꽃나무 지도",
     browserDescription:
       "벚꽃, 자두꽃, 복숭아꽃, 목련, 꽃사과나무를 찾고 구분할 수 있도록 돕는 모바일 우선 지도입니다.",
@@ -332,6 +342,8 @@ const copy = {
   "ja-JP": {
     appTitle: "Pink Hunter",
     appSubtitle: "ピンクの花木を探して、違いも見分けましょう。",
+    visitorCountPrefix: "あなたはこのサイトの",
+    visitorCountSuffix: "人目の訪問者です。",
     browserTitle: "Pink Hunter - ピンクの花木マップ",
     browserDescription:
       "桜、李、桃、木蓮、海棠を探して見分けるためのモバイル向けマップです。",
@@ -396,6 +408,8 @@ const copy = {
   "fr-FR": {
     appTitle: "Pink Hunter",
     appSubtitle: "Trouvez les arbres à floraison rose. Apprenez à les distinguer.",
+    visitorCountPrefix: "Vous êtes le visiteur n° ",
+    visitorCountSuffix: " de ce site.",
     browserTitle: "Pink Hunter - Carte des Arbres en Fleur Rose",
     browserDescription:
       "Une carte mobile pour trouver et distinguer les cerisiers, pruniers, pêchers, magnolias et pommiers d'ornement.",
@@ -461,6 +475,8 @@ const copy = {
   "vi-VN": {
     appTitle: "Pink Hunter",
     appSubtitle: "Tìm cây hoa màu hồng và học cách phân biệt chúng.",
+    visitorCountPrefix: "Bạn là lượt khách thứ ",
+    visitorCountSuffix: " ghé thăm trang web này.",
     browserTitle: "Pink Hunter - Bản Đồ Cây Hoa Màu Hồng",
     browserDescription:
       "Bản đồ ưu tiên di động để tìm và phân biệt hoa anh đào, hoa mận, hoa đào, mộc lan và hải đường.",

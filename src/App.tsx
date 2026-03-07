@@ -6,7 +6,7 @@ import {
   type PointerEvent as ReactPointerEvent,
   type ReactNode
 } from "react";
-import { loadRegionCityIndex, loadStaticAppData, loadTreeCollection } from "./data";
+import { loadRegionCityIndex, loadStaticAppData, loadTreeCollection, loadVisitorCount } from "./data";
 import {
   DEFAULT_LANGUAGE,
   LANGUAGE_OPTIONS,
@@ -59,6 +59,7 @@ const POSITRON_STYLE_URL = "https://basemaps.cartocdn.com/gl/positron-gl-style/s
 const FALLBACK_STYLE_URL = "https://demotiles.maplibre.org/style.json";
 const ABOUT_SOURCES_PAGE_SIZE = 4;
 const BRAND_LOGO_PATH = "/assets/brand/pink-hunter-logo.png";
+const SORT_COLLATOR = new Intl.Collator("en", { sensitivity: "base" });
 const POINT_COLORS: Record<SpeciesGroup, string> = {
   cherry: "#ef79ad",
   plum: "#d976b4",
@@ -493,13 +494,21 @@ const REGION_SWITCH_BOUNDS: Partial<Record<CoverageRegion, [[number, number], [n
   ]
 };
 
-const GLOBAL_REGION_OPTIONS: Array<{ region: CoverageRegion; label: string }> = [
-  { region: "wa", label: "🇺🇸 WA" },
-  { region: "ca", label: "🇺🇸 CA" },
-  { region: "dc", label: "🇺🇸 DC" },
-  { region: "or", label: "🇺🇸 OR" },
-  { region: "bc", label: "🇨🇦 BC" }
-];
+const GLOBAL_REGION_OPTIONS: CoverageRegion[] = ["wa", "ca", "dc", "or", "bc"];
+const REGION_COUNTRY_EMOJIS: Record<CoverageRegion, string> = {
+  wa: "🇺🇸",
+  ca: "🇺🇸",
+  dc: "🇺🇸",
+  or: "🇺🇸",
+  bc: "🇨🇦"
+};
+const REGION_SORT_LABELS: Record<CoverageRegion, string> = {
+  wa: "Washington",
+  ca: "California",
+  dc: "Washington, DC",
+  or: "Oregon",
+  bc: "British Columbia"
+};
 
 interface SelectedTree {
   coordinates: [number, number];
@@ -819,6 +828,10 @@ function stateCodeForCity(city: string): string {
   return "WA";
 }
 
+function regionOptionLabel(language: Language, region: CoverageRegion): string {
+  return `${REGION_COUNTRY_EMOJIS[region]} ${regionLabel(language, region)}`;
+}
+
 function formatCityLabel(city: string, language: Language): string {
   return `${city}, ${regionLabel(language, regionForCity(city))}`;
 }
@@ -949,6 +962,7 @@ export default function App(): JSX.Element {
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
   const [regionLoading, setRegionLoading] = useState<CoverageRegion | null>(null);
+  const [visitorCount, setVisitorCount] = useState<number | null>(null);
 
   const [activeRegion, setActiveRegion] = useState<CoverageRegion>(initialUrlState.region);
   const [language, setLanguage] = useState<Language>(initialUrlState.language);
@@ -1020,6 +1034,24 @@ export default function App(): JSX.Element {
   }, []);
 
   useEffect(() => {
+    let cancelled = false;
+    void (async () => {
+      try {
+        const count = await loadVisitorCount();
+        if (!cancelled) {
+          setVisitorCount(count);
+        }
+      } catch (loadError) {
+        console.warn("visitor-count-unavailable", loadError);
+      }
+    })();
+
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
+  useEffect(() => {
     const mediaQuery = window.matchMedia("(min-width: 1024px)");
     const handleChange = (event: MediaQueryListEvent): void => {
       setLayoutMode(event.matches ? "desktop_split" : "mobile_sheet");
@@ -1046,6 +1078,7 @@ export default function App(): JSX.Element {
   const activeRegionCityIndex = regionCityIndexCache[activeRegion] ?? null;
   const activeRegionTrees = regionTreeCache[activeRegion] ?? null;
   const activeLanguageOption = LANGUAGE_OPTIONS.find((option) => option.id === language) ?? LANGUAGE_OPTIONS[0];
+  const activeRegionDisplayLabel = regionOptionLabel(language, activeRegion);
   const activeRegionPending = Boolean(
     data &&
       activeRegionMeta?.available &&
@@ -1185,21 +1218,26 @@ export default function App(): JSX.Element {
 
   const stateProvinceOptions = useMemo(
     () =>
-      GLOBAL_REGION_OPTIONS.filter((option) => regionMetaById.get(option.region)?.available).map((option) => ({
-        region: option.region,
-        label: regionLabel(language, option.region),
-        menuLabel: option.label
-      })),
+      GLOBAL_REGION_OPTIONS.filter((region) => regionMetaById.get(region)?.available)
+        .map((region) => ({
+          region,
+          label: regionLabel(language, region),
+          displayLabel: regionOptionLabel(language, region),
+          sortLabel: REGION_SORT_LABELS[region]
+        }))
+        .sort((left, right) => SORT_COLLATOR.compare(left.sortLabel, right.sortLabel)),
     [language, regionMetaById]
   );
 
   const cityOptions = useMemo(
     () =>
-      cities.map((city) => ({
-        city,
-        label: formatCityLabel(city, language),
-        stateCode: stateCodeForCity(city)
-      })),
+      cities
+        .map((city) => ({
+          city,
+          label: formatCityLabel(city, language),
+          stateCode: stateCodeForCity(city)
+        }))
+        .sort((left, right) => SORT_COLLATOR.compare(left.city, right.city)),
     [cities, language]
   );
 
@@ -1366,10 +1404,11 @@ export default function App(): JSX.Element {
       return stateProvinceOptions;
     }
 
-    return stateProvinceOptions.filter(({ label, menuLabel, region }) => {
+    return stateProvinceOptions.filter(({ label, displayLabel, sortLabel, region }) => {
       return (
         label.toLowerCase().includes(query) ||
-        menuLabel.toLowerCase().includes(query) ||
+        displayLabel.toLowerCase().includes(query) ||
+        sortLabel.toLowerCase().includes(query) ||
         region.toLowerCase().includes(query)
       );
     });
@@ -2160,6 +2199,13 @@ export default function App(): JSX.Element {
                   src={BRAND_LOGO_PATH}
                 />
                 <p>{t(language, "appSubtitle")}</p>
+                {visitorCount !== null && (
+                  <p className="visitor-count-line">
+                    {t(language, "visitorCountPrefix")}
+                    <strong className="visitor-count-number">{visitorCount.toLocaleString(language)}</strong>
+                    {t(language, "visitorCountSuffix")}
+                  </p>
+                )}
               </div>
               <div className="language-switcher" ref={languageMenuRef}>
                 <button
@@ -2259,7 +2305,7 @@ export default function App(): JSX.Element {
                     onClick={() => setStateDropdownOpen((current) => !current)}
                     type="button"
                   >
-                    <span>{regionLabel(language, activeRegion)}</span>
+                    <span>{activeRegionDisplayLabel}</span>
                     <span className={stateDropdownOpen ? "caret open" : "caret"} />
                   </button>
                   {stateDropdownOpen && (
@@ -2286,7 +2332,7 @@ export default function App(): JSX.Element {
                             readOnly
                             type="radio"
                           />
-                          <span>{option.label}</span>
+                          <span>{option.displayLabel}</span>
                         </label>
                       ))}
                       {visibleStateProvinces.length === 0 && (

@@ -141,6 +141,15 @@ body {
   color: #5f4350;
 }
 
+.visitor-count-line {
+  margin-top: 0.08rem;
+}
+
+.visitor-count-number {
+  color: #d66a9a;
+  font-weight: 800;
+}
+
 .language-btn {
   flex-shrink: 0;
   padding: 0.45rem 0.7rem;
