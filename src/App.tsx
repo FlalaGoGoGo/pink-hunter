@@ -582,6 +582,9 @@ export default function App(): JSX.Element {
 
   const activeRegionMeta = regionMetaById.get(activeRegion) ?? null;
   const activeRegionTrees = regionTreeCache[activeRegion] ?? null;
+  const activeRegionPending = Boolean(
+    data && activeRegionMeta?.available && !activeRegionTrees && regionLoading === activeRegion
+  );
 
   useEffect(() => {
     if (!data) {
@@ -916,28 +919,33 @@ export default function App(): JSX.Element {
     let mapInstance: MapLibreMap | null = null;
 
     void (async () => {
-      const { styleUrl, preset } = await resolveMapStyle();
-      if (isCancelled || !mapContainerRef.current) {
-        return;
-      }
+      try {
+        const { styleUrl, preset } = await resolveMapStyle();
+        if (isCancelled || !mapContainerRef.current) {
+          return;
+        }
 
-      setMapStylePreset(preset);
+        setMapStylePreset(preset);
 
-      const map = new mapRuntime.maplibre.Map({
-        container: mapContainerRef.current,
-        style: styleUrl,
-        center: [initialUrlState.lon, initialUrlState.lat],
-        zoom: initialUrlState.zoom,
-        minZoom: 7,
-        maxZoom: 18,
-        attributionControl: false
-      });
+        const map = new mapRuntime.maplibre.Map({
+          container: mapContainerRef.current,
+          style: styleUrl,
+          center: [initialUrlState.lon, initialUrlState.lat],
+          zoom: initialUrlState.zoom,
+          minZoom: 7,
+          maxZoom: 18,
+          attributionControl: false
+        });
 
-      mapInstance = map;
-      mapRef.current = map;
+        mapInstance = map;
+        mapRef.current = map;
 
-      map.on("load", () => {
-        map.addControl(new mapRuntime.maplibre.ScaleControl({ maxWidth: 110, unit: "metric" }), "bottom-right");
+        map.on("error", (event) => {
+          console.error("map-runtime-error", event?.error ?? event);
+        });
+
+        map.on("load", () => {
+          map.addControl(new mapRuntime.maplibre.ScaleControl({ maxWidth: 110, unit: "metric" }), "bottom-right");
 
         map.addSource("coverage", {
           type: "geojson",
@@ -1237,7 +1245,13 @@ export default function App(): JSX.Element {
             });
           }
         }
-      });
+        });
+      } catch (mapError) {
+        console.error("map-init-failed", mapError);
+        if (!isCancelled) {
+          setError(mapError instanceof Error ? mapError.message : "Failed to initialize map.");
+        }
+      }
     })();
 
     return () => {
@@ -1252,6 +1266,8 @@ export default function App(): JSX.Element {
       }
     };
   }, [
+    loading,
+    activeRegionPending,
     data,
     displayCoverage,
     activeRegionMeta,
@@ -1637,10 +1653,6 @@ export default function App(): JSX.Element {
     event.currentTarget.releasePointerCapture(event.pointerId);
     setSheetHeight((current) => nearestSnap(current));
   }
-
-  const activeRegionPending = Boolean(
-    data && activeRegionMeta?.available && !activeRegionTrees && regionLoading === activeRegion
-  );
 
   if (loading || activeRegionPending) {
     return (
