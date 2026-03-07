@@ -1123,7 +1123,7 @@ function formatCoverageScope(language: Language, regions: CoverageRegion[]): str
   regions.forEach((region) => {
     const country = REGION_COUNTRY_KEYS[region];
     const current = grouped.get(country) ?? [];
-    current.push(regionLabel(language, region));
+    current.push(region.toUpperCase());
     grouped.set(country, current);
   });
 
@@ -1132,7 +1132,7 @@ function formatCoverageScope(language: Language, regions: CoverageRegion[]): str
   return countryOrder
     .filter((country) => grouped.has(country))
     .map((country) => {
-      const labels = [...(grouped.get(country) ?? [])].sort((left, right) => SORT_COLLATOR.compare(left, right));
+      const labels = [...(grouped.get(country) ?? [])].sort((left, right) => left.localeCompare(right));
       return `${COUNTRY_LABELS[language][country]} (${formatLanguageList(language, labels)})`;
     })
     .join("; ");
@@ -2893,7 +2893,11 @@ export default function App(): JSX.Element {
                     {ALL_SPECIES.map((species) => (
                       <button
                         key={species}
-                        className={selectedSpecies.includes(species) ? "chip active" : "chip"}
+                        className={
+                          selectedSpecies.includes(species)
+                            ? `chip species-chip species-chip-${species} active`
+                            : `chip species-chip species-chip-${species}`
+                        }
                         onClick={() => toggleSpecies(species)}
                         type="button"
                       >

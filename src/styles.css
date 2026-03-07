@@ -449,6 +449,65 @@ body {
   border-color: rgba(163, 70, 112, 0.54);
 }
 
+.species-chip {
+  color: #5b3d4b;
+}
+
+.species-chip.species-chip-cherry {
+  background: rgba(239, 121, 173, 0.1);
+  border-color: rgba(239, 121, 173, 0.4);
+}
+
+.species-chip.species-chip-cherry.active {
+  background: linear-gradient(180deg, rgba(239, 121, 173, 0.28), rgba(239, 121, 173, 0.18));
+  border-color: rgba(239, 121, 173, 0.68);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.36);
+}
+
+.species-chip.species-chip-plum {
+  background: rgba(217, 118, 180, 0.1);
+  border-color: rgba(217, 118, 180, 0.4);
+}
+
+.species-chip.species-chip-plum.active {
+  background: linear-gradient(180deg, rgba(217, 118, 180, 0.28), rgba(217, 118, 180, 0.18));
+  border-color: rgba(217, 118, 180, 0.68);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.36);
+}
+
+.species-chip.species-chip-peach {
+  background: rgba(243, 154, 136, 0.12);
+  border-color: rgba(243, 154, 136, 0.42);
+}
+
+.species-chip.species-chip-peach.active {
+  background: linear-gradient(180deg, rgba(243, 154, 136, 0.3), rgba(243, 154, 136, 0.2));
+  border-color: rgba(243, 154, 136, 0.7);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.36);
+}
+
+.species-chip.species-chip-magnolia {
+  background: rgba(184, 134, 234, 0.12);
+  border-color: rgba(184, 134, 234, 0.42);
+}
+
+.species-chip.species-chip-magnolia.active {
+  background: linear-gradient(180deg, rgba(184, 134, 234, 0.28), rgba(184, 134, 234, 0.18));
+  border-color: rgba(184, 134, 234, 0.68);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.36);
+}
+
+.species-chip.species-chip-crabapple {
+  background: rgba(255, 111, 159, 0.1);
+  border-color: rgba(255, 111, 159, 0.4);
+}
+
+.species-chip.species-chip-crabapple.active {
+  background: linear-gradient(180deg, rgba(255, 111, 159, 0.28), rgba(255, 111, 159, 0.18));
+  border-color: rgba(255, 111, 159, 0.68);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.36);
+}
+
 .filter-dropdown-trigger {
   width: 100%;
   min-height: 44px;
