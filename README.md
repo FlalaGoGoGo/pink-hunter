@@ -44,7 +44,11 @@ Live domain:
 - Portland
 
 ### California
+- Berkeley
 - Burlingame
+- Cupertino
+- Oakland
+- Palo Alto
 - San Francisco
 - San Jose
 
@@ -57,6 +61,7 @@ Live domain:
 
 ### Gray Coverage
 - Gray coverage marks cities whose official boundary is public but whose official public single-tree dataset is not available yet.
+- Current gray-coverage examples include `Mountain View`, `Sacramento`, `Santa Clara`, `Burnaby`, `Delta`, and `Saanich`.
 - Tracking details: [docs/CITY_COVERAGE_TRACKER.md](docs/CITY_COVERAGE_TRACKER.md)
 
 ## Official Data Sources
@@ -80,6 +85,10 @@ Live domain:
 - Gig Harbor: [PW Trees Public Viewer](https://services3.arcgis.com/FjNT4j1knnY5Wsw5/arcgis/rest/services/PW_Trees_Public_Viewer/FeatureServer/0)
 - Portland: [Street Tree Inventory - Active Records](https://www.portlandmaps.com/od/rest/services/COP_OpenData_Environment/MapServer/1415)
 - Burlingame: [City Street Tree Inventory](https://www.burlingame.org/466/Trees-Urban-Forest)
+- Palo Alto: [City of Palo Alto Open GIS](https://opengis.cityofpaloalto.org/)
+- Berkeley: [Tree_Berkeley20191107](https://www.arcgis.com/home/item.html?id=88829f4ae7254b5280732e88e65e6df5)
+- Cupertino: [Cupertino Open Data GIS](https://gis-cupertino.opendata.arcgis.com/)
+- Oakland: [Oakland Street Trees](https://data.oaklandca.gov/Environmental/Oakland-Street-Trees/4jcx-enxf)
 - San Francisco: [Street Tree List](https://data.sfgov.org/City-Infrastructure/Street-Tree-List/tkzw-k3nq)
 - San Jose: [Street Tree](https://data.sanjoseca.gov/dataset/street-tree)
 - Washington DC: [Urban Tree Canopy](https://maps2.dcgis.dc.gov/dcgis/rest/services/DCGIS_DATA/Urban_Tree_Canopy/MapServer/23)
@@ -89,21 +98,18 @@ Live domain:
 ## Local Development
 1. Install dependencies
    - `npm install`
-2. Build data
+2. Install ETL dependencies
+   - `python3 -m pip install -r requirements.txt`
+3. Build data
    - `npm run etl`
-3. Run the app
+4. Run the app
    - `npm run dev`
-4. Build for production
+5. Build for production
    - `npm run build`
 
 ## Data Outputs
-- `public/data/trees.wa.v2.geojson`
-- `public/data/trees.ca.v2.geojson`
-- `public/data/trees.or.v2.geojson`
-- `public/data/trees.dc.v2.geojson`
-- `public/data/trees.bc.v2.geojson`
-- `public/data/trees.wa.city-index.v1.json`
-- `public/data/trees.wa.city.<slug>.v1.geojson`
+- `public/data/trees.<region>.city-index.v1.json`
+- `public/data/trees.<region>.city.<slug>.v1.geojson`
 - `public/data/coverage.v1.geojson`
 - `public/data/species-guide.v1.json`
 - `public/data/meta.v2.json`
@@ -111,18 +117,22 @@ Live domain:
 - `data/normalized/trees_normalized.csv`
 
 ## Region Publishing
-- Tree points are now published by region, not as one global GeoJSON.
+- Tree points are now published by city for every region, not as region-wide GeoJSON files.
 - Current regional groups:
   - `WA`
   - `CA`
   - `OR`
   - `DC`
   - `BC`
-- `public/data/meta.v2.json` contains the region index, region bounds, region file paths, and size metadata.
-- `WA` already publishes a city-split index and per-city GeoJSON files as the next split layer.
-- If a full ETL run is blocked by slow upstream sources, refresh existing city-split outputs with:
-  - `python3 scripts/refresh_region_city_splits.py --data-dir public/data --region wa`
-- Size guard thresholds for published region files:
+- `public/data/meta.v2.json` contains the region index, region bounds, aggregate size metadata, and city-split index paths.
+- All published tree-point files now follow the same city-split contract:
+  - `public/data/trees.<region>.city-index.v1.json`
+  - `public/data/trees.<region>.city.<slug>.v1.geojson`
+- If a full ETL run is blocked but current published region files are still available locally, refresh city-split outputs with:
+  - `python3 scripts/refresh_region_city_splits.py --data-dir public/data --region all`
+- If coverage or gray-coverage rules changed without rebuilding all tree data, refresh coverage and bounds with:
+  - `python3 scripts/refresh_coverage_metadata.py --data-dir public/data`
+- Aggregate warning thresholds for each region:
   - `warning`: `>= 35 MiB raw`
   - `high_warning`: `>= 45 MiB raw`
   - `hard_fail`: `>= 50 MiB raw`

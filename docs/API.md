@@ -1,10 +1,7 @@
 # Public Data Interfaces
 
-## `GET /data/trees.v1.geojson`
-Deprecated monolithic tree file. Public publishing now uses regional tree files instead.
-
-## `GET /data/trees.<region>.v2.geojson`
-GeoJSON `FeatureCollection` of tree points for one region.
+## `GET /data/trees.<region>.city-index.v1.json`
+Published city-split index for one region.
 
 ### Supported regions
 - `wa`
@@ -12,6 +9,20 @@ GeoJSON `FeatureCollection` of tree points for one region.
 - `or`
 - `dc`
 - `bc`
+
+### Shape
+- `generated_at`
+- `region`
+- `strategy: "city"`
+- `items[]`
+  - `city`
+  - `data_path`
+  - `tree_count`
+  - `raw_bytes`
+  - `gzip_bytes`
+
+## `GET /data/trees.<region>.city.<slug>.v1.geojson`
+GeoJSON `FeatureCollection` for a single city.
 
 ### `feature.properties`
 - `id: string`
@@ -26,23 +37,6 @@ GeoJSON `FeatureCollection` of tree points for one region.
 - `source_dataset: string`
 - `source_department: string`
 - `source_last_edit_at: ISO8601 string`
-
-## `GET /data/trees.wa.city-index.v1.json`
-Published city-split index for the `WA` region.
-
-### Shape
-- `generated_at`
-- `region`
-- `strategy: "city"`
-- `items[]`
-  - `city`
-  - `data_path`
-  - `tree_count`
-  - `raw_bytes`
-  - `gzip_bytes`
-
-## `GET /data/trees.wa.city.<slug>.v1.geojson`
-GeoJSON `FeatureCollection` for a single Washington city. The feature schema matches `trees.<region>.v2.geojson`.
 
 ## `GET /data/coverage.v1.geojson`
 GeoJSON `FeatureCollection` for coverage overlays.
@@ -64,14 +58,14 @@ Dataset metadata and source refresh details.
 - `label`
 - `available`
 - `bounds`
-- `data_path`
+- `data_path?`
 - `tree_count`
 - `city_count`
 - `cities`
 - `raw_bytes`
 - `gzip_bytes`
 - `warning_level`
-- `city_split?`
+- `city_split`
   - `strategy`
   - `index_path`
   - `file_count`

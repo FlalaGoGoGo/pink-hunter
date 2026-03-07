@@ -1,6 +1,7 @@
 {
   "version": "v2",
-  "generated_at": "2026-03-06T23:38:34.681417+00:00",
+  "generated_at": "2026-03-07T01:50:55.671870+00:00",
+  "default_region": "wa",
   "coverage_rule": "official_city_boundary_only",
   "coverage_skipped_cities": [],
   "coverage_official_unavailable_cities": [
@@ -42,6 +43,7 @@
     "Mercer Island",
     "Mill Creek",
     "Monroe",
+    "Mountain View",
     "Mountlake Terrace",
     "Mukilteo",
     "Newcastle",
@@ -51,6 +53,8 @@
     "Port Orchard",
     "Richland",
     "Saanich",
+    "Sacramento",
+    "Santa Clara",
     "Skykomish",
     "Snoqualmie",
     "Sumner",
@@ -65,10 +69,185 @@
     "Yarrow Point"
   ],
   "coverage_official_unavailable_skipped_cities": [],
-  "source_count": 26,
-  "total_records": 1013313,
-  "included_records": 193556,
-  "unknown_records": 54662,
+  "source_count": 30,
+  "total_records": 1311097,
+  "included_records": 207801,
+  "unknown_records": 142198,
+  "regions": [
+    {
+      "id": "wa",
+      "label": "WA",
+      "available": true,
+      "bounds": [
+        [
+          -123.08,
+          47.02
+        ],
+        [
+          -121.55,
+          48.08
+        ]
+      ],
+      "data_path": null,
+      "tree_count": 67668,
+      "city_count": 17,
+      "cities": [
+        "Bellevue",
+        "Bellingham",
+        "Everett",
+        "Gig Harbor",
+        "Kenmore",
+        "Kirkland",
+        "Puyallup",
+        "Redmond",
+        "Renton",
+        "Sammamish",
+        "SeaTac",
+        "Seattle",
+        "Shoreline",
+        "Snohomish",
+        "Spokane",
+        "Walla Walla",
+        "Yakima"
+      ],
+      "raw_bytes": 36119776,
+      "gzip_bytes": 1808951,
+      "warning_level": "none",
+      "city_split": {
+        "strategy": "city",
+        "index_path": "/data/trees.wa.city-index.v1.json",
+        "file_count": 17,
+        "ready": true
+      }
+    },
+    {
+      "id": "ca",
+      "label": "CA",
+      "available": true,
+      "bounds": [
+        [
+          -123.17382500036122,
+          37.12314499981398
+        ],
+        [
+          -121.36274000021152,
+          38.68560299975214
+        ]
+      ],
+      "data_path": null,
+      "tree_count": 58362,
+      "city_count": 7,
+      "cities": [
+        "Berkeley",
+        "Burlingame",
+        "Cupertino",
+        "Oakland",
+        "Palo Alto",
+        "San Francisco",
+        "San Jose"
+      ],
+      "raw_bytes": 30199520,
+      "gzip_bytes": 1289841,
+      "warning_level": "none",
+      "city_split": {
+        "strategy": "city",
+        "index_path": "/data/trees.ca.city-index.v1.json",
+        "file_count": 7,
+        "ready": true
+      }
+    },
+    {
+      "id": "or",
+      "label": "OR",
+      "available": true,
+      "bounds": [
+        [
+          -122.83676363372525,
+          45.43254152511167
+        ],
+        [
+          -122.47203838021687,
+          45.652886166421595
+        ]
+      ],
+      "data_path": null,
+      "tree_count": 24775,
+      "city_count": 1,
+      "cities": [
+        "Portland"
+      ],
+      "raw_bytes": 13009486,
+      "gzip_bytes": 581491,
+      "warning_level": "none",
+      "city_split": {
+        "strategy": "city",
+        "index_path": "/data/trees.or.city-index.v1.json",
+        "file_count": 1,
+        "ready": true
+      }
+    },
+    {
+      "id": "dc",
+      "label": "DC",
+      "available": true,
+      "bounds": [
+        [
+          -77.11975900017987,
+          38.791644999914155
+        ],
+        [
+          -76.90939300018182,
+          38.99584500030949
+        ]
+      ],
+      "data_path": null,
+      "tree_count": 16533,
+      "city_count": 1,
+      "cities": [
+        "Washington DC"
+      ],
+      "raw_bytes": 8515160,
+      "gzip_bytes": 456599,
+      "warning_level": "none",
+      "city_split": {
+        "strategy": "city",
+        "index_path": "/data/trees.dc.city-index.v1.json",
+        "file_count": 1,
+        "ready": true
+      }
+    },
+    {
+      "id": "bc",
+      "label": "BC",
+      "available": true,
+      "bounds": [
+        [
+          -123.39590334063327,
+          48.40249758903433
+        ],
+        [
+          -123.02314758300781,
+          49.31617355253472
+        ]
+      ],
+      "data_path": null,
+      "tree_count": 40463,
+      "city_count": 2,
+      "cities": [
+        "Vancouver BC",
+        "Victoria BC"
+      ],
+      "raw_bytes": 21383630,
+      "gzip_bytes": 971234,
+      "warning_level": "none",
+      "city_split": {
+        "strategy": "city",
+        "index_path": "/data/trees.bc.city-index.v1.json",
+        "file_count": 2,
+        "ready": true
+      }
+    }
+  ],
   "sources": [
     {
       "name": "City Trees",
@@ -278,154 +457,38 @@
       "last_edit_at": "",
       "records_fetched": 510,
       "records_included": 509
-    }
-  ],
-  "default_region": "wa",
-  "regions": [
-    {
-      "id": "wa",
-      "label": "WA",
-      "available": true,
-      "bounds": [
-        [
-          -123.08,
-          47.02
-        ],
-        [
-          -121.55,
-          48.08
-        ]
-      ],
-      "data_path": "/data/trees.wa.v2.geojson",
-      "tree_count": 67668,
-      "city_count": 17,
-      "cities": [
-        "Bellevue",
-        "Bellingham",
-        "Everett",
-        "Gig Harbor",
-        "Kenmore",
-        "Kirkland",
-        "Puyallup",
-        "Redmond",
-        "Renton",
-        "Sammamish",
-        "SeaTac",
-        "Seattle",
-        "Shoreline",
-        "Snohomish",
-        "Spokane",
-        "Walla Walla",
-        "Yakima"
-      ],
-      "raw_bytes": 36119776,
-      "gzip_bytes": 1808915,
-      "warning_level": "none",
-      "city_split": {
-        "strategy": "city",
-        "index_path": "/data/trees.wa.city-index.v1.json",
-        "file_count": 17,
-        "ready": true
-      }
     },
     {
-      "id": "ca",
-      "label": "CA",
-      "available": true,
-      "bounds": [
-        [
-          -123.17382500036122,
-          37.12314499981398
-        ],
-        [
-          -121.58587000038487,
-          37.929824000068926
-        ]
-      ],
-      "data_path": "/data/trees.ca.v2.geojson",
-      "tree_count": 44117,
-      "city_count": 3,
-      "cities": [
-        "Burlingame",
-        "San Francisco",
-        "San Jose"
-      ],
-      "raw_bytes": 22833710,
-      "gzip_bytes": 1024642,
-      "warning_level": "none"
+      "name": "Tree Data",
+      "city": "Palo Alto",
+      "endpoint": "https://opengis.cityofpaloalto.org/",
+      "last_edit_at": "2023-01-04T12:54:30.056000+00:00",
+      "records_fetched": 39629,
+      "records_included": 4996
     },
     {
-      "id": "or",
-      "label": "OR",
-      "available": true,
-      "bounds": [
-        [
-          -122.83676363372525,
-          45.43254152511167
-        ],
-        [
-          -122.47203838021687,
-          45.652886166421595
-        ]
-      ],
-      "data_path": "/data/trees.or.v2.geojson",
-      "tree_count": 24775,
-      "city_count": 1,
-      "cities": [
-        "Portland"
-      ],
-      "raw_bytes": 13009486,
-      "gzip_bytes": 581491,
-      "warning_level": "none"
+      "name": "Tree_Berkeley20191107",
+      "city": "Berkeley",
+      "endpoint": "https://www.arcgis.com/home/item.html?id=88829f4ae7254b5280732e88e65e6df5",
+      "last_edit_at": "2019-11-07T19:08:30+00:00",
+      "records_fetched": 46037,
+      "records_included": 3973
     },
     {
-      "id": "dc",
-      "label": "DC",
-      "available": true,
-      "bounds": [
-        [
-          -77.11975900017987,
-          38.791644999914155
-        ],
-        [
-          -76.90939300018182,
-          38.99584500030949
-        ]
-      ],
-      "data_path": "/data/trees.dc.v2.geojson",
-      "tree_count": 16533,
-      "city_count": 1,
-      "cities": [
-        "Washington DC"
-      ],
-      "raw_bytes": 8515160,
-      "gzip_bytes": 456599,
-      "warning_level": "none"
+      "name": "Trees",
+      "city": "Cupertino",
+      "endpoint": "https://gis-cupertino.opendata.arcgis.com/",
+      "last_edit_at": "",
+      "records_fetched": 24613,
+      "records_included": 1299
     },
     {
-      "id": "bc",
-      "label": "BC",
-      "available": true,
-      "bounds": [
-        [
-          -123.39590334063327,
-          48.40249758903433
-        ],
-        [
-          -123.02314758300781,
-          49.31617355253472
-        ]
-      ],
-      "data_path": "/data/trees.bc.v2.geojson",
-      "tree_count": 40463,
-      "city_count": 2,
-      "cities": [
-        "Vancouver BC",
-        "Victoria BC"
-      ],
-      "raw_bytes": 21383630,
-      "gzip_bytes": 971234,
-      "warning_level": "none"
+      "name": "Oakland Street Trees",
+      "city": "Oakland",
+      "endpoint": "https://data.oaklandca.gov/Environmental/Oakland-Street-Trees/4jcx-enxf",
+      "last_edit_at": "2013-01-22T20:50:21+00:00",
+      "records_fetched": 38613,
+      "records_included": 3977
     }
   ]
 }

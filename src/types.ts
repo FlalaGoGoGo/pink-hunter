@@ -38,7 +38,7 @@ export interface RegionMeta {
   label: string;
   available: boolean;
   bounds: [[number, number], [number, number]];
-  data_path: string;
+  data_path?: string | null;
   tree_count: number;
   city_count: number;
   cities: string[];

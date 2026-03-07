@@ -1,0 +1,21 @@
+{
+  "generated_at": "2026-03-07T01:50:55.671870+00:00",
+  "region": "bc",
+  "strategy": "city",
+  "items": [
+    {
+      "city": "Vancouver BC",
+      "data_path": "/data/trees.bc.city.vancouver-bc.v1.geojson",
+      "tree_count": 34369,
+      "raw_bytes": 17903705,
+      "gzip_bytes": 819148
+    },
+    {
+      "city": "Victoria BC",
+      "data_path": "/data/trees.bc.city.victoria-bc.v1.geojson",
+      "tree_count": 6094,
+      "raw_bytes": 3479968,
+      "gzip_bytes": 152432
+    }
+  ]
+}

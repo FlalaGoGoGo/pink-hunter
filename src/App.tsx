@@ -6,7 +6,7 @@ import {
   type PointerEvent as ReactPointerEvent
 } from "react";
 import type { FeatureCollection, Point } from "geojson";
-import { loadRegionTrees, loadStaticAppData } from "./data";
+import { loadRegionCityIndex, loadStaticAppData, loadTreeCollection } from "./data";
 import { DEFAULT_LANGUAGE, ownershipLabel, speciesLabel, t } from "./i18n";
 import {
   loadMapRuntimeDeps,
@@ -26,6 +26,7 @@ import type {
   LayoutMode,
   MapStylePreset,
   OwnershipGroup,
+  RegionCityDataIndex,
   RegionMeta,
   SpeciesGroup,
   StaticAppData,
@@ -70,7 +71,14 @@ const REGION_CITY_OVERRIDES: Partial<Record<string, CoverageRegion>> = {
   "Vancouver BC": "bc",
   "Victoria BC": "bc",
   Portland: "or",
+  "Mountain View": "ca",
+  Sacramento: "ca",
+  "Santa Clara": "ca",
   Burlingame: "ca",
+  "Palo Alto": "ca",
+  Berkeley: "ca",
+  Cupertino: "ca",
+  Oakland: "ca",
   "San Francisco": "ca",
   "San Jose": "ca"
 };
@@ -485,6 +493,9 @@ export default function App(): JSX.Element {
 
   const [data, setData] = useState<StaticAppData | null>(null);
   const [mapRuntime, setMapRuntime] = useState<MapRuntimeDeps | null>(null);
+  const [regionCityIndexCache, setRegionCityIndexCache] = useState<
+    Partial<Record<CoverageRegion, RegionCityDataIndex>>
+  >({});
   const [regionTreeCache, setRegionTreeCache] = useState<Partial<Record<CoverageRegion, TreeCollection>>>({});
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
@@ -581,9 +592,13 @@ export default function App(): JSX.Element {
   }, [data]);
 
   const activeRegionMeta = regionMetaById.get(activeRegion) ?? null;
+  const activeRegionCityIndex = regionCityIndexCache[activeRegion] ?? null;
   const activeRegionTrees = regionTreeCache[activeRegion] ?? null;
   const activeRegionPending = Boolean(
-    data && activeRegionMeta?.available && !activeRegionTrees && regionLoading === activeRegion
+    data &&
+      activeRegionMeta?.available &&
+      (!activeRegionCityIndex || !activeRegionTrees) &&
+      regionLoading === activeRegion
   );
 
   useEffect(() => {
@@ -600,6 +615,10 @@ export default function App(): JSX.Element {
     if (!activeRegionMeta || !activeRegionMeta.available || activeRegionTrees) {
       return;
     }
+    const citySplit = activeRegionMeta.city_split;
+    if (!citySplit?.ready || activeRegionCityIndex) {
+      return;
+    }
 
     let cancelled = false;
     setRegionLoading(activeRegion);
@@ -607,7 +626,54 @@ export default function App(): JSX.Element {
 
     void (async () => {
       try {
-        const regionTrees = await loadRegionTrees(activeRegionMeta.data_path);
+        const regionCityIndex = await loadRegionCityIndex(citySplit.index_path);
+        if (cancelled) {
+          return;
+        }
+        setRegionCityIndexCache((current) => ({ ...current, [activeRegion]: regionCityIndex }));
+      } catch (loadError) {
+        if (cancelled) {
+          return;
+        }
+        const message = loadError instanceof Error ? loadError.message : "Unknown region loading error";
+        setError(message);
+        setRegionLoading((current) => (current === activeRegion ? null : current));
+      }
+    })();
+
+    return () => {
+      cancelled = true;
+    };
+  }, [activeRegion, activeRegionCityIndex, activeRegionMeta, activeRegionTrees]);
+
+  useEffect(() => {
+    if (!activeRegionMeta || !activeRegionMeta.available || activeRegionTrees) {
+      return;
+    }
+
+    let cancelled = false;
+    setRegionLoading(activeRegion);
+    setError(null);
+
+    void (async () => {
+      try {
+        let regionTrees: TreeCollection;
+        const citySplit = activeRegionMeta.city_split;
+        if (citySplit?.ready) {
+          const regionCityIndex = activeRegionCityIndex;
+          if (!regionCityIndex) {
+            return;
+          }
+          const cityCollections = await Promise.all(
+            regionCityIndex.items.map((item) => loadTreeCollection(item.data_path))
+          );
+          regionTrees = toTreeCollection(cityCollections.flatMap((collection) => collection.features));
+        } else if (activeRegionMeta.data_path) {
+          regionTrees = await loadTreeCollection(activeRegionMeta.data_path);
+        } else {
+          throw new Error(`No published data path available for region ${activeRegion}.`);
+        }
+
         if (cancelled) {
           return;
         }
@@ -628,7 +694,7 @@ export default function App(): JSX.Element {
     return () => {
       cancelled = true;
     };
-  }, [activeRegion, activeRegionMeta, activeRegionTrees]);
+  }, [activeRegion, activeRegionCityIndex, activeRegionMeta, activeRegionTrees]);
 
   const currentTrees = activeRegionTrees ?? EMPTY_TREE_COLLECTION;
 

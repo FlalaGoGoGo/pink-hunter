@@ -20,6 +20,9 @@ jobs:
         with:
           python-version: "3.12"
 
+      - name: Install ETL dependencies
+        run: python3 -m pip install -r requirements.txt
+
       - name: Rebuild data files
         run: |
           python3 etl/build_data.py

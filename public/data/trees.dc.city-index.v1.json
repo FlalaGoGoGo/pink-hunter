@@ -1,0 +1,14 @@
+{
+  "generated_at": "2026-03-07T01:50:55.671870+00:00",
+  "region": "dc",
+  "strategy": "city",
+  "items": [
+    {
+      "city": "Washington DC",
+      "data_path": "/data/trees.dc.city.washington-dc.v1.geojson",
+      "tree_count": 16533,
+      "raw_bytes": 8515160,
+      "gzip_bytes": 456599
+    }
+  ]
+}

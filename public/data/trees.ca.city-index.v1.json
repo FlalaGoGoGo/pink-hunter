@@ -1,0 +1,56 @@
+{
+  "generated_at": "2026-03-07T01:50:55.671870+00:00",
+  "region": "ca",
+  "strategy": "city",
+  "items": [
+    {
+      "city": "Berkeley",
+      "data_path": "/data/trees.ca.city.berkeley.v1.geojson",
+      "tree_count": 3973,
+      "raw_bytes": 2043682,
+      "gzip_bytes": 94397
+    },
+    {
+      "city": "Burlingame",
+      "data_path": "/data/trees.ca.city.burlingame.v1.geojson",
+      "tree_count": 1997,
+      "raw_bytes": 1097121,
+      "gzip_bytes": 49265
+    },
+    {
+      "city": "Cupertino",
+      "data_path": "/data/trees.ca.city.cupertino.v1.geojson",
+      "tree_count": 1299,
+      "raw_bytes": 633616,
+      "gzip_bytes": 32029
+    },
+    {
+      "city": "Oakland",
+      "data_path": "/data/trees.ca.city.oakland.v1.geojson",
+      "tree_count": 3977,
+      "raw_bytes": 2172819,
+      "gzip_bytes": 24347
+    },
+    {
+      "city": "Palo Alto",
+      "data_path": "/data/trees.ca.city.palo-alto.v1.geojson",
+      "tree_count": 4996,
+      "raw_bytes": 2515865,
+      "gzip_bytes": 114221
+    },
+    {
+      "city": "San Francisco",
+      "data_path": "/data/trees.ca.city.san-francisco.v1.geojson",
+      "tree_count": 24099,
+      "raw_bytes": 12853690,
+      "gzip_bytes": 556355
+    },
+    {
+      "city": "San Jose",
+      "data_path": "/data/trees.ca.city.san-jose.v1.geojson",
+      "tree_count": 18021,
+      "raw_bytes": 8882985,
+      "gzip_bytes": 419467
+    }
+  ]
+}

@@ -2,7 +2,8 @@
 """Build public dataset files for the Pink Hunter map.
 
 Outputs:
-- public/data/trees.<region>.v2.geojson
+- public/data/trees.<region>.city-index.v1.json
+- public/data/trees.<region>.city.<slug>.v1.geojson
 - public/data/coverage.v1.geojson
 - public/data/species-guide.v1.json
 - public/data/meta.v2.json
@@ -15,6 +16,7 @@ from __future__ import annotations
 import csv
 import datetime as dt
 import gzip
+import io
 import json
 import math
 import re
@@ -26,9 +28,18 @@ import tempfile
 import time
 import urllib.parse
 import urllib.request
+import zipfile
 from collections import Counter
 from pathlib import Path
 from typing import Any
+
+try:
+    import shapefile
+    from pyproj import CRS, Transformer
+except ImportError as exc:  # pragma: no cover - runtime dependency guard
+    raise RuntimeError(
+        "Missing Python ETL dependencies. Install them with `python3 -m pip install -r requirements.txt`."
+    ) from exc
 
 ROOT = Path(__file__).resolve().parents[1]
 PUBLIC_DATA_DIR = ROOT / "public" / "data"
@@ -71,6 +82,19 @@ SAN_FRANCISCO_METADATA = "https://data.sfgov.org/api/views/tkzw-k3nq"
 SAN_FRANCISCO_DATASET_PAGE = "https://data.sfgov.org/City-Infrastructure/Street-Tree-List/tkzw-k3nq"
 BURLINGAME_LAYER = "https://services2.arcgis.com/yrktbS5Xw87hJQvs/arcgis/rest/services/WebMap_Burlingame_AllLayers_WFL1/FeatureServer/0"
 BURLINGAME_DATASET_PAGE = "https://www.burlingame.org/466/Trees-Urban-Forest"
+PALO_ALTO_TREES_LAYER = "https://services6.arcgis.com/evmyRZRrsopdeog7/ArcGIS/rest/services/TreeData/FeatureServer/0"
+PALO_ALTO_TREES_ZIP = "https://opengis.cityofpaloalto.org/OGDShapes/TreeData.zip"
+PALO_ALTO_BOUNDARY_ZIP = "https://opengis.cityofpaloalto.org/OGDShapes/CPAboundary.zip"
+PALO_ALTO_DATASET_PAGE = "https://opengis.cityofpaloalto.org/"
+BERKELEY_TREES_ZIP = "https://www.arcgis.com/sharing/rest/content/items/88829f4ae7254b5280732e88e65e6df5/data"
+BERKELEY_TREES_ITEM = "https://www.arcgis.com/home/item.html?id=88829f4ae7254b5280732e88e65e6df5"
+BERKELEY_BOUNDARY_LAYER = "https://services1.arcgis.com/IYiCpZoSIq9lAxi8/arcgis/rest/services/Land_Boundary/FeatureServer/0"
+CUPERTINO_TREES_LAYER = "https://gis.cupertino.org/cupgis/rest/services/Public/AmazonData/MapServer/29"
+CUPERTINO_BOUNDARY_LAYER = "https://gis.cupertino.org/cupgis/rest/services/Public/AmazonData/MapServer/14"
+CUPERTINO_DATASET_PAGE = "https://gis-cupertino.opendata.arcgis.com/"
+OAKLAND_TREES_DATASET = "https://data.oaklandca.gov/resource/4jcx-enxf.json"
+OAKLAND_METADATA = "https://data.oaklandca.gov/api/views/4jcx-enxf"
+OAKLAND_DATASET_PAGE = "https://data.oaklandca.gov/Environmental/Oakland-Street-Trees/4jcx-enxf"
 VANCOUVER_BC_DATASET = "https://opendata.vancouver.ca/api/explore/v2.1/catalog/datasets/public-trees"
 VANCOUVER_BC_BOUNDARY_DATASET = "https://opendata.vancouver.ca/api/explore/v2.1/catalog/datasets/city-boundary"
 VICTORIA_PARK_TREES_LAYER = "https://maps.victoria.ca/server/rest/services/OpenData/OpenData_Parks/MapServer/15"
@@ -107,7 +131,14 @@ REGION_CITY_OVERRIDES: dict[str, str] = {
     "Vancouver BC": "bc",
     "Victoria BC": "bc",
     "Portland": "or",
+    "Mountain View": "ca",
+    "Sacramento": "ca",
+    "Santa Clara": "ca",
     "Burlingame": "ca",
+    "Palo Alto": "ca",
+    "Berkeley": "ca",
+    "Cupertino": "ca",
+    "Oakland": "ca",
     "San Francisco": "ca",
     "San Jose": "ca",
 }
@@ -115,7 +146,14 @@ REGION_CITY_OVERRIDES: dict[str, str] = {
 CITY_BOUNDARY_HINTS: dict[str, dict[str, str]] = {
     "Washington DC": {"state": "11", "basename": "Washington"},
     "Portland": {"boundary_source": "portland_or_arcgis"},
+    "Mountain View": {"state": "06"},
+    "Sacramento": {"state": "06"},
+    "Santa Clara": {"state": "06"},
     "Burlingame": {"state": "06"},
+    "Palo Alto": {"boundary_source": "palo_alto_zip"},
+    "Berkeley": {"boundary_source": "berkeley_arcgis"},
+    "Cupertino": {"boundary_source": "cupertino_arcgis"},
+    "Oakland": {"state": "06"},
     "San Francisco": {"state": "06"},
     "San Jose": {"state": "06"},
     "Vancouver BC": {"boundary_source": "vancouver_bc_ods"},
@@ -167,6 +205,7 @@ OFFICIAL_DATA_UNAVAILABLE_CITIES: dict[str, str] = {
     "Mercer Island": "Only a partial 2018 Town Center inventory is documented publicly; a citywide public single-tree dataset is not confirmed.",
     "Mill Creek": "City investigated; no official public single-tree species dataset was confirmed.",
     "Monroe": "City investigated; search hits were false positives, not a City of Monroe tree inventory.",
+    "Mountain View": "Official city forestry materials describe inventory work, but no public citywide single-tree species dataset was confirmed in this round.",
     "Mountlake Terrace": "City investigated; no official public single-tree species dataset was confirmed.",
     "Mukilteo": "City investigated; no official public single-tree species dataset was confirmed.",
     "Newcastle": "City investigated; no official public single-tree species dataset was confirmed.",
@@ -175,7 +214,9 @@ OFFICIAL_DATA_UNAVAILABLE_CITIES: dict[str, str] = {
     "Olympia": "No current official city single-tree species layer was confirmed; only older or non-city sources were found.",
     "Port Orchard": "City investigated; no official public single-tree species dataset was confirmed.",
     "Richland": "City investigated; public search hits in this round were non-city or non-Washington datasets, not a verified City of Richland public tree inventory.",
+    "Sacramento": "Official city pages and open-data entry points were checked, but no public citywide single-tree species dataset was confirmed in this round.",
     "Saanich": "Official Saanich GIS/open-data sources were reviewed, but no public single-tree species inventory was confirmed.",
+    "Santa Clara": "Official city urban-forest materials were reviewed, but no public citywide single-tree species dataset was confirmed in this round.",
     "Skykomish": "City investigated; no official public single-tree species dataset was confirmed.",
     "Snoqualmie": "City investigated; no official public single-tree species dataset was confirmed.",
     "Sumner": "City investigated; search hits were false positives, not a city tree inventory.",
@@ -380,6 +421,131 @@ def fetch_json(
         time.sleep(0.35 * attempt)
 
     raise RuntimeError(f"Failed to fetch valid JSON for {url}: {last_error}")
+
+
+def fetch_binary(url: str) -> bytes:
+    last_error: Exception | None = None
+    for attempt in range(1, 5):
+        try:
+            with urllib.request.urlopen(url, timeout=60) as response:
+                return response.read()
+        except Exception as exc:
+            last_error = exc
+
+        for insecure in (False, True):
+            cmd = ["curl", "-sL", "--max-time", "60"]
+            if insecure:
+                cmd.append("-k")
+            cmd.append(url)
+            result = subprocess.run(cmd, capture_output=True, check=False)
+            if result.returncode != 0:
+                last_error = RuntimeError(f"curl failed ({result.returncode}): {result.stderr.decode('utf-8', 'ignore').strip()}")
+                continue
+            if result.stdout:
+                return bytes(result.stdout)
+            last_error = RuntimeError("curl returned empty payload")
+
+        time.sleep(0.35 * attempt)
+
+    raise RuntimeError(f"Failed to fetch binary payload for {url}: {last_error}")
+
+
+def decode_cpg(payload: bytes | None) -> str:
+    if not payload:
+        return "utf-8"
+    text = payload.decode("utf-8", "ignore").strip()
+    if not text:
+        return "utf-8"
+    upper = text.upper()
+    if upper in {"UTF-8", "UTF8"}:
+        return "utf-8"
+    if upper in {"ANSI 1252", "WINDOWS-1252", "1252"}:
+        return "cp1252"
+    return text
+
+
+def transform_geojson_coordinates(value: Any, transformer: Transformer | None) -> Any:
+    if transformer is None:
+        if isinstance(value, tuple):
+            return [transform_geojson_coordinates(item, transformer) for item in value]
+        if isinstance(value, list):
+            return [transform_geojson_coordinates(item, transformer) for item in value]
+        return value
+
+    if isinstance(value, (list, tuple)) and len(value) >= 2 and all(isinstance(item, (int, float)) for item in value[:2]):
+        lon, lat = transformer.transform(float(value[0]), float(value[1]))
+        tail = [float(item) for item in value[2:] if isinstance(item, (int, float))]
+        return [lon, lat, *tail]
+    if isinstance(value, tuple):
+        return [transform_geojson_coordinates(item, transformer) for item in value]
+    if isinstance(value, list):
+        return [transform_geojson_coordinates(item, transformer) for item in value]
+    return value
+
+
+def transformer_from_prj(prj_text: str | None) -> Transformer | None:
+    if not prj_text:
+        return None
+    source_crs = CRS.from_wkt(prj_text)
+    if source_crs.to_epsg() == 4326:
+        return None
+    return Transformer.from_crs(source_crs, CRS.from_epsg(4326), always_xy=True)
+
+
+def load_zipped_shapefile(zip_url: str) -> tuple[shapefile.Reader, str | None]:
+    payload = fetch_binary(zip_url)
+    archive = zipfile.ZipFile(io.BytesIO(payload))
+    members = {Path(name).suffix.lower(): name for name in archive.namelist() if not name.endswith("/")}
+    shp_name = members.get(".shp")
+    shx_name = members.get(".shx")
+    dbf_name = members.get(".dbf")
+    if not shp_name or not shx_name or not dbf_name:
+        raise RuntimeError(f"Missing one or more shapefile members in archive: {zip_url}")
+    prj_name = members.get(".prj")
+    cpg_name = members.get(".cpg")
+    prj_text = archive.read(prj_name).decode("utf-8", "ignore") if prj_name else None
+    encoding = decode_cpg(archive.read(cpg_name) if cpg_name else None)
+    reader = shapefile.Reader(
+        shp=io.BytesIO(archive.read(shp_name)),
+        shx=io.BytesIO(archive.read(shx_name)),
+        dbf=io.BytesIO(archive.read(dbf_name)),
+        encoding=encoding,
+    )
+    return reader, prj_text
+
+
+def load_zipped_point_shapefile_rows(zip_url: str) -> list[dict[str, Any]]:
+    reader, prj_text = load_zipped_shapefile(zip_url)
+    transformer = transformer_from_prj(prj_text)
+    field_names = [field[0] for field in reader.fields[1:]]
+    rows: list[dict[str, Any]] = []
+    for shape_record in reader.iterShapeRecords():
+        shape = shape_record.shape
+        if not shape.points:
+            continue
+        lon, lat = shape.points[0][:2]
+        if transformer:
+            lon, lat = transformer.transform(float(lon), float(lat))
+        rows.append(
+            {
+                "attributes": dict(zip(field_names, list(shape_record.record), strict=False)),
+                "geometry": {"x": float(lon), "y": float(lat)},
+            }
+        )
+    return rows
+
+
+def load_zipped_boundary_geometry(zip_url: str) -> dict[str, Any] | None:
+    reader, prj_text = load_zipped_shapefile(zip_url)
+    transformer = transformer_from_prj(prj_text)
+    for shape_record in reader.iterShapeRecords():
+        shape = shape_record.shape
+        if not shape.points:
+            continue
+        geometry = shape.__geo_interface__
+        coordinates = transform_geojson_coordinates(geometry.get("coordinates"), transformer)
+        return {"type": geometry.get("type"), "coordinates": coordinates}
+    return None
 
 
 def fetch_all_features(
@@ -1487,6 +1653,18 @@ def fetch_special_city_boundary_feature(city: str) -> dict[str, Any] | None:
         polygon_geometry = boundary_line_to_polygon(geometry)
         return make_city_boundary_feature(city, polygon_geometry, source="City of Vancouver Open Data")
 
+    if boundary_source == "palo_alto_zip":
+        geometry = load_zipped_boundary_geometry(PALO_ALTO_BOUNDARY_ZIP)
+        if not geometry:
+            return None
+        return make_city_boundary_feature(city, geometry, source="City of Palo Alto Open GIS")
+
+    if boundary_source == "berkeley_arcgis":
+        return fetch_arcgis_boundary_feature(BERKELEY_BOUNDARY_LAYER, source="City of Berkeley Land Boundary")
+
+    if boundary_source == "cupertino_arcgis":
+        return fetch_arcgis_boundary_feature(CUPERTINO_BOUNDARY_LAYER, source="City of Cupertino GIS")
+
     if boundary_source == "victoria_bc_arcgis":
         payload = fetch_json(
             f"{VICTORIA_BOUNDARY_LAYER}/query",
@@ -1818,6 +1996,7 @@ def ensure_dir(path: Path) -> None:
 
 def load_cached_source_features(city: str, source_dataset: str) -> list[dict[str, Any]]:
     tree_paths = sorted(PUBLIC_DATA_DIR.glob("trees.*.v2.geojson"))
+    tree_paths.extend(sorted(PUBLIC_DATA_DIR.glob("trees.*.city.*.v1.geojson")))
     legacy_path = PUBLIC_DATA_DIR / "trees.v1.geojson"
     if legacy_path.exists():
         tree_paths.append(legacy_path)
@@ -2082,6 +2261,13 @@ def main() -> int:
     san_jose_info = fetch_json(SAN_JOSE_LAYER, {"f": "pjson"})
     san_francisco_info = fetch_json(SAN_FRANCISCO_METADATA)
     burlingame_info = fetch_json(BURLINGAME_LAYER, {"f": "pjson"})
+    palo_alto_info = fetch_json(PALO_ALTO_TREES_LAYER, {"f": "pjson"})
+    cupertino_info = fetch_json(CUPERTINO_TREES_LAYER, {"f": "pjson"})
+    oakland_info = fetch_json(OAKLAND_METADATA)
+    berkeley_info = fetch_json(
+        "https://www.arcgis.com/sharing/rest/content/items/88829f4ae7254b5280732e88e65e6df5",
+        {"f": "json"},
+    )
     vancouver_bc_info = fetch_json(VANCOUVER_BC_DATASET)
     victoria_info = fetch_json(VICTORIA_PARK_TREES_ITEM, {"f": "json"})
 
@@ -2103,6 +2289,10 @@ def main() -> int:
     san_jose_last_edit = iso_from_epoch(san_jose_info.get("editingInfo", {}).get("lastEditDate"))
     san_francisco_last_edit = iso_from_epoch(san_francisco_info.get("rowsUpdatedAt"))
     burlingame_last_edit = iso_from_epoch(burlingame_info.get("editingInfo", {}).get("lastEditDate"))
+    palo_alto_last_edit = iso_from_epoch(palo_alto_info.get("editingInfo", {}).get("lastEditDate"))
+    berkeley_last_edit = iso_from_epoch(berkeley_info.get("modified"))
+    cupertino_last_edit = iso_from_epoch(cupertino_info.get("editingInfo", {}).get("lastEditDate"))
+    oakland_last_edit = iso_from_epoch(oakland_info.get("rowsUpdatedAt"))
     vancouver_bc_last_edit = vancouver_bc_info.get("metas", {}).get("default", {}).get("modified") or ""
     victoria_last_edit = iso_from_epoch(victoria_info.get("modified"))
     everett_last_edit = ""
@@ -2352,6 +2542,63 @@ def main() -> int:
         or len(burlingame_features)
     )
 
+    palo_alto_features = fetch_all_features(
+        layer_url=PALO_ALTO_TREES_LAYER,
+        where="SPECIES LIKE 'Prunus%' OR SPECIES LIKE 'Magnolia%' OR SPECIES LIKE 'Malus%'",
+        out_fields=[
+            "OBJECTID",
+            "TREEID",
+            "SPECIES",
+            "PRIVATE",
+            "JURISDICTION",
+            "ONSTREET",
+            "ADDRESSNUMBER",
+            "MODIFIEDDATE",
+        ],
+        order_by_field="OBJECTID",
+    )
+    palo_alto_total = int(
+        fetch_json(
+            f"{PALO_ALTO_TREES_LAYER}/query",
+            {"where": "OBJECTID > 0", "returnCountOnly": "true", "f": "json"},
+        ).get("count")
+        or len(palo_alto_features)
+    )
+
+    berkeley_rows = load_zipped_point_shapefile_rows(BERKELEY_TREES_ZIP)
+    berkeley_total = len(berkeley_rows)
+
+    cupertino_features = fetch_all_features(
+        layer_url=CUPERTINO_TREES_LAYER,
+        where="Species LIKE 'Prunus%' OR Species LIKE 'Magnolia%' OR Species LIKE 'Malus%'",
+        out_fields=[
+            "OBJECTID",
+            "AssetID",
+            "Species",
+            "SpeciesCommonName",
+            "OwnedBy",
+            "MaintainedBy",
+            "Status",
+            "Neighborhood",
+            "last_edited_date",
+        ],
+        order_by_field="OBJECTID",
+    )
+    cupertino_total = int(
+        fetch_json(
+            f"{CUPERTINO_TREES_LAYER}/query",
+            {"where": "OBJECTID > 0", "returnCountOnly": "true", "f": "json"},
+        ).get("count")
+        or len(cupertino_features)
+    )
+
+    oakland_features = fetch_soda_rows(
+        OAKLAND_TREES_DATASET,
+        where="species like 'Prunus%' or species like 'Magnolia%' or species like 'Malus%'",
+        order="objectid",
+    )
+    oakland_total = fetch_soda_count(OAKLAND_TREES_DATASET)
+
     vancouver_bc_features = fetch_ods_export_rows(
         VANCOUVER_BC_DATASET,
         where='genus_name in ("PRUNUS","MALUS","MAGNOLIA")',
@@ -2400,6 +2647,10 @@ def main() -> int:
     san_jose_zip_index = fetch_us_city_zip_index("San Jose")
     san_francisco_zip_index = fetch_us_city_zip_index("San Francisco")
     burlingame_zip_index = fetch_us_city_zip_index("Burlingame")
+    palo_alto_zip_index = fetch_us_city_zip_index("Palo Alto")
+    berkeley_zip_index = fetch_us_city_zip_index("Berkeley")
+    cupertino_zip_index = fetch_us_city_zip_index("Cupertino")
+    oakland_zip_index = fetch_us_city_zip_index("Oakland")
 
     uw_supplemental_payload = json.loads(UW_SUPPLEMENTAL_PATH.read_text(encoding="utf-8"))
     uw_supplemental_elements = uw_supplemental_payload.get("elements", [])
@@ -3547,6 +3798,253 @@ def main() -> int:
             }
         )
 
+    for feature in palo_alto_features:
+        attrs = feature.get("attributes", {})
+        geom = feature.get("geometry", {})
+        scientific_raw = (attrs.get("SPECIES") or "").strip()
+        common_name = None
+        scientific_normalized = normalize_scientific_name(scientific_raw)
+        species_group, subtype_name = classify_tree_record(scientific_raw, common_name, mapping_rows, subtype_rows)
+
+        if int(attrs.get("PRIVATE") or 0) == 1:
+            ownership_raw = "Private"
+        else:
+            ownership_raw = title_case_if_upper(attrs.get("JURISDICTION")) or "City of Palo Alto"
+        zip_code = assign_zip_code(geom.get("x"), geom.get("y"), palo_alto_zip_index)
+        feature_suffix = attrs.get("TREEID") or attrs.get("OBJECTID")
+
+        normalized_rows.append(
+            {
+                "id": f"palo-alto-{feature_suffix}",
+                "city": "Palo Alto",
+                "source_dataset": "Tree Data",
+                "scientific_raw": scientific_raw,
+                "scientific_normalized": scientific_normalized,
+                "common_name": "",
+                "subtype_name": subtype_name or "",
+                "zip_code": zip_code or "",
+                "species_group": species_group or "",
+                "ownership": canonical_ownership(ownership_raw),
+                "ownership_raw": ownership_raw,
+                "lat": geom.get("y"),
+                "lon": geom.get("x"),
+                "included": "1" if species_group else "0",
+            }
+        )
+
+        if not species_group:
+            if scientific_normalized:
+                unknown_counter[scientific_normalized] += 1
+            continue
+
+        output_features.append(
+            {
+                "type": "Feature",
+                "geometry": {"type": "Point", "coordinates": [geom.get("x"), geom.get("y")]},
+                "properties": {
+                    "id": f"palo-alto-{feature_suffix}",
+                    "species_group": species_group,
+                    "scientific_name": scientific_raw,
+                    "common_name": None,
+                    "subtype_name": subtype_name,
+                    "zip_code": zip_code,
+                    "ownership": canonical_ownership(ownership_raw),
+                    "ownership_raw": ownership_raw,
+                    "city": "Palo Alto",
+                    "source_dataset": "Tree Data",
+                    "source_department": "City of Palo Alto",
+                    "source_last_edit_at": palo_alto_last_edit,
+                },
+            }
+        )
+
+    for row in berkeley_rows:
+        attrs = row.get("attributes", {})
+        geom = row.get("geometry", {})
+        common_name = title_case_if_upper(attrs.get("NAME")) or None
+        scientific_raw = expand_abbreviated_botanical_name((attrs.get("SPECIES") or "").strip(), common_name)
+        scientific_normalized = normalize_scientific_name(scientific_raw)
+        species_group, subtype_name = classify_tree_record(scientific_raw, common_name, mapping_rows, subtype_rows)
+
+        owned_by = title_case_if_upper(attrs.get("OWNEDBY"))
+        maintained_by = title_case_if_upper(attrs.get("MAINTBY"))
+        if owned_by and maintained_by and owned_by != maintained_by:
+            ownership_raw = f"{owned_by} / maintained by {maintained_by}"
+        else:
+            ownership_raw = owned_by or maintained_by or "City of Berkeley"
+        zip_code = assign_zip_code(geom.get("x"), geom.get("y"), berkeley_zip_index)
+        feature_suffix = attrs.get("FACILITYID") or attrs.get("OBJECTID")
+
+        normalized_rows.append(
+            {
+                "id": f"berkeley-{feature_suffix}",
+                "city": "Berkeley",
+                "source_dataset": "Tree_Berkeley20191107",
+                "scientific_raw": scientific_raw,
+                "scientific_normalized": scientific_normalized,
+                "common_name": common_name or "",
+                "subtype_name": subtype_name or "",
+                "zip_code": zip_code or "",
+                "species_group": species_group or "",
+                "ownership": canonical_ownership(ownership_raw),
+                "ownership_raw": ownership_raw,
+                "lat": geom.get("y"),
+                "lon": geom.get("x"),
+                "included": "1" if species_group else "0",
+            }
+        )
+
+        if not species_group:
+            if scientific_normalized:
+                unknown_counter[scientific_normalized] += 1
+            continue
+
+        output_features.append(
+            {
+                "type": "Feature",
+                "geometry": {"type": "Point", "coordinates": [geom.get("x"), geom.get("y")]},
+                "properties": {
+                    "id": f"berkeley-{feature_suffix}",
+                    "species_group": species_group,
+                    "scientific_name": scientific_raw,
+                    "common_name": common_name,
+                    "subtype_name": subtype_name,
+                    "zip_code": zip_code,
+                    "ownership": canonical_ownership(ownership_raw),
+                    "ownership_raw": ownership_raw,
+                    "city": "Berkeley",
+                    "source_dataset": "Tree_Berkeley20191107",
+                    "source_department": "City of Berkeley",
+                    "source_last_edit_at": berkeley_last_edit,
+                },
+            }
+        )
+
+    for feature in cupertino_features:
+        attrs = feature.get("attributes", {})
+        geom = feature.get("geometry", {})
+        scientific_raw = (attrs.get("Species") or "").strip()
+        common_name = title_case_if_upper(attrs.get("SpeciesCommonName")) or None
+        scientific_normalized = normalize_scientific_name(scientific_raw)
+        species_group, subtype_name = classify_tree_record(scientific_raw, common_name, mapping_rows, subtype_rows)
+
+        owned_by = title_case_if_upper(attrs.get("OwnedBy"))
+        maintained_by = title_case_if_upper(attrs.get("MaintainedBy"))
+        if owned_by and maintained_by and owned_by != maintained_by:
+            ownership_raw = f"{owned_by} / maintained by {maintained_by}"
+        else:
+            ownership_raw = owned_by or maintained_by or "City of Cupertino"
+        zip_code = assign_zip_code(geom.get("x"), geom.get("y"), cupertino_zip_index)
+        feature_suffix = attrs.get("AssetID") or attrs.get("OBJECTID")
+
+        normalized_rows.append(
+            {
+                "id": f"cupertino-{feature_suffix}",
+                "city": "Cupertino",
+                "source_dataset": "Trees",
+                "scientific_raw": scientific_raw,
+                "scientific_normalized": scientific_normalized,
+                "common_name": common_name or "",
+                "subtype_name": subtype_name or "",
+                "zip_code": zip_code or "",
+                "species_group": species_group or "",
+                "ownership": canonical_ownership(ownership_raw),
+                "ownership_raw": ownership_raw,
+                "lat": geom.get("y"),
+                "lon": geom.get("x"),
+                "included": "1" if species_group else "0",
+            }
+        )
+
+        if not species_group:
+            if scientific_normalized:
+                unknown_counter[scientific_normalized] += 1
+            continue
+
+        output_features.append(
+            {
+                "type": "Feature",
+                "geometry": {"type": "Point", "coordinates": [geom.get("x"), geom.get("y")]},
+                "properties": {
+                    "id": f"cupertino-{feature_suffix}",
+                    "species_group": species_group,
+                    "scientific_name": scientific_raw,
+                    "common_name": common_name,
+                    "subtype_name": subtype_name,
+                    "zip_code": zip_code,
+                    "ownership": canonical_ownership(ownership_raw),
+                    "ownership_raw": ownership_raw,
+                    "city": "Cupertino",
+                    "source_dataset": "Trees",
+                    "source_department": "City of Cupertino",
+                    "source_last_edit_at": cupertino_last_edit,
+                },
+            }
+        )
+
+    for row in oakland_features:
+        scientific_raw = (row.get("species") or "").strip()
+        common_name = None
+        scientific_normalized = normalize_scientific_name(scientific_raw)
+        species_group, subtype_name = classify_tree_record(scientific_raw, common_name, mapping_rows, subtype_rows)
+
+        location = row.get("location_1") or {}
+        lon_raw = location.get("longitude")
+        lat_raw = location.get("latitude")
+        if lon_raw in (None, "") or lat_raw in (None, ""):
+            continue
+        lon = float(lon_raw)
+        lat = float(lat_raw)
+
+        ownership_raw = "City of Oakland Public Works Agency"
+        zip_code = assign_zip_code(lon, lat, oakland_zip_index)
+        feature_suffix = row.get("objectid")
+
+        normalized_rows.append(
+            {
+                "id": f"oakland-{feature_suffix}",
+                "city": "Oakland",
+                "source_dataset": "Oakland Street Trees",
+                "scientific_raw": scientific_raw,
+                "scientific_normalized": scientific_normalized,
+                "common_name": "",
+                "subtype_name": subtype_name or "",
+                "zip_code": zip_code or "",
+                "species_group": species_group or "",
+                "ownership": canonical_ownership(ownership_raw),
+                "ownership_raw": ownership_raw,
+                "lat": lat,
+                "lon": lon,
+                "included": "1" if species_group else "0",
+            }
+        )
+
+        if not species_group:
+            if scientific_normalized:
+                unknown_counter[scientific_normalized] += 1
+            continue
+
+        output_features.append(
+            {
+                "type": "Feature",
+                "geometry": {"type": "Point", "coordinates": [lon, lat]},
+                "properties": {
+                    "id": f"oakland-{feature_suffix}",
+                    "species_group": species_group,
+                    "scientific_name": scientific_raw,
+                    "common_name": None,
+                    "subtype_name": subtype_name,
+                    "zip_code": zip_code,
+                    "ownership": canonical_ownership(ownership_raw),
+                    "ownership_raw": ownership_raw,
+                    "city": "Oakland",
+                    "source_dataset": "Oakland Street Trees",
+                    "source_department": "City of Oakland Public Works Agency",
+                    "source_last_edit_at": oakland_last_edit,
+                },
+            }
+        )
+
     for row in everett_park_rows:
         scientific_raw, parsed_common_name = parse_sammamish_species(row.get("SITE_ATTR1"))
         common_name = parsed_common_name or row.get("SITE_ATTR1")
@@ -4177,6 +4675,42 @@ def main() -> int:
             ),
         },
         {
+            "name": "Tree Data",
+            "city": "Palo Alto",
+            "endpoint": PALO_ALTO_DATASET_PAGE,
+            "last_edit_at": palo_alto_last_edit,
+            "records_fetched": palo_alto_total,
+            "records_included": len([f for f in output_features if f["properties"]["source_dataset"] == "Tree Data"]),
+        },
+        {
+            "name": "Tree_Berkeley20191107",
+            "city": "Berkeley",
+            "endpoint": BERKELEY_TREES_ITEM,
+            "last_edit_at": berkeley_last_edit,
+            "records_fetched": berkeley_total,
+            "records_included": len(
+                [f for f in output_features if f["properties"]["source_dataset"] == "Tree_Berkeley20191107"]
+            ),
+        },
+        {
+            "name": "Trees",
+            "city": "Cupertino",
+            "endpoint": CUPERTINO_DATASET_PAGE,
+            "last_edit_at": cupertino_last_edit,
+            "records_fetched": cupertino_total,
+            "records_included": len([f for f in output_features if f["properties"]["source_dataset"] == "Trees"]),
+        },
+        {
+            "name": "Oakland Street Trees",
+            "city": "Oakland",
+            "endpoint": OAKLAND_DATASET_PAGE,
+            "last_edit_at": oakland_last_edit,
+            "records_fetched": oakland_total,
+            "records_included": len(
+                [f for f in output_features if f["properties"]["source_dataset"] == "Oakland Street Trees"]
+            ),
+        },
+        {
             "name": "Public trees",
             "city": "Vancouver BC",
             "endpoint": VANCOUVER_BC_DATASET,
@@ -4271,6 +4805,10 @@ def main() -> int:
         + san_jose_total
         + san_francisco_total
         + burlingame_total
+        + palo_alto_total
+        + berkeley_total
+        + cupertino_total
+        + oakland_total
         + len(vancouver_bc_features)
         + len(victoria_features)
         + sammamish_street_total
@@ -4293,9 +4831,6 @@ def main() -> int:
         features = region_feature_map[region_id]
         trees_geojson = {"type": "FeatureCollection", "features": features}
         payload_bytes = json.dumps(trees_geojson, ensure_ascii=False).encode("utf-8")
-        file_name = f"trees.{region_id}.v2.geojson"
-        (next_dir / file_name).write_bytes(payload_bytes)
-
         raw_bytes = len(payload_bytes)
         gzip_bytes = len(gzip.compress(payload_bytes))
         warning_level = classify_warning_level(raw_bytes)
@@ -4305,7 +4840,7 @@ def main() -> int:
             "label": label,
             "available": bool(features),
             "bounds": region_bounds.get(region_id, WA_METRO_OVERVIEW_BOUNDS),
-            "data_path": f"/data/{file_name}",
+            "data_path": None,
             "tree_count": len(features),
             "city_count": len(region_cities),
             "cities": region_cities,
@@ -4314,11 +4849,11 @@ def main() -> int:
             "warning_level": warning_level,
         }
 
-        if region_id == "wa" and features:
+        if features:
             city_entries: list[dict[str, Any]] = []
             for city in region_cities:
                 city_features = [feature for feature in features if feature["properties"]["city"] == city]
-                city_file_name = f"trees.wa.city.{slugify_token(city)}.v1.geojson"
+                city_file_name = f"trees.{region_id}.city.{slugify_token(city)}.v1.geojson"
                 city_payload_bytes = json.dumps(
                     {"type": "FeatureCollection", "features": city_features}, ensure_ascii=False
                 ).encode("utf-8")
@@ -4334,12 +4869,12 @@ def main() -> int:
                 )
                 extra_output_names.append(city_file_name)
 
-            city_index_name = "trees.wa.city-index.v1.json"
+            city_index_name = f"trees.{region_id}.city-index.v1.json"
             (next_dir / city_index_name).write_text(
                 json.dumps(
                     {
                         "generated_at": now_iso,
-                        "region": "wa",
+                        "region": region_id,
                         "strategy": "city",
                         "items": city_entries,
                     },
@@ -4396,16 +4931,14 @@ def main() -> int:
         "species-guide.v1.json",
         "meta.v2.json",
         "unknown_scientific_names.v1.json",
-        *[f"trees.{region_id}.v2.geojson" for region_id in REGION_LABELS],
         *extra_output_names,
     ]
 
     for stale_path in PUBLIC_DATA_DIR.glob("trees.*.v2.geojson"):
         stale_path.unlink()
-    for stale_path in PUBLIC_DATA_DIR.glob("trees.wa.city*.v1.geojson"):
+    for stale_path in PUBLIC_DATA_DIR.glob("trees.*.city*.v1.geojson"):
         stale_path.unlink()
-    city_index_path = PUBLIC_DATA_DIR / "trees.wa.city-index.v1.json"
-    if city_index_path.exists():
+    for city_index_path in PUBLIC_DATA_DIR.glob("trees.*.city-index.v1.json"):
         city_index_path.unlink()
     legacy_trees = PUBLIC_DATA_DIR / "trees.v1.geojson"
     if legacy_trees.exists():

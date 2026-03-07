@@ -35,25 +35,11 @@ def build_report(data_dir: Path) -> dict[str, Any]:
     regions = []
     hard_fail = False
     for region in meta.get("regions", []):
-        data_path = data_dir / Path(region["data_path"]).name
-        if not data_path.exists():
-            raise FileNotFoundError(f"Missing region file: {data_path}")
-
-        raw_bytes = data_path.stat().st_size
-        gzip_bytes = len(gzip.compress(data_path.read_bytes()))
-        warning_level = classify_warning_level(raw_bytes)
-        hard_fail = hard_fail or warning_level == "hard_fail"
-
-        meta_raw = int(region.get("raw_bytes", -1))
-        meta_gzip = int(region.get("gzip_bytes", -1))
-        meta_warning = str(region.get("warning_level", ""))
-        if meta_raw != raw_bytes or meta_gzip != gzip_bytes or meta_warning != warning_level:
-            raise RuntimeError(
-                f"meta.v2.json size metadata mismatch for region {region['id']}: "
-                f"meta=({meta_raw},{meta_gzip},{meta_warning}) actual=({raw_bytes},{gzip_bytes},{warning_level})"
-            )
-
         city_split = None
+        largest_city = None
+        raw_bytes = 0
+        gzip_bytes = 0
+        warning_level = "none"
         if region.get("city_split"):
             city_split_meta = region["city_split"]
             city_index_path = data_dir / Path(city_split_meta["index_path"]).name
@@ -67,29 +53,67 @@ def build_report(data_dir: Path) -> dict[str, Any]:
                     f"meta={city_split_meta.get('file_count')} actual={len(items)}"
                 )
             city_tree_total = 0
+            combined_features: list[dict[str, Any]] = []
             for item in items:
                 city_data_path = data_dir / Path(item["data_path"]).name
                 if not city_data_path.exists():
                     raise FileNotFoundError(f"Missing city split file: {city_data_path}")
                 city_raw = city_data_path.stat().st_size
                 city_gzip = len(gzip.compress(city_data_path.read_bytes()))
+                city_level = classify_warning_level(city_raw)
                 if int(item.get("raw_bytes", -1)) != city_raw or int(item.get("gzip_bytes", -1)) != city_gzip:
                     raise RuntimeError(
                         f"City split size metadata mismatch for {item['city']}: "
                         f"meta=({item.get('raw_bytes')},{item.get('gzip_bytes')}) actual=({city_raw},{city_gzip})"
                     )
+                city_payload = json.loads(city_data_path.read_text(encoding="utf-8"))
+                combined_features.extend(city_payload.get("features", []))
                 city_tree_total += int(item.get("tree_count", 0))
+                if largest_city is None or city_raw > largest_city["raw_bytes"]:
+                    largest_city = {
+                        "city": item["city"],
+                        "raw_bytes": city_raw,
+                        "gzip_bytes": city_gzip,
+                        "warning_level": city_level,
+                    }
+                hard_fail = hard_fail or city_level == "hard_fail"
             if city_tree_total != int(region["tree_count"]):
                 raise RuntimeError(
                     f"City split tree_count mismatch for region {region['id']}: "
                     f"region={region['tree_count']} city_sum={city_tree_total}"
                 )
+            combined_payload = {"type": "FeatureCollection", "features": combined_features}
+            combined_payload_bytes = json.dumps(combined_payload, ensure_ascii=False).encode("utf-8")
+            raw_bytes = len(combined_payload_bytes)
+            gzip_bytes = len(gzip.compress(combined_payload_bytes))
+            warning_level = classify_warning_level(raw_bytes)
             city_split = {
                 "strategy": city_split_meta.get("strategy"),
                 "ready": bool(city_split_meta.get("ready")),
                 "file_count": len(items),
                 "index_path": city_split_meta.get("index_path"),
+                "largest_city": largest_city,
             }
+        else:
+            data_path_value = region.get("data_path")
+            if not data_path_value:
+                raise RuntimeError(f"Region {region['id']} has neither city_split nor data_path.")
+            data_path = data_dir / Path(data_path_value).name
+            if not data_path.exists():
+                raise FileNotFoundError(f"Missing region file: {data_path}")
+            raw_bytes = data_path.stat().st_size
+            gzip_bytes = len(gzip.compress(data_path.read_bytes()))
+            warning_level = classify_warning_level(raw_bytes)
+            hard_fail = hard_fail or warning_level == "hard_fail"
+
+        meta_raw = int(region.get("raw_bytes", -1))
+        meta_gzip = int(region.get("gzip_bytes", -1))
+        meta_warning = str(region.get("warning_level", ""))
+        if meta_raw != raw_bytes or meta_gzip != gzip_bytes or meta_warning != warning_level:
+            raise RuntimeError(
+                f"meta.v2.json size metadata mismatch for region {region['id']}: "
+                f"meta=({meta_raw},{meta_gzip},{meta_warning}) actual=({raw_bytes},{gzip_bytes},{warning_level})"
+            )
 
         regions.append(
             {
@@ -99,7 +123,7 @@ def build_report(data_dir: Path) -> dict[str, Any]:
                 "raw_bytes": raw_bytes,
                 "gzip_bytes": gzip_bytes,
                 "warning_level": warning_level,
-                "data_path": region["data_path"],
+                "data_path": region.get("data_path"),
                 "city_split": city_split,
             }
         )
@@ -121,6 +145,7 @@ def print_table(report: dict[str, Any]) -> None:
     print("-" * len(header))
     for region in report["regions"]:
         split_label = "city" if region["city_split"] else "-"
+        path_label = region["city_split"]["index_path"] if region["city_split"] else region["data_path"]
         print(
             f"{region['label']:<8} "
             f"{region['tree_count']:>10,} "
@@ -128,7 +153,7 @@ def print_table(report: dict[str, Any]) -> None:
             f"{format_bytes(region['gzip_bytes']):>12} "
             f"{region['warning_level']:>14} "
             f"{split_label:>8}  "
-            f"{region['data_path']}"
+            f"{path_label}"
         )
 
 
@@ -141,9 +166,10 @@ def append_summary(report: dict[str, Any], summary_path: Path) -> None:
     ]
     for region in report["regions"]:
         split_label = region["city_split"]["strategy"] if region["city_split"] else "-"
+        file_label = region["city_split"]["index_path"] if region["city_split"] else region["data_path"]
         lines.append(
             f"| {region['label']} | {region['tree_count']:,} | {format_bytes(region['raw_bytes'])} | "
-            f"{format_bytes(region['gzip_bytes'])} | {region['warning_level']} | {split_label} | `{region['data_path']}` |"
+            f"{format_bytes(region['gzip_bytes'])} | {region['warning_level']} | {split_label} | `{file_label}` |"
         )
     lines.append("")
     summary_path.parent.mkdir(parents=True, exist_ok=True)
@@ -152,8 +178,12 @@ def append_summary(report: dict[str, Any], summary_path: Path) -> None:
 
 
 def main() -> int:
-    parser = argparse.ArgumentParser(description="Check published region data file sizes.")
-    parser.add_argument("--data-dir", default="public/data", help="Directory containing meta.v2.json and trees.*.v2.geojson")
+    parser = argparse.ArgumentParser(description="Check published city-split region data file sizes.")
+    parser.add_argument(
+        "--data-dir",
+        default="public/data",
+        help="Directory containing meta.v2.json, trees.<region>.city-index.v1.json, and trees.<region>.city.<slug>.v1.geojson",
+    )
     parser.add_argument("--json-out", help="Optional path to write machine-readable JSON report.")
     parser.add_argument("--summary-file", help="Optional markdown summary path, e.g. $GITHUB_STEP_SUMMARY.")
     args = parser.parse_args()
@@ -170,7 +200,7 @@ def main() -> int:
         append_summary(report, Path(args.summary_file))
 
     if report["hard_fail"]:
-        print("ERROR: One or more region files reached the hard-fail threshold of 50 MiB raw.", flush=True)
+        print("ERROR: One or more published city files reached the hard-fail threshold of 50 MiB raw.", flush=True)
         return 1
     return 0
 

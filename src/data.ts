@@ -25,7 +25,7 @@ export async function loadStaticAppData(): Promise<StaticAppData> {
   return { coverage, guide, meta };
 }
 
-export async function loadRegionTrees(path: string): Promise<TreeCollection> {
+export async function loadTreeCollection(path: string): Promise<TreeCollection> {
   return loadJson<TreeCollection>(path);
 }
 

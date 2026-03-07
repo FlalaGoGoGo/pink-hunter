@@ -8,6 +8,10 @@ Last updated: 2026-03-06 (America/Los_Angeles)
 | ✅ | Seattle | 46,114 | Official city boundary | Includes UW supplemental points; ornamental cherry keyword sweep rerun |
 | ✅ | San Francisco | 24,099 | Official city boundary | Official San Francisco Public Works `Street Tree List` integrated from the city open-data portal |
 | ✅ | San Jose | 18,021 | Official city boundary | Official City of San Jose `Street Tree` layer integrated from the city open-data ArcGIS service |
+| ✅ | Palo Alto | 4,996 | Official city boundary | Official City of Palo Alto `Tree Data` layer integrated from the city open GIS portal; official boundary comes from the city-published boundary shapefile |
+| ✅ | Oakland | 3,977 | Official city boundary | Official City of Oakland `Oakland Street Trees` Socrata dataset integrated from the city open-data portal |
+| ✅ | Berkeley | 3,973 | Official city boundary | Official City of Berkeley public shapefile inventory integrated from the city ArcGIS item download |
+| ✅ | Cupertino | 1,299 | Official city boundary | Official City of Cupertino `Trees` layer integrated from the city GIS portal |
 | ✅ | Washington DC | 16,533 | Official city boundary | Urban Tree Canopy (DDOT); ornamental cherry cultivar mapping expanded |
 | ✅ | Vancouver BC | 34,369 | Official city boundary | Official City of Vancouver `public-trees` ODS dataset integrated; boundary polygon derived from official city-boundary line dataset |
 | ✅ | Spokane | 8,472 | Official city boundary | City of Spokane Parks tree inventory integrated from official open GIS service; genus-level rows normalized to generic scientific placeholders |
@@ -34,7 +38,10 @@ Last updated: 2026-03-06 (America/Los_Angeles)
 |---|---|---|---|---|
 | 🩶 | Burnaby | In gray coverage | Official city boundary | Official Burnaby GIS/open-data sources were reviewed; no public single-tree species inventory was confirmed |
 | 🩶 | Delta | In gray coverage | Official city boundary | Official Delta GIS/open-data sources were reviewed; no public single-tree species inventory was confirmed |
+| 🩶 | Mountain View | In gray coverage | Official city boundary | Official city forestry materials were reviewed, but no public citywide single-tree species dataset was confirmed |
+| 🩶 | Sacramento | In gray coverage | Official city boundary | Official city pages and open-data entry points were checked, but no public citywide single-tree species dataset was confirmed |
 | 🩶 | Saanich | In gray coverage | Official city boundary | Official Saanich GIS/open-data sources were reviewed; no public single-tree species inventory was confirmed |
+| 🩶 | Santa Clara | In gray coverage | Official city boundary | Official city urban-forest materials were reviewed, but no public citywide single-tree species dataset was confirmed |
 
 ## Validated, Not Yet Integrated
 | Done | City | Estimated In-Scope Count | Status | Blocker |
@@ -135,6 +142,11 @@ Last updated: 2026-03-06 (America/Los_Angeles)
 - Integrated `San Francisco` from the official San Francisco Public Works `Street Tree List` open-data dataset.
 - Integrated `San Jose` from the official City of San Jose `Street Tree` ArcGIS open-data layer.
 - Integrated `Burlingame` from the public city-linked `City Street Tree Inventory`; the source is contractor-hosted but explicitly published on the official City of Burlingame trees page and exposes a public queryable feature service.
+- Integrated `Palo Alto` from the official City of Palo Alto Open GIS `Tree Data` layer and city-published boundary shapefile.
+- Integrated `Berkeley` from the official public inventory shapefile published through the City of Berkeley ArcGIS item.
+- Integrated `Cupertino` from the official City of Cupertino GIS `Trees` layer.
+- Integrated `Oakland` from the official City of Oakland `Oakland Street Trees` open-data dataset.
+- Added gray coverage for `Mountain View`, `Sacramento`, and `Santa Clara` after city-site and official data portal review did not confirm a public citywide single-tree species dataset.
 
 ## March 2026 BC Expansion
 - Integrated `Vancouver BC` from the official City of Vancouver OpenDataSoft `public-trees` dataset.

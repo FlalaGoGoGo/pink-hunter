@@ -1,0 +1,14 @@
+{
+  "generated_at": "2026-03-07T01:50:55.671870+00:00",
+  "region": "or",
+  "strategy": "city",
+  "items": [
+    {
+      "city": "Portland",
+      "data_path": "/data/trees.or.city.portland.v1.geojson",
+      "tree_count": 24775,
+      "raw_bytes": 13009486,
+      "gzip_bytes": 581491
+    }
+  ]
+}

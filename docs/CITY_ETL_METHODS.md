@@ -16,8 +16,8 @@ Last updated: 2026-03-06 (America/Los_Angeles)
 - Broad taxonomy is scientific-name first, then curated subtype keywords.
 - Controlled common-name fallback is allowed only when the source exposes an explicitly generic genus-level scientific value (for example `Prunus sp.` / `Malus sp.` / `Magnolia sp.`).
 - Output contract is stable:
-  - `public/data/trees.<region>.v2.geojson`
-  - optional next-split outputs such as `public/data/trees.wa.city-index.v1.json` and `public/data/trees.wa.city.<slug>.v1.geojson`
+  - `public/data/trees.<region>.city-index.v1.json`
+  - `public/data/trees.<region>.city.<slug>.v1.geojson`
   - `public/data/coverage.v1.geojson`
   - `public/data/species-guide.v1.json`
   - `public/data/meta.v2.json`
@@ -52,6 +52,14 @@ Last updated: 2026-03-06 (America/Los_Angeles)
   - `$limit`
   - `$offset`
 - Scientific/common names may be packed into a single text field and need source-specific splitting before taxonomy mapping.
+
+### Downloaded Shapefile
+- Used for official sources that publish a stable public shapefile or ArcGIS item download but not a clean public query layer.
+- Current ETL uses:
+  - `pyshp`
+  - `pyproj`
+- Shapefile geometry is transformed to WGS84 before taxonomy mapping and ZIP assignment.
+- Official item pages or city open-data pages remain the source-of-truth links in metadata.
 
 ### TreeKeeper
 - Used for `Sammamish` and `Everett`.
@@ -103,6 +111,10 @@ Last updated: 2026-03-06 (America/Los_Angeles)
 | San Jose | ArcGIS MapServer | `NAMESCIENTIFIC`, `OWNEDBY`, `MAINTBY` | ArcGIS point geometry | Official `Street Tree` city layer; public scientific-name field is clean enough for direct taxonomy mapping |
 | San Francisco | SODA | `qspecies` parsed by `parse_san_francisco_species()`, `qcaretaker`, `qlegalstatus` | lat/lon columns in dataset rows | Official San Francisco Public Works open-data table; scientific/common are packed into one field |
 | Burlingame | ArcGIS FeatureServer | `BotanicalName`, `CommonName`, `Tree_ID` | ArcGIS point geometry | Public city-linked guest inventory hosted on a contractor ArcGIS org; accepted because the official City of Burlingame trees page explicitly publishes the inventory link |
+| Palo Alto | ArcGIS FeatureServer | `Botanical_Name`, `Common_Name`, `JURISDICTION` | ArcGIS point geometry | Official City of Palo Alto Open GIS tree layer; city boundary comes from the city-published shapefile |
+| Berkeley | Downloaded Shapefile | `SCINAME`, `COMMONNAME`, `AGENCY` | shapefile points transformed to WGS84 | Official public inventory is published as a downloadable shapefile/ArcGIS item rather than a clean query layer |
+| Cupertino | ArcGIS MapServer | `BotanicalName`, `CommonName`, `OwnedBy`, `MaintainedBy` | ArcGIS point geometry | Official City of Cupertino GIS tree layer |
+| Oakland | SODA | `scientific_name`, `common_name`, `address`, `stewardship` | `location` point from Socrata rows | Official City of Oakland street-tree dataset; ownership is normalized from city stewardship fields |
 | Everett | TreeKeeper | `SITE_ATTR1` parsed by `parse_sammamish_species()` | direct lon/lat or `SITE_GEOMETRY` JSON | Park-tree public endpoint |
 | Kirkland | TreePlotter | `species_bo`, `species_la` with `expand_abbreviated_botanical_name()` | WKB hex -> Web Mercator -> lon/lat | Public TreePlotter session/API |
 | Washington DC | ArcGIS MapServer | `SCI_NM`, `CMMN_NM`, `OWNERSHIP` | ArcGIS point geometry | DDOT Urban Tree Canopy layer |
@@ -134,7 +146,7 @@ Last updated: 2026-03-06 (America/Los_Angeles)
 5. Validate:
    - city counts in `public/data/meta.v2.json`
    - missed names in `public/data/unknown_scientific_names.v1.json`
-   - card fields in the relevant `public/data/trees.<region>.v2.geojson`
+   - card fields in the relevant `public/data/trees.<region>.city.<slug>.v1.geojson`
 
 ## How To Add More Cities Later
 1. Verify the city has an official public single-tree dataset with point geometry.
@@ -151,6 +163,8 @@ Last updated: 2026-03-06 (America/Los_Angeles)
 
 ## Incremental Publish Fallback
 - Full `npm run etl` remains the canonical path.
-- When upstream sources are too slow and the already-published regional GeoJSON is still current, refresh the next split layer without rerunning the full ETL:
-  - `python3 scripts/refresh_region_city_splits.py --data-dir public/data --region wa`
+- When upstream sources are too slow and the already-published local region files are still current, refresh city-split outputs without rerunning the full ETL:
+  - `python3 scripts/refresh_region_city_splits.py --data-dir public/data --region all`
+- If gray-coverage rules or official-boundary hints changed without rebuilding all tree rows, refresh coverage and meta bounds with:
+  - `python3 scripts/refresh_coverage_metadata.py --data-dir public/data`
 - After that, rerun `python3 scripts/check_region_data_sizes.py --data-dir public/data` so `meta.v2.json` and city-split artifacts stay internally consistent.
