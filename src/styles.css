@@ -1308,6 +1308,23 @@ body {
   color: #593e4b;
 }
 
+.coverage-popup-action {
+  margin-top: 0.4rem;
+  min-height: 38px;
+  width: 100%;
+  border: 1px solid rgba(161, 70, 109, 0.28);
+  border-radius: 999px;
+  background: linear-gradient(180deg, #ffe7f0, #ffd9e8);
+  color: #6f3752;
+  font: inherit;
+  font-size: 0.74rem;
+  font-weight: 800;
+}
+
+.coverage-popup-action:hover {
+  background: linear-gradient(180deg, #ffdeeb, #ffd2e4);
+}
+
 .tree-popup .maplibregl-popup-close-button,
 .coverage-popup .maplibregl-popup-close-button {
   top: 10px;

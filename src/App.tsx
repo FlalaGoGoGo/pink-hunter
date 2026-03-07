@@ -135,6 +135,10 @@ const JURISDICTION_OVERRIDES: Partial<Record<string, { displayName: string; type
   Arlington: {
     displayName: "Arlington County",
     type: "county"
+  },
+  "Vancouver WA": {
+    displayName: "Vancouver",
+    type: "city"
   }
 };
 
@@ -707,6 +711,51 @@ const COUNTRY_LABELS: Record<Language, Record<CountryKey, string>> = {
   "fr-FR": { us: "États-Unis", ca: "Canada" },
   "vi-VN": { us: "Hoa Kỳ", ca: "Canada" }
 };
+const CROSS_REGION_POPUP_COPY: Record<
+  Language,
+  { title: string; body: string; button: string }
+> = {
+  "en-US": {
+    title: "Covered in another state or province",
+    body: "This area is covered, but its tree data belongs to {region}.",
+    button: "Show {region} data"
+  },
+  "zh-CN": {
+    title: "这个区域属于其他州/省",
+    body: "这个区域已经覆盖，但它的树木数据属于 {region}。",
+    button: "显示 {region} 的数据"
+  },
+  "zh-TW": {
+    title: "這個區域屬於其他州／省",
+    body: "這個區域已經覆蓋，但它的樹木資料屬於 {region}。",
+    button: "顯示 {region} 的資料"
+  },
+  "es-ES": {
+    title: "Cubierto en otro estado o provincia",
+    body: "Esta zona está cubierta, pero sus datos de árboles pertenecen a {region}.",
+    button: "Mostrar datos de {region}"
+  },
+  "ko-KR": {
+    title: "다른 주 / 주(省)에 속한 지역입니다",
+    body: "이 지역은 이미 커버되어 있지만, 나무 데이터는 {region}에 속합니다.",
+    button: "{region} 데이터 보기"
+  },
+  "ja-JP": {
+    title: "別の州・省に属するエリアです",
+    body: "このエリアはカバー済みですが、樹木データは {region} に属しています。",
+    button: "{region} のデータを見る"
+  },
+  "fr-FR": {
+    title: "Zone couverte dans un autre État / province",
+    body: "Cette zone est couverte, mais ses données d'arbres appartiennent à {region}.",
+    button: "Afficher les données de {region}"
+  },
+  "vi-VN": {
+    title: "Khu vực này thuộc bang / tỉnh bang khác",
+    body: "Khu vực này đã được phủ, nhưng dữ liệu cây của nó thuộc về {region}.",
+    button: "Hiện dữ liệu của {region}"
+  }
+};
 const LANGUAGE_LIST_CONJUNCTION: Record<Language, string> = {
   "en-US": "and",
   "zh-CN": "和",
@@ -1138,6 +1187,16 @@ function formatCoverageScope(language: Language, regions: CoverageRegion[]): str
     .join("; ");
 }
 
+function formatCrossRegionPopup(language: Language, region: CoverageRegion): { title: string; body: string; button: string } {
+  const regionName = regionLabel(language, region);
+  const copy = CROSS_REGION_POPUP_COPY[language];
+  return {
+    title: copy.title,
+    body: copy.body.replaceAll("{region}", regionName),
+    button: copy.button.replaceAll("{region}", regionName)
+  };
+}
+
 function formatCityLabel(city: string): string {
   return formatAreaLabel(city);
 }
@@ -1322,6 +1381,7 @@ export default function App(): JSX.Element {
   const popupRef = useRef<MapLibrePopup | null>(null);
   const filteredFeaturesRef = useRef<TreeCollection["features"]>([]);
   const isDesktopRef = useRef(layoutMode === "desktop_split");
+  const activeRegionRef = useRef(activeRegion);
   const initialRegionFiltersAppliedRef = useRef(false);
   const pendingRegionResetRef = useRef<CoverageRegion | null>(null);
   const pendingRegionFitRef = useRef<CoverageRegion | null>(null);
@@ -1395,6 +1455,10 @@ export default function App(): JSX.Element {
     isDesktopRef.current = isDesktop;
     mapRef.current?.resize();
   }, [isDesktop]);
+
+  useEffect(() => {
+    activeRegionRef.current = activeRegion;
+  }, [activeRegion]);
 
   const regionMetaById = useMemo(() => {
     const entries = (data?.meta.regions ?? []).map((regionMeta) => [regionMeta.id, regionMeta]);
@@ -2240,15 +2304,43 @@ export default function App(): JSX.Element {
           const features = map.queryRenderedFeatures(event.point, { layers: [...POINT_LAYER_IDS] });
           if (features.length === 0) {
             const coverageFeatures = map.queryRenderedFeatures(event.point, {
-              layers: ["coverage-official-unavailable", "coverage-unavailable-outline"]
+              layers: [
+                "coverage-covered",
+                "coverage-outline",
+                "coverage-official-unavailable",
+                "coverage-unavailable-outline"
+              ]
             });
             if (coverageFeatures.length === 0) {
               return;
             }
 
-            const coverageProperties = coverageFeatures[0].properties;
+            const coverageFeature =
+              coverageFeatures.find((feature) => feature.properties?.status === "official_unavailable") ??
+              coverageFeatures[0];
+            const coverageProperties = coverageFeature.properties;
             const jurisdiction = coverageProperties?.jurisdiction;
             if (!jurisdiction) {
+              return;
+            }
+
+            const coverageStatus = String(coverageProperties.status ?? "official_unavailable");
+            if (coverageStatus === "covered") {
+              const targetRegion = regionForCity(String(jurisdiction));
+              if (targetRegion === activeRegionRef.current) {
+                return;
+              }
+
+              setSelectedTree(null);
+              setSelectedCoverage({
+                coordinates: [event.lngLat.lng, event.lngLat.lat],
+                properties: {
+                  id: String(coverageProperties.id ?? `coverage-${jurisdiction}`),
+                  status: "covered",
+                  jurisdiction: String(jurisdiction),
+                  note: targetRegion
+                }
+              });
               return;
             }
 
@@ -2303,7 +2395,7 @@ export default function App(): JSX.Element {
           });
         });
 
-        ["coverage-official-unavailable", "coverage-unavailable-outline"].forEach((layerId) => {
+        ["coverage-covered", "coverage-outline", "coverage-official-unavailable", "coverage-unavailable-outline"].forEach((layerId) => {
           map.on("mouseenter", layerId, () => {
             map.getCanvas().style.cursor = "pointer";
           });
@@ -2472,16 +2564,36 @@ export default function App(): JSX.Element {
     const coverageAreaBadge = `<span class="coverage-area-type-badge ${areaTypeClassName(
       selectedCoverage.properties.jurisdiction
     )}">${escapeHtml(areaTypeLabel(language, selectedCoverage.properties.jurisdiction))}</span>`;
-    const popupHtml = `
-      <div class="coverage-popup-card">
-        <h4>${escapeHtml(coverageAreaDisplayName)}</h4>
-        <div class="coverage-popup-meta">${coverageAreaBadge}</div>
-        <p class="coverage-popup-eyebrow">${escapeHtml(t(language, "officialUnavailablePopupTitle"))}</p>
-        <p>${escapeHtml(t(language, "officialUnavailablePopupBody"))}</p>
-        <p>${escapeHtml(t(language, "officialUnavailablePopupFoot"))}</p>
-        <p>${escapeHtml(t(language, "officialUnavailablePopupContact"))}</p>
-      </div>
-    `;
+    const crossRegionTarget =
+      selectedCoverage.properties.status === "covered"
+        ? regionForCity(selectedCoverage.properties.jurisdiction)
+        : null;
+    const popupHtml =
+      selectedCoverage.properties.status === "covered" && crossRegionTarget
+        ? (() => {
+            const crossRegionCopy = formatCrossRegionPopup(language, crossRegionTarget);
+            return `
+              <div class="coverage-popup-card coverage-popup-card-covered">
+                <h4>${escapeHtml(coverageAreaDisplayName)}</h4>
+                <div class="coverage-popup-meta">${coverageAreaBadge}</div>
+                <p class="coverage-popup-eyebrow">${escapeHtml(crossRegionCopy.title)}</p>
+                <p>${escapeHtml(crossRegionCopy.body)}</p>
+                <button class="coverage-popup-action" data-region-switch="${escapeHtml(crossRegionTarget)}" type="button">
+                  ${escapeHtml(crossRegionCopy.button)}
+                </button>
+              </div>
+            `;
+          })()
+        : `
+            <div class="coverage-popup-card">
+              <h4>${escapeHtml(coverageAreaDisplayName)}</h4>
+              <div class="coverage-popup-meta">${coverageAreaBadge}</div>
+              <p class="coverage-popup-eyebrow">${escapeHtml(t(language, "officialUnavailablePopupTitle"))}</p>
+              <p>${escapeHtml(t(language, "officialUnavailablePopupBody"))}</p>
+              <p>${escapeHtml(t(language, "officialUnavailablePopupFoot"))}</p>
+              <p>${escapeHtml(t(language, "officialUnavailablePopupContact"))}</p>
+            </div>
+          `;
 
     const popup = new runtime.maplibre.Popup({
       closeButton: true,
@@ -2500,8 +2612,20 @@ export default function App(): JSX.Element {
       );
     });
 
+    if (selectedCoverage.properties.status === "covered" && crossRegionTarget) {
+      const switchButton = popup.getElement().querySelector<HTMLButtonElement>("[data-region-switch]");
+      switchButton?.addEventListener("click", () => {
+        setSelectedCoverage(null);
+        if (!isDesktopRef.current) {
+          setSheetHeight(0.72);
+          setActivePanel("filters");
+        }
+        switchRegion(crossRegionTarget);
+      });
+    }
+
     popupRef.current = popup;
-  }, [language, mapRuntime, selectedCoverage, selectedTree]);
+  }, [activeRegion, language, mapRuntime, selectedCoverage, selectedTree]);
 
   useEffect(() => {
     if (!data) {
