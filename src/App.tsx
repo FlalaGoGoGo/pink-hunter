@@ -332,6 +332,7 @@ const ABOUT_COPY: Record<
     intro: string[];
     summaryTitle: string;
     summaryNote: string;
+    summaryCoverageLead: string;
     summaryAllTitle: string;
     summaryByRegionTitle: string;
     summaryByAreaTitle: string;
@@ -363,6 +364,7 @@ const ABOUT_COPY: Record<
     ],
     summaryTitle: "Data Summary",
     summaryNote: "The counts below summarize the trees currently included on the site, first by species, then by region and area.",
+    summaryCoverageLead: "Currently covering",
     summaryAllTitle: "All Covered Trees",
     summaryByRegionTitle: "By State / Province",
     summaryByAreaTitle: "By Area",
@@ -398,6 +400,7 @@ const ABOUT_COPY: Record<
     ],
     summaryTitle: "数据总结",
     summaryNote: "下面的统计展示了当前网站已收录的树木数量，先按花种汇总，再按州/省和地区汇总。",
+    summaryCoverageLead: "目前覆盖",
     summaryAllTitle: "全站收录",
     summaryByRegionTitle: "按州/省统计",
     summaryByAreaTitle: "按地区统计",
@@ -433,6 +436,7 @@ const ABOUT_COPY: Record<
     ],
     summaryTitle: "資料總結",
     summaryNote: "以下統計展示目前網站已收錄的樹木數量，先按花種彙總，再按州／省和地區彙總。",
+    summaryCoverageLead: "目前覆蓋",
     summaryAllTitle: "全站收錄",
     summaryByRegionTitle: "按州／省統計",
     summaryByAreaTitle: "按地區統計",
@@ -469,6 +473,7 @@ const ABOUT_COPY: Record<
     summaryTitle: "Resumen de datos",
     summaryNote:
       "Los conteos siguientes resumen los árboles que el sitio incluye actualmente, primero por especie y luego por estado, provincia y área.",
+    summaryCoverageLead: "Cobertura actual",
     summaryAllTitle: "Todos los árboles cubiertos",
     summaryByRegionTitle: "Por estado / provincia",
     summaryByAreaTitle: "Por área",
@@ -504,6 +509,7 @@ const ABOUT_COPY: Record<
     ],
     summaryTitle: "데이터 요약",
     summaryNote: "아래 수치는 현재 사이트에 포함된 나무를 먼저 종별로, 그다음 주/주(省)와 지역별로 요약한 것입니다.",
+    summaryCoverageLead: "현재 범위",
     summaryAllTitle: "전체 수록 현황",
     summaryByRegionTitle: "주 / 주(省)별 통계",
     summaryByAreaTitle: "지역별 통계",
@@ -539,6 +545,7 @@ const ABOUT_COPY: Record<
     ],
     summaryTitle: "データ概要",
     summaryNote: "以下の数は、現在このサイトに収録されている樹木を、まず花種別に、その次に州・省と地区別にまとめたものです。",
+    summaryCoverageLead: "現在の対象範囲",
     summaryAllTitle: "全体集計",
     summaryByRegionTitle: "州・省ごとの集計",
     summaryByAreaTitle: "地区ごとの集計",
@@ -575,6 +582,7 @@ const ABOUT_COPY: Record<
     summaryTitle: "Résumé des données",
     summaryNote:
       "Les chiffres ci-dessous résument les arbres actuellement inclus sur le site, d'abord par espèce, puis par État, province et zone.",
+    summaryCoverageLead: "Couverture actuelle",
     summaryAllTitle: "Tous les arbres couverts",
     summaryByRegionTitle: "Par État / province",
     summaryByAreaTitle: "Par zone",
@@ -611,6 +619,7 @@ const ABOUT_COPY: Record<
     summaryTitle: "Tóm tắt dữ liệu",
     summaryNote:
       "Các số liệu dưới đây tóm tắt số cây hiện đã được đưa vào trang web, trước theo loài hoa, sau theo bang, tỉnh bang và khu vực.",
+    summaryCoverageLead: "Hiện đang bao phủ",
     summaryAllTitle: "Toàn bộ cây đã phủ",
     summaryByRegionTitle: "Theo bang / tỉnh bang",
     summaryByAreaTitle: "Theo khu vực",
@@ -673,6 +682,30 @@ const REGION_SORT_LABELS: Record<CoverageRegion, string> = {
   ny: "New York",
   pa: "Pennsylvania",
   ma: "Massachusetts"
+};
+type CountryKey = "us" | "ca";
+const REGION_COUNTRY_KEYS: Record<CoverageRegion, CountryKey> = {
+  wa: "us",
+  ca: "us",
+  dc: "us",
+  or: "us",
+  bc: "ca",
+  va: "us",
+  md: "us",
+  nj: "us",
+  ny: "us",
+  pa: "us",
+  ma: "us"
+};
+const COUNTRY_LABELS: Record<Language, Record<CountryKey, string>> = {
+  "en-US": { us: "United States", ca: "Canada" },
+  "zh-CN": { us: "美国", ca: "加拿大" },
+  "zh-TW": { us: "美國", ca: "加拿大" },
+  "es-ES": { us: "Estados Unidos", ca: "Canadá" },
+  "ko-KR": { us: "미국", ca: "캐나다" },
+  "ja-JP": { us: "アメリカ", ca: "カナダ" },
+  "fr-FR": { us: "États-Unis", ca: "Canada" },
+  "vi-VN": { us: "Hoa Kỳ", ca: "Canada" }
 };
 
 interface SelectedTree {
@@ -1056,6 +1089,28 @@ function formatAreaLabel(city: string): string {
 
 function regionOptionLabel(language: Language, region: CoverageRegion): string {
   return `${REGION_COUNTRY_EMOJIS[region]} ${regionLabel(language, region)}`;
+}
+
+function formatCoverageScope(language: Language, regions: CoverageRegion[]): string {
+  const grouped = new Map<CountryKey, string[]>();
+
+  regions.forEach((region) => {
+    const country = REGION_COUNTRY_KEYS[region];
+    const current = grouped.get(country) ?? [];
+    current.push(regionLabel(language, region));
+    grouped.set(country, current);
+  });
+
+  const listFormatter = new Intl.ListFormat(language, { style: "long", type: "conjunction" });
+  const countryOrder: CountryKey[] = ["us", "ca"];
+
+  return countryOrder
+    .filter((country) => grouped.has(country))
+    .map((country) => {
+      const labels = [...(grouped.get(country) ?? [])].sort((left, right) => SORT_COLLATOR.compare(left, right));
+      return `${COUNTRY_LABELS[language][country]} (${listFormatter.format(labels)})`;
+    })
+    .join("; ");
 }
 
 function formatCityLabel(city: string): string {
@@ -1818,6 +1873,18 @@ export default function App(): JSX.Element {
   }, [data, language]);
 
   const normalizedAboutRegionSummarySearchQuery = aboutRegionSummarySearchQuery.trim().toLowerCase();
+
+  const aboutCoverageScope = useMemo(() => {
+    if (!data) {
+      return "";
+    }
+
+    const coveredRegions = data.meta.regions
+      .filter((region) => region.available && region.tree_count > 0)
+      .map((region) => region.id);
+
+    return formatCoverageScope(language, coveredRegions);
+  }, [data, language]);
 
   const filteredAboutRegionSummaries = useMemo(() => {
     if (!normalizedAboutRegionSummarySearchQuery) {
@@ -3065,16 +3132,19 @@ export default function App(): JSX.Element {
             <section className="about-panel">
               <div className="about-section">
                 <h3 className="about-section-title">{aboutCopy.title}</h3>
-                <article className="about-card">
+                <div className="about-copy-block">
                   {aboutCopy.intro.map((paragraph) => (
                     <p key={paragraph}>{paragraph}</p>
                   ))}
-                </article>
+                </div>
               </div>
 
               <div className="about-section">
                 <h3 className="about-section-title">{aboutCopy.summaryTitle}</h3>
                 <p className="about-summary-note">{aboutCopy.summaryNote}</p>
+                <p className="about-summary-note about-summary-coverage-note">
+                  {aboutCopy.summaryCoverageLead}: {aboutCoverageScope}
+                </p>
                 <div className="about-summary-stack">
                   <article className="about-card about-summary-card about-summary-total-card">
                     <div className="about-summary-head">
@@ -3083,6 +3153,7 @@ export default function App(): JSX.Element {
                       </div>
                       <strong className="about-summary-total-number">{formatCount(data.meta.included_records)}</strong>
                     </div>
+                    <div className="about-summary-divider" />
                     {renderSpeciesCountRows(data.meta.species_counts ?? EMPTY_SPECIES_COUNTS)}
                   </article>
 
@@ -3104,6 +3175,7 @@ export default function App(): JSX.Element {
                             <strong>{region.label}</strong>
                             <span className="about-region-summary-total">{formatCount(region.totalTrees)}</span>
                           </div>
+                          <div className="about-summary-divider compact" />
                           {renderSpeciesCountRows(region.speciesCounts, true)}
                         </div>
                       ))}
@@ -3166,6 +3238,7 @@ export default function App(): JSX.Element {
                             </div>
                             <span className="about-region-summary-total">{formatCount(area.totalTrees)}</span>
                           </div>
+                          <div className="about-summary-divider compact" />
                           {renderSpeciesCountRows(area.speciesCounts, true)}
                         </div>
                       ))}
@@ -3304,19 +3377,19 @@ export default function App(): JSX.Element {
 
               <div className="about-section">
                 <h3 className="about-section-title">{aboutCopy.disclaimerTitle}</h3>
-                <article className="about-card">
+                <div className="about-copy-block">
                   {aboutCopy.disclaimer.map((paragraph) => (
                     <p key={paragraph}>{paragraph}</p>
                   ))}
-                </article>
+                </div>
               </div>
 
               <div className="about-section">
                 <h3 className="about-section-title">{aboutCopy.contactTitle}</h3>
-                <article className="about-card">
+                <div className="about-copy-block about-contact-block">
                   <p>{renderBoldName(aboutCopy.contactLead, "Flala Zhang")}</p>
                   <ContactIcons />
-                </article>
+                </div>
               </div>
             </section>
           )}

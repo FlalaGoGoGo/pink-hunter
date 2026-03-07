@@ -694,6 +694,16 @@ body {
   padding: 0.82rem;
 }
 
+.about-copy-block {
+  display: grid;
+  gap: 0.42rem;
+}
+
+.about-contact-block {
+  gap: 0.74rem;
+}
+
+.about-copy-block p,
 .about-card p {
   margin: 0.28rem 0;
   color: #5f4350;
@@ -792,10 +802,14 @@ body {
 }
 
 .about-summary-note {
-  margin: 0 0 0.72rem;
+  margin: 0;
   font-size: 0.82rem;
   line-height: 1.55;
   color: #6f5160;
+}
+
+.about-summary-coverage-note {
+  color: #5c4150;
 }
 
 .about-summary-card {
@@ -841,6 +855,15 @@ body {
   font-weight: 800;
   color: var(--rose-700);
   line-height: 1;
+}
+
+.about-summary-divider {
+  border-top: 1px dashed rgba(168, 112, 140, 0.36);
+  margin: 0.1rem 0 0.02rem;
+}
+
+.about-summary-divider.compact {
+  margin: 0.16rem 0 0.06rem;
 }
 
 .about-summary-search-input {
