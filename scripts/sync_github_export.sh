@@ -16,6 +16,8 @@ rsync -av --delete \
   --exclude 'node_modules' \
   --exclude 'dist' \
   --exclude '.DS_Store' \
+  --exclude '__pycache__' \
+  --exclude '*.pyc' \
   --exclude '*.tsbuildinfo' \
   "$ROOT_DIR"/ "$EXPORT_DIR"/
 
