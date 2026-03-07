@@ -1052,6 +1052,7 @@ export default function App(): JSX.Element {
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
   const [, setRegionLoading] = useState<CoverageRegion | null>(null);
+  const [mapReady, setMapReady] = useState(false);
   const [visitorCount, setVisitorCount] = useState<number | null>(null);
 
   const [activeRegion, setActiveRegion] = useState<CoverageRegion>(initialUrlState.region);
@@ -1176,7 +1177,7 @@ export default function App(): JSX.Element {
 
   useEffect(() => {
     const map = mapRef.current;
-    if (!map || pendingRegionFitRef.current !== activeRegion) {
+    if (!mapReady || !map || pendingRegionFitRef.current !== activeRegion) {
       return;
     }
 
@@ -1190,7 +1191,7 @@ export default function App(): JSX.Element {
       duration: 700
     });
     pendingRegionFitRef.current = null;
-  }, [activeRegion, activeRegionMeta, isDesktop]);
+  }, [activeRegion, activeRegionMeta, isDesktop, mapReady]);
 
   useEffect(() => {
     if (!data) {
@@ -1618,6 +1619,7 @@ export default function App(): JSX.Element {
 
     let isCancelled = false;
     let mapInstance: MapLibreMap | null = null;
+    setMapReady(false);
 
     void (async () => {
       try {
@@ -1646,6 +1648,7 @@ export default function App(): JSX.Element {
         });
 
         map.on("load", () => {
+          setMapReady(true);
           map.addControl(new mapRuntime.maplibre.ScaleControl({ maxWidth: 110, unit: "metric" }), "bottom-right");
 
         map.addSource("coverage", {
@@ -1929,6 +1932,7 @@ export default function App(): JSX.Element {
 
     return () => {
       isCancelled = true;
+      setMapReady(false);
       popupRef.current?.remove();
       popupRef.current = null;
       if (mapInstance) {
@@ -2208,6 +2212,8 @@ export default function App(): JSX.Element {
       return;
     }
 
+    const bounds = preferredBoundsForRegion(region, regionMeta);
+
     setSelectedTree(null);
     setSelectedCoverage(null);
     setStateDropdownOpen(false);
@@ -2226,8 +2232,19 @@ export default function App(): JSX.Element {
       setSelectedOwnership([...ALL_OWNERSHIP]);
       pendingRegionResetRef.current = region;
     }
-    pendingRegionFitRef.current = region;
     setActiveRegion(region);
+
+    const map = mapRef.current;
+    if (map && mapReady && bounds) {
+      map.fitBounds(bounds, {
+        padding: isDesktop ? 80 : 48,
+        duration: 700
+      });
+      pendingRegionFitRef.current = null;
+      return;
+    }
+
+    pendingRegionFitRef.current = region;
   }
 
   function showAllFilters(): void {
@@ -2465,11 +2482,15 @@ export default function App(): JSX.Element {
                         value={stateSearchQuery}
                       />
                       {visibleStateProvinces.map((option) => (
-                        <label className="filter-option" key={option.region}>
+                        <label
+                          className="filter-option"
+                          key={option.region}
+                          onClick={() => switchRegion(option.region)}
+                        >
                           <input
                             checked={activeRegion === option.region}
                             name="state-province"
-                            onChange={() => switchRegion(option.region)}
+                            readOnly
                             type="radio"
                           />
                           <span>{option.displayLabel}</span>
