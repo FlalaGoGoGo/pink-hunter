@@ -1192,8 +1192,8 @@ function formatCrossRegionPopup(language: Language, region: CoverageRegion): { t
   const copy = CROSS_REGION_POPUP_COPY[language];
   return {
     title: copy.title,
-    body: copy.body.replaceAll("{region}", regionName),
-    button: copy.button.replaceAll("{region}", regionName)
+    body: copy.body.split("{region}").join(regionName),
+    button: copy.button.split("{region}").join(regionName)
   };
 }
 
