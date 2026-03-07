@@ -10,11 +10,15 @@ if [ ! -d "$EXPORT_DIR/.git" ]; then
   exit 1
 fi
 
+rm -rf "$EXPORT_DIR/data/tmp" "$EXPORT_DIR/data/normalized"
+
 rsync -av --delete \
   --exclude '.git' \
   --exclude 'GitHub' \
   --exclude 'node_modules' \
   --exclude 'dist' \
+  --exclude 'data/tmp' \
+  --exclude 'data/normalized' \
   --exclude '.DS_Store' \
   --exclude '__pycache__' \
   --exclude '*.pyc' \

@@ -23,6 +23,7 @@ Last updated: 2026-03-06 (America/Los_Angeles)
 
 ## Notes
 - The GitHub export repo intentionally excludes local-only build caches such as `node_modules/`, `dist/`, `.DS_Store`, and `*.tsbuildinfo`.
+- The GitHub export repo also excludes local-only ETL audit/intermediate outputs such as `data/normalized/` and `data/tmp/`.
 - Public tree data is published by city for every region:
   - `public/data/trees.<region>.city-index.v1.json`
   - `public/data/trees.<region>.city.<slug>.v1.geojson`

@@ -108,12 +108,15 @@ Live domain:
    - `npm run build`
 
 ## Data Outputs
+### Published
 - `public/data/trees.<region>.city-index.v1.json`
 - `public/data/trees.<region>.city.<slug>.v1.geojson`
 - `public/data/coverage.v1.geojson`
 - `public/data/species-guide.v1.json`
 - `public/data/meta.v2.json`
 - `public/data/unknown_scientific_names.v1.json`
+
+### Local ETL Audit
 - `data/normalized/trees_normalized.csv`
 
 ## Region Publishing
@@ -124,6 +127,7 @@ Live domain:
   - `OR`
   - `DC`
   - `BC`
+- Local-only ETL audit outputs such as `data/normalized/trees_normalized.csv` and `data/tmp/*` are not part of the GitHub export repo.
 - `public/data/meta.v2.json` contains the region index, region bounds, aggregate size metadata, and city-split index paths.
 - All published tree-point files now follow the same city-split contract:
   - `public/data/trees.<region>.city-index.v1.json`
