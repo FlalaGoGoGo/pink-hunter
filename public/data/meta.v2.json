@@ -1,10 +1,11 @@
 {
   "version": "v2",
-  "generated_at": "2026-03-07T03:53:31.600000+00:00",
+  "generated_at": "2026-03-07T04:49:09.039528+00:00",
   "default_region": "wa",
   "coverage_rule": "official_city_boundary_only",
   "coverage_skipped_cities": [],
   "coverage_official_unavailable_cities": [
+    "Alameda",
     "Arlington",
     "Auburn",
     "Beaux Arts Village",
@@ -19,6 +20,7 @@
     "Carnation",
     "Clyde Hill",
     "Covington",
+    "Daly City",
     "Davenport",
     "Delta",
     "Des Moines",
@@ -30,6 +32,7 @@
     "Fife",
     "Granite Falls",
     "Gresham",
+    "Hayward",
     "Hillsboro",
     "Hunts Point",
     "Issaquah",
@@ -56,6 +59,7 @@
     "North Bend",
     "Olympia",
     "Port Orchard",
+    "Redwood City",
     "Richland",
     "Richmond",
     "Saanich",
@@ -81,10 +85,10 @@
     "Yarrow Point"
   ],
   "coverage_official_unavailable_skipped_cities": [],
-  "source_count": 35,
-  "total_records": 484271,
-  "included_records": 221877,
-  "unknown_records": 239945,
+  "source_count": 37,
+  "total_records": 249075,
+  "included_records": 226764,
+  "unknown_records": 217603,
   "regions": [
     {
       "id": "wa",
@@ -147,11 +151,12 @@
         ]
       ],
       "data_path": null,
-      "tree_count": 72438,
-      "city_count": 12,
+      "tree_count": 77325,
+      "city_count": 14,
       "cities": [
         "Berkeley",
         "Burlingame",
+        "Concord",
         "Cupertino",
         "Fremont",
         "Milpitas",
@@ -161,15 +166,16 @@
         "San Francisco",
         "San Jose",
         "San Mateo",
-        "San Rafael"
+        "San Rafael",
+        "South San Francisco"
       ],
-      "raw_bytes": 37559350,
-      "gzip_bytes": 1614661,
+      "raw_bytes": 40029154,
+      "gzip_bytes": 1729467,
       "warning_level": "warning",
       "city_split": {
         "strategy": "city",
         "index_path": "/data/trees.ca.city-index.v1.json",
-        "file_count": 12,
+        "file_count": 14,
         "ready": true
       }
     },
@@ -297,6 +303,15 @@
       "last_edit_at": "2025-02-25T14:28:18.205000+00:00",
       "records_fetched": 16603,
       "records_included": 1997
+    },
+    {
+      "name": "Tree Inventory",
+      "city": "Concord",
+      "endpoint": "https://www.cityofconcord.org/1249/Tree-Inventory",
+      "last_edit_at": "",
+      "records_fetched": 76296,
+      "records_included": 4103,
+      "note": "Integrated via the official Concord TreePlotter page and city GIS boundary."
     },
     {
       "name": "Trees",
@@ -500,6 +515,15 @@
       "last_edit_at": "2026-01-06T00:42:43.901000+00:00",
       "records_fetched": 1011,
       "records_included": 856
+    },
+    {
+      "name": "TreeKeeper Inventory",
+      "city": "South San Francisco",
+      "endpoint": "https://www.ssfca.gov/Departments/Parks-Recreation/Divisions/Parks-Division/Trees",
+      "last_edit_at": "",
+      "records_fetched": 14429,
+      "records_included": 784,
+      "note": "Integrated from the official public TreeKeeper inventory linked from the city's Trees page."
     },
     {
       "name": "Spokane Tree Inventory",

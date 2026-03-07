@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-03-07T03:01:07.354019+00:00",
+  "generated_at": "2026-03-07T03:53:31.600000+00:00",
   "region": "ca",
   "strategy": "city",
   "items": [
@@ -16,6 +16,13 @@
       "tree_count": 1997,
       "raw_bytes": 1097121,
       "gzip_bytes": 49265
+    },
+    {
+      "city": "Concord",
+      "data_path": "/data/trees.ca.city.concord.v1.geojson",
+      "tree_count": 4103,
+      "raw_bytes": 2041138,
+      "gzip_bytes": 100425
     },
     {
       "city": "Cupertino",
@@ -86,6 +93,13 @@
       "tree_count": 422,
       "raw_bytes": 219038,
       "gzip_bytes": 10169
+    },
+    {
+      "city": "South San Francisco",
+      "data_path": "/data/trees.ca.city.south-san-francisco.v1.geojson",
+      "tree_count": 784,
+      "raw_bytes": 428752,
+      "gzip_bytes": 15023
     }
   ]
 }

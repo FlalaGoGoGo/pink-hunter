@@ -102,6 +102,16 @@ SAN_MATEO_DATASET_PAGE = "https://www.arcgis.com/home/item.html?id=67c8b57d2d914
 FREMONT_TREEPLOTTER_URL = "https://pg-cloud.com/FremontCA/"
 FREMONT_BOUNDARY_LAYER = "https://services2.arcgis.com/AVso4yDITKsybTJg/arcgis/rest/services/COF_Boundary/FeatureServer/0"
 FREMONT_DATASET_PAGE = "https://www.fremont.gov/government/departments/maintenance-operations/urban-forestry/tree-inventory-tree-value"
+CONCORD_TREEPLOTTER_URL = "https://pg-cloud.com/ConcordCA/"
+CONCORD_BOUNDARY_LAYER = "https://gis.cityofconcord.org/gsrv1/rest/services/BaseMap/MapServer/17"
+CONCORD_DATASET_PAGE = "https://www.cityofconcord.org/1249/Tree-Inventory"
+SOUTH_SF_BASE = "https://ssfca.treekeepersoftware.com"
+SOUTH_SF_SEARCH_ENDPOINT = f"{SOUTH_SF_BASE}/cffiles/search.cfc"
+SOUTH_SF_GRIDS_ENDPOINT = f"{SOUTH_SF_BASE}/cffiles/grids.cfc"
+SOUTH_SF_BOUNDARY_LAYER = (
+    "https://services5.arcgis.com/inY93B27l4TSbT7h/arcgis/rest/services/cityowned_service/FeatureServer/0"
+)
+SOUTH_SF_DATASET_PAGE = "https://www.ssfca.gov/Departments/Parks-Recreation/Divisions/Parks-Division/Trees"
 SAN_RAFAEL_TREES_LAYER = "https://services5.arcgis.com/sruoiBDPu8SihcGN/arcgis/rest/services/Trees/FeatureServer/0"
 SAN_RAFAEL_BOUNDARY_LAYER = "https://services5.arcgis.com/sruoiBDPu8SihcGN/arcgis/rest/services/sanrafael2/FeatureServer/0"
 SAN_RAFAEL_DATASET_PAGE = "https://www.arcgis.com/home/item.html?id=8a236959df6f438ba38bdf5db85ce54a"
@@ -158,14 +168,20 @@ REGION_CITY_OVERRIDES: dict[str, str] = {
     "Stockton": "ca",
     "Sunnyvale": "ca",
     "Burlingame": "ca",
+    "Daly City": "ca",
+    "Concord": "ca",
     "Fremont": "ca",
+    "Hayward": "ca",
+    "Alameda": "ca",
     "Palo Alto": "ca",
     "Berkeley": "ca",
     "Cupertino": "ca",
     "Oakland": "ca",
+    "Redwood City": "ca",
     "Richmond": "ca",
     "San Francisco": "ca",
     "San Jose": "ca",
+    "South San Francisco": "ca",
     "Beaverton": "or",
     "Gresham": "or",
     "Hillsboro": "or",
@@ -195,14 +211,20 @@ CITY_BOUNDARY_HINTS: dict[str, dict[str, str]] = {
     "Sunnyvale": {"state": "06"},
     "Tigard": {"state": "41"},
     "Burlingame": {"state": "06"},
+    "Daly City": {"state": "06"},
+    "Concord": {"state": "06", "boundary_source": "concord_arcgis"},
     "Fremont": {"state": "06", "boundary_source": "fremont_arcgis"},
+    "Hayward": {"state": "06"},
+    "Alameda": {"state": "06"},
     "Palo Alto": {"state": "06", "boundary_source": "us_census_place"},
     "Berkeley": {"boundary_source": "berkeley_arcgis"},
     "Cupertino": {"boundary_source": "cupertino_arcgis"},
     "Oakland": {"state": "06"},
+    "Redwood City": {"state": "06"},
     "Richmond": {"state": "06"},
     "San Francisco": {"state": "06"},
     "San Jose": {"state": "06"},
+    "South San Francisco": {"state": "06", "boundary_source": "south_sf_arcgis"},
     "Vancouver BC": {"boundary_source": "vancouver_bc_ods"},
     "Vancouver WA": {"state": "53", "basename": "Vancouver"},
     "Victoria BC": {"boundary_source": "victoria_bc_arcgis"},
@@ -216,6 +238,7 @@ ALLOWED_CENSUS_PLACE_LSADC = {"25", "43"}
 OFFICIAL_DATA_UNAVAILABLE_CITIES: dict[str, str] = {
     "Arlington": "City investigated; no official public single-tree species dataset was confirmed.",
     "Auburn": "City investigated; no reliable official public single-tree species dataset was confirmed.",
+    "Alameda": "Official city tree and urban-forest materials were reviewed, but no verified public citywide single-tree species dataset was confirmed.",
     "Beaux Arts Village": "Only a contractor-published public map was found; no verified official public city-hosted tree dataset was confirmed.",
     "Beaverton": "Official inventory web maps exist, but the raw city tree inventory service currently requires a token and is not publicly queryable for stable ETL access.",
     "Black Diamond": "City investigated; no official public single-tree species dataset was confirmed.",
@@ -231,6 +254,7 @@ OFFICIAL_DATA_UNAVAILABLE_CITIES: dict[str, str] = {
     "Des Moines": "City investigated; no reliable official public single-tree species dataset was confirmed.",
     "Delta": "Official Delta GIS/open-data sources were reviewed, but no public single-tree species inventory was confirmed.",
     "Davenport": "City investigated; public ArcGIS hits in this round were Davenport, Iowa datasets, not a verified City of Davenport, WA tree inventory.",
+    "Daly City": "Official city urban-forestry and GIS entry points were reviewed, but no verified public citywide single-tree species dataset was confirmed.",
     "Duvall": "City investigated; public search hits were false positives, not an official city tree inventory.",
     "Edmonds": "City investigated; no official public single-tree species dataset was confirmed.",
     "Enumclaw": "City investigated; no official public single-tree species dataset was confirmed.",
@@ -239,6 +263,7 @@ OFFICIAL_DATA_UNAVAILABLE_CITIES: dict[str, str] = {
     "Fife": "City investigated; no official public single-tree species dataset was confirmed.",
     "Gresham": "Official ArcGIS search and city-site checks in this round did not confirm a public citywide single-tree species dataset.",
     "Granite Falls": "City investigated; no official public single-tree species dataset was confirmed.",
+    "Hayward": "Official city urban-forestry and GIS entry points were reviewed, but no verified public citywide single-tree species dataset was confirmed.",
     "Hillsboro": "Official ArcGIS search and city-site checks in this round did not confirm a public citywide single-tree species dataset.",
     "Hunts Point": "City investigated; no official public single-tree species dataset was confirmed.",
     "Issaquah": "Official Urban Forestry materials indicate the public tree inventory is still a future implementation item.",
@@ -265,6 +290,7 @@ OFFICIAL_DATA_UNAVAILABLE_CITIES: dict[str, str] = {
     "North Bend": "City investigated; no official public single-tree species dataset was confirmed.",
     "Olympia": "No current official city single-tree species layer was confirmed; only older or non-city sources were found.",
     "Port Orchard": "City investigated; no official public single-tree species dataset was confirmed.",
+    "Redwood City": "Official city GIS and public-works materials were reviewed, but no verified public citywide single-tree dataset was confirmed in this round.",
     "Richmond": "Official Richmond, CA ArcGIS and city data searches in this round did not confirm a public citywide single-tree species dataset.",
     "Richland": "City investigated; public search hits in this round were non-city or non-Washington datasets, not a verified City of Richland public tree inventory.",
     "Sacramento": "Official city pages and open-data entry points were checked, but no public citywide single-tree species dataset was confirmed in this round.",
@@ -1748,8 +1774,14 @@ def fetch_special_city_boundary_feature(city: str) -> dict[str, Any] | None:
     if boundary_source == "fremont_arcgis":
         return fetch_arcgis_boundary_feature(FREMONT_BOUNDARY_LAYER, source="City of Fremont GIS")
 
+    if boundary_source == "concord_arcgis":
+        return fetch_arcgis_boundary_feature(CONCORD_BOUNDARY_LAYER, source="City of Concord GIS")
+
     if boundary_source == "san_rafael_arcgis":
         return fetch_arcgis_boundary_feature(SAN_RAFAEL_BOUNDARY_LAYER, source="City of San Rafael GIS")
+
+    if boundary_source == "south_sf_arcgis":
+        return fetch_arcgis_boundary_feature(SOUTH_SF_BOUNDARY_LAYER, source="City of South San Francisco GIS")
 
     if boundary_source == "beaverton_arcgis":
         return fetch_arcgis_boundary_feature(BEAVERTON_BOUNDARY_LAYER, source="City of Beaverton GIS")

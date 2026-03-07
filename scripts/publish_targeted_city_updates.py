@@ -6,6 +6,7 @@ import csv
 import datetime as dt
 import json
 import os
+import re
 import subprocess
 import sys
 import tempfile
@@ -18,6 +19,9 @@ if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
 from etl.build_data import (
+    CONCORD_BOUNDARY_LAYER,
+    CONCORD_DATASET_PAGE,
+    CONCORD_TREEPLOTTER_URL,
     FREMONT_BOUNDARY_LAYER,
     FREMONT_DATASET_PAGE,
     FREMONT_TREEPLOTTER_URL,
@@ -29,6 +33,10 @@ from etl.build_data import (
     SAN_MATEO_LAYER,
     SAN_RAFAEL_DATASET_PAGE,
     SAN_RAFAEL_TREES_LAYER,
+    SOUTH_SF_BOUNDARY_LAYER,
+    SOUTH_SF_DATASET_PAGE,
+    SOUTH_SF_GRIDS_ENDPOINT,
+    SOUTH_SF_SEARCH_ENDPOINT,
     SUBTYPE_MAPPING_PATH,
     assign_zip_code,
     canonical_ownership,
@@ -72,8 +80,49 @@ SAN_RAFAEL_BOUNDARY_DATASET_PAGE = "https://www.arcgis.com/home/item.html?id=4c6
 TREEPLOTTER_CLIENT_VERSION = "v3.9.65"
 FREMONT_DB_ENDPOINT = "https://pg-cloud.com/main/server/db.php"
 SALINAS_DATASET = "https://cityofsalinas.opendatasoft.com/api/explore/v2.1/catalog/datasets/tree-inventory"
+SPECIES_TEXT_PATTERN = re.compile(r"^\s*(?P<common>.+?)\s*\((?P<scientific>[^()]+)\)\s*$")
+DISPLAY_NAME_REPLACEMENTS = {
+    "Chery": "Cherry",
+    "Crab Apple": "Crabapple",
+}
 
-SUPPORTED_CITIES = ("Milpitas", "San Mateo", "San Rafael", "Fremont", "Salinas")
+SUPPORTED_CITIES = (
+    "Milpitas",
+    "San Mateo",
+    "San Rafael",
+    "Fremont",
+    "Salinas",
+    "Concord",
+    "South San Francisco",
+)
+
+
+def clean_display_name(raw_value: str | None) -> str | None:
+    text = (raw_value or "").strip()
+    if not text or text in {"<Null>", "N/A"}:
+        return None
+    text = re.sub(r"\s+", " ", text)
+    for source, replacement in DISPLAY_NAME_REPLACEMENTS.items():
+        text = text.replace(source, replacement)
+    titled = title_case_if_upper(text)
+    text = titled or text
+    if text.count(",") == 1:
+        left, right = [part.strip() for part in text.split(",", 1)]
+        if left and right:
+            text = f"{right} {left}"
+    return text.strip()
+
+
+def parse_species_text(raw_value: str | None) -> tuple[str, str | None]:
+    text = clean_display_name(raw_value)
+    if not text:
+        return "", None
+    match = SPECIES_TEXT_PATTERN.match(text)
+    if match:
+        common_name = clean_display_name(match.group("common"))
+        scientific_raw = expand_abbreviated_botanical_name(match.group("scientific"), common_name)
+        return scientific_raw, common_name
+    return generic_scientific_name_for_common_hint(text), text
 
 
 def domain_lookup(layer_info: dict[str, Any], field_name: str) -> dict[Any, str]:
@@ -462,16 +511,24 @@ def retrieve_treeplotter_rows(
     return rows
 
 
-def fetch_fremont() -> dict[str, Any]:
-    boundary_info = fetch_json(FREMONT_BOUNDARY_LAYER, {"f": "pjson"})
-    zip_index = fetch_us_city_zip_index("Fremont")
+def fetch_treeplotter_inventory(
+    *,
+    city: str,
+    folder: str,
+    landing_url: str,
+    boundary_layer: str,
+    dataset_page: str,
+    source_note: str,
+) -> dict[str, Any]:
+    boundary_info = fetch_json(boundary_layer, {"f": "pjson"})
+    zip_index = fetch_us_city_zip_index(city)
     mapping_rows = load_mapping(MAPPING_PATH)
     subtype_rows = load_subtype_mapping(SUBTYPE_MAPPING_PATH)
 
-    cookie_path = init_treeplotter_session("FremontCA", FREMONT_TREEPLOTTER_URL)
+    cookie_path = init_treeplotter_session(folder, landing_url)
     try:
         lookup_rows = retrieve_treeplotter_rows(
-            "FremontCA",
+            folder,
             "species",
             {
                 "pid": {"data_type": "integer", "input_type": "number"},
@@ -483,7 +540,7 @@ def fetch_fremont() -> dict[str, Any]:
             },
             cookie_path=cookie_path,
         )
-        species_lookup = {}
+        species_lookup: dict[Any, dict[str, str]] = {}
         for row in lookup_rows:
             pid = row["pid"]["val"]
             species_lookup[pid] = {
@@ -493,7 +550,7 @@ def fetch_fremont() -> dict[str, Any]:
             }
 
         tree_rows = retrieve_treeplotter_rows(
-            "FremontCA",
+            folder,
             "trees",
             {
                 "pid": {"data_type": "integer", "input_type": "number"},
@@ -512,6 +569,8 @@ def fetch_fremont() -> dict[str, Any]:
     finally:
         Path(cookie_path).unlink(missing_ok=True)
 
+    source_last_edit_at = iso_from_epoch(boundary_info.get("editingInfo", {}).get("lastEditDate"))
+    city_slug = slugify_token(city)
     output_features: list[dict[str, Any]] = []
     normalized_rows: list[dict[str, Any]] = []
     for row in tree_rows:
@@ -520,26 +579,30 @@ def fetch_fremont() -> dict[str, Any]:
         if not point:
             continue
         lon, lat = web_mercator_to_lon_lat(*point)
-        species_id = row.get("species_latin", {}).get("val") or row.get("species_common", {}).get("val") or row.get("species_code", {}).get("val")
+        species_id = (
+            row.get("species_latin", {}).get("val")
+            or row.get("species_common", {}).get("val")
+            or row.get("species_code", {}).get("val")
+        )
         species_info = species_lookup.get(species_id, {})
-        common_name = title_case_if_upper(species_info.get("common_name")) or None
+        common_name = clean_display_name(species_info.get("common_name"))
         latin_name = species_info.get("latin_name") or ""
         scientific_raw = expand_abbreviated_botanical_name(latin_name, common_name)
         if not scientific_raw:
             scientific_raw = generic_scientific_name_for_common_hint(common_name)
         scientific_normalized = normalize_scientific_name(scientific_raw)
         species_group, subtype_name = classify_tree_record(scientific_raw, common_name, mapping_rows, subtype_rows)
-        cultivar_name = title_case_if_upper(species_info.get("cultivar")) or None
+        cultivar_name = clean_display_name(species_info.get("cultivar"))
         if cultivar_name and not subtype_name:
             subtype_name = cultivar_name
         ownership_raw = "Not published in public inventory"
         zip_code = assign_zip_code(lon, lat, zip_index)
-        row_id = f"fremont-{row.get('pid', {}).get('val')}"
+        row_id = f"{city_slug}-{row.get('pid', {}).get('val')}"
 
         normalized_rows.append(
             {
                 "id": row_id,
-                "city": "Fremont",
+                "city": city,
                 "source_dataset": "Tree Inventory",
                 "scientific_raw": scientific_raw,
                 "scientific_normalized": scientific_normalized,
@@ -569,27 +632,193 @@ def fetch_fremont() -> dict[str, Any]:
                     "zip_code": zip_code,
                     "ownership": canonical_ownership(ownership_raw),
                     "ownership_raw": ownership_raw,
-                    "city": "Fremont",
+                    "city": city,
                     "source_dataset": "Tree Inventory",
-                    "source_department": "City of Fremont",
-                    "source_last_edit_at": iso_from_epoch(boundary_info.get("editingInfo", {}).get("lastEditDate")),
+                    "source_department": f"City of {city}",
+                    "source_last_edit_at": source_last_edit_at,
                 },
             }
         )
 
     return {
-        "city": "Fremont",
+        "city": city,
         "region": "ca",
         "features": output_features,
         "normalized_rows": normalized_rows,
         "source": {
             "name": "Tree Inventory",
-            "city": "Fremont",
-            "endpoint": FREMONT_DATASET_PAGE,
-            "last_edit_at": iso_from_epoch(boundary_info.get("editingInfo", {}).get("lastEditDate")),
+            "city": city,
+            "endpoint": dataset_page,
+            "last_edit_at": source_last_edit_at,
             "records_fetched": len(tree_rows),
             "records_included": len(output_features),
-            "note": "Integrated via public TreePlotter session + official species lookup table.",
+            "note": source_note,
+        },
+    }
+
+
+def fetch_treekeeper_rows(search_endpoint: str, grids_endpoint: str, uid: str, fac_id: int = 1) -> tuple[dict[str, Any], list[dict[str, Any]]]:
+    summary_payload = fetch_json(
+        search_endpoint,
+        {
+            "method": "submitMapSearch",
+            "uid": uid,
+            "facID": fac_id,
+            "searchCurrentSelection": "false",
+            "returnFormat": "json",
+        },
+        method="POST",
+        body={},
+    )
+
+    rows: list[dict[str, Any]] = []
+    limit = 5000
+    offset = 0
+    total_rows = int(summary_payload.get("siteCount") or 0)
+    while True:
+        rows_payload = fetch_json(
+            grids_endpoint,
+            {
+                "method": "getTreeKeeperGridOptionsData",
+                "session_id": uid,
+                "layer_id": fac_id,
+                "gridType": "sites",
+                "calls_search": "true",
+                "limit": limit,
+                "offset": offset,
+                "stopCache": int(dt.datetime.now(tz=dt.timezone.utc).timestamp() * 1000),
+            },
+            method="POST",
+            body={"filters": "[]", "sorts": "[]"},
+        )
+        batch = rows_payload.get("data") or []
+        if isinstance(batch, str):
+            batch = json.loads(batch)
+        if not batch:
+            break
+        rows.extend(batch)
+        if total_rows and len(rows) >= total_rows:
+            break
+        if len(batch) < limit:
+            break
+        offset += limit
+
+    return summary_payload if isinstance(summary_payload, dict) else {}, rows
+
+
+def fetch_fremont() -> dict[str, Any]:
+    return fetch_treeplotter_inventory(
+        city="Fremont",
+        folder="FremontCA",
+        landing_url=FREMONT_TREEPLOTTER_URL,
+        boundary_layer=FREMONT_BOUNDARY_LAYER,
+        dataset_page=FREMONT_DATASET_PAGE,
+        source_note="Integrated via public TreePlotter session + official species lookup table.",
+    )
+
+
+def fetch_concord() -> dict[str, Any]:
+    return fetch_treeplotter_inventory(
+        city="Concord",
+        folder="ConcordCA",
+        landing_url=CONCORD_TREEPLOTTER_URL,
+        boundary_layer=CONCORD_BOUNDARY_LAYER,
+        dataset_page=CONCORD_DATASET_PAGE,
+        source_note="Integrated via the official Concord TreePlotter page and city GIS boundary.",
+    )
+
+
+def fetch_south_san_francisco() -> dict[str, Any]:
+    _boundary_info = fetch_json(SOUTH_SF_BOUNDARY_LAYER, {"f": "pjson"})
+    summary_payload, rows = fetch_treekeeper_rows(
+        SOUTH_SF_SEARCH_ENDPOINT,
+        SOUTH_SF_GRIDS_ENDPOINT,
+        uid="pinkhunter-south-san-francisco",
+        fac_id=1,
+    )
+    zip_index = fetch_us_city_zip_index("South San Francisco")
+    mapping_rows = load_mapping(MAPPING_PATH)
+    subtype_rows = load_subtype_mapping(SUBTYPE_MAPPING_PATH)
+
+    output_features: list[dict[str, Any]] = []
+    normalized_rows: list[dict[str, Any]] = []
+    for row in rows:
+        lon = row.get("LONGITUDE")
+        lat = row.get("LATITUDE")
+        if lon is None or lat is None:
+            geometry_raw = row.get("SITE_GEOMETRY")
+            if isinstance(geometry_raw, str) and geometry_raw.strip():
+                try:
+                    geometry_payload = json.loads(geometry_raw)
+                    coordinates = geometry_payload.get("coordinates") or []
+                    lon, lat = coordinates[0], coordinates[1]
+                except Exception:
+                    lon = None
+                    lat = None
+        if lon is None or lat is None:
+            continue
+
+        scientific_raw, common_name = parse_species_text(row.get("SITE_ATTR1"))
+        scientific_normalized = normalize_scientific_name(scientific_raw)
+        species_group, subtype_name = classify_tree_record(scientific_raw, common_name, mapping_rows, subtype_rows)
+        ownership_raw = clean_display_name(row.get("SITE_ATTR23")) or "City of South San Francisco"
+        zip_code = assign_zip_code(lon, lat, zip_index)
+        row_id = f"south-san-francisco-{row.get('SITE_ID')}"
+
+        normalized_rows.append(
+            {
+                "id": row_id,
+                "city": "South San Francisco",
+                "source_dataset": "TreeKeeper Inventory",
+                "scientific_raw": scientific_raw,
+                "scientific_normalized": scientific_normalized,
+                "common_name": common_name or "",
+                "subtype_name": subtype_name or "",
+                "zip_code": zip_code or "",
+                "species_group": species_group or "",
+                "ownership": canonical_ownership(ownership_raw),
+                "ownership_raw": ownership_raw,
+                "lat": lat,
+                "lon": lon,
+                "included": "1" if species_group else "0",
+            }
+        )
+        if not species_group:
+            continue
+        output_features.append(
+            {
+                "type": "Feature",
+                "geometry": {"type": "Point", "coordinates": [lon, lat]},
+                "properties": {
+                    "id": row_id,
+                    "species_group": species_group,
+                    "scientific_name": scientific_raw,
+                    "common_name": common_name,
+                    "subtype_name": subtype_name,
+                    "zip_code": zip_code,
+                    "ownership": canonical_ownership(ownership_raw),
+                    "ownership_raw": ownership_raw,
+                    "city": "South San Francisco",
+                    "source_dataset": "TreeKeeper Inventory",
+                    "source_department": "City of South San Francisco",
+                    "source_last_edit_at": "",
+                },
+            }
+        )
+
+    return {
+        "city": "South San Francisco",
+        "region": "ca",
+        "features": output_features,
+        "normalized_rows": normalized_rows,
+        "source": {
+            "name": "TreeKeeper Inventory",
+            "city": "South San Francisco",
+            "endpoint": SOUTH_SF_DATASET_PAGE,
+            "last_edit_at": "",
+            "records_fetched": len(rows),
+            "records_included": len(output_features),
+            "note": "Integrated from the official public TreeKeeper inventory linked from the city's Trees page.",
         },
     }
 
@@ -687,6 +916,8 @@ CITY_FETCHERS = {
     "San Rafael": fetch_san_rafael,
     "Fremont": fetch_fremont,
     "Salinas": fetch_salinas,
+    "Concord": fetch_concord,
+    "South San Francisco": fetch_south_san_francisco,
 }
 
 
@@ -725,7 +956,7 @@ def main() -> int:
 
     latest_rows = load_normalized_rows()
     meta["total_records"] = len(latest_rows)
-    meta["included_records"] = sum(1 for row in latest_rows if row.get("included") == "1")
+    meta["included_records"] = sum(int(region.get("tree_count", 0)) for region in meta.get("regions", []))
     meta["unknown_records"] = sum(item["count"] for item in unknown_items)
     save_meta(meta)
     subprocess.run(["python3", "scripts/check_region_data_sizes.py", "--data-dir", "public/data"], check=True)

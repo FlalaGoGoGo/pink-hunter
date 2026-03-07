@@ -55,6 +55,7 @@ Live domain:
 
 - Berkeley
 - Burlingame
+- Concord
 - Cupertino
 - Fremont
 - Milpitas
@@ -65,6 +66,7 @@ Live domain:
 - San Jose
 - San Mateo
 - San Rafael
+- South San Francisco
 
 </details>
 
@@ -85,7 +87,7 @@ Live domain:
 
 ### Gray Coverage
 - Gray coverage marks cities whose official boundary is public but whose official public single-tree dataset is not available yet.
-- Current gray-coverage examples include `Mountain View`, `Sunnyvale`, `Santa Clara`, `Monterey`, `Sacramento`, `Napa`, `Richmond`, `Santa Cruz`, `Santa Rosa`, `Stockton`, `Beaverton`, `Gresham`, `Hillsboro`, `Salem`, `Tigard`, `Burnaby`, `Delta`, and `Saanich`.
+- Current gray-coverage examples include `Mountain View`, `Sunnyvale`, `Santa Clara`, `Monterey`, `Sacramento`, `Napa`, `Richmond`, `Santa Cruz`, `Santa Rosa`, `Stockton`, `Redwood City`, `Alameda`, `Hayward`, `Daly City`, `Beaverton`, `Gresham`, `Hillsboro`, `Salem`, `Tigard`, `Burnaby`, `Delta`, and `Saanich`.
 - Tracking details: [docs/CITY_COVERAGE_TRACKER.md](docs/CITY_COVERAGE_TRACKER.md)
 
 ## Official Data Sources
@@ -123,6 +125,7 @@ Live domain:
 <summary>California</summary>
 
 - Burlingame: [City Street Tree Inventory](https://www.burlingame.org/466/Trees-Urban-Forest)
+- Concord: [Tree Inventory](https://www.cityofconcord.org/1249/Tree-Inventory)
 - Palo Alto: [City of Palo Alto Open GIS](https://opengis.cityofpaloalto.org/)
 - Berkeley: [Tree_Berkeley20191107](https://www.arcgis.com/home/item.html?id=88829f4ae7254b5280732e88e65e6df5)
 - Cupertino: [Cupertino Open Data GIS](https://gis-cupertino.opendata.arcgis.com/)
@@ -134,6 +137,7 @@ Live domain:
 - San Jose: [Street Tree](https://data.sanjoseca.gov/dataset/street-tree)
 - San Mateo: [Street Trees](https://www.arcgis.com/home/item.html?id=67c8b57d2d91459c9f951df9de961a06)
 - San Rafael: [Trees](https://www.arcgis.com/home/item.html?id=8a236959df6f438ba38bdf5db85ce54a)
+- South San Francisco: [City Trees](https://www.ssfca.gov/Departments/Parks-Recreation/Divisions/Parks-Division/Trees)
 
 </details>
 

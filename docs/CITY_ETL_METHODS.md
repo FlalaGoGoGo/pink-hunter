@@ -62,7 +62,7 @@ Last updated: 2026-03-06 (America/Los_Angeles)
 - Official item pages or city open-data pages remain the source-of-truth links in metadata.
 
 ### TreeKeeper
-- Used for `Sammamish` and `Everett`.
+- Used for `Sammamish`, `Everett`, and `South San Francisco`.
 - Public access comes from `search.cfc` plus `grids.cfc`.
 - `SITE_ATTR1` may contain either:
   - `Common (Scientific)` format
@@ -73,7 +73,7 @@ Last updated: 2026-03-06 (America/Los_Angeles)
   - JSON inside `SITE_GEOMETRY`
 
 ### TreePlotter
-- Used for `Kirkland`.
+- Used for `Kirkland`, `Fremont`, and `Concord`.
 - Requires public session bootstrap at `https://pg-cloud.com/KirklandWA/`.
 - Data retrieval goes through `retrieveDataAlias` on `db.php`.
 - Geometry is WKB point hex in Web Mercator and must be decoded then converted to lon/lat.
@@ -115,12 +115,14 @@ Last updated: 2026-03-06 (America/Los_Angeles)
 | Berkeley | Downloaded Shapefile | `SCINAME`, `COMMONNAME`, `AGENCY` | shapefile points transformed to WGS84 | Official public inventory is published as a downloadable shapefile/ArcGIS item rather than a clean query layer |
 | Cupertino | ArcGIS MapServer | `BotanicalName`, `CommonName`, `OwnedBy`, `MaintainedBy` | ArcGIS point geometry | Official City of Cupertino GIS tree layer |
 | Fremont | TreePlotter | `species_latin` / `species_common` integer foreign keys resolved through the public `species` lookup table | EWKB hex with `SRID=3857` -> Web Mercator -> lon/lat | Official City of Fremont public TreePlotter inventory; unlike Kirkland, the `trees` table stores species references as integer keys and the geometry is EWKB rather than plain WKB |
+| Concord | TreePlotter | `species_latin` / `species_common` with public TreePlotter inventory tables | WKB point hex -> Web Mercator -> lon/lat | Official City of Concord public TreePlotter inventory exposed from the city tree-inventory page |
 | Milpitas | ArcGIS FeatureServer | `Species`, `Name`, `OwnedBy`, `MaintBy` | ArcGIS point geometry | Official City of Milpitas `Trees RO` service; ownership codes are decoded from field domains |
 | Oakland | SODA | `scientific_name`, `common_name`, `address`, `stewardship` | `location` point from Socrata rows | Official City of Oakland street-tree dataset; ownership is normalized from city stewardship fields |
 | Salinas | OpenDataSoft | `spp`, `geo_point_2d`, `active` | lon/lat from `geo_point_2d` | Official City of Salinas `Tree Inventory` dataset; current published path uses ODS export rows with `active=1` |
 | San Mateo | ArcGIS FeatureServer | `SPP`, `ACTIVE`, `OBJECTID` | ArcGIS point geometry | Official City of San Mateo `Street Trees` service; rows are filtered to `ACTIVE=1` |
 | San Rafael | ArcGIS FeatureServer | `Species_Name`, `Species_Type`, `UniqueID` | ArcGIS point geometry | Official City of San Rafael `Trees` service; common-name-heavy source, so classification relies on controlled common-name fallback |
 | Everett | TreeKeeper | `SITE_ATTR1` parsed by `parse_sammamish_species()` | direct lon/lat or `SITE_GEOMETRY` JSON | Park-tree public endpoint |
+| South San Francisco | TreeKeeper | `SITE_ATTR1` parsed by `parse_species_text()` plus ownership from `SITE_ATTR23` | direct lon/lat or `SITE_GEOMETRY` JSON | Official city-linked TreeKeeper inventory published from the city trees page |
 | Kirkland | TreePlotter | `species_bo`, `species_la` with `expand_abbreviated_botanical_name()` | WKB hex -> Web Mercator -> lon/lat | Public TreePlotter session/API |
 | Washington DC | ArcGIS MapServer | `SCI_NM`, `CMMN_NM`, `OWNERSHIP` | ArcGIS point geometry | DDOT Urban Tree Canopy layer |
 
@@ -168,7 +170,7 @@ Last updated: 2026-03-06 (America/Los_Angeles)
 
 ## Incremental Publish Fallback
 - Full `npm run etl` remains the canonical path.
-- `npm run etl` now chains the stable targeted-publish refresh for `Milpitas`, `San Mateo`, `San Rafael`, `Salinas`, and `Fremont` after the full ETL, so those city-split files are regenerated as part of the normal publish path.
+- `npm run etl` now chains the stable targeted-publish refresh for `Milpitas`, `San Mateo`, `San Rafael`, `Salinas`, `Fremont`, `Concord`, and `South San Francisco` after the full ETL, so those city-split files are regenerated as part of the normal publish path.
 - When upstream sources are too slow and the already-published local region files are still current, refresh city-split outputs without rerunning the full ETL:
   - `python3 scripts/refresh_region_city_splits.py --data-dir public/data --region all`
 - When a new city source has been validated but is not yet folded into the main full ETL path, publish it incrementally with:

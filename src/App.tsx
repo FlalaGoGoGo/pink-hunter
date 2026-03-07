@@ -52,6 +52,7 @@ const DEFAULT_ZOOM = 8.45;
 const POSITRON_STYLE_URL = "https://basemaps.cartocdn.com/gl/positron-gl-style/style.json";
 const FALLBACK_STYLE_URL = "https://demotiles.maplibre.org/style.json";
 const ABOUT_SOURCES_PAGE_SIZE = 8;
+const BRAND_LOGO_PATH = "/assets/brand/pink-hunter-logo.png";
 const POINT_COLORS: Record<SpeciesGroup, string> = {
   cherry: "#ef79ad",
   plum: "#d976b4",
@@ -91,15 +92,76 @@ const REGION_CITY_OVERRIDES: Partial<Record<string, CoverageRegion>> = {
   Stockton: "ca",
   Sunnyvale: "ca",
   Burlingame: "ca",
+  Concord: "ca",
   Fremont: "ca",
   Milpitas: "ca",
   "Palo Alto": "ca",
   Berkeley: "ca",
   Cupertino: "ca",
   Oakland: "ca",
+  "South San Francisco": "ca",
   "San Francisco": "ca",
   "San Jose": "ca"
 };
+
+const GUIDE_FLOWER_ART: Record<SpeciesGroup, string> = {
+  cherry: "/assets/guide/species/cherry-blossom.png",
+  plum: "/assets/guide/species/plum-blossom.png",
+  peach: "/assets/guide/species/peach-blossom.png",
+  magnolia: "/assets/guide/species/magnolia-blossom.png",
+  crabapple: "/assets/guide/species/crabapple-blossom.png"
+};
+
+const GUIDE_COMPARISON_ART = [
+  {
+    id: "petals",
+    image: "/assets/guide/comparisons/petal-comparison.png",
+    title: {
+      "en-US": "Petal Shape",
+      "zh-CN": "花瓣形态"
+    },
+    body: {
+      "en-US": "Compare edge shape, petal roundness, and how open each bloom feels.",
+      "zh-CN": "对比花瓣边缘、圆润程度，以及整朵花打开后的感觉。"
+    }
+  },
+  {
+    id: "clusters",
+    image: "/assets/guide/comparisons/cluster-stem-comparison.png",
+    title: {
+      "en-US": "Cluster & Stem Pattern",
+      "zh-CN": "成串方式与花梗"
+    },
+    body: {
+      "en-US": "Look for single blooms vs clusters, and whether flowers sit close to twigs or hang outward.",
+      "zh-CN": "看单朵还是成串，也看花是贴着枝条还是向外垂挂。"
+    }
+  },
+  {
+    id: "bark",
+    image: "/assets/guide/comparisons/bark-trunk-comparison.png",
+    title: {
+      "en-US": "Bark & Trunk",
+      "zh-CN": "树皮与树干"
+    },
+    body: {
+      "en-US": "Cherry and plum often show lenticels, while magnolia and crabapple bark feel different at a glance.",
+      "zh-CN": "樱花和李花常见皮孔，木兰和海棠的树干质感通常一眼就不一样。"
+    }
+  },
+  {
+    id: "buds",
+    image: "/assets/guide/comparisons/bud-leaf-comparison.png",
+    title: {
+      "en-US": "Bud & Leaf Emergence",
+      "zh-CN": "花芽与叶片时机"
+    },
+    body: {
+      "en-US": "Notice whether leaves arrive with blossoms or after the main bloom flush.",
+      "zh-CN": "观察叶片是和花一起出现，还是等到主要花期之后再长出来。"
+    }
+  }
+] as const;
 
 const REGION_SWITCH_BOUNDS: Partial<Record<CoverageRegion, [[number, number], [number, number]]>> = {
   wa: [
@@ -1010,6 +1072,16 @@ export default function App(): JSX.Element {
       return label.includes(query);
     });
   }, [language, zipCodes, zipSearchQuery]);
+
+  const guideCompareCopy = language === "zh-CN"
+    ? {
+        title: "细节对比图",
+        intro: "除了颜色，真正稳定的区分线索通常来自花瓣、花梗、树皮和芽叶时机。"
+      }
+    : {
+        title: "Compare the details",
+        intro: "Color alone is weak. Petal shape, cluster pattern, bark, and bud timing are more reliable."
+      };
 
   const aboutCopy = language === "zh-CN"
     ? {
@@ -1969,8 +2041,14 @@ export default function App(): JSX.Element {
         <div className="sheet-content">
           <section className="panel-header-card">
             <div className="panel-header-top">
-            <div className="panel-title-group">
-                <h1>{t(language, "appTitle")}</h1>
+              <div className="panel-title-group">
+                <span className="sr-only">{t(language, "appTitle")}</span>
+                <img
+                  alt="Pink Hunter"
+                  className="brand-logo"
+                  loading="eager"
+                  src={BRAND_LOGO_PATH}
+                />
                 <p>{t(language, "appSubtitle")}</p>
               </div>
               <button className="icon-btn language-btn" onClick={toggleLanguage} type="button">
@@ -2235,6 +2313,14 @@ export default function App(): JSX.Element {
               <h3>{t(language, "guideTitle")}</h3>
               {data.guide.entries.map((entry) => (
                 <article className="guide-card" key={entry.id}>
+                  <div className="guide-card-hero">
+                    <img
+                      alt={`${entry.title[language]} illustration`}
+                      className="guide-card-image"
+                      loading="lazy"
+                      src={GUIDE_FLOWER_ART[entry.id]}
+                    />
+                  </div>
                   <header>
                     <h4>{entry.title[language]}</h4>
                     <p>{entry.subtitle[language]}</p>
@@ -2252,6 +2338,28 @@ export default function App(): JSX.Element {
                   </ul>
                 </article>
               ))}
+              <section className="guide-compare-section">
+                <div className="guide-compare-header">
+                  <h4>{guideCompareCopy.title}</h4>
+                  <p>{guideCompareCopy.intro}</p>
+                </div>
+                <div className="guide-compare-grid">
+                  {GUIDE_COMPARISON_ART.map((item) => (
+                    <article className="guide-compare-card" key={item.id}>
+                      <img
+                        alt={item.title[language]}
+                        className="guide-compare-image"
+                        loading="lazy"
+                        src={item.image}
+                      />
+                      <div className="guide-compare-copy">
+                        <h5>{item.title[language]}</h5>
+                        <p>{item.body[language]}</p>
+                      </div>
+                    </article>
+                  ))}
+                </div>
+              </section>
             </section>
           ) : (
             <section className="about-panel">
