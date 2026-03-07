@@ -76,6 +76,10 @@ const COVERAGE_COLORS = {
 const EMPTY_TREE_COLLECTION: TreeCollection = { type: "FeatureCollection", features: [] };
 
 const REGION_CITY_OVERRIDES: Partial<Record<string, CoverageRegion>> = {
+  "New York City": "ny",
+  Pittsburgh: "pa",
+  Philadelphia: "pa",
+  Cambridge: "ma",
   "Washington DC": "dc",
   "Vancouver BC": "bc",
   "Victoria BC": "bc",
@@ -494,20 +498,26 @@ const REGION_SWITCH_BOUNDS: Partial<Record<CoverageRegion, [[number, number], [n
   ]
 };
 
-const GLOBAL_REGION_OPTIONS: CoverageRegion[] = ["wa", "ca", "dc", "or", "bc"];
+const GLOBAL_REGION_OPTIONS: CoverageRegion[] = ["wa", "ca", "dc", "or", "bc", "ny", "pa", "ma"];
 const REGION_COUNTRY_EMOJIS: Record<CoverageRegion, string> = {
   wa: "🇺🇸",
   ca: "🇺🇸",
   dc: "🇺🇸",
   or: "🇺🇸",
-  bc: "🇨🇦"
+  bc: "🇨🇦",
+  ny: "🇺🇸",
+  pa: "🇺🇸",
+  ma: "🇺🇸"
 };
 const REGION_SORT_LABELS: Record<CoverageRegion, string> = {
   wa: "Washington",
   ca: "California",
   dc: "Washington, DC",
   or: "Oregon",
-  bc: "British Columbia"
+  bc: "British Columbia",
+  ny: "New York",
+  pa: "Pennsylvania",
+  ma: "Massachusetts"
 };
 
 interface SelectedTree {
@@ -783,7 +793,7 @@ function clipMultiPolygonToGeometry(
 }
 
 function parseRegion(raw: string | null, cities: string[]): CoverageRegion {
-  if (raw === "wa" || raw === "ca" || raw === "or" || raw === "dc" || raw === "bc") {
+  if (raw === "wa" || raw === "ca" || raw === "or" || raw === "dc" || raw === "bc" || raw === "ny" || raw === "pa" || raw === "ma") {
     return raw;
   }
   if (cities.length > 0) {
@@ -798,6 +808,15 @@ function regionForCity(city: string): CoverageRegion {
   }
   if (city === "Washington DC" || city.endsWith(" DC")) {
     return "dc";
+  }
+  if (city.endsWith(" NY") || city.endsWith(", NY")) {
+    return "ny";
+  }
+  if (city.endsWith(" PA") || city.endsWith(", PA")) {
+    return "pa";
+  }
+  if (city.endsWith(" MA") || city.endsWith(", MA")) {
+    return "ma";
   }
   if (city.endsWith(" OR") || city.endsWith(", OR")) {
     return "or";
@@ -818,6 +837,15 @@ function stateCodeForCity(city: string): string {
   }
   if (region === "bc") {
     return "BC";
+  }
+  if (region === "ny") {
+    return "NY";
+  }
+  if (region === "pa") {
+    return "PA";
+  }
+  if (region === "ma") {
+    return "MA";
   }
   if (region === "or") {
     return "OR";

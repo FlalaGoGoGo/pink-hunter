@@ -13,7 +13,7 @@ export type Language =
   | "ja-JP"
   | "fr-FR"
   | "vi-VN";
-export type CoverageRegion = "wa" | "ca" | "or" | "dc" | "bc";
+export type CoverageRegion = "wa" | "ca" | "or" | "dc" | "bc" | "ny" | "pa" | "ma";
 export type RegionWarningLevel = "none" | "warning" | "high_warning" | "hard_fail";
 
 export type LayoutMode = "mobile_sheet" | "desktop_split";

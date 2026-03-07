@@ -1,6 +1,6 @@
 {
   "version": "v2",
-  "generated_at": "2026-03-07T04:49:09.039528+00:00",
+  "generated_at": "2026-03-07T07:58:04.236697+00:00",
   "default_region": "wa",
   "coverage_rule": "official_city_boundary_only",
   "coverage_skipped_cities": [],
@@ -85,54 +85,39 @@
     "Yarrow Point"
   ],
   "coverage_official_unavailable_skipped_cities": [],
-  "source_count": 37,
-  "total_records": 249075,
-  "included_records": 226764,
-  "unknown_records": 217603,
+  "source_count": 41,
+  "total_records": 397660,
+  "included_records": 290811,
+  "unknown_records": 259769,
   "regions": [
     {
-      "id": "wa",
-      "label": "WA",
+      "id": "bc",
+      "label": "BC",
       "available": true,
       "bounds": [
         [
-          -123.08,
-          47.02
+          -123.39590334063327,
+          48.40249758903433
         ],
         [
-          -121.55,
-          48.08
+          -123.02314758300781,
+          49.31617355253472
         ]
       ],
       "data_path": null,
-      "tree_count": 67668,
-      "city_count": 17,
+      "tree_count": 40463,
+      "city_count": 2,
       "cities": [
-        "Bellevue",
-        "Bellingham",
-        "Everett",
-        "Gig Harbor",
-        "Kenmore",
-        "Kirkland",
-        "Puyallup",
-        "Redmond",
-        "Renton",
-        "Sammamish",
-        "SeaTac",
-        "Seattle",
-        "Shoreline",
-        "Snohomish",
-        "Spokane",
-        "Walla Walla",
-        "Yakima"
+        "Vancouver BC",
+        "Victoria BC"
       ],
-      "raw_bytes": 36119776,
-      "gzip_bytes": 1808951,
+      "raw_bytes": 21383630,
+      "gzip_bytes": 971234,
       "warning_level": "none",
       "city_split": {
         "strategy": "city",
-        "index_path": "/data/trees.wa.city-index.v1.json",
-        "file_count": 17,
+        "index_path": "/data/trees.bc.city-index.v1.json",
+        "file_count": 2,
         "ready": true
       }
     },
@@ -180,36 +165,6 @@
       }
     },
     {
-      "id": "or",
-      "label": "OR",
-      "available": true,
-      "bounds": [
-        [
-          -123.12291699979801,
-          44.851231999965705
-        ],
-        [
-          -122.36755900003719,
-          45.652886166421595
-        ]
-      ],
-      "data_path": null,
-      "tree_count": 24775,
-      "city_count": 1,
-      "cities": [
-        "Portland"
-      ],
-      "raw_bytes": 13009486,
-      "gzip_bytes": 581491,
-      "warning_level": "none",
-      "city_split": {
-        "strategy": "city",
-        "index_path": "/data/trees.or.city-index.v1.json",
-        "file_count": 1,
-        "ready": true
-      }
-    },
-    {
       "id": "dc",
       "label": "DC",
       "available": true,
@@ -240,33 +195,169 @@
       }
     },
     {
-      "id": "bc",
-      "label": "BC",
+      "id": "ma",
+      "label": "MA",
       "available": true,
       "bounds": [
         [
-          -123.39590334063327,
-          48.40249758903433
+          -71.16039799993996,
+          42.35240299978186
         ],
         [
-          -123.02314758300781,
-          49.31617355253472
+          -71.06398399980829,
+          42.40416700026896
         ]
       ],
       "data_path": null,
-      "tree_count": 40463,
-      "city_count": 2,
+      "tree_count": 1954,
+      "city_count": 1,
       "cities": [
-        "Vancouver BC",
-        "Victoria BC"
+        "Cambridge"
       ],
-      "raw_bytes": 21383630,
-      "gzip_bytes": 971234,
+      "raw_bytes": 934920,
+      "gzip_bytes": 47874,
       "warning_level": "none",
       "city_split": {
         "strategy": "city",
-        "index_path": "/data/trees.bc.city-index.v1.json",
+        "index_path": "/data/trees.ma.city-index.v1.json",
+        "file_count": 1,
+        "ready": true
+      }
+    },
+    {
+      "id": "ny",
+      "label": "NY",
+      "available": true,
+      "bounds": [
+        [
+          -74.25884300038047,
+          40.4765780002232
+        ],
+        [
+          -73.70016900037544,
+          40.917705000258394
+        ]
+      ],
+      "data_path": null,
+      "tree_count": 40685,
+      "city_count": 1,
+      "cities": [
+        "New York City"
+      ],
+      "raw_bytes": 22771524,
+      "gzip_bytes": 695170,
+      "warning_level": "none",
+      "city_split": {
+        "strategy": "city",
+        "index_path": "/data/trees.ny.city-index.v1.json",
+        "file_count": 1,
+        "ready": true
+      }
+    },
+    {
+      "id": "or",
+      "label": "OR",
+      "available": true,
+      "bounds": [
+        [
+          -123.12291699979801,
+          44.851231999965705
+        ],
+        [
+          -122.36755900003719,
+          45.652886166421595
+        ]
+      ],
+      "data_path": null,
+      "tree_count": 24775,
+      "city_count": 1,
+      "cities": [
+        "Portland"
+      ],
+      "raw_bytes": 13009486,
+      "gzip_bytes": 581491,
+      "warning_level": "none",
+      "city_split": {
+        "strategy": "city",
+        "index_path": "/data/trees.or.city-index.v1.json",
+        "file_count": 1,
+        "ready": true
+      }
+    },
+    {
+      "id": "pa",
+      "label": "PA",
+      "available": true,
+      "bounds": [
+        [
+          -80.09532800017763,
+          39.86746400022409
+        ],
+        [
+          -74.95576300016803,
+          40.50103700011603
+        ]
+      ],
+      "data_path": null,
+      "tree_count": 21408,
+      "city_count": 2,
+      "cities": [
+        "Philadelphia",
+        "Pittsburgh"
+      ],
+      "raw_bytes": 11895188,
+      "gzip_bytes": 536098,
+      "warning_level": "none",
+      "city_split": {
+        "strategy": "city",
+        "index_path": "/data/trees.pa.city-index.v1.json",
         "file_count": 2,
+        "ready": true
+      }
+    },
+    {
+      "id": "wa",
+      "label": "WA",
+      "available": true,
+      "bounds": [
+        [
+          -123.08,
+          47.02
+        ],
+        [
+          -121.55,
+          48.08
+        ]
+      ],
+      "data_path": null,
+      "tree_count": 67668,
+      "city_count": 17,
+      "cities": [
+        "Bellevue",
+        "Bellingham",
+        "Everett",
+        "Gig Harbor",
+        "Kenmore",
+        "Kirkland",
+        "Puyallup",
+        "Redmond",
+        "Renton",
+        "Sammamish",
+        "SeaTac",
+        "Seattle",
+        "Shoreline",
+        "Snohomish",
+        "Spokane",
+        "Walla Walla",
+        "Yakima"
+      ],
+      "raw_bytes": 36119776,
+      "gzip_bytes": 1808951,
+      "warning_level": "none",
+      "city_split": {
+        "strategy": "city",
+        "index_path": "/data/trees.wa.city-index.v1.json",
+        "file_count": 17,
         "ready": true
       }
     }
@@ -303,6 +394,15 @@
       "last_edit_at": "2025-02-25T14:28:18.205000+00:00",
       "records_fetched": 16603,
       "records_included": 1997
+    },
+    {
+      "name": "Street Trees",
+      "city": "Cambridge",
+      "endpoint": "https://www.cambridgema.gov/GIS/gisdatadictionary/Environmental/ENVIRONMENTAL_StreetTrees",
+      "last_edit_at": "",
+      "records_fetched": 42712,
+      "records_included": 1954,
+      "note": "Integrated from the official City of Cambridge street-tree shapefile download."
     },
     {
       "name": "Tree Inventory",
@@ -371,6 +471,15 @@
       "records_included": 1696
     },
     {
+      "name": "2015 Street Tree Census - Tree Data",
+      "city": "New York City",
+      "endpoint": "https://data.cityofnewyork.us/Environment/2015-Street-Tree-Census-Tree-Data/uvpi-gqnh",
+      "last_edit_at": "2017-10-04T13:41:26+00:00",
+      "records_fetched": 652173,
+      "records_included": 40685,
+      "note": "Integrated from the official NYC Open Data street tree census dataset published by NYC Parks."
+    },
+    {
       "name": "Oakland Street Trees",
       "city": "Oakland",
       "endpoint": "https://data.oaklandca.gov/Environmental/Oakland-Street-Trees/4jcx-enxf",
@@ -385,6 +494,24 @@
       "last_edit_at": "2023-01-04T12:54:30.056000+00:00",
       "records_fetched": 39629,
       "records_included": 4996
+    },
+    {
+      "name": "PPR Tree Inventory 2025",
+      "city": "Philadelphia",
+      "endpoint": "https://metadata.phila.gov/#home/datasetdetails/57a0e1d5aa8882104134830e/representationdetails/690a4183ef9cba032bd11d00/",
+      "last_edit_at": "2025-11-20T22:42:17.883000+00:00",
+      "records_fetched": 151726,
+      "records_included": 17717,
+      "note": "Integrated from the official Philadelphia Parks & Recreation tree inventory layer."
+    },
+    {
+      "name": "TreeKeeper Inventory",
+      "city": "Pittsburgh",
+      "endpoint": "https://pittsburghpa.treekeepersoftware.com",
+      "last_edit_at": "",
+      "records_fetched": 51357,
+      "records_included": 3691,
+      "note": "Integrated from the official public Pittsburgh TreeKeeper inventory domain."
     },
     {
       "name": "Street Tree Inventory - Active Records",

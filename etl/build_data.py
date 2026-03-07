@@ -119,6 +119,17 @@ SAN_RAFAEL_DATASET_PAGE = "https://www.arcgis.com/home/item.html?id=8a236959df6f
 BEAVERTON_BOUNDARY_LAYER = (
     "https://gisweb.beavertonoregon.gov/server/rest/services/Public_SharedServices/pubAdministrativeBoundaries/MapServer/0"
 )
+NYC_DATASET = "https://data.cityofnewyork.us/resource/uvpi-gqnh.json"
+NYC_METADATA = "https://data.cityofnewyork.us/api/views/uvpi-gqnh.json"
+NYC_DATASET_PAGE = "https://data.cityofnewyork.us/Environment/2015-Street-Tree-Census-Tree-Data/uvpi-gqnh"
+PHILADELPHIA_LAYER = (
+    "https://services.arcgis.com/fLeGjb7u4uXqeF9q/arcgis/rest/services/ppr_tree_inventory_2025/FeatureServer/0"
+)
+PHILADELPHIA_DATASET_PAGE = (
+    "https://metadata.phila.gov/#home/datasetdetails/57a0e1d5aa8882104134830e/representationdetails/690a4183ef9cba032bd11d00/"
+)
+CAMBRIDGE_STREET_TREES_ZIP = "https://gis.cambridgema.gov/download/shp/ENVIRONMENTAL_StreetTrees.shp.zip"
+CAMBRIDGE_DATASET_PAGE = "https://www.cambridgema.gov/GIS/gisdatadictionary/Environmental/ENVIRONMENTAL_StreetTrees"
 VANCOUVER_BC_DATASET = "https://opendata.vancouver.ca/api/explore/v2.1/catalog/datasets/public-trees"
 VANCOUVER_BC_BOUNDARY_DATASET = "https://opendata.vancouver.ca/api/explore/v2.1/catalog/datasets/city-boundary"
 VICTORIA_PARK_TREES_LAYER = "https://maps.victoria.ca/server/rest/services/OpenData/OpenData_Parks/MapServer/15"
@@ -149,8 +160,15 @@ REGION_LABELS: dict[str, str] = {
     "or": "OR",
     "dc": "DC",
     "bc": "BC",
+    "ny": "NY",
+    "pa": "PA",
+    "ma": "MA",
 }
 REGION_CITY_OVERRIDES: dict[str, str] = {
+    "New York City": "ny",
+    "Pittsburgh": "pa",
+    "Philadelphia": "pa",
+    "Cambridge": "ma",
     "Washington DC": "dc",
     "Vancouver BC": "bc",
     "Victoria BC": "bc",
@@ -191,6 +209,10 @@ REGION_CITY_OVERRIDES: dict[str, str] = {
 }
 
 CITY_BOUNDARY_HINTS: dict[str, dict[str, str]] = {
+    "New York City": {"state": "36", "basename": "New York"},
+    "Pittsburgh": {"state": "42"},
+    "Philadelphia": {"state": "42"},
+    "Cambridge": {"state": "25"},
     "Washington DC": {"state": "11", "basename": "Washington"},
     "Portland": {"boundary_source": "portland_or_arcgis"},
     "Beaverton": {"state": "41", "boundary_source": "beaverton_arcgis"},
@@ -290,6 +312,7 @@ OFFICIAL_DATA_UNAVAILABLE_CITIES: dict[str, str] = {
     "Normandy Park": "City investigated; no official public single-tree species dataset was confirmed.",
     "North Bend": "City investigated; no official public single-tree species dataset was confirmed.",
     "Olympia": "No current official city single-tree species layer was confirmed; only older or non-city sources were found.",
+    "Pittsburgh": "City tree datasets were investigated, but no verified official city-hosted public single-tree species inventory was confirmed for current ETL use.",
     "Port Orchard": "City investigated; no official public single-tree species dataset was confirmed.",
     "Redwood City": "Official city GIS and public-works materials were reviewed, but no verified public citywide single-tree dataset was confirmed in this round.",
     "Richmond": "Official Richmond, CA ArcGIS and city data searches in this round did not confirm a public citywide single-tree species dataset.",
@@ -1556,6 +1579,12 @@ def region_for_city(city: str) -> str:
         return REGION_CITY_OVERRIDES[city]
     if city.endswith(" BC") or city.endswith(", BC"):
         return "bc"
+    if city.endswith(" NY") or city.endswith(", NY"):
+        return "ny"
+    if city.endswith(" PA") or city.endswith(", PA"):
+        return "pa"
+    if city.endswith(" MA") or city.endswith(", MA"):
+        return "ma"
     if city.endswith(" CA") or city.endswith(", CA"):
         return "ca"
     if city.endswith(" OR") or city.endswith(", OR"):

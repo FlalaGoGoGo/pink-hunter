@@ -19,14 +19,22 @@ if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
 from etl.build_data import (
+    CAMBRIDGE_DATASET_PAGE,
+    CAMBRIDGE_STREET_TREES_ZIP,
     CONCORD_BOUNDARY_LAYER,
     CONCORD_DATASET_PAGE,
     CONCORD_TREEPLOTTER_URL,
     FREMONT_BOUNDARY_LAYER,
     FREMONT_DATASET_PAGE,
     FREMONT_TREEPLOTTER_URL,
+    NYC_DATASET,
+    NYC_DATASET_PAGE,
+    NYC_METADATA,
+    PHILADELPHIA_DATASET_PAGE,
+    PHILADELPHIA_LAYER,
     MILPITAS_LAYER,
     PUBLIC_DATA_DIR,
+    REGION_LABELS,
     MAPPING_PATH,
     NORMALIZED_DIR,
     SAN_MATEO_DATASET_PAGE,
@@ -46,10 +54,14 @@ from etl.build_data import (
     fetch_all_features,
     fetch_json,
     fetch_ods_export_rows,
+    fetch_soda_count,
+    fetch_soda_rows,
     fetch_us_city_zip_index,
     generic_scientific_name_for_common_hint,
     iso_from_epoch,
     load_mapping,
+    load_zipped_point_shapefile_rows,
+    load_zipped_shapefile,
     load_subtype_mapping,
     normalize_scientific_name,
     post_form_with_curl,
@@ -80,6 +92,9 @@ SAN_RAFAEL_BOUNDARY_DATASET_PAGE = "https://www.arcgis.com/home/item.html?id=4c6
 TREEPLOTTER_CLIENT_VERSION = "v3.9.65"
 FREMONT_DB_ENDPOINT = "https://pg-cloud.com/main/server/db.php"
 SALINAS_DATASET = "https://cityofsalinas.opendatasoft.com/api/explore/v2.1/catalog/datasets/tree-inventory"
+PITTSBURGH_BASE = "https://pittsburghpa.treekeepersoftware.com"
+PITTSBURGH_SEARCH_ENDPOINT = f"{PITTSBURGH_BASE}/cffiles/search.cfc"
+PITTSBURGH_GRIDS_ENDPOINT = f"{PITTSBURGH_BASE}/cffiles/grids.cfc"
 SPECIES_TEXT_PATTERN = re.compile(r"^\s*(?P<common>.+?)\s*\((?P<scientific>[^()]+)\)\s*$")
 DISPLAY_NAME_REPLACEMENTS = {
     "Chery": "Cherry",
@@ -94,6 +109,10 @@ SUPPORTED_CITIES = (
     "Salinas",
     "Concord",
     "South San Francisco",
+    "New York City",
+    "Philadelphia",
+    "Cambridge",
+    "Pittsburgh",
 )
 
 
@@ -123,6 +142,60 @@ def parse_species_text(raw_value: str | None) -> tuple[str, str | None]:
         scientific_raw = expand_abbreviated_botanical_name(match.group("scientific"), common_name)
         return scientific_raw, common_name
     return generic_scientific_name_for_common_hint(text), text
+
+
+def clean_common_name(raw_value: str | None) -> str | None:
+    text = clean_display_name(raw_value)
+    if not text:
+        return None
+    letters = [character for character in text if character.isalpha()]
+    if letters and all(character.islower() for character in letters):
+        return text.title()
+    return text
+
+
+def format_scientific_display_name(raw_value: str | None, common_name: str | None = None) -> str:
+    text = expand_abbreviated_botanical_name(raw_value, common_name).strip()
+    if not text:
+        return ""
+
+    text = re.sub(r"\s+", " ", text.replace("×", "x"))
+    tokens = text.split(" ")
+    formatted: list[str] = []
+    lower_tokens = {"x", "sp", "sp.", "spp", "spp.", "species", "var", "var.", "subsp", "subsp.", "ssp", "ssp."}
+    for index, token in enumerate(tokens):
+        if not token:
+            continue
+        if index == 0 and re.search(r"[A-Za-z]", token):
+            formatted.append(token.capitalize())
+            continue
+        if token.lower() in lower_tokens:
+            formatted.append(token.lower())
+            continue
+        if token.startswith("'") and token.endswith("'"):
+            formatted.append(token)
+            continue
+        if re.fullmatch(r"[A-Z][a-z]+", token):
+            formatted.append(token)
+            continue
+        if re.search(r"[A-Za-z]", token):
+            formatted.append(token.lower())
+            continue
+        formatted.append(token)
+    return " ".join(formatted)
+
+
+def parse_dash_species(raw_value: str | None) -> tuple[str, str | None]:
+    text = (raw_value or "").strip()
+    if not text:
+        return "", None
+    if " - " not in text:
+        common_name = clean_common_name(text)
+        return format_scientific_display_name(text, common_name), common_name
+    scientific_part, common_part = text.split(" - ", 1)
+    common_name = clean_common_name(common_part)
+    scientific_raw = format_scientific_display_name(scientific_part, common_name)
+    return scientific_raw, common_name
 
 
 def domain_lookup(layer_info: dict[str, Any], field_name: str) -> dict[Any, str]:
@@ -184,11 +257,41 @@ def save_meta(meta: dict[str, Any]) -> None:
     (PUBLIC_DATA_DIR / "meta.v2.json").write_text(json.dumps(meta, ensure_ascii=False, indent=2), encoding="utf-8")
 
 
-def refresh_publish_indexes() -> None:
-    subprocess.run(
-        ["python3", "scripts/refresh_region_city_splits.py", "--data-dir", "public/data", "--region", "ca"],
-        check=True,
-    )
+def ensure_region_entries(meta: dict[str, Any], regions: set[str]) -> None:
+    existing = {region_entry.get("id") for region_entry in meta.get("regions", [])}
+    for region_id in sorted(regions):
+        if region_id in existing:
+            continue
+        meta.setdefault("regions", []).append(
+            {
+                "id": region_id,
+                "label": REGION_LABELS[region_id],
+                "available": True,
+                "bounds": [[-123.08, 47.02], [-121.55, 48.08]],
+                "data_path": None,
+                "tree_count": 0,
+                "city_count": 0,
+                "cities": [],
+                "raw_bytes": 0,
+                "gzip_bytes": 0,
+                "warning_level": "none",
+                "city_split": {
+                    "strategy": "city",
+                    "index_path": f"/data/trees.{region_id}.city-index.v1.json",
+                    "file_count": 0,
+                    "ready": False,
+                },
+            }
+        )
+    meta["regions"].sort(key=lambda item: item.get("id", ""))
+
+
+def refresh_publish_indexes(target_regions: set[str]) -> None:
+    for region in sorted(target_regions):
+        subprocess.run(
+            ["python3", "scripts/refresh_region_city_splits.py", "--data-dir", "public/data", "--region", region],
+            check=True,
+        )
     subprocess.run(
         ["python3", "scripts/refresh_coverage_metadata.py", "--data-dir", "public/data"],
         check=True,
@@ -910,6 +1013,368 @@ def fetch_salinas() -> dict[str, Any]:
     }
 
 
+def fetch_pittsburgh() -> dict[str, Any]:
+    summary_payload, rows = fetch_treekeeper_rows(
+        PITTSBURGH_SEARCH_ENDPOINT,
+        PITTSBURGH_GRIDS_ENDPOINT,
+        uid="pinkhunter-pittsburgh",
+        fac_id=1,
+    )
+    zip_index = fetch_us_city_zip_index("Pittsburgh")
+    mapping_rows = load_mapping(MAPPING_PATH)
+    subtype_rows = load_subtype_mapping(SUBTYPE_MAPPING_PATH)
+
+    output_features: list[dict[str, Any]] = []
+    normalized_rows: list[dict[str, Any]] = []
+    for row in rows:
+        lon = row.get("LONGITUDE")
+        lat = row.get("LATITUDE")
+        if lon is None or lat is None:
+            geometry_raw = row.get("SITE_GEOMETRY")
+            if isinstance(geometry_raw, str) and geometry_raw.strip():
+                try:
+                    geometry_payload = json.loads(geometry_raw)
+                    coordinates = geometry_payload.get("coordinates") or []
+                    lon, lat = coordinates[0], coordinates[1]
+                except Exception:
+                    lon = None
+                    lat = None
+        if lon is None or lat is None:
+            continue
+
+        scientific_raw, common_name = parse_species_text(row.get("SITE_ATTR6"))
+        scientific_normalized = normalize_scientific_name(scientific_raw)
+        species_group, subtype_name = classify_tree_record(scientific_raw, common_name, mapping_rows, subtype_rows)
+        ownership_raw = "City of Pittsburgh"
+        zip_code = assign_zip_code(lon, lat, zip_index)
+        row_id = f"pittsburgh-{row.get('SITE_ID')}"
+
+        normalized_rows.append(
+            {
+                "id": row_id,
+                "city": "Pittsburgh",
+                "source_dataset": "TreeKeeper Inventory",
+                "scientific_raw": scientific_raw,
+                "scientific_normalized": scientific_normalized,
+                "common_name": common_name or "",
+                "subtype_name": subtype_name or "",
+                "zip_code": zip_code or "",
+                "species_group": species_group or "",
+                "ownership": canonical_ownership(ownership_raw),
+                "ownership_raw": ownership_raw,
+                "lat": lat,
+                "lon": lon,
+                "included": "1" if species_group else "0",
+            }
+        )
+        if not species_group:
+            continue
+        output_features.append(
+            {
+                "type": "Feature",
+                "geometry": {"type": "Point", "coordinates": [lon, lat]},
+                "properties": {
+                    "id": row_id,
+                    "species_group": species_group,
+                    "scientific_name": scientific_raw,
+                    "common_name": common_name,
+                    "subtype_name": subtype_name,
+                    "zip_code": zip_code,
+                    "ownership": canonical_ownership(ownership_raw),
+                    "ownership_raw": ownership_raw,
+                    "city": "Pittsburgh",
+                    "source_dataset": "TreeKeeper Inventory",
+                    "source_department": "City of Pittsburgh",
+                    "source_last_edit_at": "",
+                },
+            }
+        )
+
+    return {
+        "city": "Pittsburgh",
+        "region": "pa",
+        "features": output_features,
+        "normalized_rows": normalized_rows,
+        "source": {
+            "name": "TreeKeeper Inventory",
+            "city": "Pittsburgh",
+            "endpoint": PITTSBURGH_BASE,
+            "last_edit_at": "",
+            "records_fetched": int(summary_payload.get("siteCount") or len(rows)),
+            "records_included": len(output_features),
+            "note": "Integrated from the official public Pittsburgh TreeKeeper inventory domain.",
+        },
+    }
+
+
+def fetch_new_york_city() -> dict[str, Any]:
+    metadata = fetch_json(NYC_METADATA)
+    rows = fetch_soda_rows(
+        NYC_DATASET,
+        where="status='Alive' AND (lower(spc_latin) like 'prunus%' OR lower(spc_latin) like 'malus%' OR lower(spc_latin) like 'magnolia%')",
+        order="tree_id",
+    )
+    mapping_rows = load_mapping(MAPPING_PATH)
+    subtype_rows = load_subtype_mapping(SUBTYPE_MAPPING_PATH)
+    last_edit_at = iso_from_epoch(metadata.get("rowsUpdatedAt") or metadata.get("viewLastModified"))
+
+    output_features: list[dict[str, Any]] = []
+    normalized_rows: list[dict[str, Any]] = []
+    for row in rows:
+        try:
+            lon = float(row.get("longitude"))
+            lat = float(row.get("latitude"))
+        except (TypeError, ValueError):
+            continue
+
+        common_name = clean_common_name(row.get("spc_common"))
+        scientific_raw = format_scientific_display_name(row.get("spc_latin"), common_name)
+        scientific_normalized = normalize_scientific_name(scientific_raw)
+        species_group, subtype_name = classify_tree_record(scientific_raw, common_name, mapping_rows, subtype_rows)
+        ownership_raw = "New York City Department of Parks & Recreation"
+        zip_code = (row.get("zipcode") or "").strip() or None
+        row_id = f"new-york-city-{row.get('tree_id')}"
+
+        normalized_rows.append(
+            {
+                "id": row_id,
+                "city": "New York City",
+                "source_dataset": "2015 Street Tree Census - Tree Data",
+                "scientific_raw": scientific_raw,
+                "scientific_normalized": scientific_normalized,
+                "common_name": common_name or "",
+                "subtype_name": subtype_name or "",
+                "zip_code": zip_code or "",
+                "species_group": species_group or "",
+                "ownership": canonical_ownership(ownership_raw),
+                "ownership_raw": ownership_raw,
+                "lat": lat,
+                "lon": lon,
+                "included": "1" if species_group else "0",
+            }
+        )
+        if not species_group:
+            continue
+        output_features.append(
+            {
+                "type": "Feature",
+                "geometry": {"type": "Point", "coordinates": [lon, lat]},
+                "properties": {
+                    "id": row_id,
+                    "species_group": species_group,
+                    "scientific_name": scientific_raw,
+                    "common_name": common_name,
+                    "subtype_name": subtype_name,
+                    "zip_code": zip_code,
+                    "ownership": canonical_ownership(ownership_raw),
+                    "ownership_raw": ownership_raw,
+                    "city": "New York City",
+                    "source_dataset": "2015 Street Tree Census - Tree Data",
+                    "source_department": "Department of Parks & Recreation (DPR)",
+                    "source_last_edit_at": last_edit_at,
+                },
+            }
+        )
+
+    return {
+        "city": "New York City",
+        "region": "ny",
+        "features": output_features,
+        "normalized_rows": normalized_rows,
+        "source": {
+            "name": "2015 Street Tree Census - Tree Data",
+            "city": "New York City",
+            "endpoint": NYC_DATASET_PAGE,
+            "last_edit_at": last_edit_at,
+            "records_fetched": fetch_soda_count(NYC_DATASET, where="status='Alive'"),
+            "records_included": len(output_features),
+            "note": "Integrated from the official NYC Open Data street tree census dataset published by NYC Parks.",
+        },
+    }
+
+
+def fetch_philadelphia() -> dict[str, Any]:
+    layer_info = fetch_json(PHILADELPHIA_LAYER, {"f": "pjson"})
+    rows = fetch_all_features(
+        PHILADELPHIA_LAYER,
+        "tree_name LIKE 'PRUNUS%' OR tree_name LIKE 'MALUS%' OR tree_name LIKE 'MAGNOLIA%'",
+        ["objectid", "tree_name", "year"],
+        "objectid",
+    )
+    total_payload = fetch_json(
+        f"{PHILADELPHIA_LAYER}/query",
+        {"where": "1=1", "returnCountOnly": "true", "f": "json"},
+    )
+    zip_index = fetch_us_city_zip_index("Philadelphia")
+    mapping_rows = load_mapping(MAPPING_PATH)
+    subtype_rows = load_subtype_mapping(SUBTYPE_MAPPING_PATH)
+    last_edit_at = iso_from_epoch((layer_info.get("editingInfo") or {}).get("lastEditDate"))
+
+    output_features: list[dict[str, Any]] = []
+    normalized_rows: list[dict[str, Any]] = []
+    for feature in rows:
+        attrs = feature.get("attributes", {})
+        geom = feature.get("geometry", {})
+        lon = geom.get("x")
+        lat = geom.get("y")
+        if lon is None or lat is None:
+            continue
+        scientific_raw, common_name = parse_dash_species(attrs.get("tree_name"))
+        scientific_normalized = normalize_scientific_name(scientific_raw)
+        species_group, subtype_name = classify_tree_record(scientific_raw, common_name, mapping_rows, subtype_rows)
+        ownership_raw = "Philadelphia Parks & Recreation"
+        zip_code = assign_zip_code(lon, lat, zip_index)
+        row_id = f"philadelphia-{attrs.get('objectid')}"
+
+        normalized_rows.append(
+            {
+                "id": row_id,
+                "city": "Philadelphia",
+                "source_dataset": "PPR Tree Inventory 2025",
+                "scientific_raw": scientific_raw,
+                "scientific_normalized": scientific_normalized,
+                "common_name": common_name or "",
+                "subtype_name": subtype_name or "",
+                "zip_code": zip_code or "",
+                "species_group": species_group or "",
+                "ownership": canonical_ownership(ownership_raw),
+                "ownership_raw": ownership_raw,
+                "lat": lat,
+                "lon": lon,
+                "included": "1" if species_group else "0",
+            }
+        )
+        if not species_group:
+            continue
+        output_features.append(
+            {
+                "type": "Feature",
+                "geometry": {"type": "Point", "coordinates": [lon, lat]},
+                "properties": {
+                    "id": row_id,
+                    "species_group": species_group,
+                    "scientific_name": scientific_raw,
+                    "common_name": common_name,
+                    "subtype_name": subtype_name,
+                    "zip_code": zip_code,
+                    "ownership": canonical_ownership(ownership_raw),
+                    "ownership_raw": ownership_raw,
+                    "city": "Philadelphia",
+                    "source_dataset": "PPR Tree Inventory 2025",
+                    "source_department": "Philadelphia Parks & Recreation",
+                    "source_last_edit_at": last_edit_at,
+                },
+            }
+        )
+
+    return {
+        "city": "Philadelphia",
+        "region": "pa",
+        "features": output_features,
+        "normalized_rows": normalized_rows,
+        "source": {
+            "name": "PPR Tree Inventory 2025",
+            "city": "Philadelphia",
+            "endpoint": PHILADELPHIA_DATASET_PAGE,
+            "last_edit_at": last_edit_at,
+            "records_fetched": int(total_payload.get("count") or len(rows)),
+            "records_included": len(output_features),
+            "note": "Integrated from the official Philadelphia Parks & Recreation tree inventory layer.",
+        },
+    }
+
+
+def fetch_cambridge() -> dict[str, Any]:
+    reader, _prj_text = load_zipped_shapefile(CAMBRIDGE_STREET_TREES_ZIP)
+    total_records = len(reader)
+    point_rows = load_zipped_point_shapefile_rows(CAMBRIDGE_STREET_TREES_ZIP)
+    zip_index = fetch_us_city_zip_index("Cambridge")
+    mapping_rows = load_mapping(MAPPING_PATH)
+    subtype_rows = load_subtype_mapping(SUBTYPE_MAPPING_PATH)
+
+    output_features: list[dict[str, Any]] = []
+    normalized_rows: list[dict[str, Any]] = []
+    for row in point_rows:
+        attrs = row.get("attributes", {})
+        geom = row.get("geometry", {})
+        if (attrs.get("SiteType") or "").strip() != "Tree":
+            continue
+
+        common_name = clean_common_name(attrs.get("CommonName"))
+        scientific_raw = format_scientific_display_name(attrs.get("Scientific"), common_name)
+        if not scientific_raw:
+            scientific_raw = format_scientific_display_name(attrs.get("Genus"), common_name)
+        scientific_normalized = normalize_scientific_name(scientific_raw)
+        species_group, subtype_name = classify_tree_record(scientific_raw, common_name, mapping_rows, subtype_rows)
+        cultivar = clean_display_name(attrs.get("Cultivar"))
+        if not subtype_name and cultivar:
+            subtype_name = cultivar
+        ownership_raw = clean_display_name(attrs.get("Ownership")) or "City of Cambridge"
+        lon = geom.get("x")
+        lat = geom.get("y")
+        if lon is None or lat is None:
+            continue
+        zip_code = assign_zip_code(lon, lat, zip_index)
+        row_id = f"cambridge-{attrs.get('TreeID')}"
+
+        normalized_rows.append(
+            {
+                "id": row_id,
+                "city": "Cambridge",
+                "source_dataset": "Street Trees",
+                "scientific_raw": scientific_raw,
+                "scientific_normalized": scientific_normalized,
+                "common_name": common_name or "",
+                "subtype_name": subtype_name or "",
+                "zip_code": zip_code or "",
+                "species_group": species_group or "",
+                "ownership": canonical_ownership(ownership_raw),
+                "ownership_raw": ownership_raw,
+                "lat": lat,
+                "lon": lon,
+                "included": "1" if species_group else "0",
+            }
+        )
+        if not species_group:
+            continue
+        output_features.append(
+            {
+                "type": "Feature",
+                "geometry": {"type": "Point", "coordinates": [lon, lat]},
+                "properties": {
+                    "id": row_id,
+                    "species_group": species_group,
+                    "scientific_name": scientific_raw,
+                    "common_name": common_name,
+                    "subtype_name": subtype_name,
+                    "zip_code": zip_code,
+                    "ownership": canonical_ownership(ownership_raw),
+                    "ownership_raw": ownership_raw,
+                    "city": "Cambridge",
+                    "source_dataset": "Street Trees",
+                    "source_department": "City of Cambridge GIS",
+                    "source_last_edit_at": "",
+                },
+            }
+        )
+
+    return {
+        "city": "Cambridge",
+        "region": "ma",
+        "features": output_features,
+        "normalized_rows": normalized_rows,
+        "source": {
+            "name": "Street Trees",
+            "city": "Cambridge",
+            "endpoint": CAMBRIDGE_DATASET_PAGE,
+            "last_edit_at": "",
+            "records_fetched": total_records,
+            "records_included": len(output_features),
+            "note": "Integrated from the official City of Cambridge street-tree shapefile download.",
+        },
+    }
+
+
 CITY_FETCHERS = {
     "Milpitas": fetch_milpitas,
     "San Mateo": fetch_san_mateo,
@@ -918,6 +1383,10 @@ CITY_FETCHERS = {
     "Salinas": fetch_salinas,
     "Concord": fetch_concord,
     "South San Francisco": fetch_south_san_francisco,
+    "Pittsburgh": fetch_pittsburgh,
+    "New York City": fetch_new_york_city,
+    "Philadelphia": fetch_philadelphia,
+    "Cambridge": fetch_cambridge,
 }
 
 
@@ -928,6 +1397,7 @@ def main() -> int:
 
     target_cities = args.city or list(SUPPORTED_CITIES)
     results = [CITY_FETCHERS[city]() for city in target_cities]
+    target_regions = {result["region"] for result in results}
 
     current_rows = load_normalized_rows()
     remaining_rows = [row for row in current_rows if row.get("city") not in target_cities]
@@ -938,7 +1408,11 @@ def main() -> int:
         next_rows.extend(result["normalized_rows"])
 
     write_normalized_rows(next_rows)
-    refresh_publish_indexes()
+    meta = load_meta()
+    meta["generated_at"] = dt.datetime.now(tz=dt.timezone.utc).isoformat()
+    ensure_region_entries(meta, target_regions)
+    save_meta(meta)
+    refresh_publish_indexes(target_regions)
 
     unknown_items = recompute_unknown_items(load_normalized_rows())
     (PUBLIC_DATA_DIR / "unknown_scientific_names.v1.json").write_text(

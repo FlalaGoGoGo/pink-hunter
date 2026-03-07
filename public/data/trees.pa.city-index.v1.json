@@ -1,0 +1,21 @@
+{
+  "generated_at": "2026-03-07T07:57:46.814106+00:00",
+  "region": "pa",
+  "strategy": "city",
+  "items": [
+    {
+      "city": "Philadelphia",
+      "data_path": "/data/trees.pa.city.philadelphia.v1.geojson",
+      "tree_count": 17717,
+      "raw_bytes": 9956244,
+      "gzip_bytes": 449127
+    },
+    {
+      "city": "Pittsburgh",
+      "data_path": "/data/trees.pa.city.pittsburgh.v1.geojson",
+      "tree_count": 3691,
+      "raw_bytes": 1938987,
+      "gzip_bytes": 87310
+    }
+  ]
+}

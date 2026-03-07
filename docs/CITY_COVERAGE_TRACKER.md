@@ -6,6 +6,10 @@ Last updated: 2026-03-06 (America/Los_Angeles)
 | Done | City | Included Trees | Boundary Rule | Notes |
 |---|---|---:|---|---|
 | ✅ | Seattle | 46,114 | Official city boundary | Includes UW supplemental points; ornamental cherry keyword sweep rerun |
+| ✅ | New York City | 40,685 | Official city boundary | Official NYC Parks `2015 Street Tree Census - Tree Data` integrated from NYC Open Data; rows are limited to living trees before blossom filtering |
+| ✅ | Philadelphia | 17,717 | Official city boundary | Official Philadelphia Parks & Recreation `PPR Tree Inventory 2025` layer integrated from the city's ArcGIS/metadata catalog |
+| ✅ | Pittsburgh | 3,691 | Official city boundary | Official public Pittsburgh TreeKeeper inventory domain integrated; blossom names are parsed from `SITE_ATTR6` |
+| ✅ | Cambridge | 1,954 | Official city boundary | Official City of Cambridge `Street Trees` shapefile integrated; only current `SiteType = Tree` rows are included |
 | ✅ | San Francisco | 24,099 | Official city boundary | Official San Francisco Public Works `Street Tree List` integrated from the city open-data portal |
 | ✅ | San Jose | 18,021 | Official city boundary | Official City of San Jose `Street Tree` layer integrated from the city open-data ArcGIS service |
 | ✅ | Palo Alto | 4,996 | Official city boundary | Official City of Palo Alto `Tree Data` layer integrated from the city open GIS portal; official boundary comes from the city-published boundary shapefile |
@@ -71,6 +75,8 @@ Last updated: 2026-03-06 (America/Los_Angeles)
 |---|---|---:|---|---|
 | ⏳ | Mercer Island | 803 (Town Center only) | Partial-only | Official urban-forestry page documents a 2018 Town Center street-tree inventory, but a verified citywide public single-tree endpoint is still not confirmed |
 | ⏳ | Bremerton | Unknown | Blocked public map | Official Park Tree Map web map exists under a city account, but the underlying feature service currently returns `403 Forbidden` to direct public queries |
+| ⏳ | Arlington, VA | Unknown | County-jurisdiction blocker | Official Arlington `od_DPR_Tree_Points` layer exists, but it is a county-level jurisdiction dataset and the current product hard rule is still official city boundary only |
+| ⏳ | Montgomery County, MD | Unknown | Partial-only | Official data portal exposes `Tree Planting Locations`, but that is a planting-program layer rather than a countywide single-tree species inventory |
 | ⏳ | Poulsbo | 75 | Partial-only | Official `Historic Trees of Poulsbo` feature service is public, but it is a curated historic-tree layer, not a citywide public inventory |
 | ⏳ | Pasco | Unknown | Partial-only | Official city content found in this round was a `Volunteer Park Tree Walk` map, not a citywide public single-tree inventory |
 
@@ -129,6 +135,15 @@ Last updated: 2026-03-06 (America/Los_Angeles)
 | ⚠️ | Lacey | Open data searched, no tree layer found | Official `data.cityoflacey.org` search in this round did not surface a public single-tree species dataset |
 | ⚠️ | Tumwater | GIS pages found, no tree layer found | Official GIS/open-data entry points were reviewed in this round, but no public single-tree species point layer was confirmed |
 | ⚠️ | Vancouver WA | Not usable yet | Official city geohub search in this round surfaced urban-tree-canopy and signage inventory layers, but not a public single-tree species inventory |
+| ⚠️ | Newark / Essex County, NJ | Not found yet | Official city and county open-data entry points were reviewed, but no verified public citywide/countywide single-tree species inventory was confirmed |
+| ⚠️ | Mount Vernon | Not found yet | Official city GIS / urban-forestry entry points reviewed in this round did not confirm a public citywide single-tree inventory |
+| ⚠️ | Burlington, WA | Not found yet | Official city pages reviewed in this round did not confirm a public citywide single-tree inventory |
+| ⚠️ | Anacortes | Not found yet | Official city GIS pages reviewed in this round did not confirm a public citywide single-tree inventory |
+| ⚠️ | Surrey | Partial-only | Official Surrey Open Data exposes `Important Trees` and `Park Specimen Trees`, but not a citywide public single-tree inventory |
+| ⚠️ | White Rock | Not found yet | Official city open-data entry points were checked in this round, but no public citywide single-tree inventory was confirmed |
+| ⚠️ | New Westminster | Not found yet | Official ArcGIS Hub search did not confirm a public citywide single-tree inventory in this round |
+| ⚠️ | Coquitlam | Not found yet | Official open-data / ArcGIS searches did not confirm a public citywide single-tree inventory in this round |
+| ⚠️ | Abbotsford | Not found yet | Official city maps / GIS entry points reviewed in this round did not confirm a public citywide single-tree inventory |
 | ⚠️ | Edmonds / Mukilteo / Mountlake Terrace / Mill Creek | Not found yet | No reliable official public single-tree species point layers confirmed yet |
 | ⚠️ | Tukwila / Des Moines / Maple Valley / Covington / Auburn | Not found or rejected | No reliable official city-level single-tree + species point layers, or false-geography matches |
 
@@ -189,3 +204,17 @@ Last updated: 2026-03-06 (America/Los_Angeles)
   - species-name resolution through the public `species` lookup table rather than integer foreign keys in `trees`
 - Added gray coverage for `Redwood City`, `Alameda`, `Hayward`, and `Daly City` after official-source review did not confirm a public citywide single-tree species dataset.
 - Added gray coverage for `Beaverton`, `Gresham`, `Hillsboro`, `Salem`, and `Tigard` after official-source review did not confirm a public citywide single-tree species dataset or raw public endpoint.
+
+## March 2026 Northeast Expansion
+- Integrated `New York City` from the official NYC Parks `2015 Street Tree Census - Tree Data` dataset on NYC Open Data.
+- Integrated `Philadelphia` from the official Philadelphia Parks & Recreation `PPR Tree Inventory 2025` layer.
+- Integrated `Pittsburgh` from the official public Pittsburgh TreeKeeper inventory domain.
+- Integrated `Cambridge` from the official City of Cambridge `Street Trees` shapefile download.
+- Confirmed `Arlington, VA` has an official county tree layer (`od_DPR_Tree_Points`), but it remains outside the current city-boundary-only workflow.
+- Confirmed `Montgomery County, MD` currently exposes `Tree Planting Locations`, not a countywide single-tree species inventory.
+- Official Newark / Essex County open-data entry points were reviewed without confirming a verified public citywide/countywide single-tree species inventory.
+
+## March 2026 Seattle-Vancouver Corridor Sweep
+- Rechecked the Seattle-to-Vancouver corridor beyond already-covered cities.
+- Confirmed `Surrey` has official partial tree layers (`Important Trees`, `Park Specimen Trees`) but not a citywide public single-tree inventory.
+- Official site / GIS checks in this round did not confirm citywide public single-tree inventories for `Mount Vernon`, `Burlington`, `Anacortes`, `White Rock`, `New Westminster`, `Coquitlam`, or `Abbotsford`.

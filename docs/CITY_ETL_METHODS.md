@@ -43,7 +43,7 @@ Last updated: 2026-03-06 (America/Los_Angeles)
 - Boundary data may be published as a legal boundary line; when that happens, the official line is converted into a polygon without manual redraw.
 
 ### Socrata / SODA
-- Used for `San Francisco`.
+- Used for `San Francisco`, `Oakland`, and `New York City`.
 - Metadata comes from the dataset view endpoint (`/api/views/...`).
 - Filtered row pulls use the dataset resource endpoint with SoQL parameters such as:
   - `$where`
@@ -62,7 +62,7 @@ Last updated: 2026-03-06 (America/Los_Angeles)
 - Official item pages or city open-data pages remain the source-of-truth links in metadata.
 
 ### TreeKeeper
-- Used for `Sammamish`, `Everett`, and `South San Francisco`.
+- Used for `Sammamish`, `Everett`, `South San Francisco`, and `Pittsburgh`.
 - Public access comes from `search.cfc` plus `grids.cfc`.
 - `SITE_ATTR1` may contain either:
   - `Common (Scientific)` format
@@ -123,6 +123,10 @@ Last updated: 2026-03-06 (America/Los_Angeles)
 | San Rafael | ArcGIS FeatureServer | `Species_Name`, `Species_Type`, `UniqueID` | ArcGIS point geometry | Official City of San Rafael `Trees` service; common-name-heavy source, so classification relies on controlled common-name fallback |
 | Everett | TreeKeeper | `SITE_ATTR1` parsed by `parse_sammamish_species()` | direct lon/lat or `SITE_GEOMETRY` JSON | Park-tree public endpoint |
 | South San Francisco | TreeKeeper | `SITE_ATTR1` parsed by `parse_species_text()` plus ownership from `SITE_ATTR23` | direct lon/lat or `SITE_GEOMETRY` JSON | Official city-linked TreeKeeper inventory published from the city trees page |
+| New York City | SODA | `spc_latin`, `spc_common`, `zipcode`, `status` | lat/lon columns in dataset rows | Official NYC Parks street-tree census dataset; rows are restricted to `status = Alive` before blossom classification |
+| Philadelphia | ArcGIS FeatureServer | `tree_name` parsed by `parse_dash_species()` | ArcGIS point geometry | Official Philadelphia Parks & Recreation tree inventory layer; botanical/common names are packed into one uppercase text field |
+| Pittsburgh | TreeKeeper | `SITE_ATTR6` parsed by `parse_species_text()` | direct lon/lat or `SITE_GEOMETRY` JSON | Official public Pittsburgh TreeKeeper inventory domain; no public ownership field is published, so ownership is normalized to public |
+| Cambridge | Downloaded Shapefile | `Scientific`, `CommonName`, `Cultivar`, `SiteType` | shapefile points transformed to WGS84 | Official City of Cambridge street-tree shapefile; only current `SiteType = Tree` rows are published into the product |
 | Kirkland | TreePlotter | `species_bo`, `species_la` with `expand_abbreviated_botanical_name()` | WKB hex -> Web Mercator -> lon/lat | Public TreePlotter session/API |
 | Washington DC | ArcGIS MapServer | `SCI_NM`, `CMMN_NM`, `OWNERSHIP` | ArcGIS point geometry | DDOT Urban Tree Canopy layer |
 
@@ -170,7 +174,7 @@ Last updated: 2026-03-06 (America/Los_Angeles)
 
 ## Incremental Publish Fallback
 - Full `npm run etl` remains the canonical path.
-- `npm run etl` now chains the stable targeted-publish refresh for `Milpitas`, `San Mateo`, `San Rafael`, `Salinas`, `Fremont`, `Concord`, and `South San Francisco` after the full ETL, so those city-split files are regenerated as part of the normal publish path.
+- `npm run etl` now chains the stable targeted-publish refresh for `Milpitas`, `San Mateo`, `San Rafael`, `Salinas`, `Fremont`, `Concord`, `South San Francisco`, `New York City`, `Philadelphia`, `Pittsburgh`, and `Cambridge` after the full ETL, so those city-split files are regenerated as part of the normal publish path.
 - When upstream sources are too slow and the already-published local region files are still current, refresh city-split outputs without rerunning the full ETL:
   - `python3 scripts/refresh_region_city_splits.py --data-dir public/data --region all`
 - When a new city source has been validated but is not yet folded into the main full ETL path, publish it incrementally with:

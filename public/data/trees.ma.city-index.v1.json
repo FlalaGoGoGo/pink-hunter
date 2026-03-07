@@ -1,0 +1,14 @@
+{
+  "generated_at": "2026-03-07T07:50:38.758841+00:00",
+  "region": "ma",
+  "strategy": "city",
+  "items": [
+    {
+      "city": "Cambridge",
+      "data_path": "/data/trees.ma.city.cambridge.v1.geojson",
+      "tree_count": 1954,
+      "raw_bytes": 934920,
+      "gzip_bytes": 47874
+    }
+  ]
+}

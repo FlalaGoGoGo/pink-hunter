@@ -9,7 +9,7 @@ Live domain:
 - Official-city-boundary coverage only.
 - Mobile-first map UI with desktop split layout.
 - Five blossom groups: `cherry`, `plum`, `peach`, `magnolia`, `crabapple`.
-- Dual-language UI: `en-US`, `zh-CN`.
+- Multilingual UI: `en-US`, `zh-CN`, `zh-TW`, `es-ES`, `ko-KR`, `ja-JP`, `fr-FR`, `vi-VN`.
 - Covered areas and gray researched areas are both shown on the map.
 
 ## Hard Repo Rule
@@ -40,6 +40,28 @@ Live domain:
 - Walla Walla
 - Puyallup
 - Gig Harbor
+
+</details>
+
+<details>
+<summary>New York</summary>
+
+- New York City
+
+</details>
+
+<details>
+<summary>Pennsylvania</summary>
+
+- Philadelphia
+- Pittsburgh
+
+</details>
+
+<details>
+<summary>Massachusetts</summary>
+
+- Cambridge
 
 </details>
 
@@ -111,6 +133,28 @@ Live domain:
 - Walla Walla: [City of Walla Walla Trees](https://gis2.ci.walla-walla.wa.us/arcgis/rest/services/Basemap/GISBaseMap_TreesVisible/MapServer/0)
 - Puyallup: [City Maintained Street Trees](https://services8.arcgis.com/5K6vnOH0GkPyJs6A/arcgis/rest/services/City_Maintained_Street_Trees/FeatureServer/0)
 - Gig Harbor: [PW Trees Public Viewer](https://services3.arcgis.com/FjNT4j1knnY5Wsw5/arcgis/rest/services/PW_Trees_Public_Viewer/FeatureServer/0)
+
+</details>
+
+<details>
+<summary>New York</summary>
+
+- New York City: [2015 Street Tree Census - Tree Data](https://data.cityofnewyork.us/Environment/2015-Street-Tree-Census-Tree-Data/uvpi-gqnh)
+
+</details>
+
+<details>
+<summary>Pennsylvania</summary>
+
+- Philadelphia: [PPR Tree Inventory 2025](https://metadata.phila.gov/#home/datasetdetails/57a0e1d5aa8882104134830e/representationdetails/690a4183ef9cba032bd11d00/)
+- Pittsburgh: [TreeKeeper Inventory](https://pittsburghpa.treekeepersoftware.com/)
+
+</details>
+
+<details>
+<summary>Massachusetts</summary>
+
+- Cambridge: [Street Trees](https://www.cambridgema.gov/GIS/gisdatadictionary/Environmental/ENVIRONMENTAL_StreetTrees)
 
 </details>
 
@@ -195,6 +239,9 @@ Live domain:
   - `OR`
   - `DC`
   - `BC`
+  - `NY`
+  - `PA`
+  - `MA`
 - Local-only ETL audit outputs such as `data/normalized/trees_normalized.csv` and `data/tmp/*` are not part of the GitHub export repo.
 - `public/data/meta.v2.json` contains the region index, region bounds, aggregate size metadata, and city-split index paths.
 - All published tree-point files now follow the same city-split contract:

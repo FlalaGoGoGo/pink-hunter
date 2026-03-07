@@ -616,56 +616,80 @@ const regionLabelMap: Record<Language, Record<CoverageRegion, string>> = {
     ca: "California",
     or: "Oregon",
     dc: "Washington, DC",
-    bc: "British Columbia"
+    bc: "British Columbia",
+    ny: "New York",
+    pa: "Pennsylvania",
+    ma: "Massachusetts"
   },
   "zh-CN": {
     wa: "华盛顿州",
     ca: "加利福尼亚州",
     or: "俄勒冈州",
     dc: "华盛顿哥伦比亚特区",
-    bc: "不列颠哥伦比亚省"
+    bc: "不列颠哥伦比亚省",
+    ny: "纽约州",
+    pa: "宾夕法尼亚州",
+    ma: "马萨诸塞州"
   },
   "zh-TW": {
     wa: "華盛頓州",
     ca: "加利福尼亞州",
     or: "俄勒岡州",
     dc: "華盛頓哥倫比亞特區",
-    bc: "不列顛哥倫比亞省"
+    bc: "不列顛哥倫比亞省",
+    ny: "紐約州",
+    pa: "賓夕法尼亞州",
+    ma: "麻薩諸塞州"
   },
   "es-ES": {
     wa: "Washington",
     ca: "California",
     or: "Oregón",
     dc: "Washington, D. C.",
-    bc: "Columbia Británica"
+    bc: "Columbia Británica",
+    ny: "Nueva York",
+    pa: "Pensilvania",
+    ma: "Massachusetts"
   },
   "ko-KR": {
     wa: "워싱턴주",
     ca: "캘리포니아주",
     or: "오리건주",
     dc: "워싱턴 D.C.",
-    bc: "브리티시컬럼비아주"
+    bc: "브리티시컬럼비아주",
+    ny: "뉴욕주",
+    pa: "펜실베이니아주",
+    ma: "매사추세츠주"
   },
   "ja-JP": {
     wa: "ワシントン州",
     ca: "カリフォルニア州",
     or: "オレゴン州",
     dc: "ワシントンDC",
-    bc: "ブリティッシュコロンビア州"
+    bc: "ブリティッシュコロンビア州",
+    ny: "ニューヨーク州",
+    pa: "ペンシルベニア州",
+    ma: "マサチューセッツ州"
   },
   "fr-FR": {
     wa: "Washington",
     ca: "Californie",
     or: "Oregon",
     dc: "Washington, D.C.",
-    bc: "Colombie-Britannique"
+    bc: "Colombie-Britannique",
+    ny: "New York",
+    pa: "Pennsylvanie",
+    ma: "Massachusetts"
   },
   "vi-VN": {
     wa: "Washington",
     ca: "California",
     or: "Oregon",
     dc: "Washington, DC",
-    bc: "British Columbia"
+    bc: "British Columbia",
+    ny: "New York",
+    pa: "Pennsylvania",
+    ma: "Massachusetts"
   }
 };
 
