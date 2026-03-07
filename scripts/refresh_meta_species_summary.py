@@ -30,11 +30,12 @@ def main() -> int:
     data_dir = Path(args.data_dir)
     meta_path = data_dir / "meta.v2.json"
     if not meta_path.exists():
-      raise FileNotFoundError(f"Missing metadata file: {meta_path}")
+        raise FileNotFoundError(f"Missing metadata file: {meta_path}")
 
     meta = json.loads(meta_path.read_text(encoding="utf-8"))
     region_features: dict[str, list[dict]] = defaultdict(list)
     region_cities: dict[str, set[str]] = defaultdict(set)
+    area_summaries: list[dict[str, object]] = []
 
     for path in sorted(data_dir.glob("trees.*.city.*.v1.geojson")):
         match = CITY_FILE_PATTERN.match(path.name)
@@ -44,10 +45,22 @@ def main() -> int:
         payload = json.loads(path.read_text(encoding="utf-8"))
         features = payload.get("features", [])
         region_features[region].extend(features)
+        city_name = ""
         for feature in features:
             city = str(feature.get("properties", {}).get("city", "")).strip()
             if city:
                 region_cities[region].add(city)
+                city_name = city
+
+        if city_name:
+            area_summaries.append(
+                {
+                    "jurisdiction": city_name,
+                    "region": region,
+                    "tree_count": len(features),
+                    "species_counts": summarize_species_counts(features) if features else empty_species_counts(),
+                }
+            )
 
     all_features: list[dict] = []
     for region_entry in meta.get("regions", []):
@@ -66,6 +79,7 @@ def main() -> int:
 
     meta["included_records"] = len(all_features)
     meta["species_counts"] = summarize_species_counts(all_features) if all_features else empty_species_counts()
+    meta["areas"] = sorted(area_summaries, key=lambda item: (str(item["region"]), str(item["jurisdiction"])))
 
     meta_path.write_text(json.dumps(meta, ensure_ascii=False, indent=2), encoding="utf-8")
     return 0

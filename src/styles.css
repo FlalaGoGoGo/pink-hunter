@@ -791,9 +791,29 @@ body {
   gap: 0.72rem;
 }
 
+.about-summary-note {
+  margin: 0 0 0.72rem;
+  font-size: 0.82rem;
+  line-height: 1.55;
+  color: #6f5160;
+}
+
 .about-summary-card {
   display: grid;
   gap: 0.72rem;
+}
+
+.about-summary-total-card {
+  background:
+    radial-gradient(circle at top right, rgba(241, 194, 213, 0.4), transparent 46%),
+    linear-gradient(180deg, rgba(255, 247, 250, 0.98), rgba(255, 253, 253, 0.98));
+  border-color: rgba(182, 105, 140, 0.22);
+  box-shadow: 0 16px 34px rgba(192, 135, 161, 0.08);
+}
+
+.about-summary-browse-card {
+  background: linear-gradient(180deg, rgba(255, 252, 253, 0.98), rgba(255, 255, 255, 0.98));
+  border-color: rgba(177, 112, 142, 0.18);
 }
 
 .about-summary-card h4 {
@@ -814,13 +834,6 @@ body {
   align-items: center;
   justify-content: space-between;
   gap: 0.6rem;
-}
-
-.about-summary-total-label,
-.about-region-summary-total-label {
-  margin: 0.18rem 0 0;
-  font-size: 0.72rem;
-  color: #725463;
 }
 
 .about-summary-total-number {
@@ -886,11 +899,23 @@ body {
   gap: 0.58rem;
 }
 
+.about-area-summary-list {
+  display: grid;
+  gap: 0.58rem;
+}
+
 .about-region-summary-item {
   border-radius: 12px;
   border: 1px solid rgba(153, 83, 116, 0.18);
   background: #fffdfd;
   padding: 0.68rem 0.72rem;
+}
+
+.about-area-summary-item {
+  border-radius: 14px;
+  border: 1px solid rgba(160, 92, 123, 0.18);
+  background: linear-gradient(180deg, rgba(255, 251, 252, 1), rgba(255, 255, 255, 1));
+  padding: 0.72rem;
 }
 
 .about-region-summary-head {
@@ -900,9 +925,36 @@ body {
   gap: 0.75rem;
 }
 
+.about-area-summary-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
 .about-region-summary-head strong {
   font-size: 0.8rem;
   line-height: 1.35;
+}
+
+.about-area-summary-title-stack {
+  min-width: 0;
+}
+
+.about-area-summary-title-row {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.42rem;
+}
+
+.about-area-summary-title-row strong {
+  font-size: 0.8rem;
+  line-height: 1.35;
+}
+
+.about-area-summary-item .coverage-area-type-badge {
+  min-width: 0;
 }
 
 .about-region-summary-total {

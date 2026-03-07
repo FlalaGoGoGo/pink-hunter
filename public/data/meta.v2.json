@@ -911,5 +911,523 @@
     "peach": 3025,
     "magnolia": 54884,
     "crabapple": 44657
-  }
+  },
+  "areas": [
+    {
+      "jurisdiction": "Vancouver BC",
+      "region": "bc",
+      "tree_count": 34369,
+      "species_counts": {
+        "cherry": 16181,
+        "plum": 10712,
+        "peach": 0,
+        "magnolia": 3670,
+        "crabapple": 3806
+      }
+    },
+    {
+      "jurisdiction": "Victoria BC",
+      "region": "bc",
+      "tree_count": 6094,
+      "species_counts": {
+        "cherry": 3182,
+        "plum": 2088,
+        "peach": 0,
+        "magnolia": 398,
+        "crabapple": 426
+      }
+    },
+    {
+      "jurisdiction": "Berkeley",
+      "region": "ca",
+      "tree_count": 3973,
+      "species_counts": {
+        "cherry": 637,
+        "plum": 2244,
+        "peach": 18,
+        "magnolia": 817,
+        "crabapple": 257
+      }
+    },
+    {
+      "jurisdiction": "Burlingame",
+      "region": "ca",
+      "tree_count": 1997,
+      "species_counts": {
+        "cherry": 118,
+        "plum": 477,
+        "peach": 1,
+        "magnolia": 1367,
+        "crabapple": 34
+      }
+    },
+    {
+      "jurisdiction": "Concord",
+      "region": "ca",
+      "tree_count": 4103,
+      "species_counts": {
+        "cherry": 281,
+        "plum": 1710,
+        "peach": 353,
+        "magnolia": 1394,
+        "crabapple": 365
+      }
+    },
+    {
+      "jurisdiction": "Cupertino",
+      "region": "ca",
+      "tree_count": 1299,
+      "species_counts": {
+        "cherry": 68,
+        "plum": 392,
+        "peach": 52,
+        "magnolia": 732,
+        "crabapple": 55
+      }
+    },
+    {
+      "jurisdiction": "Fremont",
+      "region": "ca",
+      "tree_count": 5555,
+      "species_counts": {
+        "cherry": 536,
+        "plum": 2287,
+        "peach": 199,
+        "magnolia": 2270,
+        "crabapple": 263
+      }
+    },
+    {
+      "jurisdiction": "Milpitas",
+      "region": "ca",
+      "tree_count": 1696,
+      "species_counts": {
+        "cherry": 139,
+        "plum": 291,
+        "peach": 143,
+        "magnolia": 977,
+        "crabapple": 146
+      }
+    },
+    {
+      "jurisdiction": "Oakland",
+      "region": "ca",
+      "tree_count": 3977,
+      "species_counts": {
+        "cherry": 262,
+        "plum": 2060,
+        "peach": 0,
+        "magnolia": 1400,
+        "crabapple": 255
+      }
+    },
+    {
+      "jurisdiction": "Palo Alto",
+      "region": "ca",
+      "tree_count": 4996,
+      "species_counts": {
+        "cherry": 171,
+        "plum": 456,
+        "peach": 21,
+        "magnolia": 4270,
+        "crabapple": 78
+      }
+    },
+    {
+      "jurisdiction": "Salinas",
+      "region": "ca",
+      "tree_count": 4535,
+      "species_counts": {
+        "cherry": 684,
+        "plum": 1983,
+        "peach": 55,
+        "magnolia": 1739,
+        "crabapple": 74
+      }
+    },
+    {
+      "jurisdiction": "San Francisco",
+      "region": "ca",
+      "tree_count": 24099,
+      "species_counts": {
+        "cherry": 7048,
+        "plum": 7599,
+        "peach": 54,
+        "magnolia": 9121,
+        "crabapple": 277
+      }
+    },
+    {
+      "jurisdiction": "San Jose",
+      "region": "ca",
+      "tree_count": 18021,
+      "species_counts": {
+        "cherry": 1295,
+        "plum": 7147,
+        "peach": 1343,
+        "magnolia": 7202,
+        "crabapple": 1034
+      }
+    },
+    {
+      "jurisdiction": "San Mateo",
+      "region": "ca",
+      "tree_count": 1868,
+      "species_counts": {
+        "cherry": 251,
+        "plum": 536,
+        "peach": 23,
+        "magnolia": 874,
+        "crabapple": 184
+      }
+    },
+    {
+      "jurisdiction": "San Rafael",
+      "region": "ca",
+      "tree_count": 422,
+      "species_counts": {
+        "cherry": 0,
+        "plum": 335,
+        "peach": 0,
+        "magnolia": 87,
+        "crabapple": 0
+      }
+    },
+    {
+      "jurisdiction": "South San Francisco",
+      "region": "ca",
+      "tree_count": 784,
+      "species_counts": {
+        "cherry": 246,
+        "plum": 33,
+        "peach": 6,
+        "magnolia": 497,
+        "crabapple": 2
+      }
+    },
+    {
+      "jurisdiction": "Washington DC",
+      "region": "dc",
+      "tree_count": 16533,
+      "species_counts": {
+        "cherry": 10656,
+        "plum": 335,
+        "peach": 0,
+        "magnolia": 3510,
+        "crabapple": 2032
+      }
+    },
+    {
+      "jurisdiction": "Boston",
+      "region": "ma",
+      "tree_count": 4488,
+      "species_counts": {
+        "cherry": 2751,
+        "plum": 55,
+        "peach": 2,
+        "magnolia": 83,
+        "crabapple": 1597
+      }
+    },
+    {
+      "jurisdiction": "Cambridge",
+      "region": "ma",
+      "tree_count": 1954,
+      "species_counts": {
+        "cherry": 962,
+        "plum": 13,
+        "peach": 4,
+        "magnolia": 300,
+        "crabapple": 675
+      }
+    },
+    {
+      "jurisdiction": "Baltimore",
+      "region": "md",
+      "tree_count": 1920,
+      "species_counts": {
+        "cherry": 174,
+        "plum": 162,
+        "peach": 20,
+        "magnolia": 674,
+        "crabapple": 890
+      }
+    },
+    {
+      "jurisdiction": "Jersey City",
+      "region": "nj",
+      "tree_count": 2148,
+      "species_counts": {
+        "cherry": 2004,
+        "plum": 1,
+        "peach": 0,
+        "magnolia": 21,
+        "crabapple": 122
+      }
+    },
+    {
+      "jurisdiction": "New York City",
+      "region": "ny",
+      "tree_count": 40685,
+      "species_counts": {
+        "cherry": 29279,
+        "plum": 6879,
+        "peach": 0,
+        "magnolia": 1000,
+        "crabapple": 3527
+      }
+    },
+    {
+      "jurisdiction": "Portland",
+      "region": "or",
+      "tree_count": 24775,
+      "species_counts": {
+        "cherry": 2375,
+        "plum": 7473,
+        "peach": 259,
+        "magnolia": 5191,
+        "crabapple": 9477
+      }
+    },
+    {
+      "jurisdiction": "Philadelphia",
+      "region": "pa",
+      "tree_count": 17717,
+      "species_counts": {
+        "cherry": 12993,
+        "plum": 950,
+        "peach": 81,
+        "magnolia": 787,
+        "crabapple": 2906
+      }
+    },
+    {
+      "jurisdiction": "Pittsburgh",
+      "region": "pa",
+      "tree_count": 3691,
+      "species_counts": {
+        "cherry": 2659,
+        "plum": 51,
+        "peach": 47,
+        "magnolia": 261,
+        "crabapple": 673
+      }
+    },
+    {
+      "jurisdiction": "Arlington",
+      "region": "va",
+      "tree_count": 1882,
+      "species_counts": {
+        "cherry": 1413,
+        "plum": 93,
+        "peach": 0,
+        "magnolia": 296,
+        "crabapple": 80
+      }
+    },
+    {
+      "jurisdiction": "Bellevue",
+      "region": "wa",
+      "tree_count": 342,
+      "species_counts": {
+        "cherry": 93,
+        "plum": 13,
+        "peach": 0,
+        "magnolia": 131,
+        "crabapple": 105
+      }
+    },
+    {
+      "jurisdiction": "Bellingham",
+      "region": "wa",
+      "tree_count": 645,
+      "species_counts": {
+        "cherry": 239,
+        "plum": 88,
+        "peach": 0,
+        "magnolia": 61,
+        "crabapple": 257
+      }
+    },
+    {
+      "jurisdiction": "Everett",
+      "region": "wa",
+      "tree_count": 464,
+      "species_counts": {
+        "cherry": 123,
+        "plum": 253,
+        "peach": 0,
+        "magnolia": 18,
+        "crabapple": 70
+      }
+    },
+    {
+      "jurisdiction": "Gig Harbor",
+      "region": "wa",
+      "tree_count": 63,
+      "species_counts": {
+        "cherry": 3,
+        "plum": 51,
+        "peach": 0,
+        "magnolia": 1,
+        "crabapple": 8
+      }
+    },
+    {
+      "jurisdiction": "Kenmore",
+      "region": "wa",
+      "tree_count": 329,
+      "species_counts": {
+        "cherry": 74,
+        "plum": 194,
+        "peach": 0,
+        "magnolia": 40,
+        "crabapple": 21
+      }
+    },
+    {
+      "jurisdiction": "Kirkland",
+      "region": "wa",
+      "tree_count": 3122,
+      "species_counts": {
+        "cherry": 888,
+        "plum": 1484,
+        "peach": 29,
+        "magnolia": 216,
+        "crabapple": 505
+      }
+    },
+    {
+      "jurisdiction": "Puyallup",
+      "region": "wa",
+      "tree_count": 76,
+      "species_counts": {
+        "cherry": 4,
+        "plum": 0,
+        "peach": 0,
+        "magnolia": 0,
+        "crabapple": 72
+      }
+    },
+    {
+      "jurisdiction": "Redmond",
+      "region": "wa",
+      "tree_count": 185,
+      "species_counts": {
+        "cherry": 156,
+        "plum": 0,
+        "peach": 0,
+        "magnolia": 5,
+        "crabapple": 24
+      }
+    },
+    {
+      "jurisdiction": "Renton",
+      "region": "wa",
+      "tree_count": 1879,
+      "species_counts": {
+        "cherry": 815,
+        "plum": 714,
+        "peach": 6,
+        "magnolia": 51,
+        "crabapple": 293
+      }
+    },
+    {
+      "jurisdiction": "Sammamish",
+      "region": "wa",
+      "tree_count": 1163,
+      "species_counts": {
+        "cherry": 237,
+        "plum": 846,
+        "peach": 0,
+        "magnolia": 23,
+        "crabapple": 57
+      }
+    },
+    {
+      "jurisdiction": "SeaTac",
+      "region": "wa",
+      "tree_count": 38,
+      "species_counts": {
+        "cherry": 28,
+        "plum": 5,
+        "peach": 0,
+        "magnolia": 3,
+        "crabapple": 2
+      }
+    },
+    {
+      "jurisdiction": "Seattle",
+      "region": "wa",
+      "tree_count": 46114,
+      "species_counts": {
+        "cherry": 18917,
+        "plum": 12042,
+        "peach": 215,
+        "magnolia": 4609,
+        "crabapple": 10331
+      }
+    },
+    {
+      "jurisdiction": "Shoreline",
+      "region": "wa",
+      "tree_count": 2244,
+      "species_counts": {
+        "cherry": 1049,
+        "plum": 641,
+        "peach": 4,
+        "magnolia": 188,
+        "crabapple": 362
+      }
+    },
+    {
+      "jurisdiction": "Snohomish",
+      "region": "wa",
+      "tree_count": 856,
+      "species_counts": {
+        "cherry": 376,
+        "plum": 312,
+        "peach": 3,
+        "magnolia": 64,
+        "crabapple": 101
+      }
+    },
+    {
+      "jurisdiction": "Spokane",
+      "region": "wa",
+      "tree_count": 8472,
+      "species_counts": {
+        "cherry": 2530,
+        "plum": 2799,
+        "peach": 75,
+        "magnolia": 460,
+        "crabapple": 2608
+      }
+    },
+    {
+      "jurisdiction": "Walla Walla",
+      "region": "wa",
+      "tree_count": 1167,
+      "species_counts": {
+        "cherry": 134,
+        "plum": 401,
+        "peach": 12,
+        "magnolia": 72,
+        "crabapple": 548
+      }
+    },
+    {
+      "jurisdiction": "Yakima",
+      "region": "wa",
+      "tree_count": 509,
+      "species_counts": {
+        "cherry": 204,
+        "plum": 243,
+        "peach": 0,
+        "magnolia": 4,
+        "crabapple": 58
+      }
+    }
+  ]
 }

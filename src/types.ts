@@ -78,6 +78,13 @@ export interface RegionCityDataIndex {
   items: RegionCityDataEntry[];
 }
 
+export interface AreaSummary {
+  jurisdiction: string;
+  region: CoverageRegion;
+  tree_count: number;
+  species_counts: SpeciesCounts;
+}
+
 export interface AppMeta {
   version: string;
   generated_at: string;
@@ -88,6 +95,7 @@ export interface AppMeta {
   unknown_records: number;
   species_counts: SpeciesCounts;
   regions: RegionMeta[];
+  areas: AreaSummary[];
   sources: Array<{
     name: string;
     city: string;

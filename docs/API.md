@@ -67,6 +67,16 @@ Dataset metadata and source refresh details.
   - `peach`
   - `magnolia`
   - `crabapple`
+- `areas[]`
+  - `jurisdiction`
+  - `region`
+  - `tree_count`
+  - `species_counts`
+    - `cherry`
+    - `plum`
+    - `peach`
+    - `magnolia`
+    - `crabapple`
 
 ### `regions[]`
 - `id`

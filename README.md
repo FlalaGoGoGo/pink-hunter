@@ -290,7 +290,7 @@ Live domain:
   - `PA`
   - `MA`
 - Local-only ETL audit outputs such as `data/normalized/trees_normalized.csv` and `data/tmp/*` are not part of the GitHub export repo.
-- `public/data/meta.v2.json` contains the region index, region bounds, aggregate size metadata, city-split index paths, and species-count summaries for the full site and each region.
+- `public/data/meta.v2.json` contains the region index, region bounds, aggregate size metadata, city-split index paths, and species-count summaries for the full site, each region, and each published area.
 - All published tree-point files now follow the same city-split contract:
   - `public/data/trees.<region>.city-index.v1.json`
   - `public/data/trees.<region>.city.<slug>.v1.geojson`

@@ -4875,6 +4875,7 @@ def main() -> int:
     next_dir.mkdir(parents=True, exist_ok=True)
 
     region_meta: list[dict[str, Any]] = []
+    area_meta: list[dict[str, Any]] = []
     region_size_summary: list[dict[str, Any]] = []
     extra_output_names: list[str] = []
     for region_id, label in REGION_LABELS.items():
@@ -4917,6 +4918,14 @@ def main() -> int:
                         "tree_count": len(city_features),
                         "raw_bytes": len(city_payload_bytes),
                         "gzip_bytes": len(gzip.compress(city_payload_bytes)),
+                    }
+                )
+                area_meta.append(
+                    {
+                        "jurisdiction": city,
+                        "region": region_id,
+                        "tree_count": len(city_features),
+                        "species_counts": summarize_species_counts(city_features),
                     }
                 )
                 extra_output_names.append(city_file_name)
@@ -4968,6 +4977,7 @@ def main() -> int:
         "unknown_records": int(sum(unknown_counter.values())),
         "species_counts": summarize_species_counts(output_features),
         "regions": region_meta,
+        "areas": sorted(area_meta, key=lambda item: (item["region"], item["jurisdiction"])),
         "sources": meta_sources,
     }
 
