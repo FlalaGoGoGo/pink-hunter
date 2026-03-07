@@ -314,6 +314,8 @@ const ABOUT_COPY: Record<
     title: string;
     intro: string[];
     sourcesTitle: string;
+    sourcesSearchPlaceholder: string;
+    sourcesEmpty: string;
     disclaimerTitle: string;
     contactTitle: string;
     contactLead: string;
@@ -333,9 +335,12 @@ const ABOUT_COPY: Record<
       "The project is meant to help people learn the differences between these lookalike blooms instead of calling every pink tree a cherry by default."
     ],
     sourcesTitle: "Data Sources",
+    sourcesSearchPlaceholder: "Search data sources",
+    sourcesEmpty: "No data sources matched this search.",
     disclaimerTitle: "Data Notes",
     contactTitle: "Contact",
-    contactLead: "If you know an official public tree dataset that should be included, send it to Flala Zhang.",
+    contactLead:
+      "If you notice any issue on this site, or know of a public dataset this map has not covered yet, you are warmly welcome to contact Flala Zhang.",
     disclaimer: [
       "Jurisdiction-level coverage is built from official public single-tree datasets whenever those datasets are available; that is a hard rule for adding a covered area.",
       "What you see on the map can still differ from reality because of source refresh lag, pruning or removals, naming inconsistencies, or point-location error.",
@@ -355,9 +360,12 @@ const ABOUT_COPY: Record<
       "这个项目不只是找花，也希望教大家分辨这些常被误认的花树，让“粉色花都叫樱花”这件事少一点。"
     ],
     sourcesTitle: "数据源",
+    sourcesSearchPlaceholder: "搜索数据源",
+    sourcesEmpty: "没有匹配的数据源。",
     disclaimerTitle: "数据说明",
     contactTitle: "联系方式",
-    contactLead: "如果你知道新的官方公开树木数据源，欢迎发邮件给 Flala Zhang。",
+    contactLead:
+      "如果你发现网站有任何问题，或者知道这个网站还没有覆盖到的公开数据集，真诚欢迎你联系 Flala Zhang。",
     disclaimer: [
       "地区级覆盖优先采用官方公开的单株树木数据集；这是产品纳入覆盖地区的硬标准。",
       "但数据更新频率、树木修剪/移除、物种录入习惯、坐标偏差等问题，都会让网页显示与现实情况存在差异。",
@@ -377,9 +385,12 @@ const ABOUT_COPY: Record<
       "這個專案不只是找花，也希望教大家分辨這些常被誤認的花樹，讓「粉色花都叫櫻花」這件事少一點。"
     ],
     sourcesTitle: "資料來源",
+    sourcesSearchPlaceholder: "搜尋資料來源",
+    sourcesEmpty: "沒有符合的資料來源。",
     disclaimerTitle: "資料說明",
     contactTitle: "聯絡方式",
-    contactLead: "如果你知道新的官方公開樹木資料來源，歡迎發郵件給 Flala Zhang。",
+    contactLead:
+      "如果你發現網站有任何問題，或知道這個網站還沒有覆蓋到的公開資料集，誠摯歡迎你聯絡 Flala Zhang。",
     disclaimer: [
       "地區級覆蓋優先採用官方公開的單株樹木資料集；這是產品納入覆蓋地區的硬標準。",
       "但資料更新頻率、樹木修剪或移除、物種登錄習慣、座標偏差等問題，都會讓網頁顯示與現實情況存在差異。",
@@ -399,9 +410,12 @@ const ABOUT_COPY: Record<
       "El proyecto también busca enseñar a distinguir estas flores parecidas, en lugar de llamar cerezo a cualquier árbol rosado."
     ],
     sourcesTitle: "Fuentes de datos",
+    sourcesSearchPlaceholder: "Buscar fuentes de datos",
+    sourcesEmpty: "No se encontró ninguna fuente de datos.",
     disclaimerTitle: "Notas sobre los datos",
     contactTitle: "Contacto",
-    contactLead: "Si conoces un conjunto oficial y público de árboles que debería incluirse, envíalo a Flala Zhang.",
+    contactLead:
+      "Si encuentras algún problema en el sitio o conoces algún conjunto de datos público que aún no esté cubierto, te invitamos cordialmente a contactar a Flala Zhang.",
     disclaimer: [
       "La cobertura por jurisdicción se construye a partir de conjuntos públicos oficiales árbol por árbol siempre que estén disponibles; esa es una regla estricta para añadir un área cubierta.",
       "Lo que ves en el mapa puede diferir de la realidad por retrasos de actualización, podas o retiros, diferencias de nomenclatura o errores de ubicación.",
@@ -421,9 +435,12 @@ const ABOUT_COPY: Record<
       "모든 분홍 꽃나무를 벚꽃이라고 부르지 않고, 서로 어떻게 다른지 배울 수 있게 돕는 것도 이 프로젝트의 목표입니다."
     ],
     sourcesTitle: "데이터 출처",
+    sourcesSearchPlaceholder: "데이터 출처 검색",
+    sourcesEmpty: "검색 결과와 일치하는 데이터 출처가 없습니다.",
     disclaimerTitle: "데이터 안내",
     contactTitle: "연락처",
-    contactLead: "추가되어야 할 공식 공개 수목 데이터셋을 알고 있다면 Flala Zhang에게 보내 주세요.",
+    contactLead:
+      "이 사이트에서 문제를 발견했거나 아직 포함되지 않은 공개 데이터셋을 알고 있다면, Flala Zhang에게 알려 주시면 감사하겠습니다.",
     disclaimer: [
       "행정 구역 단위 커버리지는 가능한 경우 공식 공개 단일 수목 데이터셋을 기준으로 구축합니다. 이것은 커버된 지역을 추가할 때의 하드 룰입니다.",
       "지도에 보이는 내용은 데이터 갱신 지연, 가지치기나 제거, 명칭 차이, 좌표 오차 때문에 실제와 다를 수 있습니다.",
@@ -443,9 +460,12 @@ const ABOUT_COPY: Record<
       "似た花木の違いを学び、ピンクの木を何でも桜と呼んでしまう状況を少し減らすことも、このプロジェクトの目的です。"
     ],
     sourcesTitle: "データソース",
+    sourcesSearchPlaceholder: "データソースを検索",
+    sourcesEmpty: "検索に一致するデータソースはありません。",
     disclaimerTitle: "データについて",
     contactTitle: "連絡先",
-    contactLead: "追加すべき公式公開の樹木データセットをご存じでしたら、Flala Zhang までお知らせください。",
+    contactLead:
+      "このサイトの不具合を見つけた場合や、まだ掲載されていない公開データセットをご存じの場合は、ぜひ Flala Zhang までご連絡ください。",
     disclaimer: [
       "行政区画ごとのカバレッジは、利用可能な場合は公式に公開された単木データセットを優先して構築しています。これはカバー対象エリアを追加する際のハードルールです。",
       "更新遅延、剪定や撤去、名称のゆれ、座標誤差などにより、地図表示が実際の状況と異なることがあります。",
@@ -465,9 +485,12 @@ const ABOUT_COPY: Record<
       "Le projet sert aussi à apprendre à distinguer ces floraisons ressemblantes au lieu d'appeler cerisier tout arbre rose."
     ],
     sourcesTitle: "Sources de données",
+    sourcesSearchPlaceholder: "Rechercher une source",
+    sourcesEmpty: "Aucune source de données ne correspond à cette recherche.",
     disclaimerTitle: "Notes sur les données",
     contactTitle: "Contact",
-    contactLead: "Si vous connaissez un jeu de données public officiel sur les arbres qui devrait être inclus, envoyez-le à Flala Zhang.",
+    contactLead:
+      "Si vous repérez un problème sur ce site ou connaissez un jeu de données public encore absent, vous êtes chaleureusement invité à contacter Flala Zhang.",
     disclaimer: [
       "La couverture par juridiction repose, lorsque c'est possible, sur des jeux de données publics officiels arbre par arbre ; c'est une règle stricte pour ajouter une zone couverte.",
       "Ce que vous voyez sur la carte peut différer de la réalité à cause du retard de mise à jour, de la taille ou du retrait d'arbres, d'incohérences de nommage ou d'erreurs de géolocalisation.",
@@ -487,9 +510,12 @@ const ABOUT_COPY: Record<
       "Dự án cũng nhằm giúp mọi người phân biệt những loài hoa dễ bị nhầm lẫn này thay vì mặc định gọi mọi cây hoa hồng là anh đào."
     ],
     sourcesTitle: "Nguồn dữ liệu",
+    sourcesSearchPlaceholder: "Tìm nguồn dữ liệu",
+    sourcesEmpty: "Không có nguồn dữ liệu nào khớp với tìm kiếm này.",
     disclaimerTitle: "Lưu ý dữ liệu",
     contactTitle: "Liên hệ",
-    contactLead: "Nếu bạn biết một bộ dữ liệu cây công khai chính thức nên được thêm vào, hãy gửi cho Flala Zhang.",
+    contactLead:
+      "Nếu bạn phát hiện bất kỳ vấn đề nào trên trang web hoặc biết một bộ dữ liệu công khai mà bản đồ này chưa bao phủ, rất mong bạn liên hệ với Flala Zhang.",
     disclaimer: [
       "Phạm vi theo từng đơn vị hành chính được xây dựng từ các bộ dữ liệu công khai chính thức cho từng cây khi những bộ dữ liệu đó tồn tại; đây là quy tắc cứng để thêm một khu vực được phủ.",
       "Những gì bạn thấy trên bản đồ vẫn có thể khác thực tế do độ trễ cập nhật, việc cắt tỉa hoặc loại bỏ cây, cách ghi tên khác nhau hoặc sai số tọa độ.",
@@ -1016,6 +1042,19 @@ function isHttpUrl(value: string): boolean {
   return /^https?:\/\//i.test(value);
 }
 
+function sourceEndpointSearchText(endpoint: string): string {
+  if (!isHttpUrl(endpoint)) {
+    return endpoint.toLowerCase();
+  }
+
+  try {
+    const url = new URL(endpoint);
+    return `${url.hostname} ${url.pathname} ${endpoint}`.toLowerCase();
+  } catch {
+    return endpoint.toLowerCase();
+  }
+}
+
 function escapeHtml(raw: string): string {
   return raw
     .replace(/&/g, "&amp;")
@@ -1071,6 +1110,7 @@ export default function App(): JSX.Element {
   const [sheetHeight, setSheetHeight] = useState<number>(0.4);
   const [activePanel, setActivePanel] = useState<"filters" | "guide" | "about">("filters");
   const [aboutSourcesPage, setAboutSourcesPage] = useState(0);
+  const [aboutSourcesSearchQuery, setAboutSourcesSearchQuery] = useState("");
   const [selectedTree, setSelectedTree] = useState<SelectedTree | null>(null);
   const [selectedCoverage, setSelectedCoverage] = useState<SelectedCoverage | null>(null);
   const [layoutMode, setLayoutMode] = useState<LayoutMode>(initialLayoutMode);
@@ -1597,20 +1637,46 @@ export default function App(): JSX.Element {
     );
   }, [data]);
 
-  const aboutSourcePageCount = Math.max(1, Math.ceil(aboutSources.length / ABOUT_SOURCES_PAGE_SIZE));
+  const normalizedAboutSourceSearchQuery = aboutSourcesSearchQuery.trim().toLowerCase();
+
+  const filteredAboutSources = useMemo(() => {
+    if (!normalizedAboutSourceSearchQuery) {
+      return aboutSources;
+    }
+
+    return aboutSources.filter((source) => {
+      const searchHaystack = [
+        source.city,
+        formatAreaLabel(source.city),
+        source.name,
+        source.endpoint,
+        sourceEndpointSearchText(source.endpoint)
+      ]
+        .join(" ")
+        .toLowerCase();
+
+      return searchHaystack.includes(normalizedAboutSourceSearchQuery);
+    });
+  }, [aboutSources, normalizedAboutSourceSearchQuery]);
+
+  const aboutSourcePageCount = Math.max(1, Math.ceil(filteredAboutSources.length / ABOUT_SOURCES_PAGE_SIZE));
 
   const pagedAboutSources = useMemo(
     () =>
-      aboutSources.slice(
+      filteredAboutSources.slice(
         aboutSourcesPage * ABOUT_SOURCES_PAGE_SIZE,
         (aboutSourcesPage + 1) * ABOUT_SOURCES_PAGE_SIZE
       ),
-    [aboutSources, aboutSourcesPage]
+    [filteredAboutSources, aboutSourcesPage]
   );
 
   useEffect(() => {
     setAboutSourcesPage((current) => Math.min(current, aboutSourcePageCount - 1));
   }, [aboutSourcePageCount]);
+
+  useEffect(() => {
+    setAboutSourcesPage(0);
+  }, [normalizedAboutSourceSearchQuery]);
 
   useEffect(() => {
     if (!data || !mapRuntime || mapRef.current || !mapContainerRef.current) {
@@ -2053,12 +2119,13 @@ export default function App(): JSX.Element {
     }
 
     const coverageAreaDisplayName = formatAreaLabel(selectedCoverage.properties.jurisdiction);
-    const coverageAreaBadge = `<span class="area-type-badge ${areaTypeClassName(
+    const coverageAreaBadge = `<span class="coverage-area-type-badge ${areaTypeClassName(
       selectedCoverage.properties.jurisdiction
     )}">${escapeHtml(areaTypeLabel(language, selectedCoverage.properties.jurisdiction))}</span>`;
     const popupHtml = `
       <div class="coverage-popup-card">
-        <h4><span class="area-value-inline">${escapeHtml(coverageAreaDisplayName)}${coverageAreaBadge}</span></h4>
+        <h4>${escapeHtml(coverageAreaDisplayName)}</h4>
+        <div class="coverage-popup-meta">${coverageAreaBadge}</div>
         <p class="coverage-popup-eyebrow">${escapeHtml(t(language, "officialUnavailablePopupTitle"))}</p>
         <p>${escapeHtml(t(language, "officialUnavailablePopupBody"))}</p>
         <p>${escapeHtml(t(language, "officialUnavailablePopupFoot"))}</p>
@@ -2736,6 +2803,13 @@ export default function App(): JSX.Element {
               <div className="about-section">
                 <h3 className="about-section-title">{aboutCopy.sourcesTitle}</h3>
                 <article className="about-card about-sources-shell">
+                  <input
+                    className="filter-search-input about-source-search-input"
+                    onChange={(event) => setAboutSourcesSearchQuery(event.target.value)}
+                    placeholder={aboutCopy.sourcesSearchPlaceholder}
+                    type="search"
+                    value={aboutSourcesSearchQuery}
+                  />
                   <div className="about-source-list">
                     {pagedAboutSources.map((source) => {
                       const supplemental = source.name === "UW OSM Supplemental" || !isHttpUrl(source.endpoint);
@@ -2757,7 +2831,7 @@ export default function App(): JSX.Element {
                                   >
                                     <svg aria-hidden="true" viewBox="0 0 24 24">
                                       <path
-                                        d="M4.75 6.25A1.5 1.5 0 0 1 6.25 4.75h6.5A1.5 1.5 0 0 1 14.25 6.25v2.25"
+                                        d="M9.35 14.65 14.65 9.35"
                                         fill="none"
                                         stroke="currentColor"
                                         strokeLinecap="round"
@@ -2765,7 +2839,7 @@ export default function App(): JSX.Element {
                                         strokeWidth="2"
                                       />
                                       <path
-                                        d="M8.75 8.75h9.5a1.5 1.5 0 0 1 1.5 1.5v7.5a1.5 1.5 0 0 1-1.5 1.5h-12a1.5 1.5 0 0 1-1.5-1.5v-5.5"
+                                        d="M7.25 14.4 5.6 16.05a3.15 3.15 0 1 0 4.45 4.45l1.65-1.65"
                                         fill="none"
                                         stroke="currentColor"
                                         strokeLinecap="round"
@@ -2773,7 +2847,7 @@ export default function App(): JSX.Element {
                                         strokeWidth="2"
                                       />
                                       <path
-                                        d="M12.5 6.5h5v5M17.5 6.5l-7 7"
+                                        d="M16.75 9.6l1.65-1.65a3.15 3.15 0 1 0-4.45-4.45L12.3 5.15"
                                         fill="none"
                                         stroke="currentColor"
                                         strokeLinecap="round"
@@ -2793,12 +2867,13 @@ export default function App(): JSX.Element {
                         </div>
                       );
                     })}
+                    {filteredAboutSources.length === 0 && <p className="filter-empty">{aboutCopy.sourcesEmpty}</p>}
                   </div>
                   {aboutSources.length > 0 && (
                     <div className="about-source-pagination">
                       <button
                         className="clear-btn"
-                        disabled={aboutSourcesPage === 0}
+                        disabled={aboutSourcesPage === 0 || filteredAboutSources.length === 0}
                         onClick={() => setAboutSourcesPage((current) => Math.max(0, current - 1))}
                         type="button"
                       >
@@ -2809,7 +2884,7 @@ export default function App(): JSX.Element {
                       </span>
                       <button
                         className="clear-btn"
-                        disabled={aboutSourcesPage >= aboutSourcePageCount - 1}
+                        disabled={aboutSourcesPage >= aboutSourcePageCount - 1 || filteredAboutSources.length === 0}
                         onClick={() =>
                           setAboutSourcesPage((current) => Math.min(aboutSourcePageCount - 1, current + 1))
                         }

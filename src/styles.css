@@ -712,6 +712,7 @@ body {
   display: grid;
   gap: 0.58rem;
   align-content: start;
+  padding-bottom: 0.08rem;
 }
 
 .about-source-item {
@@ -776,8 +777,8 @@ body {
 }
 
 .source-link-icon svg {
-  width: 16px;
-  height: 16px;
+  width: 17px;
+  height: 17px;
 }
 
 .about-sources-shell {
@@ -785,11 +786,16 @@ body {
   gap: 0.7rem;
 }
 
+.about-source-search-input {
+  width: 100%;
+}
+
 .about-source-pagination {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 0.6rem;
+  min-height: 36px;
 }
 
 .about-source-pagination span {
@@ -1001,6 +1007,34 @@ body {
   font-size: 0.98rem;
   font-weight: 800;
   color: #39414b;
+}
+
+.coverage-popup-meta {
+  margin: 0.36rem 0 0.16rem;
+}
+
+.coverage-area-type-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 21px;
+  padding: 0.08rem 0.48rem;
+  border-radius: 999px;
+  font-size: 0.62rem;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.coverage-area-type-badge.city {
+  background: linear-gradient(180deg, #ffe7f0, #ffd6e6);
+  border: 1px solid rgba(161, 70, 109, 0.16);
+  color: #7a3b58;
+}
+
+.coverage-area-type-badge.county {
+  background: linear-gradient(180deg, #f1e7ff, #e7d8ff);
+  border: 1px solid rgba(126, 97, 185, 0.18);
+  color: #5f4a90;
 }
 
 .coverage-popup-eyebrow {
