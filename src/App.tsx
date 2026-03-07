@@ -59,8 +59,8 @@ const DEFAULT_ZOOM = 8.45;
 const POSITRON_STYLE_URL = "https://basemaps.cartocdn.com/gl/positron-gl-style/style.json";
 const FALLBACK_STYLE_URL = "https://demotiles.maplibre.org/style.json";
 const ABOUT_SOURCES_PAGE_SIZE = 4;
-const ABOUT_REGION_SUMMARY_PAGE_SIZE = 2;
-const ABOUT_AREA_SUMMARY_PAGE_SIZE = 4;
+const ABOUT_REGION_SUMMARY_PAGE_SIZE = 3;
+const ABOUT_AREA_SUMMARY_PAGE_SIZE = 3;
 const BRAND_LOGO_PATH = "/assets/brand/pink-hunter-logo.png";
 const SORT_COLLATOR = new Intl.Collator("en", { sensitivity: "base" });
 const EMPTY_SPECIES_COUNTS: SpeciesCounts = {
@@ -367,7 +367,7 @@ const ABOUT_COPY: Record<
     summaryCoverageLead: "Currently covering",
     summaryAllTitle: "All Covered Trees",
     summaryByRegionTitle: "By State / Province",
-    summaryByAreaTitle: "By Area",
+    summaryByAreaTitle: "By City / County",
     summaryTotalLabel: "Total trees",
     summarySearchPlaceholder: "Search states or provinces",
     summaryEmpty: "No state or province matched this search.",
@@ -403,7 +403,7 @@ const ABOUT_COPY: Record<
     summaryCoverageLead: "目前覆盖",
     summaryAllTitle: "全站收录",
     summaryByRegionTitle: "按州/省统计",
-    summaryByAreaTitle: "按地区统计",
+    summaryByAreaTitle: "按城市 / 县统计",
     summaryTotalLabel: "总树数",
     summarySearchPlaceholder: "搜索州或省",
     summaryEmpty: "没有匹配的州或省。",
@@ -439,7 +439,7 @@ const ABOUT_COPY: Record<
     summaryCoverageLead: "目前覆蓋",
     summaryAllTitle: "全站收錄",
     summaryByRegionTitle: "按州／省統計",
-    summaryByAreaTitle: "按地區統計",
+    summaryByAreaTitle: "按城市／縣統計",
     summaryTotalLabel: "總樹數",
     summarySearchPlaceholder: "搜尋州或省",
     summaryEmpty: "沒有符合的州或省。",
@@ -476,7 +476,7 @@ const ABOUT_COPY: Record<
     summaryCoverageLead: "Cobertura actual",
     summaryAllTitle: "Todos los árboles cubiertos",
     summaryByRegionTitle: "Por estado / provincia",
-    summaryByAreaTitle: "Por área",
+    summaryByAreaTitle: "Por ciudad / condado",
     summaryTotalLabel: "Total de árboles",
     summarySearchPlaceholder: "Buscar estado o provincia",
     summaryEmpty: "Ningún estado o provincia coincide con esta búsqueda.",
@@ -512,7 +512,7 @@ const ABOUT_COPY: Record<
     summaryCoverageLead: "현재 범위",
     summaryAllTitle: "전체 수록 현황",
     summaryByRegionTitle: "주 / 주(省)별 통계",
-    summaryByAreaTitle: "지역별 통계",
+    summaryByAreaTitle: "시 / 카운티별 통계",
     summaryTotalLabel: "총 나무 수",
     summarySearchPlaceholder: "주 또는 주(省) 검색",
     summaryEmpty: "검색과 일치하는 주 또는 주(省)가 없습니다.",
@@ -548,7 +548,7 @@ const ABOUT_COPY: Record<
     summaryCoverageLead: "現在の対象範囲",
     summaryAllTitle: "全体集計",
     summaryByRegionTitle: "州・省ごとの集計",
-    summaryByAreaTitle: "地区ごとの集計",
+    summaryByAreaTitle: "市・郡ごとの集計",
     summaryTotalLabel: "総本数",
     summarySearchPlaceholder: "州・省を検索",
     summaryEmpty: "一致する州・省はありません。",
@@ -585,7 +585,7 @@ const ABOUT_COPY: Record<
     summaryCoverageLead: "Couverture actuelle",
     summaryAllTitle: "Tous les arbres couverts",
     summaryByRegionTitle: "Par État / province",
-    summaryByAreaTitle: "Par zone",
+    summaryByAreaTitle: "Par ville / comté",
     summaryTotalLabel: "Total d'arbres",
     summarySearchPlaceholder: "Rechercher un État ou une province",
     summaryEmpty: "Aucun État ou province ne correspond à cette recherche.",
@@ -622,7 +622,7 @@ const ABOUT_COPY: Record<
     summaryCoverageLead: "Hiện đang bao phủ",
     summaryAllTitle: "Toàn bộ cây đã phủ",
     summaryByRegionTitle: "Theo bang / tỉnh bang",
-    summaryByAreaTitle: "Theo khu vực",
+    summaryByAreaTitle: "Theo thành phố / quận hạt",
     summaryTotalLabel: "Tổng số cây",
     summarySearchPlaceholder: "Tìm bang hoặc tỉnh bang",
     summaryEmpty: "Không có bang hoặc tỉnh bang nào khớp.",
@@ -727,6 +727,8 @@ interface SelectedCoverage {
   coordinates: [number, number];
   properties: CoverageFeatureProps;
 }
+
+type AboutSummaryMode = "region" | "area";
 
 function ContactIconLink({
   href,
@@ -1303,6 +1305,7 @@ export default function App(): JSX.Element {
   const [aboutRegionSummarySearchQuery, setAboutRegionSummarySearchQuery] = useState("");
   const [aboutAreaSummaryPage, setAboutAreaSummaryPage] = useState(0);
   const [aboutAreaSummarySearchQuery, setAboutAreaSummarySearchQuery] = useState("");
+  const [aboutSummaryMode, setAboutSummaryMode] = useState<AboutSummaryMode>("region");
   const [selectedTree, setSelectedTree] = useState<SelectedTree | null>(null);
   const [selectedCoverage, setSelectedCoverage] = useState<SelectedCoverage | null>(null);
   const [layoutMode, setLayoutMode] = useState<LayoutMode>(initialLayoutMode);
@@ -2015,6 +2018,16 @@ export default function App(): JSX.Element {
     setAboutAreaSummaryPage(0);
   }, [normalizedAboutAreaSummarySearchQuery]);
 
+  const activeAboutSummaryTitle =
+    aboutSummaryMode === "region" ? aboutCopy.summaryByRegionTitle : aboutCopy.summaryByAreaTitle;
+  const activeAboutSummarySearchPlaceholder =
+    aboutSummaryMode === "region" ? aboutCopy.summarySearchPlaceholder : aboutCopy.summaryAreaSearchPlaceholder;
+  const activeAboutSummaryEmpty =
+    aboutSummaryMode === "region" ? aboutCopy.summaryEmpty : aboutCopy.summaryAreaEmpty;
+  const activeAboutSummaryPage = aboutSummaryMode === "region" ? aboutRegionSummaryPage : aboutAreaSummaryPage;
+  const activeAboutSummaryPageCount =
+    aboutSummaryMode === "region" ? aboutRegionSummaryPageCount : aboutAreaSummaryPageCount;
+
   useEffect(() => {
     if (!data || !mapRuntime || mapRef.current || !mapContainerRef.current) {
       return;
@@ -2413,7 +2426,7 @@ export default function App(): JSX.Element {
     if (selectedTree) {
       const [lon, lat] = selectedTree.coordinates;
       const areaDisplayName = formatAreaLabel(selectedTree.properties.city);
-      const areaBadge = `<span class="area-type-badge ${areaTypeClassName(selectedTree.properties.city)}">${escapeHtml(
+      const areaBadge = `<span class="tree-area-type-badge ${areaTypeClassName(selectedTree.properties.city)}">${escapeHtml(
         areaTypeLabel(language, selectedTree.properties.city)
       )}</span>`;
       const subtypeLine = selectedTree.properties.subtype_name
@@ -3073,7 +3086,7 @@ export default function App(): JSX.Element {
                     <strong>{t(language, "city")}: </strong>
                     <span className="area-value-inline">
                       <span>{formatAreaLabel(selectedTree.properties.city)}</span>
-                      <span className={`area-type-badge ${areaTypeClassName(selectedTree.properties.city)}`}>
+                      <span className={`tree-area-type-badge ${areaTypeClassName(selectedTree.properties.city)}`}>
                         {areaTypeLabel(language, selectedTree.properties.city)}
                       </span>
                     </span>
@@ -3182,115 +3195,111 @@ export default function App(): JSX.Element {
 
                   <article className="about-card about-summary-card about-summary-browse-card">
                     <div className="about-summary-section-head">
-                      <h4>{aboutCopy.summaryByRegionTitle}</h4>
+                      <h4>{activeAboutSummaryTitle}</h4>
+                      <div className="about-summary-mode-switch" role="tablist" aria-label={aboutCopy.summaryTitle}>
+                        <button
+                          aria-selected={aboutSummaryMode === "region"}
+                          className={aboutSummaryMode === "region" ? "tab-btn active" : "tab-btn"}
+                          onClick={() => setAboutSummaryMode("region")}
+                          role="tab"
+                          type="button"
+                        >
+                          {aboutCopy.summaryByRegionTitle}
+                        </button>
+                        <button
+                          aria-selected={aboutSummaryMode === "area"}
+                          className={aboutSummaryMode === "area" ? "tab-btn active" : "tab-btn"}
+                          onClick={() => setAboutSummaryMode("area")}
+                          role="tab"
+                          type="button"
+                        >
+                          {aboutCopy.summaryByAreaTitle}
+                        </button>
+                      </div>
                     </div>
                     <input
                       className="filter-search-input about-summary-search-input"
-                      onChange={(event) => setAboutRegionSummarySearchQuery(event.target.value)}
-                      placeholder={aboutCopy.summarySearchPlaceholder}
+                      onChange={(event) =>
+                        aboutSummaryMode === "region"
+                          ? setAboutRegionSummarySearchQuery(event.target.value)
+                          : setAboutAreaSummarySearchQuery(event.target.value)
+                      }
+                      placeholder={activeAboutSummarySearchPlaceholder}
                       type="search"
-                      value={aboutRegionSummarySearchQuery}
+                      value={aboutSummaryMode === "region" ? aboutRegionSummarySearchQuery : aboutAreaSummarySearchQuery}
                     />
-                    <div className="about-region-summary-list">
-                      {pagedAboutRegionSummaries.map((region) => (
-                        <div className="about-region-summary-item" key={region.id}>
-                          <div className="about-region-summary-head">
-                            <strong>{region.label}</strong>
-                            <span className="about-region-summary-total">{formatCount(region.totalTrees)}</span>
-                          </div>
-                          <div className="about-summary-divider compact" />
-                          {renderSpeciesCountRows(region.speciesCounts, true)}
-                        </div>
-                      ))}
-                      {filteredAboutRegionSummaries.length === 0 && (
-                        <p className="filter-empty">{aboutCopy.summaryEmpty}</p>
-                      )}
-                    </div>
-                    <div className="about-source-pagination">
-                      <button
-                        className="clear-btn"
-                        disabled={aboutRegionSummaryPage === 0 || filteredAboutRegionSummaries.length === 0}
-                        onClick={() => setAboutRegionSummaryPage((current) => Math.max(0, current - 1))}
-                        type="button"
-                      >
-                        {aboutCopy.previousPage}
-                      </button>
-                      <span>
-                        {aboutCopy.pageLabel} {aboutRegionSummaryPage + 1} / {aboutRegionSummaryPageCount}
-                      </span>
-                      <button
-                        className="clear-btn"
-                        disabled={
-                          aboutRegionSummaryPage >= aboutRegionSummaryPageCount - 1 ||
-                          filteredAboutRegionSummaries.length === 0
-                        }
-                        onClick={() =>
-                          setAboutRegionSummaryPage((current) =>
-                            Math.min(aboutRegionSummaryPageCount - 1, current + 1)
-                          )
-                        }
-                        type="button"
-                      >
-                        {aboutCopy.nextPage}
-                      </button>
-                    </div>
-                  </article>
-
-                  <article className="about-card about-summary-card about-summary-browse-card">
-                    <div className="about-summary-section-head">
-                      <h4>{aboutCopy.summaryByAreaTitle}</h4>
-                    </div>
-                    <input
-                      className="filter-search-input about-summary-search-input"
-                      onChange={(event) => setAboutAreaSummarySearchQuery(event.target.value)}
-                      placeholder={aboutCopy.summaryAreaSearchPlaceholder}
-                      type="search"
-                      value={aboutAreaSummarySearchQuery}
-                    />
-                    <div className="about-area-summary-list">
-                      {pagedAboutAreaSummaries.map((area) => (
-                        <div className="about-area-summary-item" key={`${area.label}-${area.areaType}`}>
-                          <div className="about-area-summary-head">
-                            <div className="about-area-summary-title-stack">
-                              <div className="about-area-summary-title-row">
-                                <strong>{area.label}</strong>
-                                <span className={`coverage-area-type-badge ${areaTypeClassName(area.jurisdiction)}`}>
-                                  {areaTypeLabel(language, area.jurisdiction)}
-                                </span>
+                    <div className="about-summary-browser-list">
+                      {aboutSummaryMode === "region"
+                        ? pagedAboutRegionSummaries.map((region) => (
+                            <div className="about-region-summary-item" key={region.id}>
+                              <div className="about-region-summary-head">
+                                <strong>{region.label}</strong>
+                                <span className="about-region-summary-total">{formatCount(region.totalTrees)}</span>
                               </div>
+                              <div className="about-summary-divider compact" />
+                              {renderSpeciesCountRows(region.speciesCounts, true)}
                             </div>
-                            <span className="about-region-summary-total">{formatCount(area.totalTrees)}</span>
-                          </div>
-                          <div className="about-summary-divider compact" />
-                          {renderSpeciesCountRows(area.speciesCounts, true)}
-                        </div>
-                      ))}
-                      {filteredAboutAreaSummaries.length === 0 && (
-                        <p className="filter-empty">{aboutCopy.summaryAreaEmpty}</p>
+                          ))
+                        : pagedAboutAreaSummaries.map((area) => (
+                            <div className="about-area-summary-item" key={`${area.label}-${area.areaType}`}>
+                              <div className="about-area-summary-head">
+                                <div className="about-area-summary-title-stack">
+                                  <div className="about-area-summary-title-row">
+                                    <strong>{area.label}</strong>
+                                    <span className={`coverage-area-type-badge ${areaTypeClassName(area.jurisdiction)}`}>
+                                      {areaTypeLabel(language, area.jurisdiction)}
+                                    </span>
+                                  </div>
+                                </div>
+                                <span className="about-region-summary-total">{formatCount(area.totalTrees)}</span>
+                              </div>
+                              <div className="about-summary-divider compact" />
+                              {renderSpeciesCountRows(area.speciesCounts, true)}
+                            </div>
+                          ))}
+                      {(aboutSummaryMode === "region"
+                        ? filteredAboutRegionSummaries.length === 0
+                        : filteredAboutAreaSummaries.length === 0) && (
+                        <p className="filter-empty">{activeAboutSummaryEmpty}</p>
                       )}
                     </div>
                     <div className="about-source-pagination">
                       <button
                         className="clear-btn"
-                        disabled={aboutAreaSummaryPage === 0 || filteredAboutAreaSummaries.length === 0}
-                        onClick={() => setAboutAreaSummaryPage((current) => Math.max(0, current - 1))}
+                        disabled={
+                          activeAboutSummaryPage === 0 ||
+                          (aboutSummaryMode === "region"
+                            ? filteredAboutRegionSummaries.length === 0
+                            : filteredAboutAreaSummaries.length === 0)
+                        }
+                        onClick={() =>
+                          aboutSummaryMode === "region"
+                            ? setAboutRegionSummaryPage((current) => Math.max(0, current - 1))
+                            : setAboutAreaSummaryPage((current) => Math.max(0, current - 1))
+                        }
                         type="button"
                       >
                         {aboutCopy.previousPage}
                       </button>
                       <span>
-                        {aboutCopy.pageLabel} {aboutAreaSummaryPage + 1} / {aboutAreaSummaryPageCount}
+                        {aboutCopy.pageLabel} {activeAboutSummaryPage + 1} / {activeAboutSummaryPageCount}
                       </span>
                       <button
                         className="clear-btn"
                         disabled={
-                          aboutAreaSummaryPage >= aboutAreaSummaryPageCount - 1 ||
-                          filteredAboutAreaSummaries.length === 0
+                          activeAboutSummaryPage >= activeAboutSummaryPageCount - 1 ||
+                          (aboutSummaryMode === "region"
+                            ? filteredAboutRegionSummaries.length === 0
+                            : filteredAboutAreaSummaries.length === 0)
                         }
                         onClick={() =>
-                          setAboutAreaSummaryPage((current) =>
-                            Math.min(aboutAreaSummaryPageCount - 1, current + 1)
-                          )
+                          aboutSummaryMode === "region"
+                            ? setAboutRegionSummaryPage((current) =>
+                                Math.min(aboutRegionSummaryPageCount - 1, current + 1)
+                              )
+                            : setAboutAreaSummaryPage((current) =>
+                                Math.min(aboutAreaSummaryPageCount - 1, current + 1)
+                              )
                         }
                         type="button"
                       >

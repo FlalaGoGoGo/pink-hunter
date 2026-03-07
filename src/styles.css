@@ -636,10 +636,36 @@ body {
   color: #5f4a90;
 }
 
-.area-value-inline {
+.tree-area-type-badge {
   display: inline-flex;
   align-items: center;
-  gap: 0.46rem;
+  justify-content: center;
+  min-width: 3.75rem;
+  min-height: 20px;
+  padding: 0.04rem 0.44rem;
+  border-radius: 999px;
+  font-size: 0.61rem;
+  font-weight: 800;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.tree-area-type-badge.city {
+  background: linear-gradient(180deg, #ffe7f0, #ffd6e6);
+  border: 1px solid rgba(161, 70, 109, 0.16);
+  color: #7a3b58;
+}
+
+.tree-area-type-badge.county {
+  background: linear-gradient(180deg, #f1e7ff, #e7d8ff);
+  border: 1px solid rgba(126, 97, 185, 0.18);
+  color: #5f4a90;
+}
+
+.area-value-inline {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.34rem;
   flex-wrap: wrap;
   vertical-align: middle;
 }
@@ -845,7 +871,7 @@ body {
 
 .about-summary-section-head {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-between;
   gap: 0.6rem;
 }
@@ -863,7 +889,7 @@ body {
 }
 
 .about-summary-divider.compact {
-  margin: 0.16rem 0 0.06rem;
+  margin: 0.34rem 0 0.22rem;
 }
 
 .about-summary-search-input {
@@ -917,6 +943,7 @@ body {
   height: 20px;
 }
 
+.about-summary-browser-list,
 .about-region-summary-list {
   display: grid;
   gap: 0.58rem;
@@ -931,14 +958,14 @@ body {
   border-radius: 12px;
   border: 1px solid rgba(153, 83, 116, 0.18);
   background: #fffdfd;
-  padding: 0.68rem 0.72rem;
+  padding: 0.82rem 0.8rem;
 }
 
 .about-area-summary-item {
   border-radius: 14px;
   border: 1px solid rgba(160, 92, 123, 0.18);
   background: linear-gradient(180deg, rgba(255, 251, 252, 1), rgba(255, 255, 255, 1));
-  padding: 0.72rem;
+  padding: 0.82rem 0.8rem;
 }
 
 .about-region-summary-head {
@@ -956,8 +983,8 @@ body {
 }
 
 .about-region-summary-head strong {
-  font-size: 0.8rem;
-  line-height: 1.35;
+  font-size: 1rem;
+  line-height: 1.15;
 }
 
 .about-area-summary-title-stack {
@@ -972,12 +999,15 @@ body {
 }
 
 .about-area-summary-title-row strong {
-  font-size: 0.8rem;
-  line-height: 1.35;
+  font-size: 1rem;
+  line-height: 1.15;
 }
 
 .about-area-summary-item .coverage-area-type-badge {
   min-width: 0;
+  min-height: 20px;
+  padding-inline: 0.42rem;
+  font-size: 0.6rem;
 }
 
 .about-region-summary-total {
@@ -1036,6 +1066,20 @@ body {
   width: 1.05rem;
   height: 1.05rem;
   fill: currentColor;
+}
+
+.about-summary-mode-switch {
+  display: inline-flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 0.38rem;
+}
+
+.about-summary-mode-switch .tab-btn {
+  min-height: 36px;
+  padding-inline: 0.72rem;
+  border-radius: 999px;
+  font-size: 0.72rem;
 }
 
 .guide-panel h3 {
@@ -1203,6 +1247,28 @@ body {
   margin: 0.16rem 0;
   font-size: 0.78rem;
   color: #593e4b;
+}
+
+.tree-popup .maplibregl-popup-close-button,
+.coverage-popup .maplibregl-popup-close-button {
+  top: 10px;
+  right: 10px;
+  width: 28px;
+  height: 28px;
+  border-radius: 999px;
+  background: linear-gradient(180deg, #ffe5ef, #ffd6e7);
+  color: #7a3b58;
+  border: 1px solid rgba(161, 70, 109, 0.16);
+  font-size: 18px;
+  line-height: 1;
+  display: grid;
+  place-items: center;
+}
+
+.tree-popup .maplibregl-popup-close-button:hover,
+.coverage-popup .maplibregl-popup-close-button:hover {
+  background: linear-gradient(180deg, #ffdbe9, #ffcfe2);
+  color: #6e304c;
 }
 
 .coverage-popup-card h4 {
