@@ -2,7 +2,79 @@ import type { CoverageRegion, Language, OwnershipGroup, SpeciesGroup } from "./t
 
 export const DEFAULT_LANGUAGE: Language = "en-US";
 
+export const LANGUAGE_OPTIONS = [
+  { id: "en-US", emoji: "🇺🇸", label: "English" },
+  { id: "zh-CN", emoji: "🇨🇳", label: "简体中文" },
+  { id: "es-ES", emoji: "🇪🇸", label: "Español" },
+  { id: "ko-KR", emoji: "🇰🇷", label: "한국어" },
+  { id: "ja-JP", emoji: "🇯🇵", label: "日本語" },
+  { id: "fr-FR", emoji: "🇫🇷", label: "Français" },
+  { id: "vi-VN", emoji: "🇻🇳", label: "Tiếng Việt" }
+] as const satisfies ReadonlyArray<{ id: Language; emoji: string; label: string }>;
+
 const copy = {
+  "en-US": {
+    appTitle: "Pink Hunter",
+    appSubtitle: "Find pink blossom trees. Learn the differences.",
+    browserTitle: "Pink Hunter - Pink Blossom Tree Map",
+    browserDescription:
+      "A mobile-first map for finding and distinguishing cherry, plum, peach, magnolia, and crabapple trees.",
+    locate: "Locate",
+    filter: "Filter",
+    language: "Language",
+    loading: "Loading map and tree data...",
+    records: "trees",
+    coveredLegend: "Covered area",
+    officialUnavailableLegend: "Official data unavailable",
+    officialUnavailablePopupTitle: "Researched, no official public data",
+    officialUnavailablePopupBody:
+      "This city has been researched, but no official public single-tree dataset is currently available.",
+    officialUnavailablePopupFoot:
+      "If an official public dataset becomes available later, this area can move into covered status.",
+    notCoveredLegend: "Not covered yet",
+    coverageEnvelopeLegend: "Coverage Envelope",
+    coverageEnvelopeBanner: "Coverage Envelope shows data coverage only, not official administrative boundaries.",
+    noResultsTitle: "No trees match the filters",
+    noResultsBody: "Try broader filters or switch to another city.",
+    selectedTree: "Selected tree",
+    guideTitle: "Pink Blossom Guide",
+    listTitle: "Nearby & filtered results",
+    dataUpdated: "Data updated",
+    source: "Source",
+    ownership: "Ownership",
+    subtype: "Subtype",
+    scientific: "Scientific",
+    common: "Common",
+    city: "City",
+    stateProvince: "State / Province",
+    unknown: "Unknown",
+    filtersTitle: "Filters",
+    speciesFilter: "Species",
+    stateProvinceFilter: "State / Province",
+    cityFilter: "City",
+    zipFilter: "ZIP Code",
+    ownershipFilter: "Ownership",
+    clearFilters: "Clear all",
+    showAll: "Show All",
+    clearAll: "Clear All",
+    searchStateProvincePlaceholder: "Search state or province",
+    searchCityPlaceholder: "Search city",
+    searchZipPlaceholder: "Search ZIP code",
+    tipsTitle: "Tips",
+    coverageBanner: "",
+    showGuide: "Guide",
+    showList: "Filters",
+    showAbout: "About",
+    tapTreeHint: "Tap a tree pin on the map to view details.",
+    coordinates: "Coordinates",
+    zipCode: "ZIP",
+    fitCoverage: "Global",
+    locateNearby: "Locate",
+    loadedCount: "Loaded",
+    fallbackBasemap: "Fallback basemap is active.",
+    collapse: "Collapse",
+    expand: "Expand"
+  },
   "zh-CN": {
     appTitle: "Pink Hunter",
     appSubtitle: "找粉色花树，也分得清它们。",
@@ -10,7 +82,7 @@ const copy = {
     browserDescription: "帮助大家寻找并区分樱花、李花、桃花、木兰与海棠的移动端地图。",
     locate: "定位",
     filter: "筛选",
-    language: "EN",
+    language: "语言",
     loading: "正在加载地图与树点数据...",
     records: "棵树",
     coveredLegend: "已覆盖区域",
@@ -62,72 +134,328 @@ const copy = {
     collapse: "收起",
     expand: "展开"
   },
-  "en-US": {
+  "es-ES": {
     appTitle: "Pink Hunter",
-    appSubtitle: "Find pink blossom trees. Learn the differences.",
-    browserTitle: "Pink Hunter - Pink Blossom Tree Map",
+    appSubtitle: "Encuentra árboles de flor rosa. Aprende a diferenciarlos.",
+    browserTitle: "Pink Hunter - Mapa de Árboles con Flores Rosadas",
     browserDescription:
-      "A mobile-first map for finding and distinguishing cherry, plum, peach, magnolia, and crabapple trees.",
-    locate: "Locate",
-    filter: "Filter",
-    language: "中",
-    loading: "Loading map and tree data...",
-    records: "trees",
-    coveredLegend: "Covered area",
-    officialUnavailableLegend: "Official data unavailable",
-    officialUnavailablePopupTitle: "Researched, no official public data",
+      "Un mapa móvil para encontrar y distinguir cerezos, ciruelos, melocotoneros, magnolias y manzanos ornamentales.",
+    locate: "Ubicar",
+    filter: "Filtrar",
+    language: "Idioma",
+    loading: "Cargando mapa y datos de árboles...",
+    records: "árboles",
+    coveredLegend: "Área cubierta",
+    officialUnavailableLegend: "Sin datos oficiales",
+    officialUnavailablePopupTitle: "Investigado, sin datos públicos oficiales",
     officialUnavailablePopupBody:
-      "This city has been researched, but no official public single-tree dataset is currently available.",
+      "Esta ciudad ya fue investigada, pero por ahora no existe un conjunto público oficial de árboles individuales.",
     officialUnavailablePopupFoot:
-      "If an official public dataset becomes available later, this area can move into covered status.",
-    notCoveredLegend: "Not covered yet",
+      "Si en el futuro aparece un conjunto oficial público, esta zona podrá pasar a cobertura rosa.",
+    notCoveredLegend: "Aún no cubierto",
     coverageEnvelopeLegend: "Coverage Envelope",
-    coverageEnvelopeBanner: "Coverage Envelope shows data coverage only, not official administrative boundaries.",
-    noResultsTitle: "No trees match the filters",
-    noResultsBody: "Try broader filters or switch to another city.",
-    selectedTree: "Selected tree",
-    guideTitle: "Pink Blossom Guide",
-    listTitle: "Nearby & filtered results",
-    dataUpdated: "Data updated",
-    source: "Source",
-    ownership: "Ownership",
-    subtype: "Subtype",
-    scientific: "Scientific",
-    common: "Common",
-    city: "City",
-    stateProvince: "State / Province",
-    unknown: "Unknown",
-    filtersTitle: "Filters",
-    speciesFilter: "Species",
-    stateProvinceFilter: "State / Province",
-    cityFilter: "City",
-    zipFilter: "ZIP Code",
-    ownershipFilter: "Ownership",
-    clearFilters: "Clear all",
-    showAll: "Show All",
-    clearAll: "Clear All",
-    searchStateProvincePlaceholder: "Search state or province",
-    searchCityPlaceholder: "Search city",
-    searchZipPlaceholder: "Search ZIP code",
-    tipsTitle: "Tips",
-    coverageBanner:
-      "",
-    showGuide: "Guide",
-    showList: "Filters",
-    showAbout: "About",
-    tapTreeHint: "Tap a tree pin on the map to view details.",
-    coordinates: "Coordinates",
-    zipCode: "ZIP",
+    coverageEnvelopeBanner:
+      "Coverage Envelope solo muestra el alcance de los datos, no los límites administrativos oficiales.",
+    noResultsTitle: "No hay árboles que coincidan con los filtros",
+    noResultsBody: "Prueba filtros más amplios o cambia de ciudad.",
+    selectedTree: "Árbol seleccionado",
+    guideTitle: "Guía de Flores Rosadas",
+    listTitle: "Resultados cercanos y filtrados",
+    dataUpdated: "Datos actualizados",
+    source: "Fuente",
+    ownership: "Propiedad",
+    subtype: "Subtipo",
+    scientific: "Nombre científico",
+    common: "Nombre común",
+    city: "Ciudad",
+    stateProvince: "Estado / Provincia",
+    unknown: "Desconocido",
+    filtersTitle: "Filtros",
+    speciesFilter: "Especie",
+    stateProvinceFilter: "Estado / Provincia",
+    cityFilter: "Ciudad",
+    zipFilter: "Código postal",
+    ownershipFilter: "Propiedad",
+    clearFilters: "Borrar todo",
+    showAll: "Mostrar todo",
+    clearAll: "Quitar todo",
+    searchStateProvincePlaceholder: "Buscar estado o provincia",
+    searchCityPlaceholder: "Buscar ciudad",
+    searchZipPlaceholder: "Buscar código postal",
+    tipsTitle: "Pistas",
+    coverageBanner: "",
+    showGuide: "Guía",
+    showList: "Filtros",
+    showAbout: "Acerca de",
+    tapTreeHint: "Toca un punto del mapa para ver los detalles.",
+    coordinates: "Coordenadas",
+    zipCode: "Código postal",
     fitCoverage: "Global",
-    locateNearby: "Locate",
-    loadedCount: "Loaded",
-    fallbackBasemap: "Fallback basemap is active.",
-    collapse: "Collapse",
-    expand: "Expand"
+    locateNearby: "Ubicar",
+    loadedCount: "Cargado",
+    fallbackBasemap: "El mapa base de respaldo está activo.",
+    collapse: "Cerrar",
+    expand: "Expandir"
+  },
+  "ko-KR": {
+    appTitle: "Pink Hunter",
+    appSubtitle: "분홍빛 꽃나무를 찾고, 서로 어떻게 다른지도 배워보세요.",
+    browserTitle: "Pink Hunter - 분홍 꽃나무 지도",
+    browserDescription:
+      "벚꽃, 자두꽃, 복숭아꽃, 목련, 꽃사과나무를 찾고 구분할 수 있도록 돕는 모바일 우선 지도입니다.",
+    locate: "내 위치",
+    filter: "필터",
+    language: "언어",
+    loading: "지도와 나무 데이터를 불러오는 중...",
+    records: "그루",
+    coveredLegend: "커버된 지역",
+    officialUnavailableLegend: "공식 데이터 없음",
+    officialUnavailablePopupTitle: "조사 완료, 공식 공개 데이터 없음",
+    officialUnavailablePopupBody:
+      "이 도시는 이미 조사되었지만, 현재 공개된 공식 단일 수목 데이터셋이 없습니다.",
+    officialUnavailablePopupFoot:
+      "나중에 공식 공개 데이터가 나오면 이 구역은 분홍 커버리지로 전환될 수 있습니다.",
+    notCoveredLegend: "아직 미커버",
+    coverageEnvelopeLegend: "Coverage Envelope",
+    coverageEnvelopeBanner: "Coverage Envelope는 데이터 범위만 보여주며 공식 행정 경계가 아닙니다.",
+    noResultsTitle: "필터에 맞는 나무가 없습니다",
+    noResultsBody: "필터를 완화하거나 다른 도시로 이동해 보세요.",
+    selectedTree: "선택한 나무",
+    guideTitle: "분홍 꽃나무 가이드",
+    listTitle: "주변 및 필터 결과",
+    dataUpdated: "데이터 업데이트",
+    source: "출처",
+    ownership: "소유",
+    subtype: "세부 분류",
+    scientific: "학명",
+    common: "일반명",
+    city: "도시",
+    stateProvince: "주 / 도",
+    unknown: "알 수 없음",
+    filtersTitle: "필터",
+    speciesFilter: "종류",
+    stateProvinceFilter: "주 / 도",
+    cityFilter: "도시",
+    zipFilter: "우편번호",
+    ownershipFilter: "소유",
+    clearFilters: "모두 지우기",
+    showAll: "모두 보기",
+    clearAll: "전부 해제",
+    searchStateProvincePlaceholder: "주 또는 도 검색",
+    searchCityPlaceholder: "도시 검색",
+    searchZipPlaceholder: "우편번호 검색",
+    tipsTitle: "구분 포인트",
+    coverageBanner: "",
+    showGuide: "가이드",
+    showList: "필터",
+    showAbout: "소개",
+    tapTreeHint: "지도에서 나무 핀을 눌러 자세한 정보를 확인하세요.",
+    coordinates: "좌표",
+    zipCode: "우편번호",
+    fitCoverage: "전체 보기",
+    locateNearby: "내 위치",
+    loadedCount: "불러옴",
+    fallbackBasemap: "대체 베이스맵이 사용 중입니다.",
+    collapse: "접기",
+    expand: "펼치기"
+  },
+  "ja-JP": {
+    appTitle: "Pink Hunter",
+    appSubtitle: "ピンクの花木を探して、違いも見分けましょう。",
+    browserTitle: "Pink Hunter - ピンクの花木マップ",
+    browserDescription:
+      "桜、李、桃、木蓮、海棠を探して見分けるためのモバイル向けマップです。",
+    locate: "現在地",
+    filter: "絞り込み",
+    language: "言語",
+    loading: "地図と樹木データを読み込み中...",
+    records: "本",
+    coveredLegend: "カバー済みエリア",
+    officialUnavailableLegend: "公式データ未公開",
+    officialUnavailablePopupTitle: "調査済み、公式公開データなし",
+    officialUnavailablePopupBody:
+      "この都市は調査済みですが、現在は公式の公開単木データセットが確認できていません。",
+    officialUnavailablePopupFoot:
+      "今後公式公開データが出れば、この地域はピンクのカバーエリアに変わります。",
+    notCoveredLegend: "未カバー",
+    coverageEnvelopeLegend: "Coverage Envelope",
+    coverageEnvelopeBanner: "Coverage Envelope はデータ範囲を示すもので、正式な行政境界ではありません。",
+    noResultsTitle: "条件に合う木がありません",
+    noResultsBody: "条件を広げるか、別の都市に切り替えてください。",
+    selectedTree: "選択中の木",
+    guideTitle: "ピンク花木ガイド",
+    listTitle: "周辺と絞り込み結果",
+    dataUpdated: "データ更新",
+    source: "出典",
+    ownership: "所有区分",
+    subtype: "細分類",
+    scientific: "学名",
+    common: "一般名",
+    city: "都市",
+    stateProvince: "州 / 県",
+    unknown: "不明",
+    filtersTitle: "フィルター",
+    speciesFilter: "種類",
+    stateProvinceFilter: "州 / 県",
+    cityFilter: "都市",
+    zipFilter: "ZIPコード",
+    ownershipFilter: "所有区分",
+    clearFilters: "すべて解除",
+    showAll: "すべて表示",
+    clearAll: "全解除",
+    searchStateProvincePlaceholder: "州 / 県を検索",
+    searchCityPlaceholder: "都市を検索",
+    searchZipPlaceholder: "ZIPコードを検索",
+    tipsTitle: "見分けるポイント",
+    coverageBanner: "",
+    showGuide: "ガイド",
+    showList: "フィルター",
+    showAbout: "About",
+    tapTreeHint: "地図上の木のピンをタップすると詳細が表示されます。",
+    coordinates: "座標",
+    zipCode: "ZIP",
+    fitCoverage: "全体表示",
+    locateNearby: "現在地",
+    loadedCount: "読み込み済み",
+    fallbackBasemap: "代替ベースマップを使用しています。",
+    collapse: "閉じる",
+    expand: "開く"
+  },
+  "fr-FR": {
+    appTitle: "Pink Hunter",
+    appSubtitle: "Trouvez les arbres à floraison rose. Apprenez à les distinguer.",
+    browserTitle: "Pink Hunter - Carte des Arbres en Fleur Rose",
+    browserDescription:
+      "Une carte mobile pour trouver et distinguer les cerisiers, pruniers, pêchers, magnolias et pommiers d'ornement.",
+    locate: "Localiser",
+    filter: "Filtrer",
+    language: "Langue",
+    loading: "Chargement de la carte et des données d'arbres...",
+    records: "arbres",
+    coveredLegend: "Zone couverte",
+    officialUnavailableLegend: "Données officielles indisponibles",
+    officialUnavailablePopupTitle: "Vérifié, pas de données publiques officielles",
+    officialUnavailablePopupBody:
+      "Cette ville a été vérifiée, mais aucun jeu de données public officiel arbre par arbre n'est actuellement disponible.",
+    officialUnavailablePopupFoot:
+      "Si un jeu de données officiel devient public plus tard, cette zone pourra passer en couverture rose.",
+    notCoveredLegend: "Pas encore couvert",
+    coverageEnvelopeLegend: "Coverage Envelope",
+    coverageEnvelopeBanner:
+      "Coverage Envelope montre uniquement l'étendue des données, pas les limites administratives officielles.",
+    noResultsTitle: "Aucun arbre ne correspond aux filtres",
+    noResultsBody: "Essayez des filtres plus larges ou changez de ville.",
+    selectedTree: "Arbre sélectionné",
+    guideTitle: "Guide des Floraisons Roses",
+    listTitle: "Résultats proches et filtrés",
+    dataUpdated: "Données mises à jour",
+    source: "Source",
+    ownership: "Propriété",
+    subtype: "Sous-type",
+    scientific: "Nom scientifique",
+    common: "Nom commun",
+    city: "Ville",
+    stateProvince: "État / Province",
+    unknown: "Inconnu",
+    filtersTitle: "Filtres",
+    speciesFilter: "Espèce",
+    stateProvinceFilter: "État / Province",
+    cityFilter: "Ville",
+    zipFilter: "Code postal",
+    ownershipFilter: "Propriété",
+    clearFilters: "Tout effacer",
+    showAll: "Tout afficher",
+    clearAll: "Tout désélectionner",
+    searchStateProvincePlaceholder: "Rechercher un état ou une province",
+    searchCityPlaceholder: "Rechercher une ville",
+    searchZipPlaceholder: "Rechercher un code postal",
+    tipsTitle: "Indices",
+    coverageBanner: "",
+    showGuide: "Guide",
+    showList: "Filtres",
+    showAbout: "À propos",
+    tapTreeHint: "Touchez un point d'arbre sur la carte pour voir les détails.",
+    coordinates: "Coordonnées",
+    zipCode: "Code postal",
+    fitCoverage: "Vue globale",
+    locateNearby: "Localiser",
+    loadedCount: "Chargé",
+    fallbackBasemap: "Le fond de carte de secours est actif.",
+    collapse: "Réduire",
+    expand: "Développer"
+  },
+  "vi-VN": {
+    appTitle: "Pink Hunter",
+    appSubtitle: "Tìm cây hoa màu hồng và học cách phân biệt chúng.",
+    browserTitle: "Pink Hunter - Bản Đồ Cây Hoa Màu Hồng",
+    browserDescription:
+      "Bản đồ ưu tiên di động để tìm và phân biệt hoa anh đào, hoa mận, hoa đào, mộc lan và hải đường.",
+    locate: "Định vị",
+    filter: "Lọc",
+    language: "Ngôn ngữ",
+    loading: "Đang tải bản đồ và dữ liệu cây...",
+    records: "cây",
+    coveredLegend: "Khu vực đã phủ",
+    officialUnavailableLegend: "Chưa có dữ liệu chính thức",
+    officialUnavailablePopupTitle: "Đã kiểm tra, chưa có dữ liệu công khai chính thức",
+    officialUnavailablePopupBody:
+      "Thành phố này đã được kiểm tra, nhưng hiện chưa có bộ dữ liệu công khai chính thức cho từng cây riêng lẻ.",
+    officialUnavailablePopupFoot:
+      "Nếu sau này có dữ liệu công khai chính thức, khu vực này có thể chuyển sang vùng phủ màu hồng.",
+    notCoveredLegend: "Chưa được phủ",
+    coverageEnvelopeLegend: "Coverage Envelope",
+    coverageEnvelopeBanner: "Coverage Envelope chỉ thể hiện phạm vi dữ liệu, không phải ranh giới hành chính chính thức.",
+    noResultsTitle: "Không có cây nào khớp bộ lọc",
+    noResultsBody: "Hãy thử nới lỏng bộ lọc hoặc chuyển sang thành phố khác.",
+    selectedTree: "Cây đang chọn",
+    guideTitle: "Hướng Dẫn Hoa Màu Hồng",
+    listTitle: "Kết quả gần đây và đã lọc",
+    dataUpdated: "Dữ liệu cập nhật",
+    source: "Nguồn",
+    ownership: "Quyền sở hữu",
+    subtype: "Phân nhóm nhỏ",
+    scientific: "Tên khoa học",
+    common: "Tên thông dụng",
+    city: "Thành phố",
+    stateProvince: "Tiểu bang / Tỉnh",
+    unknown: "Không rõ",
+    filtersTitle: "Bộ lọc",
+    speciesFilter: "Loài",
+    stateProvinceFilter: "Tiểu bang / Tỉnh",
+    cityFilter: "Thành phố",
+    zipFilter: "Mã ZIP",
+    ownershipFilter: "Quyền sở hữu",
+    clearFilters: "Xóa tất cả",
+    showAll: "Hiện tất cả",
+    clearAll: "Bỏ chọn tất cả",
+    searchStateProvincePlaceholder: "Tìm tiểu bang hoặc tỉnh",
+    searchCityPlaceholder: "Tìm thành phố",
+    searchZipPlaceholder: "Tìm mã ZIP",
+    tipsTitle: "Mẹo phân biệt",
+    coverageBanner: "",
+    showGuide: "Hướng dẫn",
+    showList: "Bộ lọc",
+    showAbout: "Giới thiệu",
+    tapTreeHint: "Chạm vào ghim cây trên bản đồ để xem chi tiết.",
+    coordinates: "Tọa độ",
+    zipCode: "ZIP",
+    fitCoverage: "Toàn vùng",
+    locateNearby: "Định vị",
+    loadedCount: "Đã tải",
+    fallbackBasemap: "Bản đồ nền dự phòng đang được sử dụng.",
+    collapse: "Thu gọn",
+    expand: "Mở rộng"
   }
 } as const;
 
 const speciesLabelMap: Record<Language, Record<SpeciesGroup, string>> = {
+  "en-US": {
+    cherry: "Cherry",
+    plum: "Plum",
+    peach: "Peach",
+    magnolia: "Magnolia",
+    crabapple: "Crabapple"
+  },
   "zh-CN": {
     cherry: "樱花",
     plum: "李花",
@@ -135,37 +463,97 @@ const speciesLabelMap: Record<Language, Record<SpeciesGroup, string>> = {
     magnolia: "木兰",
     crabapple: "海棠"
   },
-  "en-US": {
-    cherry: "Cherry",
-    plum: "Plum",
-    peach: "Peach",
+  "es-ES": {
+    cherry: "Cerezo",
+    plum: "Ciruelo",
+    peach: "Melocotonero",
     magnolia: "Magnolia",
-    crabapple: "Crabapple"
+    crabapple: "Manzano ornamental"
+  },
+  "ko-KR": {
+    cherry: "벚꽃",
+    plum: "자두꽃",
+    peach: "복숭아꽃",
+    magnolia: "목련",
+    crabapple: "꽃사과"
+  },
+  "ja-JP": {
+    cherry: "桜",
+    plum: "李",
+    peach: "桃",
+    magnolia: "木蓮",
+    crabapple: "海棠"
+  },
+  "fr-FR": {
+    cherry: "Cerisier",
+    plum: "Prunier",
+    peach: "Pêcher",
+    magnolia: "Magnolia",
+    crabapple: "Pommier d'ornement"
+  },
+  "vi-VN": {
+    cherry: "Hoa anh đào",
+    plum: "Hoa mận",
+    peach: "Hoa đào",
+    magnolia: "Hoa mộc lan",
+    crabapple: "Hoa hải đường"
   }
 };
 
 const ownershipLabelMap: Record<Language, Record<OwnershipGroup, string>> = {
-  "zh-CN": {
-    public: "公共",
-    private: "私有",
-    unknown: "未知"
-  },
-  "en-US": {
-    public: "Public",
-    private: "Private",
-    unknown: "Unknown"
-  }
+  "en-US": { public: "Public", private: "Private", unknown: "Unknown" },
+  "zh-CN": { public: "公共", private: "私有", unknown: "未知" },
+  "es-ES": { public: "Pública", private: "Privada", unknown: "Desconocido" },
+  "ko-KR": { public: "공공", private: "사유", unknown: "알 수 없음" },
+  "ja-JP": { public: "公共", private: "私有", unknown: "不明" },
+  "fr-FR": { public: "Public", private: "Privé", unknown: "Inconnu" },
+  "vi-VN": { public: "Công cộng", private: "Tư nhân", unknown: "Không rõ" }
 };
 
 const regionLabelMap: Record<Language, Record<CoverageRegion, string>> = {
+  "en-US": {
+    wa: "Washington",
+    ca: "California",
+    or: "Oregon",
+    dc: "Washington, DC",
+    bc: "British Columbia"
+  },
   "zh-CN": {
     wa: "华盛顿州",
     ca: "加利福尼亚州",
     or: "俄勒冈州",
     dc: "华盛顿哥伦比亚特区",
-    bc: "卑诗省"
+    bc: "不列颠哥伦比亚省"
   },
-  "en-US": {
+  "es-ES": {
+    wa: "Washington",
+    ca: "California",
+    or: "Oregón",
+    dc: "Washington, D. C.",
+    bc: "Columbia Británica"
+  },
+  "ko-KR": {
+    wa: "워싱턴주",
+    ca: "캘리포니아주",
+    or: "오리건주",
+    dc: "워싱턴 D.C.",
+    bc: "브리티시컬럼비아주"
+  },
+  "ja-JP": {
+    wa: "ワシントン州",
+    ca: "カリフォルニア州",
+    or: "オレゴン州",
+    dc: "ワシントンDC",
+    bc: "ブリティッシュコロンビア州"
+  },
+  "fr-FR": {
+    wa: "Washington",
+    ca: "Californie",
+    or: "Oregon",
+    dc: "Washington, D.C.",
+    bc: "Colombie-Britannique"
+  },
+  "vi-VN": {
     wa: "Washington",
     ca: "California",
     or: "Oregon",
@@ -174,8 +562,18 @@ const regionLabelMap: Record<Language, Record<CoverageRegion, string>> = {
   }
 };
 
-export function t(language: Language, key: keyof (typeof copy)["zh-CN"]): string {
-  return copy[language][key];
+const languageOptionMap: Record<Language, { emoji: string; label: string }> = Object.fromEntries(
+  LANGUAGE_OPTIONS.map((option) => [option.id, { emoji: option.emoji, label: option.label }])
+) as Record<Language, { emoji: string; label: string }>;
+
+export type CopyKey = keyof (typeof copy)["en-US"];
+
+export function isSupportedLanguage(raw: string | null): raw is Language {
+  return LANGUAGE_OPTIONS.some((option) => option.id === raw);
+}
+
+export function t(language: Language, key: CopyKey): string {
+  return copy[language][key] ?? copy[DEFAULT_LANGUAGE][key];
 }
 
 export function speciesLabel(language: Language, species: SpeciesGroup): string {
@@ -188,4 +586,12 @@ export function ownershipLabel(language: Language, ownership: OwnershipGroup): s
 
 export function regionLabel(language: Language, region: CoverageRegion): string {
   return regionLabelMap[language][region];
+}
+
+export function languageEmoji(language: Language): string {
+  return languageOptionMap[language].emoji;
+}
+
+export function languageLabel(language: Language): string {
+  return languageOptionMap[language].label;
 }

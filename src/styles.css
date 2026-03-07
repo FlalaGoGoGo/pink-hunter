@@ -143,6 +143,61 @@ body {
 
 .language-btn {
   flex-shrink: 0;
+  padding: 0.45rem 0.7rem;
+  font-size: 1.2rem;
+  line-height: 1;
+}
+
+.language-switcher {
+  position: relative;
+  flex-shrink: 0;
+}
+
+.language-menu {
+  position: absolute;
+  top: calc(100% + 0.45rem);
+  right: 0;
+  min-width: 10.5rem;
+  display: grid;
+  gap: 0.2rem;
+  padding: 0.35rem;
+  border-radius: 14px;
+  border: 1px solid rgba(139, 78, 103, 0.24);
+  background: rgba(255, 253, 254, 0.98);
+  box-shadow: 0 16px 30px rgba(97, 54, 73, 0.16);
+  z-index: 20;
+}
+
+.language-option {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  min-height: 40px;
+  padding: 0.5rem 0.65rem;
+  border: 0;
+  border-radius: 10px;
+  background: transparent;
+  color: #4f3442;
+  font: inherit;
+  font-size: 0.82rem;
+  font-weight: 700;
+  text-align: left;
+}
+
+.language-option:hover {
+  background: rgba(255, 240, 246, 0.88);
+}
+
+.language-option.active {
+  background: linear-gradient(180deg, #ffe9f1, #ffdbe8);
+}
+
+.language-option-emoji {
+  font-size: 1.06rem;
+}
+
+.language-option-label {
+  white-space: nowrap;
 }
 
 .legend-row {

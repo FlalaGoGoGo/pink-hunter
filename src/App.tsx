@@ -8,7 +8,15 @@ import {
 } from "react";
 import type { FeatureCollection, Point } from "geojson";
 import { loadRegionCityIndex, loadStaticAppData, loadTreeCollection } from "./data";
-import { DEFAULT_LANGUAGE, ownershipLabel, regionLabel, speciesLabel, t } from "./i18n";
+import {
+  DEFAULT_LANGUAGE,
+  LANGUAGE_OPTIONS,
+  isSupportedLanguage,
+  ownershipLabel,
+  regionLabel,
+  speciesLabel,
+  t
+} from "./i18n";
 import {
   loadMapRuntimeDeps,
   type ClipMultiPolygon,
@@ -118,11 +126,21 @@ const GUIDE_COMPARISON_ART = [
     image: "/assets/guide/comparisons/petal-comparison.png",
     title: {
       "en-US": "Petal Shape",
-      "zh-CN": "花瓣形态"
+      "zh-CN": "花瓣形态",
+      "es-ES": "Forma de los pétalos",
+      "ko-KR": "꽃잎 모양",
+      "ja-JP": "花びらの形",
+      "fr-FR": "Forme des pétales",
+      "vi-VN": "Hình dáng cánh hoa"
     },
     body: {
       "en-US": "Compare edge shape, petal roundness, and how open each bloom feels.",
-      "zh-CN": "对比花瓣边缘、圆润程度，以及整朵花打开后的感觉。"
+      "zh-CN": "对比花瓣边缘、圆润程度，以及整朵花打开后的感觉。",
+      "es-ES": "Compara el borde, la redondez del pétalo y qué tan abierta se siente cada flor.",
+      "ko-KR": "꽃잎 가장자리, 둥근 정도, 그리고 꽃이 얼마나 활짝 열린 느낌인지 비교해 보세요.",
+      "ja-JP": "花びらの縁、丸み、そして花全体の開き方を比べてみてください。",
+      "fr-FR": "Comparez le bord, la rondeur des pétales et l'impression d'ouverture de chaque fleur.",
+      "vi-VN": "So sánh mép cánh hoa, độ tròn và cảm giác nở mở của từng bông."
     }
   },
   {
@@ -130,11 +148,21 @@ const GUIDE_COMPARISON_ART = [
     image: "/assets/guide/comparisons/cluster-stem-comparison.png",
     title: {
       "en-US": "Cluster & Stem Pattern",
-      "zh-CN": "成串方式与花梗"
+      "zh-CN": "成串方式与花梗",
+      "es-ES": "Racimos y tallos florales",
+      "ko-KR": "송이 형태와 꽃자루",
+      "ja-JP": "房のつき方と花柄",
+      "fr-FR": "Port en grappe et pédicelles",
+      "vi-VN": "Kiểu mọc thành chùm và cuống hoa"
     },
     body: {
       "en-US": "Look for single blooms vs clusters, and whether flowers sit close to twigs or hang outward.",
-      "zh-CN": "看单朵还是成串，也看花是贴着枝条还是向外垂挂。"
+      "zh-CN": "看单朵还是成串，也看花是贴着枝条还是向外垂挂。",
+      "es-ES": "Observa si son flores solitarias o en racimo, y si quedan pegadas a la rama o cuelgan hacia fuera.",
+      "ko-KR": "꽃이 한 송이씩인지, 송이로 묶여 있는지, 또 가지에 붙어 있는지 바깥으로 늘어지는지 보세요.",
+      "ja-JP": "一輪ずつか房状か、また花が枝に寄っているのか外へ垂れるのかを見てください。",
+      "fr-FR": "Regardez si les fleurs sont solitaires ou en grappes, et si elles restent près du rameau ou pendent vers l'extérieur.",
+      "vi-VN": "Xem hoa mọc đơn hay thành chùm, và chúng bám sát cành hay buông ra phía ngoài."
     }
   },
   {
@@ -142,11 +170,21 @@ const GUIDE_COMPARISON_ART = [
     image: "/assets/guide/comparisons/bark-trunk-comparison.png",
     title: {
       "en-US": "Bark & Trunk",
-      "zh-CN": "树皮与树干"
+      "zh-CN": "树皮与树干",
+      "es-ES": "Corteza y tronco",
+      "ko-KR": "수피와 줄기",
+      "ja-JP": "樹皮と幹",
+      "fr-FR": "Écorce et tronc",
+      "vi-VN": "Vỏ cây và thân cây"
     },
     body: {
       "en-US": "Cherry and plum often show lenticels, while magnolia and crabapple bark feel different at a glance.",
-      "zh-CN": "樱花和李花常见皮孔，木兰和海棠的树干质感通常一眼就不一样。"
+      "zh-CN": "樱花和李花常见皮孔，木兰和海棠的树干质感通常一眼就不一样。",
+      "es-ES": "El cerezo y el ciruelo suelen mostrar lenticelas; magnolia y manzano ornamental se sienten distintos a primera vista.",
+      "ko-KR": "벚꽃나무와 자두나무는 피목이 자주 보이고, 목련과 꽃사과는 줄기 질감이 바로 다르게 느껴집니다.",
+      "ja-JP": "桜や李には皮目が見られることが多く、木蓮や海棠は幹の質感がひと目で違うことがよくあります。",
+      "fr-FR": "Le cerisier et le prunier montrent souvent des lenticelles ; le magnolia et le pommier d'ornement donnent généralement une impression différente dès le premier regard.",
+      "vi-VN": "Anh đào và mận thường có lỗ bì rõ; mộc lan và hải đường thường cho cảm giác vỏ thân rất khác ngay từ cái nhìn đầu tiên."
     }
   },
   {
@@ -154,14 +192,229 @@ const GUIDE_COMPARISON_ART = [
     image: "/assets/guide/comparisons/bud-leaf-comparison.png",
     title: {
       "en-US": "Bud & Leaf Emergence",
-      "zh-CN": "花芽与叶片时机"
+      "zh-CN": "花芽与叶片时机",
+      "es-ES": "Brotes y momento de las hojas",
+      "ko-KR": "눈과 잎의 시기",
+      "ja-JP": "芽と葉のタイミング",
+      "fr-FR": "Bourgeons et moment des feuilles",
+      "vi-VN": "Chồi và thời điểm ra lá"
     },
     body: {
       "en-US": "Notice whether leaves arrive with blossoms or after the main bloom flush.",
-      "zh-CN": "观察叶片是和花一起出现，还是等到主要花期之后再长出来。"
+      "zh-CN": "观察叶片是和花一起出现，还是等到主要花期之后再长出来。",
+      "es-ES": "Observa si las hojas aparecen junto con la floración o después del pico principal de flores.",
+      "ko-KR": "잎이 꽃과 함께 나오는지, 아니면 주요 개화가 지난 뒤에 나오는지 살펴보세요.",
+      "ja-JP": "葉が花と同時に出るのか、それとも主な花期のあとに出るのかを確認しましょう。",
+      "fr-FR": "Observez si les feuilles apparaissent avec les fleurs ou après la floraison principale.",
+      "vi-VN": "Hãy để ý xem lá xuất hiện cùng lúc với hoa hay chỉ mọc ra sau đợt nở chính."
     }
   }
 ] as const;
+
+const GUIDE_COMPARE_COPY: Record<Language, { title: string; intro: string }> = {
+  "en-US": {
+    title: "Compare the details",
+    intro: "Color alone is weak. Petal shape, cluster pattern, bark, and bud timing are more reliable."
+  },
+  "zh-CN": {
+    title: "细节对比图",
+    intro: "除了颜色，真正稳定的区分线索通常来自花瓣、花梗、树皮和芽叶时机。"
+  },
+  "es-ES": {
+    title: "Compara los detalles",
+    intro: "El color por sí solo no basta. La forma de los pétalos, el patrón de racimos, la corteza y el momento de las yemas son más fiables."
+  },
+  "ko-KR": {
+    title: "세부 비교",
+    intro: "색만으로는 부족합니다. 꽃잎 모양, 송이 형태, 수피, 눈과 잎의 시기가 더 믿을 만한 단서입니다."
+  },
+  "ja-JP": {
+    title: "細部を比べる",
+    intro: "色だけでは判断しにくいです。花びらの形、房のつき方、樹皮、芽と葉のタイミングのほうが確実です。"
+  },
+  "fr-FR": {
+    title: "Comparer les détails",
+    intro: "La couleur seule ne suffit pas. La forme des pétales, le port en grappe, l'écorce et le rythme des bourgeons sont plus fiables."
+  },
+  "vi-VN": {
+    title: "So sánh chi tiết",
+    intro: "Chỉ nhìn màu là chưa đủ. Hình dáng cánh hoa, kiểu mọc thành chùm, vỏ cây và thời điểm ra chồi đáng tin hơn."
+  }
+};
+
+const ABOUT_COPY: Record<
+  Language,
+  {
+    title: string;
+    intro: string[];
+    sourcesTitle: string;
+    disclaimerTitle: string;
+    contactTitle: string;
+    contactLead: string;
+    disclaimer: string[];
+    officialBadge: string;
+    supplementalBadge: string;
+    openLink: string;
+    previousPage: string;
+    nextPage: string;
+    pageLabel: string;
+  }
+> = {
+  "en-US": {
+    title: "About Pink Hunter",
+    intro: [
+      "Pink Hunter is a spring map for finding pink-blossoming cherry, plum, peach, magnolia, and crabapple trees.",
+      "The project is meant to help people learn the differences between these lookalike blooms instead of calling every pink tree a cherry by default."
+    ],
+    sourcesTitle: "Data Sources",
+    disclaimerTitle: "Data Notes",
+    contactTitle: "Contact",
+    contactLead: "If you know an official public tree dataset that should be included, send it to Flala Zhang.",
+    disclaimer: [
+      "City-level coverage is built from official public single-tree datasets whenever those datasets are available; that is a hard rule for city integration.",
+      "What you see on the map can still differ from reality because of source refresh lag, pruning or removals, naming inconsistencies, or point-location error.",
+      "UW cherry points are currently included through a supplemental dataset because the official city inventory does not fully cover that campus hotspot."
+    ],
+    officialBadge: "Official public source",
+    supplementalBadge: "Supplemental source",
+    openLink: "Open source link",
+    previousPage: "Previous",
+    nextPage: "Next",
+    pageLabel: "Page"
+  },
+  "zh-CN": {
+    title: "关于 Pink Hunter",
+    intro: [
+      "Pink Hunter 是一个春季粉色花树地图项目，帮助大家在花季里更快找到樱花、李花、桃花、木兰和海棠。",
+      "这个项目不只是找花，也希望教大家分辨这些常被误认的花树，让“粉色花都叫樱花”这件事少一点。"
+    ],
+    sourcesTitle: "数据源",
+    disclaimerTitle: "数据说明",
+    contactTitle: "联系方式",
+    contactLead: "如果你知道新的官方公开树木数据源，欢迎发邮件给 Flala Zhang。",
+    disclaimer: [
+      "城市级覆盖优先采用官方公开的单株树木数据集；这是产品纳入覆盖城市的硬标准。",
+      "但数据更新频率、树木修剪/移除、物种录入习惯、坐标偏差等问题，都会让网页显示与现实情况存在差异。",
+      "UW 樱花点位目前使用补充数据来弥补官方城市树木清单的空缺，因此这一部分不是官方 city inventory。"
+    ],
+    officialBadge: "官方公开源",
+    supplementalBadge: "补充源",
+    openLink: "打开源链接",
+    previousPage: "上一页",
+    nextPage: "下一页",
+    pageLabel: "页"
+  },
+  "es-ES": {
+    title: "Acerca de Pink Hunter",
+    intro: [
+      "Pink Hunter es un mapa de primavera para encontrar cerezos, ciruelos, melocotoneros, magnolias y manzanos ornamentales con floración rosa.",
+      "El proyecto también busca enseñar a distinguir estas flores parecidas, en lugar de llamar cerezo a cualquier árbol rosado."
+    ],
+    sourcesTitle: "Fuentes de datos",
+    disclaimerTitle: "Notas sobre los datos",
+    contactTitle: "Contacto",
+    contactLead: "Si conoces un conjunto oficial y público de árboles que debería incluirse, envíalo a Flala Zhang.",
+    disclaimer: [
+      "La cobertura por ciudad se construye a partir de conjuntos públicos oficiales árbol por árbol siempre que estén disponibles; esa es una regla estricta del proyecto.",
+      "Lo que ves en el mapa puede diferir de la realidad por retrasos de actualización, podas o retiros, diferencias de nomenclatura o errores de ubicación.",
+      "Los puntos de cerezos de UW se incluyen hoy mediante una fuente complementaria porque el inventario oficial de la ciudad no cubre completamente ese campus."
+    ],
+    officialBadge: "Fuente pública oficial",
+    supplementalBadge: "Fuente complementaria",
+    openLink: "Abrir enlace",
+    previousPage: "Anterior",
+    nextPage: "Siguiente",
+    pageLabel: "Página"
+  },
+  "ko-KR": {
+    title: "Pink Hunter 소개",
+    intro: [
+      "Pink Hunter는 벚꽃, 자두꽃, 복숭아꽃, 목련, 꽃사과처럼 분홍빛으로 피는 나무를 찾기 위한 봄 지도입니다.",
+      "모든 분홍 꽃나무를 벚꽃이라고 부르지 않고, 서로 어떻게 다른지 배울 수 있게 돕는 것도 이 프로젝트의 목표입니다."
+    ],
+    sourcesTitle: "데이터 출처",
+    disclaimerTitle: "데이터 안내",
+    contactTitle: "연락처",
+    contactLead: "추가되어야 할 공식 공개 수목 데이터셋을 알고 있다면 Flala Zhang에게 보내 주세요.",
+    disclaimer: [
+      "도시 단위 커버리지는 가능한 경우 공식 공개 단일 수목 데이터셋을 기준으로 구축합니다. 이것은 도시 통합의 하드 룰입니다.",
+      "지도에 보이는 내용은 데이터 갱신 지연, 가지치기나 제거, 명칭 차이, 좌표 오차 때문에 실제와 다를 수 있습니다.",
+      "UW 벚꽃 포인트는 해당 캠퍼스 명소를 공식 도시 인벤토리가 충분히 다루지 못하기 때문에 현재 보완 데이터셋으로 포함됩니다."
+    ],
+    officialBadge: "공식 공개 출처",
+    supplementalBadge: "보완 출처",
+    openLink: "원본 링크 열기",
+    previousPage: "이전",
+    nextPage: "다음",
+    pageLabel: "페이지"
+  },
+  "ja-JP": {
+    title: "Pink Hunter について",
+    intro: [
+      "Pink Hunter は、桜、李、桃、木蓮、海棠など、春にピンク色で咲く花木を見つけるための地図です。",
+      "似た花木の違いを学び、ピンクの木を何でも桜と呼んでしまう状況を少し減らすことも、このプロジェクトの目的です。"
+    ],
+    sourcesTitle: "データソース",
+    disclaimerTitle: "データについて",
+    contactTitle: "連絡先",
+    contactLead: "追加すべき公式公開の樹木データセットをご存じでしたら、Flala Zhang までお知らせください。",
+    disclaimer: [
+      "都市ごとのカバレッジは、利用可能な場合は公式に公開された単木データセットを優先して構築しています。これは都市統合のハードルールです。",
+      "更新遅延、剪定や撤去、名称のゆれ、座標誤差などにより、地図表示が実際の状況と異なることがあります。",
+      "UW の桜ポイントは、公式な市のインベントリだけではキャンパスの名所を十分にカバーできないため、現在は補完データで追加しています。"
+    ],
+    officialBadge: "公式公開ソース",
+    supplementalBadge: "補完ソース",
+    openLink: "元リンクを開く",
+    previousPage: "前へ",
+    nextPage: "次へ",
+    pageLabel: "ページ"
+  },
+  "fr-FR": {
+    title: "À propos de Pink Hunter",
+    intro: [
+      "Pink Hunter est une carte de printemps pour trouver des cerisiers, pruniers, pêchers, magnolias et pommiers d'ornement à floraison rose.",
+      "Le projet sert aussi à apprendre à distinguer ces floraisons ressemblantes au lieu d'appeler cerisier tout arbre rose."
+    ],
+    sourcesTitle: "Sources de données",
+    disclaimerTitle: "Notes sur les données",
+    contactTitle: "Contact",
+    contactLead: "Si vous connaissez un jeu de données public officiel sur les arbres qui devrait être inclus, envoyez-le à Flala Zhang.",
+    disclaimer: [
+      "La couverture par ville repose, lorsque c'est possible, sur des jeux de données publics officiels arbre par arbre ; c'est une règle stricte du projet.",
+      "Ce que vous voyez sur la carte peut différer de la réalité à cause du retard de mise à jour, de la taille ou du retrait d'arbres, d'incohérences de nommage ou d'erreurs de géolocalisation.",
+      "Les points de cerisiers de l'UW sont actuellement inclus via une source complémentaire, car l'inventaire officiel de la ville ne couvre pas complètement ce hotspot du campus."
+    ],
+    officialBadge: "Source publique officielle",
+    supplementalBadge: "Source complémentaire",
+    openLink: "Ouvrir le lien",
+    previousPage: "Précédent",
+    nextPage: "Suivant",
+    pageLabel: "Page"
+  },
+  "vi-VN": {
+    title: "Về Pink Hunter",
+    intro: [
+      "Pink Hunter là bản đồ mùa xuân để tìm các cây nở hoa màu hồng như anh đào, mận, đào, mộc lan và hải đường.",
+      "Dự án cũng nhằm giúp mọi người phân biệt những loài hoa dễ bị nhầm lẫn này thay vì mặc định gọi mọi cây hoa hồng là anh đào."
+    ],
+    sourcesTitle: "Nguồn dữ liệu",
+    disclaimerTitle: "Lưu ý dữ liệu",
+    contactTitle: "Liên hệ",
+    contactLead: "Nếu bạn biết một bộ dữ liệu cây công khai chính thức nên được thêm vào, hãy gửi cho Flala Zhang.",
+    disclaimer: [
+      "Phạm vi theo từng thành phố được xây dựng từ các bộ dữ liệu công khai chính thức cho từng cây khi những bộ dữ liệu đó tồn tại; đây là quy tắc cứng của dự án.",
+      "Những gì bạn thấy trên bản đồ vẫn có thể khác thực tế do độ trễ cập nhật, việc cắt tỉa hoặc loại bỏ cây, cách ghi tên khác nhau hoặc sai số tọa độ.",
+      "Các điểm hoa anh đào ở UW hiện được thêm bằng nguồn bổ sung vì bộ kiểm kê chính thức của thành phố chưa bao phủ đầy đủ điểm nóng trong khuôn viên này."
+    ],
+    officialBadge: "Nguồn công khai chính thức",
+    supplementalBadge: "Nguồn bổ sung",
+    openLink: "Mở liên kết nguồn",
+    previousPage: "Trang trước",
+    nextPage: "Trang sau",
+    pageLabel: "Trang"
+  }
+};
 
 const REGION_SWITCH_BOUNDS: Partial<Record<CoverageRegion, [[number, number], [number, number]]>> = {
   wa: [
@@ -252,7 +505,7 @@ interface UrlState {
 }
 
 function parseLanguage(raw: string | null): Language {
-  if (raw === "zh-CN" || raw === "en-US") {
+  if (isSupportedLanguage(raw)) {
     return raw;
   }
   return DEFAULT_LANGUAGE;
@@ -642,6 +895,7 @@ export default function App(): JSX.Element {
   const [selectedOwnership, setSelectedOwnership] = useState<OwnershipGroup[]>(initialUrlState.ownership);
   const [selectedCities, setSelectedCities] = useState<string[]>(initialUrlState.cities);
   const [selectedZipCodes, setSelectedZipCodes] = useState<string[]>(initialUrlState.zipCodes);
+  const [languageMenuOpen, setLanguageMenuOpen] = useState(false);
   const [stateDropdownOpen, setStateDropdownOpen] = useState(false);
   const [stateSearchQuery, setStateSearchQuery] = useState("");
   const [cityDropdownOpen, setCityDropdownOpen] = useState(false);
@@ -664,6 +918,7 @@ export default function App(): JSX.Element {
   const [userLocation, setUserLocation] = useState<[number, number] | null>(null);
 
   const mapContainerRef = useRef<HTMLDivElement | null>(null);
+  const languageMenuRef = useRef<HTMLDivElement | null>(null);
   const mapRef = useRef<MapLibreMap | null>(null);
   const popupRef = useRef<MapLibrePopup | null>(null);
   const filteredFeaturesRef = useRef<TreeCollection["features"]>([]);
@@ -731,6 +986,7 @@ export default function App(): JSX.Element {
   const activeRegionMeta = regionMetaById.get(activeRegion) ?? null;
   const activeRegionCityIndex = regionCityIndexCache[activeRegion] ?? null;
   const activeRegionTrees = regionTreeCache[activeRegion] ?? null;
+  const activeLanguageOption = LANGUAGE_OPTIONS.find((option) => option.id === language) ?? LANGUAGE_OPTIONS[0];
   const activeRegionPending = Boolean(
     data &&
       activeRegionMeta?.available &&
@@ -1015,6 +1271,19 @@ export default function App(): JSX.Element {
   }, [activePanel, cityDropdownOpen, stateDropdownOpen, zipDropdownOpen]);
 
   useEffect(() => {
+    const handlePointerDown = (event: PointerEvent): void => {
+      if (!languageMenuRef.current?.contains(event.target as Node)) {
+        setLanguageMenuOpen(false);
+      }
+    };
+
+    document.addEventListener("pointerdown", handlePointerDown);
+    return () => {
+      document.removeEventListener("pointerdown", handlePointerDown);
+    };
+  }, []);
+
+  useEffect(() => {
     if (!stateDropdownOpen) {
       setStateSearchQuery("");
     }
@@ -1073,61 +1342,8 @@ export default function App(): JSX.Element {
     });
   }, [language, zipCodes, zipSearchQuery]);
 
-  const guideCompareCopy = language === "zh-CN"
-    ? {
-        title: "细节对比图",
-        intro: "除了颜色，真正稳定的区分线索通常来自花瓣、花梗、树皮和芽叶时机。"
-      }
-    : {
-        title: "Compare the details",
-        intro: "Color alone is weak. Petal shape, cluster pattern, bark, and bud timing are more reliable."
-      };
-
-  const aboutCopy = language === "zh-CN"
-    ? {
-        title: "关于 Pink Hunter",
-        intro: [
-          "Pink Hunter 是一个春季粉色花树地图项目，帮助大家在花季里更快找到樱花、李花、桃花、木兰和海棠。",
-          "这个项目不只是找花，也希望教大家分辨这些常被误认的花树，让“粉色花都叫樱花”这件事少一点。"
-        ],
-        sourcesTitle: "数据源",
-        disclaimerTitle: "数据说明",
-        contactTitle: "联系方式",
-        contactLead: "如果你知道新的官方公开树木数据源，欢迎发邮件给 Flala Zhang。",
-        disclaimer: [
-          "城市级覆盖优先采用官方公开的单株树木数据集；这是产品纳入覆盖城市的硬标准。",
-          "但数据更新频率、树木修剪/移除、物种录入习惯、坐标偏差等问题，都会让网页显示与现实情况存在差异。",
-          "UW 樱花点位目前使用补充数据来弥补官方城市树木清单的空缺，因此这一部分不是官方 city inventory。"
-        ],
-        officialBadge: "官方公开源",
-        supplementalBadge: "补充源",
-        openLink: "打开源链接",
-        previousPage: "上一页",
-        nextPage: "下一页",
-        pageLabel: "页"
-      }
-    : {
-        title: "About Pink Hunter",
-        intro: [
-          "Pink Hunter is a spring map for finding pink-blossoming cherry, plum, peach, magnolia, and crabapple trees.",
-          "The project is meant to help people learn the differences between these lookalike blooms instead of calling every pink tree a cherry by default."
-        ],
-        sourcesTitle: "Data Sources",
-        disclaimerTitle: "Data Notes",
-        contactTitle: "Contact",
-        contactLead: "If you know an official public tree dataset that should be included, send it to Flala Zhang.",
-        disclaimer: [
-          "City-level coverage is built from official public single-tree datasets whenever those datasets are available; that is a hard rule for city integration.",
-          "What you see on the map can still differ from reality because of source refresh lag, pruning or removals, naming inconsistencies, or point-location error.",
-          "UW cherry points are currently included through a supplemental dataset because the official city inventory does not fully cover that campus hotspot."
-        ],
-        officialBadge: "Official public source",
-        supplementalBadge: "Supplemental source",
-        openLink: "Open source link",
-        previousPage: "Previous",
-        nextPage: "Next",
-        pageLabel: "Page"
-      };
+  const guideCompareCopy = GUIDE_COMPARE_COPY[language];
+  const aboutCopy = ABOUT_COPY[language];
 
   useEffect(() => {
     document.title = t(language, "browserTitle");
@@ -1779,8 +1995,9 @@ export default function App(): JSX.Element {
     });
   }
 
-  function toggleLanguage(): void {
-    setLanguage((current) => (current === "zh-CN" ? "en-US" : "zh-CN"));
+  function changeLanguage(nextLanguage: Language): void {
+    setLanguage(nextLanguage);
+    setLanguageMenuOpen(false);
   }
 
   function zoomInMap(): void {
@@ -2051,9 +2268,35 @@ export default function App(): JSX.Element {
                 />
                 <p>{t(language, "appSubtitle")}</p>
               </div>
-              <button className="icon-btn language-btn" onClick={toggleLanguage} type="button">
-                {t(language, "language")}
-              </button>
+              <div className="language-switcher" ref={languageMenuRef}>
+                <button
+                  aria-expanded={languageMenuOpen}
+                  aria-label={t(language, "language")}
+                  className="icon-btn language-btn"
+                  onClick={() => setLanguageMenuOpen((current) => !current)}
+                  title={t(language, "language")}
+                  type="button"
+                >
+                  <span aria-hidden="true">{activeLanguageOption.emoji}</span>
+                </button>
+                {languageMenuOpen && (
+                  <div className="language-menu">
+                    {LANGUAGE_OPTIONS.map((option) => (
+                      <button
+                        className={option.id === language ? "language-option active" : "language-option"}
+                        key={option.id}
+                        onClick={() => changeLanguage(option.id)}
+                        type="button"
+                      >
+                        <span className="language-option-emoji" aria-hidden="true">
+                          {option.emoji}
+                        </span>
+                        <span className="language-option-label">{option.label}</span>
+                      </button>
+                    ))}
+                  </div>
+                )}
+              </div>
             </div>
           </section>
 
