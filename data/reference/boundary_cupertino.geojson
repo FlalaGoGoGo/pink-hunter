@@ -9168,7 +9168,7 @@
       },
       "properties": {
         "jurisdiction": "Cupertino",
-        "boundary_rule": "official_city_boundary_only",
+        "boundary_rule": "official_jurisdiction_boundary_only",
         "boundary_source": "City of Cupertino GIS"
       }
     }

@@ -1,12 +1,12 @@
 {
   "version": "v2",
-  "generated_at": "2026-03-07T07:58:04.236697+00:00",
+  "generated_at": "2026-03-07T17:22:42.339749+00:00",
   "default_region": "wa",
-  "coverage_rule": "official_city_boundary_only",
+  "coverage_rule": "official_jurisdiction_boundary_only",
   "coverage_skipped_cities": [],
   "coverage_official_unavailable_cities": [
     "Alameda",
-    "Arlington",
+    "Alexandria",
     "Auburn",
     "Beaux Arts Village",
     "Beaverton",
@@ -85,10 +85,10 @@
     "Yarrow Point"
   ],
   "coverage_official_unavailable_skipped_cities": [],
-  "source_count": 41,
-  "total_records": 397660,
-  "included_records": 290811,
-  "unknown_records": 259769,
+  "source_count": 45,
+  "total_records": 508348,
+  "included_records": 301249,
+  "unknown_records": 317552,
   "regions": [
     {
       "id": "bc",
@@ -200,26 +200,87 @@
       "available": true,
       "bounds": [
         [
-          -71.16039799993996,
-          42.35240299978186
+          -71.19124700019616,
+          42.227910999858594
         ],
         [
-          -71.06398399980829,
+          -70.74880200023236,
           42.40416700026896
         ]
       ],
       "data_path": null,
-      "tree_count": 1954,
-      "city_count": 1,
+      "tree_count": 6442,
+      "city_count": 2,
       "cities": [
+        "Boston",
         "Cambridge"
       ],
-      "raw_bytes": 934920,
-      "gzip_bytes": 47874,
+      "raw_bytes": 3180939,
+      "gzip_bytes": 135543,
       "warning_level": "none",
       "city_split": {
         "strategy": "city",
         "index_path": "/data/trees.ma.city-index.v1.json",
+        "file_count": 2,
+        "ready": true
+      }
+    },
+    {
+      "id": "md",
+      "label": "MD",
+      "available": true,
+      "bounds": [
+        [
+          -76.71151900037253,
+          39.197207000187646
+        ],
+        [
+          -76.52945299957095,
+          39.372205999983926
+        ]
+      ],
+      "data_path": null,
+      "tree_count": 1920,
+      "city_count": 1,
+      "cities": [
+        "Baltimore"
+      ],
+      "raw_bytes": 933719,
+      "gzip_bytes": 50460,
+      "warning_level": "none",
+      "city_split": {
+        "strategy": "city",
+        "index_path": "/data/trees.md.city-index.v1.json",
+        "file_count": 1,
+        "ready": true
+      }
+    },
+    {
+      "id": "nj",
+      "label": "NJ",
+      "available": true,
+      "bounds": [
+        [
+          -74.11705699967631,
+          40.66163400021707
+        ],
+        [
+          -74.02063900024501,
+          40.7689870000658
+        ]
+      ],
+      "data_path": null,
+      "tree_count": 2148,
+      "city_count": 1,
+      "cities": [
+        "Jersey City"
+      ],
+      "raw_bytes": 1153133,
+      "gzip_bytes": 50297,
+      "warning_level": "none",
+      "city_split": {
+        "strategy": "city",
+        "index_path": "/data/trees.nj.city-index.v1.json",
         "file_count": 1,
         "ready": true
       }
@@ -316,6 +377,36 @@
       }
     },
     {
+      "id": "va",
+      "label": "VA",
+      "available": true,
+      "bounds": [
+        [
+          -77.17231603095209,
+          38.785215999746356
+        ],
+        [
+          -77.03217614407714,
+          38.93430951739172
+        ]
+      ],
+      "data_path": null,
+      "tree_count": 1882,
+      "city_count": 1,
+      "cities": [
+        "Arlington"
+      ],
+      "raw_bytes": 892680,
+      "gzip_bytes": 45013,
+      "warning_level": "none",
+      "city_split": {
+        "strategy": "city",
+        "index_path": "/data/trees.va.city-index.v1.json",
+        "file_count": 1,
+        "ready": true
+      }
+    },
+    {
       "id": "wa",
       "label": "WA",
       "available": true,
@@ -364,6 +455,24 @@
   ],
   "sources": [
     {
+      "name": "DPR Trees",
+      "city": "Arlington",
+      "endpoint": "https://www.arlingtonva.us/About-Arlington/Data-and-Research/Open-Data-Portal",
+      "last_edit_at": "",
+      "records_fetched": 29900,
+      "records_included": 1882,
+      "note": "Integrated from Arlington County's official public DPR Trees layer using the official county jurisdiction boundary."
+    },
+    {
+      "name": "Trees",
+      "city": "Baltimore",
+      "endpoint": "https://data.baltimorecity.gov/",
+      "last_edit_at": "",
+      "records_fetched": 193003,
+      "records_included": 1920,
+      "note": "Integrated from the official Baltimore city forestry ArcGIS tree layer on gis.baltimorecity.gov."
+    },
+    {
       "name": "City Trees",
       "city": "Bellevue",
       "endpoint": "https://services1.arcgis.com/EYzEZbDhXZjURPbP/arcgis/rest/services/City_Trees/FeatureServer/29",
@@ -386,6 +495,15 @@
       "last_edit_at": "2019-11-07T19:08:30+00:00",
       "records_fetched": 46037,
       "records_included": 3973
+    },
+    {
+      "name": "BPRD Trees",
+      "city": "Boston",
+      "endpoint": "https://data.boston.gov/dataset/bprd-trees",
+      "last_edit_at": "",
+      "records_fetched": 52778,
+      "records_included": 4488,
+      "note": "Integrated from the official Analyze Boston BPRD Trees download, which includes both street and park trees."
     },
     {
       "name": "City Street Tree Inventory",
@@ -445,6 +563,15 @@
       "last_edit_at": "2026-03-06T06:11:22.262000+00:00",
       "records_fetched": 64,
       "records_included": 63
+    },
+    {
+      "name": "City of Jersey City Tree Inventory",
+      "city": "Jersey City",
+      "endpoint": "https://www.jerseycitynj.gov/cityhall/infrastructure/division_of_sustainability/urbanforests",
+      "last_edit_at": "2023-11-02T19:09:49.597000+00:00",
+      "records_fetched": 20029,
+      "records_included": 2148,
+      "note": "Integrated from the public Jersey City Tree Inventory service referenced by the city's Urban Forests materials."
     },
     {
       "name": "Public Trees",

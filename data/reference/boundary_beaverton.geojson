@@ -32108,7 +32108,7 @@
       },
       "properties": {
         "jurisdiction": "Beaverton",
-        "boundary_rule": "official_city_boundary_only",
+        "boundary_rule": "official_jurisdiction_boundary_only",
         "boundary_source": "City of Beaverton GIS"
       }
     }

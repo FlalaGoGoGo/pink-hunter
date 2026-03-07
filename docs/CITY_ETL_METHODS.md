@@ -1,13 +1,13 @@
 # City ETL Methods
 
-Last updated: 2026-03-06 (America/Los_Angeles)
+Last updated: 2026-03-07 (America/Los_Angeles)
 
 ## Purpose
 - Record how each covered city is ingested so future species expansion can reuse the same pipeline.
 - Make the per-city extraction method explicit before adding more blossom groups or more cities.
 
 ## Shared Rules
-- Coverage polygons must use official city boundary geometries only.
+- Coverage polygons must use official jurisdiction boundary geometries only.
 - ZIP assignment is spatial:
   - Washington state: state ZIP polygons from `ZIP_LAYER`
   - Washington DC: census ZCTA polygons from `US_CENSUS_ZCTA_LAYER`
@@ -27,7 +27,7 @@ Last updated: 2026-03-06 (America/Los_Angeles)
 ## Source Families
 
 ### ArcGIS REST
-- Use `query_arcgis_features()` against official city `FeatureServer` or `MapServer` layers.
+- Use `query_arcgis_features()` against official city or jurisdiction `FeatureServer` / `MapServer` layers.
 - Pull source metadata from the layer `pjson` endpoint.
 - Map raw city-specific field names into:
   - `scientific_raw`
@@ -127,6 +127,10 @@ Last updated: 2026-03-06 (America/Los_Angeles)
 | Philadelphia | ArcGIS FeatureServer | `tree_name` parsed by `parse_dash_species()` | ArcGIS point geometry | Official Philadelphia Parks & Recreation tree inventory layer; botanical/common names are packed into one uppercase text field |
 | Pittsburgh | TreeKeeper | `SITE_ATTR6` parsed by `parse_species_text()` | direct lon/lat or `SITE_GEOMETRY` JSON | Official public Pittsburgh TreeKeeper inventory domain; no public ownership field is published, so ownership is normalized to public |
 | Cambridge | Downloaded Shapefile | `Scientific`, `CommonName`, `Cultivar`, `SiteType` | shapefile points transformed to WGS84 | Official City of Cambridge street-tree shapefile; only current `SiteType = Tree` rows are published into the product |
+| Boston | Downloaded GeoJSON | `spp_bot`, `spp_com` | GeoJSON lon/lat coordinates from Analyze Boston | Official Analyze Boston `BPRD Trees` download; includes both street and park trees, so ownership is normalized to public city inventory |
+| Arlington | ArcGIS FeatureServer | `CommonName`, `CultivarVariety`, `Ownership`, `Jurisdiction` | ArcGIS point geometry | Official Arlington County `DPR Trees` layer; classification relies on controlled common-name fallback because no public scientific-name field is exposed |
+| Baltimore | ArcGIS MapServer | `SPP`, `CULTIVAR` | ArcGIS point geometry | Official Baltimore city forestry tree layer on `gis.baltimorecity.gov`; `SPP` already carries botanical names for blossom filtering |
+| Jersey City | ArcGIS FeatureServer | `species` parsed by `parse_species_text()`, optional cultivar from `species_1_` | ArcGIS point geometry | Public Jersey City tree inventory service referenced by the city's Urban Forests materials; ownership is normalized to public city inventory |
 | Kirkland | TreePlotter | `species_bo`, `species_la` with `expand_abbreviated_botanical_name()` | WKB hex -> Web Mercator -> lon/lat | Public TreePlotter session/API |
 | Washington DC | ArcGIS MapServer | `SCI_NM`, `CMMN_NM`, `OWNERSHIP` | ArcGIS point geometry | DDOT Urban Tree Canopy layer |
 
@@ -167,14 +171,14 @@ Last updated: 2026-03-06 (America/Los_Angeles)
    - TreePlotter
    - another public source with stable API
 3. Add parsing logic to `etl/build_data.py`.
-4. Add official city-boundary mapping if the city name needs explicit disambiguation.
+4. Add official jurisdiction-boundary mapping if the city name needs explicit disambiguation or if the source is county-equivalent.
 5. If the source family is ODS, test both `records` and `exports/json`; some portals impose a hard `records.limit` cap.
 6. Rerun ETL and update `docs/CITY_COVERAGE_TRACKER.md`.
 7. Do not add coverage polygons for a city unless the official boundary geometry is resolved.
 
 ## Incremental Publish Fallback
 - Full `npm run etl` remains the canonical path.
-- `npm run etl` now chains the stable targeted-publish refresh for `Milpitas`, `San Mateo`, `San Rafael`, `Salinas`, `Fremont`, `Concord`, `South San Francisco`, `New York City`, `Philadelphia`, `Pittsburgh`, and `Cambridge` after the full ETL, so those city-split files are regenerated as part of the normal publish path.
+- `npm run etl` now chains the stable targeted-publish refresh for `Arlington`, `Baltimore`, `Boston`, `Jersey City`, `Milpitas`, `San Mateo`, `San Rafael`, `Salinas`, `Fremont`, `Concord`, `South San Francisco`, `New York City`, `Philadelphia`, `Pittsburgh`, and `Cambridge` after the full ETL, so those city-split files are regenerated as part of the normal publish path.
 - When upstream sources are too slow and the already-published local region files are still current, refresh city-split outputs without rerunning the full ETL:
   - `python3 scripts/refresh_region_city_splits.py --data-dir public/data --region all`
 - When a new city source has been validated but is not yet folded into the main full ETL path, publish it incrementally with:

@@ -6,7 +6,7 @@ Live domain:
 - [pinkhunter.flalaz.com](http://pinkhunter.flalaz.com/)
 
 ## Highlights
-- Official-city-boundary coverage only.
+- Official-jurisdiction-boundary coverage only.
 - Mobile-first map UI with desktop split layout.
 - Five blossom groups: `cherry`, `plum`, `peach`, `magnolia`, `crabapple`.
 - Multilingual UI: `en-US`, `zh-CN`, `zh-TW`, `es-ES`, `ko-KR`, `ja-JP`, `fr-FR`, `vi-VN`.
@@ -51,6 +51,27 @@ Live domain:
 </details>
 
 <details>
+<summary>Virginia</summary>
+
+- Arlington
+
+</details>
+
+<details>
+<summary>Maryland</summary>
+
+- Baltimore
+
+</details>
+
+<details>
+<summary>New Jersey</summary>
+
+- Jersey City
+
+</details>
+
+<details>
 <summary>Pennsylvania</summary>
 
 - Philadelphia
@@ -61,6 +82,7 @@ Live domain:
 <details>
 <summary>Massachusetts</summary>
 
+- Boston
 - Cambridge
 
 </details>
@@ -109,7 +131,7 @@ Live domain:
 
 ### Gray Coverage
 - Gray coverage marks cities whose official boundary is public but whose official public single-tree dataset is not available yet.
-- Current gray-coverage examples include `Mountain View`, `Sunnyvale`, `Santa Clara`, `Monterey`, `Sacramento`, `Napa`, `Richmond`, `Santa Cruz`, `Santa Rosa`, `Stockton`, `Redwood City`, `Alameda`, `Hayward`, `Daly City`, `Beaverton`, `Gresham`, `Hillsboro`, `Salem`, `Tigard`, `Burnaby`, `Delta`, and `Saanich`.
+- Current gray-coverage examples include `Alexandria`, `Mountain View`, `Sunnyvale`, `Santa Clara`, `Monterey`, `Sacramento`, `Napa`, `Richmond`, `Santa Cruz`, `Santa Rosa`, `Stockton`, `Redwood City`, `Alameda`, `Hayward`, `Daly City`, `Beaverton`, `Gresham`, `Hillsboro`, `Salem`, `Tigard`, `Burnaby`, `Delta`, and `Saanich`.
 - Tracking details: [docs/CITY_COVERAGE_TRACKER.md](docs/CITY_COVERAGE_TRACKER.md)
 
 ## Official Data Sources
@@ -144,6 +166,27 @@ Live domain:
 </details>
 
 <details>
+<summary>Virginia</summary>
+
+- Arlington: [Open Data Portal](https://www.arlingtonva.us/About-Arlington/Data-and-Research/Open-Data-Portal)
+
+</details>
+
+<details>
+<summary>Maryland</summary>
+
+- Baltimore: [Open Baltimore](https://data.baltimorecity.gov/)
+
+</details>
+
+<details>
+<summary>New Jersey</summary>
+
+- Jersey City: [Urban Forests](https://www.jerseycitynj.gov/cityhall/infrastructure/division_of_sustainability/urbanforests)
+
+</details>
+
+<details>
 <summary>Pennsylvania</summary>
 
 - Philadelphia: [PPR Tree Inventory 2025](https://metadata.phila.gov/#home/datasetdetails/57a0e1d5aa8882104134830e/representationdetails/690a4183ef9cba032bd11d00/)
@@ -154,6 +197,7 @@ Live domain:
 <details>
 <summary>Massachusetts</summary>
 
+- Boston: [BPRD Trees](https://data.boston.gov/dataset/bprd-trees)
 - Cambridge: [Street Trees](https://www.cambridgema.gov/GIS/gisdatadictionary/Environmental/ENVIRONMENTAL_StreetTrees)
 
 </details>

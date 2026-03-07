@@ -1,8 +1,15 @@
 {
-  "generated_at": "2026-03-07T07:50:38.758841+00:00",
+  "generated_at": "2026-03-07T17:22:23.727132+00:00",
   "region": "ma",
   "strategy": "city",
   "items": [
+    {
+      "city": "Boston",
+      "data_path": "/data/trees.ma.city.boston.v1.geojson",
+      "tree_count": 4488,
+      "raw_bytes": 2246062,
+      "gzip_bytes": 87894
+    },
     {
       "city": "Cambridge",
       "data_path": "/data/trees.ma.city.cambridge.v1.geojson",

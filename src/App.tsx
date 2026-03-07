@@ -76,6 +76,11 @@ const COVERAGE_COLORS = {
 const EMPTY_TREE_COLLECTION: TreeCollection = { type: "FeatureCollection", features: [] };
 
 const REGION_CITY_OVERRIDES: Partial<Record<string, CoverageRegion>> = {
+  Arlington: "va",
+  Alexandria: "va",
+  Baltimore: "md",
+  "Jersey City": "nj",
+  Boston: "ma",
   "New York City": "ny",
   Pittsburgh: "pa",
   Philadelphia: "pa",
@@ -498,13 +503,16 @@ const REGION_SWITCH_BOUNDS: Partial<Record<CoverageRegion, [[number, number], [n
   ]
 };
 
-const GLOBAL_REGION_OPTIONS: CoverageRegion[] = ["wa", "ca", "dc", "or", "bc", "ny", "pa", "ma"];
+const GLOBAL_REGION_OPTIONS: CoverageRegion[] = ["wa", "ca", "dc", "or", "bc", "va", "md", "nj", "ny", "pa", "ma"];
 const REGION_COUNTRY_EMOJIS: Record<CoverageRegion, string> = {
   wa: "🇺🇸",
   ca: "🇺🇸",
   dc: "🇺🇸",
   or: "🇺🇸",
   bc: "🇨🇦",
+  va: "🇺🇸",
+  md: "🇺🇸",
+  nj: "🇺🇸",
   ny: "🇺🇸",
   pa: "🇺🇸",
   ma: "🇺🇸"
@@ -515,6 +523,9 @@ const REGION_SORT_LABELS: Record<CoverageRegion, string> = {
   dc: "Washington, DC",
   or: "Oregon",
   bc: "British Columbia",
+  va: "Virginia",
+  md: "Maryland",
+  nj: "New Jersey",
   ny: "New York",
   pa: "Pennsylvania",
   ma: "Massachusetts"
@@ -793,7 +804,7 @@ function clipMultiPolygonToGeometry(
 }
 
 function parseRegion(raw: string | null, cities: string[]): CoverageRegion {
-  if (raw === "wa" || raw === "ca" || raw === "or" || raw === "dc" || raw === "bc" || raw === "ny" || raw === "pa" || raw === "ma") {
+  if (raw === "wa" || raw === "ca" || raw === "or" || raw === "dc" || raw === "bc" || raw === "va" || raw === "md" || raw === "nj" || raw === "ny" || raw === "pa" || raw === "ma") {
     return raw;
   }
   if (cities.length > 0) {
@@ -808,6 +819,15 @@ function regionForCity(city: string): CoverageRegion {
   }
   if (city === "Washington DC" || city.endsWith(" DC")) {
     return "dc";
+  }
+  if (city.endsWith(" VA") || city.endsWith(", VA")) {
+    return "va";
+  }
+  if (city.endsWith(" MD") || city.endsWith(", MD")) {
+    return "md";
+  }
+  if (city.endsWith(" NJ") || city.endsWith(", NJ")) {
+    return "nj";
   }
   if (city.endsWith(" NY") || city.endsWith(", NY")) {
     return "ny";
@@ -837,6 +857,15 @@ function stateCodeForCity(city: string): string {
   }
   if (region === "bc") {
     return "BC";
+  }
+  if (region === "va") {
+    return "VA";
+  }
+  if (region === "md") {
+    return "MD";
+  }
+  if (region === "nj") {
+    return "NJ";
   }
   if (region === "ny") {
     return "NY";

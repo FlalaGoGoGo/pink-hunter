@@ -13,7 +13,7 @@ if str(ROOT) not in sys.path:
 
 from etl.build_data import (
     OFFICIAL_DATA_UNAVAILABLE_CITIES,
-    STRICT_CITY_BOUNDARY_ONLY,
+    STRICT_OFFICIAL_JURISDICTION_BOUNDARY_ONLY,
     WA_METRO_OVERVIEW_BOUNDS,
     build_region_bounds,
     load_city_boundary_geometry,
@@ -69,15 +69,15 @@ def main() -> int:
         geometry = load_city_boundary_geometry(city)
         if not geometry:
             skipped_coverage_cities.append(city)
-            if STRICT_CITY_BOUNDARY_ONLY:
+            if STRICT_OFFICIAL_JURISDICTION_BOUNDARY_ONLY:
                 continue
-            raise RuntimeError(f"Missing official city boundary geometry for: {city}")
+            raise RuntimeError(f"Missing official jurisdiction boundary geometry for: {city}")
         coverage_features.append(
             make_coverage_feature(
                 city,
                 geometry,
                 "covered",
-                f"Covered by public tree inventory for {city}; geometry from official city boundary."
+                f"Covered by public tree inventory for {city}; geometry from official jurisdiction boundary."
             )
         )
 
@@ -86,9 +86,9 @@ def main() -> int:
         geometry = load_city_boundary_geometry(city)
         if not geometry:
             skipped_official_unavailable_cities.append(city)
-            if STRICT_CITY_BOUNDARY_ONLY:
+            if STRICT_OFFICIAL_JURISDICTION_BOUNDARY_ONLY:
                 continue
-            raise RuntimeError(f"Missing official city boundary geometry for: {city}")
+            raise RuntimeError(f"Missing official jurisdiction boundary geometry for: {city}")
         coverage_features.append(
             make_coverage_feature(city, geometry, "official_unavailable", OFFICIAL_DATA_UNAVAILABLE_CITIES[city])
         )
@@ -96,7 +96,7 @@ def main() -> int:
     coverage_geojson = {"type": "FeatureCollection", "features": coverage_features}
     region_bounds = build_region_bounds(coverage_features)
 
-    meta["coverage_rule"] = "official_city_boundary_only"
+    meta["coverage_rule"] = "official_jurisdiction_boundary_only"
     meta["coverage_skipped_cities"] = skipped_coverage_cities
     meta["coverage_official_unavailable_cities"] = official_unavailable_cities
     meta["coverage_official_unavailable_skipped_cities"] = skipped_official_unavailable_cities

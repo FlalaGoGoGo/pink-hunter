@@ -73,6 +73,15 @@ BELLINGHAM_LAYER = "https://maps.cob.org/arcgis3/rest/services/Parks/NotableTree
 SPOKANE_LAYER = "https://services.arcgis.com/3PDwyTturHqnGCu0/arcgis/rest/services/Tree_Inventory/FeatureServer/7"
 YAKIMA_LAYER = "https://gis.yakimawa.gov/arcgis/rest/services/Parks/Trees/MapServer/0"
 WALLA_WALLA_LAYER = "https://gis2.ci.walla-walla.wa.us/arcgis/rest/services/Basemap/GISBaseMap_TreesVisible/MapServer/0"
+BOSTON_TREES_GEOJSON = "https://data.boston.gov/dataset/e4c76e72-dcf1-40a0-b426-97c52214a9fe/resource/2f575489-e721-45ec-865a-e98f10d2ee85/download/bprd_trees.geojson"
+BOSTON_DATASET_PAGE = "https://data.boston.gov/dataset/bprd-trees"
+ARLINGTON_TREES_LAYER = "https://arlgis.arlingtonva.us/arcgis/rest/services/Open_Data/od_DPR_Tree_Points/FeatureServer/0"
+ARLINGTON_BOUNDARY_LAYER = "https://arlgis.arlingtonva.us/arcgis/rest/services/Open_Data/od_County_Polygon/FeatureServer/0"
+ARLINGTON_DATASET_PAGE = "https://www.arlingtonva.us/About-Arlington/Data-and-Research/Open-Data-Portal"
+BALTIMORE_TREES_LAYER = "https://gis.baltimorecity.gov/egis/rest/services/Foresty/Trees/MapServer/0"
+BALTIMORE_DATASET_PAGE = "https://data.baltimorecity.gov/"
+JERSEY_CITY_TREES_LAYER = "https://services2.arcgis.com/UXbywc7dSkfgdPp4/arcgis/rest/services/City_of_Jersey_City_Tree_WFL1/FeatureServer/0"
+JERSEY_CITY_DATASET_PAGE = "https://www.jerseycitynj.gov/cityhall/infrastructure/division_of_sustainability/urbanforests"
 DC_LAYER = "https://maps2.dcgis.dc.gov/dcgis/rest/services/DCGIS_DATA/Urban_Tree_Canopy/MapServer/23"
 PORTLAND_LAYER = "https://www.portlandmaps.com/od/rest/services/COP_OpenData_Environment/MapServer/1415"
 PORTLAND_BOUNDARY_LAYER = "https://www.portlandmaps.com/od/rest/services/COP_OpenData_Boundary/MapServer/10"
@@ -147,8 +156,10 @@ US_CENSUS_ZCTA_LAYER = (
 )
 
 # Hard rule from product requirements:
-# Coverage geometry must come from official city boundaries only.
-STRICT_CITY_BOUNDARY_ONLY = True
+# Coverage geometry must come from official jurisdiction boundaries only.
+# City governments still use official city boundaries; county-equivalent
+# jurisdictions such as Arlington use their official county boundary.
+STRICT_OFFICIAL_JURISDICTION_BOUNDARY_ONLY = True
 DEFAULT_REGION = "wa"
 WA_METRO_OVERVIEW_BOUNDS: list[list[float]] = [[-123.08, 47.02], [-121.55, 48.08]]
 WARNING_BYTES = 35 * 1024 * 1024
@@ -160,11 +171,19 @@ REGION_LABELS: dict[str, str] = {
     "or": "OR",
     "dc": "DC",
     "bc": "BC",
+    "va": "VA",
+    "md": "MD",
+    "nj": "NJ",
     "ny": "NY",
     "pa": "PA",
     "ma": "MA",
 }
 REGION_CITY_OVERRIDES: dict[str, str] = {
+    "Arlington": "va",
+    "Alexandria": "va",
+    "Baltimore": "md",
+    "Jersey City": "nj",
+    "Boston": "ma",
     "New York City": "ny",
     "Pittsburgh": "pa",
     "Philadelphia": "pa",
@@ -209,6 +228,11 @@ REGION_CITY_OVERRIDES: dict[str, str] = {
 }
 
 CITY_BOUNDARY_HINTS: dict[str, dict[str, str]] = {
+    "Arlington": {"state": "51", "basename": "Arlington", "boundary_source": "arlington_county_arcgis"},
+    "Alexandria": {"state": "51"},
+    "Baltimore": {"state": "24"},
+    "Jersey City": {"state": "34"},
+    "Boston": {"state": "25"},
     "New York City": {"state": "36", "basename": "New York"},
     "Pittsburgh": {"state": "42"},
     "Philadelphia": {"state": "42"},
@@ -259,7 +283,7 @@ CITY_BOUNDARY_HINTS: dict[str, dict[str, str]] = {
 ALLOWED_CENSUS_PLACE_LSADC = {"25", "43"}
 
 OFFICIAL_DATA_UNAVAILABLE_CITIES: dict[str, str] = {
-    "Arlington": "City investigated; no official public single-tree species dataset was confirmed.",
+    "Alexandria": "The official City of Alexandria urban-forestry and GIS pages were reviewed, but no public single-tree species inventory was confirmed.",
     "Auburn": "City investigated; no reliable official public single-tree species dataset was confirmed.",
     "Alameda": "Official city tree and urban-forest materials were reviewed, but no verified public citywide single-tree species dataset was confirmed.",
     "Beaux Arts Village": "Only a contractor-published public map was found; no verified official public city-hosted tree dataset was confirmed.",
@@ -312,7 +336,6 @@ OFFICIAL_DATA_UNAVAILABLE_CITIES: dict[str, str] = {
     "Normandy Park": "City investigated; no official public single-tree species dataset was confirmed.",
     "North Bend": "City investigated; no official public single-tree species dataset was confirmed.",
     "Olympia": "No current official city single-tree species layer was confirmed; only older or non-city sources were found.",
-    "Pittsburgh": "City tree datasets were investigated, but no verified official city-hosted public single-tree species inventory was confirmed for current ETL use.",
     "Port Orchard": "City investigated; no official public single-tree species dataset was confirmed.",
     "Redwood City": "Official city GIS and public-works materials were reviewed, but no verified public citywide single-tree dataset was confirmed in this round.",
     "Richmond": "Official Richmond, CA ArcGIS and city data searches in this round did not confirm a public citywide single-tree species dataset.",
@@ -1579,6 +1602,12 @@ def region_for_city(city: str) -> str:
         return REGION_CITY_OVERRIDES[city]
     if city.endswith(" BC") or city.endswith(", BC"):
         return "bc"
+    if city.endswith(" VA") or city.endswith(", VA"):
+        return "va"
+    if city.endswith(" MD") or city.endswith(", MD"):
+        return "md"
+    if city.endswith(" NJ") or city.endswith(", NJ"):
+        return "nj"
     if city.endswith(" NY") or city.endswith(", NY"):
         return "ny"
     if city.endswith(" PA") or city.endswith(", PA"):
@@ -1680,7 +1709,7 @@ def make_city_boundary_feature(city: str, geometry: dict[str, Any], *, source: s
         "geometry": geometry,
         "properties": {
             "jurisdiction": city,
-            "boundary_rule": "official_city_boundary_only",
+            "boundary_rule": "official_jurisdiction_boundary_only",
             "boundary_source": source,
         },
     }
@@ -1815,6 +1844,29 @@ def fetch_special_city_boundary_feature(city: str) -> dict[str, Any] | None:
 
     if boundary_source == "beaverton_arcgis":
         return fetch_arcgis_boundary_feature(BEAVERTON_BOUNDARY_LAYER, source="City of Beaverton GIS")
+
+    if boundary_source == "arlington_county_arcgis":
+        payload = fetch_json(
+            f"{ARLINGTON_BOUNDARY_LAYER}/query",
+            {
+                "where": "1=1",
+                "outFields": "COUNTY,STATE",
+                "returnGeometry": "true",
+                "outSR": "4326",
+                "f": "pjson",
+            },
+        )
+        features = payload.get("features", [])
+        if not features:
+            return None
+        rings = (features[0].get("geometry") or {}).get("rings") or []
+        if not rings:
+            return None
+        return make_city_boundary_feature(
+            city,
+            arcgis_rings_to_geojson_geometry(rings),
+            source="Arlington County Open Data",
+        )
 
     if boundary_source == "victoria_bc_arcgis":
         payload = fetch_json(
@@ -4438,10 +4490,10 @@ def main() -> int:
         geometry = load_city_boundary_geometry(city)
         if not geometry:
             skipped_coverage_cities.append(city)
-            if STRICT_CITY_BOUNDARY_ONLY:
+            if STRICT_OFFICIAL_JURISDICTION_BOUNDARY_ONLY:
                 continue
-            raise RuntimeError(f"Missing official city boundary geometry for: {city}")
-        note = f"Covered by public tree inventory for {city}; geometry from official city boundary."
+            raise RuntimeError(f"Missing official jurisdiction boundary geometry for: {city}")
+        note = f"Covered by public tree inventory for {city}; geometry from official jurisdiction boundary."
 
         coverage_features.append(
             {
@@ -4461,9 +4513,9 @@ def main() -> int:
         geometry = load_city_boundary_geometry(city)
         if not geometry:
             skipped_official_unavailable_cities.append(city)
-            if STRICT_CITY_BOUNDARY_ONLY:
+            if STRICT_OFFICIAL_JURISDICTION_BOUNDARY_ONLY:
                 continue
-            raise RuntimeError(f"Missing official city boundary geometry for: {city}")
+            raise RuntimeError(f"Missing official jurisdiction boundary geometry for: {city}")
 
         coverage_features.append(
             {
@@ -4894,7 +4946,7 @@ def main() -> int:
         "version": "v2",
         "generated_at": now_iso,
         "default_region": DEFAULT_REGION,
-        "coverage_rule": "official_city_boundary_only",
+        "coverage_rule": "official_jurisdiction_boundary_only",
         "coverage_skipped_cities": skipped_coverage_cities,
         "coverage_official_unavailable_cities": official_unavailable_cities,
         "coverage_official_unavailable_skipped_cities": skipped_official_unavailable_cities,

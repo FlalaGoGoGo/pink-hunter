@@ -617,6 +617,9 @@ const regionLabelMap: Record<Language, Record<CoverageRegion, string>> = {
     or: "Oregon",
     dc: "Washington, DC",
     bc: "British Columbia",
+    va: "Virginia",
+    md: "Maryland",
+    nj: "New Jersey",
     ny: "New York",
     pa: "Pennsylvania",
     ma: "Massachusetts"
@@ -627,6 +630,9 @@ const regionLabelMap: Record<Language, Record<CoverageRegion, string>> = {
     or: "俄勒冈州",
     dc: "华盛顿哥伦比亚特区",
     bc: "不列颠哥伦比亚省",
+    va: "弗吉尼亚州",
+    md: "马里兰州",
+    nj: "新泽西州",
     ny: "纽约州",
     pa: "宾夕法尼亚州",
     ma: "马萨诸塞州"
@@ -637,6 +643,9 @@ const regionLabelMap: Record<Language, Record<CoverageRegion, string>> = {
     or: "俄勒岡州",
     dc: "華盛頓哥倫比亞特區",
     bc: "不列顛哥倫比亞省",
+    va: "維吉尼亞州",
+    md: "馬里蘭州",
+    nj: "紐澤西州",
     ny: "紐約州",
     pa: "賓夕法尼亞州",
     ma: "麻薩諸塞州"
@@ -647,6 +656,9 @@ const regionLabelMap: Record<Language, Record<CoverageRegion, string>> = {
     or: "Oregón",
     dc: "Washington, D. C.",
     bc: "Columbia Británica",
+    va: "Virginia",
+    md: "Maryland",
+    nj: "Nueva Jersey",
     ny: "Nueva York",
     pa: "Pensilvania",
     ma: "Massachusetts"
@@ -657,6 +669,9 @@ const regionLabelMap: Record<Language, Record<CoverageRegion, string>> = {
     or: "오리건주",
     dc: "워싱턴 D.C.",
     bc: "브리티시컬럼비아주",
+    va: "버지니아주",
+    md: "메릴랜드주",
+    nj: "뉴저지주",
     ny: "뉴욕주",
     pa: "펜실베이니아주",
     ma: "매사추세츠주"
@@ -667,6 +682,9 @@ const regionLabelMap: Record<Language, Record<CoverageRegion, string>> = {
     or: "オレゴン州",
     dc: "ワシントンDC",
     bc: "ブリティッシュコロンビア州",
+    va: "バージニア州",
+    md: "メリーランド州",
+    nj: "ニュージャージー州",
     ny: "ニューヨーク州",
     pa: "ペンシルベニア州",
     ma: "マサチューセッツ州"
@@ -677,6 +695,9 @@ const regionLabelMap: Record<Language, Record<CoverageRegion, string>> = {
     or: "Oregon",
     dc: "Washington, D.C.",
     bc: "Colombie-Britannique",
+    va: "Virginie",
+    md: "Maryland",
+    nj: "New Jersey",
     ny: "New York",
     pa: "Pennsylvanie",
     ma: "Massachusetts"
@@ -687,6 +708,9 @@ const regionLabelMap: Record<Language, Record<CoverageRegion, string>> = {
     or: "Oregon",
     dc: "Washington, DC",
     bc: "British Columbia",
+    va: "Virginia",
+    md: "Maryland",
+    nj: "New Jersey",
     ny: "New York",
     pa: "Pennsylvania",
     ma: "Massachusetts"

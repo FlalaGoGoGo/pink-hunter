@@ -1,0 +1,14 @@
+{
+  "generated_at": "2026-03-07T17:22:23.727132+00:00",
+  "region": "nj",
+  "strategy": "city",
+  "items": [
+    {
+      "city": "Jersey City",
+      "data_path": "/data/trees.nj.city.jersey-city.v1.geojson",
+      "tree_count": 2148,
+      "raw_bytes": 1153133,
+      "gzip_bytes": 50297
+    }
+  ]
+}

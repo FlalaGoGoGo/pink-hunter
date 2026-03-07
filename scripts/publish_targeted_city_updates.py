@@ -19,6 +19,12 @@ if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
 from etl.build_data import (
+    ARLINGTON_DATASET_PAGE,
+    ARLINGTON_TREES_LAYER,
+    BALTIMORE_DATASET_PAGE,
+    BALTIMORE_TREES_LAYER,
+    BOSTON_DATASET_PAGE,
+    BOSTON_TREES_GEOJSON,
     CAMBRIDGE_DATASET_PAGE,
     CAMBRIDGE_STREET_TREES_ZIP,
     CONCORD_BOUNDARY_LAYER,
@@ -32,6 +38,8 @@ from etl.build_data import (
     NYC_METADATA,
     PHILADELPHIA_DATASET_PAGE,
     PHILADELPHIA_LAYER,
+    JERSEY_CITY_DATASET_PAGE,
+    JERSEY_CITY_TREES_LAYER,
     MILPITAS_LAYER,
     PUBLIC_DATA_DIR,
     REGION_LABELS,
@@ -102,6 +110,10 @@ DISPLAY_NAME_REPLACEMENTS = {
 }
 
 SUPPORTED_CITIES = (
+    "Arlington",
+    "Baltimore",
+    "Boston",
+    "Jersey City",
     "Milpitas",
     "San Mateo",
     "San Rafael",
@@ -207,6 +219,13 @@ def domain_lookup(layer_info: dict[str, Any], field_name: str) -> dict[Any, str]
     return {}
 
 
+def load_remote_geojson(url: str) -> dict[str, Any]:
+    response = subprocess.run(["curl", "-sL", url], capture_output=True, text=True, check=False)
+    if response.returncode != 0:
+        raise RuntimeError(f"Failed to download GeoJSON from {url}: {response.stderr.strip()}")
+    return json.loads(response.stdout.lstrip("\ufeff"))
+
+
 def write_city_geojson(region: str, city: str, features: list[dict[str, Any]]) -> Path:
     path = PUBLIC_DATA_DIR / f"trees.{region}.city.{slugify_token(city)}.v1.geojson"
     payload = {"type": "FeatureCollection", "features": sorted(features, key=lambda item: item["properties"]["id"])}
@@ -296,6 +315,383 @@ def refresh_publish_indexes(target_regions: set[str]) -> None:
         ["python3", "scripts/refresh_coverage_metadata.py", "--data-dir", "public/data"],
         check=True,
     )
+
+
+def fetch_arlington() -> dict[str, Any]:
+    layer_info = fetch_json(ARLINGTON_TREES_LAYER, {"f": "pjson"})
+    total_payload = fetch_json(
+        f"{ARLINGTON_TREES_LAYER}/query",
+        {"where": "1=1", "returnCountOnly": "true", "f": "json"},
+    )
+    features = fetch_all_features(
+        ARLINGTON_TREES_LAYER,
+        "1=1",
+        ["OBJECTID", "ID", "CommonName", "CultivarVariety", "Ownership", "Jurisdiction"],
+        "OBJECTID",
+    )
+    zip_index = fetch_us_city_zip_index("Arlington")
+    mapping_rows = load_mapping(MAPPING_PATH)
+    subtype_rows = load_subtype_mapping(SUBTYPE_MAPPING_PATH)
+    last_edit_at = iso_from_epoch((layer_info.get("editingInfo") or {}).get("lastEditDate"))
+
+    output_features: list[dict[str, Any]] = []
+    normalized_rows: list[dict[str, Any]] = []
+    for feature in features:
+        attrs = feature.get("attributes", {})
+        geom = feature.get("geometry", {})
+        lon = geom.get("x")
+        lat = geom.get("y")
+        if lon is None or lat is None:
+            continue
+
+        common_name = clean_common_name(attrs.get("CommonName"))
+        scientific_raw = generic_scientific_name_for_common_hint(common_name)
+        scientific_normalized = normalize_scientific_name(scientific_raw)
+        species_group, subtype_name = classify_tree_record(scientific_raw, common_name, mapping_rows, subtype_rows)
+        cultivar = clean_display_name(attrs.get("CultivarVariety"))
+        if cultivar and not subtype_name:
+            subtype_name = cultivar
+        ownership_raw = (
+            clean_display_name(attrs.get("Jurisdiction"))
+            or clean_display_name(attrs.get("Ownership"))
+            or "Arlington County"
+        )
+        zip_code = assign_zip_code(lon, lat, zip_index)
+        row_id = f"arlington-{attrs.get('ID') or attrs.get('OBJECTID')}"
+
+        normalized_rows.append(
+            {
+                "id": row_id,
+                "city": "Arlington",
+                "source_dataset": "DPR Trees",
+                "scientific_raw": scientific_raw,
+                "scientific_normalized": scientific_normalized,
+                "common_name": common_name or "",
+                "subtype_name": subtype_name or "",
+                "zip_code": zip_code or "",
+                "species_group": species_group or "",
+                "ownership": canonical_ownership(ownership_raw),
+                "ownership_raw": ownership_raw,
+                "lat": lat,
+                "lon": lon,
+                "included": "1" if species_group else "0",
+            }
+        )
+        if not species_group:
+            continue
+        output_features.append(
+            {
+                "type": "Feature",
+                "geometry": {"type": "Point", "coordinates": [lon, lat]},
+                "properties": {
+                    "id": row_id,
+                    "species_group": species_group,
+                    "scientific_name": scientific_raw,
+                    "common_name": common_name,
+                    "subtype_name": subtype_name,
+                    "zip_code": zip_code,
+                    "ownership": canonical_ownership(ownership_raw),
+                    "ownership_raw": ownership_raw,
+                    "city": "Arlington",
+                    "source_dataset": "DPR Trees",
+                    "source_department": "Arlington County",
+                    "source_last_edit_at": last_edit_at,
+                },
+            }
+        )
+
+    return {
+        "city": "Arlington",
+        "region": "va",
+        "features": output_features,
+        "normalized_rows": normalized_rows,
+        "source": {
+            "name": "DPR Trees",
+            "city": "Arlington",
+            "endpoint": ARLINGTON_DATASET_PAGE,
+            "last_edit_at": last_edit_at,
+            "records_fetched": int(total_payload.get("count") or len(features)),
+            "records_included": len(output_features),
+            "note": "Integrated from Arlington County's official public DPR Trees layer using the official county jurisdiction boundary.",
+        },
+    }
+
+
+def fetch_boston() -> dict[str, Any]:
+    payload = load_remote_geojson(BOSTON_TREES_GEOJSON)
+    features = payload.get("features", [])
+    zip_index = fetch_us_city_zip_index("Boston")
+    mapping_rows = load_mapping(MAPPING_PATH)
+    subtype_rows = load_subtype_mapping(SUBTYPE_MAPPING_PATH)
+
+    output_features: list[dict[str, Any]] = []
+    normalized_rows: list[dict[str, Any]] = []
+    for feature in features:
+        attrs = feature.get("properties", {})
+        geometry = feature.get("geometry", {})
+        coordinates = geometry.get("coordinates") or []
+        if len(coordinates) != 2:
+            continue
+        lon, lat = coordinates
+
+        common_name = clean_common_name(attrs.get("spp_com"))
+        scientific_raw = format_scientific_display_name(attrs.get("spp_bot"), common_name)
+        if not scientific_raw:
+            scientific_raw = generic_scientific_name_for_common_hint(common_name)
+        scientific_normalized = normalize_scientific_name(scientific_raw)
+        species_group, subtype_name = classify_tree_record(scientific_raw, common_name, mapping_rows, subtype_rows)
+        ownership_raw = "City of Boston"
+        zip_code = assign_zip_code(lon, lat, zip_index)
+        row_id = f"boston-{attrs.get('id') or attrs.get('OBJECTID')}"
+
+        normalized_rows.append(
+            {
+                "id": row_id,
+                "city": "Boston",
+                "source_dataset": "BPRD Trees",
+                "scientific_raw": scientific_raw,
+                "scientific_normalized": scientific_normalized,
+                "common_name": common_name or "",
+                "subtype_name": subtype_name or "",
+                "zip_code": zip_code or "",
+                "species_group": species_group or "",
+                "ownership": canonical_ownership(ownership_raw),
+                "ownership_raw": ownership_raw,
+                "lat": lat,
+                "lon": lon,
+                "included": "1" if species_group else "0",
+            }
+        )
+        if not species_group:
+            continue
+        output_features.append(
+            {
+                "type": "Feature",
+                "geometry": {"type": "Point", "coordinates": [lon, lat]},
+                "properties": {
+                    "id": row_id,
+                    "species_group": species_group,
+                    "scientific_name": scientific_raw,
+                    "common_name": common_name,
+                    "subtype_name": subtype_name,
+                    "zip_code": zip_code,
+                    "ownership": canonical_ownership(ownership_raw),
+                    "ownership_raw": ownership_raw,
+                    "city": "Boston",
+                    "source_dataset": "BPRD Trees",
+                    "source_department": "Boston Parks and Recreation Department",
+                    "source_last_edit_at": "",
+                },
+            }
+        )
+
+    return {
+        "city": "Boston",
+        "region": "ma",
+        "features": output_features,
+        "normalized_rows": normalized_rows,
+        "source": {
+            "name": "BPRD Trees",
+            "city": "Boston",
+            "endpoint": BOSTON_DATASET_PAGE,
+            "last_edit_at": "",
+            "records_fetched": len(features),
+            "records_included": len(output_features),
+            "note": "Integrated from the official Analyze Boston BPRD Trees download, which includes both street and park trees.",
+        },
+    }
+
+
+def fetch_baltimore() -> dict[str, Any]:
+    layer_info = fetch_json(BALTIMORE_TREES_LAYER, {"f": "pjson"})
+    total_payload = fetch_json(
+        f"{BALTIMORE_TREES_LAYER}/query",
+        {"where": "1=1", "returnCountOnly": "true", "f": "json"},
+    )
+    features = fetch_all_features(
+        BALTIMORE_TREES_LAYER,
+        "SPP LIKE 'Prunus%' OR SPP LIKE 'Malus%' OR SPP LIKE 'Magnolia%'",
+        ["OBJECTID", "ID", "UniqueID", "Address", "Street", "SPP", "CULTIVAR", "CONDITION", "DBH"],
+        "OBJECTID",
+    )
+    zip_index = fetch_us_city_zip_index("Baltimore")
+    mapping_rows = load_mapping(MAPPING_PATH)
+    subtype_rows = load_subtype_mapping(SUBTYPE_MAPPING_PATH)
+    last_edit_at = iso_from_epoch((layer_info.get("editingInfo") or {}).get("lastEditDate"))
+
+    output_features: list[dict[str, Any]] = []
+    normalized_rows: list[dict[str, Any]] = []
+    for feature in features:
+        attrs = feature.get("attributes", {})
+        geom = feature.get("geometry", {})
+        lon = geom.get("x")
+        lat = geom.get("y")
+        if lon is None or lat is None:
+            continue
+
+        common_name = None
+        scientific_raw = format_scientific_display_name(attrs.get("SPP"))
+        scientific_normalized = normalize_scientific_name(scientific_raw)
+        species_group, subtype_name = classify_tree_record(scientific_raw, common_name, mapping_rows, subtype_rows)
+        cultivar = clean_display_name(attrs.get("CULTIVAR"))
+        if cultivar and not subtype_name:
+            subtype_name = cultivar
+        ownership_raw = "City of Baltimore"
+        zip_code = assign_zip_code(lon, lat, zip_index)
+        row_id = f"baltimore-{attrs.get('UniqueID') or attrs.get('OBJECTID')}"
+
+        normalized_rows.append(
+            {
+                "id": row_id,
+                "city": "Baltimore",
+                "source_dataset": "Trees",
+                "scientific_raw": scientific_raw,
+                "scientific_normalized": scientific_normalized,
+                "common_name": "",
+                "subtype_name": subtype_name or "",
+                "zip_code": zip_code or "",
+                "species_group": species_group or "",
+                "ownership": canonical_ownership(ownership_raw),
+                "ownership_raw": ownership_raw,
+                "lat": lat,
+                "lon": lon,
+                "included": "1" if species_group else "0",
+            }
+        )
+        if not species_group:
+            continue
+        output_features.append(
+            {
+                "type": "Feature",
+                "geometry": {"type": "Point", "coordinates": [lon, lat]},
+                "properties": {
+                    "id": row_id,
+                    "species_group": species_group,
+                    "scientific_name": scientific_raw,
+                    "common_name": None,
+                    "subtype_name": subtype_name,
+                    "zip_code": zip_code,
+                    "ownership": canonical_ownership(ownership_raw),
+                    "ownership_raw": ownership_raw,
+                    "city": "Baltimore",
+                    "source_dataset": "Trees",
+                    "source_department": "Baltimore City Forestry",
+                    "source_last_edit_at": last_edit_at,
+                },
+            }
+        )
+
+    return {
+        "city": "Baltimore",
+        "region": "md",
+        "features": output_features,
+        "normalized_rows": normalized_rows,
+        "source": {
+            "name": "Trees",
+            "city": "Baltimore",
+            "endpoint": BALTIMORE_DATASET_PAGE,
+            "last_edit_at": last_edit_at,
+            "records_fetched": int(total_payload.get("count") or len(features)),
+            "records_included": len(output_features),
+            "note": "Integrated from the official Baltimore city forestry ArcGIS tree layer on gis.baltimorecity.gov.",
+        },
+    }
+
+
+def fetch_jersey_city() -> dict[str, Any]:
+    layer_info = fetch_json(JERSEY_CITY_TREES_LAYER, {"f": "pjson"})
+    total_payload = fetch_json(
+        f"{JERSEY_CITY_TREES_LAYER}/query",
+        {"where": "1=1", "returnCountOnly": "true", "f": "json"},
+    )
+    features = fetch_all_features(
+        JERSEY_CITY_TREES_LAYER,
+        "1=1",
+        ["FID", "site_id", "species", "species_1", "species_1_", "site_comme", "condition", "address"],
+        "FID",
+    )
+    zip_index = fetch_us_city_zip_index("Jersey City")
+    mapping_rows = load_mapping(MAPPING_PATH)
+    subtype_rows = load_subtype_mapping(SUBTYPE_MAPPING_PATH)
+    last_edit_at = iso_from_epoch((layer_info.get("editingInfo") or {}).get("lastEditDate"))
+
+    output_features: list[dict[str, Any]] = []
+    normalized_rows: list[dict[str, Any]] = []
+    for feature in features:
+        attrs = feature.get("attributes", {})
+        geom = feature.get("geometry", {})
+        lon = geom.get("x")
+        lat = geom.get("y")
+        if lon is None or lat is None:
+            continue
+
+        species_text = attrs.get("species") or attrs.get("species_1")
+        scientific_raw, common_name = parse_species_text(species_text)
+        scientific_normalized = normalize_scientific_name(scientific_raw)
+        species_group, subtype_name = classify_tree_record(scientific_raw, common_name, mapping_rows, subtype_rows)
+        cultivar = clean_display_name(attrs.get("species_1_"))
+        if cultivar and not subtype_name:
+            subtype_name = cultivar
+        ownership_raw = "City of Jersey City"
+        zip_code = assign_zip_code(lon, lat, zip_index)
+        row_id = f"jersey-city-{attrs.get('site_id') or attrs.get('FID')}"
+
+        normalized_rows.append(
+            {
+                "id": row_id,
+                "city": "Jersey City",
+                "source_dataset": "City of Jersey City Tree Inventory",
+                "scientific_raw": scientific_raw,
+                "scientific_normalized": scientific_normalized,
+                "common_name": common_name or "",
+                "subtype_name": subtype_name or "",
+                "zip_code": zip_code or "",
+                "species_group": species_group or "",
+                "ownership": canonical_ownership(ownership_raw),
+                "ownership_raw": ownership_raw,
+                "lat": lat,
+                "lon": lon,
+                "included": "1" if species_group else "0",
+            }
+        )
+        if not species_group:
+            continue
+        output_features.append(
+            {
+                "type": "Feature",
+                "geometry": {"type": "Point", "coordinates": [lon, lat]},
+                "properties": {
+                    "id": row_id,
+                    "species_group": species_group,
+                    "scientific_name": scientific_raw,
+                    "common_name": common_name,
+                    "subtype_name": subtype_name,
+                    "zip_code": zip_code,
+                    "ownership": canonical_ownership(ownership_raw),
+                    "ownership_raw": ownership_raw,
+                    "city": "Jersey City",
+                    "source_dataset": "City of Jersey City Tree Inventory",
+                    "source_department": "City of Jersey City",
+                    "source_last_edit_at": last_edit_at,
+                },
+            }
+        )
+
+    return {
+        "city": "Jersey City",
+        "region": "nj",
+        "features": output_features,
+        "normalized_rows": normalized_rows,
+        "source": {
+            "name": "City of Jersey City Tree Inventory",
+            "city": "Jersey City",
+            "endpoint": JERSEY_CITY_DATASET_PAGE,
+            "last_edit_at": last_edit_at,
+            "records_fetched": int(total_payload.get("count") or len(features)),
+            "records_included": len(output_features),
+            "note": "Integrated from the public Jersey City Tree Inventory service referenced by the city's Urban Forests materials.",
+        },
+    }
 
 
 def fetch_milpitas() -> dict[str, Any]:
@@ -1376,6 +1772,10 @@ def fetch_cambridge() -> dict[str, Any]:
 
 
 CITY_FETCHERS = {
+    "Arlington": fetch_arlington,
+    "Baltimore": fetch_baltimore,
+    "Boston": fetch_boston,
+    "Jersey City": fetch_jersey_city,
     "Milpitas": fetch_milpitas,
     "San Mateo": fetch_san_mateo,
     "San Rafael": fetch_san_rafael,

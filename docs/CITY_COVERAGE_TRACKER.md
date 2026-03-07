@@ -1,81 +1,85 @@
 # City Coverage Tracker
 
-Last updated: 2026-03-06 (America/Los_Angeles)
+Last updated: 2026-03-07 (America/Los_Angeles)
 
 ## Integrated (In Product)
 | Done | City | Included Trees | Boundary Rule | Notes |
 |---|---|---:|---|---|
-| ✅ | Seattle | 46,114 | Official city boundary | Includes UW supplemental points; ornamental cherry keyword sweep rerun |
-| ✅ | New York City | 40,685 | Official city boundary | Official NYC Parks `2015 Street Tree Census - Tree Data` integrated from NYC Open Data; rows are limited to living trees before blossom filtering |
-| ✅ | Philadelphia | 17,717 | Official city boundary | Official Philadelphia Parks & Recreation `PPR Tree Inventory 2025` layer integrated from the city's ArcGIS/metadata catalog |
-| ✅ | Pittsburgh | 3,691 | Official city boundary | Official public Pittsburgh TreeKeeper inventory domain integrated; blossom names are parsed from `SITE_ATTR6` |
-| ✅ | Cambridge | 1,954 | Official city boundary | Official City of Cambridge `Street Trees` shapefile integrated; only current `SiteType = Tree` rows are included |
-| ✅ | San Francisco | 24,099 | Official city boundary | Official San Francisco Public Works `Street Tree List` integrated from the city open-data portal |
-| ✅ | San Jose | 18,021 | Official city boundary | Official City of San Jose `Street Tree` layer integrated from the city open-data ArcGIS service |
-| ✅ | Palo Alto | 4,996 | Official city boundary | Official City of Palo Alto `Tree Data` layer integrated from the city open GIS portal; official boundary comes from the city-published boundary shapefile |
-| ✅ | Oakland | 3,977 | Official city boundary | Official City of Oakland `Oakland Street Trees` Socrata dataset integrated from the city open-data portal |
-| ✅ | Berkeley | 3,973 | Official city boundary | Official City of Berkeley public shapefile inventory integrated from the city ArcGIS item download |
-| ✅ | Cupertino | 1,299 | Official city boundary | Official City of Cupertino `Trees` layer integrated from the city GIS portal |
-| ✅ | Fremont | 5,555 | Official city boundary | Official City of Fremont public TreePlotter inventory integrated from the city urban-forestry portal plus public species lookup table |
-| ✅ | Concord | 4,103 | Official city boundary | Official City of Concord public TreePlotter inventory integrated from the city tree-inventory portal plus official GIS boundary |
-| ✅ | Salinas | 4,535 | Official city boundary | Official City of Salinas OpenDataSoft `Tree Inventory` dataset integrated from the city open-data portal |
-| ✅ | South San Francisco | 784 | Official city boundary | Official City of South San Francisco public TreeKeeper inventory integrated from the city trees page plus official GIS boundary |
-| ✅ | Washington DC | 16,533 | Official city boundary | Urban Tree Canopy (DDOT); ornamental cherry cultivar mapping expanded |
-| ✅ | Vancouver BC | 34,369 | Official city boundary | Official City of Vancouver `public-trees` ODS dataset integrated; boundary polygon derived from official city-boundary line dataset |
-| ✅ | Spokane | 8,472 | Official city boundary | City of Spokane Parks tree inventory integrated from official open GIS service; genus-level rows normalized to generic scientific placeholders |
-| ✅ | Walla Walla | 1,167 | Official city boundary | Official City of Walla Walla `GISBaseMap_TreesVisible` layer integrated from the city ArcGIS service |
-| ✅ | Victoria BC | 6,094 | Official city boundary | Official City of Victoria Parks tree-species layer integrated; surveyed-trees layer was reviewed separately but excluded because it has no species field |
-| ✅ | Burlingame | 1,997 | Official city boundary | Official city trees page links to a public guest inventory backed by a queryable feature service; integrated under the city-linked public-source rule |
-| ✅ | Milpitas | 1,696 | Official city boundary | Official City of Milpitas `Trees RO` layer integrated from the city ArcGIS service |
-| ✅ | San Mateo | 1,868 | Official city boundary | Official City of San Mateo `Street Trees` layer integrated from the city ArcGIS item/service |
-| ✅ | San Rafael | 422 | Official city boundary | Official City of San Rafael `Trees` layer integrated from the city ArcGIS service |
-| ✅ | Shoreline | 2,244 | Official city boundary | Public Tree Inventory public-only layer integrated |
-| ✅ | Renton | 1,879 | Official city boundary | City Tree Sites source |
-| ✅ | Sammamish | 1,163 | Official city boundary | TreeKeeper Street + Park public grid endpoints integrated; cultivar keyword rerun recovered more ornamental records |
-| ✅ | Snohomish | 856 | Official city boundary | Official urban-forestry inventory page + ArcGIS point layer integrated; all included records are tagged `ROW = Yes` |
-| ✅ | Bellingham | 645 | Official city boundary | Official City of Bellingham tree layer (`maps.cob.org`) integrated |
-| ✅ | Yakima | 509 | Official city boundary | Official City of Yakima `Trees` layer integrated; common-name-only rows are normalized to generic scientific placeholders when the blossom hint is strong enough |
-| ✅ | Everett | 464 | Official city boundary | Official TreeKeeper public park-tree endpoint integrated |
-| ✅ | Kirkland | 3,122 | Official city boundary | 2023-2024 Kirkland Tree Inventory integrated from public TreePlotter session/API |
-| ✅ | Bellevue | 342 | Official city boundary | Public source count increased under 5-species scope; all fetched rows now fall inside 5-species mapping |
-| ✅ | Kenmore | 329 | Official city boundary | Public Trees source |
-| ✅ | Redmond | 185 | Official city boundary | TreeSite source |
-| ✅ | Puyallup | 76 | Official city boundary | City Maintained Street Trees |
-| ✅ | Gig Harbor | 63 | Official city boundary | PW Trees Public Viewer |
-| ✅ | SeaTac | 38 | Official city boundary | Genus/common-name normalization added |
+| ✅ | Seattle | 46,114 | Official jurisdiction boundary | Includes UW supplemental points; ornamental cherry keyword sweep rerun |
+| ✅ | New York City | 40,685 | Official jurisdiction boundary | Official NYC Parks `2015 Street Tree Census - Tree Data` integrated from NYC Open Data; rows are limited to living trees before blossom filtering |
+| ✅ | Philadelphia | 17,717 | Official jurisdiction boundary | Official Philadelphia Parks & Recreation `PPR Tree Inventory 2025` layer integrated from the city's ArcGIS/metadata catalog |
+| ✅ | Boston | 4,488 | Official jurisdiction boundary | Official Analyze Boston `BPRD Trees` download integrated; includes both street and park trees published by Boston Parks and Recreation |
+| ✅ | Pittsburgh | 3,691 | Official jurisdiction boundary | Official public Pittsburgh TreeKeeper inventory domain integrated; blossom names are parsed from `SITE_ATTR6` |
+| ✅ | Jersey City | 2,148 | Official jurisdiction boundary | Public Jersey City tree inventory service integrated from the city-referenced Urban Forests materials and official jurisdiction boundary |
+| ✅ | Cambridge | 1,954 | Official jurisdiction boundary | Official City of Cambridge `Street Trees` shapefile integrated; only current `SiteType = Tree` rows are included |
+| ✅ | Baltimore | 1,920 | Official jurisdiction boundary | Official Baltimore city forestry tree layer integrated from `gis.baltimorecity.gov`; botanical names come from `SPP` |
+| ✅ | Arlington | 1,882 | Official jurisdiction boundary | Official Arlington County `DPR Trees` layer integrated using the official county-equivalent jurisdiction boundary |
+| ✅ | San Francisco | 24,099 | Official jurisdiction boundary | Official San Francisco Public Works `Street Tree List` integrated from the city open-data portal |
+| ✅ | San Jose | 18,021 | Official jurisdiction boundary | Official City of San Jose `Street Tree` layer integrated from the city open-data ArcGIS service |
+| ✅ | Palo Alto | 4,996 | Official jurisdiction boundary | Official City of Palo Alto `Tree Data` layer integrated from the city open GIS portal; official boundary comes from the city-published boundary shapefile |
+| ✅ | Oakland | 3,977 | Official jurisdiction boundary | Official City of Oakland `Oakland Street Trees` Socrata dataset integrated from the city open-data portal |
+| ✅ | Berkeley | 3,973 | Official jurisdiction boundary | Official City of Berkeley public shapefile inventory integrated from the city ArcGIS item download |
+| ✅ | Cupertino | 1,299 | Official jurisdiction boundary | Official City of Cupertino `Trees` layer integrated from the city GIS portal |
+| ✅ | Fremont | 5,555 | Official jurisdiction boundary | Official City of Fremont public TreePlotter inventory integrated from the city urban-forestry portal plus public species lookup table |
+| ✅ | Concord | 4,103 | Official jurisdiction boundary | Official City of Concord public TreePlotter inventory integrated from the city tree-inventory portal plus official GIS boundary |
+| ✅ | Salinas | 4,535 | Official jurisdiction boundary | Official City of Salinas OpenDataSoft `Tree Inventory` dataset integrated from the city open-data portal |
+| ✅ | South San Francisco | 784 | Official jurisdiction boundary | Official City of South San Francisco public TreeKeeper inventory integrated from the city trees page plus official GIS boundary |
+| ✅ | Washington DC | 16,533 | Official jurisdiction boundary | Urban Tree Canopy (DDOT); ornamental cherry cultivar mapping expanded |
+| ✅ | Vancouver BC | 34,369 | Official jurisdiction boundary | Official City of Vancouver `public-trees` ODS dataset integrated; boundary polygon derived from official city-boundary line dataset |
+| ✅ | Spokane | 8,472 | Official jurisdiction boundary | City of Spokane Parks tree inventory integrated from official open GIS service; genus-level rows normalized to generic scientific placeholders |
+| ✅ | Walla Walla | 1,167 | Official jurisdiction boundary | Official City of Walla Walla `GISBaseMap_TreesVisible` layer integrated from the city ArcGIS service |
+| ✅ | Victoria BC | 6,094 | Official jurisdiction boundary | Official City of Victoria Parks tree-species layer integrated; surveyed-trees layer was reviewed separately but excluded because it has no species field |
+| ✅ | Burlingame | 1,997 | Official jurisdiction boundary | Official city trees page links to a public guest inventory backed by a queryable feature service; integrated under the city-linked public-source rule |
+| ✅ | Milpitas | 1,696 | Official jurisdiction boundary | Official City of Milpitas `Trees RO` layer integrated from the city ArcGIS service |
+| ✅ | San Mateo | 1,868 | Official jurisdiction boundary | Official City of San Mateo `Street Trees` layer integrated from the city ArcGIS item/service |
+| ✅ | San Rafael | 422 | Official jurisdiction boundary | Official City of San Rafael `Trees` layer integrated from the city ArcGIS service |
+| ✅ | Shoreline | 2,244 | Official jurisdiction boundary | Public Tree Inventory public-only layer integrated |
+| ✅ | Renton | 1,879 | Official jurisdiction boundary | City Tree Sites source |
+| ✅ | Sammamish | 1,163 | Official jurisdiction boundary | TreeKeeper Street + Park public grid endpoints integrated; cultivar keyword rerun recovered more ornamental records |
+| ✅ | Snohomish | 856 | Official jurisdiction boundary | Official urban-forestry inventory page + ArcGIS point layer integrated; all included records are tagged `ROW = Yes` |
+| ✅ | Bellingham | 645 | Official jurisdiction boundary | Official City of Bellingham tree layer (`maps.cob.org`) integrated |
+| ✅ | Yakima | 509 | Official jurisdiction boundary | Official City of Yakima `Trees` layer integrated; common-name-only rows are normalized to generic scientific placeholders when the blossom hint is strong enough |
+| ✅ | Everett | 464 | Official jurisdiction boundary | Official TreeKeeper public park-tree endpoint integrated |
+| ✅ | Kirkland | 3,122 | Official jurisdiction boundary | 2023-2024 Kirkland Tree Inventory integrated from public TreePlotter session/API |
+| ✅ | Bellevue | 342 | Official jurisdiction boundary | Public source count increased under 5-species scope; all fetched rows now fall inside 5-species mapping |
+| ✅ | Kenmore | 329 | Official jurisdiction boundary | Public Trees source |
+| ✅ | Redmond | 185 | Official jurisdiction boundary | TreeSite source |
+| ✅ | Puyallup | 76 | Official jurisdiction boundary | City Maintained Street Trees |
+| ✅ | Gig Harbor | 63 | Official jurisdiction boundary | PW Trees Public Viewer |
+| ✅ | SeaTac | 38 | Official jurisdiction boundary | Genus/common-name normalization added |
 
 ## Gray Coverage (Official Boundary Resolved, No Official Public Tree Dataset)
 | Done | City | Status | Boundary Rule | Notes |
 |---|---|---|---|---|
-| 🩶 | Burnaby | In gray coverage | Official city boundary | Official Burnaby GIS/open-data sources were reviewed; no public single-tree species inventory was confirmed |
-| 🩶 | Beaverton | In gray coverage | Official city boundary | Official inventory web maps exist, but the raw city tree inventory service currently requires a token and is not publicly queryable for stable ETL access |
-| 🩶 | Delta | In gray coverage | Official city boundary | Official Delta GIS/open-data sources were reviewed; no public single-tree species inventory was confirmed |
-| 🩶 | Alameda | In gray coverage | Official city boundary | Official city tree and urban-forest materials were reviewed, but no verified public citywide single-tree dataset was confirmed in this round |
-| 🩶 | Daly City | In gray coverage | Official city boundary | Official city urban-forestry and GIS entry points were reviewed, but no verified public citywide single-tree species dataset was confirmed in this round |
-| 🩶 | Gresham | In gray coverage | Official city boundary | Official ArcGIS search and city-site checks did not confirm a public citywide single-tree species dataset |
-| 🩶 | Hayward | In gray coverage | Official city boundary | Official city urban-forestry and GIS entry points were reviewed, but no verified public citywide single-tree species dataset was confirmed in this round |
-| 🩶 | Hillsboro | In gray coverage | Official city boundary | Official ArcGIS search and city-site checks did not confirm a public citywide single-tree species dataset |
-| 🩶 | Monterey | In gray coverage | Official city boundary | Official city tree standards and GIS entry points were reviewed, but no public citywide single-tree species dataset was confirmed |
-| 🩶 | Mountain View | In gray coverage | Official city boundary | Official city forestry materials were reviewed, but no public citywide single-tree species dataset was confirmed |
-| 🩶 | Napa | In gray coverage | Official city boundary | Official ArcGIS and city data portal searches did not confirm a public citywide single-tree species dataset |
-| 🩶 | Redwood City | In gray coverage | Official city boundary | Official city GIS and public-works materials were reviewed, but no verified public citywide single-tree dataset was confirmed in this round |
-| 🩶 | Richmond | In gray coverage | Official city boundary | Official Richmond, CA ArcGIS and city data searches did not confirm a public citywide public single-tree species dataset |
-| 🩶 | Sacramento | In gray coverage | Official city boundary | Official city pages and open-data entry points were checked, but no public citywide single-tree species dataset was confirmed |
-| 🩶 | Saanich | In gray coverage | Official city boundary | Official Saanich GIS/open-data sources were reviewed; no public single-tree species inventory was confirmed |
-| 🩶 | Salem | In gray coverage | Official city boundary | Official ArcGIS and city GIS searches did not confirm a public citywide single-tree species dataset |
-| 🩶 | Santa Cruz | In gray coverage | Official city boundary | Official ArcGIS and city GIS searches did not confirm a public citywide single-tree species dataset |
-| 🩶 | Santa Clara | In gray coverage | Official city boundary | Official city urban-forest materials were reviewed, but no public citywide single-tree species dataset was confirmed |
-| 🩶 | Santa Rosa | In gray coverage | Official city boundary | Official city GIS results found fire-damaged tree-removal layers, not a citywide public single-tree inventory |
-| 🩶 | Stockton | In gray coverage | Official city boundary | Official ArcGIS and city GIS searches did not confirm a public citywide single-tree species dataset |
-| 🩶 | Sunnyvale | In gray coverage | Official city boundary | County and city GIS sources were reviewed, but no verified public citywide single-tree species dataset was confirmed |
-| 🩶 | Tigard | In gray coverage | Official city boundary | Official ArcGIS results exposed an ash-tree inventory, not a citywide public single-tree species inventory |
+| 🩶 | Alexandria | In gray coverage | Official jurisdiction boundary | Official City of Alexandria urban-forestry and GIS pages were reviewed, but no public single-tree species inventory was confirmed |
+| 🩶 | Burnaby | In gray coverage | Official jurisdiction boundary | Official Burnaby GIS/open-data sources were reviewed; no public single-tree species inventory was confirmed |
+| 🩶 | Beaverton | In gray coverage | Official jurisdiction boundary | Official inventory web maps exist, but the raw city tree inventory service currently requires a token and is not publicly queryable for stable ETL access |
+| 🩶 | Delta | In gray coverage | Official jurisdiction boundary | Official Delta GIS/open-data sources were reviewed; no public single-tree species inventory was confirmed |
+| 🩶 | Alameda | In gray coverage | Official jurisdiction boundary | Official city tree and urban-forest materials were reviewed, but no verified public citywide single-tree dataset was confirmed in this round |
+| 🩶 | Daly City | In gray coverage | Official jurisdiction boundary | Official city urban-forestry and GIS entry points were reviewed, but no verified public citywide single-tree species dataset was confirmed in this round |
+| 🩶 | Gresham | In gray coverage | Official jurisdiction boundary | Official ArcGIS search and city-site checks did not confirm a public citywide single-tree species dataset |
+| 🩶 | Hayward | In gray coverage | Official jurisdiction boundary | Official city urban-forestry and GIS entry points were reviewed, but no verified public citywide single-tree species dataset was confirmed in this round |
+| 🩶 | Hillsboro | In gray coverage | Official jurisdiction boundary | Official ArcGIS search and city-site checks did not confirm a public citywide single-tree species dataset |
+| 🩶 | Monterey | In gray coverage | Official jurisdiction boundary | Official city tree standards and GIS entry points were reviewed, but no public citywide single-tree species dataset was confirmed |
+| 🩶 | Mountain View | In gray coverage | Official jurisdiction boundary | Official city forestry materials were reviewed, but no public citywide single-tree species dataset was confirmed |
+| 🩶 | Napa | In gray coverage | Official jurisdiction boundary | Official ArcGIS and city data portal searches did not confirm a public citywide single-tree species dataset |
+| 🩶 | Redwood City | In gray coverage | Official jurisdiction boundary | Official city GIS and public-works materials were reviewed, but no verified public citywide single-tree dataset was confirmed in this round |
+| 🩶 | Richmond | In gray coverage | Official jurisdiction boundary | Official Richmond, CA ArcGIS and city data searches did not confirm a public citywide public single-tree species dataset |
+| 🩶 | Sacramento | In gray coverage | Official jurisdiction boundary | Official city pages and open-data entry points were checked, but no public citywide single-tree species dataset was confirmed |
+| 🩶 | Saanich | In gray coverage | Official jurisdiction boundary | Official Saanich GIS/open-data sources were reviewed; no public single-tree species inventory was confirmed |
+| 🩶 | Salem | In gray coverage | Official jurisdiction boundary | Official ArcGIS and city GIS searches did not confirm a public citywide single-tree species dataset |
+| 🩶 | Santa Cruz | In gray coverage | Official jurisdiction boundary | Official ArcGIS and city GIS searches did not confirm a public citywide single-tree species dataset |
+| 🩶 | Santa Clara | In gray coverage | Official jurisdiction boundary | Official city urban-forest materials were reviewed, but no public citywide single-tree species dataset was confirmed |
+| 🩶 | Santa Rosa | In gray coverage | Official jurisdiction boundary | Official city GIS results found fire-damaged tree-removal layers, not a citywide public single-tree inventory |
+| 🩶 | Stockton | In gray coverage | Official jurisdiction boundary | Official ArcGIS and city GIS searches did not confirm a public citywide single-tree species dataset |
+| 🩶 | Sunnyvale | In gray coverage | Official jurisdiction boundary | County and city GIS sources were reviewed, but no verified public citywide single-tree species dataset was confirmed |
+| 🩶 | Tigard | In gray coverage | Official jurisdiction boundary | Official ArcGIS results exposed an ash-tree inventory, not a citywide public single-tree species inventory |
 
 ## Validated, Not Yet Integrated
 | Done | City | Estimated In-Scope Count | Status | Blocker |
 |---|---|---:|---|---|
 | ⏳ | Mercer Island | 803 (Town Center only) | Partial-only | Official urban-forestry page documents a 2018 Town Center street-tree inventory, but a verified citywide public single-tree endpoint is still not confirmed |
 | ⏳ | Bremerton | Unknown | Blocked public map | Official Park Tree Map web map exists under a city account, but the underlying feature service currently returns `403 Forbidden` to direct public queries |
-| ⏳ | Arlington, VA | Unknown | County-jurisdiction blocker | Official Arlington `od_DPR_Tree_Points` layer exists, but it is a county-level jurisdiction dataset and the current product hard rule is still official city boundary only |
 | ⏳ | Montgomery County, MD | Unknown | Partial-only | Official data portal exposes `Tree Planting Locations`, but that is a planting-program layer rather than a countywide single-tree species inventory |
 | ⏳ | Poulsbo | 75 | Partial-only | Official `Historic Trees of Poulsbo` feature service is public, but it is a curated historic-tree layer, not a citywide public inventory |
 | ⏳ | Pasco | Unknown | Partial-only | Official city content found in this round was a `Volunteer Park Tree Walk` map, not a citywide public single-tree inventory |
@@ -148,10 +152,10 @@ Last updated: 2026-03-06 (America/Los_Angeles)
 | ⚠️ | Tukwila / Des Moines / Maple Valley / Covington / Auburn | Not found or rejected | No reliable official city-level single-tree + species point layers, or false-geography matches |
 
 ## Hard Rules
-- Coverage polygons must use official city boundary geometries only.
+- Coverage polygons must use official jurisdiction boundary geometries only.
 - Any legacy non-official boundary cache must be replaced; OSM/Nominatim-style boundaries are not allowed in product outputs.
-- If an official city boundary cannot be resolved, that city is excluded from coverage polygons (no convex hull fallback).
-- City-to-boundary matching for special names (for example, `Washington DC`) must use explicit state + basename mapping, never manual polygons.
+- If an official jurisdiction boundary cannot be resolved, that place is excluded from coverage polygons (no convex hull fallback).
+- Boundary matching for special names (for example, `Washington DC` or county-equivalent `Arlington`) must use explicit state + basename mapping or an official jurisdiction layer, never manual polygons.
 - Source-of-truth for classification remains scientific name first, with controlled common-name fallback only for explicitly generic genus-level rows (for example `Prunus sp.`, `Malus sp.`, `Magnolia sp.`).
 
 ## Bellevue Data Note
@@ -210,7 +214,11 @@ Last updated: 2026-03-06 (America/Los_Angeles)
 - Integrated `Philadelphia` from the official Philadelphia Parks & Recreation `PPR Tree Inventory 2025` layer.
 - Integrated `Pittsburgh` from the official public Pittsburgh TreeKeeper inventory domain.
 - Integrated `Cambridge` from the official City of Cambridge `Street Trees` shapefile download.
-- Confirmed `Arlington, VA` has an official county tree layer (`od_DPR_Tree_Points`), but it remains outside the current city-boundary-only workflow.
+- Integrated `Boston` from the official Analyze Boston `BPRD Trees` download.
+- Integrated `Baltimore` from the official city forestry tree layer on `gis.baltimorecity.gov`.
+- Integrated `Jersey City` from the public tree inventory service referenced by the city's Urban Forests materials.
+- Integrated `Arlington` from the official Arlington County `DPR Trees` layer using the county-equivalent jurisdiction boundary.
+- Added gray coverage for `Alexandria` after reviewing the official urban-forestry and GIS pages without finding a public single-tree inventory.
 - Confirmed `Montgomery County, MD` currently exposes `Tree Planting Locations`, not a countywide single-tree species inventory.
 - Official Newark / Essex County open-data entry points were reviewed without confirming a verified public citywide/countywide single-tree species inventory.
 
