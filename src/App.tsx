@@ -37,6 +37,7 @@ import type {
   RegionCityDataIndex,
   RegionMeta,
   SpeciesGroup,
+  SpeciesCounts,
   StaticAppData,
   TreeCollection,
   TreeFeatureProps
@@ -58,8 +59,16 @@ const DEFAULT_ZOOM = 8.45;
 const POSITRON_STYLE_URL = "https://basemaps.cartocdn.com/gl/positron-gl-style/style.json";
 const FALLBACK_STYLE_URL = "https://demotiles.maplibre.org/style.json";
 const ABOUT_SOURCES_PAGE_SIZE = 4;
+const ABOUT_REGION_SUMMARY_PAGE_SIZE = 4;
 const BRAND_LOGO_PATH = "/assets/brand/pink-hunter-logo.png";
 const SORT_COLLATOR = new Intl.Collator("en", { sensitivity: "base" });
+const EMPTY_SPECIES_COUNTS: SpeciesCounts = {
+  cherry: 0,
+  plum: 0,
+  peach: 0,
+  magnolia: 0,
+  crabapple: 0
+};
 const POINT_COLORS: Record<SpeciesGroup, string> = {
   cherry: "#ef79ad",
   plum: "#d976b4",
@@ -134,6 +143,13 @@ const GUIDE_FLOWER_ART: Record<SpeciesGroup, string> = {
   peach: "/assets/guide/species/peach-blossom.png",
   magnolia: "/assets/guide/species/magnolia-blossom.png",
   crabapple: "/assets/guide/species/crabapple-blossom.png"
+};
+const SPECIES_ICON_ART: Record<SpeciesGroup, string> = {
+  cherry: "/assets/guide/species-icons/cherry-icon.png",
+  plum: "/assets/guide/species-icons/plum-icon.png",
+  peach: "/assets/guide/species-icons/peach-icon.png",
+  magnolia: "/assets/guide/species-icons/magnolia-icon.png",
+  crabapple: "/assets/guide/species-icons/crabapple-icon.png"
 };
 
 const GUIDE_COMPARISON_ART = [
@@ -313,6 +329,12 @@ const ABOUT_COPY: Record<
   {
     title: string;
     intro: string[];
+    summaryTitle: string;
+    summaryAllTitle: string;
+    summaryByRegionTitle: string;
+    summaryTotalLabel: string;
+    summarySearchPlaceholder: string;
+    summaryEmpty: string;
     sourcesTitle: string;
     sourcesSearchPlaceholder: string;
     sourcesEmpty: string;
@@ -334,6 +356,12 @@ const ABOUT_COPY: Record<
       "Pink Hunter is a spring map for finding pink-blossoming cherry, plum, peach, magnolia, and crabapple trees.",
       "The project is meant to help people learn the differences between these lookalike blooms instead of calling every pink tree a cherry by default."
     ],
+    summaryTitle: "Data Summary",
+    summaryAllTitle: "All Covered Trees",
+    summaryByRegionTitle: "By State / Province",
+    summaryTotalLabel: "Total trees",
+    summarySearchPlaceholder: "Search states or provinces",
+    summaryEmpty: "No state or province matched this search.",
     sourcesTitle: "Data Sources",
     sourcesSearchPlaceholder: "Search data sources",
     sourcesEmpty: "No data sources matched this search.",
@@ -359,6 +387,12 @@ const ABOUT_COPY: Record<
       "Pink Hunter 是一个春季粉色花树地图项目，帮助大家在花季里更快找到樱花、李花、桃花、木兰和海棠。",
       "这个项目不只是找花，也希望教大家分辨这些常被误认的花树，让“粉色花都叫樱花”这件事少一点。"
     ],
+    summaryTitle: "数据总结",
+    summaryAllTitle: "全站收录",
+    summaryByRegionTitle: "按州/省统计",
+    summaryTotalLabel: "总树数",
+    summarySearchPlaceholder: "搜索州或省",
+    summaryEmpty: "没有匹配的州或省。",
     sourcesTitle: "数据源",
     sourcesSearchPlaceholder: "搜索数据源",
     sourcesEmpty: "没有匹配的数据源。",
@@ -384,6 +418,12 @@ const ABOUT_COPY: Record<
       "Pink Hunter 是一個春季粉色花樹地圖專案，幫助大家在花季裡更快找到櫻花、李花、桃花、木蘭和海棠。",
       "這個專案不只是找花，也希望教大家分辨這些常被誤認的花樹，讓「粉色花都叫櫻花」這件事少一點。"
     ],
+    summaryTitle: "資料總結",
+    summaryAllTitle: "全站收錄",
+    summaryByRegionTitle: "按州／省統計",
+    summaryTotalLabel: "總樹數",
+    summarySearchPlaceholder: "搜尋州或省",
+    summaryEmpty: "沒有符合的州或省。",
     sourcesTitle: "資料來源",
     sourcesSearchPlaceholder: "搜尋資料來源",
     sourcesEmpty: "沒有符合的資料來源。",
@@ -409,6 +449,12 @@ const ABOUT_COPY: Record<
       "Pink Hunter es un mapa de primavera para encontrar cerezos, ciruelos, melocotoneros, magnolias y manzanos ornamentales con floración rosa.",
       "El proyecto también busca enseñar a distinguir estas flores parecidas, en lugar de llamar cerezo a cualquier árbol rosado."
     ],
+    summaryTitle: "Resumen de datos",
+    summaryAllTitle: "Todos los árboles cubiertos",
+    summaryByRegionTitle: "Por estado / provincia",
+    summaryTotalLabel: "Total de árboles",
+    summarySearchPlaceholder: "Buscar estado o provincia",
+    summaryEmpty: "Ningún estado o provincia coincide con esta búsqueda.",
     sourcesTitle: "Fuentes de datos",
     sourcesSearchPlaceholder: "Buscar fuentes de datos",
     sourcesEmpty: "No se encontró ninguna fuente de datos.",
@@ -434,6 +480,12 @@ const ABOUT_COPY: Record<
       "Pink Hunter는 벚꽃, 자두꽃, 복숭아꽃, 목련, 꽃사과처럼 분홍빛으로 피는 나무를 찾기 위한 봄 지도입니다.",
       "모든 분홍 꽃나무를 벚꽃이라고 부르지 않고, 서로 어떻게 다른지 배울 수 있게 돕는 것도 이 프로젝트의 목표입니다."
     ],
+    summaryTitle: "데이터 요약",
+    summaryAllTitle: "전체 수록 현황",
+    summaryByRegionTitle: "주 / 주(省)별 통계",
+    summaryTotalLabel: "총 나무 수",
+    summarySearchPlaceholder: "주 또는 주(省) 검색",
+    summaryEmpty: "검색과 일치하는 주 또는 주(省)가 없습니다.",
     sourcesTitle: "데이터 출처",
     sourcesSearchPlaceholder: "데이터 출처 검색",
     sourcesEmpty: "검색 결과와 일치하는 데이터 출처가 없습니다.",
@@ -459,6 +511,12 @@ const ABOUT_COPY: Record<
       "Pink Hunter は、桜、李、桃、木蓮、海棠など、春にピンク色で咲く花木を見つけるための地図です。",
       "似た花木の違いを学び、ピンクの木を何でも桜と呼んでしまう状況を少し減らすことも、このプロジェクトの目的です。"
     ],
+    summaryTitle: "データ概要",
+    summaryAllTitle: "全体集計",
+    summaryByRegionTitle: "州・省ごとの集計",
+    summaryTotalLabel: "総本数",
+    summarySearchPlaceholder: "州・省を検索",
+    summaryEmpty: "一致する州・省はありません。",
     sourcesTitle: "データソース",
     sourcesSearchPlaceholder: "データソースを検索",
     sourcesEmpty: "検索に一致するデータソースはありません。",
@@ -484,6 +542,12 @@ const ABOUT_COPY: Record<
       "Pink Hunter est une carte de printemps pour trouver des cerisiers, pruniers, pêchers, magnolias et pommiers d'ornement à floraison rose.",
       "Le projet sert aussi à apprendre à distinguer ces floraisons ressemblantes au lieu d'appeler cerisier tout arbre rose."
     ],
+    summaryTitle: "Résumé des données",
+    summaryAllTitle: "Tous les arbres couverts",
+    summaryByRegionTitle: "Par État / province",
+    summaryTotalLabel: "Total d'arbres",
+    summarySearchPlaceholder: "Rechercher un État ou une province",
+    summaryEmpty: "Aucun État ou province ne correspond à cette recherche.",
     sourcesTitle: "Sources de données",
     sourcesSearchPlaceholder: "Rechercher une source",
     sourcesEmpty: "Aucune source de données ne correspond à cette recherche.",
@@ -509,6 +573,12 @@ const ABOUT_COPY: Record<
       "Pink Hunter là bản đồ mùa xuân để tìm các cây nở hoa màu hồng như anh đào, mận, đào, mộc lan và hải đường.",
       "Dự án cũng nhằm giúp mọi người phân biệt những loài hoa dễ bị nhầm lẫn này thay vì mặc định gọi mọi cây hoa hồng là anh đào."
     ],
+    summaryTitle: "Tóm tắt dữ liệu",
+    summaryAllTitle: "Toàn bộ cây đã phủ",
+    summaryByRegionTitle: "Theo bang / tỉnh bang",
+    summaryTotalLabel: "Tổng số cây",
+    summarySearchPlaceholder: "Tìm bang hoặc tỉnh bang",
+    summaryEmpty: "Không có bang hoặc tỉnh bang nào khớp.",
     sourcesTitle: "Nguồn dữ liệu",
     sourcesSearchPlaceholder: "Tìm nguồn dữ liệu",
     sourcesEmpty: "Không có nguồn dữ liệu nào khớp với tìm kiếm này.",
@@ -1111,6 +1181,8 @@ export default function App(): JSX.Element {
   const [activePanel, setActivePanel] = useState<"filters" | "guide" | "about">("filters");
   const [aboutSourcesPage, setAboutSourcesPage] = useState(0);
   const [aboutSourcesSearchQuery, setAboutSourcesSearchQuery] = useState("");
+  const [aboutRegionSummaryPage, setAboutRegionSummaryPage] = useState(0);
+  const [aboutRegionSummarySearchQuery, setAboutRegionSummarySearchQuery] = useState("");
   const [selectedTree, setSelectedTree] = useState<SelectedTree | null>(null);
   const [selectedCoverage, setSelectedCoverage] = useState<SelectedCoverage | null>(null);
   const [layoutMode, setLayoutMode] = useState<LayoutMode>(initialLayoutMode);
@@ -1677,6 +1749,70 @@ export default function App(): JSX.Element {
   useEffect(() => {
     setAboutSourcesPage(0);
   }, [normalizedAboutSourceSearchQuery]);
+
+  const aboutRegionSummaries = useMemo(() => {
+    if (!data) {
+      return [] as Array<{
+        id: CoverageRegion;
+        label: string;
+        sortLabel: string;
+        searchLabel: string;
+        totalTrees: number;
+        speciesCounts: SpeciesCounts;
+      }>;
+    }
+
+    return data.meta.regions
+      .filter((region) => region.available && region.tree_count > 0)
+      .map((region) => ({
+        id: region.id,
+        label: regionOptionLabel(language, region.id),
+        sortLabel: regionLabel(language, region.id),
+        searchLabel: `${regionLabel(language, region.id)} ${REGION_SORT_LABELS[region.id]} ${region.id.toUpperCase()}`,
+        totalTrees: region.tree_count,
+        speciesCounts: region.species_counts ?? EMPTY_SPECIES_COUNTS
+      }))
+      .sort((left, right) => SORT_COLLATOR.compare(left.sortLabel, right.sortLabel));
+  }, [data, language]);
+
+  const normalizedAboutRegionSummarySearchQuery = aboutRegionSummarySearchQuery.trim().toLowerCase();
+
+  const filteredAboutRegionSummaries = useMemo(() => {
+    if (!normalizedAboutRegionSummarySearchQuery) {
+      return aboutRegionSummaries;
+    }
+
+    return aboutRegionSummaries.filter(({ label, searchLabel, id }) => {
+      const query = normalizedAboutRegionSummarySearchQuery;
+      return (
+        label.toLowerCase().includes(query) ||
+        searchLabel.toLowerCase().includes(query) ||
+        id.toUpperCase().includes(query.toUpperCase())
+      );
+    });
+  }, [aboutRegionSummaries, normalizedAboutRegionSummarySearchQuery]);
+
+  const aboutRegionSummaryPageCount = Math.max(
+    1,
+    Math.ceil(filteredAboutRegionSummaries.length / ABOUT_REGION_SUMMARY_PAGE_SIZE)
+  );
+
+  const pagedAboutRegionSummaries = useMemo(
+    () =>
+      filteredAboutRegionSummaries.slice(
+        aboutRegionSummaryPage * ABOUT_REGION_SUMMARY_PAGE_SIZE,
+        (aboutRegionSummaryPage + 1) * ABOUT_REGION_SUMMARY_PAGE_SIZE
+      ),
+    [filteredAboutRegionSummaries, aboutRegionSummaryPage]
+  );
+
+  useEffect(() => {
+    setAboutRegionSummaryPage((current) => Math.min(current, aboutRegionSummaryPageCount - 1));
+  }, [aboutRegionSummaryPageCount]);
+
+  useEffect(() => {
+    setAboutRegionSummaryPage(0);
+  }, [normalizedAboutRegionSummarySearchQuery]);
 
   useEffect(() => {
     if (!data || !mapRuntime || mapRef.current || !mapContainerRef.current) {
@@ -2366,6 +2502,31 @@ export default function App(): JSX.Element {
     setSheetHeight((current) => nearestSnap(current));
   }
 
+  function formatCount(value: number): string {
+    return value.toLocaleString(language);
+  }
+
+  function renderSpeciesCountRows(counts: SpeciesCounts, compact = false): JSX.Element {
+    return (
+      <div className={compact ? "species-summary-list compact" : "species-summary-list"}>
+        {ALL_SPECIES.map((species) => (
+          <div className={compact ? "species-summary-row compact" : "species-summary-row"} key={species}>
+            <div className="species-summary-label">
+              <img
+                alt=""
+                aria-hidden="true"
+                className={compact ? "species-summary-icon compact" : "species-summary-icon"}
+                src={SPECIES_ICON_ART[species]}
+              />
+              <span>{speciesLabel(language, species)}</span>
+            </div>
+            <strong>{formatCount(counts[species] ?? 0)}</strong>
+          </div>
+        ))}
+      </div>
+    );
+  }
+
   if (loading) {
     return (
       <div className="loading-screen">
@@ -2798,6 +2959,78 @@ export default function App(): JSX.Element {
                     <p key={paragraph}>{paragraph}</p>
                   ))}
                 </article>
+              </div>
+
+              <div className="about-section">
+                <h3 className="about-section-title">{aboutCopy.summaryTitle}</h3>
+                <div className="about-summary-stack">
+                  <article className="about-card about-summary-card">
+                    <div className="about-summary-head">
+                      <div>
+                        <h4>{aboutCopy.summaryAllTitle}</h4>
+                        <p className="about-summary-total-label">{aboutCopy.summaryTotalLabel}</p>
+                      </div>
+                      <strong className="about-summary-total-number">{formatCount(data.meta.included_records)}</strong>
+                    </div>
+                    {renderSpeciesCountRows(data.meta.species_counts ?? EMPTY_SPECIES_COUNTS)}
+                  </article>
+
+                  <article className="about-card about-summary-card">
+                    <div className="about-summary-section-head">
+                      <h4>{aboutCopy.summaryByRegionTitle}</h4>
+                    </div>
+                    <input
+                      className="filter-search-input about-summary-search-input"
+                      onChange={(event) => setAboutRegionSummarySearchQuery(event.target.value)}
+                      placeholder={aboutCopy.summarySearchPlaceholder}
+                      type="search"
+                      value={aboutRegionSummarySearchQuery}
+                    />
+                    <div className="about-region-summary-list">
+                      {pagedAboutRegionSummaries.map((region) => (
+                        <div className="about-region-summary-item" key={region.id}>
+                          <div className="about-region-summary-head">
+                            <strong>{region.label}</strong>
+                            <span className="about-region-summary-total">{formatCount(region.totalTrees)}</span>
+                          </div>
+                          <p className="about-region-summary-total-label">{aboutCopy.summaryTotalLabel}</p>
+                          {renderSpeciesCountRows(region.speciesCounts, true)}
+                        </div>
+                      ))}
+                      {filteredAboutRegionSummaries.length === 0 && (
+                        <p className="filter-empty">{aboutCopy.summaryEmpty}</p>
+                      )}
+                    </div>
+                    <div className="about-source-pagination">
+                      <button
+                        className="clear-btn"
+                        disabled={aboutRegionSummaryPage === 0 || filteredAboutRegionSummaries.length === 0}
+                        onClick={() => setAboutRegionSummaryPage((current) => Math.max(0, current - 1))}
+                        type="button"
+                      >
+                        {aboutCopy.previousPage}
+                      </button>
+                      <span>
+                        {aboutCopy.pageLabel} {aboutRegionSummaryPage + 1} / {aboutRegionSummaryPageCount}
+                      </span>
+                      <button
+                        className="clear-btn"
+                        disabled={
+                          aboutRegionSummaryPage >= aboutRegionSummaryPageCount - 1 ||
+                          filteredAboutRegionSummaries.length === 0
+                        }
+                        onClick={() =>
+                          setAboutRegionSummaryPage((current) =>
+                            Math.min(aboutRegionSummaryPageCount - 1, current + 1)
+                          )
+                        }
+                        type="button"
+                      >
+                        {aboutCopy.nextPage}
+                      </button>
+                    </div>
+                  </article>
+                </div>
               </div>
 
               <div className="about-section">

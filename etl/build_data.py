@@ -178,6 +178,7 @@ REGION_LABELS: dict[str, str] = {
     "pa": "PA",
     "ma": "MA",
 }
+SPECIES_GROUPS: list[str] = ["cherry", "plum", "peach", "magnolia", "crabapple"]
 REGION_CITY_OVERRIDES: dict[str, str] = {
     "Arlington": "va",
     "Alexandria": "va",
@@ -1625,6 +1626,15 @@ def region_for_city(city: str) -> str:
 
 def slugify_token(value: str) -> str:
     return re.sub(r"[^a-z0-9]+", "-", value.lower()).strip("-")
+
+
+def summarize_species_counts(features: list[dict[str, Any]]) -> dict[str, int]:
+    counts = Counter(
+        str(feature.get("properties", {}).get("species_group", "")).strip().lower()
+        for feature in features
+        if str(feature.get("properties", {}).get("species_group", "")).strip().lower() in SPECIES_GROUPS
+    )
+    return {species: int(counts.get(species, 0)) for species in SPECIES_GROUPS}
 
 
 def classify_warning_level(raw_bytes: int) -> str:
@@ -4875,6 +4885,7 @@ def main() -> int:
         gzip_bytes = len(gzip.compress(payload_bytes))
         warning_level = classify_warning_level(raw_bytes)
         region_cities = sorted({feature["properties"]["city"] for feature in features})
+        region_species_counts = summarize_species_counts(features)
         region_entry: dict[str, Any] = {
             "id": region_id,
             "label": label,
@@ -4884,6 +4895,7 @@ def main() -> int:
             "tree_count": len(features),
             "city_count": len(region_cities),
             "cities": region_cities,
+            "species_counts": region_species_counts,
             "raw_bytes": raw_bytes,
             "gzip_bytes": gzip_bytes,
             "warning_level": warning_level,
@@ -4954,6 +4966,7 @@ def main() -> int:
         "total_records": total_records,
         "included_records": len(output_features),
         "unknown_records": int(sum(unknown_counter.values())),
+        "species_counts": summarize_species_counts(output_features),
         "regions": region_meta,
         "sources": meta_sources,
     }

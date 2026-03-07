@@ -786,6 +786,133 @@ body {
   gap: 0.7rem;
 }
 
+.about-summary-stack {
+  display: grid;
+  gap: 0.72rem;
+}
+
+.about-summary-card {
+  display: grid;
+  gap: 0.72rem;
+}
+
+.about-summary-card h4 {
+  margin: 0;
+  font-size: 0.92rem;
+  font-weight: 800;
+}
+
+.about-summary-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.8rem;
+}
+
+.about-summary-section-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.6rem;
+}
+
+.about-summary-total-label,
+.about-region-summary-total-label {
+  margin: 0.18rem 0 0;
+  font-size: 0.72rem;
+  color: #725463;
+}
+
+.about-summary-total-number {
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: var(--rose-700);
+  line-height: 1;
+}
+
+.about-summary-search-input {
+  width: 100%;
+}
+
+.species-summary-list {
+  display: grid;
+  gap: 0.42rem;
+}
+
+.species-summary-list.compact {
+  gap: 0.34rem;
+}
+
+.species-summary-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.8rem;
+}
+
+.species-summary-row strong {
+  flex-shrink: 0;
+  font-size: 0.8rem;
+  color: #503645;
+}
+
+.species-summary-row.compact strong {
+  font-size: 0.76rem;
+}
+
+.species-summary-label {
+  display: flex;
+  align-items: center;
+  gap: 0.48rem;
+  min-width: 0;
+  font-size: 0.79rem;
+  color: #563c4a;
+}
+
+.species-summary-icon {
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+  object-fit: contain;
+}
+
+.species-summary-icon.compact {
+  width: 20px;
+  height: 20px;
+}
+
+.about-region-summary-list {
+  display: grid;
+  gap: 0.58rem;
+}
+
+.about-region-summary-item {
+  border-radius: 12px;
+  border: 1px solid rgba(153, 83, 116, 0.18);
+  background: #fffdfd;
+  padding: 0.68rem 0.72rem;
+}
+
+.about-region-summary-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.about-region-summary-head strong {
+  font-size: 0.8rem;
+  line-height: 1.35;
+}
+
+.about-region-summary-total {
+  flex-shrink: 0;
+  font-size: 1rem;
+  font-weight: 800;
+  color: #6b3450;
+  line-height: 1;
+}
+
 .about-source-search-input {
   width: 100%;
 }
@@ -802,6 +929,7 @@ body {
   color: #6a4957;
   font-size: 0.76rem;
   font-weight: 700;
+  text-align: center;
 }
 
 .about-contact-links {

@@ -119,6 +119,13 @@
         "index_path": "/data/trees.bc.city-index.v1.json",
         "file_count": 2,
         "ready": true
+      },
+      "species_counts": {
+        "cherry": 19363,
+        "plum": 12800,
+        "peach": 0,
+        "magnolia": 4068,
+        "crabapple": 4232
       }
     },
     {
@@ -162,6 +169,13 @@
         "index_path": "/data/trees.ca.city-index.v1.json",
         "file_count": 14,
         "ready": true
+      },
+      "species_counts": {
+        "cherry": 11736,
+        "plum": 27550,
+        "peach": 2268,
+        "magnolia": 32747,
+        "crabapple": 3024
       }
     },
     {
@@ -192,6 +206,13 @@
         "index_path": "/data/trees.dc.city-index.v1.json",
         "file_count": 1,
         "ready": true
+      },
+      "species_counts": {
+        "cherry": 10656,
+        "plum": 335,
+        "peach": 0,
+        "magnolia": 3510,
+        "crabapple": 2032
       }
     },
     {
@@ -223,6 +244,13 @@
         "index_path": "/data/trees.ma.city-index.v1.json",
         "file_count": 2,
         "ready": true
+      },
+      "species_counts": {
+        "cherry": 3713,
+        "plum": 68,
+        "peach": 6,
+        "magnolia": 383,
+        "crabapple": 2272
       }
     },
     {
@@ -253,6 +281,13 @@
         "index_path": "/data/trees.md.city-index.v1.json",
         "file_count": 1,
         "ready": true
+      },
+      "species_counts": {
+        "cherry": 174,
+        "plum": 162,
+        "peach": 20,
+        "magnolia": 674,
+        "crabapple": 890
       }
     },
     {
@@ -283,6 +318,13 @@
         "index_path": "/data/trees.nj.city-index.v1.json",
         "file_count": 1,
         "ready": true
+      },
+      "species_counts": {
+        "cherry": 2004,
+        "plum": 1,
+        "peach": 0,
+        "magnolia": 21,
+        "crabapple": 122
       }
     },
     {
@@ -313,6 +355,13 @@
         "index_path": "/data/trees.ny.city-index.v1.json",
         "file_count": 1,
         "ready": true
+      },
+      "species_counts": {
+        "cherry": 29279,
+        "plum": 6879,
+        "peach": 0,
+        "magnolia": 1000,
+        "crabapple": 3527
       }
     },
     {
@@ -343,6 +392,13 @@
         "index_path": "/data/trees.or.city-index.v1.json",
         "file_count": 1,
         "ready": true
+      },
+      "species_counts": {
+        "cherry": 2375,
+        "plum": 7473,
+        "peach": 259,
+        "magnolia": 5191,
+        "crabapple": 9477
       }
     },
     {
@@ -374,6 +430,13 @@
         "index_path": "/data/trees.pa.city-index.v1.json",
         "file_count": 2,
         "ready": true
+      },
+      "species_counts": {
+        "cherry": 15652,
+        "plum": 1001,
+        "peach": 128,
+        "magnolia": 1048,
+        "crabapple": 3579
       }
     },
     {
@@ -404,6 +467,13 @@
         "index_path": "/data/trees.va.city-index.v1.json",
         "file_count": 1,
         "ready": true
+      },
+      "species_counts": {
+        "cherry": 1413,
+        "plum": 93,
+        "peach": 0,
+        "magnolia": 296,
+        "crabapple": 80
       }
     },
     {
@@ -450,6 +520,13 @@
         "index_path": "/data/trees.wa.city-index.v1.json",
         "file_count": 17,
         "ready": true
+      },
+      "species_counts": {
+        "cherry": 25870,
+        "plum": 20086,
+        "peach": 344,
+        "magnolia": 5946,
+        "crabapple": 15422
       }
     }
   ],
@@ -827,5 +904,12 @@
       "records_fetched": 510,
       "records_included": 509
     }
-  ]
+  ],
+  "species_counts": {
+    "cherry": 122235,
+    "plum": 76448,
+    "peach": 3025,
+    "magnolia": 54884,
+    "crabapple": 44657
+  }
 }

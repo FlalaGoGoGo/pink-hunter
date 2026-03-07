@@ -15,6 +15,7 @@ export type Language =
   | "vi-VN";
 export type CoverageRegion = "wa" | "ca" | "or" | "dc" | "bc" | "va" | "md" | "nj" | "ny" | "pa" | "ma";
 export type RegionWarningLevel = "none" | "warning" | "high_warning" | "hard_fail";
+export type SpeciesCounts = Record<SpeciesGroup, number>;
 
 export type LayoutMode = "mobile_sheet" | "desktop_split";
 export type MapStylePreset = "positron" | "demotiles";
@@ -50,6 +51,7 @@ export interface RegionMeta {
   tree_count: number;
   city_count: number;
   cities: string[];
+  species_counts: SpeciesCounts;
   raw_bytes: number;
   gzip_bytes: number;
   warning_level: RegionWarningLevel;
@@ -84,6 +86,7 @@ export interface AppMeta {
   total_records: number;
   included_records: number;
   unknown_records: number;
+  species_counts: SpeciesCounts;
   regions: RegionMeta[];
   sources: Array<{
     name: string;

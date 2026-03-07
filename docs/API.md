@@ -9,6 +9,12 @@ Published city-split index for one region.
 - `or`
 - `dc`
 - `bc`
+- `va`
+- `md`
+- `nj`
+- `ny`
+- `pa`
+- `ma`
 
 ### Shape
 - `generated_at`
@@ -53,6 +59,15 @@ Bilingual species education content.
 ## `GET /data/meta.v2.json`
 Dataset metadata and source refresh details.
 
+### Top-level fields
+- `included_records`
+- `species_counts`
+  - `cherry`
+  - `plum`
+  - `peach`
+  - `magnolia`
+  - `crabapple`
+
 ### `regions[]`
 - `id`
 - `label`
@@ -62,6 +77,12 @@ Dataset metadata and source refresh details.
 - `tree_count`
 - `city_count`
 - `cities`
+- `species_counts`
+  - `cherry`
+  - `plum`
+  - `peach`
+  - `magnolia`
+  - `crabapple`
 - `raw_bytes`
 - `gzip_bytes`
 - `warning_level`
