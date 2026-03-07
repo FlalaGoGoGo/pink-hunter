@@ -7,7 +7,7 @@ import {
 } from "react";
 import type { FeatureCollection, Point } from "geojson";
 import { loadRegionCityIndex, loadStaticAppData, loadTreeCollection } from "./data";
-import { DEFAULT_LANGUAGE, ownershipLabel, speciesLabel, t } from "./i18n";
+import { DEFAULT_LANGUAGE, ownershipLabel, regionLabel, speciesLabel, t } from "./i18n";
 import {
   loadMapRuntimeDeps,
   type ClipMultiPolygon,
@@ -342,13 +342,8 @@ function stateCodeForCity(city: string): string {
   return "WA";
 }
 
-function formatCityLabel(city: string): string {
-  const stateCode = stateCodeForCity(city);
-  const uppercaseCity = city.toUpperCase();
-  if (uppercaseCity.endsWith(` ${stateCode}`) || uppercaseCity.endsWith(`, ${stateCode}`)) {
-    return city;
-  }
-  return `${city} (${stateCode})`;
+function formatCityLabel(city: string, language: Language): string {
+  return `${city}, ${regionLabel(language, regionForCity(city))}`;
 }
 
 function buildUserLocationData(coordinates: [number, number] | null): FeatureCollection<Point> {
@@ -507,6 +502,8 @@ export default function App(): JSX.Element {
   const [selectedOwnership, setSelectedOwnership] = useState<OwnershipGroup[]>(initialUrlState.ownership);
   const [selectedCities, setSelectedCities] = useState<string[]>(initialUrlState.cities);
   const [selectedZipCodes, setSelectedZipCodes] = useState<string[]>(initialUrlState.zipCodes);
+  const [stateDropdownOpen, setStateDropdownOpen] = useState(false);
+  const [stateSearchQuery, setStateSearchQuery] = useState("");
   const [cityDropdownOpen, setCityDropdownOpen] = useState(false);
   const [citySearchQuery, setCitySearchQuery] = useState("");
   const [zipDropdownOpen, setZipDropdownOpen] = useState(false);
@@ -731,9 +728,24 @@ export default function App(): JSX.Element {
     );
   }, [activeRegionTrees, currentTrees, zipCodes]);
 
+  const stateProvinceOptions = useMemo(
+    () =>
+      GLOBAL_REGION_OPTIONS.filter((option) => regionMetaById.get(option.region)?.available).map((option) => ({
+        region: option.region,
+        label: regionLabel(language, option.region),
+        menuLabel: option.label
+      })),
+    [language, regionMetaById]
+  );
+
   const cityOptions = useMemo(
-    () => cities.map((city) => ({ city, label: formatCityLabel(city), stateCode: stateCodeForCity(city) })),
-    [cities]
+    () =>
+      cities.map((city) => ({
+        city,
+        label: formatCityLabel(city, language),
+        stateCode: stateCodeForCity(city)
+      })),
+    [cities, language]
   );
 
   const allOwnershipOptions = useMemo(() => {
@@ -851,13 +863,22 @@ export default function App(): JSX.Element {
   }, [ownershipOptions]);
 
   useEffect(() => {
+    if (activePanel !== "filters" && stateDropdownOpen) {
+      setStateDropdownOpen(false);
+    }
     if (activePanel !== "filters" && cityDropdownOpen) {
       setCityDropdownOpen(false);
     }
     if (activePanel !== "filters" && zipDropdownOpen) {
       setZipDropdownOpen(false);
     }
-  }, [activePanel, cityDropdownOpen, zipDropdownOpen]);
+  }, [activePanel, cityDropdownOpen, stateDropdownOpen, zipDropdownOpen]);
+
+  useEffect(() => {
+    if (!stateDropdownOpen) {
+      setStateSearchQuery("");
+    }
+  }, [stateDropdownOpen]);
 
   useEffect(() => {
     if (!cityDropdownOpen) {
@@ -870,6 +891,21 @@ export default function App(): JSX.Element {
       setZipSearchQuery("");
     }
   }, [zipDropdownOpen]);
+
+  const visibleStateProvinces = useMemo(() => {
+    const query = stateSearchQuery.trim().toLowerCase();
+    if (!query) {
+      return stateProvinceOptions;
+    }
+
+    return stateProvinceOptions.filter(({ label, menuLabel, region }) => {
+      return (
+        label.toLowerCase().includes(query) ||
+        menuLabel.toLowerCase().includes(query) ||
+        region.toLowerCase().includes(query)
+      );
+    });
+  }, [stateProvinceOptions, stateSearchQuery]);
 
   const visibleCities = useMemo(() => {
     const query = citySearchQuery.trim().toLowerCase();
@@ -1641,6 +1677,7 @@ export default function App(): JSX.Element {
     setGlobalMenuOpen(false);
     setSelectedTree(null);
     setSelectedCoverage(null);
+    setStateDropdownOpen(false);
     setCityDropdownOpen(false);
     setZipDropdownOpen(false);
     const cachedTrees = regionTreeCache[region];
@@ -1920,6 +1957,44 @@ export default function App(): JSX.Element {
                       </button>
                     ))}
                   </div>
+                </div>
+
+                <div className="filter-group">
+                  <strong>{t(language, "stateProvinceFilter")}</strong>
+                  <button
+                    aria-expanded={stateDropdownOpen}
+                    className="filter-dropdown-trigger"
+                    onClick={() => setStateDropdownOpen((current) => !current)}
+                    type="button"
+                  >
+                    <span>{regionLabel(language, activeRegion)}</span>
+                    <span className={stateDropdownOpen ? "caret open" : "caret"} />
+                  </button>
+                  {stateDropdownOpen && (
+                    <div className="filter-dropdown-menu">
+                      <input
+                        className="filter-search-input"
+                        onChange={(event) => setStateSearchQuery(event.target.value)}
+                        placeholder={t(language, "searchStateProvincePlaceholder")}
+                        type="search"
+                        value={stateSearchQuery}
+                      />
+                      {visibleStateProvinces.map((option) => (
+                        <label className="filter-option" key={option.region}>
+                          <input
+                            checked={activeRegion === option.region}
+                            name="state-province"
+                            onChange={() => switchRegion(option.region)}
+                            type="radio"
+                          />
+                          <span>{option.label}</span>
+                        </label>
+                      ))}
+                      {visibleStateProvinces.length === 0 && (
+                        <p className="filter-empty">{t(language, "noResultsBody")}</p>
+                      )}
+                    </div>
+                  )}
                 </div>
 
                 <div className="filter-group">

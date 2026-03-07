@@ -1,6 +1,6 @@
 {
   "version": "v2",
-  "generated_at": "2026-03-07T01:50:55.671870+00:00",
+  "generated_at": "2026-03-07T03:01:07.354019+00:00",
   "default_region": "wa",
   "coverage_rule": "official_city_boundary_only",
   "coverage_skipped_cities": [],
@@ -8,6 +8,7 @@
     "Arlington",
     "Auburn",
     "Beaux Arts Village",
+    "Beaverton",
     "Black Diamond",
     "Bonney Lake",
     "Bothell",
@@ -28,6 +29,8 @@
     "Ferndale",
     "Fife",
     "Granite Falls",
+    "Gresham",
+    "Hillsboro",
     "Hunts Point",
     "Issaquah",
     "Kent",
@@ -43,22 +46,31 @@
     "Mercer Island",
     "Mill Creek",
     "Monroe",
+    "Monterey",
     "Mountain View",
     "Mountlake Terrace",
     "Mukilteo",
+    "Napa",
     "Newcastle",
     "Normandy Park",
     "North Bend",
     "Olympia",
     "Port Orchard",
     "Richland",
+    "Richmond",
     "Saanich",
     "Sacramento",
+    "Salem",
     "Santa Clara",
+    "Santa Cruz",
+    "Santa Rosa",
     "Skykomish",
     "Snoqualmie",
+    "Stockton",
     "Sumner",
+    "Sunnyvale",
     "Tacoma",
+    "Tigard",
     "Tukwila",
     "Tumwater",
     "University Place",
@@ -69,10 +81,10 @@
     "Yarrow Point"
   ],
   "coverage_official_unavailable_skipped_cities": [],
-  "source_count": 30,
-  "total_records": 1311097,
-  "included_records": 207801,
-  "unknown_records": 142198,
+  "source_count": 35,
+  "total_records": 404270,
+  "included_records": 216322,
+  "unknown_records": 166069,
   "regions": [
     {
       "id": "wa",
@@ -127,32 +139,36 @@
       "bounds": [
         [
           -123.17382500036122,
-          37.12314499981398
+          36.57149999971581
         ],
         [
-          -121.36274000021152,
+          -121.18388899974322,
           38.68560299975214
         ]
       ],
       "data_path": null,
-      "tree_count": 58362,
-      "city_count": 7,
+      "tree_count": 66883,
+      "city_count": 11,
       "cities": [
         "Berkeley",
         "Burlingame",
         "Cupertino",
+        "Milpitas",
         "Oakland",
         "Palo Alto",
+        "Salinas",
         "San Francisco",
-        "San Jose"
+        "San Jose",
+        "San Mateo",
+        "San Rafael"
       ],
-      "raw_bytes": 30199520,
-      "gzip_bytes": 1289841,
+      "raw_bytes": 34571895,
+      "gzip_bytes": 1477814,
       "warning_level": "none",
       "city_split": {
         "strategy": "city",
         "index_path": "/data/trees.ca.city-index.v1.json",
-        "file_count": 7,
+        "file_count": 11,
         "ready": true
       }
     },
@@ -162,11 +178,11 @@
       "available": true,
       "bounds": [
         [
-          -122.83676363372525,
-          45.43254152511167
+          -123.12291699979801,
+          44.851231999965705
         ],
         [
-          -122.47203838021687,
+          -122.36755900003719,
           45.652886166421595
         ]
       ],
@@ -266,6 +282,14 @@
       "records_included": 645
     },
     {
+      "name": "Tree_Berkeley20191107",
+      "city": "Berkeley",
+      "endpoint": "https://www.arcgis.com/home/item.html?id=88829f4ae7254b5280732e88e65e6df5",
+      "last_edit_at": "2019-11-07T19:08:30+00:00",
+      "records_fetched": 46037,
+      "records_included": 3973
+    },
+    {
       "name": "City Street Tree Inventory",
       "city": "Burlingame",
       "endpoint": "https://www.burlingame.org/466/Trees-Urban-Forest",
@@ -274,12 +298,29 @@
       "records_included": 1997
     },
     {
+      "name": "Trees",
+      "city": "Cupertino",
+      "endpoint": "https://gis-cupertino.opendata.arcgis.com/",
+      "last_edit_at": "",
+      "records_fetched": 24613,
+      "records_included": 1299
+    },
+    {
       "name": "Everett TreeKeeper Park Sites",
       "city": "Everett",
       "endpoint": "https://everettwa.treekeepersoftware.com/cffiles/grids.cfc",
       "last_edit_at": "",
       "records_fetched": 15162,
       "records_included": 464
+    },
+    {
+      "name": "Tree Inventory",
+      "city": "Fremont",
+      "endpoint": "https://www.fremont.gov/government/departments/maintenance-operations/urban-forestry/tree-inventory-tree-value",
+      "last_edit_at": "2019-04-25T21:50:58.870000+00:00",
+      "records_fetched": 80001,
+      "records_included": 0,
+      "note": "Integrated via public TreePlotter session + official species lookup table."
     },
     {
       "name": "PW Trees Public Viewer",
@@ -304,6 +345,30 @@
       "last_edit_at": "",
       "records_fetched": 39014,
       "records_included": 3122
+    },
+    {
+      "name": "Trees RO",
+      "city": "Milpitas",
+      "endpoint": "https://services8.arcgis.com/OPmRdssd8jj0bT5H/arcgis/rest/services/Trees_RO/FeatureServer/0",
+      "last_edit_at": "2021-01-04T19:17:35.381000+00:00",
+      "records_fetched": 17904,
+      "records_included": 1696
+    },
+    {
+      "name": "Oakland Street Trees",
+      "city": "Oakland",
+      "endpoint": "https://data.oaklandca.gov/Environmental/Oakland-Street-Trees/4jcx-enxf",
+      "last_edit_at": "2013-01-22T20:50:21+00:00",
+      "records_fetched": 38613,
+      "records_included": 3977
+    },
+    {
+      "name": "Tree Data",
+      "city": "Palo Alto",
+      "endpoint": "https://opengis.cityofpaloalto.org/",
+      "last_edit_at": "2023-01-04T12:54:30.056000+00:00",
+      "records_fetched": 39629,
+      "records_included": 4996
     },
     {
       "name": "Street Tree Inventory - Active Records",
@@ -339,6 +404,15 @@
       "note": ""
     },
     {
+      "name": "Tree Inventory",
+      "city": "Salinas",
+      "endpoint": "https://cityofsalinas.opendatasoft.com/explore/dataset/tree-inventory/",
+      "last_edit_at": "2025-02-04T17:11:34+00:00",
+      "records_fetched": 33807,
+      "records_included": 4535,
+      "note": "Integrated from the official City of Salinas OpenDataSoft tree inventory dataset."
+    },
+    {
       "name": "TreeKeeper Park Sites",
       "city": "Sammamish",
       "endpoint": "https://sammamishwa.treekeepersoftware.com/cffiles/grids.cfc",
@@ -369,6 +443,22 @@
       "last_edit_at": "",
       "records_fetched": 346208,
       "records_included": 18021
+    },
+    {
+      "name": "Street Trees",
+      "city": "San Mateo",
+      "endpoint": "https://www.arcgis.com/home/item.html?id=67c8b57d2d91459c9f951df9de961a06",
+      "last_edit_at": "2020-02-28T22:20:51.770000+00:00",
+      "records_fetched": 24045,
+      "records_included": 1868
+    },
+    {
+      "name": "Trees",
+      "city": "San Rafael",
+      "endpoint": "https://www.arcgis.com/home/item.html?id=8a236959df6f438ba38bdf5db85ce54a",
+      "last_edit_at": "2025-03-21T00:16:04.047000+00:00",
+      "records_fetched": 22282,
+      "records_included": 422
     },
     {
       "name": "Trees",
@@ -457,38 +547,6 @@
       "last_edit_at": "",
       "records_fetched": 510,
       "records_included": 509
-    },
-    {
-      "name": "Tree Data",
-      "city": "Palo Alto",
-      "endpoint": "https://opengis.cityofpaloalto.org/",
-      "last_edit_at": "2023-01-04T12:54:30.056000+00:00",
-      "records_fetched": 39629,
-      "records_included": 4996
-    },
-    {
-      "name": "Tree_Berkeley20191107",
-      "city": "Berkeley",
-      "endpoint": "https://www.arcgis.com/home/item.html?id=88829f4ae7254b5280732e88e65e6df5",
-      "last_edit_at": "2019-11-07T19:08:30+00:00",
-      "records_fetched": 46037,
-      "records_included": 3973
-    },
-    {
-      "name": "Trees",
-      "city": "Cupertino",
-      "endpoint": "https://gis-cupertino.opendata.arcgis.com/",
-      "last_edit_at": "",
-      "records_fetched": 24613,
-      "records_included": 1299
-    },
-    {
-      "name": "Oakland Street Trees",
-      "city": "Oakland",
-      "endpoint": "https://data.oaklandca.gov/Environmental/Oakland-Street-Trees/4jcx-enxf",
-      "last_edit_at": "2013-01-22T20:50:21+00:00",
-      "records_fetched": 38613,
-      "records_included": 3977
     }
   ]
 }

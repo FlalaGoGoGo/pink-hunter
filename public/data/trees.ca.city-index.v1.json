@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-03-07T01:50:55.671870+00:00",
+  "generated_at": "2026-03-07T02:55:21.384368+00:00",
   "region": "ca",
   "strategy": "city",
   "items": [
@@ -25,6 +25,13 @@
       "gzip_bytes": 32029
     },
     {
+      "city": "Milpitas",
+      "data_path": "/data/trees.ca.city.milpitas.v1.geojson",
+      "tree_count": 1696,
+      "raw_bytes": 844628,
+      "gzip_bytes": 25811
+    },
+    {
       "city": "Oakland",
       "data_path": "/data/trees.ca.city.oakland.v1.geojson",
       "tree_count": 3977,
@@ -39,6 +46,13 @@
       "gzip_bytes": 114221
     },
     {
+      "city": "Salinas",
+      "data_path": "/data/trees.ca.city.salinas.v1.geojson",
+      "tree_count": 4535,
+      "raw_bytes": 2329654,
+      "gzip_bytes": 107226
+    },
+    {
       "city": "San Francisco",
       "data_path": "/data/trees.ca.city.san-francisco.v1.geojson",
       "tree_count": 24099,
@@ -51,6 +65,20 @@
       "tree_count": 18021,
       "raw_bytes": 8882985,
       "gzip_bytes": 419467
+    },
+    {
+      "city": "San Mateo",
+      "data_path": "/data/trees.ca.city.san-mateo.v1.geojson",
+      "tree_count": 1868,
+      "raw_bytes": 979227,
+      "gzip_bytes": 45076
+    },
+    {
+      "city": "San Rafael",
+      "data_path": "/data/trees.ca.city.san-rafael.v1.geojson",
+      "tree_count": 422,
+      "raw_bytes": 219038,
+      "gzip_bytes": 10169
     }
   ]
 }

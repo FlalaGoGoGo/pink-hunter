@@ -1,4 +1,4 @@
-import type { Language, OwnershipGroup, SpeciesGroup } from "./types";
+import type { CoverageRegion, Language, OwnershipGroup, SpeciesGroup } from "./types";
 
 export const DEFAULT_LANGUAGE: Language = "en-US";
 
@@ -33,15 +33,18 @@ const copy = {
     scientific: "学名",
     common: "常用名",
     city: "城市",
+    stateProvince: "州/省",
     unknown: "未知",
     filtersTitle: "筛选条件",
     speciesFilter: "树种",
+    stateProvinceFilter: "州/省",
     cityFilter: "城市",
     zipFilter: "ZIP Code",
     ownershipFilter: "产权",
     clearFilters: "清除全部",
     showAll: "显示全部",
     clearAll: "清空全部",
+    searchStateProvincePlaceholder: "搜索州/省",
     searchCityPlaceholder: "搜索城市",
     searchZipPlaceholder: "搜索 ZIP Code",
     tipsTitle: "辨认提示",
@@ -92,15 +95,18 @@ const copy = {
     scientific: "Scientific",
     common: "Common",
     city: "City",
+    stateProvince: "State / Province",
     unknown: "Unknown",
     filtersTitle: "Filters",
     speciesFilter: "Species",
+    stateProvinceFilter: "State / Province",
     cityFilter: "City",
     zipFilter: "ZIP Code",
     ownershipFilter: "Ownership",
     clearFilters: "Clear all",
     showAll: "Show All",
     clearAll: "Clear All",
+    searchStateProvincePlaceholder: "Search state or province",
     searchCityPlaceholder: "Search city",
     searchZipPlaceholder: "Search ZIP code",
     tipsTitle: "Tips",
@@ -151,6 +157,23 @@ const ownershipLabelMap: Record<Language, Record<OwnershipGroup, string>> = {
   }
 };
 
+const regionLabelMap: Record<Language, Record<CoverageRegion, string>> = {
+  "zh-CN": {
+    wa: "华盛顿州",
+    ca: "加利福尼亚州",
+    or: "俄勒冈州",
+    dc: "华盛顿哥伦比亚特区",
+    bc: "卑诗省"
+  },
+  "en-US": {
+    wa: "Washington",
+    ca: "California",
+    or: "Oregon",
+    dc: "Washington, DC",
+    bc: "British Columbia"
+  }
+};
+
 export function t(language: Language, key: keyof (typeof copy)["zh-CN"]): string {
   return copy[language][key];
 }
@@ -161,4 +184,8 @@ export function speciesLabel(language: Language, species: SpeciesGroup): string 
 
 export function ownershipLabel(language: Language, ownership: OwnershipGroup): string {
   return ownershipLabelMap[language][ownership];
+}
+
+export function regionLabel(language: Language, region: CoverageRegion): string {
+  return regionLabelMap[language][region];
 }

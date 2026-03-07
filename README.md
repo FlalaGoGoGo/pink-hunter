@@ -20,8 +20,9 @@ Live domain:
 - Published region data must pass `./scripts/check_region_data_sizes.py --data-dir public/data` before sync/push.
 
 ## Coverage Areas
+<details>
+<summary>Washington</summary>
 
-### Washington
 - Seattle
 - Bellevue
 - Redmond
@@ -40,33 +41,57 @@ Live domain:
 - Puyallup
 - Gig Harbor
 
-### Oregon
+</details>
+
+<details>
+<summary>Oregon</summary>
+
 - Portland
 
-### California
+</details>
+
+<details>
+<summary>California</summary>
+
 - Berkeley
 - Burlingame
 - Cupertino
+- Milpitas
 - Oakland
 - Palo Alto
+- Salinas
 - San Francisco
 - San Jose
+- San Mateo
+- San Rafael
 
-### Washington, DC
+</details>
+
+<details>
+<summary>Washington, DC</summary>
+
 - Washington DC
 
-### British Columbia
+</details>
+
+<details>
+<summary>British Columbia</summary>
+
 - Vancouver BC
 - Victoria BC
 
+</details>
+
 ### Gray Coverage
 - Gray coverage marks cities whose official boundary is public but whose official public single-tree dataset is not available yet.
-- Current gray-coverage examples include `Mountain View`, `Sacramento`, `Santa Clara`, `Burnaby`, `Delta`, and `Saanich`.
+- Current gray-coverage examples include `Mountain View`, `Sunnyvale`, `Santa Clara`, `Monterey`, `Sacramento`, `Napa`, `Richmond`, `Santa Cruz`, `Santa Rosa`, `Stockton`, `Beaverton`, `Gresham`, `Hillsboro`, `Salem`, `Tigard`, `Burnaby`, `Delta`, and `Saanich`.
 - Tracking details: [docs/CITY_COVERAGE_TRACKER.md](docs/CITY_COVERAGE_TRACKER.md)
 
 ## Official Data Sources
+<details>
+<summary>Washington</summary>
+
 - Seattle: [Combined Tree Point](https://services.arcgis.com/ZOyb2t4B0UYuYNYH/arcgis/rest/services/Combined_Tree_Point/FeatureServer/0)
-- Seattle supplemental: [UW OSM supplemental cache](data/supplemental/uw_prunus_overpass.json)
 - Bellevue: [City Trees](https://services1.arcgis.com/EYzEZbDhXZjURPbP/arcgis/rest/services/City_Trees/FeatureServer/29)
 - Redmond: [TreeSite](https://services7.arcgis.com/9u5SMK7jcrQbBJIC/arcgis/rest/services/TreeSite/FeatureServer/0)
 - Renton: [Tree Sites](https://webmaps.rentonwa.gov/as03/rest/services/Cityworks/proCSParkAsset/MapServer/24)
@@ -83,17 +108,54 @@ Live domain:
 - Walla Walla: [City of Walla Walla Trees](https://gis2.ci.walla-walla.wa.us/arcgis/rest/services/Basemap/GISBaseMap_TreesVisible/MapServer/0)
 - Puyallup: [City Maintained Street Trees](https://services8.arcgis.com/5K6vnOH0GkPyJs6A/arcgis/rest/services/City_Maintained_Street_Trees/FeatureServer/0)
 - Gig Harbor: [PW Trees Public Viewer](https://services3.arcgis.com/FjNT4j1knnY5Wsw5/arcgis/rest/services/PW_Trees_Public_Viewer/FeatureServer/0)
+
+</details>
+
+<details>
+<summary>Oregon</summary>
+
 - Portland: [Street Tree Inventory - Active Records](https://www.portlandmaps.com/od/rest/services/COP_OpenData_Environment/MapServer/1415)
+
+</details>
+
+<details>
+<summary>California</summary>
+
 - Burlingame: [City Street Tree Inventory](https://www.burlingame.org/466/Trees-Urban-Forest)
 - Palo Alto: [City of Palo Alto Open GIS](https://opengis.cityofpaloalto.org/)
 - Berkeley: [Tree_Berkeley20191107](https://www.arcgis.com/home/item.html?id=88829f4ae7254b5280732e88e65e6df5)
 - Cupertino: [Cupertino Open Data GIS](https://gis-cupertino.opendata.arcgis.com/)
+- Milpitas: [Trees RO](https://services8.arcgis.com/OPmRdssd8jj0bT5H/arcgis/rest/services/Trees_RO/FeatureServer/0)
 - Oakland: [Oakland Street Trees](https://data.oaklandca.gov/Environmental/Oakland-Street-Trees/4jcx-enxf)
+- Salinas: [Tree Inventory](https://cityofsalinas.opendatasoft.com/explore/dataset/tree-inventory/)
 - San Francisco: [Street Tree List](https://data.sfgov.org/City-Infrastructure/Street-Tree-List/tkzw-k3nq)
 - San Jose: [Street Tree](https://data.sanjoseca.gov/dataset/street-tree)
+- San Mateo: [Street Trees](https://www.arcgis.com/home/item.html?id=67c8b57d2d91459c9f951df9de961a06)
+- San Rafael: [Trees](https://www.arcgis.com/home/item.html?id=8a236959df6f438ba38bdf5db85ce54a)
+
+</details>
+
+<details>
+<summary>Washington, DC</summary>
+
 - Washington DC: [Urban Tree Canopy](https://maps2.dcgis.dc.gov/dcgis/rest/services/DCGIS_DATA/Urban_Tree_Canopy/MapServer/23)
+
+</details>
+
+<details>
+<summary>British Columbia</summary>
+
 - Vancouver BC: [Public trees](https://opendata.vancouver.ca/api/explore/v2.1/catalog/datasets/public-trees)
 - Victoria BC: [Tree Species (Parks trees database)](https://maps.victoria.ca/server/rest/services/OpenData/OpenData_Parks/MapServer/15)
+
+</details>
+
+<details>
+<summary>Supplemental</summary>
+
+- Seattle supplemental: [UW OSM supplemental cache](data/supplemental/uw_prunus_overpass.json)
+
+</details>
 
 ## Local Development
 1. Install dependencies
@@ -148,3 +210,4 @@ Live domain:
 - Taxonomy keywords: [docs/TAXONOMY_KEYWORDS.md](docs/TAXONOMY_KEYWORDS.md)
 - GitHub Pages subdomain setup: [docs/GITHUB_PAGES_SUBDOMAIN_SETUP.md](docs/GITHUB_PAGES_SUBDOMAIN_SETUP.md)
 - GitHub sync policy: [docs/GITHUB_SYNC_POLICY.md](docs/GITHUB_SYNC_POLICY.md)
+- Nano Banana prompts: [docs/NANO_BANANA_PROMPTS.md](docs/NANO_BANANA_PROMPTS.md)
