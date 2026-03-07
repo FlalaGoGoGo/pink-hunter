@@ -5,11 +5,18 @@ import {
   useState,
   type PointerEvent as ReactPointerEvent
 } from "react";
-import maplibregl, { type GeoJSONSource, type Map as MapLibreMap } from "maplibre-gl";
 import type { FeatureCollection, Point } from "geojson";
-import polygonClipping, { type MultiPolygon as ClipMultiPolygon } from "polygon-clipping";
 import { loadRegionTrees, loadStaticAppData } from "./data";
 import { DEFAULT_LANGUAGE, ownershipLabel, speciesLabel, t } from "./i18n";
+import {
+  loadMapRuntimeDeps,
+  type ClipMultiPolygon,
+  type GeoJSONSource,
+  type MapLayerMouseEvent,
+  type MapLibreMap,
+  type MapLibrePopup,
+  type MapRuntimeDeps
+} from "./mapRuntime";
 import type {
   AppMeta,
   CoverageCollection,
@@ -174,15 +181,8 @@ function parseUrlState(): UrlState {
   };
 }
 
-function createBoundsFromTuple(boundsTuple: [[number, number], [number, number]]): maplibregl.LngLatBounds {
-  return new maplibregl.LngLatBounds(boundsTuple[0], boundsTuple[1]);
-}
-
-function boundsForRegion(regionMeta: RegionMeta | null): maplibregl.LngLatBounds | null {
-  if (!regionMeta) {
-    return null;
-  }
-  return createBoundsFromTuple(regionMeta.bounds);
+function boundsForRegion(regionMeta: RegionMeta | null): [[number, number], [number, number]] | null {
+  return regionMeta?.bounds ?? null;
 }
 
 function setDocumentMeta(selector: string, content: string): void {
@@ -210,7 +210,10 @@ function getTreeCoordinates(feature: TreeCollection["features"][number]): [numbe
   return [lon, lat];
 }
 
-function buildCoverageCollection(coverageFeatures: CoverageCollection["features"]): CoverageCollection {
+function buildCoverageCollection(
+  coverageFeatures: CoverageCollection["features"],
+  polygonClippingModule: MapRuntimeDeps["polygonClipping"]
+): CoverageCollection {
   const occupied: ClipMultiPolygon[] = [];
   const sortedFeatures = [...coverageFeatures].sort(
     (left, right) => geometryAreaApprox(left.geometry) - geometryAreaApprox(right.geometry)
@@ -221,7 +224,7 @@ function buildCoverageCollection(coverageFeatures: CoverageCollection["features"
       const subject = geometryToClipMultiPolygon(feature.geometry);
       const clipped =
         occupied.length > 0
-          ? (polygonClipping.difference(subject, ...occupied) as ClipMultiPolygon | null)
+          ? (polygonClippingModule.difference(subject, ...occupied) as ClipMultiPolygon | null)
           : subject;
       const geometry = clipMultiPolygonToGeometry(clipped);
       if (!geometry) {
@@ -481,6 +484,7 @@ export default function App(): JSX.Element {
     typeof window !== "undefined" && window.innerWidth >= 1024 ? "desktop_split" : "mobile_sheet";
 
   const [data, setData] = useState<StaticAppData | null>(null);
+  const [mapRuntime, setMapRuntime] = useState<MapRuntimeDeps | null>(null);
   const [regionTreeCache, setRegionTreeCache] = useState<Partial<Record<CoverageRegion, TreeCollection>>>({});
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
@@ -513,7 +517,7 @@ export default function App(): JSX.Element {
 
   const mapContainerRef = useRef<HTMLDivElement | null>(null);
   const mapRef = useRef<MapLibreMap | null>(null);
-  const popupRef = useRef<maplibregl.Popup | null>(null);
+  const popupRef = useRef<MapLibrePopup | null>(null);
   const filteredFeaturesRef = useRef<TreeCollection["features"]>([]);
   const isDesktopRef = useRef(layoutMode === "desktop_split");
   const initialRegionFiltersAppliedRef = useRef(false);
@@ -527,17 +531,30 @@ export default function App(): JSX.Element {
   const isDesktop = layoutMode === "desktop_split";
 
   useEffect(() => {
+    let cancelled = false;
     void (async () => {
       try {
-        const loadedData = await loadStaticAppData();
+        const [loadedData, runtimeDeps] = await Promise.all([loadStaticAppData(), loadMapRuntimeDeps()]);
+        if (cancelled) {
+          return;
+        }
         setData(loadedData);
+        setMapRuntime(runtimeDeps);
       } catch (loadError) {
         const message = loadError instanceof Error ? loadError.message : "Unknown loading error";
-        setError(message);
+        if (!cancelled) {
+          setError(message);
+        }
       } finally {
-        setLoading(false);
+        if (!cancelled) {
+          setLoading(false);
+        }
       }
     })();
+
+    return () => {
+      cancelled = true;
+    };
   }, []);
 
   useEffect(() => {
@@ -662,8 +679,11 @@ export default function App(): JSX.Element {
     if (!data) {
       return { type: "FeatureCollection", features: [] } as CoverageCollection;
     }
-    return buildCoverageCollection(data.coverage.features);
-  }, [data]);
+    if (!mapRuntime) {
+      return data.coverage;
+    }
+    return buildCoverageCollection(data.coverage.features, mapRuntime.polygonClipping);
+  }, [data, mapRuntime]);
 
   useEffect(() => {
     if (!activeRegionTrees) {
@@ -888,7 +908,7 @@ export default function App(): JSX.Element {
   }, [aboutSourcePageCount]);
 
   useEffect(() => {
-    if (!data || mapRef.current || !mapContainerRef.current) {
+    if (!data || !mapRuntime || mapRef.current || !mapContainerRef.current) {
       return;
     }
 
@@ -903,7 +923,7 @@ export default function App(): JSX.Element {
 
       setMapStylePreset(preset);
 
-      const map = new maplibregl.Map({
+      const map = new mapRuntime.maplibre.Map({
         container: mapContainerRef.current,
         style: styleUrl,
         center: [initialUrlState.lon, initialUrlState.lat],
@@ -917,7 +937,7 @@ export default function App(): JSX.Element {
       mapRef.current = map;
 
       map.on("load", () => {
-        map.addControl(new maplibregl.ScaleControl({ maxWidth: 110, unit: "metric" }), "bottom-right");
+        map.addControl(new mapRuntime.maplibre.ScaleControl({ maxWidth: 110, unit: "metric" }), "bottom-right");
 
         map.addSource("coverage", {
           type: "geojson",
@@ -1081,7 +1101,7 @@ export default function App(): JSX.Element {
           }
         });
 
-        map.on("click", "tree-clusters", (event) => {
+        map.on("click", "tree-clusters", (event: MapLayerMouseEvent) => {
           const features = map.queryRenderedFeatures(event.point, { layers: ["tree-clusters"] });
           if (features.length === 0) {
             return;
@@ -1111,7 +1131,7 @@ export default function App(): JSX.Element {
             });
         });
 
-        map.on("click", (event) => {
+        map.on("click", (event: MapLayerMouseEvent) => {
           const clusterFeatures = map.queryRenderedFeatures(event.point, { layers: ["tree-clusters"] });
           if (clusterFeatures.length > 0) {
             return;
@@ -1238,12 +1258,13 @@ export default function App(): JSX.Element {
     initialUrlState.hasViewportParam,
     initialUrlState.lat,
     initialUrlState.lon,
-    initialUrlState.zoom
+    initialUrlState.zoom,
+    mapRuntime
   ]);
 
   useEffect(() => {
     const map = mapRef.current;
-    if (!map) {
+    if (!map || !mapRuntime) {
       return;
     }
     const source = map.getSource("trees") as GeoJSONSource | undefined;
@@ -1297,9 +1318,10 @@ export default function App(): JSX.Element {
 
   useEffect(() => {
     const map = mapRef.current;
-    if (!map) {
+    if (!map || !mapRuntime) {
       return;
     }
+    const runtime = mapRuntime;
 
     popupRef.current?.remove();
     popupRef.current = null;
@@ -1320,7 +1342,7 @@ export default function App(): JSX.Element {
         </div>
       `;
 
-      const popup = new maplibregl.Popup({
+      const popup = new runtime.maplibre.Popup({
         closeButton: true,
         closeOnClick: false,
         offset: 14,
@@ -1354,7 +1376,7 @@ export default function App(): JSX.Element {
       </div>
     `;
 
-    const popup = new maplibregl.Popup({
+    const popup = new runtime.maplibre.Popup({
       closeButton: true,
       closeOnClick: false,
       offset: 12,
@@ -1372,7 +1394,7 @@ export default function App(): JSX.Element {
     });
 
     popupRef.current = popup;
-  }, [language, selectedCoverage, selectedTree]);
+  }, [language, mapRuntime, selectedCoverage, selectedTree]);
 
   useEffect(() => {
     if (!data) {

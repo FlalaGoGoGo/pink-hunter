@@ -29,7 +29,7 @@ def format_bytes(raw_bytes: int) -> str:
 def build_report(data_dir: Path) -> dict[str, Any]:
     meta_path = data_dir / "meta.v2.json"
     if not meta_path.exists():
-      raise FileNotFoundError(f"Missing metadata file: {meta_path}")
+        raise FileNotFoundError(f"Missing metadata file: {meta_path}")
 
     meta = json.loads(meta_path.read_text(encoding="utf-8"))
     regions = []
@@ -53,6 +53,44 @@ def build_report(data_dir: Path) -> dict[str, Any]:
                 f"meta=({meta_raw},{meta_gzip},{meta_warning}) actual=({raw_bytes},{gzip_bytes},{warning_level})"
             )
 
+        city_split = None
+        if region.get("city_split"):
+            city_split_meta = region["city_split"]
+            city_index_path = data_dir / Path(city_split_meta["index_path"]).name
+            if not city_index_path.exists():
+                raise FileNotFoundError(f"Missing city split index file: {city_index_path}")
+            city_index = json.loads(city_index_path.read_text(encoding="utf-8"))
+            items = city_index.get("items", [])
+            if int(city_split_meta.get("file_count", -1)) != len(items):
+                raise RuntimeError(
+                    f"City split file_count mismatch for region {region['id']}: "
+                    f"meta={city_split_meta.get('file_count')} actual={len(items)}"
+                )
+            city_tree_total = 0
+            for item in items:
+                city_data_path = data_dir / Path(item["data_path"]).name
+                if not city_data_path.exists():
+                    raise FileNotFoundError(f"Missing city split file: {city_data_path}")
+                city_raw = city_data_path.stat().st_size
+                city_gzip = len(gzip.compress(city_data_path.read_bytes()))
+                if int(item.get("raw_bytes", -1)) != city_raw or int(item.get("gzip_bytes", -1)) != city_gzip:
+                    raise RuntimeError(
+                        f"City split size metadata mismatch for {item['city']}: "
+                        f"meta=({item.get('raw_bytes')},{item.get('gzip_bytes')}) actual=({city_raw},{city_gzip})"
+                    )
+                city_tree_total += int(item.get("tree_count", 0))
+            if city_tree_total != int(region["tree_count"]):
+                raise RuntimeError(
+                    f"City split tree_count mismatch for region {region['id']}: "
+                    f"region={region['tree_count']} city_sum={city_tree_total}"
+                )
+            city_split = {
+                "strategy": city_split_meta.get("strategy"),
+                "ready": bool(city_split_meta.get("ready")),
+                "file_count": len(items),
+                "index_path": city_split_meta.get("index_path"),
+            }
+
         regions.append(
             {
                 "id": region["id"],
@@ -62,6 +100,7 @@ def build_report(data_dir: Path) -> dict[str, Any]:
                 "gzip_bytes": gzip_bytes,
                 "warning_level": warning_level,
                 "data_path": region["data_path"],
+                "city_split": city_split,
             }
         )
 
@@ -77,16 +116,18 @@ def build_report(data_dir: Path) -> dict[str, Any]:
 
 
 def print_table(report: dict[str, Any]) -> None:
-    header = f"{'Region':<8} {'Trees':>10} {'Raw':>12} {'Gzip':>12} {'Level':>14}  Path"
+    header = f"{'Region':<8} {'Trees':>10} {'Raw':>12} {'Gzip':>12} {'Level':>14} {'Split':>8}  Path"
     print(header)
     print("-" * len(header))
     for region in report["regions"]:
+        split_label = "city" if region["city_split"] else "-"
         print(
             f"{region['label']:<8} "
             f"{region['tree_count']:>10,} "
             f"{format_bytes(region['raw_bytes']):>12} "
             f"{format_bytes(region['gzip_bytes']):>12} "
-            f"{region['warning_level']:>14}  "
+            f"{region['warning_level']:>14} "
+            f"{split_label:>8}  "
             f"{region['data_path']}"
         )
 
@@ -95,13 +136,14 @@ def append_summary(report: dict[str, Any], summary_path: Path) -> None:
     lines = [
         "## Region Data Size Check",
         "",
-        "| Region | Trees | Raw | Gzip | Level | File |",
-        "| --- | ---: | ---: | ---: | --- | --- |",
+        "| Region | Trees | Raw | Gzip | Level | Split | File |",
+        "| --- | ---: | ---: | ---: | --- | --- | --- |",
     ]
     for region in report["regions"]:
+        split_label = region["city_split"]["strategy"] if region["city_split"] else "-"
         lines.append(
             f"| {region['label']} | {region['tree_count']:,} | {format_bytes(region['raw_bytes'])} | "
-            f"{format_bytes(region['gzip_bytes'])} | {region['warning_level']} | `{region['data_path']}` |"
+            f"{format_bytes(region['gzip_bytes'])} | {region['warning_level']} | {split_label} | `{region['data_path']}` |"
         )
     lines.append("")
     summary_path.parent.mkdir(parents=True, exist_ok=True)

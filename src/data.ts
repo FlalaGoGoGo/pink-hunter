@@ -2,6 +2,7 @@ import type {
   CoverageCollection,
   SpeciesGuide,
   AppMeta,
+  RegionCityDataIndex,
   StaticAppData,
   TreeCollection
 } from "./types";
@@ -26,4 +27,8 @@ export async function loadStaticAppData(): Promise<StaticAppData> {
 
 export async function loadRegionTrees(path: string): Promise<TreeCollection> {
   return loadJson<TreeCollection>(path);
+}
+
+export async function loadRegionCityIndex(path: string): Promise<RegionCityDataIndex> {
+  return loadJson<RegionCityDataIndex>(path);
 }

@@ -27,6 +27,23 @@ GeoJSON `FeatureCollection` of tree points for one region.
 - `source_department: string`
 - `source_last_edit_at: ISO8601 string`
 
+## `GET /data/trees.wa.city-index.v1.json`
+Published city-split index for the `WA` region.
+
+### Shape
+- `generated_at`
+- `region`
+- `strategy: "city"`
+- `items[]`
+  - `city`
+  - `data_path`
+  - `tree_count`
+  - `raw_bytes`
+  - `gzip_bytes`
+
+## `GET /data/trees.wa.city.<slug>.v1.geojson`
+GeoJSON `FeatureCollection` for a single Washington city. The feature schema matches `trees.<region>.v2.geojson`.
+
 ## `GET /data/coverage.v1.geojson`
 GeoJSON `FeatureCollection` for coverage overlays.
 
@@ -54,6 +71,11 @@ Dataset metadata and source refresh details.
 - `raw_bytes`
 - `gzip_bytes`
 - `warning_level`
+- `city_split?`
+  - `strategy`
+  - `index_path`
+  - `file_count`
+  - `ready`
 
 ## `GET /assets/ui/manifest.v1.json`
 Asset manifest with expected dimensions and target formats.

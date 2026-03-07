@@ -320,7 +320,13 @@
       ],
       "raw_bytes": 36119776,
       "gzip_bytes": 1808915,
-      "warning_level": "none"
+      "warning_level": "none",
+      "city_split": {
+        "strategy": "city",
+        "index_path": "/data/trees.wa.city-index.v1.json",
+        "file_count": 17,
+        "ready": true
+      }
     },
     {
       "id": "ca",

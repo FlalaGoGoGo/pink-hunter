@@ -102,6 +102,8 @@ Live domain:
 - `public/data/trees.or.v2.geojson`
 - `public/data/trees.dc.v2.geojson`
 - `public/data/trees.bc.v2.geojson`
+- `public/data/trees.wa.city-index.v1.json`
+- `public/data/trees.wa.city.<slug>.v1.geojson`
 - `public/data/coverage.v1.geojson`
 - `public/data/species-guide.v1.json`
 - `public/data/meta.v2.json`
@@ -117,6 +119,9 @@ Live domain:
   - `DC`
   - `BC`
 - `public/data/meta.v2.json` contains the region index, region bounds, region file paths, and size metadata.
+- `WA` already publishes a city-split index and per-city GeoJSON files as the next split layer.
+- If a full ETL run is blocked by slow upstream sources, refresh existing city-split outputs with:
+  - `python3 scripts/refresh_region_city_splits.py --data-dir public/data --region wa`
 - Size guard thresholds for published region files:
   - `warning`: `>= 35 MiB raw`
   - `high_warning`: `>= 45 MiB raw`

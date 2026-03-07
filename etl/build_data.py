@@ -1301,6 +1301,10 @@ def region_for_city(city: str) -> str:
     return "wa"
 
 
+def slugify_token(value: str) -> str:
+    return re.sub(r"[^a-z0-9]+", "-", value.lower()).strip("-")
+
+
 def classify_warning_level(raw_bytes: int) -> str:
     if raw_bytes >= HARD_FAIL_BYTES:
         return "hard_fail"
@@ -4284,6 +4288,7 @@ def main() -> int:
 
     region_meta: list[dict[str, Any]] = []
     region_size_summary: list[dict[str, Any]] = []
+    extra_output_names: list[str] = []
     for region_id, label in REGION_LABELS.items():
         features = region_feature_map[region_id]
         trees_geojson = {"type": "FeatureCollection", "features": features}
@@ -4295,21 +4300,63 @@ def main() -> int:
         gzip_bytes = len(gzip.compress(payload_bytes))
         warning_level = classify_warning_level(raw_bytes)
         region_cities = sorted({feature["properties"]["city"] for feature in features})
-        region_meta.append(
-            {
-                "id": region_id,
-                "label": label,
-                "available": bool(features),
-                "bounds": region_bounds.get(region_id, WA_METRO_OVERVIEW_BOUNDS),
-                "data_path": f"/data/{file_name}",
-                "tree_count": len(features),
-                "city_count": len(region_cities),
-                "cities": region_cities,
-                "raw_bytes": raw_bytes,
-                "gzip_bytes": gzip_bytes,
-                "warning_level": warning_level,
+        region_entry: dict[str, Any] = {
+            "id": region_id,
+            "label": label,
+            "available": bool(features),
+            "bounds": region_bounds.get(region_id, WA_METRO_OVERVIEW_BOUNDS),
+            "data_path": f"/data/{file_name}",
+            "tree_count": len(features),
+            "city_count": len(region_cities),
+            "cities": region_cities,
+            "raw_bytes": raw_bytes,
+            "gzip_bytes": gzip_bytes,
+            "warning_level": warning_level,
+        }
+
+        if region_id == "wa" and features:
+            city_entries: list[dict[str, Any]] = []
+            for city in region_cities:
+                city_features = [feature for feature in features if feature["properties"]["city"] == city]
+                city_file_name = f"trees.wa.city.{slugify_token(city)}.v1.geojson"
+                city_payload_bytes = json.dumps(
+                    {"type": "FeatureCollection", "features": city_features}, ensure_ascii=False
+                ).encode("utf-8")
+                (next_dir / city_file_name).write_bytes(city_payload_bytes)
+                city_entries.append(
+                    {
+                        "city": city,
+                        "data_path": f"/data/{city_file_name}",
+                        "tree_count": len(city_features),
+                        "raw_bytes": len(city_payload_bytes),
+                        "gzip_bytes": len(gzip.compress(city_payload_bytes)),
+                    }
+                )
+                extra_output_names.append(city_file_name)
+
+            city_index_name = "trees.wa.city-index.v1.json"
+            (next_dir / city_index_name).write_text(
+                json.dumps(
+                    {
+                        "generated_at": now_iso,
+                        "region": "wa",
+                        "strategy": "city",
+                        "items": city_entries,
+                    },
+                    ensure_ascii=False,
+                    indent=2,
+                ),
+                encoding="utf-8",
+            )
+            extra_output_names.append(city_index_name)
+            region_entry["city_split"] = {
+                "strategy": "city",
+                "index_path": f"/data/{city_index_name}",
+                "file_count": len(city_entries),
+                "ready": True,
             }
-        )
+
+        region_meta.append(region_entry)
         region_size_summary.append(
             {
                 "region": label,
@@ -4350,10 +4397,16 @@ def main() -> int:
         "meta.v2.json",
         "unknown_scientific_names.v1.json",
         *[f"trees.{region_id}.v2.geojson" for region_id in REGION_LABELS],
+        *extra_output_names,
     ]
 
     for stale_path in PUBLIC_DATA_DIR.glob("trees.*.v2.geojson"):
         stale_path.unlink()
+    for stale_path in PUBLIC_DATA_DIR.glob("trees.wa.city*.v1.geojson"):
+        stale_path.unlink()
+    city_index_path = PUBLIC_DATA_DIR / "trees.wa.city-index.v1.json"
+    if city_index_path.exists():
+        city_index_path.unlink()
     legacy_trees = PUBLIC_DATA_DIR / "trees.v1.geojson"
     if legacy_trees.exists():
         legacy_trees.unlink()

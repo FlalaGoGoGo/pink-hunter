@@ -17,6 +17,7 @@ Last updated: 2026-03-06 (America/Los_Angeles)
 - Controlled common-name fallback is allowed only when the source exposes an explicitly generic genus-level scientific value (for example `Prunus sp.` / `Malus sp.` / `Magnolia sp.`).
 - Output contract is stable:
   - `public/data/trees.<region>.v2.geojson`
+  - optional next-split outputs such as `public/data/trees.wa.city-index.v1.json` and `public/data/trees.wa.city.<slug>.v1.geojson`
   - `public/data/coverage.v1.geojson`
   - `public/data/species-guide.v1.json`
   - `public/data/meta.v2.json`
@@ -147,3 +148,9 @@ Last updated: 2026-03-06 (America/Los_Angeles)
 5. If the source family is ODS, test both `records` and `exports/json`; some portals impose a hard `records.limit` cap.
 6. Rerun ETL and update `docs/CITY_COVERAGE_TRACKER.md`.
 7. Do not add coverage polygons for a city unless the official boundary geometry is resolved.
+
+## Incremental Publish Fallback
+- Full `npm run etl` remains the canonical path.
+- When upstream sources are too slow and the already-published regional GeoJSON is still current, refresh the next split layer without rerunning the full ETL:
+  - `python3 scripts/refresh_region_city_splits.py --data-dir public/data --region wa`
+- After that, rerun `python3 scripts/check_region_data_sizes.py --data-dir public/data` so `meta.v2.json` and city-split artifacts stay internally consistent.

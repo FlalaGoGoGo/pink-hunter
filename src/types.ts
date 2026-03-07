@@ -45,6 +45,27 @@ export interface RegionMeta {
   raw_bytes: number;
   gzip_bytes: number;
   warning_level: RegionWarningLevel;
+  city_split?: {
+    strategy: "city";
+    index_path: string;
+    file_count: number;
+    ready: boolean;
+  } | null;
+}
+
+export interface RegionCityDataEntry {
+  city: string;
+  data_path: string;
+  tree_count: number;
+  raw_bytes: number;
+  gzip_bytes: number;
+}
+
+export interface RegionCityDataIndex {
+  generated_at: string;
+  region: CoverageRegion;
+  strategy: "city";
+  items: RegionCityDataEntry[];
 }
 
 export interface AppMeta {
