@@ -1535,10 +1535,7 @@ export default function App(): JSX.Element {
       return activeRegionMeta ? [activeRegionMeta] : availableRegions;
     }
     const matched = availableRegions.filter((region) => boundsIntersect(region.bounds, viewport));
-    if (matched.length > 0) {
-      return matched;
-    }
-    return activeRegionMeta ? [activeRegionMeta] : availableRegions;
+    return matched;
   }, [activeRegionMeta, data, effectiveViewportBounds]);
 
   const visibleRegionIds = useMemo(() => visibleRegions.map((region) => region.id), [visibleRegions]);
@@ -1804,6 +1801,7 @@ export default function App(): JSX.Element {
   }, [allOwnershipOptions, currentTrees]);
 
   const filteredCollection = useMemo(() => toTreeCollection(filteredFeatures), [filteredFeatures]);
+  const showMapLoadingOverlay = activeRegionPending && filteredFeatures.length === 0;
 
   useEffect(() => {
     filteredFeaturesRef.current = filteredFeatures;
@@ -2390,7 +2388,10 @@ export default function App(): JSX.Element {
         });
 
         if (!initialUrlState.hasViewportParam) {
-          const defaultBounds = boundsForRegion(activeRegionMeta);
+          const defaultBounds = preferredBoundsForRegion(
+            initialUrlState.region,
+            regionMetaById.get(initialUrlState.region) ?? null
+          );
           if (defaultBounds) {
             map.fitBounds(defaultBounds, {
               padding: isDesktopRef.current ? 80 : 48,
@@ -2433,16 +2434,14 @@ export default function App(): JSX.Element {
       }
     };
   }, [
-    loading,
-    activeRegionPending,
     data,
-    displayCoverage,
-    activeRegionMeta,
     initialUrlState.hasViewportParam,
     initialUrlState.lat,
     initialUrlState.lon,
+    initialUrlState.region,
     initialUrlState.zoom,
-    mapRuntime
+    mapRuntime,
+    regionMetaById
   ]);
 
   useEffect(() => {
@@ -2865,7 +2864,7 @@ export default function App(): JSX.Element {
   return (
     <div className={isDesktop ? "app-root desktop-mode" : "app-root mobile-mode"}>
       <div className="map-root" ref={mapContainerRef} />
-      {activeRegionPending && (
+      {showMapLoadingOverlay && (
         <div className="region-loading-overlay">
           <div className="region-loading-pill">
             <div className="region-loading-dot" />
