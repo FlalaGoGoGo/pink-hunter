@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-03-08T14:39:01.422270+00:00",
+  "generated_at": "2026-03-08T15:42:53.468383+00:00",
   "countries": [
     {
       "id": "ca",
@@ -745,7 +745,7 @@
           5161255.370700002
         ]
       ],
-      "region_hint": null
+      "region_hint": "nv"
     },
     {
       "id": "nh",
@@ -1017,7 +1017,7 @@
           5161234.398800001
         ]
       ],
-      "region_hint": null
+      "region_hint": "ut"
     },
     {
       "id": "vt",
@@ -24241,6 +24241,726 @@
         ]
       ],
       "region_hint": "nj",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "nv:boulder",
+      "country_id": "us",
+      "state_id": "nv",
+      "jurisdiction": "Boulder",
+      "display_name": "Boulder",
+      "area_type": "city",
+      "bounds": [
+        [
+          -115.1008,
+          35.677
+        ],
+        [
+          -114.7696,
+          36.0114
+        ]
+      ],
+      "region_hint": "nv",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "nv:caliente",
+      "country_id": "us",
+      "state_id": "nv",
+      "jurisdiction": "Caliente",
+      "display_name": "Caliente",
+      "area_type": "city",
+      "bounds": [
+        [
+          -114.5716,
+          37.5659
+        ],
+        [
+          -114.4081,
+          37.723
+        ]
+      ],
+      "region_hint": "nv",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "nv:carlin",
+      "country_id": "us",
+      "state_id": "nv",
+      "jurisdiction": "Carlin",
+      "display_name": "Carlin",
+      "area_type": "city",
+      "bounds": [
+        [
+          -116.1423,
+          40.6953
+        ],
+        [
+          -116.0582,
+          40.742
+        ]
+      ],
+      "region_hint": "nv",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "nv:carson",
+      "country_id": "us",
+      "state_id": "nv",
+      "jurisdiction": "Carson",
+      "display_name": "Carson",
+      "area_type": "city",
+      "bounds": [
+        [
+          -120.0043,
+          39.0849
+        ],
+        [
+          -119.5483,
+          39.251
+        ]
+      ],
+      "region_hint": "nv",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "nv:carson-city",
+      "country_id": "us",
+      "state_id": "nv",
+      "jurisdiction": "Carson City",
+      "display_name": "Carson City",
+      "area_type": "city",
+      "bounds": [
+        [
+          -120.0043,
+          39.0849
+        ],
+        [
+          -119.5483,
+          39.251
+        ]
+      ],
+      "region_hint": "nv",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "nv:churchill-county",
+      "country_id": "us",
+      "state_id": "nv",
+      "jurisdiction": "Churchill County",
+      "display_name": "Churchill County",
+      "area_type": "county",
+      "bounds": [
+        [
+          -119.2261,
+          39.0737
+        ],
+        [
+          -117.4613,
+          40.001
+        ]
+      ],
+      "region_hint": "nv",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "nv:clark-county",
+      "country_id": "us",
+      "state_id": "nv",
+      "jurisdiction": "Clark County",
+      "display_name": "Clark County",
+      "area_type": "county",
+      "bounds": [
+        [
+          -115.8969,
+          35.0019
+        ],
+        [
+          -114.0439,
+          36.8537
+        ]
+      ],
+      "region_hint": "nv",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "nv:douglas-county",
+      "country_id": "us",
+      "state_id": "nv",
+      "jurisdiction": "Douglas County",
+      "display_name": "Douglas County",
+      "area_type": "county",
+      "bounds": [
+        [
+          -120.0034,
+          38.536
+        ],
+        [
+          -119.3105,
+          39.114
+        ]
+      ],
+      "region_hint": "nv",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "nv:elko",
+      "country_id": "us",
+      "state_id": "nv",
+      "jurisdiction": "Elko",
+      "display_name": "Elko",
+      "area_type": "city",
+      "bounds": [
+        [
+          -115.8337,
+          40.8034
+        ],
+        [
+          -115.6996,
+          40.8922
+        ]
+      ],
+      "region_hint": "nv",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "nv:elko-county",
+      "country_id": "us",
+      "state_id": "nv",
+      "jurisdiction": "Elko County",
+      "display_name": "Elko County",
+      "area_type": "county",
+      "bounds": [
+        [
+          -117.0184,
+          40.1169
+        ],
+        [
+          -114.0415,
+          41.9997
+        ]
+      ],
+      "region_hint": "nv",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "nv:ely",
+      "country_id": "us",
+      "state_id": "nv",
+      "jurisdiction": "Ely",
+      "display_name": "Ely",
+      "area_type": "city",
+      "bounds": [
+        [
+          -114.9008,
+          39.2294
+        ],
+        [
+          -114.8332,
+          39.3095
+        ]
+      ],
+      "region_hint": "nv",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "nv:esmeralda-county",
+      "country_id": "us",
+      "state_id": "nv",
+      "jurisdiction": "Esmeralda County",
+      "display_name": "Esmeralda County",
+      "area_type": "county",
+      "bounds": [
+        [
+          -118.423,
+          36.9711
+        ],
+        [
+          -117.1656,
+          38.4738
+        ]
+      ],
+      "region_hint": "nv",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "nv:eureka-county",
+      "country_id": "us",
+      "state_id": "nv",
+      "jurisdiction": "Eureka County",
+      "display_name": "Eureka County",
+      "area_type": "county",
+      "bounds": [
+        [
+          -116.6009,
+          39.1615
+        ],
+        [
+          -115.7949,
+          41.0004
+        ]
+      ],
+      "region_hint": "nv",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "nv:fallon",
+      "country_id": "us",
+      "state_id": "nv",
+      "jurisdiction": "Fallon",
+      "display_name": "Fallon",
+      "area_type": "city",
+      "bounds": [
+        [
+          -118.8095,
+          39.4602
+        ],
+        [
+          -118.7441,
+          39.4931
+        ]
+      ],
+      "region_hint": "nv",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "nv:fernley",
+      "country_id": "us",
+      "state_id": "nv",
+      "jurisdiction": "Fernley",
+      "display_name": "Fernley",
+      "area_type": "city",
+      "bounds": [
+        [
+          -119.3251,
+          39.4609
+        ],
+        [
+          -119.0586,
+          39.7371
+        ]
+      ],
+      "region_hint": "nv",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "nv:henderson",
+      "country_id": "us",
+      "state_id": "nv",
+      "jurisdiction": "Henderson",
+      "display_name": "Henderson",
+      "area_type": "city",
+      "bounds": [
+        [
+          -115.2125,
+          35.8973
+        ],
+        [
+          -114.9041,
+          36.1303
+        ]
+      ],
+      "region_hint": "nv",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "nv:humboldt-county",
+      "country_id": "us",
+      "state_id": "nv",
+      "jurisdiction": "Humboldt County",
+      "display_name": "Humboldt County",
+      "area_type": "county",
+      "bounds": [
+        [
+          -119.3314,
+          40.5261
+        ],
+        [
+          -117.0182,
+          41.9997
+        ]
+      ],
+      "region_hint": "nv",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "nv:lander-county",
+      "country_id": "us",
+      "state_id": "nv",
+      "jurisdiction": "Lander County",
+      "display_name": "Lander County",
+      "area_type": "county",
+      "bounds": [
+        [
+          -117.8068,
+          39.0934
+        ],
+        [
+          -116.5868,
+          41.0004
+        ]
+      ],
+      "region_hint": "nv",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "nv:las-vegas",
+      "country_id": "us",
+      "state_id": "nv",
+      "jurisdiction": "Las Vegas",
+      "display_name": "Las Vegas",
+      "area_type": "city",
+      "bounds": [
+        [
+          -115.35028713176655,
+          36.14457804241462
+        ],
+        [
+          -115.09974047027158,
+          36.32403148417679
+        ]
+      ],
+      "region_hint": "nv",
+      "coverage_status": "covered"
+    },
+    {
+      "id": "nv:lincoln-county",
+      "country_id": "us",
+      "state_id": "nv",
+      "jurisdiction": "Lincoln County",
+      "display_name": "Lincoln County",
+      "area_type": "county",
+      "bounds": [
+        [
+          -115.8969,
+          36.8421
+        ],
+        [
+          -114.0498,
+          38.6774
+        ]
+      ],
+      "region_hint": "nv",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "nv:lovelock",
+      "country_id": "us",
+      "state_id": "nv",
+      "jurisdiction": "Lovelock",
+      "display_name": "Lovelock",
+      "area_type": "city",
+      "bounds": [
+        [
+          -118.4859,
+          40.168
+        ],
+        [
+          -118.4665,
+          40.1866
+        ]
+      ],
+      "region_hint": "nv",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "nv:lyon-county",
+      "country_id": "us",
+      "state_id": "nv",
+      "jurisdiction": "Lyon County",
+      "display_name": "Lyon County",
+      "area_type": "county",
+      "bounds": [
+        [
+          -119.7123,
+          38.4138
+        ],
+        [
+          -118.7551,
+          39.7371
+        ]
+      ],
+      "region_hint": "nv",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "nv:mesquite",
+      "country_id": "us",
+      "state_id": "nv",
+      "jurisdiction": "Mesquite",
+      "display_name": "Mesquite",
+      "area_type": "city",
+      "bounds": [
+        [
+          -114.2379,
+          36.7349
+        ],
+        [
+          -114.05,
+          36.8434
+        ]
+      ],
+      "region_hint": "nv",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "nv:mineral-county",
+      "country_id": "us",
+      "state_id": "nv",
+      "jurisdiction": "Mineral County",
+      "display_name": "Mineral County",
+      "area_type": "county",
+      "bounds": [
+        [
+          -119.1556,
+          37.8937
+        ],
+        [
+          -117.691,
+          39.0752
+        ]
+      ],
+      "region_hint": "nv",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "nv:north-las-vegas",
+      "country_id": "us",
+      "state_id": "nv",
+      "jurisdiction": "North Las Vegas",
+      "display_name": "North Las Vegas",
+      "area_type": "city",
+      "bounds": [
+        [
+          -115.2121,
+          36.1881
+        ],
+        [
+          -114.8928,
+          36.4352
+        ]
+      ],
+      "region_hint": "nv",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "nv:nye-county",
+      "country_id": "us",
+      "state_id": "nv",
+      "jurisdiction": "Nye County",
+      "display_name": "Nye County",
+      "area_type": "county",
+      "bounds": [
+        [
+          -118.1963,
+          35.9637
+        ],
+        [
+          -115.0008,
+          39.1634
+        ]
+      ],
+      "region_hint": "nv",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "nv:pershing-county",
+      "country_id": "us",
+      "state_id": "nv",
+      "jurisdiction": "Pershing County",
+      "display_name": "Pershing County",
+      "area_type": "county",
+      "bounds": [
+        [
+          -119.3393,
+          39.9986
+        ],
+        [
+          -117.3,
+          40.9609
+        ]
+      ],
+      "region_hint": "nv",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "nv:reno",
+      "country_id": "us",
+      "state_id": "nv",
+      "jurisdiction": "Reno",
+      "display_name": "Reno",
+      "area_type": "city",
+      "bounds": [
+        [
+          -120.0023,
+          39.3794
+        ],
+        [
+          -119.6911,
+          39.7229
+        ]
+      ],
+      "region_hint": "nv",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "nv:sparks",
+      "country_id": "us",
+      "state_id": "nv",
+      "jurisdiction": "Sparks",
+      "display_name": "Sparks",
+      "area_type": "city",
+      "bounds": [
+        [
+          -119.7808,
+          39.5119
+        ],
+        [
+          -119.6497,
+          39.6506
+        ]
+      ],
+      "region_hint": "nv",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "nv:storey-county",
+      "country_id": "us",
+      "state_id": "nv",
+      "jurisdiction": "Storey County",
+      "display_name": "Storey County",
+      "area_type": "county",
+      "bounds": [
+        [
+          -119.7126,
+          39.2509
+        ],
+        [
+          -119.2798,
+          39.6271
+        ]
+      ],
+      "region_hint": "nv",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "nv:washoe-county",
+      "country_id": "us",
+      "state_id": "nv",
+      "jurisdiction": "Washoe County",
+      "display_name": "Washoe County",
+      "area_type": "county",
+      "bounds": [
+        [
+          -120.0043,
+          39.1655
+        ],
+        [
+          -119.1706,
+          41.9949
+        ]
+      ],
+      "region_hint": "nv",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "nv:wells",
+      "country_id": "us",
+      "state_id": "nv",
+      "jurisdiction": "Wells",
+      "display_name": "Wells",
+      "area_type": "city",
+      "bounds": [
+        [
+          -114.9929,
+          41.0933
+        ],
+        [
+          -114.9116,
+          41.1277
+        ]
+      ],
+      "region_hint": "nv",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "nv:west-wendover",
+      "country_id": "us",
+      "state_id": "nv",
+      "jurisdiction": "West Wendover",
+      "display_name": "West Wendover",
+      "area_type": "city",
+      "bounds": [
+        [
+          -114.113,
+          40.7255
+        ],
+        [
+          -114.0434,
+          40.7556
+        ]
+      ],
+      "region_hint": "nv",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "nv:white-pine-county",
+      "country_id": "us",
+      "state_id": "nv",
+      "jurisdiction": "White Pine County",
+      "display_name": "White Pine County",
+      "area_type": "county",
+      "bounds": [
+        [
+          -115.9077,
+          38.6773
+        ],
+        [
+          -114.0466,
+          40.1278
+        ]
+      ],
+      "region_hint": "nv",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "nv:winnemucca",
+      "country_id": "us",
+      "state_id": "nv",
+      "jurisdiction": "Winnemucca",
+      "display_name": "Winnemucca",
+      "area_type": "city",
+      "bounds": [
+        [
+          -117.759,
+          40.9303
+        ],
+        [
+          -117.6872,
+          40.9899
+        ]
+      ],
+      "region_hint": "nv",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "nv:yerington",
+      "country_id": "us",
+      "state_id": "nv",
+      "jurisdiction": "Yerington",
+      "display_name": "Yerington",
+      "area_type": "city",
+      "bounds": [
+        [
+          -119.1895,
+          38.903
+        ],
+        [
+          -119.0107,
+          39.0298
+        ]
+      ],
+      "region_hint": "nv",
       "coverage_status": "untracked"
     },
     {
@@ -93941,6 +94661,5706 @@
         ]
       ],
       "region_hint": "tx",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:alpine",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Alpine",
+      "display_name": "Alpine",
+      "area_type": "city",
+      "bounds": [
+        [
+          -111.7987,
+          40.4393
+        ],
+        [
+          -111.7448,
+          40.4941
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:alta",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Alta",
+      "display_name": "Alta",
+      "area_type": "city",
+      "bounds": [
+        [
+          -111.6527,
+          40.5644
+        ],
+        [
+          -111.5981,
+          40.6033
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:altamont",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Altamont",
+      "display_name": "Altamont",
+      "area_type": "city",
+      "bounds": [
+        [
+          -110.2941,
+          40.3557
+        ],
+        [
+          -110.2823,
+          40.3625
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:alton",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Alton",
+      "display_name": "Alton",
+      "area_type": "city",
+      "bounds": [
+        [
+          -112.5267,
+          37.4122
+        ],
+        [
+          -112.4776,
+          37.4434
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:amalga",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Amalga",
+      "display_name": "Amalga",
+      "area_type": "city",
+      "bounds": [
+        [
+          -111.9175,
+          41.8325
+        ],
+        [
+          -111.8794,
+          41.8963
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:american-fork",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "American Fork",
+      "display_name": "American Fork",
+      "area_type": "city",
+      "bounds": [
+        [
+          -111.8364,
+          40.3402
+        ],
+        [
+          -111.7643,
+          40.4063
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:annabella",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Annabella",
+      "display_name": "Annabella",
+      "area_type": "city",
+      "bounds": [
+        [
+          -112.0701,
+          38.6988
+        ],
+        [
+          -112.048,
+          38.7115
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:antimony",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Antimony",
+      "display_name": "Antimony",
+      "area_type": "city",
+      "bounds": [
+        [
+          -112.0053,
+          38.0733
+        ],
+        [
+          -111.9402,
+          38.146
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:apple-valley",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Apple Valley",
+      "display_name": "Apple Valley",
+      "area_type": "city",
+      "bounds": [
+        [
+          -113.2181,
+          37.0252
+        ],
+        [
+          -113.0164,
+          37.1413
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:aurora",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Aurora",
+      "display_name": "Aurora",
+      "area_type": "city",
+      "bounds": [
+        [
+          -111.9455,
+          38.9095
+        ],
+        [
+          -111.9205,
+          38.9233
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:ballard",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Ballard",
+      "display_name": "Ballard",
+      "area_type": "city",
+      "bounds": [
+        [
+          -109.9766,
+          40.2587
+        ],
+        [
+          -109.916,
+          40.3312
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:bear-river",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Bear River",
+      "display_name": "Bear River",
+      "area_type": "city",
+      "bounds": [
+        [
+          -112.135,
+          41.5904
+        ],
+        [
+          -112.1119,
+          41.625
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:beaver",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Beaver",
+      "display_name": "Beaver",
+      "area_type": "city",
+      "bounds": [
+        [
+          -112.658,
+          38.2207
+        ],
+        [
+          -112.6116,
+          38.3082
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:beaver-county",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Beaver County",
+      "display_name": "Beaver County",
+      "area_type": "county",
+      "bounds": [
+        [
+          -114.0505,
+          38.1488
+        ],
+        [
+          -112.3354,
+          38.573
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:bicknell",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Bicknell",
+      "display_name": "Bicknell",
+      "area_type": "city",
+      "bounds": [
+        [
+          -111.5538,
+          38.3319
+        ],
+        [
+          -111.5378,
+          38.3464
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:big-water",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Big Water",
+      "display_name": "Big Water",
+      "area_type": "city",
+      "bounds": [
+        [
+          -111.6879,
+          37.0487
+        ],
+        [
+          -111.6336,
+          37.0922
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:blanding",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Blanding",
+      "display_name": "Blanding",
+      "area_type": "city",
+      "bounds": [
+        [
+          -109.5305,
+          37.5774
+        ],
+        [
+          -109.4749,
+          37.6735
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:bluff",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Bluff",
+      "display_name": "Bluff",
+      "area_type": "city",
+      "bounds": [
+        [
+          -109.6919,
+          37.2186
+        ],
+        [
+          -109.4581,
+          37.3311
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:bluffdale",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Bluffdale",
+      "display_name": "Bluffdale",
+      "area_type": "city",
+      "bounds": [
+        [
+          -111.9916,
+          40.4204
+        ],
+        [
+          -111.8987,
+          40.5008
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:boulder",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Boulder",
+      "display_name": "Boulder",
+      "area_type": "city",
+      "bounds": [
+        [
+          -111.4602,
+          37.8575
+        ],
+        [
+          -111.4053,
+          37.9879
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:bountiful",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Bountiful",
+      "display_name": "Bountiful",
+      "area_type": "city",
+      "bounds": [
+        [
+          -111.9021,
+          40.8347
+        ],
+        [
+          -111.8154,
+          40.9093
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:box-elder-county",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Box Elder County",
+      "display_name": "Box Elder County",
+      "area_type": "county",
+      "bounds": [
+        [
+          -114.042,
+          40.9999
+        ],
+        [
+          -111.8732,
+          41.9984
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:brian-head",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Brian Head",
+      "display_name": "Brian Head",
+      "area_type": "city",
+      "bounds": [
+        [
+          -112.8608,
+          37.6769
+        ],
+        [
+          -112.8152,
+          37.7172
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:brigham",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Brigham",
+      "display_name": "Brigham",
+      "area_type": "city",
+      "bounds": [
+        [
+          -112.1215,
+          41.4663
+        ],
+        [
+          -111.9688,
+          41.5631
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:brighton",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Brighton",
+      "display_name": "Brighton",
+      "area_type": "city",
+      "bounds": [
+        [
+          -111.6634,
+          40.5779
+        ],
+        [
+          -111.5533,
+          40.6503
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:bryce-canyon",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Bryce Canyon",
+      "display_name": "Bryce Canyon",
+      "area_type": "city",
+      "bounds": [
+        [
+          -112.1816,
+          37.6665
+        ],
+        [
+          -112.1388,
+          37.6955
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:cache-county",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Cache County",
+      "display_name": "Cache County",
+      "area_type": "county",
+      "bounds": [
+        [
+          -112.166,
+          41.3698
+        ],
+        [
+          -111.4015,
+          41.9996
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:cannonville",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Cannonville",
+      "display_name": "Cannonville",
+      "area_type": "city",
+      "bounds": [
+        [
+          -112.065,
+          37.5393
+        ],
+        [
+          -112.0246,
+          37.6119
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:carbon-county",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Carbon County",
+      "display_name": "Carbon County",
+      "area_type": "county",
+      "bounds": [
+        [
+          -111.2475,
+          39.4675
+        ],
+        [
+          -109.8745,
+          39.813
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:castle-dale",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Castle Dale",
+      "display_name": "Castle Dale",
+      "area_type": "city",
+      "bounds": [
+        [
+          -111.0426,
+          39.206
+        ],
+        [
+          -110.9999,
+          39.2443
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:castle-valley",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Castle Valley",
+      "display_name": "Castle Valley",
+      "area_type": "city",
+      "bounds": [
+        [
+          -109.4447,
+          38.6083
+        ],
+        [
+          -109.3536,
+          38.6615
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:cedar",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Cedar",
+      "display_name": "Cedar",
+      "area_type": "city",
+      "bounds": [
+        [
+          -113.1958,
+          37.6193
+        ],
+        [
+          -113.0128,
+          37.7473
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:cedar-fort",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Cedar Fort",
+      "display_name": "Cedar Fort",
+      "area_type": "city",
+      "bounds": [
+        [
+          -112.1551,
+          40.3054
+        ],
+        [
+          -112.0597,
+          40.3917
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:cedar-hills",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Cedar Hills",
+      "display_name": "Cedar Hills",
+      "area_type": "city",
+      "bounds": [
+        [
+          -111.7734,
+          40.3921
+        ],
+        [
+          -111.7351,
+          40.4318
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:centerfield",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Centerfield",
+      "display_name": "Centerfield",
+      "area_type": "city",
+      "bounds": [
+        [
+          -111.8307,
+          39.1168
+        ],
+        [
+          -111.8062,
+          39.138
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:centerville",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Centerville",
+      "display_name": "Centerville",
+      "area_type": "city",
+      "bounds": [
+        [
+          -111.9158,
+          40.9075
+        ],
+        [
+          -111.8535,
+          40.9526
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:central-valley",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Central Valley",
+      "display_name": "Central Valley",
+      "area_type": "city",
+      "bounds": [
+        [
+          -112.114,
+          38.6914
+        ],
+        [
+          -112.0794,
+          38.7242
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:charleston",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Charleston",
+      "display_name": "Charleston",
+      "area_type": "city",
+      "bounds": [
+        [
+          -111.4767,
+          40.4523
+        ],
+        [
+          -111.4335,
+          40.4842
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:circleville",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Circleville",
+      "display_name": "Circleville",
+      "area_type": "city",
+      "bounds": [
+        [
+          -112.3079,
+          38.1498
+        ],
+        [
+          -112.2146,
+          38.2008
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:clarkston",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Clarkston",
+      "display_name": "Clarkston",
+      "area_type": "city",
+      "bounds": [
+        [
+          -112.0593,
+          41.9132
+        ],
+        [
+          -112.0371,
+          41.9277
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:clawson",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Clawson",
+      "display_name": "Clawson",
+      "area_type": "city",
+      "bounds": [
+        [
+          -111.1083,
+          39.1252
+        ],
+        [
+          -111.0709,
+          39.1508
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:clearfield",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Clearfield",
+      "display_name": "Clearfield",
+      "area_type": "city",
+      "bounds": [
+        [
+          -112.0549,
+          41.0747
+        ],
+        [
+          -111.9872,
+          41.1254
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:cleveland",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Cleveland",
+      "display_name": "Cleveland",
+      "area_type": "city",
+      "bounds": [
+        [
+          -110.8715,
+          39.3419
+        ],
+        [
+          -110.8366,
+          39.3542
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:clinton",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Clinton",
+      "display_name": "Clinton",
+      "area_type": "city",
+      "bounds": [
+        [
+          -112.1078,
+          41.1253
+        ],
+        [
+          -112.0355,
+          41.1526
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:coalville",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Coalville",
+      "display_name": "Coalville",
+      "area_type": "city",
+      "bounds": [
+        [
+          -111.4709,
+          40.8908
+        ],
+        [
+          -111.3776,
+          40.9364
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:copperton",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Copperton",
+      "display_name": "Copperton",
+      "area_type": "city",
+      "bounds": [
+        [
+          -112.1063,
+          40.5646
+        ],
+        [
+          -112.0792,
+          40.5708
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:corinne",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Corinne",
+      "display_name": "Corinne",
+      "area_type": "city",
+      "bounds": [
+        [
+          -112.149,
+          41.5351
+        ],
+        [
+          -112.0888,
+          41.5642
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:cornish",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Cornish",
+      "display_name": "Cornish",
+      "area_type": "city",
+      "bounds": [
+        [
+          -111.981,
+          41.9408
+        ],
+        [
+          -111.9347,
+          41.9983
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:cottonwood-heights",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Cottonwood Heights",
+      "display_name": "Cottonwood Heights",
+      "area_type": "city",
+      "bounds": [
+        [
+          -111.8659,
+          40.5753
+        ],
+        [
+          -111.7865,
+          40.6311
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:daggett-county",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Daggett County",
+      "display_name": "Daggett County",
+      "area_type": "county",
+      "bounds": [
+        [
+          -110.0007,
+          40.6624
+        ],
+        [
+          -109.0484,
+          41.0007
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:daniel",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Daniel",
+      "display_name": "Daniel",
+      "area_type": "city",
+      "bounds": [
+        [
+          -111.4475,
+          40.4526
+        ],
+        [
+          -111.3639,
+          40.4781
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:davis-county",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Davis County",
+      "display_name": "Davis County",
+      "area_type": "county",
+      "bounds": [
+        [
+          -112.4935,
+          40.7691
+        ],
+        [
+          -111.7389,
+          41.153
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:delta",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Delta",
+      "display_name": "Delta",
+      "area_type": "city",
+      "bounds": [
+        [
+          -112.6145,
+          39.3418
+        ],
+        [
+          -112.496,
+          39.3933
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "official_unavailable"
+    },
+    {
+      "id": "ut:deweyville",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Deweyville",
+      "display_name": "Deweyville",
+      "area_type": "city",
+      "bounds": [
+        [
+          -112.1223,
+          41.6694
+        ],
+        [
+          -112.0654,
+          41.7155
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:draper",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Draper",
+      "display_name": "Draper",
+      "area_type": "city",
+      "bounds": [
+        [
+          -111.922,
+          40.4517
+        ],
+        [
+          -111.7832,
+          40.5443
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:duchesne",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Duchesne",
+      "display_name": "Duchesne",
+      "area_type": "city",
+      "bounds": [
+        [
+          -110.413,
+          40.1547
+        ],
+        [
+          -110.3701,
+          40.2021
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:duchesne-county",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Duchesne County",
+      "display_name": "Duchesne County",
+      "area_type": "county",
+      "bounds": [
+        [
+          -110.905,
+          39.8062
+        ],
+        [
+          -109.9764,
+          40.8334
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:dutch-john",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Dutch John",
+      "display_name": "Dutch John",
+      "area_type": "city",
+      "bounds": [
+        [
+          -109.4335,
+          40.9107
+        ],
+        [
+          -109.3761,
+          40.9468
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:eagle-mountain",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Eagle Mountain",
+      "display_name": "Eagle Mountain",
+      "area_type": "city",
+      "bounds": [
+        [
+          -112.1301,
+          40.2325
+        ],
+        [
+          -111.9451,
+          40.3948
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:east-carbon",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "East Carbon",
+      "display_name": "East Carbon",
+      "area_type": "city",
+      "bounds": [
+        [
+          -110.5142,
+          39.5092
+        ],
+        [
+          -110.3733,
+          39.5566
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:elk-ridge",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Elk Ridge",
+      "display_name": "Elk Ridge",
+      "area_type": "city",
+      "bounds": [
+        [
+          -111.7007,
+          39.9837
+        ],
+        [
+          -111.6563,
+          40.0273
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:elmo",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Elmo",
+      "display_name": "Elmo",
+      "area_type": "city",
+      "bounds": [
+        [
+          -110.8279,
+          39.3787
+        ],
+        [
+          -110.8054,
+          39.394
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:elsinore",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Elsinore",
+      "display_name": "Elsinore",
+      "area_type": "city",
+      "bounds": [
+        [
+          -112.1597,
+          38.6734
+        ],
+        [
+          -112.1153,
+          38.6979
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:elwood",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Elwood",
+      "display_name": "Elwood",
+      "area_type": "city",
+      "bounds": [
+        [
+          -112.174,
+          41.6368
+        ],
+        [
+          -112.1035,
+          41.7047
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:emery",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Emery",
+      "display_name": "Emery",
+      "area_type": "city",
+      "bounds": [
+        [
+          -111.2665,
+          38.9164
+        ],
+        [
+          -111.2383,
+          38.9359
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:emery-county",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Emery County",
+      "display_name": "Emery County",
+      "area_type": "county",
+      "bounds": [
+        [
+          -111.3057,
+          38.5
+        ],
+        [
+          -109.9908,
+          39.7044
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:emigration-canyon",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Emigration Canyon",
+      "display_name": "Emigration Canyon",
+      "area_type": "city",
+      "bounds": [
+        [
+          -111.809,
+          40.7459
+        ],
+        [
+          -111.69,
+          40.8349
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:enoch",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Enoch",
+      "display_name": "Enoch",
+      "area_type": "city",
+      "bounds": [
+        [
+          -113.074,
+          37.7349
+        ],
+        [
+          -113.0,
+          37.7949
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:enterprise",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Enterprise",
+      "display_name": "Enterprise",
+      "area_type": "city",
+      "bounds": [
+        [
+          -113.7914,
+          37.5477
+        ],
+        [
+          -113.691,
+          37.5865
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:ephraim",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Ephraim",
+      "display_name": "Ephraim",
+      "area_type": "city",
+      "bounds": [
+        [
+          -111.6083,
+          39.3386
+        ],
+        [
+          -111.5581,
+          39.3844
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:erda",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Erda",
+      "display_name": "Erda",
+      "area_type": "city",
+      "bounds": [
+        [
+          -112.4197,
+          40.5795
+        ],
+        [
+          -112.1762,
+          40.6595
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:escalante",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Escalante",
+      "display_name": "Escalante",
+      "area_type": "city",
+      "bounds": [
+        [
+          -111.6191,
+          37.7498
+        ],
+        [
+          -111.5779,
+          37.7861
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:eureka",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Eureka",
+      "display_name": "Eureka",
+      "area_type": "city",
+      "bounds": [
+        [
+          -112.1285,
+          39.9481
+        ],
+        [
+          -112.0999,
+          39.9698
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:fairfield",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Fairfield",
+      "display_name": "Fairfield",
+      "area_type": "city",
+      "bounds": [
+        [
+          -112.1396,
+          40.203
+        ],
+        [
+          -112.0057,
+          40.2837
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:fairview",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Fairview",
+      "display_name": "Fairview",
+      "area_type": "city",
+      "bounds": [
+        [
+          -111.4475,
+          39.6225
+        ],
+        [
+          -111.4246,
+          39.6379
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:farmington",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Farmington",
+      "display_name": "Farmington",
+      "area_type": "city",
+      "bounds": [
+        [
+          -111.9469,
+          40.9522
+        ],
+        [
+          -111.8729,
+          41.0165
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:farr-west",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Farr West",
+      "display_name": "Farr West",
+      "area_type": "city",
+      "bounds": [
+        [
+          -112.0549,
+          41.2755
+        ],
+        [
+          -112.0086,
+          41.3366
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:fayette",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Fayette",
+      "display_name": "Fayette",
+      "area_type": "city",
+      "bounds": [
+        [
+          -111.8584,
+          39.2172
+        ],
+        [
+          -111.8499,
+          39.2311
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:ferron",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Ferron",
+      "display_name": "Ferron",
+      "area_type": "city",
+      "bounds": [
+        [
+          -111.1525,
+          39.0631
+        ],
+        [
+          -111.1063,
+          39.1162
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:fielding",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Fielding",
+      "display_name": "Fielding",
+      "area_type": "city",
+      "bounds": [
+        [
+          -112.127,
+          41.8009
+        ],
+        [
+          -112.1107,
+          41.8174
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:fillmore",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Fillmore",
+      "display_name": "Fillmore",
+      "area_type": "city",
+      "bounds": [
+        [
+          -112.3722,
+          38.9353
+        ],
+        [
+          -112.3009,
+          38.9988
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:fountain-green",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Fountain Green",
+      "display_name": "Fountain Green",
+      "area_type": "city",
+      "bounds": [
+        [
+          -111.6507,
+          39.619
+        ],
+        [
+          -111.6319,
+          39.6372
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:francis",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Francis",
+      "display_name": "Francis",
+      "area_type": "city",
+      "bounds": [
+        [
+          -111.3335,
+          40.5886
+        ],
+        [
+          -111.2423,
+          40.625
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:fruit-heights",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Fruit Heights",
+      "display_name": "Fruit Heights",
+      "area_type": "city",
+      "bounds": [
+        [
+          -111.9256,
+          41.0165
+        ],
+        [
+          -111.8922,
+          41.0485
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:garden",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Garden",
+      "display_name": "Garden",
+      "area_type": "city",
+      "bounds": [
+        [
+          -111.4397,
+          41.8959
+        ],
+        [
+          -111.3683,
+          41.9856
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:garfield-county",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Garfield County",
+      "display_name": "Garfield County",
+      "area_type": "county",
+      "bounds": [
+        [
+          -112.6893,
+          37.5406
+        ],
+        [
+          -109.928,
+          38.1518
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:garland",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Garland",
+      "display_name": "Garland",
+      "area_type": "city",
+      "bounds": [
+        [
+          -112.1878,
+          41.7268
+        ],
+        [
+          -112.1423,
+          41.7484
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:genola",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Genola",
+      "display_name": "Genola",
+      "area_type": "city",
+      "bounds": [
+        [
+          -111.8814,
+          39.9526
+        ],
+        [
+          -111.801,
+          40.0548
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:glendale",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Glendale",
+      "display_name": "Glendale",
+      "area_type": "city",
+      "bounds": [
+        [
+          -112.6389,
+          37.2937
+        ],
+        [
+          -112.5758,
+          37.3807
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:glenwood",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Glenwood",
+      "display_name": "Glenwood",
+      "area_type": "city",
+      "bounds": [
+        [
+          -111.9934,
+          38.7564
+        ],
+        [
+          -111.9814,
+          38.7687
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:goshen",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Goshen",
+      "display_name": "Goshen",
+      "area_type": "city",
+      "bounds": [
+        [
+          -111.9092,
+          39.9416
+        ],
+        [
+          -111.8948,
+          39.9612
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:grand-county",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Grand County",
+      "display_name": "Grand County",
+      "area_type": "county",
+      "bounds": [
+        [
+          -110.1793,
+          38.5
+        ],
+        [
+          -109.0512,
+          39.4977
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:grantsville",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Grantsville",
+      "display_name": "Grantsville",
+      "area_type": "city",
+      "bounds": [
+        [
+          -112.5632,
+          40.5691
+        ],
+        [
+          -112.3508,
+          40.6945
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:green-river",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Green River",
+      "display_name": "Green River",
+      "area_type": "city",
+      "bounds": [
+        [
+          -110.3079,
+          38.9499
+        ],
+        [
+          -110.004,
+          39.0462
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:gunnison",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Gunnison",
+      "display_name": "Gunnison",
+      "area_type": "city",
+      "bounds": [
+        [
+          -111.8356,
+          39.138
+        ],
+        [
+          -111.7889,
+          39.1716
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:hanksville",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Hanksville",
+      "display_name": "Hanksville",
+      "area_type": "city",
+      "bounds": [
+        [
+          -110.7309,
+          38.3599
+        ],
+        [
+          -110.6937,
+          38.3817
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:harrisville",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Harrisville",
+      "display_name": "Harrisville",
+      "area_type": "city",
+      "bounds": [
+        [
+          -112.0089,
+          41.2666
+        ],
+        [
+          -111.9691,
+          41.3043
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:hatch",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Hatch",
+      "display_name": "Hatch",
+      "area_type": "city",
+      "bounds": [
+        [
+          -112.4506,
+          37.6339
+        ],
+        [
+          -112.4227,
+          37.6658
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:heber",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Heber",
+      "display_name": "Heber",
+      "area_type": "city",
+      "bounds": [
+        [
+          -111.4443,
+          40.4723
+        ],
+        [
+          -111.3187,
+          40.5954
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:helper",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Helper",
+      "display_name": "Helper",
+      "area_type": "city",
+      "bounds": [
+        [
+          -110.8806,
+          39.6774
+        ],
+        [
+          -110.844,
+          39.7083
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:henefer",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Henefer",
+      "display_name": "Henefer",
+      "area_type": "city",
+      "bounds": [
+        [
+          -111.5106,
+          41.0015
+        ],
+        [
+          -111.4706,
+          41.0306
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:henrieville",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Henrieville",
+      "display_name": "Henrieville",
+      "area_type": "city",
+      "bounds": [
+        [
+          -112.0201,
+          37.5575
+        ],
+        [
+          -111.9882,
+          37.572
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:herriman",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Herriman",
+      "display_name": "Herriman",
+      "area_type": "city",
+      "bounds": [
+        [
+          -112.0931,
+          40.4424
+        ],
+        [
+          -111.9333,
+          40.537
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:hideout",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Hideout",
+      "display_name": "Hideout",
+      "area_type": "city",
+      "bounds": [
+        [
+          -111.4441,
+          40.6243
+        ],
+        [
+          -111.3767,
+          40.6778
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:highland",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Highland",
+      "display_name": "Highland",
+      "area_type": "city",
+      "bounds": [
+        [
+          -111.8305,
+          40.4036
+        ],
+        [
+          -111.7449,
+          40.4647
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:hildale",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Hildale",
+      "display_name": "Hildale",
+      "area_type": "city",
+      "bounds": [
+        [
+          -113.0523,
+          37.0002
+        ],
+        [
+          -112.9531,
+          37.0507
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:hinckley",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Hinckley",
+      "display_name": "Hinckley",
+      "area_type": "city",
+      "bounds": [
+        [
+          -112.69,
+          39.3093
+        ],
+        [
+          -112.6498,
+          39.3529
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:holden",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Holden",
+      "display_name": "Holden",
+      "area_type": "city",
+      "bounds": [
+        [
+          -112.2758,
+          39.0885
+        ],
+        [
+          -112.2634,
+          39.1068
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:holladay",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Holladay",
+      "display_name": "Holladay",
+      "area_type": "city",
+      "bounds": [
+        [
+          -111.8545,
+          40.6329
+        ],
+        [
+          -111.7864,
+          40.6871
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:honeyville",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Honeyville",
+      "display_name": "Honeyville",
+      "area_type": "city",
+      "bounds": [
+        [
+          -112.1278,
+          41.599
+        ],
+        [
+          -112.0455,
+          41.6698
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:hooper",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Hooper",
+      "display_name": "Hooper",
+      "area_type": "city",
+      "bounds": [
+        [
+          -112.4934,
+          41.077
+        ],
+        [
+          -112.0809,
+          41.2127
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:howell",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Howell",
+      "display_name": "Howell",
+      "area_type": "city",
+      "bounds": [
+        [
+          -112.4951,
+          41.7219
+        ],
+        [
+          -112.3931,
+          41.8251
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:huntington",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Huntington",
+      "display_name": "Huntington",
+      "area_type": "city",
+      "bounds": [
+        [
+          -110.9788,
+          39.3157
+        ],
+        [
+          -110.9459,
+          39.3395
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:huntsville",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Huntsville",
+      "display_name": "Huntsville",
+      "area_type": "city",
+      "bounds": [
+        [
+          -111.8034,
+          41.2552
+        ],
+        [
+          -111.7565,
+          41.2666
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:hurricane",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Hurricane",
+      "display_name": "Hurricane",
+      "area_type": "city",
+      "bounds": [
+        [
+          -113.45,
+          37.0724
+        ],
+        [
+          -113.2556,
+          37.2146
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:hyde-park",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Hyde Park",
+      "display_name": "Hyde Park",
+      "area_type": "city",
+      "bounds": [
+        [
+          -111.8431,
+          41.7815
+        ],
+        [
+          -111.7757,
+          41.8169
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:hyrum",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Hyrum",
+      "display_name": "Hyrum",
+      "area_type": "city",
+      "bounds": [
+        [
+          -111.8899,
+          41.6088
+        ],
+        [
+          -111.7939,
+          41.6522
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:independence",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Independence",
+      "display_name": "Independence",
+      "area_type": "city",
+      "bounds": [
+        [
+          -111.3902,
+          40.2978
+        ],
+        [
+          -111.2511,
+          40.4782
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:interlaken",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Interlaken",
+      "display_name": "Interlaken",
+      "area_type": "city",
+      "bounds": [
+        [
+          -111.4818,
+          40.5392
+        ],
+        [
+          -111.4661,
+          40.5438
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:iron-county",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Iron County",
+      "display_name": "Iron County",
+      "area_type": "county",
+      "bounds": [
+        [
+          -114.0524,
+          37.4743
+        ],
+        [
+          -112.4683,
+          38.1488
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:ivins",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Ivins",
+      "display_name": "Ivins",
+      "area_type": "city",
+      "bounds": [
+        [
+          -113.7161,
+          37.1427
+        ],
+        [
+          -113.6336,
+          37.208
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:joseph",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Joseph",
+      "display_name": "Joseph",
+      "area_type": "city",
+      "bounds": [
+        [
+          -112.2274,
+          38.6157
+        ],
+        [
+          -112.2111,
+          38.6322
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:juab-county",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Juab County",
+      "display_name": "Juab County",
+      "area_type": "county",
+      "bounds": [
+        [
+          -114.0476,
+          39.3146
+        ],
+        [
+          -111.5848,
+          40.0117
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:junction",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Junction",
+      "display_name": "Junction",
+      "area_type": "city",
+      "bounds": [
+        [
+          -112.2526,
+          38.1977
+        ],
+        [
+          -112.1866,
+          38.2669
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:kamas",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Kamas",
+      "display_name": "Kamas",
+      "area_type": "city",
+      "bounds": [
+        [
+          -111.3,
+          40.6327
+        ],
+        [
+          -111.2424,
+          40.6694
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:kanab",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Kanab",
+      "display_name": "Kanab",
+      "area_type": "city",
+      "bounds": [
+        [
+          -112.5758,
+          37.0009
+        ],
+        [
+          -112.4843,
+          37.0548
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:kanarraville",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Kanarraville",
+      "display_name": "Kanarraville",
+      "area_type": "city",
+      "bounds": [
+        [
+          -113.1869,
+          37.5346
+        ],
+        [
+          -113.1731,
+          37.5434
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:kane-county",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Kane County",
+      "display_name": "Kane County",
+      "area_type": "county",
+      "bounds": [
+        [
+          -112.9013,
+          37.0004
+        ],
+        [
+          -110.6393,
+          37.5435
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:kanosh",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Kanosh",
+      "display_name": "Kanosh",
+      "area_type": "city",
+      "bounds": [
+        [
+          -112.4442,
+          38.7838
+        ],
+        [
+          -112.4304,
+          38.8117
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:kaysville",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Kaysville",
+      "display_name": "Kaysville",
+      "area_type": "city",
+      "bounds": [
+        [
+          -111.9945,
+          40.9946
+        ],
+        [
+          -111.8993,
+          41.0565
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:kearns",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Kearns",
+      "display_name": "Kearns",
+      "area_type": "city",
+      "bounds": [
+        [
+          -112.0435,
+          40.6386
+        ],
+        [
+          -111.9865,
+          40.6676
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:kingston",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Kingston",
+      "display_name": "Kingston",
+      "area_type": "city",
+      "bounds": [
+        [
+          -112.2103,
+          38.1932
+        ],
+        [
+          -112.1417,
+          38.2305
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:koosharem",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Koosharem",
+      "display_name": "Koosharem",
+      "area_type": "city",
+      "bounds": [
+        [
+          -111.8905,
+          38.5022
+        ],
+        [
+          -111.8767,
+          38.5237
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:la-verkin",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "La Verkin",
+      "display_name": "La Verkin",
+      "area_type": "city",
+      "bounds": [
+        [
+          -113.2922,
+          37.1887
+        ],
+        [
+          -113.22,
+          37.2733
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:lake-point",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Lake Point",
+      "display_name": "Lake Point",
+      "area_type": "city",
+      "bounds": [
+        [
+          -112.2906,
+          40.6527
+        ],
+        [
+          -112.2283,
+          40.7181
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:laketown",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Laketown",
+      "display_name": "Laketown",
+      "area_type": "city",
+      "bounds": [
+        [
+          -111.343,
+          41.8116
+        ],
+        [
+          -111.304,
+          41.8389
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:layton",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Layton",
+      "display_name": "Layton",
+      "area_type": "city",
+      "bounds": [
+        [
+          -112.0359,
+          41.0364
+        ],
+        [
+          -111.9012,
+          41.1166
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:leamington",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Leamington",
+      "display_name": "Leamington",
+      "area_type": "city",
+      "bounds": [
+        [
+          -112.3018,
+          39.5248
+        ],
+        [
+          -112.2687,
+          39.5377
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:leeds",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Leeds",
+      "display_name": "Leeds",
+      "area_type": "city",
+      "bounds": [
+        [
+          -113.3765,
+          37.2141
+        ],
+        [
+          -113.3151,
+          37.266
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:lehi",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Lehi",
+      "display_name": "Lehi",
+      "area_type": "city",
+      "bounds": [
+        [
+          -111.9449,
+          40.3553
+        ],
+        [
+          -111.8163,
+          40.4717
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:levan",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Levan",
+      "display_name": "Levan",
+      "area_type": "city",
+      "bounds": [
+        [
+          -111.8696,
+          39.5494
+        ],
+        [
+          -111.8487,
+          39.5623
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:lewiston",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Lewiston",
+      "display_name": "Lewiston",
+      "area_type": "city",
+      "bounds": [
+        [
+          -111.944,
+          41.9168
+        ],
+        [
+          -111.8128,
+          41.9988
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:lindon",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Lindon",
+      "display_name": "Lindon",
+      "area_type": "city",
+      "bounds": [
+        [
+          -111.7792,
+          40.326
+        ],
+        [
+          -111.6583,
+          40.3519
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:loa",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Loa",
+      "display_name": "Loa",
+      "area_type": "city",
+      "bounds": [
+        [
+          -111.6543,
+          38.3959
+        ],
+        [
+          -111.6375,
+          38.4151
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:logan",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Logan",
+      "display_name": "Logan",
+      "area_type": "city",
+      "bounds": [
+        [
+          -111.9017,
+          41.6753
+        ],
+        [
+          -111.7803,
+          41.7973
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:lyman",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Lyman",
+      "display_name": "Lyman",
+      "area_type": "city",
+      "bounds": [
+        [
+          -111.5975,
+          38.3825
+        ],
+        [
+          -111.579,
+          38.4152
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:lynndyl",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Lynndyl",
+      "display_name": "Lynndyl",
+      "area_type": "city",
+      "bounds": [
+        [
+          -112.4245,
+          39.4947
+        ],
+        [
+          -112.363,
+          39.526
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:magna",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Magna",
+      "display_name": "Magna",
+      "area_type": "city",
+      "bounds": [
+        [
+          -112.2597,
+          40.682
+        ],
+        [
+          -112.0631,
+          40.8133
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:manila",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Manila",
+      "display_name": "Manila",
+      "area_type": "city",
+      "bounds": [
+        [
+          -109.7352,
+          40.9848
+        ],
+        [
+          -109.7085,
+          40.9982
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:manti",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Manti",
+      "display_name": "Manti",
+      "area_type": "city",
+      "bounds": [
+        [
+          -111.6544,
+          39.2428
+        ],
+        [
+          -111.6115,
+          39.2793
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:mantua",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Mantua",
+      "display_name": "Mantua",
+      "area_type": "city",
+      "bounds": [
+        [
+          -111.9595,
+          41.4814
+        ],
+        [
+          -111.9109,
+          41.525
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:mapleton",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Mapleton",
+      "display_name": "Mapleton",
+      "area_type": "city",
+      "bounds": [
+        [
+          -111.6152,
+          40.0717
+        ],
+        [
+          -111.5416,
+          40.1492
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:marriott-slaterville",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Marriott-Slaterville",
+      "display_name": "Marriott-Slaterville",
+      "area_type": "city",
+      "bounds": [
+        [
+          -112.0842,
+          41.2343
+        ],
+        [
+          -111.9964,
+          41.2902
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:marysvale",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Marysvale",
+      "display_name": "Marysvale",
+      "area_type": "city",
+      "bounds": [
+        [
+          -112.3106,
+          38.4127
+        ],
+        [
+          -112.1988,
+          38.4604
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:mayfield",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Mayfield",
+      "display_name": "Mayfield",
+      "area_type": "city",
+      "bounds": [
+        [
+          -111.7206,
+          39.1094
+        ],
+        [
+          -111.6852,
+          39.1326
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:meadow",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Meadow",
+      "display_name": "Meadow",
+      "area_type": "city",
+      "bounds": [
+        [
+          -112.4154,
+          38.8762
+        ],
+        [
+          -112.395,
+          38.8868
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:mendon",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Mendon",
+      "display_name": "Mendon",
+      "area_type": "city",
+      "bounds": [
+        [
+          -111.9996,
+          41.6965
+        ],
+        [
+          -111.9639,
+          41.7287
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:midvale",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Midvale",
+      "display_name": "Midvale",
+      "area_type": "city",
+      "bounds": [
+        [
+          -111.9213,
+          40.5941
+        ],
+        [
+          -111.8558,
+          40.631
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:midway",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Midway",
+      "display_name": "Midway",
+      "area_type": "city",
+      "bounds": [
+        [
+          -111.5014,
+          40.4865
+        ],
+        [
+          -111.4513,
+          40.5509
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:milford",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Milford",
+      "display_name": "Milford",
+      "area_type": "city",
+      "bounds": [
+        [
+          -113.0377,
+          38.3827
+        ],
+        [
+          -112.9912,
+          38.408
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:millard-county",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Millard County",
+      "display_name": "Millard County",
+      "area_type": "county",
+      "bounds": [
+        [
+          -114.05,
+          38.5714
+        ],
+        [
+          -112.016,
+          39.554
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:millcreek",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Millcreek",
+      "display_name": "Millcreek",
+      "area_type": "city",
+      "bounds": [
+        [
+          -111.9211,
+          40.6589
+        ],
+        [
+          -111.7769,
+          40.714
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:millville",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Millville",
+      "display_name": "Millville",
+      "area_type": "city",
+      "bounds": [
+        [
+          -111.8525,
+          41.6698
+        ],
+        [
+          -111.7941,
+          41.7002
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:minersville",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Minersville",
+      "display_name": "Minersville",
+      "area_type": "city",
+      "bounds": [
+        [
+          -113.0009,
+          38.2126
+        ],
+        [
+          -112.9134,
+          38.2618
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:moab",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Moab",
+      "display_name": "Moab",
+      "area_type": "city",
+      "bounds": [
+        [
+          -109.5797,
+          38.5362
+        ],
+        [
+          -109.5153,
+          38.6029
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:mona",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Mona",
+      "display_name": "Mona",
+      "area_type": "city",
+      "bounds": [
+        [
+          -111.8671,
+          39.8029
+        ],
+        [
+          -111.8269,
+          39.8247
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:monroe",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Monroe",
+      "display_name": "Monroe",
+      "area_type": "city",
+      "bounds": [
+        [
+          -112.1344,
+          38.6038
+        ],
+        [
+          -112.106,
+          38.6402
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "official_unavailable"
+    },
+    {
+      "id": "ut:monticello",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Monticello",
+      "display_name": "Monticello",
+      "area_type": "city",
+      "bounds": [
+        [
+          -109.3568,
+          37.8512
+        ],
+        [
+          -109.3116,
+          37.887
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:morgan",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Morgan",
+      "display_name": "Morgan",
+      "area_type": "city",
+      "bounds": [
+        [
+          -111.7001,
+          41.0263
+        ],
+        [
+          -111.6597,
+          41.0602
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:morgan-county",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Morgan County",
+      "display_name": "Morgan County",
+      "area_type": "county",
+      "bounds": [
+        [
+          -111.8766,
+          40.78
+        ],
+        [
+          -111.2214,
+          41.3733
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:moroni",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Moroni",
+      "display_name": "Moroni",
+      "area_type": "city",
+      "bounds": [
+        [
+          -111.5964,
+          39.525
+        ],
+        [
+          -111.5688,
+          39.5345
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:mount-pleasant",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Mount Pleasant",
+      "display_name": "Mount Pleasant",
+      "area_type": "city",
+      "bounds": [
+        [
+          -111.4842,
+          39.5242
+        ],
+        [
+          -111.4377,
+          39.5546
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:murray",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Murray",
+      "display_name": "Murray",
+      "area_type": "city",
+      "bounds": [
+        [
+          -111.9321,
+          40.6263
+        ],
+        [
+          -111.8341,
+          40.6838
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:myton",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Myton",
+      "display_name": "Myton",
+      "area_type": "city",
+      "bounds": [
+        [
+          -110.0753,
+          40.1861
+        ],
+        [
+          -110.0529,
+          40.2005
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:naples",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Naples",
+      "display_name": "Naples",
+      "area_type": "city",
+      "bounds": [
+        [
+          -109.5232,
+          40.4123
+        ],
+        [
+          -109.461,
+          40.4492
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:nephi",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Nephi",
+      "display_name": "Nephi",
+      "area_type": "city",
+      "bounds": [
+        [
+          -111.8652,
+          39.6659
+        ],
+        [
+          -111.7999,
+          39.7339
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:new-harmony",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "New Harmony",
+      "display_name": "New Harmony",
+      "area_type": "city",
+      "bounds": [
+        [
+          -113.3225,
+          37.4729
+        ],
+        [
+          -113.2972,
+          37.486
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:newton",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Newton",
+      "display_name": "Newton",
+      "area_type": "city",
+      "bounds": [
+        [
+          -112.0014,
+          41.8555
+        ],
+        [
+          -111.9795,
+          41.8665
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:nibley",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Nibley",
+      "display_name": "Nibley",
+      "area_type": "city",
+      "bounds": [
+        [
+          -111.8787,
+          41.6417
+        ],
+        [
+          -111.8135,
+          41.6928
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:north-logan",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "North Logan",
+      "display_name": "North Logan",
+      "area_type": "city",
+      "bounds": [
+        [
+          -111.8477,
+          41.7585
+        ],
+        [
+          -111.7709,
+          41.7949
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:north-ogden",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "North Ogden",
+      "display_name": "North Ogden",
+      "area_type": "city",
+      "bounds": [
+        [
+          -111.986,
+          41.2847
+        ],
+        [
+          -111.9358,
+          41.3396
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:north-salt-lake",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "North Salt Lake",
+      "display_name": "North Salt Lake",
+      "area_type": "city",
+      "bounds": [
+        [
+          -111.9664,
+          40.8273
+        ],
+        [
+          -111.8724,
+          40.8662
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:oak",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Oak",
+      "display_name": "Oak",
+      "area_type": "city",
+      "bounds": [
+        [
+          -112.3549,
+          39.3661
+        ],
+        [
+          -112.3268,
+          39.3804
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:oakley",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Oakley",
+      "display_name": "Oakley",
+      "area_type": "city",
+      "bounds": [
+        [
+          -111.3101,
+          40.7021
+        ],
+        [
+          -111.2429,
+          40.7565
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:ogden",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Ogden",
+      "display_name": "Ogden",
+      "area_type": "city",
+      "bounds": [
+        [
+          -112.0258,
+          41.1601
+        ],
+        [
+          -111.9204,
+          41.286
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:orangeville",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Orangeville",
+      "display_name": "Orangeville",
+      "area_type": "city",
+      "bounds": [
+        [
+          -111.0767,
+          39.2131
+        ],
+        [
+          -111.0433,
+          39.2456
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:orderville",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Orderville",
+      "display_name": "Orderville",
+      "area_type": "city",
+      "bounds": [
+        [
+          -112.6928,
+          37.2224
+        ],
+        [
+          -112.6167,
+          37.2941
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:orem",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Orem",
+      "display_name": "Orem",
+      "area_type": "city",
+      "bounds": [
+        [
+          -111.753,
+          40.2604
+        ],
+        [
+          -111.6347,
+          40.3337
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:panguitch",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Panguitch",
+      "display_name": "Panguitch",
+      "area_type": "city",
+      "bounds": [
+        [
+          -112.4604,
+          37.7998
+        ],
+        [
+          -112.4108,
+          37.8435
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:paradise",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Paradise",
+      "display_name": "Paradise",
+      "area_type": "city",
+      "bounds": [
+        [
+          -111.8471,
+          41.5548
+        ],
+        [
+          -111.8229,
+          41.5784
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:paragonah",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Paragonah",
+      "display_name": "Paragonah",
+      "area_type": "city",
+      "bounds": [
+        [
+          -112.7814,
+          37.8786
+        ],
+        [
+          -112.7581,
+          37.8898
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:park",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Park",
+      "display_name": "Park",
+      "area_type": "city",
+      "bounds": [
+        [
+          -111.559,
+          40.5994
+        ],
+        [
+          -111.4373,
+          40.7034
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:parowan",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Parowan",
+      "display_name": "Parowan",
+      "area_type": "city",
+      "bounds": [
+        [
+          -112.8807,
+          37.7948
+        ],
+        [
+          -112.8041,
+          37.8679
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:payson",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Payson",
+      "display_name": "Payson",
+      "area_type": "city",
+      "bounds": [
+        [
+          -111.8154,
+          39.9982
+        ],
+        [
+          -111.6865,
+          40.0708
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:perry",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Perry",
+      "display_name": "Perry",
+      "area_type": "city",
+      "bounds": [
+        [
+          -112.0783,
+          41.4395
+        ],
+        [
+          -112.0058,
+          41.4911
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:piute-county",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Piute County",
+      "display_name": "Piute County",
+      "area_type": "county",
+      "bounds": [
+        [
+          -112.5195,
+          38.1461
+        ],
+        [
+          -111.7664,
+          38.5104
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:plain",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Plain",
+      "display_name": "Plain",
+      "area_type": "city",
+      "bounds": [
+        [
+          -112.1292,
+          41.2717
+        ],
+        [
+          -112.0448,
+          41.3368
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:pleasant-grove",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Pleasant Grove",
+      "display_name": "Pleasant Grove",
+      "area_type": "city",
+      "bounds": [
+        [
+          -111.7742,
+          40.3443
+        ],
+        [
+          -111.6963,
+          40.4138
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:pleasant-view",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Pleasant View",
+      "display_name": "Pleasant View",
+      "area_type": "city",
+      "bounds": [
+        [
+          -112.0344,
+          41.2958
+        ],
+        [
+          -111.9716,
+          41.3501
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:plymouth",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Plymouth",
+      "display_name": "Plymouth",
+      "area_type": "city",
+      "bounds": [
+        [
+          -112.1927,
+          41.8648
+        ],
+        [
+          -112.1283,
+          41.8789
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:portage",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Portage",
+      "display_name": "Portage",
+      "area_type": "city",
+      "bounds": [
+        [
+          -112.2625,
+          41.9538
+        ],
+        [
+          -112.2181,
+          42.0012
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:price",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Price",
+      "display_name": "Price",
+      "area_type": "city",
+      "bounds": [
+        [
+          -110.8347,
+          39.5789
+        ],
+        [
+          -110.7782,
+          39.6228
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:providence",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Providence",
+      "display_name": "Providence",
+      "area_type": "city",
+      "bounds": [
+        [
+          -111.8442,
+          41.6839
+        ],
+        [
+          -111.7944,
+          41.7187
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:provo",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Provo",
+      "display_name": "Provo",
+      "area_type": "city",
+      "bounds": [
+        [
+          -111.7409,
+          40.1857
+        ],
+        [
+          -111.5369,
+          40.3286
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:randolph",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Randolph",
+      "display_name": "Randolph",
+      "area_type": "city",
+      "bounds": [
+        [
+          -111.204,
+          41.6529
+        ],
+        [
+          -111.1692,
+          41.6732
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:redmond",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Redmond",
+      "display_name": "Redmond",
+      "area_type": "city",
+      "bounds": [
+        [
+          -111.8806,
+          38.9958
+        ],
+        [
+          -111.8545,
+          39.0105
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "covered"
+    },
+    {
+      "id": "ut:rich-county",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Rich County",
+      "display_name": "Rich County",
+      "area_type": "county",
+      "bounds": [
+        [
+          -111.512,
+          41.143
+        ],
+        [
+          -111.0467,
+          42.0017
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:richfield",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Richfield",
+      "display_name": "Richfield",
+      "area_type": "city",
+      "bounds": [
+        [
+          -112.1175,
+          38.7206
+        ],
+        [
+          -112.0661,
+          38.7936
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:richmond",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Richmond",
+      "display_name": "Richmond",
+      "area_type": "city",
+      "bounds": [
+        [
+          -111.8292,
+          41.9039
+        ],
+        [
+          -111.7914,
+          41.9472
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "official_unavailable"
+    },
+    {
+      "id": "ut:river-heights",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "River Heights",
+      "display_name": "River Heights",
+      "area_type": "city",
+      "bounds": [
+        [
+          -111.8327,
+          41.7153
+        ],
+        [
+          -111.8035,
+          41.7296
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:riverdale",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Riverdale",
+      "display_name": "Riverdale",
+      "area_type": "city",
+      "bounds": [
+        [
+          -112.0216,
+          41.1527
+        ],
+        [
+          -111.9777,
+          41.1979
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:riverton",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Riverton",
+      "display_name": "Riverton",
+      "area_type": "city",
+      "bounds": [
+        [
+          -112.0245,
+          40.4931
+        ],
+        [
+          -111.9174,
+          40.537
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:rockville",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Rockville",
+      "display_name": "Rockville",
+      "area_type": "city",
+      "bounds": [
+        [
+          -113.0944,
+          37.1122
+        ],
+        [
+          -113.016,
+          37.1668
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:rocky-ridge",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Rocky Ridge",
+      "display_name": "Rocky Ridge",
+      "area_type": "city",
+      "bounds": [
+        [
+          -111.8391,
+          39.8983
+        ],
+        [
+          -111.8127,
+          39.9385
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:roosevelt",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Roosevelt",
+      "display_name": "Roosevelt",
+      "area_type": "city",
+      "bounds": [
+        [
+          -110.068,
+          40.2601
+        ],
+        [
+          -109.9766,
+          40.3337
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:roy",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Roy",
+      "display_name": "Roy",
+      "area_type": "city",
+      "bounds": [
+        [
+          -112.0885,
+          41.1527
+        ],
+        [
+          -112.0145,
+          41.2053
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:rush-valley",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Rush Valley",
+      "display_name": "Rush Valley",
+      "area_type": "city",
+      "bounds": [
+        [
+          -112.4989,
+          40.318
+        ],
+        [
+          -112.4224,
+          40.4207
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:salem",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Salem",
+      "display_name": "Salem",
+      "area_type": "city",
+      "bounds": [
+        [
+          -111.7172,
+          40.0116
+        ],
+        [
+          -111.6161,
+          40.0854
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "official_unavailable"
+    },
+    {
+      "id": "ut:salina",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Salina",
+      "display_name": "Salina",
+      "area_type": "city",
+      "bounds": [
+        [
+          -111.8877,
+          38.9146
+        ],
+        [
+          -111.8321,
+          38.9667
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:salt-lake",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Salt Lake",
+      "display_name": "Salt Lake",
+      "area_type": "city",
+      "bounds": [
+        [
+          -112.1014,
+          40.6999
+        ],
+        [
+          -111.7405,
+          40.8534
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:salt-lake-city",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Salt Lake City",
+      "display_name": "Salt Lake City",
+      "area_type": "city",
+      "bounds": [
+        [
+          -112.02198889255153,
+          40.702871390243445
+        ],
+        [
+          -111.8027226376813,
+          40.80966289022474
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "covered"
+    },
+    {
+      "id": "ut:salt-lake-county",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Salt Lake County",
+      "display_name": "Salt Lake County",
+      "area_type": "county",
+      "bounds": [
+        [
+          -112.2602,
+          40.4142
+        ],
+        [
+          -111.5532,
+          40.9218
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:san-juan-county",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "San Juan County",
+      "display_name": "San Juan County",
+      "area_type": "county",
+      "bounds": [
+        [
+          -111.413,
+          36.999
+        ],
+        [
+          -109.0426,
+          38.5
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:sandy",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Sandy",
+      "display_name": "Sandy",
+      "area_type": "city",
+      "bounds": [
+        [
+          -111.9216,
+          40.5281
+        ],
+        [
+          -111.777,
+          40.618
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:sanpete-county",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Sanpete County",
+      "display_name": "Sanpete County",
+      "area_type": "county",
+      "bounds": [
+        [
+          -112.0158,
+          39.0323
+        ],
+        [
+          -111.2475,
+          39.813
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:santa-clara",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Santa Clara",
+      "display_name": "Santa Clara",
+      "area_type": "city",
+      "bounds": [
+        [
+          -113.6769,
+          37.1156
+        ],
+        [
+          -113.6282,
+          37.1576
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "official_unavailable"
+    },
+    {
+      "id": "ut:santaquin",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Santaquin",
+      "display_name": "Santaquin",
+      "area_type": "city",
+      "bounds": [
+        [
+          -111.843,
+          39.9383
+        ],
+        [
+          -111.7342,
+          40.0047
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:saratoga-springs",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Saratoga Springs",
+      "display_name": "Saratoga Springs",
+      "area_type": "city",
+      "bounds": [
+        [
+          -111.9784,
+          40.2606
+        ],
+        [
+          -111.8558,
+          40.4168
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:scipio",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Scipio",
+      "display_name": "Scipio",
+      "area_type": "city",
+      "bounds": [
+        [
+          -112.1188,
+          39.2383
+        ],
+        [
+          -112.0972,
+          39.2607
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:scofield",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Scofield",
+      "display_name": "Scofield",
+      "area_type": "city",
+      "bounds": [
+        [
+          -111.1728,
+          39.7005
+        ],
+        [
+          -111.154,
+          39.7328
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:sevier-county",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Sevier County",
+      "display_name": "Sevier County",
+      "area_type": "county",
+      "bounds": [
+        [
+          -112.5185,
+          38.5102
+        ],
+        [
+          -111.2994,
+          39.0455
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:sigurd",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Sigurd",
+      "display_name": "Sigurd",
+      "area_type": "city",
+      "bounds": [
+        [
+          -111.979,
+          38.8277
+        ],
+        [
+          -111.9624,
+          38.8788
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:smithfield",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Smithfield",
+      "display_name": "Smithfield",
+      "area_type": "city",
+      "bounds": [
+        [
+          -111.8589,
+          41.8123
+        ],
+        [
+          -111.7955,
+          41.8535
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:snowville",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Snowville",
+      "display_name": "Snowville",
+      "area_type": "city",
+      "bounds": [
+        [
+          -112.7264,
+          41.9617
+        ],
+        [
+          -112.7064,
+          41.9839
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:south-jordan",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "South Jordan",
+      "display_name": "South Jordan",
+      "area_type": "city",
+      "bounds": [
+        [
+          -112.0947,
+          40.5196
+        ],
+        [
+          -111.8949,
+          40.5821
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:south-ogden",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "South Ogden",
+      "display_name": "South Ogden",
+      "area_type": "city",
+      "bounds": [
+        [
+          -111.983,
+          41.1509
+        ],
+        [
+          -111.93,
+          41.1979
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:south-salt-lake",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "South Salt Lake",
+      "display_name": "South Salt Lake",
+      "area_type": "city",
+      "bounds": [
+        [
+          -111.9284,
+          40.6863
+        ],
+        [
+          -111.8714,
+          40.726
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:south-weber",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "South Weber",
+      "display_name": "South Weber",
+      "area_type": "city",
+      "bounds": [
+        [
+          -111.9996,
+          41.1143
+        ],
+        [
+          -111.9011,
+          41.1527
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:spanish-fork",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Spanish Fork",
+      "display_name": "Spanish Fork",
+      "area_type": "city",
+      "bounds": [
+        [
+          -111.6935,
+          40.0642
+        ],
+        [
+          -111.5747,
+          40.1732
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:spring",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Spring",
+      "display_name": "Spring",
+      "area_type": "city",
+      "bounds": [
+        [
+          -111.502,
+          39.4694
+        ],
+        [
+          -111.4825,
+          39.4916
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:springdale",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Springdale",
+      "display_name": "Springdale",
+      "area_type": "city",
+      "bounds": [
+        [
+          -113.0345,
+          37.1644
+        ],
+        [
+          -112.9793,
+          37.2013
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:springville",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Springville",
+      "display_name": "Springville",
+      "area_type": "city",
+      "bounds": [
+        [
+          -111.6743,
+          40.1307
+        ],
+        [
+          -111.5457,
+          40.1922
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:st-george",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "St. George",
+      "display_name": "St. George",
+      "area_type": "city",
+      "bounds": [
+        [
+          -113.6497,
+          37.0
+        ],
+        [
+          -113.4767,
+          37.205
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:sterling",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Sterling",
+      "display_name": "Sterling",
+      "area_type": "city",
+      "bounds": [
+        [
+          -111.6987,
+          39.1882
+        ],
+        [
+          -111.6839,
+          39.1979
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:stockton",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Stockton",
+      "display_name": "Stockton",
+      "area_type": "city",
+      "bounds": [
+        [
+          -112.3828,
+          40.4358
+        ],
+        [
+          -112.3531,
+          40.4614
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "official_unavailable"
+    },
+    {
+      "id": "ut:summit-county",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Summit County",
+      "display_name": "Summit County",
+      "area_type": "county",
+      "bounds": [
+        [
+          -111.6491,
+          40.5483
+        ],
+        [
+          -110.0007,
+          41.2516
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:sunset",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Sunset",
+      "display_name": "Sunset",
+      "area_type": "city",
+      "bounds": [
+        [
+          -112.0375,
+          41.1253
+        ],
+        [
+          -112.021,
+          41.1527
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:syracuse",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Syracuse",
+      "display_name": "Syracuse",
+      "area_type": "city",
+      "bounds": [
+        [
+          -112.1159,
+          41.053
+        ],
+        [
+          -112.0358,
+          41.1109
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:tabiona",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Tabiona",
+      "display_name": "Tabiona",
+      "area_type": "city",
+      "bounds": [
+        [
+          -110.7135,
+          40.3497
+        ],
+        [
+          -110.7053,
+          40.3569
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:taylorsville",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Taylorsville",
+      "display_name": "Taylorsville",
+      "area_type": "city",
+      "bounds": [
+        [
+          -111.9915,
+          40.63
+        ],
+        [
+          -111.908,
+          40.6821
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:tooele",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Tooele",
+      "display_name": "Tooele",
+      "area_type": "city",
+      "bounds": [
+        [
+          -112.3631,
+          40.4811
+        ],
+        [
+          -112.2413,
+          40.592
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:tooele-county",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Tooele County",
+      "display_name": "Tooele County",
+      "area_type": "county",
+      "bounds": [
+        [
+          -114.047,
+          39.9039
+        ],
+        [
+          -112.1444,
+          41.0769
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:toquerville",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Toquerville",
+      "display_name": "Toquerville",
+      "area_type": "city",
+      "bounds": [
+        [
+          -113.3288,
+          37.1997
+        ],
+        [
+          -113.2645,
+          37.348
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:torrey",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Torrey",
+      "display_name": "Torrey",
+      "area_type": "city",
+      "bounds": [
+        [
+          -111.4415,
+          38.2954
+        ],
+        [
+          -111.4118,
+          38.3207
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:tremonton",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Tremonton",
+      "display_name": "Tremonton",
+      "area_type": "city",
+      "bounds": [
+        [
+          -112.2403,
+          41.6909
+        ],
+        [
+          -112.1232,
+          41.7392
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:trenton",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Trenton",
+      "display_name": "Trenton",
+      "area_type": "city",
+      "bounds": [
+        [
+          -111.9728,
+          41.8815
+        ],
+        [
+          -111.9059,
+          41.9408
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:tropic",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Tropic",
+      "display_name": "Tropic",
+      "area_type": "city",
+      "bounds": [
+        [
+          -112.1335,
+          37.6083
+        ],
+        [
+          -112.0648,
+          37.6626
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:uintah",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Uintah",
+      "display_name": "Uintah",
+      "area_type": "city",
+      "bounds": [
+        [
+          -111.9618,
+          41.1374
+        ],
+        [
+          -111.9044,
+          41.1494
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:uintah-county",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Uintah County",
+      "display_name": "Uintah County",
+      "area_type": "county",
+      "bounds": [
+        [
+          -110.0482,
+          39.4621
+        ],
+        [
+          -109.0489,
+          40.8584
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:utah-county",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Utah County",
+      "display_name": "Utah County",
+      "area_type": "county",
+      "bounds": [
+        [
+          -112.2122,
+          39.7768
+        ],
+        [
+          -110.8576,
+          40.577
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:vernal",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Vernal",
+      "display_name": "Vernal",
+      "area_type": "city",
+      "bounds": [
+        [
+          -109.5721,
+          40.4335
+        ],
+        [
+          -109.4999,
+          40.4748
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:vernon",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Vernon",
+      "display_name": "Vernon",
+      "area_type": "city",
+      "bounds": [
+        [
+          -112.4877,
+          40.0706
+        ],
+        [
+          -112.4215,
+          40.1291
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:vineyard",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Vineyard",
+      "display_name": "Vineyard",
+      "area_type": "city",
+      "bounds": [
+        [
+          -111.7724,
+          40.2784
+        ],
+        [
+          -111.7324,
+          40.3299
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:virgin",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Virgin",
+      "display_name": "Virgin",
+      "area_type": "city",
+      "bounds": [
+        [
+          -113.2558,
+          37.1707
+        ],
+        [
+          -113.1457,
+          37.2146
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:wales",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Wales",
+      "display_name": "Wales",
+      "area_type": "city",
+      "bounds": [
+        [
+          -111.6407,
+          39.4796
+        ],
+        [
+          -111.6314,
+          39.491
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:wallsburg",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Wallsburg",
+      "display_name": "Wallsburg",
+      "area_type": "city",
+      "bounds": [
+        [
+          -111.4321,
+          40.3786
+        ],
+        [
+          -111.4083,
+          40.3932
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:wasatch-county",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Wasatch County",
+      "display_name": "Wasatch County",
+      "area_type": "county",
+      "bounds": [
+        [
+          -111.6203,
+          39.8997
+        ],
+        [
+          -110.8917,
+          40.6909
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:washington",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Washington",
+      "display_name": "Washington",
+      "area_type": "city",
+      "bounds": [
+        [
+          -113.5366,
+          37.0232
+        ],
+        [
+          -113.4217,
+          37.1912
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:washington-county",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Washington County",
+      "display_name": "Washington County",
+      "area_type": "county",
+      "bounds": [
+        [
+          -114.0524,
+          37.0
+        ],
+        [
+          -112.8992,
+          37.6183
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:washington-terrace",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Washington Terrace",
+      "display_name": "Washington Terrace",
+      "area_type": "city",
+      "bounds": [
+        [
+          -111.9925,
+          41.1571
+        ],
+        [
+          -111.961,
+          41.185
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:wayne-county",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Wayne County",
+      "display_name": "Wayne County",
+      "area_type": "county",
+      "bounds": [
+        [
+          -111.8488,
+          38.1513
+        ],
+        [
+          -109.8851,
+          38.5101
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:weber-county",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Weber County",
+      "display_name": "Weber County",
+      "area_type": "county",
+      "bounds": [
+        [
+          -112.4935,
+          41.0769
+        ],
+        [
+          -111.4204,
+          41.4339
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:wellington",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Wellington",
+      "display_name": "Wellington",
+      "area_type": "city",
+      "bounds": [
+        [
+          -110.7779,
+          39.5134
+        ],
+        [
+          -110.6827,
+          39.5717
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:wellsville",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Wellsville",
+      "display_name": "Wellsville",
+      "area_type": "city",
+      "bounds": [
+        [
+          -111.9879,
+          41.5794
+        ],
+        [
+          -111.8908,
+          41.6619
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:wendover",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Wendover",
+      "display_name": "Wendover",
+      "area_type": "city",
+      "bounds": [
+        [
+          -114.044,
+          40.6898
+        ],
+        [
+          -113.999,
+          40.7623
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:west-bountiful",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "West Bountiful",
+      "display_name": "West Bountiful",
+      "area_type": "city",
+      "bounds": [
+        [
+          -111.9336,
+          40.8842
+        ],
+        [
+          -111.8925,
+          40.9131
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:west-haven",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "West Haven",
+      "display_name": "West Haven",
+      "area_type": "city",
+      "bounds": [
+        [
+          -112.1029,
+          41.1763
+        ],
+        [
+          -111.9964,
+          41.2446
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:west-jordan",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "West Jordan",
+      "display_name": "West Jordan",
+      "area_type": "city",
+      "bounds": [
+        [
+          -112.0826,
+          40.5662
+        ],
+        [
+          -111.9112,
+          40.6386
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:west-point",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "West Point",
+      "display_name": "West Point",
+      "area_type": "city",
+      "bounds": [
+        [
+          -112.1271,
+          41.0964
+        ],
+        [
+          -112.0549,
+          41.1481
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:west-valley",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "West Valley",
+      "display_name": "West Valley",
+      "area_type": "city",
+      "bounds": [
+        [
+          -112.0973,
+          40.6313
+        ],
+        [
+          -111.9203,
+          40.7256
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:white",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "White",
+      "display_name": "White",
+      "area_type": "city",
+      "bounds": [
+        [
+          -111.8722,
+          40.5559
+        ],
+        [
+          -111.8532,
+          40.5805
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:willard",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Willard",
+      "display_name": "Willard",
+      "area_type": "city",
+      "bounds": [
+        [
+          -112.0635,
+          41.3778
+        ],
+        [
+          -112.0254,
+          41.4395
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:woodland-hills",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Woodland Hills",
+      "display_name": "Woodland Hills",
+      "area_type": "city",
+      "bounds": [
+        [
+          -111.6726,
+          39.9954
+        ],
+        [
+          -111.6465,
+          40.031
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:woodruff",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Woodruff",
+      "display_name": "Woodruff",
+      "area_type": "city",
+      "bounds": [
+        [
+          -111.1744,
+          41.5132
+        ],
+        [
+          -111.1498,
+          41.5241
+        ]
+      ],
+      "region_hint": "ut",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ut:woods-cross",
+      "country_id": "us",
+      "state_id": "ut",
+      "jurisdiction": "Woods Cross",
+      "display_name": "Woods Cross",
+      "area_type": "city",
+      "bounds": [
+        [
+          -111.9491,
+          40.8616
+        ],
+        [
+          -111.8883,
+          40.8878
+        ]
+      ],
+      "region_hint": "ut",
       "coverage_status": "untracked"
     },
     {

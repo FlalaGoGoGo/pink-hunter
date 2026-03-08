@@ -19,6 +19,8 @@ Last updated: 2026-03-08 (America/Los_Angeles)
 | ✅ | Arlington | 1,882 | Official jurisdiction boundary | Official Arlington County `DPR Trees` layer integrated using the official county-equivalent jurisdiction boundary |
 | ✅ | Austin | 675 | Official jurisdiction boundary | Official City of Austin `Tree Inventory` Socrata dataset integrated; invalid projected coordinate rows in the blossom subset are repaired by falling back to the dataset `geometry` point before publish |
 | ✅ | Dallas | 53 | Official jurisdiction boundary | Official City of Dallas public TreeKeeper inventory integrated from the city forestry page; blossom rows are filtered from `SITE_ATTR1` and coordinates come from the public lon/lat fields |
+| ✅ | Las Vegas | 115 | Official jurisdiction boundary | Official City of Las Vegas `CLV Tree Sites` ArcGIS layer integrated using server-side blossom filtering on `SPP_BOT` / `SPP_COM` |
+| ✅ | Salt Lake City | 7,810 | Official jurisdiction boundary | Official Salt Lake City Public Lands `Urban Forestry Inventory` ArcGIS layer integrated after excluding vacant sites and classifying `SPP` values |
 | ✅ | San Francisco | 24,099 | Official jurisdiction boundary | Official San Francisco Public Works `Street Tree List` integrated from the city open-data portal |
 | ✅ | San Jose | 18,021 | Official jurisdiction boundary | Official City of San Jose `Street Tree` layer integrated from the city open-data ArcGIS service |
 | ✅ | Los Angeles | 40,459 | Official jurisdiction boundary | Official StreetsLA public TreeKeeper `Street Sites` inventory integrated using server-side blossom filtering against `SITE_ATTR1` |
@@ -275,3 +277,10 @@ Last updated: 2026-03-08 (America/Los_Angeles)
 - Integrated `Dallas` from the official City of Dallas public TreeKeeper inventory linked from the city forestry page.
 - Rechecked `Chicago`; official City of Chicago open-data and ArcGIS entry points reviewed in this round did not confirm a public citywide single-tree species inventory.
 - Rechecked `Houston`; official Houston open-data and ArcGIS entry points reviewed in this round did not confirm a public citywide single-tree species inventory.
+
+## March 2026 Intermountain / Great Lakes Follow-up
+- Integrated `Las Vegas` from the official City of Las Vegas `CLV Tree Sites` ArcGIS layer using blossom filtering on `SPP_BOT` / `SPP_COM`.
+- Integrated `Salt Lake City` from the official Salt Lake City Public Lands `Urban Forestry Inventory` ArcGIS layer; `Vacant = Yes` rows are excluded before blossom classification.
+- Rechecked `Phoenix`; official city tree-map style materials were found, but this round did not confirm a public citywide single-tree species inventory.
+- Rechecked `Boise`; a public ArcGIS result labeled `City Maintained Tree Inventory` was found, but its published geometry resolves outside Boise and is treated as a false positive rather than a safe official Boise source.
+- Rechecked `Detroit`; official Detroit open-data entry points reviewed in this round did not confirm a public citywide single-tree species inventory.

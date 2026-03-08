@@ -667,7 +667,9 @@ const regionLabelMap: Record<Language, Record<CoverageRegion, string>> = {
   "en-US": {
     wa: "Washington",
     ca: "California",
+    nv: "Nevada",
     or: "Oregon",
+    ut: "Utah",
     dc: "Washington, DC",
     bc: "British Columbia",
     on: "Ontario",
@@ -683,7 +685,9 @@ const regionLabelMap: Record<Language, Record<CoverageRegion, string>> = {
   "zh-CN": {
     wa: "华盛顿州",
     ca: "加利福尼亚州",
+    nv: "内华达州",
     or: "俄勒冈州",
+    ut: "犹他州",
     dc: "华盛顿哥伦比亚特区",
     bc: "不列颠哥伦比亚省",
     on: "安大略省",
@@ -699,7 +703,9 @@ const regionLabelMap: Record<Language, Record<CoverageRegion, string>> = {
   "zh-TW": {
     wa: "華盛頓州",
     ca: "加利福尼亞州",
+    nv: "內華達州",
     or: "俄勒岡州",
+    ut: "猶他州",
     dc: "華盛頓哥倫比亞特區",
     bc: "不列顛哥倫比亞省",
     on: "安大略省",
@@ -715,7 +721,9 @@ const regionLabelMap: Record<Language, Record<CoverageRegion, string>> = {
   "es-ES": {
     wa: "Washington",
     ca: "California",
+    nv: "Nevada",
     or: "Oregón",
+    ut: "Utah",
     dc: "Washington, D. C.",
     bc: "Columbia Británica",
     on: "Ontario",
@@ -731,7 +739,9 @@ const regionLabelMap: Record<Language, Record<CoverageRegion, string>> = {
   "ko-KR": {
     wa: "워싱턴주",
     ca: "캘리포니아주",
+    nv: "네바다주",
     or: "오리건주",
+    ut: "유타주",
     dc: "워싱턴 D.C.",
     bc: "브리티시컬럼비아주",
     on: "온타리오주",
@@ -747,7 +757,9 @@ const regionLabelMap: Record<Language, Record<CoverageRegion, string>> = {
   "ja-JP": {
     wa: "ワシントン州",
     ca: "カリフォルニア州",
+    nv: "ネバダ州",
     or: "オレゴン州",
+    ut: "ユタ州",
     dc: "ワシントンDC",
     bc: "ブリティッシュコロンビア州",
     on: "オンタリオ州",
@@ -763,7 +775,9 @@ const regionLabelMap: Record<Language, Record<CoverageRegion, string>> = {
   "fr-FR": {
     wa: "Washington",
     ca: "Californie",
+    nv: "Nevada",
     or: "Oregon",
+    ut: "Utah",
     dc: "Washington, D.C.",
     bc: "Colombie-Britannique",
     on: "Ontario",
@@ -779,7 +793,9 @@ const regionLabelMap: Record<Language, Record<CoverageRegion, string>> = {
   "vi-VN": {
     wa: "Washington",
     ca: "California",
+    nv: "Nevada",
     or: "Oregon",
+    ut: "Utah",
     dc: "Washington, DC",
     bc: "British Columbia",
     on: "Ontario",

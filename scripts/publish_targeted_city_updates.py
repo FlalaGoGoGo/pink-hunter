@@ -14,6 +14,7 @@ import subprocess
 import sys
 import tempfile
 import io
+import shutil
 import urllib.request
 from collections import Counter
 from pathlib import Path
@@ -119,6 +120,10 @@ NEW_WESTMINSTER_TREES_LAYER = "https://services3.arcgis.com/A7O8YnTNtzRPIn7T/arc
 NEW_WESTMINSTER_DATASET_PAGE = "https://services3.arcgis.com/A7O8YnTNtzRPIn7T/arcgis/rest/services/Tree_Inventory_(PROD)_4_view/FeatureServer"
 SAN_DIEGO_TREES_LAYER = "https://webmaps.sandiego.gov/arcgis/rest/services/DSD/Environment/MapServer/20"
 SAN_DIEGO_DATASET_PAGE = "https://webmaps.sandiego.gov/arcgis/rest/services/DSD/Environment/MapServer/20"
+LAS_VEGAS_TREES_LAYER = "https://services1.arcgis.com/F1v0ufATbBQScMtY/ArcGIS/rest/services/CLV_Tree_Sites/FeatureServer/0"
+LAS_VEGAS_DATASET_PAGE = "https://services1.arcgis.com/F1v0ufATbBQScMtY/ArcGIS/rest/services/CLV_Tree_Sites/FeatureServer"
+SALT_LAKE_CITY_TREES_LAYER = "https://services.arcgis.com/mMBpeYj0vPFotzbe/arcgis/rest/services/Urban_Forestry_Inventory/FeatureServer/0"
+SALT_LAKE_CITY_DATASET_PAGE = "https://www.slc.gov/parks/urban-forestry/"
 LOS_ANGELES_STREETSLA_PAGE = "https://streetsla.lacity.org/tree-inventory-and-maintenance"
 LOS_ANGELES_TREEKEEPER_BASE = "https://losangelesca.treekeepersoftware.com"
 LOS_ANGELES_FACILITY_ID = 7
@@ -136,6 +141,32 @@ SAN_DIEGO_BLOSSOM_WHERE = (
     "UPPER(COMMON_NAME) LIKE '%MAGNOLIA%' OR "
     "UPPER(COMMON_NAME) LIKE '%CRABAPPLE%' OR "
     "UPPER(COMMON_NAME) LIKE '%APPLE%'"
+)
+LAS_VEGAS_BLOSSOM_WHERE = (
+    "ACTIVE = 1 AND STATUS = 'Tree' AND ("
+    "UPPER(SPP_BOT) LIKE 'PRUNUS%' OR "
+    "UPPER(SPP_BOT) LIKE 'MALUS%' OR "
+    "UPPER(SPP_BOT) LIKE 'MAGNOLIA%' OR "
+    "UPPER(SPP_COM) LIKE '%CHERRY%' OR "
+    "UPPER(SPP_COM) LIKE '%PLUM%' OR "
+    "UPPER(SPP_COM) LIKE '%PEACH%' OR "
+    "UPPER(SPP_COM) LIKE '%MAGNOLIA%' OR "
+    "UPPER(SPP_COM) LIKE '%CRABAPPLE%' OR "
+    "UPPER(SPP_COM) LIKE '%APPLE%'"
+    ")"
+)
+SALT_LAKE_CITY_BLOSSOM_WHERE = (
+    "(Vacant IS NULL OR Vacant <> 'Yes') AND ("
+    "UPPER(SPP) LIKE 'PRUNUS%' OR "
+    "UPPER(SPP) LIKE 'MALUS%' OR "
+    "UPPER(SPP) LIKE 'MAGNOLIA%' OR "
+    "UPPER(SPP) LIKE '%CHERRY%' OR "
+    "UPPER(SPP) LIKE '%PLUM%' OR "
+    "UPPER(SPP) LIKE '%PEACH%' OR "
+    "UPPER(SPP) LIKE '%MAGNOLIA%' OR "
+    "UPPER(SPP) LIKE '%CRABAPPLE%' OR "
+    "UPPER(SPP) LIKE '%APPLE%'"
+    ")"
 )
 OTTAWA_BLOSSOM_WHERE = (
     "STATUS = 'Active' AND ("
@@ -178,6 +209,7 @@ SUPPORTED_CITIES = (
     "Dallas",
     "Irvine",
     "Jersey City",
+    "Las Vegas",
     "Los Angeles",
     "Milpitas",
     "San Mateo",
@@ -191,6 +223,7 @@ SUPPORTED_CITIES = (
     "Cambridge",
     "Pittsburgh",
     "Ottawa",
+    "Salt Lake City",
     "Toronto",
     "Montreal",
     "New Westminster",
@@ -402,12 +435,24 @@ def rewrite_normalized_rows(target_cities: set[str], new_rows: list[dict[str, An
         writer = csv.DictWriter(handle, fieldnames=NORMALIZED_HEADER)
         writer.writeheader()
         if path.exists():
-            with path.open("r", encoding="utf-8", newline="") as source_handle:
-                reader = csv.DictReader(source_handle)
-                for row in reader:
-                    if row.get("city") in target_cities:
-                        continue
-                    writer.writerow({column: str(row.get(column, "")) for column in NORMALIZED_HEADER})
+            with tempfile.NamedTemporaryFile(
+                "wb",
+                dir=path.parent,
+                prefix=f"{path.stem}.snapshot.",
+                suffix=".csv",
+                delete=False,
+            ) as snapshot_handle:
+                snapshot_path = Path(snapshot_handle.name)
+            try:
+                shutil.copyfile(path, snapshot_path)
+                with snapshot_path.open("r", encoding="utf-8", newline="") as source_handle:
+                    reader = csv.DictReader(source_handle)
+                    for row in reader:
+                        if row.get("city") in target_cities:
+                            continue
+                        writer.writerow({column: str(row.get(column, "")) for column in NORMALIZED_HEADER})
+            finally:
+                snapshot_path.unlink(missing_ok=True)
         writer.writerows(normalized_new_rows)
 
     temp_path.replace(path)
@@ -2633,6 +2678,205 @@ def fetch_new_westminster() -> dict[str, Any]:
     }
 
 
+def fetch_las_vegas() -> dict[str, Any]:
+    layer_info = fetch_json(LAS_VEGAS_TREES_LAYER, {"f": "pjson"})
+    total_payload = fetch_json(
+        f"{LAS_VEGAS_TREES_LAYER}/query",
+        {"where": LAS_VEGAS_BLOSSOM_WHERE, "returnCountOnly": "true", "f": "json"},
+    )
+    features = fetch_all_features(
+        LAS_VEGAS_TREES_LAYER,
+        LAS_VEGAS_BLOSSOM_WHERE,
+        ["FID", "UNIQUEID", "SPP_COM", "SPP_BOT", "FAC_NAME", "LOCATION", "STATUS", "LATITUDE", "LONGITUDE"],
+        "FID",
+    )
+    zip_index = fetch_us_city_zip_index("Las Vegas")
+    mapping_rows = load_mapping(MAPPING_PATH)
+    subtype_rows = load_subtype_mapping(SUBTYPE_MAPPING_PATH)
+    last_edit_at = iso_from_epoch((layer_info.get("editingInfo") or {}).get("lastEditDate"))
+
+    output_features: list[dict[str, Any]] = []
+    normalized_rows: list[dict[str, Any]] = []
+    for feature in features:
+        attrs = feature.get("attributes", {})
+        geom = feature.get("geometry", {})
+        lon_raw = geom.get("x")
+        lat_raw = geom.get("y")
+        lon = float(lon_raw) if lon_raw is not None else None
+        lat = float(lat_raw) if lat_raw is not None else None
+        if lon is None or lat is None:
+            try:
+                lon = float(attrs.get("LONGITUDE"))
+                lat = float(attrs.get("LATITUDE"))
+            except (TypeError, ValueError):
+                lon = None
+                lat = None
+        if lon is None or lat is None:
+            continue
+
+        common_name = clean_common_name(attrs.get("SPP_COM"))
+        scientific_raw = format_scientific_display_name(attrs.get("SPP_BOT"), common_name)
+        if not scientific_raw:
+            scientific_raw = generic_scientific_name_for_common_hint(common_name)
+        scientific_normalized = normalize_scientific_name(scientific_raw)
+        species_group, subtype_name = classify_tree_record(scientific_raw, common_name, mapping_rows, subtype_rows)
+        ownership_raw = "City of Las Vegas"
+        zip_code = assign_zip_code(lon, lat, zip_index)
+        row_id = f"las-vegas-{attrs.get('UNIQUEID') or attrs.get('FID')}"
+
+        normalized_rows.append(
+            {
+                "id": row_id,
+                "city": "Las Vegas",
+                "source_dataset": "CLV Tree Sites",
+                "scientific_raw": scientific_raw,
+                "scientific_normalized": scientific_normalized,
+                "common_name": common_name or "",
+                "subtype_name": subtype_name or "",
+                "zip_code": zip_code or "",
+                "species_group": species_group or "",
+                "ownership": canonical_ownership(ownership_raw),
+                "ownership_raw": ownership_raw,
+                "lat": lat,
+                "lon": lon,
+                "included": "1" if species_group else "0",
+            }
+        )
+        if not species_group:
+            continue
+        output_features.append(
+            {
+                "type": "Feature",
+                "geometry": {"type": "Point", "coordinates": [lon, lat]},
+                "properties": {
+                    "id": row_id,
+                    "species_group": species_group,
+                    "scientific_name": scientific_raw,
+                    "common_name": common_name,
+                    "subtype_name": subtype_name,
+                    "zip_code": zip_code,
+                    "ownership": canonical_ownership(ownership_raw),
+                    "ownership_raw": ownership_raw,
+                    "city": "Las Vegas",
+                    "source_dataset": "CLV Tree Sites",
+                    "source_department": "City of Las Vegas",
+                    "source_last_edit_at": last_edit_at,
+                },
+            }
+        )
+
+    return {
+        "city": "Las Vegas",
+        "region": "nv",
+        "features": output_features,
+        "normalized_rows": normalized_rows,
+        "source": {
+            "name": "CLV Tree Sites",
+            "city": "Las Vegas",
+            "endpoint": LAS_VEGAS_DATASET_PAGE,
+            "last_edit_at": last_edit_at,
+            "records_fetched": int(total_payload.get("count") or len(features)),
+            "records_included": len(output_features),
+            "note": "Integrated from the official City of Las Vegas CLV_Tree_Sites ArcGIS layer.",
+        },
+    }
+
+
+def fetch_salt_lake_city() -> dict[str, Any]:
+    layer_info = fetch_json(SALT_LAKE_CITY_TREES_LAYER, {"f": "pjson"})
+    total_payload = fetch_json(
+        f"{SALT_LAKE_CITY_TREES_LAYER}/query",
+        {"where": SALT_LAKE_CITY_BLOSSOM_WHERE, "returnCountOnly": "true", "f": "json"},
+    )
+    features = fetch_all_features(
+        SALT_LAKE_CITY_TREES_LAYER,
+        SALT_LAKE_CITY_BLOSSOM_WHERE,
+        ["FID", "SPP", "DBH", "ADDRESS", "STREET", "SIDE", "SITE", "Vacant"],
+        "FID",
+    )
+    zip_index = fetch_us_city_zip_index("Salt Lake City")
+    mapping_rows = load_mapping(MAPPING_PATH)
+    subtype_rows = load_subtype_mapping(SUBTYPE_MAPPING_PATH)
+    last_edit_at = iso_from_epoch((layer_info.get("editingInfo") or {}).get("lastEditDate"))
+
+    output_features: list[dict[str, Any]] = []
+    normalized_rows: list[dict[str, Any]] = []
+    for feature in features:
+        attrs = feature.get("attributes", {})
+        geom = feature.get("geometry", {})
+        lon_raw = geom.get("x")
+        lat_raw = geom.get("y")
+        lon = float(lon_raw) if lon_raw is not None else None
+        lat = float(lat_raw) if lat_raw is not None else None
+        if lon is None or lat is None:
+            continue
+
+        scientific_raw = format_scientific_display_name(attrs.get("SPP"))
+        common_name = None
+        scientific_normalized = normalize_scientific_name(scientific_raw)
+        species_group, subtype_name = classify_tree_record(scientific_raw, common_name, mapping_rows, subtype_rows)
+        ownership_raw = "Salt Lake City Public Lands"
+        zip_code = assign_zip_code(lon, lat, zip_index)
+        row_id = f"salt-lake-city-{attrs.get('FID')}"
+
+        normalized_rows.append(
+            {
+                "id": row_id,
+                "city": "Salt Lake City",
+                "source_dataset": "Urban Forestry Inventory",
+                "scientific_raw": scientific_raw,
+                "scientific_normalized": scientific_normalized,
+                "common_name": "",
+                "subtype_name": subtype_name or "",
+                "zip_code": zip_code or "",
+                "species_group": species_group or "",
+                "ownership": canonical_ownership(ownership_raw),
+                "ownership_raw": ownership_raw,
+                "lat": lat,
+                "lon": lon,
+                "included": "1" if species_group else "0",
+            }
+        )
+        if not species_group:
+            continue
+        output_features.append(
+            {
+                "type": "Feature",
+                "geometry": {"type": "Point", "coordinates": [lon, lat]},
+                "properties": {
+                    "id": row_id,
+                    "species_group": species_group,
+                    "scientific_name": scientific_raw,
+                    "common_name": None,
+                    "subtype_name": subtype_name,
+                    "zip_code": zip_code,
+                    "ownership": canonical_ownership(ownership_raw),
+                    "ownership_raw": ownership_raw,
+                    "city": "Salt Lake City",
+                    "source_dataset": "Urban Forestry Inventory",
+                    "source_department": "Salt Lake City Public Lands Department",
+                    "source_last_edit_at": last_edit_at,
+                },
+            }
+        )
+
+    return {
+        "city": "Salt Lake City",
+        "region": "ut",
+        "features": output_features,
+        "normalized_rows": normalized_rows,
+        "source": {
+            "name": "Urban Forestry Inventory",
+            "city": "Salt Lake City",
+            "endpoint": SALT_LAKE_CITY_DATASET_PAGE,
+            "last_edit_at": last_edit_at,
+            "records_fetched": int(total_payload.get("count") or len(features)),
+            "records_included": len(output_features),
+            "note": "Integrated from the official Salt Lake City Urban Forestry Inventory ArcGIS layer.",
+        },
+    }
+
+
 def fetch_san_diego() -> dict[str, Any]:
     layer_info = fetch_json(SAN_DIEGO_TREES_LAYER, {"f": "pjson"})
     total_payload = fetch_json(
@@ -2923,6 +3167,7 @@ CITY_FETCHERS = {
     "Dallas": fetch_dallas,
     "Irvine": fetch_irvine,
     "Jersey City": fetch_jersey_city,
+    "Las Vegas": fetch_las_vegas,
     "Los Angeles": fetch_los_angeles,
     "Milpitas": fetch_milpitas,
     "San Mateo": fetch_san_mateo,
@@ -2936,6 +3181,7 @@ CITY_FETCHERS = {
     "Philadelphia": fetch_philadelphia,
     "Cambridge": fetch_cambridge,
     "Ottawa": fetch_ottawa,
+    "Salt Lake City": fetch_salt_lake_city,
     "Toronto": fetch_toronto,
     "Montreal": fetch_montreal,
     "New Westminster": fetch_new_westminster,

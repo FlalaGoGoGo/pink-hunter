@@ -1,6 +1,6 @@
 {
   "version": "v2",
-  "generated_at": "2026-03-08T14:39:01.422270+00:00",
+  "generated_at": "2026-03-08T15:42:53.468383+00:00",
   "default_region": "wa",
   "coverage_rule": "official_jurisdiction_boundary_only",
   "coverage_skipped_cities": [],
@@ -99,10 +99,10 @@
   "coverage_official_unavailable_skipped_cities": [
     "Vancouver WA"
   ],
-  "source_count": 54,
-  "total_records": 1607097,
-  "included_records": 423991,
-  "unknown_records": 655789,
+  "source_count": 56,
+  "total_records": 1615677,
+  "included_records": 431916,
+  "unknown_records": 656444,
   "regions": [
     {
       "id": "bc",
@@ -421,6 +421,54 @@
       "largest_shard_warning_level": "none"
     },
     {
+      "id": "nv",
+      "label": "NV",
+      "available": true,
+      "bounds": [
+        [
+          -115.35028713176655,
+          36.14457804241462
+        ],
+        [
+          -115.09974047027158,
+          36.32403148417679
+        ]
+      ],
+      "data_path": null,
+      "tree_count": 115,
+      "city_count": 1,
+      "cities": [
+        "Las Vegas"
+      ],
+      "species_counts": {
+        "cherry": 0,
+        "plum": 91,
+        "peach": 11,
+        "magnolia": 7,
+        "crabapple": 6
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "raw_bytes": 60244,
+      "gzip_bytes": 3235,
+      "warning_level": "none",
+      "aggregate_raw_bytes": 60244,
+      "aggregate_gzip_bytes": 3235,
+      "aggregate_warning_level": "none",
+      "largest_shard_raw_bytes": 60244,
+      "largest_shard_gzip_bytes": 3235,
+      "largest_shard_area": "Las Vegas",
+      "area_split": {
+        "strategy": "area_shard",
+        "index_path": "/data/trees.nv.area-index.v2.json",
+        "area_count": 1,
+        "shard_count": 1,
+        "ready": true
+      },
+      "largest_shard_warning_level": "none"
+    },
+    {
       "id": "ny",
       "label": "NY",
       "available": true,
@@ -717,6 +765,54 @@
       "largest_shard_warning_level": "none"
     },
     {
+      "id": "ut",
+      "label": "UT",
+      "available": true,
+      "bounds": [
+        [
+          -112.02198889255153,
+          40.702871390243445
+        ],
+        [
+          -111.8027226376813,
+          40.80966289022474
+        ]
+      ],
+      "data_path": null,
+      "tree_count": 7810,
+      "city_count": 1,
+      "cities": [
+        "Salt Lake City"
+      ],
+      "species_counts": {
+        "cherry": 1524,
+        "plum": 2797,
+        "peach": 204,
+        "magnolia": 45,
+        "crabapple": 3240
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "raw_bytes": 4387468,
+      "gzip_bytes": 185657,
+      "warning_level": "none",
+      "aggregate_raw_bytes": 4387468,
+      "aggregate_gzip_bytes": 185657,
+      "aggregate_warning_level": "none",
+      "largest_shard_raw_bytes": 4387468,
+      "largest_shard_gzip_bytes": 185657,
+      "largest_shard_area": "Salt Lake City",
+      "area_split": {
+        "strategy": "area_shard",
+        "index_path": "/data/trees.ut.area-index.v2.json",
+        "area_count": 1,
+        "shard_count": 1,
+        "ready": true
+      },
+      "largest_shard_warning_level": "none"
+    },
+    {
       "id": "va",
       "label": "VA",
       "available": true,
@@ -997,6 +1093,15 @@
       "records_included": 3122
     },
     {
+      "name": "CLV Tree Sites",
+      "city": "Las Vegas",
+      "endpoint": "https://services1.arcgis.com/F1v0ufATbBQScMtY/ArcGIS/rest/services/CLV_Tree_Sites/FeatureServer",
+      "last_edit_at": "2025-11-06T21:00:13.229000+00:00",
+      "records_fetched": 160,
+      "records_included": 115,
+      "note": "Integrated from the official City of Las Vegas CLV_Tree_Sites ArcGIS layer."
+    },
+    {
       "name": "TreeKeeper Street Sites",
       "city": "Los Angeles",
       "endpoint": "https://streetsla.lacity.org/tree-inventory-and-maintenance",
@@ -1124,6 +1229,15 @@
       "records_fetched": 33807,
       "records_included": 4535,
       "note": "Integrated from the official City of Salinas OpenDataSoft tree inventory dataset."
+    },
+    {
+      "name": "Urban Forestry Inventory",
+      "city": "Salt Lake City",
+      "endpoint": "https://www.slc.gov/parks/urban-forestry/",
+      "last_edit_at": "2019-01-10T15:14:25.201000+00:00",
+      "records_fetched": 8420,
+      "records_included": 7810,
+      "note": "Integrated from the official Salt Lake City Urban Forestry Inventory ArcGIS layer."
     },
     {
       "name": "TreeKeeper Park Sites",
@@ -1290,11 +1404,11 @@
     }
   ],
   "species_counts": {
-    "cherry": 166837,
-    "plum": 88600,
-    "peach": 5407,
-    "magnolia": 98372,
-    "crabapple": 64775
+    "cherry": 168361,
+    "plum": 91488,
+    "peach": 5622,
+    "magnolia": 98424,
+    "crabapple": 68021
   },
   "areas": [
     {
@@ -1648,6 +1762,20 @@
       "state_province": "NJ"
     },
     {
+      "jurisdiction": "Las Vegas",
+      "region": "nv",
+      "tree_count": 115,
+      "species_counts": {
+        "cherry": 0,
+        "plum": 91,
+        "peach": 11,
+        "magnolia": 7,
+        "crabapple": 6
+      },
+      "jurisdiction_type": "city",
+      "state_province": "NV"
+    },
+    {
       "jurisdiction": "New York City",
       "region": "ny",
       "tree_count": 40685,
@@ -1772,6 +1900,20 @@
       },
       "jurisdiction_type": "city",
       "state_province": "TX"
+    },
+    {
+      "jurisdiction": "Salt Lake City",
+      "region": "ut",
+      "tree_count": 7810,
+      "species_counts": {
+        "cherry": 1524,
+        "plum": 2797,
+        "peach": 204,
+        "magnolia": 45,
+        "crabapple": 3240
+      },
+      "jurisdiction_type": "city",
+      "state_province": "UT"
     },
     {
       "jurisdiction": "Arlington",

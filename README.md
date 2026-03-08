@@ -96,6 +96,20 @@ Live domain:
 </details>
 
 <details>
+<summary>Nevada</summary>
+
+- Las Vegas
+
+</details>
+
+<details>
+<summary>Utah</summary>
+
+- Salt Lake City
+
+</details>
+
+<details>
 <summary>Ontario</summary>
 
 - Ottawa
@@ -234,6 +248,20 @@ Live domain:
 
 - Austin: [Tree Inventory](https://data.austintexas.gov/Environment/Tree-Inventory/wrik-xasw)
 - Dallas: [Dallas Public Tree Inventory](https://dallas.gov/projects/forestry/Pages/inventory.aspx)
+
+</details>
+
+<details>
+<summary>Nevada</summary>
+
+- Las Vegas: [CLV Tree Sites](https://services1.arcgis.com/F1v0ufATbBQScMtY/ArcGIS/rest/services/CLV_Tree_Sites/FeatureServer)
+
+</details>
+
+<details>
+<summary>Utah</summary>
+
+- Salt Lake City: [Urban Forestry Inventory](https://www.slc.gov/parks/urban-forestry/)
 
 </details>
 

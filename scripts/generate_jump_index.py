@@ -31,8 +31,10 @@ US_COUNTY_LAYER_URL = "https://tigerweb.geo.census.gov/arcgis/rest/services/TIGE
 REGION_COUNTRY: dict[str, str] = {
     "wa": "us",
     "ca": "us",
+    "nv": "us",
     "or": "us",
     "tx": "us",
+    "ut": "us",
     "dc": "us",
     "va": "us",
     "md": "us",
@@ -48,8 +50,10 @@ REGION_COUNTRY: dict[str, str] = {
 REGION_FULL_NAMES: dict[str, str] = {
     "wa": "Washington",
     "ca": "California",
+    "nv": "Nevada",
     "or": "Oregon",
     "tx": "Texas",
+    "ut": "Utah",
     "dc": "Washington, DC",
     "va": "Virginia",
     "md": "Maryland",
@@ -140,8 +144,10 @@ COUNTRY_META = {
 STATE_FIPS_TO_REGION = {
     "53": "wa",
     "06": "ca",
+    "32": "nv",
     "41": "or",
     "48": "tx",
+    "49": "ut",
     "11": "dc",
     "51": "va",
     "24": "md",
@@ -154,8 +160,10 @@ STATE_FIPS_TO_REGION = {
 COVERED_REGION_BY_STATE_CODE = {
     "wa": "wa",
     "ca": "ca",
+    "nv": "nv",
     "or": "or",
     "tx": "tx",
+    "ut": "ut",
     "dc": "dc",
     "va": "va",
     "md": "md",
