@@ -181,6 +181,9 @@ WA_METRO_OVERVIEW_BOUNDS: list[list[float]] = [[-123.08, 47.02], [-121.55, 48.08
 WARNING_BYTES = 35 * 1024 * 1024
 HIGH_WARNING_BYTES = 45 * 1024 * 1024
 HARD_FAIL_BYTES = 50 * 1024 * 1024
+PUBLISH_TARGET_SPLIT_BYTES = 20 * 1024 * 1024
+PUBLISH_MUST_SPLIT_BYTES = 25 * 1024 * 1024
+PUBLISH_HARD_FAIL_BYTES = 30 * 1024 * 1024
 REGION_LABELS: dict[str, str] = {
     "wa": "WA",
     "ca": "CA",
@@ -1708,6 +1711,16 @@ def classify_warning_level(raw_bytes: int) -> str:
     return "none"
 
 
+def classify_publish_warning_level(raw_bytes: int) -> str:
+    if raw_bytes >= PUBLISH_HARD_FAIL_BYTES:
+        return "hard_fail"
+    if raw_bytes >= PUBLISH_MUST_SPLIT_BYTES:
+        return "high_warning"
+    if raw_bytes >= PUBLISH_TARGET_SPLIT_BYTES:
+        return "warning"
+    return "none"
+
+
 def geometry_points(geometry: dict[str, Any]) -> list[tuple[float, float]]:
     points: list[tuple[float, float]] = []
 
@@ -1722,6 +1735,76 @@ def geometry_points(geometry: dict[str, Any]) -> list[tuple[float, float]]:
 
     walk(geometry.get("coordinates"))
     return points
+
+
+def feature_point(feature: dict[str, Any]) -> tuple[float, float]:
+    geometry = feature.get("geometry", {})
+    coordinates = geometry.get("coordinates", [])
+    if not isinstance(coordinates, list) or len(coordinates) < 2:
+        raise ValueError("Tree feature is missing point coordinates.")
+    return float(coordinates[0]), float(coordinates[1])
+
+
+def summarize_ownership_groups(features: list[dict[str, Any]]) -> list[str]:
+    groups = {
+        str(feature.get("properties", {}).get("ownership", "")).strip().lower()
+        for feature in features
+        if str(feature.get("properties", {}).get("ownership", "")).strip().lower() in {"public", "private", "unknown"}
+    }
+    return [group for group in ("public", "private", "unknown") if group in groups]
+
+
+def sort_zip_codes(values: set[str] | list[str]) -> list[str]:
+    unique = {str(value).strip() or "unknown" for value in values}
+    return sorted(unique, key=lambda item: (item == "unknown", item))
+
+
+def summarize_zip_codes(features: list[dict[str, Any]]) -> list[str]:
+    return sort_zip_codes(
+        [
+            str(feature.get("properties", {}).get("zip_code", "")).strip() or "unknown"
+            for feature in features
+        ]
+    )
+
+
+def bounds_from_points(points: list[tuple[float, float]]) -> list[list[float]]:
+    xs = [point[0] for point in points]
+    ys = [point[1] for point in points]
+    return [[min(xs), min(ys)], [max(xs), max(ys)]]
+
+
+def bounds_from_features(features: list[dict[str, Any]]) -> list[list[float]]:
+    if not features:
+        return [[0.0, 0.0], [0.0, 0.0]]
+    return bounds_from_points([feature_point(feature) for feature in features])
+
+
+def encode_feature_collection(features: list[dict[str, Any]]) -> bytes:
+    return json.dumps({"type": "FeatureCollection", "features": features}, ensure_ascii=False).encode("utf-8")
+
+
+def split_features_for_publish(features: list[dict[str, Any]]) -> list[list[dict[str, Any]]]:
+    if not features:
+        return []
+
+    def recurse(current: list[dict[str, Any]], depth: int = 0) -> list[list[dict[str, Any]]]:
+        payload_bytes = len(encode_feature_collection(current))
+        if payload_bytes < PUBLISH_TARGET_SPLIT_BYTES or len(current) <= 1 or depth >= 12:
+            return [current]
+
+        x_span = max(feature_point(feature)[0] for feature in current) - min(feature_point(feature)[0] for feature in current)
+        y_span = max(feature_point(feature)[1] for feature in current) - min(feature_point(feature)[1] for feature in current)
+        split_on_x = x_span >= y_span
+        sorted_features = sorted(current, key=lambda feature: feature_point(feature)[0 if split_on_x else 1])
+        midpoint = len(sorted_features) // 2
+        left = sorted_features[:midpoint]
+        right = sorted_features[midpoint:]
+        if not left or not right:
+            return [current]
+        return recurse(left, depth + 1) + recurse(right, depth + 1)
+
+    return recurse(features)
 
 
 def bounds_for_geometry(geometry: dict[str, Any]) -> tuple[float, float, float, float] | None:
@@ -5020,15 +5103,27 @@ def main() -> int:
     area_meta: list[dict[str, Any]] = []
     region_size_summary: list[dict[str, Any]] = []
     extra_output_names: list[str] = []
+    country_by_region = {
+        "bc": "Canada",
+        "on": "Canada",
+        "qc": "Canada",
+    }
+    display_name_overrides = {
+        "Arlington": "Arlington County",
+        "Richmond BC": "Richmond",
+        "Vancouver WA": "Vancouver",
+    }
+
     for region_id, label in REGION_LABELS.items():
         features = region_feature_map[region_id]
-        trees_geojson = {"type": "FeatureCollection", "features": features}
-        payload_bytes = json.dumps(trees_geojson, ensure_ascii=False).encode("utf-8")
-        raw_bytes = len(payload_bytes)
-        gzip_bytes = len(gzip.compress(payload_bytes))
-        warning_level = classify_warning_level(raw_bytes)
         region_cities = sorted({feature["properties"]["city"] for feature in features})
         region_species_counts = summarize_species_counts(features)
+        region_ownership_groups = summarize_ownership_groups(features)
+        aggregate_raw_bytes = 0
+        aggregate_gzip_bytes = 0
+        largest_shard_raw_bytes = 0
+        largest_shard_gzip_bytes = 0
+        largest_shard_area: str | None = None
         region_entry: dict[str, Any] = {
             "id": region_id,
             "label": label,
@@ -5039,27 +5134,71 @@ def main() -> int:
             "city_count": len(region_cities),
             "cities": region_cities,
             "species_counts": region_species_counts,
-            "raw_bytes": raw_bytes,
-            "gzip_bytes": gzip_bytes,
-            "warning_level": warning_level,
+            "ownership_groups": region_ownership_groups,
+            "raw_bytes": 0,
+            "gzip_bytes": 0,
+            "warning_level": "none",
+            "aggregate_raw_bytes": 0,
+            "aggregate_gzip_bytes": 0,
+            "aggregate_warning_level": "none",
+            "largest_shard_raw_bytes": 0,
+            "largest_shard_gzip_bytes": 0,
+            "largest_shard_area": None,
+            "city_split": None,
+            "area_split": None,
         }
 
         if features:
-            city_entries: list[dict[str, Any]] = []
+            area_entries: list[dict[str, Any]] = []
+            shard_count = 0
             for city in region_cities:
                 city_features = [feature for feature in features if feature["properties"]["city"] == city]
-                city_file_name = f"trees.{region_id}.city.{slugify_token(city)}.v1.geojson"
-                city_payload_bytes = json.dumps(
-                    {"type": "FeatureCollection", "features": city_features}, ensure_ascii=False
-                ).encode("utf-8")
-                (next_dir / city_file_name).write_bytes(city_payload_bytes)
-                city_entries.append(
+                city_slug = slugify_token(city)
+                shard_feature_sets = split_features_for_publish(city_features)
+                shard_entries: list[dict[str, Any]] = []
+                for shard_index, shard_features in enumerate(shard_feature_sets, start=1):
+                    if len(shard_feature_sets) == 1:
+                        shard_file_name = f"trees.{region_id}.area.{city_slug}.v2.geojson"
+                    else:
+                        shard_file_name = f"trees.{region_id}.area.{city_slug}.shard-{shard_index:03d}.v2.geojson"
+                    shard_payload_bytes = encode_feature_collection(shard_features)
+                    shard_raw_bytes = len(shard_payload_bytes)
+                    shard_gzip_bytes = len(gzip.compress(shard_payload_bytes))
+                    (next_dir / shard_file_name).write_bytes(shard_payload_bytes)
+                    shard_entries.append(
+                        {
+                            "id": f"{city_slug}-{shard_index:03d}",
+                            "bounds": bounds_from_features(shard_features),
+                            "data_path": f"/data/{shard_file_name}",
+                            "tree_count": len(shard_features),
+                            "raw_bytes": shard_raw_bytes,
+                            "gzip_bytes": shard_gzip_bytes,
+                        }
+                    )
+                    aggregate_raw_bytes += shard_raw_bytes
+                    aggregate_gzip_bytes += shard_gzip_bytes
+                    shard_count += 1
+                    if shard_raw_bytes > largest_shard_raw_bytes:
+                        largest_shard_raw_bytes = shard_raw_bytes
+                        largest_shard_gzip_bytes = shard_gzip_bytes
+                        largest_shard_area = city
+                    extra_output_names.append(shard_file_name)
+
+                jurisdiction_type = "county" if city == "Arlington" or city.endswith(" County") else "city"
+                area_entries.append(
                     {
-                        "city": city,
-                        "data_path": f"/data/{city_file_name}",
+                        "jurisdiction": city,
+                        "slug": city_slug,
+                        "display_name": display_name_overrides.get(city, city),
+                        "jurisdiction_type": jurisdiction_type,
+                        "state_province": region_id.upper(),
+                        "country": country_by_region.get(region_id, "United States"),
+                        "bounds": bounds_from_features(city_features),
                         "tree_count": len(city_features),
-                        "raw_bytes": len(city_payload_bytes),
-                        "gzip_bytes": len(gzip.compress(city_payload_bytes)),
+                        "zip_codes": summarize_zip_codes(city_features),
+                        "species_counts": summarize_species_counts(city_features),
+                        "ownership_groups": summarize_ownership_groups(city_features),
+                        "shards": shard_entries,
                     }
                 )
                 area_meta.append(
@@ -5068,40 +5207,51 @@ def main() -> int:
                         "region": region_id,
                         "tree_count": len(city_features),
                         "species_counts": summarize_species_counts(city_features),
+                        "jurisdiction_type": jurisdiction_type,
+                        "state_province": region_id.upper(),
                     }
                 )
-                extra_output_names.append(city_file_name)
 
-            city_index_name = f"trees.{region_id}.city-index.v1.json"
-            (next_dir / city_index_name).write_text(
+            area_index_name = f"trees.{region_id}.area-index.v2.json"
+            (next_dir / area_index_name).write_text(
                 json.dumps(
                     {
                         "generated_at": now_iso,
                         "region": region_id,
-                        "strategy": "city",
-                        "items": city_entries,
+                        "strategy": "area_shard",
+                        "items": area_entries,
                     },
                     ensure_ascii=False,
                     indent=2,
                 ),
                 encoding="utf-8",
             )
-            extra_output_names.append(city_index_name)
-            region_entry["city_split"] = {
-                "strategy": "city",
-                "index_path": f"/data/{city_index_name}",
-                "file_count": len(city_entries),
+            extra_output_names.append(area_index_name)
+            region_entry["area_split"] = {
+                "strategy": "area_shard",
+                "index_path": f"/data/{area_index_name}",
+                "area_count": len(area_entries),
+                "shard_count": shard_count,
                 "ready": True,
             }
+            region_entry["raw_bytes"] = aggregate_raw_bytes
+            region_entry["gzip_bytes"] = aggregate_gzip_bytes
+            region_entry["warning_level"] = classify_warning_level(aggregate_raw_bytes)
+            region_entry["aggregate_raw_bytes"] = aggregate_raw_bytes
+            region_entry["aggregate_gzip_bytes"] = aggregate_gzip_bytes
+            region_entry["aggregate_warning_level"] = classify_warning_level(aggregate_raw_bytes)
+            region_entry["largest_shard_raw_bytes"] = largest_shard_raw_bytes
+            region_entry["largest_shard_gzip_bytes"] = largest_shard_gzip_bytes
+            region_entry["largest_shard_area"] = largest_shard_area
 
         region_meta.append(region_entry)
         region_size_summary.append(
             {
                 "region": label,
                 "tree_count": len(features),
-                "raw_bytes": raw_bytes,
-                "gzip_bytes": gzip_bytes,
-                "warning_level": warning_level,
+                "raw_bytes": region_entry["aggregate_raw_bytes"],
+                "gzip_bytes": region_entry["aggregate_gzip_bytes"],
+                "warning_level": region_entry["aggregate_warning_level"],
             }
         )
 
@@ -5145,6 +5295,8 @@ def main() -> int:
         stale_path.unlink()
     for city_index_path in PUBLIC_DATA_DIR.glob("trees.*.city-index.v1.json"):
         city_index_path.unlink()
+    for area_index_path in PUBLIC_DATA_DIR.glob("trees.*.area-index.v2.json"):
+        area_index_path.unlink()
     legacy_trees = PUBLIC_DATA_DIR / "trees.v1.geojson"
     if legacy_trees.exists():
         legacy_trees.unlink()

@@ -1,0 +1,95 @@
+{
+  "generated_at": "2026-03-08T03:36:24.032023+00:00",
+  "region": "dc",
+  "strategy": "area_shard",
+  "items": [
+    {
+      "jurisdiction": "Washington DC",
+      "slug": "washington-dc",
+      "display_name": "Washington DC",
+      "jurisdiction_type": "city",
+      "state_province": "DC",
+      "country": "United States",
+      "bounds": [
+        [
+          -77.1126653331193,
+          38.81730729982075
+        ],
+        [
+          -76.77322596840716,
+          39.108121168263004
+        ]
+      ],
+      "tree_count": 16533,
+      "zip_codes": [
+        "20001",
+        "20002",
+        "20003",
+        "20005",
+        "20007",
+        "20008",
+        "20009",
+        "20010",
+        "20011",
+        "20012",
+        "20015",
+        "20016",
+        "20017",
+        "20018",
+        "20019",
+        "20020",
+        "20024",
+        "20032",
+        "20036",
+        "20037",
+        "20057",
+        "20059",
+        "20064",
+        "20388",
+        "20591",
+        "20712",
+        "20722",
+        "20743",
+        "20745",
+        "20746",
+        "20748",
+        "20781",
+        "20782",
+        "20815",
+        "20910",
+        "20912",
+        "None"
+      ],
+      "species_counts": {
+        "cherry": 10656,
+        "plum": 335,
+        "peach": 0,
+        "magnolia": 3510,
+        "crabapple": 2032
+      },
+      "ownership_groups": [
+        "public",
+        "private"
+      ],
+      "shards": [
+        {
+          "id": "washington-dc-001",
+          "bounds": [
+            [
+              -77.1126653331193,
+              38.81730729982075
+            ],
+            [
+              -76.77322596840716,
+              39.108121168263004
+            ]
+          ],
+          "data_path": "/data/trees.dc.area.washington-dc.v2.geojson",
+          "tree_count": 16533,
+          "raw_bytes": 8515160,
+          "gzip_bytes": 456599
+        }
+      ]
+    }
+  ]
+}

@@ -299,8 +299,9 @@ Live domain:
 
 ## Data Outputs
 ### Published
-- `public/data/trees.<region>.city-index.v1.json`
-- `public/data/trees.<region>.city.<slug>.v1.geojson`
+- `public/data/trees.<region>.area-index.v2.json`
+- `public/data/trees.<region>.area.<slug>.v2.geojson`
+- `public/data/trees.<region>.area.<slug>.shard-###.v2.geojson` (for larger areas)
 - `public/data/coverage.v1.geojson`
 - `public/data/species-guide.v1.json`
 - `public/data/meta.v2.json`
@@ -310,7 +311,7 @@ Live domain:
 - `data/normalized/trees_normalized.csv`
 
 ## Region Publishing
-- Tree points are now published by city for every region, not as region-wide GeoJSON files.
+- Tree points are now published by `area + shard` for every region, not as region-wide GeoJSON files.
 - Current regional groups:
   - `WA`
   - `CA`
@@ -324,18 +325,20 @@ Live domain:
   - `PA`
   - `MA`
 - Local-only ETL audit outputs such as `data/normalized/trees_normalized.csv` and `data/tmp/*` are not part of the GitHub export repo.
-- `public/data/meta.v2.json` contains the region index, region bounds, aggregate size metadata, city-split index paths, and species-count summaries for the full site, each region, and each published area.
-- All published tree-point files now follow the same city-split contract:
-  - `public/data/trees.<region>.city-index.v1.json`
-  - `public/data/trees.<region>.city.<slug>.v1.geojson`
-- If a full ETL run is blocked but current published region files are still available locally, refresh city-split outputs with:
-  - `python3 scripts/refresh_region_city_splits.py --data-dir public/data --region all`
+- `public/data/meta.v2.json` contains the region index, region bounds, species-count summaries, aggregate size metadata, and area-shard publish metadata for the full site, each region, and each published area.
+- All published tree-point files now follow the same area-shard contract:
+  - `public/data/trees.<region>.area-index.v2.json`
+  - `public/data/trees.<region>.area.<slug>.v2.geojson`
+  - `public/data/trees.<region>.area.<slug>.shard-###.v2.geojson`
+- If a full ETL run is blocked but current published region files are still available locally, refresh area-shard outputs with:
+  - `python3 scripts/refresh_region_area_shards.py --data-dir public/data --region all`
 - If coverage or gray-coverage rules changed without rebuilding all tree data, refresh coverage and bounds with:
   - `python3 scripts/refresh_coverage_metadata.py --data-dir public/data`
-- Aggregate warning thresholds for each region:
-  - `warning`: `>= 35 MiB raw`
-  - `high_warning`: `>= 45 MiB raw`
-  - `hard_fail`: `>= 50 MiB raw`
+- Publish safety thresholds for each shard:
+  - `target_split`: `>= 20 MiB raw`
+  - `must_split`: `>= 25 MiB raw`
+  - `hard_fail`: `>= 30 MiB raw`
+- Region aggregate size is still tracked, but only as advisory scale metadata and not as a GitHub single-file risk.
 
 ## Docs
 - API: [docs/API.md](docs/API.md)

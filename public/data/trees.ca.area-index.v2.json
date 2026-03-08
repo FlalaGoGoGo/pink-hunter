@@ -1,0 +1,900 @@
+{
+  "generated_at": "2026-03-08T03:36:24.032023+00:00",
+  "region": "ca",
+  "strategy": "area_shard",
+  "items": [
+    {
+      "jurisdiction": "Berkeley",
+      "slug": "berkeley",
+      "display_name": "Berkeley",
+      "jurisdiction_type": "city",
+      "state_province": "CA",
+      "country": "United States",
+      "bounds": [
+        [
+          -122.32057010362085,
+          37.84640113493349
+        ],
+        [
+          -122.23475742052554,
+          37.904402110984186
+        ]
+      ],
+      "tree_count": 3973,
+      "zip_codes": [
+        "94618",
+        "94702",
+        "94703",
+        "94704",
+        "94705",
+        "94706",
+        "94707",
+        "94708",
+        "94709",
+        "94710",
+        "94720"
+      ],
+      "species_counts": {
+        "cherry": 637,
+        "plum": 2244,
+        "peach": 18,
+        "magnolia": 817,
+        "crabapple": 257
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "berkeley-001",
+          "bounds": [
+            [
+              -122.32057010362085,
+              37.84640113493349
+            ],
+            [
+              -122.23475742052554,
+              37.904402110984186
+            ]
+          ],
+          "data_path": "/data/trees.ca.area.berkeley.v2.geojson",
+          "tree_count": 3973,
+          "raw_bytes": 2043682,
+          "gzip_bytes": 94397
+        }
+      ]
+    },
+    {
+      "jurisdiction": "Burlingame",
+      "slug": "burlingame",
+      "display_name": "Burlingame",
+      "jurisdiction_type": "city",
+      "state_province": "CA",
+      "country": "United States",
+      "bounds": [
+        [
+          -122.40094219981216,
+          37.57012693012639
+        ],
+        [
+          -122.33125840010445,
+          37.6003954999849
+        ]
+      ],
+      "tree_count": 1997,
+      "zip_codes": [
+        "94010"
+      ],
+      "species_counts": {
+        "cherry": 118,
+        "plum": 477,
+        "peach": 1,
+        "magnolia": 1367,
+        "crabapple": 34
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "burlingame-001",
+          "bounds": [
+            [
+              -122.40094219981216,
+              37.57012693012639
+            ],
+            [
+              -122.33125840010445,
+              37.6003954999849
+            ]
+          ],
+          "data_path": "/data/trees.ca.area.burlingame.v2.geojson",
+          "tree_count": 1997,
+          "raw_bytes": 1097121,
+          "gzip_bytes": 49265
+        }
+      ]
+    },
+    {
+      "jurisdiction": "Concord",
+      "slug": "concord",
+      "display_name": "Concord",
+      "jurisdiction_type": "city",
+      "state_province": "CA",
+      "country": "United States",
+      "bounds": [
+        [
+          -122.0613381015122,
+          37.92723123921552
+        ],
+        [
+          -121.93806822806427,
+          38.01976205991789
+        ]
+      ],
+      "tree_count": 4103,
+      "zip_codes": [
+        "94518",
+        "94519",
+        "94520",
+        "94521",
+        "94523",
+        "94553",
+        "94598"
+      ],
+      "species_counts": {
+        "cherry": 281,
+        "plum": 1710,
+        "peach": 353,
+        "magnolia": 1394,
+        "crabapple": 365
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "concord-001",
+          "bounds": [
+            [
+              -122.0613381015122,
+              37.92723123921552
+            ],
+            [
+              -121.93806822806427,
+              38.01976205991789
+            ]
+          ],
+          "data_path": "/data/trees.ca.area.concord.v2.geojson",
+          "tree_count": 4103,
+          "raw_bytes": 2041138,
+          "gzip_bytes": 100425
+        }
+      ]
+    },
+    {
+      "jurisdiction": "Cupertino",
+      "slug": "cupertino",
+      "display_name": "Cupertino",
+      "jurisdiction_type": "city",
+      "state_province": "CA",
+      "country": "United States",
+      "bounds": [
+        [
+          -122.07578882853319,
+          37.29385773332155
+        ],
+        [
+          -121.99661561023348,
+          37.33752689167643
+        ]
+      ],
+      "tree_count": 1299,
+      "zip_codes": [
+        "95014",
+        "95129"
+      ],
+      "species_counts": {
+        "cherry": 68,
+        "plum": 392,
+        "peach": 52,
+        "magnolia": 732,
+        "crabapple": 55
+      },
+      "ownership_groups": [
+        "public",
+        "private"
+      ],
+      "shards": [
+        {
+          "id": "cupertino-001",
+          "bounds": [
+            [
+              -122.07578882853319,
+              37.29385773332155
+            ],
+            [
+              -121.99661561023348,
+              37.33752689167643
+            ]
+          ],
+          "data_path": "/data/trees.ca.area.cupertino.v2.geojson",
+          "tree_count": 1299,
+          "raw_bytes": 633616,
+          "gzip_bytes": 32029
+        }
+      ]
+    },
+    {
+      "jurisdiction": "Fremont",
+      "slug": "fremont",
+      "display_name": "Fremont",
+      "jurisdiction_type": "city",
+      "state_province": "CA",
+      "country": "United States",
+      "bounds": [
+        [
+          -122.06542680982693,
+          37.457397165708045
+        ],
+        [
+          -121.90057799211901,
+          37.59208897489442
+        ]
+      ],
+      "tree_count": 5555,
+      "zip_codes": [
+        "94536",
+        "94538",
+        "94539",
+        "94555",
+        "95035"
+      ],
+      "species_counts": {
+        "cherry": 536,
+        "plum": 2287,
+        "peach": 199,
+        "magnolia": 2270,
+        "crabapple": 263
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "fremont-001",
+          "bounds": [
+            [
+              -122.06542680982693,
+              37.457397165708045
+            ],
+            [
+              -121.90057799211901,
+              37.59208897489442
+            ]
+          ],
+          "data_path": "/data/trees.ca.area.fremont.v2.geojson",
+          "tree_count": 5555,
+          "raw_bytes": 2987498,
+          "gzip_bytes": 136173
+        }
+      ]
+    },
+    {
+      "jurisdiction": "Milpitas",
+      "slug": "milpitas",
+      "display_name": "Milpitas",
+      "jurisdiction_type": "city",
+      "state_province": "CA",
+      "country": "United States",
+      "bounds": [
+        [
+          -121.9252788,
+          37.3988245
+        ],
+        [
+          -121.8630799,
+          37.4643663
+        ]
+      ],
+      "tree_count": 1696,
+      "zip_codes": [
+        "95035",
+        "95132"
+      ],
+      "species_counts": {
+        "cherry": 139,
+        "plum": 291,
+        "peach": 143,
+        "magnolia": 977,
+        "crabapple": 146
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "milpitas-001",
+          "bounds": [
+            [
+              -121.9252788,
+              37.3988245
+            ],
+            [
+              -121.8630799,
+              37.4643663
+            ]
+          ],
+          "data_path": "/data/trees.ca.area.milpitas.v2.geojson",
+          "tree_count": 1696,
+          "raw_bytes": 844628,
+          "gzip_bytes": 25811
+        }
+      ]
+    },
+    {
+      "jurisdiction": "Oakland",
+      "slug": "oakland",
+      "display_name": "Oakland",
+      "jurisdiction_type": "city",
+      "state_province": "CA",
+      "country": "United States",
+      "bounds": [
+        [
+          -122.27301999967312,
+          37.80505999961946
+        ],
+        [
+          -122.27301999967312,
+          37.80505999961946
+        ]
+      ],
+      "tree_count": 3977,
+      "zip_codes": [
+        "94612"
+      ],
+      "species_counts": {
+        "cherry": 262,
+        "plum": 2060,
+        "peach": 0,
+        "magnolia": 1400,
+        "crabapple": 255
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "oakland-001",
+          "bounds": [
+            [
+              -122.27301999967312,
+              37.80505999961946
+            ],
+            [
+              -122.27301999967312,
+              37.80505999961946
+            ]
+          ],
+          "data_path": "/data/trees.ca.area.oakland.v2.geojson",
+          "tree_count": 3977,
+          "raw_bytes": 2172819,
+          "gzip_bytes": 24347
+        }
+      ]
+    },
+    {
+      "jurisdiction": "Palo Alto",
+      "slug": "palo-alto",
+      "display_name": "Palo Alto",
+      "jurisdiction_type": "city",
+      "state_province": "CA",
+      "country": "United States",
+      "bounds": [
+        [
+          -122.17006086573504,
+          37.3915233354914
+        ],
+        [
+          -122.10447416737678,
+          37.46723610876356
+        ]
+      ],
+      "tree_count": 4996,
+      "zip_codes": [
+        "94025",
+        "94301",
+        "94303",
+        "None"
+      ],
+      "species_counts": {
+        "cherry": 171,
+        "plum": 456,
+        "peach": 21,
+        "magnolia": 4270,
+        "crabapple": 78
+      },
+      "ownership_groups": [
+        "public",
+        "private"
+      ],
+      "shards": [
+        {
+          "id": "palo-alto-001",
+          "bounds": [
+            [
+              -122.17006086573504,
+              37.3915233354914
+            ],
+            [
+              -122.10447416737678,
+              37.46723610876356
+            ]
+          ],
+          "data_path": "/data/trees.ca.area.palo-alto.v2.geojson",
+          "tree_count": 4996,
+          "raw_bytes": 2515865,
+          "gzip_bytes": 114221
+        }
+      ]
+    },
+    {
+      "jurisdiction": "Salinas",
+      "slug": "salinas",
+      "display_name": "Salinas",
+      "jurisdiction_type": "city",
+      "state_province": "CA",
+      "country": "United States",
+      "bounds": [
+        [
+          -121.6832199794408,
+          36.651255722900984
+        ],
+        [
+          -121.59276009489318,
+          36.7318609480359
+        ]
+      ],
+      "tree_count": 4535,
+      "zip_codes": [
+        "93901",
+        "93905",
+        "93906",
+        "93907",
+        "93908"
+      ],
+      "species_counts": {
+        "cherry": 684,
+        "plum": 1983,
+        "peach": 55,
+        "magnolia": 1739,
+        "crabapple": 74
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "salinas-001",
+          "bounds": [
+            [
+              -121.6832199794408,
+              36.651255722900984
+            ],
+            [
+              -121.59276009489318,
+              36.7318609480359
+            ]
+          ],
+          "data_path": "/data/trees.ca.area.salinas.v2.geojson",
+          "tree_count": 4535,
+          "raw_bytes": 2329654,
+          "gzip_bytes": 107226
+        }
+      ]
+    },
+    {
+      "jurisdiction": "San Diego",
+      "slug": "san-diego",
+      "display_name": "San Diego",
+      "jurisdiction_type": "city",
+      "state_province": "CA",
+      "country": "United States",
+      "bounds": [
+        [
+          -117.27993340924583,
+          32.54441471717994
+        ],
+        [
+          -116.92799001850382,
+          33.050144764993526
+        ]
+      ],
+      "tree_count": 13310,
+      "zip_codes": [
+        "92014",
+        "92037",
+        "92101",
+        "92102",
+        "92103",
+        "92104",
+        "92105",
+        "92106",
+        "92107",
+        "92108",
+        "92109",
+        "92110",
+        "92111",
+        "92113",
+        "92114",
+        "92115",
+        "92116",
+        "92117",
+        "92119",
+        "92120",
+        "92121",
+        "92122",
+        "92123",
+        "92124",
+        "92126",
+        "92127",
+        "92128",
+        "92129",
+        "92130",
+        "92131",
+        "92139",
+        "92154",
+        "92173"
+      ],
+      "species_counts": {
+        "cherry": 3266,
+        "plum": 3720,
+        "peach": 230,
+        "magnolia": 6075,
+        "crabapple": 19
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "san-diego-001",
+          "bounds": [
+            [
+              -117.27993340924583,
+              32.54441471717994
+            ],
+            [
+              -116.92799001850382,
+              33.050144764993526
+            ]
+          ],
+          "data_path": "/data/trees.ca.area.san-diego.v2.geojson",
+          "tree_count": 13310,
+          "raw_bytes": 6660911,
+          "gzip_bytes": 315255
+        }
+      ]
+    },
+    {
+      "jurisdiction": "San Francisco",
+      "slug": "san-francisco",
+      "display_name": "San Francisco",
+      "jurisdiction_type": "city",
+      "state_province": "CA",
+      "country": "United States",
+      "bounds": [
+        [
+          -122.50930075514466,
+          37.70824221728633
+        ],
+        [
+          -122.37522580172649,
+          37.807794446511195
+        ]
+      ],
+      "tree_count": 24099,
+      "zip_codes": [
+        "94014",
+        "94102",
+        "94103",
+        "94105",
+        "94107",
+        "94108",
+        "94109",
+        "94110",
+        "94111",
+        "94112",
+        "94114",
+        "94115",
+        "94116",
+        "94117",
+        "94118",
+        "94121",
+        "94122",
+        "94123",
+        "94124",
+        "94127",
+        "94129",
+        "94131",
+        "94132",
+        "94133",
+        "94134",
+        "94188"
+      ],
+      "species_counts": {
+        "cherry": 7048,
+        "plum": 7599,
+        "peach": 54,
+        "magnolia": 9121,
+        "crabapple": 277
+      },
+      "ownership_groups": [
+        "public",
+        "private"
+      ],
+      "shards": [
+        {
+          "id": "san-francisco-001",
+          "bounds": [
+            [
+              -122.50930075514466,
+              37.70824221728633
+            ],
+            [
+              -122.37522580172649,
+              37.807794446511195
+            ]
+          ],
+          "data_path": "/data/trees.ca.area.san-francisco.v2.geojson",
+          "tree_count": 24099,
+          "raw_bytes": 12853690,
+          "gzip_bytes": 556355
+        }
+      ]
+    },
+    {
+      "jurisdiction": "San Jose",
+      "slug": "san-jose",
+      "display_name": "San Jose",
+      "jurisdiction_type": "city",
+      "state_province": "CA",
+      "country": "United States",
+      "bounds": [
+        [
+          -122.03033638564078,
+          37.196178956219526
+        ],
+        [
+          -121.73476917246366,
+          37.43264522494693
+        ]
+      ],
+      "tree_count": 18021,
+      "zip_codes": [
+        "95002",
+        "95008",
+        "95032",
+        "95050",
+        "95070",
+        "95110",
+        "95111",
+        "95112",
+        "95113",
+        "95116",
+        "95117",
+        "95118",
+        "95119",
+        "95120",
+        "95121",
+        "95122",
+        "95123",
+        "95124",
+        "95125",
+        "95126",
+        "95127",
+        "95128",
+        "95129",
+        "95130",
+        "95131",
+        "95132",
+        "95133",
+        "95134",
+        "95135",
+        "95136",
+        "95138",
+        "95139",
+        "95148"
+      ],
+      "species_counts": {
+        "cherry": 1295,
+        "plum": 7147,
+        "peach": 1343,
+        "magnolia": 7202,
+        "crabapple": 1034
+      },
+      "ownership_groups": [
+        "public",
+        "private"
+      ],
+      "shards": [
+        {
+          "id": "san-jose-001",
+          "bounds": [
+            [
+              -122.03033638564078,
+              37.196178956219526
+            ],
+            [
+              -121.73476917246366,
+              37.43264522494693
+            ]
+          ],
+          "data_path": "/data/trees.ca.area.san-jose.v2.geojson",
+          "tree_count": 18021,
+          "raw_bytes": 8882985,
+          "gzip_bytes": 419467
+        }
+      ]
+    },
+    {
+      "jurisdiction": "San Mateo",
+      "slug": "san-mateo",
+      "display_name": "San Mateo",
+      "jurisdiction_type": "city",
+      "state_province": "CA",
+      "country": "United States",
+      "bounds": [
+        [
+          -122.35358883558938,
+          37.52187524053123
+        ],
+        [
+          -122.27963601456563,
+          37.585457738049534
+        ]
+      ],
+      "tree_count": 1868,
+      "zip_codes": [
+        "94010",
+        "94401",
+        "94402",
+        "94403",
+        "94404"
+      ],
+      "species_counts": {
+        "cherry": 251,
+        "plum": 536,
+        "peach": 23,
+        "magnolia": 874,
+        "crabapple": 184
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "san-mateo-001",
+          "bounds": [
+            [
+              -122.35358883558938,
+              37.52187524053123
+            ],
+            [
+              -122.27963601456563,
+              37.585457738049534
+            ]
+          ],
+          "data_path": "/data/trees.ca.area.san-mateo.v2.geojson",
+          "tree_count": 1868,
+          "raw_bytes": 979227,
+          "gzip_bytes": 45076
+        }
+      ]
+    },
+    {
+      "jurisdiction": "San Rafael",
+      "slug": "san-rafael",
+      "display_name": "San Rafael",
+      "jurisdiction_type": "city",
+      "state_province": "CA",
+      "country": "United States",
+      "bounds": [
+        [
+          -122.57296798402149,
+          37.95860533433682
+        ],
+        [
+          -122.45710426991413,
+          38.025728193982346
+        ]
+      ],
+      "tree_count": 422,
+      "zip_codes": [
+        "94901",
+        "94903"
+      ],
+      "species_counts": {
+        "cherry": 0,
+        "plum": 335,
+        "peach": 0,
+        "magnolia": 87,
+        "crabapple": 0
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "san-rafael-001",
+          "bounds": [
+            [
+              -122.57296798402149,
+              37.95860533433682
+            ],
+            [
+              -122.45710426991413,
+              38.025728193982346
+            ]
+          ],
+          "data_path": "/data/trees.ca.area.san-rafael.v2.geojson",
+          "tree_count": 422,
+          "raw_bytes": 219038,
+          "gzip_bytes": 10169
+        }
+      ]
+    },
+    {
+      "jurisdiction": "South San Francisco",
+      "slug": "south-san-francisco",
+      "display_name": "South San Francisco",
+      "jurisdiction_type": "city",
+      "state_province": "CA",
+      "country": "United States",
+      "bounds": [
+        [
+          -122.468729344,
+          37.6351692572
+        ],
+        [
+          -122.387130273,
+          37.6708599663
+        ]
+      ],
+      "tree_count": 784,
+      "zip_codes": [
+        "94066",
+        "94080"
+      ],
+      "species_counts": {
+        "cherry": 246,
+        "plum": 33,
+        "peach": 6,
+        "magnolia": 497,
+        "crabapple": 2
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "south-san-francisco-001",
+          "bounds": [
+            [
+              -122.468729344,
+              37.6351692572
+            ],
+            [
+              -122.387130273,
+              37.6708599663
+            ]
+          ],
+          "data_path": "/data/trees.ca.area.south-san-francisco.v2.geojson",
+          "tree_count": 784,
+          "raw_bytes": 428752,
+          "gzip_bytes": 15023
+        }
+      ]
+    }
+  ]
+}

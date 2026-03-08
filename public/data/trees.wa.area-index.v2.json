@@ -1,0 +1,941 @@
+{
+  "generated_at": "2026-03-08T03:36:24.032023+00:00",
+  "region": "wa",
+  "strategy": "area_shard",
+  "items": [
+    {
+      "jurisdiction": "Bellevue",
+      "slug": "bellevue",
+      "display_name": "Bellevue",
+      "jurisdiction_type": "city",
+      "state_province": "WA",
+      "country": "United States",
+      "bounds": [
+        [
+          -122.22143083789702,
+          47.54481758930642
+        ],
+        [
+          -122.11566852874432,
+          47.63849726563137
+        ]
+      ],
+      "tree_count": 342,
+      "zip_codes": [
+        "98004",
+        "98005",
+        "98006",
+        "98007",
+        "98008"
+      ],
+      "species_counts": {
+        "cherry": 93,
+        "plum": 13,
+        "peach": 0,
+        "magnolia": 131,
+        "crabapple": 105
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "bellevue-001",
+          "bounds": [
+            [
+              -122.22143083789702,
+              47.54481758930642
+            ],
+            [
+              -122.11566852874432,
+              47.63849726563137
+            ]
+          ],
+          "data_path": "/data/trees.wa.area.bellevue.v2.geojson",
+          "tree_count": 342,
+          "raw_bytes": 176453,
+          "gzip_bytes": 9229
+        }
+      ]
+    },
+    {
+      "jurisdiction": "Bellingham",
+      "slug": "bellingham",
+      "display_name": "Bellingham",
+      "jurisdiction_type": "city",
+      "state_province": "WA",
+      "country": "United States",
+      "bounds": [
+        [
+          -122.50530321847974,
+          48.697505185651096
+        ],
+        [
+          -122.40982427813297,
+          48.7963270217033
+        ]
+      ],
+      "tree_count": 645,
+      "zip_codes": [
+        "None"
+      ],
+      "species_counts": {
+        "cherry": 239,
+        "plum": 88,
+        "peach": 0,
+        "magnolia": 61,
+        "crabapple": 257
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "bellingham-001",
+          "bounds": [
+            [
+              -122.50530321847974,
+              48.697505185651096
+            ],
+            [
+              -122.40982427813297,
+              48.7963270217033
+            ]
+          ],
+          "data_path": "/data/trees.wa.area.bellingham.v2.geojson",
+          "tree_count": 645,
+          "raw_bytes": 316693,
+          "gzip_bytes": 17024
+        }
+      ]
+    },
+    {
+      "jurisdiction": "Everett",
+      "slug": "everett",
+      "display_name": "Everett",
+      "jurisdiction_type": "city",
+      "state_province": "WA",
+      "country": "United States",
+      "bounds": [
+        [
+          -122.284251665,
+          47.89093
+        ],
+        [
+          -122.177361805,
+          48.0176250782
+        ]
+      ],
+      "tree_count": 464,
+      "zip_codes": [
+        "98201",
+        "98203",
+        "98204",
+        "98208"
+      ],
+      "species_counts": {
+        "cherry": 123,
+        "plum": 253,
+        "peach": 0,
+        "magnolia": 18,
+        "crabapple": 70
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "everett-001",
+          "bounds": [
+            [
+              -122.284251665,
+              47.89093
+            ],
+            [
+              -122.177361805,
+              48.0176250782
+            ]
+          ],
+          "data_path": "/data/trees.wa.area.everett.v2.geojson",
+          "tree_count": 464,
+          "raw_bytes": 222118,
+          "gzip_bytes": 8950
+        }
+      ]
+    },
+    {
+      "jurisdiction": "Gig Harbor",
+      "slug": "gig-harbor",
+      "display_name": "Gig Harbor",
+      "jurisdiction_type": "city",
+      "state_province": "WA",
+      "country": "United States",
+      "bounds": [
+        [
+          -122.60378460068982,
+          47.322571918160136
+        ],
+        [
+          -122.58009271060554,
+          47.35203888088289
+        ]
+      ],
+      "tree_count": 63,
+      "zip_codes": [
+        "98332",
+        "98335"
+      ],
+      "species_counts": {
+        "cherry": 3,
+        "plum": 51,
+        "peach": 0,
+        "magnolia": 1,
+        "crabapple": 8
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "gig-harbor-001",
+          "bounds": [
+            [
+              -122.60378460068982,
+              47.322571918160136
+            ],
+            [
+              -122.58009271060554,
+              47.35203888088289
+            ]
+          ],
+          "data_path": "/data/trees.wa.area.gig-harbor.v2.geojson",
+          "tree_count": 63,
+          "raw_bytes": 32607,
+          "gzip_bytes": 1956
+        }
+      ]
+    },
+    {
+      "jurisdiction": "Kenmore",
+      "slug": "kenmore",
+      "display_name": "Kenmore",
+      "jurisdiction_type": "city",
+      "state_province": "WA",
+      "country": "United States",
+      "bounds": [
+        [
+          -122.2700232454727,
+          47.73297949387597
+        ],
+        [
+          -122.2215550023334,
+          47.7767148747082
+        ]
+      ],
+      "tree_count": 329,
+      "zip_codes": [
+        "98028"
+      ],
+      "species_counts": {
+        "cherry": 74,
+        "plum": 194,
+        "peach": 0,
+        "magnolia": 40,
+        "crabapple": 21
+      },
+      "ownership_groups": [
+        "public",
+        "private"
+      ],
+      "shards": [
+        {
+          "id": "kenmore-001",
+          "bounds": [
+            [
+              -122.2700232454727,
+              47.73297949387597
+            ],
+            [
+              -122.2215550023334,
+              47.7767148747082
+            ]
+          ],
+          "data_path": "/data/trees.wa.area.kenmore.v2.geojson",
+          "tree_count": 329,
+          "raw_bytes": 156306,
+          "gzip_bytes": 8688
+        }
+      ]
+    },
+    {
+      "jurisdiction": "Kirkland",
+      "slug": "kirkland",
+      "display_name": "Kirkland",
+      "jurisdiction_type": "city",
+      "state_province": "WA",
+      "country": "United States",
+      "bounds": [
+        [
+          -122.25568993388127,
+          47.643562978143486
+        ],
+        [
+          -122.16387066155262,
+          47.734145730503094
+        ]
+      ],
+      "tree_count": 3122,
+      "zip_codes": [
+        "98033",
+        "98034"
+      ],
+      "species_counts": {
+        "cherry": 888,
+        "plum": 1484,
+        "peach": 29,
+        "magnolia": 216,
+        "crabapple": 505
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "kirkland-001",
+          "bounds": [
+            [
+              -122.25568993388127,
+              47.643562978143486
+            ],
+            [
+              -122.16387066155262,
+              47.734145730503094
+            ]
+          ],
+          "data_path": "/data/trees.wa.area.kirkland.v2.geojson",
+          "tree_count": 3122,
+          "raw_bytes": 1565889,
+          "gzip_bytes": 74788
+        }
+      ]
+    },
+    {
+      "jurisdiction": "Puyallup",
+      "slug": "puyallup",
+      "display_name": "Puyallup",
+      "jurisdiction_type": "city",
+      "state_province": "WA",
+      "country": "United States",
+      "bounds": [
+        [
+          -122.32581246285078,
+          47.18517380582869
+        ],
+        [
+          -122.25354528143367,
+          47.19813171597989
+        ]
+      ],
+      "tree_count": 76,
+      "zip_codes": [
+        "98371",
+        "98372"
+      ],
+      "species_counts": {
+        "cherry": 4,
+        "plum": 0,
+        "peach": 0,
+        "magnolia": 0,
+        "crabapple": 72
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "puyallup-001",
+          "bounds": [
+            [
+              -122.32581246285078,
+              47.18517380582869
+            ],
+            [
+              -122.25354528143367,
+              47.19813171597989
+            ]
+          ],
+          "data_path": "/data/trees.wa.area.puyallup.v2.geojson",
+          "tree_count": 76,
+          "raw_bytes": 38612,
+          "gzip_bytes": 2120
+        }
+      ]
+    },
+    {
+      "jurisdiction": "Redmond",
+      "slug": "redmond",
+      "display_name": "Redmond",
+      "jurisdiction_type": "city",
+      "state_province": "WA",
+      "country": "United States",
+      "bounds": [
+        [
+          -122.14109647217562,
+          47.646007434335544
+        ],
+        [
+          -122.09392339143267,
+          47.703940040492895
+        ]
+      ],
+      "tree_count": 185,
+      "zip_codes": [
+        "98052"
+      ],
+      "species_counts": {
+        "cherry": 156,
+        "plum": 0,
+        "peach": 0,
+        "magnolia": 5,
+        "crabapple": 24
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "redmond-001",
+          "bounds": [
+            [
+              -122.14109647217562,
+              47.646007434335544
+            ],
+            [
+              -122.09392339143267,
+              47.703940040492895
+            ]
+          ],
+          "data_path": "/data/trees.wa.area.redmond.v2.geojson",
+          "tree_count": 185,
+          "raw_bytes": 94055,
+          "gzip_bytes": 4992
+        }
+      ]
+    },
+    {
+      "jurisdiction": "Renton",
+      "slug": "renton",
+      "display_name": "Renton",
+      "jurisdiction_type": "city",
+      "state_province": "WA",
+      "country": "United States",
+      "bounds": [
+        [
+          -122.24443157127817,
+          47.42433671114742
+        ],
+        [
+          -122.12241842078294,
+          47.53490826486922
+        ]
+      ],
+      "tree_count": 1879,
+      "zip_codes": [
+        "98055",
+        "98056",
+        "98057",
+        "98058",
+        "98059",
+        "98178"
+      ],
+      "species_counts": {
+        "cherry": 815,
+        "plum": 714,
+        "peach": 6,
+        "magnolia": 51,
+        "crabapple": 293
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "renton-001",
+          "bounds": [
+            [
+              -122.24443157127817,
+              47.42433671114742
+            ],
+            [
+              -122.12241842078294,
+              47.53490826486922
+            ]
+          ],
+          "data_path": "/data/trees.wa.area.renton.v2.geojson",
+          "tree_count": 1879,
+          "raw_bytes": 894020,
+          "gzip_bytes": 47392
+        }
+      ]
+    },
+    {
+      "jurisdiction": "Sammamish",
+      "slug": "sammamish",
+      "display_name": "Sammamish",
+      "jurisdiction_type": "city",
+      "state_province": "WA",
+      "country": "United States",
+      "bounds": [
+        [
+          -122.08939752,
+          47.5589835494
+        ],
+        [
+          -121.971136878,
+          47.65600045
+        ]
+      ],
+      "tree_count": 1163,
+      "zip_codes": [
+        "98029",
+        "98074",
+        "98075"
+      ],
+      "species_counts": {
+        "cherry": 237,
+        "plum": 846,
+        "peach": 0,
+        "magnolia": 23,
+        "crabapple": 57
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "sammamish-001",
+          "bounds": [
+            [
+              -122.08939752,
+              47.5589835494
+            ],
+            [
+              -121.971136878,
+              47.65600045
+            ]
+          ],
+          "data_path": "/data/trees.wa.area.sammamish.v2.geojson",
+          "tree_count": 1163,
+          "raw_bytes": 549111,
+          "gzip_bytes": 20340
+        }
+      ]
+    },
+    {
+      "jurisdiction": "SeaTac",
+      "slug": "seatac",
+      "display_name": "SeaTac",
+      "jurisdiction_type": "city",
+      "state_province": "WA",
+      "country": "United States",
+      "bounds": [
+        [
+          -122.3107523777718,
+          47.42566432174194
+        ],
+        [
+          -122.27446865455865,
+          47.48758438055454
+        ]
+      ],
+      "tree_count": 38,
+      "zip_codes": [
+        "98168",
+        "98188"
+      ],
+      "species_counts": {
+        "cherry": 28,
+        "plum": 5,
+        "peach": 0,
+        "magnolia": 3,
+        "crabapple": 2
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "seatac-001",
+          "bounds": [
+            [
+              -122.3107523777718,
+              47.42566432174194
+            ],
+            [
+              -122.27446865455865,
+              47.48758438055454
+            ]
+          ],
+          "data_path": "/data/trees.wa.area.seatac.v2.geojson",
+          "tree_count": 38,
+          "raw_bytes": 18211,
+          "gzip_bytes": 1402
+        }
+      ]
+    },
+    {
+      "jurisdiction": "Seattle",
+      "slug": "seattle",
+      "display_name": "Seattle",
+      "jurisdiction_type": "city",
+      "state_province": "WA",
+      "country": "United States",
+      "bounds": [
+        [
+          -122.42046409992147,
+          47.49646981402653
+        ],
+        [
+          -122.24121121056568,
+          47.73405616810464
+        ]
+      ],
+      "tree_count": 46114,
+      "zip_codes": [
+        "98101",
+        "98102",
+        "98103",
+        "98104",
+        "98105",
+        "98106",
+        "98107",
+        "98108",
+        "98109",
+        "98112",
+        "98115",
+        "98116",
+        "98117",
+        "98118",
+        "98119",
+        "98121",
+        "98122",
+        "98125",
+        "98126",
+        "98133",
+        "98134",
+        "98136",
+        "98144",
+        "98146",
+        "98177",
+        "98178",
+        "98195",
+        "98199"
+      ],
+      "species_counts": {
+        "cherry": 18917,
+        "plum": 12042,
+        "peach": 215,
+        "magnolia": 4609,
+        "crabapple": 10331
+      },
+      "ownership_groups": [
+        "public",
+        "private"
+      ],
+      "shards": [
+        {
+          "id": "seattle-001",
+          "bounds": [
+            [
+              -122.41685449592762,
+              47.49646981402653
+            ],
+            [
+              -122.24121121056568,
+              47.64225280542805
+            ]
+          ],
+          "data_path": "/data/trees.wa.area.seattle.shard-001.v2.geojson",
+          "tree_count": 23057,
+          "raw_bytes": 12631763,
+          "gzip_bytes": 634377
+        },
+        {
+          "id": "seattle-002",
+          "bounds": [
+            [
+              -122.42046409992147,
+              47.64225311307368
+            ],
+            [
+              -122.24966488240047,
+              47.73405616810464
+            ]
+          ],
+          "data_path": "/data/trees.wa.area.seattle.shard-002.v2.geojson",
+          "tree_count": 23057,
+          "raw_bytes": 12556991,
+          "gzip_bytes": 637045
+        }
+      ]
+    },
+    {
+      "jurisdiction": "Shoreline",
+      "slug": "shoreline",
+      "display_name": "Shoreline",
+      "jurisdiction_type": "city",
+      "state_province": "WA",
+      "country": "United States",
+      "bounds": [
+        [
+          -122.39264820948623,
+          47.734315930780866
+        ],
+        [
+          -122.29371688872423,
+          47.77765394638591
+        ]
+      ],
+      "tree_count": 2244,
+      "zip_codes": [
+        "98133",
+        "98155",
+        "98177"
+      ],
+      "species_counts": {
+        "cherry": 1049,
+        "plum": 641,
+        "peach": 4,
+        "magnolia": 188,
+        "crabapple": 362
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "shoreline-001",
+          "bounds": [
+            [
+              -122.39264820948623,
+              47.734315930780866
+            ],
+            [
+              -122.29371688872423,
+              47.77765394638591
+            ]
+          ],
+          "data_path": "/data/trees.wa.area.shoreline.v2.geojson",
+          "tree_count": 2244,
+          "raw_bytes": 1087162,
+          "gzip_bytes": 54792
+        }
+      ]
+    },
+    {
+      "jurisdiction": "Snohomish",
+      "slug": "snohomish",
+      "display_name": "Snohomish",
+      "jurisdiction_type": "city",
+      "state_province": "WA",
+      "country": "United States",
+      "bounds": [
+        [
+          -122.11447463353556,
+          47.90753346359222
+        ],
+        [
+          -122.07816864328491,
+          47.95187168144569
+        ]
+      ],
+      "tree_count": 856,
+      "zip_codes": [
+        "98290"
+      ],
+      "species_counts": {
+        "cherry": 376,
+        "plum": 312,
+        "peach": 3,
+        "magnolia": 64,
+        "crabapple": 101
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "snohomish-001",
+          "bounds": [
+            [
+              -122.11447463353556,
+              47.90753346359222
+            ],
+            [
+              -122.07816864328491,
+              47.95187168144569
+            ]
+          ],
+          "data_path": "/data/trees.wa.area.snohomish.v2.geojson",
+          "tree_count": 856,
+          "raw_bytes": 471491,
+          "gzip_bytes": 21332
+        }
+      ]
+    },
+    {
+      "jurisdiction": "Spokane",
+      "slug": "spokane",
+      "display_name": "Spokane",
+      "jurisdiction_type": "city",
+      "state_province": "WA",
+      "country": "United States",
+      "bounds": [
+        [
+          -117.54802826108586,
+          47.59230095410108
+        ],
+        [
+          -117.31436943740762,
+          47.75787657260972
+        ]
+      ],
+      "tree_count": 8472,
+      "zip_codes": [
+        "None"
+      ],
+      "species_counts": {
+        "cherry": 2530,
+        "plum": 2799,
+        "peach": 75,
+        "magnolia": 460,
+        "crabapple": 2608
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "spokane-001",
+          "bounds": [
+            [
+              -117.54802826108586,
+              47.59230095410108
+            ],
+            [
+              -117.31436943740762,
+              47.75787657260972
+            ]
+          ],
+          "data_path": "/data/trees.wa.area.spokane.v2.geojson",
+          "tree_count": 8472,
+          "raw_bytes": 4477788,
+          "gzip_bytes": 190559
+        }
+      ]
+    },
+    {
+      "jurisdiction": "Walla Walla",
+      "slug": "walla-walla",
+      "display_name": "Walla Walla",
+      "jurisdiction_type": "city",
+      "state_province": "WA",
+      "country": "United States",
+      "bounds": [
+        [
+          -118.36761070006963,
+          46.03045961992176
+        ],
+        [
+          -118.28347670062162,
+          46.086472869901804
+        ]
+      ],
+      "tree_count": 1167,
+      "zip_codes": [
+        "None"
+      ],
+      "species_counts": {
+        "cherry": 134,
+        "plum": 401,
+        "peach": 12,
+        "magnolia": 72,
+        "crabapple": 548
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "walla-walla-001",
+          "bounds": [
+            [
+              -118.36761070006963,
+              46.03045961992176
+            ],
+            [
+              -118.28347670062162,
+              46.086472869901804
+            ]
+          ],
+          "data_path": "/data/trees.wa.area.walla-walla.v2.geojson",
+          "tree_count": 1167,
+          "raw_bytes": 586484,
+          "gzip_bytes": 30212
+        }
+      ]
+    },
+    {
+      "jurisdiction": "Yakima",
+      "slug": "yakima",
+      "display_name": "Yakima",
+      "jurisdiction_type": "city",
+      "state_province": "WA",
+      "country": "United States",
+      "bounds": [
+        [
+          -120.59474266341475,
+          46.57375395179144
+        ],
+        [
+          -120.4710806090462,
+          46.617782229693276
+        ]
+      ],
+      "tree_count": 509,
+      "zip_codes": [
+        "None"
+      ],
+      "species_counts": {
+        "cherry": 204,
+        "plum": 243,
+        "peach": 0,
+        "magnolia": 4,
+        "crabapple": 58
+      },
+      "ownership_groups": [
+        "public",
+        "private"
+      ],
+      "shards": [
+        {
+          "id": "yakima-001",
+          "bounds": [
+            [
+              -120.59474266341475,
+              46.57375395179144
+            ],
+            [
+              -120.4710806090462,
+              46.617782229693276
+            ]
+          ],
+          "data_path": "/data/trees.wa.area.yakima.v2.geojson",
+          "tree_count": 509,
+          "raw_bytes": 244753,
+          "gzip_bytes": 12285
+        }
+      ]
+    }
+  ]
+}

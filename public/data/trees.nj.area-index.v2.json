@@ -1,0 +1,64 @@
+{
+  "generated_at": "2026-03-08T03:36:24.032023+00:00",
+  "region": "nj",
+  "strategy": "area_shard",
+  "items": [
+    {
+      "jurisdiction": "Jersey City",
+      "slug": "jersey-city",
+      "display_name": "Jersey City",
+      "jurisdiction_type": "city",
+      "state_province": "NJ",
+      "country": "United States",
+      "bounds": [
+        [
+          -74.10476052098124,
+          40.688807439511784
+        ],
+        [
+          -74.03213147488759,
+          40.758711906729154
+        ]
+      ],
+      "tree_count": 2148,
+      "zip_codes": [
+        "07087",
+        "07302",
+        "07304",
+        "07305",
+        "07306",
+        "07307",
+        "07310"
+      ],
+      "species_counts": {
+        "cherry": 2004,
+        "plum": 1,
+        "peach": 0,
+        "magnolia": 21,
+        "crabapple": 122
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "jersey-city-001",
+          "bounds": [
+            [
+              -74.10476052098124,
+              40.688807439511784
+            ],
+            [
+              -74.03213147488759,
+              40.758711906729154
+            ]
+          ],
+          "data_path": "/data/trees.nj.area.jersey-city.v2.geojson",
+          "tree_count": 2148,
+          "raw_bytes": 1153133,
+          "gzip_bytes": 50297
+        }
+      ]
+    }
+  ]
+}

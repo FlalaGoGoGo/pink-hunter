@@ -1,7 +1,7 @@
 # Public Data Interfaces
 
-## `GET /data/trees.<region>.city-index.v1.json`
-Published city-split index for one region.
+## `GET /data/trees.<region>.area-index.v2.json`
+Published area-shard index for one region.
 
 ### Supported regions
 - `wa`
@@ -21,16 +21,32 @@ Published city-split index for one region.
 ### Shape
 - `generated_at`
 - `region`
-- `strategy: "city"`
+- `strategy: "area_shard"`
 - `items[]`
-  - `city`
-  - `data_path`
+  - `jurisdiction`
+  - `slug`
+  - `display_name`
+  - `jurisdiction_type`
+  - `state_province`
+  - `country`
+  - `bounds`
   - `tree_count`
-  - `raw_bytes`
-  - `gzip_bytes`
+  - `zip_codes[]`
+  - `species_counts`
+  - `ownership_groups[]`
+  - `shards[]`
+    - `id`
+    - `bounds`
+    - `data_path`
+    - `tree_count`
+    - `raw_bytes`
+    - `gzip_bytes`
 
-## `GET /data/trees.<region>.city.<slug>.v1.geojson`
-GeoJSON `FeatureCollection` for a single city.
+## `GET /data/trees.<region>.area.<slug>.v2.geojson`
+GeoJSON `FeatureCollection` for a single-area shard when the area fits in one published file.
+
+## `GET /data/trees.<region>.area.<slug>.shard-###.v2.geojson`
+GeoJSON `FeatureCollection` for one shard of a larger area.
 
 ### `feature.properties`
 - `id: string`
@@ -98,10 +114,17 @@ Dataset metadata and source refresh details.
 - `raw_bytes`
 - `gzip_bytes`
 - `warning_level`
-- `city_split`
+- `aggregate_raw_bytes`
+- `aggregate_gzip_bytes`
+- `aggregate_warning_level`
+- `largest_shard_raw_bytes`
+- `largest_shard_gzip_bytes`
+- `largest_shard_area`
+- `area_split`
   - `strategy`
   - `index_path`
-  - `file_count`
+  - `area_count`
+  - `shard_count`
   - `ready`
 
 ## `GET /assets/ui/manifest.v1.json`

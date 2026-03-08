@@ -3,6 +3,7 @@ import type { Feature, FeatureCollection, Geometry, MultiPolygon, Point, Polygon
 export type SpeciesGroup = "cherry" | "plum" | "peach" | "magnolia" | "crabapple";
 
 export type OwnershipGroup = "public" | "private" | "unknown";
+export type JurisdictionType = "city" | "county" | "district";
 
 export type Language =
   | "zh-CN"
@@ -52,30 +53,54 @@ export interface RegionMeta {
   city_count: number;
   cities: string[];
   species_counts: SpeciesCounts;
+  ownership_groups?: OwnershipGroup[];
   raw_bytes: number;
   gzip_bytes: number;
   warning_level: RegionWarningLevel;
-  city_split?: {
-    strategy: "city";
+  aggregate_raw_bytes?: number;
+  aggregate_gzip_bytes?: number;
+  aggregate_warning_level?: RegionWarningLevel;
+  largest_shard_raw_bytes?: number;
+  largest_shard_gzip_bytes?: number;
+  largest_shard_area?: string | null;
+  area_split?: {
+    strategy: "area_shard";
     index_path: string;
-    file_count: number;
+    area_count: number;
+    shard_count: number;
     ready: boolean;
   } | null;
 }
 
-export interface RegionCityDataEntry {
-  city: string;
+export interface AreaShard {
+  id: string;
+  bounds: [[number, number], [number, number]];
   data_path: string;
   tree_count: number;
   raw_bytes: number;
   gzip_bytes: number;
 }
 
-export interface RegionCityDataIndex {
+export interface AreaIndexItem {
+  jurisdiction: string;
+  slug: string;
+  display_name: string;
+  jurisdiction_type: JurisdictionType;
+  state_province: string;
+  country: string;
+  bounds: [[number, number], [number, number]];
+  tree_count: number;
+  zip_codes: string[];
+  species_counts: SpeciesCounts;
+  ownership_groups?: OwnershipGroup[];
+  shards: AreaShard[];
+}
+
+export interface AreaIndex {
   generated_at: string;
   region: CoverageRegion;
-  strategy: "city";
-  items: RegionCityDataEntry[];
+  strategy: "area_shard";
+  items: AreaIndexItem[];
 }
 
 export interface AreaSummary {
@@ -83,6 +108,8 @@ export interface AreaSummary {
   region: CoverageRegion;
   tree_count: number;
   species_counts: SpeciesCounts;
+  jurisdiction_type?: JurisdictionType;
+  state_province?: string;
 }
 
 export interface AppMeta {

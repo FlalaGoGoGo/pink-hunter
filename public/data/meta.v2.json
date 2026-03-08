@@ -122,21 +122,32 @@
         "Vancouver BC",
         "Victoria BC"
       ],
-      "raw_bytes": 22335927,
-      "gzip_bytes": 1011298,
+      "raw_bytes": 22336013,
+      "gzip_bytes": 1011865,
       "warning_level": "none",
-      "city_split": {
-        "strategy": "city",
-        "index_path": "/data/trees.bc.city-index.v1.json",
-        "file_count": 3,
-        "ready": true
-      },
+      "city_split": null,
       "species_counts": {
         "cherry": 20082,
         "plum": 13098,
         "peach": 0,
         "magnolia": 4678,
         "crabapple": 4391
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "aggregate_raw_bytes": 22336013,
+      "aggregate_gzip_bytes": 1011865,
+      "aggregate_warning_level": "none",
+      "largest_shard_raw_bytes": 17903705,
+      "largest_shard_gzip_bytes": 819148,
+      "largest_shard_area": "Vancouver BC",
+      "area_split": {
+        "strategy": "area_shard",
+        "index_path": "/data/trees.bc.area-index.v2.json",
+        "area_count": 3,
+        "shard_count": 3,
+        "ready": true
       }
     },
     {
@@ -173,21 +184,33 @@
         "San Rafael",
         "South San Francisco"
       ],
-      "raw_bytes": 46690022,
-      "gzip_bytes": 2044461,
+      "raw_bytes": 46690624,
+      "gzip_bytes": 2045239,
       "warning_level": "warning",
-      "city_split": {
-        "strategy": "city",
-        "index_path": "/data/trees.ca.city-index.v1.json",
-        "file_count": 15,
-        "ready": true
-      },
+      "city_split": null,
       "species_counts": {
         "cherry": 15002,
         "plum": 31270,
         "peach": 2498,
         "magnolia": 38822,
         "crabapple": 3043
+      },
+      "ownership_groups": [
+        "public",
+        "private"
+      ],
+      "aggregate_raw_bytes": 46690624,
+      "aggregate_gzip_bytes": 2045239,
+      "aggregate_warning_level": "warning",
+      "largest_shard_raw_bytes": 12853690,
+      "largest_shard_gzip_bytes": 556355,
+      "largest_shard_area": "San Francisco",
+      "area_split": {
+        "strategy": "area_shard",
+        "index_path": "/data/trees.ca.area-index.v2.json",
+        "area_count": 15,
+        "shard_count": 15,
+        "ready": true
       }
     },
     {
@@ -213,18 +236,30 @@
       "raw_bytes": 8515160,
       "gzip_bytes": 456599,
       "warning_level": "none",
-      "city_split": {
-        "strategy": "city",
-        "index_path": "/data/trees.dc.city-index.v1.json",
-        "file_count": 1,
-        "ready": true
-      },
+      "city_split": null,
       "species_counts": {
         "cherry": 10656,
         "plum": 335,
         "peach": 0,
         "magnolia": 3510,
         "crabapple": 2032
+      },
+      "ownership_groups": [
+        "public",
+        "private"
+      ],
+      "aggregate_raw_bytes": 8515160,
+      "aggregate_gzip_bytes": 456599,
+      "aggregate_warning_level": "none",
+      "largest_shard_raw_bytes": 8515160,
+      "largest_shard_gzip_bytes": 456599,
+      "largest_shard_area": "Washington DC",
+      "area_split": {
+        "strategy": "area_shard",
+        "index_path": "/data/trees.dc.area-index.v2.json",
+        "area_count": 1,
+        "shard_count": 1,
+        "ready": true
       }
     },
     {
@@ -248,21 +283,33 @@
         "Boston",
         "Cambridge"
       ],
-      "raw_bytes": 3180939,
-      "gzip_bytes": 135543,
+      "raw_bytes": 3180982,
+      "gzip_bytes": 135768,
       "warning_level": "none",
-      "city_split": {
-        "strategy": "city",
-        "index_path": "/data/trees.ma.city-index.v1.json",
-        "file_count": 2,
-        "ready": true
-      },
+      "city_split": null,
       "species_counts": {
         "cherry": 3713,
         "plum": 68,
         "peach": 6,
         "magnolia": 383,
         "crabapple": 2272
+      },
+      "ownership_groups": [
+        "public",
+        "private"
+      ],
+      "aggregate_raw_bytes": 3180982,
+      "aggregate_gzip_bytes": 135768,
+      "aggregate_warning_level": "none",
+      "largest_shard_raw_bytes": 2246062,
+      "largest_shard_gzip_bytes": 87894,
+      "largest_shard_area": "Boston",
+      "area_split": {
+        "strategy": "area_shard",
+        "index_path": "/data/trees.ma.area-index.v2.json",
+        "area_count": 2,
+        "shard_count": 2,
+        "ready": true
       }
     },
     {
@@ -288,18 +335,29 @@
       "raw_bytes": 933719,
       "gzip_bytes": 50460,
       "warning_level": "none",
-      "city_split": {
-        "strategy": "city",
-        "index_path": "/data/trees.md.city-index.v1.json",
-        "file_count": 1,
-        "ready": true
-      },
+      "city_split": null,
       "species_counts": {
         "cherry": 174,
         "plum": 162,
         "peach": 20,
         "magnolia": 674,
         "crabapple": 890
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "aggregate_raw_bytes": 933719,
+      "aggregate_gzip_bytes": 50460,
+      "aggregate_warning_level": "none",
+      "largest_shard_raw_bytes": 933719,
+      "largest_shard_gzip_bytes": 50460,
+      "largest_shard_area": "Baltimore",
+      "area_split": {
+        "strategy": "area_shard",
+        "index_path": "/data/trees.md.area-index.v2.json",
+        "area_count": 1,
+        "shard_count": 1,
+        "ready": true
       }
     },
     {
@@ -325,18 +383,29 @@
       "raw_bytes": 1153133,
       "gzip_bytes": 50297,
       "warning_level": "none",
-      "city_split": {
-        "strategy": "city",
-        "index_path": "/data/trees.nj.city-index.v1.json",
-        "file_count": 1,
-        "ready": true
-      },
+      "city_split": null,
       "species_counts": {
         "cherry": 2004,
         "plum": 1,
         "peach": 0,
         "magnolia": 21,
         "crabapple": 122
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "aggregate_raw_bytes": 1153133,
+      "aggregate_gzip_bytes": 50297,
+      "aggregate_warning_level": "none",
+      "largest_shard_raw_bytes": 1153133,
+      "largest_shard_gzip_bytes": 50297,
+      "largest_shard_area": "Jersey City",
+      "area_split": {
+        "strategy": "area_shard",
+        "index_path": "/data/trees.nj.area-index.v2.json",
+        "area_count": 1,
+        "shard_count": 1,
+        "ready": true
       }
     },
     {
@@ -359,21 +428,32 @@
       "cities": [
         "New York City"
       ],
-      "raw_bytes": 22771524,
-      "gzip_bytes": 695170,
+      "raw_bytes": 22771567,
+      "gzip_bytes": 692069,
       "warning_level": "none",
-      "city_split": {
-        "strategy": "city",
-        "index_path": "/data/trees.ny.city-index.v1.json",
-        "file_count": 1,
-        "ready": true
-      },
+      "city_split": null,
       "species_counts": {
         "cherry": 29279,
         "plum": 6879,
         "peach": 0,
         "magnolia": 1000,
         "crabapple": 3527
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "aggregate_raw_bytes": 22771567,
+      "aggregate_gzip_bytes": 692069,
+      "aggregate_warning_level": "none",
+      "largest_shard_raw_bytes": 11401075,
+      "largest_shard_gzip_bytes": 346577,
+      "largest_shard_area": "New York City",
+      "area_split": {
+        "strategy": "area_shard",
+        "index_path": "/data/trees.ny.area-index.v2.json",
+        "area_count": 1,
+        "shard_count": 2,
+        "ready": true
       }
     },
     {
@@ -397,21 +477,32 @@
         "Ottawa",
         "Toronto"
       ],
-      "raw_bytes": 23542100,
-      "gzip_bytes": 1090705,
+      "raw_bytes": 23542143,
+      "gzip_bytes": 1091025,
       "warning_level": "none",
-      "city_split": {
-        "strategy": "city",
-        "index_path": "/data/trees.on.city-index.v1.json",
-        "file_count": 2,
-        "ready": true
-      },
+      "city_split": null,
       "species_counts": {
         "cherry": 33450,
         "plum": 2281,
         "peach": 470,
         "magnolia": 2882,
         "crabapple": 10132
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "aggregate_raw_bytes": 23542143,
+      "aggregate_gzip_bytes": 1091025,
+      "aggregate_warning_level": "none",
+      "largest_shard_raw_bytes": 17162901,
+      "largest_shard_gzip_bytes": 731296,
+      "largest_shard_area": "Toronto",
+      "area_split": {
+        "strategy": "area_shard",
+        "index_path": "/data/trees.on.area-index.v2.json",
+        "area_count": 2,
+        "shard_count": 2,
+        "ready": true
       }
     },
     {
@@ -437,18 +528,29 @@
       "raw_bytes": 13009486,
       "gzip_bytes": 581491,
       "warning_level": "none",
-      "city_split": {
-        "strategy": "city",
-        "index_path": "/data/trees.or.city-index.v1.json",
-        "file_count": 1,
-        "ready": true
-      },
+      "city_split": null,
       "species_counts": {
         "cherry": 2375,
         "plum": 7473,
         "peach": 259,
         "magnolia": 5191,
         "crabapple": 9477
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "aggregate_raw_bytes": 13009486,
+      "aggregate_gzip_bytes": 581491,
+      "aggregate_warning_level": "none",
+      "largest_shard_raw_bytes": 13009486,
+      "largest_shard_gzip_bytes": 581491,
+      "largest_shard_area": "Portland",
+      "area_split": {
+        "strategy": "area_shard",
+        "index_path": "/data/trees.or.area-index.v2.json",
+        "area_count": 1,
+        "shard_count": 1,
+        "ready": true
       }
     },
     {
@@ -472,21 +574,32 @@
         "Philadelphia",
         "Pittsburgh"
       ],
-      "raw_bytes": 11895188,
-      "gzip_bytes": 536098,
+      "raw_bytes": 11895231,
+      "gzip_bytes": 536437,
       "warning_level": "none",
-      "city_split": {
-        "strategy": "city",
-        "index_path": "/data/trees.pa.city-index.v1.json",
-        "file_count": 2,
-        "ready": true
-      },
+      "city_split": null,
       "species_counts": {
         "cherry": 15652,
         "plum": 1001,
         "peach": 128,
         "magnolia": 1048,
         "crabapple": 3579
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "aggregate_raw_bytes": 11895231,
+      "aggregate_gzip_bytes": 536437,
+      "aggregate_warning_level": "none",
+      "largest_shard_raw_bytes": 9956244,
+      "largest_shard_gzip_bytes": 449127,
+      "largest_shard_area": "Philadelphia",
+      "area_split": {
+        "strategy": "area_shard",
+        "index_path": "/data/trees.pa.area-index.v2.json",
+        "area_count": 2,
+        "shard_count": 2,
+        "ready": true
       }
     },
     {
@@ -512,18 +625,29 @@
       "raw_bytes": 8319935,
       "gzip_bytes": 265892,
       "warning_level": "none",
-      "city_split": {
-        "strategy": "city",
-        "index_path": "/data/trees.qc.city-index.v1.json",
-        "file_count": 1,
-        "ready": true
-      },
+      "city_split": null,
       "species_counts": {
         "cherry": 6727,
         "plum": 88,
         "peach": 25,
         "magnolia": 294,
         "crabapple": 9124
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "aggregate_raw_bytes": 8319935,
+      "aggregate_gzip_bytes": 265892,
+      "aggregate_warning_level": "none",
+      "largest_shard_raw_bytes": 8319935,
+      "largest_shard_gzip_bytes": 265892,
+      "largest_shard_area": "Montreal",
+      "area_split": {
+        "strategy": "area_shard",
+        "index_path": "/data/trees.qc.area-index.v2.json",
+        "area_count": 1,
+        "shard_count": 1,
+        "ready": true
       }
     },
     {
@@ -549,18 +673,30 @@
       "raw_bytes": 892680,
       "gzip_bytes": 45013,
       "warning_level": "none",
-      "city_split": {
-        "strategy": "city",
-        "index_path": "/data/trees.va.city-index.v1.json",
-        "file_count": 1,
-        "ready": true
-      },
+      "city_split": null,
       "species_counts": {
         "cherry": 1413,
         "plum": 93,
         "peach": 0,
         "magnolia": 296,
         "crabapple": 80
+      },
+      "ownership_groups": [
+        "public",
+        "private"
+      ],
+      "aggregate_raw_bytes": 892680,
+      "aggregate_gzip_bytes": 45013,
+      "aggregate_warning_level": "none",
+      "largest_shard_raw_bytes": 892680,
+      "largest_shard_gzip_bytes": 45013,
+      "largest_shard_area": "Arlington",
+      "area_split": {
+        "strategy": "area_shard",
+        "index_path": "/data/trees.va.area-index.v2.json",
+        "area_count": 1,
+        "shard_count": 1,
+        "ready": true
       }
     },
     {
@@ -599,21 +735,33 @@
         "Walla Walla",
         "Yakima"
       ],
-      "raw_bytes": 36119776,
-      "gzip_bytes": 1808951,
+      "raw_bytes": 36120507,
+      "gzip_bytes": 1777483,
       "warning_level": "none",
-      "city_split": {
-        "strategy": "city",
-        "index_path": "/data/trees.wa.city-index.v1.json",
-        "file_count": 17,
-        "ready": true
-      },
+      "city_split": null,
       "species_counts": {
         "cherry": 25870,
         "plum": 20086,
         "peach": 344,
         "magnolia": 5946,
         "crabapple": 15422
+      },
+      "ownership_groups": [
+        "public",
+        "private"
+      ],
+      "aggregate_raw_bytes": 36120507,
+      "aggregate_gzip_bytes": 1777483,
+      "aggregate_warning_level": "none",
+      "largest_shard_raw_bytes": 12631763,
+      "largest_shard_gzip_bytes": 634377,
+      "largest_shard_area": "Seattle",
+      "area_split": {
+        "strategy": "area_shard",
+        "index_path": "/data/trees.wa.area-index.v2.json",
+        "area_count": 17,
+        "shard_count": 18,
+        "ready": true
       }
     }
   ],
@@ -1055,7 +1203,9 @@
         "peach": 0,
         "magnolia": 610,
         "crabapple": 159
-      }
+      },
+      "jurisdiction_type": "city",
+      "state_province": "BC"
     },
     {
       "jurisdiction": "Vancouver BC",
@@ -1067,7 +1217,9 @@
         "peach": 0,
         "magnolia": 3670,
         "crabapple": 3806
-      }
+      },
+      "jurisdiction_type": "city",
+      "state_province": "BC"
     },
     {
       "jurisdiction": "Victoria BC",
@@ -1079,7 +1231,9 @@
         "peach": 0,
         "magnolia": 398,
         "crabapple": 426
-      }
+      },
+      "jurisdiction_type": "city",
+      "state_province": "BC"
     },
     {
       "jurisdiction": "Berkeley",
@@ -1091,7 +1245,9 @@
         "peach": 18,
         "magnolia": 817,
         "crabapple": 257
-      }
+      },
+      "jurisdiction_type": "city",
+      "state_province": "CA"
     },
     {
       "jurisdiction": "Burlingame",
@@ -1103,7 +1259,9 @@
         "peach": 1,
         "magnolia": 1367,
         "crabapple": 34
-      }
+      },
+      "jurisdiction_type": "city",
+      "state_province": "CA"
     },
     {
       "jurisdiction": "Concord",
@@ -1115,7 +1273,9 @@
         "peach": 353,
         "magnolia": 1394,
         "crabapple": 365
-      }
+      },
+      "jurisdiction_type": "city",
+      "state_province": "CA"
     },
     {
       "jurisdiction": "Cupertino",
@@ -1127,7 +1287,9 @@
         "peach": 52,
         "magnolia": 732,
         "crabapple": 55
-      }
+      },
+      "jurisdiction_type": "city",
+      "state_province": "CA"
     },
     {
       "jurisdiction": "Fremont",
@@ -1139,7 +1301,9 @@
         "peach": 199,
         "magnolia": 2270,
         "crabapple": 263
-      }
+      },
+      "jurisdiction_type": "city",
+      "state_province": "CA"
     },
     {
       "jurisdiction": "Milpitas",
@@ -1151,7 +1315,9 @@
         "peach": 143,
         "magnolia": 977,
         "crabapple": 146
-      }
+      },
+      "jurisdiction_type": "city",
+      "state_province": "CA"
     },
     {
       "jurisdiction": "Oakland",
@@ -1163,7 +1329,9 @@
         "peach": 0,
         "magnolia": 1400,
         "crabapple": 255
-      }
+      },
+      "jurisdiction_type": "city",
+      "state_province": "CA"
     },
     {
       "jurisdiction": "Palo Alto",
@@ -1175,7 +1343,9 @@
         "peach": 21,
         "magnolia": 4270,
         "crabapple": 78
-      }
+      },
+      "jurisdiction_type": "city",
+      "state_province": "CA"
     },
     {
       "jurisdiction": "Salinas",
@@ -1187,7 +1357,9 @@
         "peach": 55,
         "magnolia": 1739,
         "crabapple": 74
-      }
+      },
+      "jurisdiction_type": "city",
+      "state_province": "CA"
     },
     {
       "jurisdiction": "San Diego",
@@ -1199,7 +1371,9 @@
         "peach": 230,
         "magnolia": 6075,
         "crabapple": 19
-      }
+      },
+      "jurisdiction_type": "city",
+      "state_province": "CA"
     },
     {
       "jurisdiction": "San Francisco",
@@ -1211,7 +1385,9 @@
         "peach": 54,
         "magnolia": 9121,
         "crabapple": 277
-      }
+      },
+      "jurisdiction_type": "city",
+      "state_province": "CA"
     },
     {
       "jurisdiction": "San Jose",
@@ -1223,7 +1399,9 @@
         "peach": 1343,
         "magnolia": 7202,
         "crabapple": 1034
-      }
+      },
+      "jurisdiction_type": "city",
+      "state_province": "CA"
     },
     {
       "jurisdiction": "San Mateo",
@@ -1235,7 +1413,9 @@
         "peach": 23,
         "magnolia": 874,
         "crabapple": 184
-      }
+      },
+      "jurisdiction_type": "city",
+      "state_province": "CA"
     },
     {
       "jurisdiction": "San Rafael",
@@ -1247,7 +1427,9 @@
         "peach": 0,
         "magnolia": 87,
         "crabapple": 0
-      }
+      },
+      "jurisdiction_type": "city",
+      "state_province": "CA"
     },
     {
       "jurisdiction": "South San Francisco",
@@ -1259,7 +1441,9 @@
         "peach": 6,
         "magnolia": 497,
         "crabapple": 2
-      }
+      },
+      "jurisdiction_type": "city",
+      "state_province": "CA"
     },
     {
       "jurisdiction": "Washington DC",
@@ -1271,7 +1455,9 @@
         "peach": 0,
         "magnolia": 3510,
         "crabapple": 2032
-      }
+      },
+      "jurisdiction_type": "city",
+      "state_province": "DC"
     },
     {
       "jurisdiction": "Boston",
@@ -1283,7 +1469,9 @@
         "peach": 2,
         "magnolia": 83,
         "crabapple": 1597
-      }
+      },
+      "jurisdiction_type": "city",
+      "state_province": "MA"
     },
     {
       "jurisdiction": "Cambridge",
@@ -1295,7 +1483,9 @@
         "peach": 4,
         "magnolia": 300,
         "crabapple": 675
-      }
+      },
+      "jurisdiction_type": "city",
+      "state_province": "MA"
     },
     {
       "jurisdiction": "Baltimore",
@@ -1307,7 +1497,9 @@
         "peach": 20,
         "magnolia": 674,
         "crabapple": 890
-      }
+      },
+      "jurisdiction_type": "city",
+      "state_province": "MD"
     },
     {
       "jurisdiction": "Jersey City",
@@ -1319,7 +1511,9 @@
         "peach": 0,
         "magnolia": 21,
         "crabapple": 122
-      }
+      },
+      "jurisdiction_type": "city",
+      "state_province": "NJ"
     },
     {
       "jurisdiction": "New York City",
@@ -1331,7 +1525,9 @@
         "peach": 0,
         "magnolia": 1000,
         "crabapple": 3527
-      }
+      },
+      "jurisdiction_type": "city",
+      "state_province": "NY"
     },
     {
       "jurisdiction": "Ottawa",
@@ -1343,7 +1539,9 @@
         "peach": 0,
         "magnolia": 154,
         "crabapple": 10090
-      }
+      },
+      "jurisdiction_type": "city",
+      "state_province": "ON"
     },
     {
       "jurisdiction": "Toronto",
@@ -1355,7 +1553,9 @@
         "peach": 470,
         "magnolia": 2728,
         "crabapple": 42
-      }
+      },
+      "jurisdiction_type": "city",
+      "state_province": "ON"
     },
     {
       "jurisdiction": "Portland",
@@ -1367,7 +1567,9 @@
         "peach": 259,
         "magnolia": 5191,
         "crabapple": 9477
-      }
+      },
+      "jurisdiction_type": "city",
+      "state_province": "OR"
     },
     {
       "jurisdiction": "Philadelphia",
@@ -1379,7 +1581,9 @@
         "peach": 81,
         "magnolia": 787,
         "crabapple": 2906
-      }
+      },
+      "jurisdiction_type": "city",
+      "state_province": "PA"
     },
     {
       "jurisdiction": "Pittsburgh",
@@ -1391,7 +1595,9 @@
         "peach": 47,
         "magnolia": 261,
         "crabapple": 673
-      }
+      },
+      "jurisdiction_type": "city",
+      "state_province": "PA"
     },
     {
       "jurisdiction": "Montreal",
@@ -1403,7 +1609,9 @@
         "peach": 25,
         "magnolia": 294,
         "crabapple": 9124
-      }
+      },
+      "jurisdiction_type": "city",
+      "state_province": "QC"
     },
     {
       "jurisdiction": "Arlington",
@@ -1415,7 +1623,9 @@
         "peach": 0,
         "magnolia": 296,
         "crabapple": 80
-      }
+      },
+      "jurisdiction_type": "county",
+      "state_province": "VA"
     },
     {
       "jurisdiction": "Bellevue",
@@ -1427,7 +1637,9 @@
         "peach": 0,
         "magnolia": 131,
         "crabapple": 105
-      }
+      },
+      "jurisdiction_type": "city",
+      "state_province": "WA"
     },
     {
       "jurisdiction": "Bellingham",
@@ -1439,7 +1651,9 @@
         "peach": 0,
         "magnolia": 61,
         "crabapple": 257
-      }
+      },
+      "jurisdiction_type": "city",
+      "state_province": "WA"
     },
     {
       "jurisdiction": "Everett",
@@ -1451,7 +1665,9 @@
         "peach": 0,
         "magnolia": 18,
         "crabapple": 70
-      }
+      },
+      "jurisdiction_type": "city",
+      "state_province": "WA"
     },
     {
       "jurisdiction": "Gig Harbor",
@@ -1463,7 +1679,9 @@
         "peach": 0,
         "magnolia": 1,
         "crabapple": 8
-      }
+      },
+      "jurisdiction_type": "city",
+      "state_province": "WA"
     },
     {
       "jurisdiction": "Kenmore",
@@ -1475,7 +1693,9 @@
         "peach": 0,
         "magnolia": 40,
         "crabapple": 21
-      }
+      },
+      "jurisdiction_type": "city",
+      "state_province": "WA"
     },
     {
       "jurisdiction": "Kirkland",
@@ -1487,7 +1707,9 @@
         "peach": 29,
         "magnolia": 216,
         "crabapple": 505
-      }
+      },
+      "jurisdiction_type": "city",
+      "state_province": "WA"
     },
     {
       "jurisdiction": "Puyallup",
@@ -1499,7 +1721,9 @@
         "peach": 0,
         "magnolia": 0,
         "crabapple": 72
-      }
+      },
+      "jurisdiction_type": "city",
+      "state_province": "WA"
     },
     {
       "jurisdiction": "Redmond",
@@ -1511,7 +1735,9 @@
         "peach": 0,
         "magnolia": 5,
         "crabapple": 24
-      }
+      },
+      "jurisdiction_type": "city",
+      "state_province": "WA"
     },
     {
       "jurisdiction": "Renton",
@@ -1523,7 +1749,9 @@
         "peach": 6,
         "magnolia": 51,
         "crabapple": 293
-      }
+      },
+      "jurisdiction_type": "city",
+      "state_province": "WA"
     },
     {
       "jurisdiction": "Sammamish",
@@ -1535,7 +1763,9 @@
         "peach": 0,
         "magnolia": 23,
         "crabapple": 57
-      }
+      },
+      "jurisdiction_type": "city",
+      "state_province": "WA"
     },
     {
       "jurisdiction": "SeaTac",
@@ -1547,7 +1777,9 @@
         "peach": 0,
         "magnolia": 3,
         "crabapple": 2
-      }
+      },
+      "jurisdiction_type": "city",
+      "state_province": "WA"
     },
     {
       "jurisdiction": "Seattle",
@@ -1559,7 +1791,9 @@
         "peach": 215,
         "magnolia": 4609,
         "crabapple": 10331
-      }
+      },
+      "jurisdiction_type": "city",
+      "state_province": "WA"
     },
     {
       "jurisdiction": "Shoreline",
@@ -1571,7 +1805,9 @@
         "peach": 4,
         "magnolia": 188,
         "crabapple": 362
-      }
+      },
+      "jurisdiction_type": "city",
+      "state_province": "WA"
     },
     {
       "jurisdiction": "Snohomish",
@@ -1583,7 +1819,9 @@
         "peach": 3,
         "magnolia": 64,
         "crabapple": 101
-      }
+      },
+      "jurisdiction_type": "city",
+      "state_province": "WA"
     },
     {
       "jurisdiction": "Spokane",
@@ -1595,7 +1833,9 @@
         "peach": 75,
         "magnolia": 460,
         "crabapple": 2608
-      }
+      },
+      "jurisdiction_type": "city",
+      "state_province": "WA"
     },
     {
       "jurisdiction": "Walla Walla",
@@ -1607,7 +1847,9 @@
         "peach": 12,
         "magnolia": 72,
         "crabapple": 548
-      }
+      },
+      "jurisdiction_type": "city",
+      "state_province": "WA"
     },
     {
       "jurisdiction": "Yakima",
@@ -1619,7 +1861,9 @@
         "peach": 0,
         "magnolia": 4,
         "crabapple": 58
-      }
+      },
+      "jurisdiction_type": "city",
+      "state_province": "WA"
     }
   ]
 }

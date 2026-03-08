@@ -1,8 +1,8 @@
 import type {
+  AreaIndex,
   CoverageCollection,
   SpeciesGuide,
   AppMeta,
-  RegionCityDataIndex,
   StaticAppData,
   TreeCollection
 } from "./types";
@@ -29,8 +29,8 @@ export async function loadTreeCollection(path: string): Promise<TreeCollection> 
   return loadJson<TreeCollection>(path);
 }
 
-export async function loadRegionCityIndex(path: string): Promise<RegionCityDataIndex> {
-  return loadJson<RegionCityDataIndex>(path);
+export async function loadAreaIndex(path: string): Promise<AreaIndex> {
+  return loadJson<AreaIndex>(path);
 }
 
 interface VisitorCounterResponse {

@@ -383,13 +383,22 @@ def ensure_region_entries(meta: dict[str, Any], regions: set[str]) -> None:
                 "tree_count": 0,
                 "city_count": 0,
                 "cities": [],
+                "species_counts": {species: 0 for species in SPECIES_GROUPS},
+                "ownership_groups": [],
                 "raw_bytes": 0,
                 "gzip_bytes": 0,
                 "warning_level": "none",
-                "city_split": {
-                    "strategy": "city",
-                    "index_path": f"/data/trees.{region_id}.city-index.v1.json",
-                    "file_count": 0,
+                "aggregate_raw_bytes": 0,
+                "aggregate_gzip_bytes": 0,
+                "aggregate_warning_level": "none",
+                "largest_shard_raw_bytes": 0,
+                "largest_shard_gzip_bytes": 0,
+                "largest_shard_area": None,
+                "area_split": {
+                    "strategy": "area_shard",
+                    "index_path": f"/data/trees.{region_id}.area-index.v2.json",
+                    "area_count": 0,
+                    "shard_count": 0,
                     "ready": False,
                 },
             }
@@ -400,7 +409,7 @@ def ensure_region_entries(meta: dict[str, Any], regions: set[str]) -> None:
 def refresh_publish_indexes(target_regions: set[str]) -> None:
     for region in sorted(target_regions):
         subprocess.run(
-            ["python3", "scripts/refresh_region_city_splits.py", "--data-dir", "public/data", "--region", region],
+            ["python3", "scripts/refresh_region_area_shards.py", "--data-dir", "public/data", "--region", region],
             check=True,
         )
     subprocess.run(

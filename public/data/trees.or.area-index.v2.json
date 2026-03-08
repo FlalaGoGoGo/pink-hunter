@@ -1,0 +1,58 @@
+{
+  "generated_at": "2026-03-08T03:36:24.032023+00:00",
+  "region": "or",
+  "strategy": "area_shard",
+  "items": [
+    {
+      "jurisdiction": "Portland",
+      "slug": "portland",
+      "display_name": "Portland",
+      "jurisdiction_type": "city",
+      "state_province": "OR",
+      "country": "United States",
+      "bounds": [
+        [
+          -122.82454888237926,
+          45.4350079092413
+        ],
+        [
+          -122.48250881977508,
+          45.63452836335847
+        ]
+      ],
+      "tree_count": 24775,
+      "zip_codes": [
+        "None"
+      ],
+      "species_counts": {
+        "cherry": 2375,
+        "plum": 7473,
+        "peach": 259,
+        "magnolia": 5191,
+        "crabapple": 9477
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "portland-001",
+          "bounds": [
+            [
+              -122.82454888237926,
+              45.4350079092413
+            ],
+            [
+              -122.48250881977508,
+              45.63452836335847
+            ]
+          ],
+          "data_path": "/data/trees.or.area.portland.v2.geojson",
+          "tree_count": 24775,
+          "raw_bytes": 13009486,
+          "gzip_bytes": 581491
+        }
+      ]
+    }
+  ]
+}

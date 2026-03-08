@@ -12,7 +12,7 @@ Last updated: 2026-03-06 (America/Los_Angeles)
 ## Required Workflow
 1. Make and verify the local change first.
 2. Rebuild or refresh any published data artifacts that changed.
-3. Run the region size check and ensure published city files stay below the hard-fail threshold and aggregate region payloads stay within warning policy.
+3. Run the size check and ensure every published shard file stays below the hard-fail threshold.
 4. Sync the project into the GitHub export repo.
 5. Commit the GitHub export repo.
 6. Push the GitHub export repo to GitHub.
@@ -26,15 +26,16 @@ Last updated: 2026-03-06 (America/Los_Angeles)
 ## Notes
 - The GitHub export repo intentionally excludes local-only build caches such as `node_modules/`, `dist/`, `.DS_Store`, and `*.tsbuildinfo`.
 - The GitHub export repo also excludes local-only ETL audit/intermediate outputs such as `data/normalized/` and `data/tmp/`.
-- Public tree data is published by city for every region:
-  - `public/data/trees.<region>.city-index.v1.json`
-  - `public/data/trees.<region>.city.<slug>.v1.geojson`
+- Public tree data is published by area + shard for every region:
+  - `public/data/trees.<region>.area-index.v2.json`
+  - `public/data/trees.<region>.area.<slug>.v2.geojson`
+  - `public/data/trees.<region>.area.<slug>.shard-###.v2.geojson`
 - Every publish flow must pass `scripts/check_region_data_sizes.py`.
-- If a full ETL rebuild is blocked but local region files are still current, refresh city-split artifacts with `scripts/refresh_region_city_splits.py --data-dir public/data --region all` before sync/push.
+- If a full ETL rebuild is blocked but local region files are still current, refresh area-shard artifacts with `scripts/refresh_region_area_shards.py --data-dir public/data --region all` before sync/push.
 - If coverage status lists or official-boundary hints changed without a full ETL rebuild, run `scripts/refresh_coverage_metadata.py --data-dir public/data` before sync/push.
-- Size thresholds are hard rules for published city files and planning thresholds for aggregate region payloads:
-  - `warning`: `>= 35 MiB raw`
-  - `high_warning`: `>= 45 MiB raw`
-  - `hard_fail`: `>= 50 MiB raw`
-- Any region that reaches warning level must be reviewed for the next split step before additional expansion work continues.
+- Size thresholds are hard rules for published shard files:
+  - `target_split`: `>= 20 MiB raw`
+  - `must_split`: `>= 25 MiB raw`
+  - `hard_fail`: `>= 30 MiB raw`
+- Aggregate region size is tracked as advisory only and does not count as a GitHub single-file risk.
 - Keep `public/CNAME` synchronized because the production custom domain is `pinkhunter.flalaz.com`.

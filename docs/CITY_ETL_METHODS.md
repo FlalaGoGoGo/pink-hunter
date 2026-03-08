@@ -16,8 +16,9 @@ Last updated: 2026-03-07 (America/Los_Angeles)
 - Broad taxonomy is scientific-name first, then curated subtype keywords.
 - Controlled common-name fallback is allowed only when the source exposes an explicitly generic genus-level scientific value (for example `Prunus sp.` / `Malus sp.` / `Magnolia sp.`).
 - Output contract is stable:
-  - `public/data/trees.<region>.city-index.v1.json`
-  - `public/data/trees.<region>.city.<slug>.v1.geojson`
+  - `public/data/trees.<region>.area-index.v2.json`
+  - `public/data/trees.<region>.area.<slug>.v2.geojson`
+  - `public/data/trees.<region>.area.<slug>.shard-###.v2.geojson`
   - `public/data/coverage.v1.geojson`
   - `public/data/species-guide.v1.json`
   - `public/data/meta.v2.json`
@@ -164,9 +165,9 @@ Last updated: 2026-03-07 (America/Los_Angeles)
    - extend both ETL config files
 4. Run `npm run etl`.
 5. Validate:
-   - city counts in `public/data/meta.v2.json`
+   - area counts in `public/data/meta.v2.json`
    - missed names in `public/data/unknown_scientific_names.v1.json`
-   - card fields in the relevant `public/data/trees.<region>.city.<slug>.v1.geojson`
+   - card fields in the relevant published `public/data/trees.<region>.area.*.v2.geojson`
 
 ## How To Add More Cities Later
 1. Verify the city has an official public single-tree dataset with point geometry.
@@ -183,11 +184,11 @@ Last updated: 2026-03-07 (America/Los_Angeles)
 
 ## Incremental Publish Fallback
 - Full `npm run etl` remains the canonical path.
-- `npm run etl` now chains the stable targeted-publish refresh for `Arlington`, `Baltimore`, `Boston`, `Jersey City`, `Milpitas`, `San Mateo`, `San Rafael`, `Salinas`, `Fremont`, `Concord`, `South San Francisco`, `New York City`, `Philadelphia`, `Pittsburgh`, and `Cambridge` after the full ETL, so those city-split files are regenerated as part of the normal publish path.
-- When upstream sources are too slow and the already-published local region files are still current, refresh city-split outputs without rerunning the full ETL:
-  - `python3 scripts/refresh_region_city_splits.py --data-dir public/data --region all`
+- `npm run etl` now chains the stable targeted-publish refresh for `Arlington`, `Baltimore`, `Boston`, `Jersey City`, `Milpitas`, `San Mateo`, `San Rafael`, `Salinas`, `Fremont`, `Concord`, `South San Francisco`, `New York City`, `Philadelphia`, `Pittsburgh`, and `Cambridge` after the full ETL, so those published area/shard files are regenerated as part of the normal publish path.
+- When upstream sources are too slow and the already-published local region files are still current, refresh area-shard outputs without rerunning the full ETL:
+  - `python3 scripts/refresh_region_area_shards.py --data-dir public/data --region all`
 - When a new city source has been validated but is not yet folded into the main full ETL path, publish it incrementally with:
   - `python3 scripts/publish_targeted_city_updates.py --city <City Name>`
 - If gray-coverage rules or official-boundary hints changed without rebuilding all tree rows, refresh coverage and meta bounds with:
   - `python3 scripts/refresh_coverage_metadata.py --data-dir public/data`
-- After that, rerun `python3 scripts/check_region_data_sizes.py --data-dir public/data` so `meta.v2.json` and city-split artifacts stay internally consistent.
+- After that, rerun `python3 scripts/check_region_data_sizes.py --data-dir public/data` so `meta.v2.json` and area-shard artifacts stay internally consistent.
