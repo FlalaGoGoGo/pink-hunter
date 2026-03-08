@@ -152,6 +152,7 @@ DELTA_BOUNDARY_LAYER = "https://maps.delta.ca/arcgis/rest/services/DeltaMap/Prop
 SAANICH_BOUNDARY_LAYER = "https://map.saanich.ca/server/rest/services/MAPS/SaanichBaseMap/MapServer/6"
 SURREY_BOUNDARY_LAYER = "https://gisservices.surrey.ca/arcgis/rest/services/OpenData/MapServer/133"
 COQUITLAM_BOUNDARY_LAYER = "https://geodata.coquitlam.ca/arcgis/rest/services/DynamicServices/Cadastral/MapServer/14"
+WEST_VANCOUVER_BOUNDARY_LAYER = "https://services6.arcgis.com/56eqCzQ5SZhBaDST/arcgis/rest/services/Administrative_Boundaries/FeatureServer/10"
 RICHMOND_BC_BOUNDARY_LAYER = "https://maps.richmond.ca/internal/rest/services/Hansen/Hansen_Base/MapServer/5"
 OTTAWA_TREES_LAYER = "https://maps.ottawa.ca/arcgis/rest/services/Forestry/MapServer/0"
 OTTAWA_BOUNDARY_LAYER = "https://maps.ottawa.ca/arcgis/rest/services/OfficialPlan/MapServer/71"
@@ -219,6 +220,7 @@ REGION_CITY_OVERRIDES: dict[str, str] = {
     "Surrey": "bc",
     "Vancouver BC": "bc",
     "Victoria BC": "bc",
+    "West Vancouver": "bc",
     "Portland": "or",
     "Mountain View": "ca",
     "Milpitas": "ca",
@@ -313,6 +315,7 @@ CITY_BOUNDARY_HINTS: dict[str, dict[str, str]] = {
     "Delta": {"boundary_source": "delta_arcgis"},
     "Saanich": {"boundary_source": "saanich_arcgis"},
     "Surrey": {"boundary_source": "surrey_arcgis"},
+    "West Vancouver": {"boundary_source": "west_vancouver_arcgis"},
 }
 
 ALLOWED_CENSUS_PLACE_LSADC = {"25", "43"}
@@ -396,6 +399,7 @@ OFFICIAL_DATA_UNAVAILABLE_CITIES: dict[str, str] = {
     "University Place": "City investigated; no official public single-tree species dataset was confirmed.",
     "Vancouver WA": "Official geohub content surfaced canopy and other inventories, but not a public single-tree species dataset.",
     "Wenatchee": "City investigated; only Wenatchee Valley College campus tree maps surfaced in this round, not a verified City of Wenatchee public tree inventory.",
+    "West Vancouver": "Official West Vancouver GIS and urban-forest planning materials were reviewed; an official administrative boundary is public, but no public citywide single-tree species inventory was confirmed.",
     "Woodinville": "Official city pages did not confirm a public single-tree species point inventory.",
     "Woodway": "City investigated; no official public single-tree species dataset was confirmed.",
     "Yarrow Point": "City investigated; no official public single-tree species dataset was confirmed.",
@@ -1787,7 +1791,7 @@ def fetch_special_city_boundary_feature(city: str) -> dict[str, Any] | None:
     hint = CITY_BOUNDARY_HINTS.get(city, {})
     boundary_source = hint.get("boundary_source")
 
-    def fetch_arcgis_boundary_feature(layer_url: str, *, source: str) -> dict[str, Any] | None:
+    def fetch_arcgis_boundary_feature(layer_url: str, *, source: str, where: str = "1=1") -> dict[str, Any] | None:
         query_layer_url = layer_url.rstrip("/")
         if not re.search(r"/(?:FeatureServer|MapServer)/\d+$", query_layer_url):
             service_payload = fetch_json(query_layer_url, {"f": "pjson"})
@@ -1798,7 +1802,7 @@ def fetch_special_city_boundary_feature(city: str) -> dict[str, Any] | None:
         payload = fetch_json(
             f"{query_layer_url}/query",
             {
-                "where": "1=1",
+                "where": where,
                 "outFields": "*",
                 "returnGeometry": "true",
                 "outSR": "4326",
@@ -2010,6 +2014,13 @@ def fetch_special_city_boundary_feature(city: str) -> dict[str, Any] | None:
 
     if boundary_source == "surrey_arcgis":
         return fetch_arcgis_boundary_feature(SURREY_BOUNDARY_LAYER, source="City of Surrey Open Data")
+
+    if boundary_source == "west_vancouver_arcgis":
+        return fetch_arcgis_boundary_feature(
+            WEST_VANCOUVER_BOUNDARY_LAYER,
+            where="FullName = 'District of West Vancouver'",
+            source="Metro Vancouver Administrative Boundaries",
+        )
 
     if boundary_source == "richmond_bc_arcgis":
         return fetch_arcgis_boundary_feature(RICHMOND_BC_BOUNDARY_LAYER, source="City of Richmond Maps")

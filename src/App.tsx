@@ -58,7 +58,7 @@ const DEFAULT_CENTER: [number, number] = [-122.315, 47.55];
 const DEFAULT_ZOOM = 8.45;
 const POSITRON_STYLE_URL = "https://basemaps.cartocdn.com/gl/positron-gl-style/style.json";
 const FALLBACK_STYLE_URL = "https://demotiles.maplibre.org/style.json";
-const ABOUT_SOURCES_PAGE_SIZE = 4;
+const ABOUT_SOURCES_PAGE_SIZE = 6;
 const ABOUT_REGION_SUMMARY_PAGE_SIZE = 3;
 const ABOUT_AREA_SUMMARY_PAGE_SIZE = 3;
 const BRAND_LOGO_PATH = "/assets/brand/pink-hunter-logo.png";
@@ -109,6 +109,7 @@ const REGION_CITY_OVERRIDES: Partial<Record<string, CoverageRegion>> = {
   Surrey: "bc",
   "Vancouver BC": "bc",
   "Victoria BC": "bc",
+  "West Vancouver": "bc",
   Portland: "or",
   Beaverton: "or",
   Gresham: "or",
@@ -381,8 +382,7 @@ const ABOUT_COPY: Record<
   "en-US": {
     title: "About Pink Hunter",
     intro: [
-      "Pink Hunter is a spring map for finding pink-blossoming cherry, plum, peach, magnolia, and crabapple trees.",
-      "The project is meant to help people learn the differences between these lookalike blooms instead of calling every pink tree a cherry by default."
+      "Pink Hunter is a spring map for finding pink-blossoming cherry, plum, peach, magnolia, and crabapple trees. The project is meant to help people learn the differences between these lookalike blooms instead of calling every pink tree a cherry by default."
     ],
     summaryTitle: "Data Summary",
     summaryNote: "The counts below summarize the trees currently included on the site, first by species, then by region and area.",
@@ -393,8 +393,8 @@ const ABOUT_COPY: Record<
     summaryTotalLabel: "Total trees",
     summarySearchPlaceholder: "Search states or provinces",
     summaryEmpty: "No state or province matched this search.",
-    summaryAreaSearchPlaceholder: "Search areas",
-    summaryAreaEmpty: "No area matched this search.",
+    summaryAreaSearchPlaceholder: "Search cities or counties",
+    summaryAreaEmpty: "No city or county matched this search.",
     sourcesTitle: "Data Sources",
     sourcesSearchPlaceholder: "Search data sources",
     sourcesEmpty: "No data sources matched this search.",
@@ -403,9 +403,7 @@ const ABOUT_COPY: Record<
     contactLead:
       "If you notice any issue on this site, or know of a public dataset this map has not covered yet, you are warmly welcome to contact Flala Zhang.",
     disclaimer: [
-      "Jurisdiction-level coverage is built from official public single-tree datasets whenever those datasets are available; that is a hard rule for adding a covered area.",
-      "What you see on the map can still differ from reality because of source refresh lag, pruning or removals, naming inconsistencies, or point-location error.",
-      "UW cherry points are currently included through a supplemental dataset because the official city inventory does not fully cover that campus hotspot."
+      "Jurisdiction-level coverage is built from official public single-tree datasets whenever those datasets are available; that is a hard rule for adding a covered area. What you see on the map can still differ from reality because of source refresh lag, pruning or removals, naming inconsistencies, or point-location error."
     ],
     officialBadge: "Official public source",
     supplementalBadge: "Supplemental source",
@@ -417,8 +415,7 @@ const ABOUT_COPY: Record<
   "zh-CN": {
     title: "关于 Pink Hunter",
     intro: [
-      "Pink Hunter 是一个春季粉色花树地图项目，帮助大家在花季里更快找到樱花、李花、桃花、木兰和海棠。",
-      "这个项目不只是找花，也希望教大家分辨这些常被误认的花树，让“粉色花都叫樱花”这件事少一点。"
+      "Pink Hunter 是一个春季粉色花树地图项目，帮助大家在花季里更快找到樱花、李花、桃花、木兰和海棠。这个项目不只是找花，也希望教大家分辨这些常被误认的花树，让“粉色花都叫樱花”这件事少一点。"
     ],
     summaryTitle: "数据总结",
     summaryNote: "下面的统计展示了当前网站已收录的树木数量，先按花种汇总，再按州/省和地区汇总。",
@@ -429,8 +426,8 @@ const ABOUT_COPY: Record<
     summaryTotalLabel: "总树数",
     summarySearchPlaceholder: "搜索州或省",
     summaryEmpty: "没有匹配的州或省。",
-    summaryAreaSearchPlaceholder: "搜索地区",
-    summaryAreaEmpty: "没有匹配的地区。",
+    summaryAreaSearchPlaceholder: "搜索城市或县",
+    summaryAreaEmpty: "没有匹配的城市或县。",
     sourcesTitle: "数据源",
     sourcesSearchPlaceholder: "搜索数据源",
     sourcesEmpty: "没有匹配的数据源。",
@@ -439,9 +436,7 @@ const ABOUT_COPY: Record<
     contactLead:
       "如果你发现网站有任何问题，或者知道这个网站还没有覆盖到的公开数据集，真诚欢迎你联系 Flala Zhang。",
     disclaimer: [
-      "地区级覆盖优先采用官方公开的单株树木数据集；这是产品纳入覆盖地区的硬标准。",
-      "但数据更新频率、树木修剪/移除、物种录入习惯、坐标偏差等问题，都会让网页显示与现实情况存在差异。",
-      "UW 樱花点位目前使用补充数据来弥补官方城市树木清单的空缺，因此这一部分不是官方 city inventory。"
+      "地区级覆盖优先采用官方公开的单株树木数据集；这是产品纳入覆盖地区的硬标准。但数据更新频率、树木修剪/移除、物种录入习惯、坐标偏差等问题，都会让网页显示与现实情况存在差异。"
     ],
     officialBadge: "官方公开源",
     supplementalBadge: "补充源",
@@ -453,8 +448,7 @@ const ABOUT_COPY: Record<
   "zh-TW": {
     title: "關於 Pink Hunter",
     intro: [
-      "Pink Hunter 是一個春季粉色花樹地圖專案，幫助大家在花季裡更快找到櫻花、李花、桃花、木蘭和海棠。",
-      "這個專案不只是找花，也希望教大家分辨這些常被誤認的花樹，讓「粉色花都叫櫻花」這件事少一點。"
+      "Pink Hunter 是一個春季粉色花樹地圖專案，幫助大家在花季裡更快找到櫻花、李花、桃花、木蘭和海棠。這個專案不只是找花，也希望教大家分辨這些常被誤認的花樹，讓「粉色花都叫櫻花」這件事少一點。"
     ],
     summaryTitle: "資料總結",
     summaryNote: "以下統計展示目前網站已收錄的樹木數量，先按花種彙總，再按州／省和地區彙總。",
@@ -465,8 +459,8 @@ const ABOUT_COPY: Record<
     summaryTotalLabel: "總樹數",
     summarySearchPlaceholder: "搜尋州或省",
     summaryEmpty: "沒有符合的州或省。",
-    summaryAreaSearchPlaceholder: "搜尋地區",
-    summaryAreaEmpty: "沒有符合的地區。",
+    summaryAreaSearchPlaceholder: "搜尋城市或縣",
+    summaryAreaEmpty: "沒有符合的城市或縣。",
     sourcesTitle: "資料來源",
     sourcesSearchPlaceholder: "搜尋資料來源",
     sourcesEmpty: "沒有符合的資料來源。",
@@ -475,9 +469,7 @@ const ABOUT_COPY: Record<
     contactLead:
       "如果你發現網站有任何問題，或知道這個網站還沒有覆蓋到的公開資料集，誠摯歡迎你聯絡 Flala Zhang。",
     disclaimer: [
-      "地區級覆蓋優先採用官方公開的單株樹木資料集；這是產品納入覆蓋地區的硬標準。",
-      "但資料更新頻率、樹木修剪或移除、物種登錄習慣、座標偏差等問題，都會讓網頁顯示與現實情況存在差異。",
-      "UW 櫻花點位目前使用補充資料來彌補官方城市樹木清單的空缺，因此這一部分不是官方 city inventory。"
+      "地區級覆蓋優先採用官方公開的單株樹木資料集；這是產品納入覆蓋地區的硬標準。但資料更新頻率、樹木修剪或移除、物種登錄習慣、座標偏差等問題，都會讓網頁顯示與現實情況存在差異。"
     ],
     officialBadge: "官方公開源",
     supplementalBadge: "補充源",
@@ -489,8 +481,7 @@ const ABOUT_COPY: Record<
   "es-ES": {
     title: "Acerca de Pink Hunter",
     intro: [
-      "Pink Hunter es un mapa de primavera para encontrar cerezos, ciruelos, melocotoneros, magnolias y manzanos ornamentales con floración rosa.",
-      "El proyecto también busca enseñar a distinguir estas flores parecidas, en lugar de llamar cerezo a cualquier árbol rosado."
+      "Pink Hunter es un mapa de primavera para encontrar cerezos, ciruelos, melocotoneros, magnolias y manzanos ornamentales con floración rosa. El proyecto también busca enseñar a distinguir estas flores parecidas, en lugar de llamar cerezo a cualquier árbol rosado."
     ],
     summaryTitle: "Resumen de datos",
     summaryNote:
@@ -502,8 +493,8 @@ const ABOUT_COPY: Record<
     summaryTotalLabel: "Total de árboles",
     summarySearchPlaceholder: "Buscar estado o provincia",
     summaryEmpty: "Ningún estado o provincia coincide con esta búsqueda.",
-    summaryAreaSearchPlaceholder: "Buscar áreas",
-    summaryAreaEmpty: "Ninguna área coincide con esta búsqueda.",
+    summaryAreaSearchPlaceholder: "Buscar ciudades o condados",
+    summaryAreaEmpty: "Ninguna ciudad o condado coincide con esta búsqueda.",
     sourcesTitle: "Fuentes de datos",
     sourcesSearchPlaceholder: "Buscar fuentes de datos",
     sourcesEmpty: "No se encontró ninguna fuente de datos.",
@@ -512,9 +503,7 @@ const ABOUT_COPY: Record<
     contactLead:
       "Si encuentras algún problema en el sitio o conoces algún conjunto de datos público que aún no esté cubierto, te invitamos cordialmente a contactar a Flala Zhang.",
     disclaimer: [
-      "La cobertura por jurisdicción se construye a partir de conjuntos públicos oficiales árbol por árbol siempre que estén disponibles; esa es una regla estricta para añadir un área cubierta.",
-      "Lo que ves en el mapa puede diferir de la realidad por retrasos de actualización, podas o retiros, diferencias de nomenclatura o errores de ubicación.",
-      "Los puntos de cerezos de UW se incluyen hoy mediante una fuente complementaria porque el inventario oficial de la ciudad no cubre completamente ese campus."
+      "La cobertura por jurisdicción se construye a partir de conjuntos públicos oficiales árbol por árbol siempre que estén disponibles; esa es una regla estricta para añadir un área cubierta. Lo que ves en el mapa puede diferir de la realidad por retrasos de actualización, podas o retiros, diferencias de nomenclatura o errores de ubicación."
     ],
     officialBadge: "Fuente pública oficial",
     supplementalBadge: "Fuente complementaria",
@@ -526,8 +515,7 @@ const ABOUT_COPY: Record<
   "ko-KR": {
     title: "Pink Hunter 소개",
     intro: [
-      "Pink Hunter는 벚꽃, 자두꽃, 복숭아꽃, 목련, 꽃사과처럼 분홍빛으로 피는 나무를 찾기 위한 봄 지도입니다.",
-      "모든 분홍 꽃나무를 벚꽃이라고 부르지 않고, 서로 어떻게 다른지 배울 수 있게 돕는 것도 이 프로젝트의 목표입니다."
+      "Pink Hunter는 벚꽃, 자두꽃, 복숭아꽃, 목련, 꽃사과처럼 분홍빛으로 피는 나무를 찾기 위한 봄 지도입니다. 모든 분홍 꽃나무를 벚꽃이라고 부르지 않고, 서로 어떻게 다른지 배울 수 있게 돕는 것도 이 프로젝트의 목표입니다."
     ],
     summaryTitle: "데이터 요약",
     summaryNote: "아래 수치는 현재 사이트에 포함된 나무를 먼저 종별로, 그다음 주/주(省)와 지역별로 요약한 것입니다.",
@@ -538,8 +526,8 @@ const ABOUT_COPY: Record<
     summaryTotalLabel: "총 나무 수",
     summarySearchPlaceholder: "주 또는 주(省) 검색",
     summaryEmpty: "검색과 일치하는 주 또는 주(省)가 없습니다.",
-    summaryAreaSearchPlaceholder: "지역 검색",
-    summaryAreaEmpty: "검색과 일치하는 지역이 없습니다.",
+    summaryAreaSearchPlaceholder: "시 또는 카운티 검색",
+    summaryAreaEmpty: "검색과 일치하는 시 또는 카운티가 없습니다.",
     sourcesTitle: "데이터 출처",
     sourcesSearchPlaceholder: "데이터 출처 검색",
     sourcesEmpty: "검색 결과와 일치하는 데이터 출처가 없습니다.",
@@ -548,9 +536,7 @@ const ABOUT_COPY: Record<
     contactLead:
       "이 사이트에서 문제를 발견했거나 아직 포함되지 않은 공개 데이터셋을 알고 있다면, Flala Zhang에게 알려 주시면 감사하겠습니다.",
     disclaimer: [
-      "행정 구역 단위 커버리지는 가능한 경우 공식 공개 단일 수목 데이터셋을 기준으로 구축합니다. 이것은 커버된 지역을 추가할 때의 하드 룰입니다.",
-      "지도에 보이는 내용은 데이터 갱신 지연, 가지치기나 제거, 명칭 차이, 좌표 오차 때문에 실제와 다를 수 있습니다.",
-      "UW 벚꽃 포인트는 해당 캠퍼스 명소를 공식 도시 인벤토리가 충분히 다루지 못하기 때문에 현재 보완 데이터셋으로 포함됩니다."
+      "행정 구역 단위 커버리지는 가능한 경우 공식 공개 단일 수목 데이터셋을 기준으로 구축합니다. 이것은 커버된 지역을 추가할 때의 하드 룰입니다. 지도에 보이는 내용은 데이터 갱신 지연, 가지치기나 제거, 명칭 차이, 좌표 오차 때문에 실제와 다를 수 있습니다."
     ],
     officialBadge: "공식 공개 출처",
     supplementalBadge: "보완 출처",
@@ -562,8 +548,7 @@ const ABOUT_COPY: Record<
   "ja-JP": {
     title: "Pink Hunter について",
     intro: [
-      "Pink Hunter は、桜、李、桃、木蓮、海棠など、春にピンク色で咲く花木を見つけるための地図です。",
-      "似た花木の違いを学び、ピンクの木を何でも桜と呼んでしまう状況を少し減らすことも、このプロジェクトの目的です。"
+      "Pink Hunter は、桜、李、桃、木蓮、海棠など、春にピンク色で咲く花木を見つけるための地図です。似た花木の違いを学び、ピンクの木を何でも桜と呼んでしまう状況を少し減らすことも、このプロジェクトの目的です。"
     ],
     summaryTitle: "データ概要",
     summaryNote: "以下の数は、現在このサイトに収録されている樹木を、まず花種別に、その次に州・省と地区別にまとめたものです。",
@@ -574,8 +559,8 @@ const ABOUT_COPY: Record<
     summaryTotalLabel: "総本数",
     summarySearchPlaceholder: "州・省を検索",
     summaryEmpty: "一致する州・省はありません。",
-    summaryAreaSearchPlaceholder: "地区を検索",
-    summaryAreaEmpty: "一致する地区はありません。",
+    summaryAreaSearchPlaceholder: "市または郡を検索",
+    summaryAreaEmpty: "一致する市または郡はありません。",
     sourcesTitle: "データソース",
     sourcesSearchPlaceholder: "データソースを検索",
     sourcesEmpty: "検索に一致するデータソースはありません。",
@@ -584,9 +569,7 @@ const ABOUT_COPY: Record<
     contactLead:
       "このサイトの不具合を見つけた場合や、まだ掲載されていない公開データセットをご存じの場合は、ぜひ Flala Zhang までご連絡ください。",
     disclaimer: [
-      "行政区画ごとのカバレッジは、利用可能な場合は公式に公開された単木データセットを優先して構築しています。これはカバー対象エリアを追加する際のハードルールです。",
-      "更新遅延、剪定や撤去、名称のゆれ、座標誤差などにより、地図表示が実際の状況と異なることがあります。",
-      "UW の桜ポイントは、公式な市のインベントリだけではキャンパスの名所を十分にカバーできないため、現在は補完データで追加しています。"
+      "行政区画ごとのカバレッジは、利用可能な場合は公式に公開された単木データセットを優先して構築しています。これはカバー対象エリアを追加する際のハードルールです。更新遅延、剪定や撤去、名称のゆれ、座標誤差などにより、地図表示が実際の状況と異なることがあります。"
     ],
     officialBadge: "公式公開ソース",
     supplementalBadge: "補完ソース",
@@ -598,8 +581,7 @@ const ABOUT_COPY: Record<
   "fr-FR": {
     title: "À propos de Pink Hunter",
     intro: [
-      "Pink Hunter est une carte de printemps pour trouver des cerisiers, pruniers, pêchers, magnolias et pommiers d'ornement à floraison rose.",
-      "Le projet sert aussi à apprendre à distinguer ces floraisons ressemblantes au lieu d'appeler cerisier tout arbre rose."
+      "Pink Hunter est une carte de printemps pour trouver des cerisiers, pruniers, pêchers, magnolias et pommiers d'ornement à floraison rose. Le projet sert aussi à apprendre à distinguer ces floraisons ressemblantes au lieu d'appeler cerisier tout arbre rose."
     ],
     summaryTitle: "Résumé des données",
     summaryNote:
@@ -611,8 +593,8 @@ const ABOUT_COPY: Record<
     summaryTotalLabel: "Total d'arbres",
     summarySearchPlaceholder: "Rechercher un État ou une province",
     summaryEmpty: "Aucun État ou province ne correspond à cette recherche.",
-    summaryAreaSearchPlaceholder: "Rechercher une zone",
-    summaryAreaEmpty: "Aucune zone ne correspond à cette recherche.",
+    summaryAreaSearchPlaceholder: "Rechercher une ville ou un comté",
+    summaryAreaEmpty: "Aucune ville ou aucun comté ne correspond à cette recherche.",
     sourcesTitle: "Sources de données",
     sourcesSearchPlaceholder: "Rechercher une source",
     sourcesEmpty: "Aucune source de données ne correspond à cette recherche.",
@@ -621,9 +603,7 @@ const ABOUT_COPY: Record<
     contactLead:
       "Si vous repérez un problème sur ce site ou connaissez un jeu de données public encore absent, vous êtes chaleureusement invité à contacter Flala Zhang.",
     disclaimer: [
-      "La couverture par juridiction repose, lorsque c'est possible, sur des jeux de données publics officiels arbre par arbre ; c'est une règle stricte pour ajouter une zone couverte.",
-      "Ce que vous voyez sur la carte peut différer de la réalité à cause du retard de mise à jour, de la taille ou du retrait d'arbres, d'incohérences de nommage ou d'erreurs de géolocalisation.",
-      "Les points de cerisiers de l'UW sont actuellement inclus via une source complémentaire, car l'inventaire officiel de la ville ne couvre pas complètement ce hotspot du campus."
+      "La couverture par juridiction repose, lorsque c'est possible, sur des jeux de données publics officiels arbre par arbre ; c'est une règle stricte pour ajouter une zone couverte. Ce que vous voyez sur la carte peut différer de la réalité à cause du retard de mise à jour, de la taille ou du retrait d'arbres, d'incohérences de nommage ou d'erreurs de géolocalisation."
     ],
     officialBadge: "Source publique officielle",
     supplementalBadge: "Source complémentaire",
@@ -635,8 +615,7 @@ const ABOUT_COPY: Record<
   "vi-VN": {
     title: "Về Pink Hunter",
     intro: [
-      "Pink Hunter là bản đồ mùa xuân để tìm các cây nở hoa màu hồng như anh đào, mận, đào, mộc lan và hải đường.",
-      "Dự án cũng nhằm giúp mọi người phân biệt những loài hoa dễ bị nhầm lẫn này thay vì mặc định gọi mọi cây hoa hồng là anh đào."
+      "Pink Hunter là bản đồ mùa xuân để tìm các cây nở hoa màu hồng như anh đào, mận, đào, mộc lan và hải đường. Dự án cũng nhằm giúp mọi người phân biệt những loài hoa dễ bị nhầm lẫn này thay vì mặc định gọi mọi cây hoa hồng là anh đào."
     ],
     summaryTitle: "Tóm tắt dữ liệu",
     summaryNote:
@@ -648,8 +627,8 @@ const ABOUT_COPY: Record<
     summaryTotalLabel: "Tổng số cây",
     summarySearchPlaceholder: "Tìm bang hoặc tỉnh bang",
     summaryEmpty: "Không có bang hoặc tỉnh bang nào khớp.",
-    summaryAreaSearchPlaceholder: "Tìm khu vực",
-    summaryAreaEmpty: "Không có khu vực nào khớp.",
+    summaryAreaSearchPlaceholder: "Tìm thành phố hoặc quận hạt",
+    summaryAreaEmpty: "Không có thành phố hoặc quận hạt nào khớp.",
     sourcesTitle: "Nguồn dữ liệu",
     sourcesSearchPlaceholder: "Tìm nguồn dữ liệu",
     sourcesEmpty: "Không có nguồn dữ liệu nào khớp với tìm kiếm này.",
@@ -658,9 +637,7 @@ const ABOUT_COPY: Record<
     contactLead:
       "Nếu bạn phát hiện bất kỳ vấn đề nào trên trang web hoặc biết một bộ dữ liệu công khai mà bản đồ này chưa bao phủ, rất mong bạn liên hệ với Flala Zhang.",
     disclaimer: [
-      "Phạm vi theo từng đơn vị hành chính được xây dựng từ các bộ dữ liệu công khai chính thức cho từng cây khi những bộ dữ liệu đó tồn tại; đây là quy tắc cứng để thêm một khu vực được phủ.",
-      "Những gì bạn thấy trên bản đồ vẫn có thể khác thực tế do độ trễ cập nhật, việc cắt tỉa hoặc loại bỏ cây, cách ghi tên khác nhau hoặc sai số tọa độ.",
-      "Các điểm hoa anh đào ở UW hiện được thêm bằng nguồn bổ sung vì bộ kiểm kê chính thức của thành phố chưa bao phủ đầy đủ điểm nóng trong khuôn viên này."
+      "Phạm vi theo từng đơn vị hành chính được xây dựng từ các bộ dữ liệu công khai chính thức cho từng cây khi những bộ dữ liệu đó tồn tại; đây là quy tắc cứng để thêm một khu vực được phủ. Những gì bạn thấy trên bản đồ vẫn có thể khác thực tế do độ trễ cập nhật, việc cắt tỉa hoặc loại bỏ cây, cách ghi tên khác nhau hoặc sai số tọa độ."
     ],
     officialBadge: "Nguồn công khai chính thức",
     supplementalBadge: "Nguồn bổ sung",
@@ -1183,7 +1160,16 @@ function areaTypeClassName(city: string): string {
 }
 
 function formatAreaLabel(city: string): string {
-  return `${jurisdictionDisplayName(city)}, ${stateCodeForCity(city)}`;
+  const displayName = jurisdictionDisplayName(city).trim();
+  const stateCode = stateCodeForCity(city);
+  if (new RegExp(`(?:,\\s*|\\s+)${stateCode}$`, "i").test(displayName)) {
+    return displayName;
+  }
+  return `${displayName}, ${stateCode}`;
+}
+
+function hasKnownZipCode(zipCode: string | null): zipCode is string {
+  return Boolean(zipCode && zipCode.trim() && zipCode.trim().toLowerCase() !== "unknown");
 }
 
 function regionOptionLabel(language: Language, region: CoverageRegion): string {
@@ -1930,7 +1916,9 @@ export default function App(): JSX.Element {
       return [] as AppMeta["sources"];
     }
     return [...data.meta.sources].sort(
-      (left, right) => left.city.localeCompare(right.city) || left.name.localeCompare(right.name)
+      (left, right) =>
+        SORT_COLLATOR.compare(formatAreaLabel(left.city), formatAreaLabel(right.city)) ||
+        SORT_COLLATOR.compare(left.name, right.name)
     );
   }, [data]);
 
@@ -2559,6 +2547,9 @@ export default function App(): JSX.Element {
       const areaBadge = `<span class="tree-area-type-badge ${areaTypeClassName(selectedTree.properties.city)}">${escapeHtml(
         areaTypeLabel(language, selectedTree.properties.city)
       )}</span>`;
+      const zipCodeLine = hasKnownZipCode(selectedTree.properties.zip_code)
+        ? `<p><strong>${escapeHtml(t(language, "zipCode"))}:</strong> ${escapeHtml(selectedTree.properties.zip_code)}</p>`
+        : "";
       const subtypeLine = selectedTree.properties.subtype_name
         ? `<p><strong>${escapeHtml(t(language, "subtype"))}:</strong> ${escapeHtml(selectedTree.properties.subtype_name)}</p>`
         : "";
@@ -2568,7 +2559,7 @@ export default function App(): JSX.Element {
           ${subtypeLine}
           <p>${escapeHtml(selectedTree.properties.scientific_name)}</p>
           <p><strong>${escapeHtml(t(language, "city"))}:</strong> <span class="area-value-inline">${escapeHtml(areaDisplayName)}${areaBadge}</span></p>
-          <p><strong>${escapeHtml(t(language, "zipCode"))}:</strong> ${escapeHtml(selectedTree.properties.zip_code ?? t(language, "unknown"))}</p>
+          ${zipCodeLine}
           <p><strong>${escapeHtml(t(language, "coordinates"))}:</strong> ${lon.toFixed(5)}, ${lat.toFixed(5)}</p>
         </div>
       `;
@@ -3230,9 +3221,14 @@ export default function App(): JSX.Element {
 
               {selectedTree && (
                 <article className="tree-card selected">
-                  <header>
-                    <span className="badge">{t(language, "selectedTree")}</span>
+                  <header className="selected-tree-header">
                     <h4>{speciesLabel(language, selectedTree.properties.species_group)}</h4>
+                    <img
+                      alt={`${speciesLabel(language, selectedTree.properties.species_group)} icon`}
+                      className="selected-tree-species-icon"
+                      loading="lazy"
+                      src={SPECIES_ICON_ART[selectedTree.properties.species_group]}
+                    />
                   </header>
                   {selectedTree.properties.subtype_name && (
                     <p>
@@ -3257,10 +3253,12 @@ export default function App(): JSX.Element {
                       </span>
                     </span>
                   </p>
-                  <p>
-                    <strong>{t(language, "zipCode")}: </strong>
-                    {selectedTree.properties.zip_code ?? t(language, "unknown")}
-                  </p>
+                  {hasKnownZipCode(selectedTree.properties.zip_code) && (
+                    <p>
+                      <strong>{t(language, "zipCode")}: </strong>
+                      {selectedTree.properties.zip_code}
+                    </p>
+                  )}
                   <p>
                     <strong>{t(language, "ownership")}: </strong>
                     {ownershipLabel(language, selectedTree.properties.ownership)} (
@@ -3486,57 +3484,65 @@ export default function App(): JSX.Element {
                     type="search"
                     value={aboutSourcesSearchQuery}
                   />
+                  <div className="about-source-legend" role="presentation">
+                    <span className="about-source-legend-item">
+                      <span className="about-source-legend-dot official" />
+                      <span>{aboutCopy.officialBadge}</span>
+                    </span>
+                    <span className="about-source-legend-item">
+                      <span className="about-source-legend-dot supplemental" />
+                      <span>{aboutCopy.supplementalBadge}</span>
+                    </span>
+                  </div>
                   <div className="about-source-list">
                     {pagedAboutSources.map((source) => {
                       const supplemental = source.name === "UW OSM Supplemental" || !isHttpUrl(source.endpoint);
                       return (
-                        <div className="about-source-item" key={`${source.city}-${source.name}`}>
+                        <div
+                          className={`about-source-item ${supplemental ? "supplemental" : "official"}`}
+                          key={`${source.city}-${source.name}`}
+                        >
                           <div className="about-source-head">
-                            <div className="about-source-title-block">
-                              <div className="about-source-title-row">
-                                <strong>
-                                  {source.city}: {source.name}
-                                </strong>
-                                {isHttpUrl(source.endpoint) ? (
-                                  <a
-                                    aria-label={aboutCopy.openLink}
-                                    className="source-link-icon"
-                                    href={source.endpoint}
-                                    rel="noreferrer"
-                                    target="_blank"
-                                  >
-                                    <svg aria-hidden="true" viewBox="0 0 24 24">
-                                      <path
-                                        d="M9.35 14.65 14.65 9.35"
-                                        fill="none"
-                                        stroke="currentColor"
-                                        strokeLinecap="round"
-                                        strokeLinejoin="round"
-                                        strokeWidth="2"
-                                      />
-                                      <path
-                                        d="M7.25 14.4 5.6 16.05a3.15 3.15 0 1 0 4.45 4.45l1.65-1.65"
-                                        fill="none"
-                                        stroke="currentColor"
-                                        strokeLinecap="round"
-                                        strokeLinejoin="round"
-                                        strokeWidth="2"
-                                      />
-                                      <path
-                                        d="M16.75 9.6l1.65-1.65a3.15 3.15 0 1 0-4.45-4.45L12.3 5.15"
-                                        fill="none"
-                                        stroke="currentColor"
-                                        strokeLinecap="round"
-                                        strokeLinejoin="round"
-                                        strokeWidth="2"
-                                      />
-                                    </svg>
-                                  </a>
-                                ) : null}
-                              </div>
-                              <span className={supplemental ? "source-badge supplemental" : "source-badge official"}>
-                                {supplemental ? aboutCopy.supplementalBadge : aboutCopy.officialBadge}
-                              </span>
+                            <div className="about-source-title-row">
+                              <strong>
+                                {formatAreaLabel(source.city)}: {source.name}
+                              </strong>
+                              {isHttpUrl(source.endpoint) ? (
+                                <a
+                                  aria-label={aboutCopy.openLink}
+                                  className="source-link-icon"
+                                  href={source.endpoint}
+                                  rel="noreferrer"
+                                  target="_blank"
+                                >
+                                  <svg aria-hidden="true" viewBox="0 0 24 24">
+                                    <path
+                                      d="M9.35 14.65 14.65 9.35"
+                                      fill="none"
+                                      stroke="currentColor"
+                                      strokeLinecap="round"
+                                      strokeLinejoin="round"
+                                      strokeWidth="2"
+                                    />
+                                    <path
+                                      d="M7.25 14.4 5.6 16.05a3.15 3.15 0 1 0 4.45 4.45l1.65-1.65"
+                                      fill="none"
+                                      stroke="currentColor"
+                                      strokeLinecap="round"
+                                      strokeLinejoin="round"
+                                      strokeWidth="2"
+                                    />
+                                    <path
+                                      d="M16.75 9.6l1.65-1.65a3.15 3.15 0 1 0-4.45-4.45L12.3 5.15"
+                                      fill="none"
+                                      stroke="currentColor"
+                                      strokeLinecap="round"
+                                      strokeLinejoin="round"
+                                      strokeWidth="2"
+                                    />
+                                  </svg>
+                                </a>
+                              ) : null}
                             </div>
                           </div>
                           {!isHttpUrl(source.endpoint) && <p>{source.endpoint}</p>}
