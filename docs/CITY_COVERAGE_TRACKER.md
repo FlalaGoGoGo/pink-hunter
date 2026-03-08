@@ -77,6 +77,7 @@ Last updated: 2026-03-07 (America/Los_Angeles)
 | 🩶 | Santa Clara | In gray coverage | Official jurisdiction boundary | Official city urban-forest materials were reviewed, but no public citywide single-tree species dataset was confirmed |
 | 🩶 | Santa Rosa | In gray coverage | Official jurisdiction boundary | Official city GIS results found fire-damaged tree-removal layers, not a citywide public single-tree inventory |
 | 🩶 | Stockton | In gray coverage | Official jurisdiction boundary | Official ArcGIS and city GIS searches did not confirm a public citywide single-tree species dataset |
+| 🩶 | Surrey | In gray coverage | Official jurisdiction boundary | Official Surrey Open Data exposes `Important Trees` and `Park Specimen Trees`, but no citywide public single-tree species inventory was confirmed |
 | 🩶 | Sunnyvale | In gray coverage | Official jurisdiction boundary | County and city GIS sources were reviewed, but no verified public citywide single-tree species dataset was confirmed |
 | 🩶 | Tigard | In gray coverage | Official jurisdiction boundary | Official ArcGIS results exposed an ash-tree inventory, not a citywide public single-tree species inventory |
 
@@ -147,7 +148,6 @@ Last updated: 2026-03-07 (America/Los_Angeles)
 | ⚠️ | Mount Vernon | Not found yet | Official city GIS / urban-forestry entry points reviewed in this round did not confirm a public citywide single-tree inventory |
 | ⚠️ | Burlington, WA | Not found yet | Official city pages reviewed in this round did not confirm a public citywide single-tree inventory |
 | ⚠️ | Anacortes | Not found yet | Official city GIS pages reviewed in this round did not confirm a public citywide single-tree inventory |
-| ⚠️ | Surrey | Partial-only | Official Surrey Open Data exposes `Important Trees` and `Park Specimen Trees`, but not a citywide public single-tree inventory |
 | ⚠️ | White Rock | Not found yet | Official city open-data entry points were checked in this round, but no public citywide single-tree inventory was confirmed |
 | ⚠️ | New Westminster | Not found yet | Official ArcGIS Hub search did not confirm a public citywide single-tree inventory in this round |
 | ⚠️ | Coquitlam | Not found yet | Official open-data / ArcGIS searches did not confirm a public citywide single-tree inventory in this round |
@@ -228,7 +228,7 @@ Last updated: 2026-03-07 (America/Los_Angeles)
 
 ## March 2026 Seattle-Vancouver Corridor Sweep
 - Rechecked the Seattle-to-Vancouver corridor beyond already-covered cities.
-- Confirmed `Surrey` has official partial tree layers (`Important Trees`, `Park Specimen Trees`) but not a citywide public single-tree inventory.
+- Promoted `Surrey` into gray coverage after confirming the official city boundary and re-confirming that the official public tree layers are still partial-only (`Important Trees`, `Park Specimen Trees`), not a citywide single-tree inventory.
 - Official site / GIS checks in this round did not confirm citywide public single-tree inventories for `Mount Vernon`, `Burlington`, `Anacortes`, `White Rock`, `New Westminster`, `Coquitlam`, or `Abbotsford`.
 
 ## March 2026 Ontario-Quebec / Mid-Atlantic Sweep

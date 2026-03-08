@@ -150,6 +150,7 @@ VICTORIA_PARK_TREES_ITEM = "https://www.arcgis.com/sharing/rest/content/items/36
 BURNABY_BOUNDARY_LAYER = "https://gis.burnaby.ca/arcgis/rest/services/OpenData/OpenData3/MapServer/12"
 DELTA_BOUNDARY_LAYER = "https://maps.delta.ca/arcgis/rest/services/DeltaMap/PropertyBasemap/MapServer/13"
 SAANICH_BOUNDARY_LAYER = "https://map.saanich.ca/server/rest/services/MAPS/SaanichBaseMap/MapServer/6"
+SURREY_BOUNDARY_LAYER = "https://gisservices.surrey.ca/arcgis/rest/services/OpenData/MapServer/133"
 RICHMOND_BC_BOUNDARY_LAYER = "https://maps.richmond.ca/internal/rest/services/Hansen/Hansen_Base/MapServer/5"
 OTTAWA_TREES_LAYER = "https://maps.ottawa.ca/arcgis/rest/services/Forestry/MapServer/0"
 OTTAWA_BOUNDARY_LAYER = "https://maps.ottawa.ca/arcgis/rest/services/OfficialPlan/MapServer/71"
@@ -209,7 +210,11 @@ REGION_CITY_OVERRIDES: dict[str, str] = {
     "Toronto": "on",
     "Montreal": "qc",
     "Washington DC": "dc",
+    "Burnaby": "bc",
+    "Delta": "bc",
     "Richmond BC": "bc",
+    "Saanich": "bc",
+    "Surrey": "bc",
     "Vancouver BC": "bc",
     "Victoria BC": "bc",
     "Portland": "or",
@@ -304,6 +309,7 @@ CITY_BOUNDARY_HINTS: dict[str, dict[str, str]] = {
     "Burnaby": {"boundary_source": "burnaby_arcgis"},
     "Delta": {"boundary_source": "delta_arcgis"},
     "Saanich": {"boundary_source": "saanich_arcgis"},
+    "Surrey": {"boundary_source": "surrey_arcgis"},
 }
 
 ALLOWED_CENSUS_PLACE_LSADC = {"25", "43"}
@@ -378,6 +384,7 @@ OFFICIAL_DATA_UNAVAILABLE_CITIES: dict[str, str] = {
     "Snoqualmie": "City investigated; no official public single-tree species dataset was confirmed.",
     "Stockton": "Official ArcGIS and city GIS searches in this round did not confirm a public citywide single-tree species dataset.",
     "Sumner": "City investigated; search hits were false positives, not a city tree inventory.",
+    "Surrey": "Official Surrey Open Data exposes `Important Trees` and `Park Specimen Trees`, but no citywide public single-tree species inventory was confirmed.",
     "Tacoma": "Official ArcGIS content found in this round was canopy-height mapping, not a public single-tree species inventory.",
     "Tigard": "Official ArcGIS results in this round exposed an ash-tree inventory, not a citywide public single-tree species inventory.",
     "Tukwila": "City investigated; no reliable official public single-tree species dataset was confirmed.",
@@ -1993,6 +2000,9 @@ def fetch_special_city_boundary_feature(city: str) -> dict[str, Any] | None:
 
     if boundary_source == "saanich_arcgis":
         return fetch_arcgis_boundary_feature(SAANICH_BOUNDARY_LAYER, source="District of Saanich Maps")
+
+    if boundary_source == "surrey_arcgis":
+        return fetch_arcgis_boundary_feature(SURREY_BOUNDARY_LAYER, source="City of Surrey Open Data")
 
     if boundary_source == "richmond_bc_arcgis":
         return fetch_arcgis_boundary_feature(RICHMOND_BC_BOUNDARY_LAYER, source="City of Richmond Maps")
