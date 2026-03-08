@@ -975,6 +975,11 @@ function boundsIntersect(left: BoundsTuple, right: BoundsTuple): boolean {
   return !(leftMaxX < rightMinX || rightMaxX < leftMinX || leftMaxY < rightMinY || rightMaxY < leftMinY);
 }
 
+function boundsContainPoint(bounds: BoundsTuple, lon: number, lat: number): boolean {
+  const [[minX, minY], [maxX, maxY]] = normalizeBounds(bounds);
+  return lon >= minX && lon <= maxX && lat >= minY && lat <= maxY;
+}
+
 function mergeTreeCollections(collections: TreeCollection[]): TreeCollection {
   return toTreeCollection(collections.flatMap((collection) => collection.features));
 }
@@ -1313,20 +1318,6 @@ function createSelectedBloomImageData(): ImageData {
   return ctx.getImageData(0, 0, size, size);
 }
 
-function sortZipCodeValues(values: Iterable<string>): string[] {
-  return Array.from(new Set(values)).sort(
-    (left, right) => {
-      if (left === "unknown") {
-        return 1;
-      }
-      if (right === "unknown") {
-        return -1;
-      }
-      return left.localeCompare(right);
-    }
-  );
-}
-
 function isHttpUrl(value: string): boolean {
   return /^https?:\/\//i.test(value);
 }
@@ -1379,7 +1370,8 @@ export default function App(): JSX.Element {
   >({});
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
-  const [regionLoading, setRegionLoading] = useState<CoverageRegion | null>(null);
+  const [loadingAreaIndexes, setLoadingAreaIndexes] = useState(false);
+  const [loadingShards, setLoadingShards] = useState(false);
   const [mapReady, setMapReady] = useState(false);
   const [visitorCount, setVisitorCount] = useState<number | null>(null);
 
@@ -1387,8 +1379,6 @@ export default function App(): JSX.Element {
   const [language, setLanguage] = useState<Language>(initialUrlState.language);
   const [selectedSpecies, setSelectedSpecies] = useState<SpeciesGroup[]>(initialUrlState.species);
   const [selectedOwnership, setSelectedOwnership] = useState<OwnershipGroup[]>(initialUrlState.ownership);
-  const [selectedCities, setSelectedCities] = useState<string[]>(initialUrlState.cities);
-  const [selectedZipCodes, setSelectedZipCodes] = useState<string[]>(initialUrlState.zipCodes);
   const [jumpCountry, setJumpCountry] = useState<JumpCountry["id"]>("us");
   const [jumpState, setJumpState] = useState<CoverageRegion | "">("");
   const [jumpArea, setJumpArea] = useState<string>("");
@@ -1421,8 +1411,6 @@ export default function App(): JSX.Element {
   const filteredFeaturesRef = useRef<TreeCollection["features"]>([]);
   const isDesktopRef = useRef(layoutMode === "desktop_split");
   const activeRegionRef = useRef(activeRegion);
-  const initialRegionFiltersAppliedRef = useRef(false);
-  const pendingRegionResetRef = useRef<CoverageRegion | null>(null);
   const pendingRegionFitRef = useRef<CoverageRegion | null>(null);
   const dragStateRef = useRef<{ startY: number; startHeight: number; dragging: boolean }>({
     startY: 0,
@@ -1505,9 +1493,7 @@ export default function App(): JSX.Element {
   }, [data]);
 
   const activeRegionMeta = regionMetaById.get(activeRegion) ?? null;
-  const activeRegionAreaIndex = regionAreaIndexCache[activeRegion] ?? null;
   const activeLanguageOption = LANGUAGE_OPTIONS.find((option) => option.id === language) ?? LANGUAGE_OPTIONS[0];
-  const regionAreaItems = activeRegionAreaIndex?.items ?? [];
 
   useEffect(() => {
     const map = mapRef.current;
@@ -1537,35 +1523,67 @@ export default function App(): JSX.Element {
     }
   }, [activeRegion, data, regionMetaById]);
 
-  useEffect(() => {
-    if (!activeRegionMeta || !activeRegionMeta.available || activeRegionAreaIndex) {
-      return;
+  const effectiveViewportBounds = viewportBounds ?? preferredBoundsForRegion(activeRegion, activeRegionMeta);
+
+  const visibleRegions = useMemo(() => {
+    if (!data) {
+      return [] as RegionMeta[];
     }
-    const areaSplit = activeRegionMeta.area_split;
-    if (!areaSplit?.ready) {
+    const viewport = effectiveViewportBounds;
+    const availableRegions = data.meta.regions.filter((region) => region.available);
+    if (!viewport) {
+      return activeRegionMeta ? [activeRegionMeta] : availableRegions;
+    }
+    const matched = availableRegions.filter((region) => boundsIntersect(region.bounds, viewport));
+    if (matched.length > 0) {
+      return matched;
+    }
+    return activeRegionMeta ? [activeRegionMeta] : availableRegions;
+  }, [activeRegionMeta, data, effectiveViewportBounds]);
+
+  const visibleRegionIds = useMemo(() => visibleRegions.map((region) => region.id), [visibleRegions]);
+
+  const pendingAreaIndexRegions = useMemo(
+    () =>
+      visibleRegions.filter((region) => region.area_split?.ready && !regionAreaIndexCache[region.id]).map((region) => region.id),
+    [regionAreaIndexCache, visibleRegions]
+  );
+
+  useEffect(() => {
+    if (pendingAreaIndexRegions.length === 0) {
       return;
     }
 
     let cancelled = false;
-    setRegionLoading(activeRegion);
+    setLoadingAreaIndexes(true);
     setError(null);
 
     void (async () => {
       try {
-        const regionAreaIndex = await loadAreaIndex(areaSplit.index_path);
+        const loaded = await Promise.all(
+          pendingAreaIndexRegions.map(async (regionId) => {
+            const regionMeta = regionMetaById.get(regionId);
+            const indexPath = regionMeta?.area_split?.index_path;
+            if (!indexPath) {
+              throw new Error(`Missing area index path for region ${regionId}`);
+            }
+            return [regionId, await loadAreaIndex(indexPath)] as const;
+          })
+        );
         if (cancelled) {
           return;
         }
-        setRegionAreaIndexCache((current) => ({ ...current, [activeRegion]: regionAreaIndex }));
+        setRegionAreaIndexCache((current) => ({
+          ...current,
+          ...Object.fromEntries(loaded)
+        }));
       } catch (loadError) {
-        if (cancelled) {
-          return;
+        if (!cancelled) {
+          setError(loadError instanceof Error ? loadError.message : "Unknown area index loading error");
         }
-        const message = loadError instanceof Error ? loadError.message : "Unknown region loading error";
-        setError(message);
       } finally {
         if (!cancelled) {
-          setRegionLoading((current) => (current === activeRegion ? null : current));
+          setLoadingAreaIndexes(false);
         }
       }
     })();
@@ -1573,109 +1591,98 @@ export default function App(): JSX.Element {
     return () => {
       cancelled = true;
     };
-  }, [activeRegion, activeRegionAreaIndex, activeRegionMeta]);
+  }, [pendingAreaIndexRegions, regionMetaById]);
 
-  const cities = useMemo(
-    () => regionAreaItems.map((item) => item.jurisdiction).sort((left, right) => SORT_COLLATOR.compare(left, right)),
-    [regionAreaItems]
-  );
-
-  const allRegionZipCodes = useMemo(
-    () => sortZipCodeValues(regionAreaItems.flatMap((item) => item.zip_codes ?? [])),
-    [regionAreaItems]
+  const visibleAreaEntries = useMemo(
+    () =>
+      visibleRegionIds.flatMap((regionId) =>
+        (regionAreaIndexCache[regionId]?.items ?? []).map((item) => ({ region: regionId, item }))
+      ),
+    [regionAreaIndexCache, visibleRegionIds]
   );
 
   const allOwnershipOptions = useMemo(() => {
-    const groups = activeRegionMeta?.ownership_groups ?? regionAreaItems.flatMap((item) => item.ownership_groups ?? []);
+    const groups = visibleAreaEntries.flatMap(({ item }) => item.ownership_groups ?? []);
     const ordered = (["public", "private", "unknown"] as const).filter((item) => groups.includes(item));
     return ordered.length > 0 ? [...ordered] : (["public", "private"] as OwnershipGroup[]);
-  }, [activeRegionMeta, regionAreaItems]);
+  }, [visibleAreaEntries]);
 
-  const effectiveViewportBounds = viewportBounds ?? preferredBoundsForRegion(activeRegion, activeRegionMeta);
-  const selectedCitySet = useMemo(() => new Set(selectedCities), [selectedCities]);
-  const selectedZipCodeSet = useMemo(() => new Set(selectedZipCodes), [selectedZipCodes]);
-  const allCitiesSelected = selectedCities.length === cities.length && cities.length > 0;
-  const allZipCodesSelected = selectedZipCodes.length === allRegionZipCodes.length && allRegionZipCodes.length > 0;
-
-  const requiredAreaItems = useMemo(() => {
-    if (selectedSpecies.length === 0 || selectedOwnership.length === 0 || selectedCities.length === 0 || selectedZipCodes.length === 0) {
-      return [] as AreaIndexItem[];
+  const requiredAreaEntries = useMemo(() => {
+    if (selectedSpecies.length === 0 || selectedOwnership.length === 0) {
+      return [] as Array<{ region: CoverageRegion; item: AreaIndexItem }>;
     }
+    if (!effectiveViewportBounds) {
+      return visibleAreaEntries;
+    }
+    return visibleAreaEntries.filter(({ item }) => boundsIntersect(item.bounds, effectiveViewportBounds));
+  }, [effectiveViewportBounds, selectedOwnership.length, selectedSpecies.length, visibleAreaEntries]);
 
-    return regionAreaItems.filter((item) => {
-      if (!selectedCitySet.has(item.jurisdiction)) {
-        return false;
-      }
-      if (selectedZipCodeSet.size === 0) {
-        return false;
-      }
-      return (item.zip_codes ?? []).some((zipCode) => selectedZipCodeSet.has(zipCode));
-    });
-  }, [regionAreaItems, selectedCities.length, selectedCitySet, selectedOwnership.length, selectedSpecies.length, selectedZipCodeSet, selectedZipCodes.length]);
-
-  const requiredShards = useMemo(() => {
-    const forceFullAreaLoad = !allCitiesSelected || !allZipCodesSelected;
-    const next: AreaShard[] = [];
+  const requiredShardEntries = useMemo(() => {
+    const next: Array<{ region: CoverageRegion; shard: AreaShard }> = [];
     const seen = new Set<string>();
 
-    requiredAreaItems.forEach((item) => {
-      const candidateShards =
-        forceFullAreaLoad || !effectiveViewportBounds
-          ? item.shards
-          : item.shards.filter((shard) => boundsIntersect(shard.bounds, effectiveViewportBounds));
+    requiredAreaEntries.forEach(({ region, item }) => {
+      const candidateShards = effectiveViewportBounds
+        ? item.shards.filter((shard) => boundsIntersect(shard.bounds, effectiveViewportBounds))
+        : item.shards;
       candidateShards.forEach((shard) => {
-        if (!seen.has(shard.data_path)) {
-          seen.add(shard.data_path);
-          next.push(shard);
+        const key = `${region}:${shard.data_path}`;
+        if (!seen.has(key)) {
+          seen.add(key);
+          next.push({ region, shard });
         }
       });
     });
 
     return next;
-  }, [allCitiesSelected, allZipCodesSelected, effectiveViewportBounds, requiredAreaItems]);
+  }, [effectiveViewportBounds, requiredAreaEntries]);
 
-  const activeRegionShardCache = regionShardCache[activeRegion] ?? {};
-  const missingRequiredShards = useMemo(
-    () => requiredShards.filter((shard) => !activeRegionShardCache[shard.data_path]),
-    [activeRegionShardCache, requiredShards]
+  const missingRequiredShardEntries = useMemo(
+    () =>
+      requiredShardEntries.filter(({ region, shard }) => !regionShardCache[region]?.[shard.data_path]),
+    [regionShardCache, requiredShardEntries]
   );
+
   const activeRegionPending = Boolean(
-    data && activeRegionMeta?.available && (!activeRegionAreaIndex || missingRequiredShards.length > 0 || regionLoading === activeRegion)
+    data && (loadingAreaIndexes || loadingShards || pendingAreaIndexRegions.length > 0 || missingRequiredShardEntries.length > 0)
   );
 
   useEffect(() => {
-    if (!activeRegionMeta?.available || missingRequiredShards.length === 0) {
+    if (missingRequiredShardEntries.length === 0) {
       return;
     }
 
     let cancelled = false;
-    setRegionLoading(activeRegion);
+    setLoadingShards(true);
     setError(null);
 
     void (async () => {
       try {
-        const shardCollections = await Promise.all(
-          missingRequiredShards.map(async (shard) => [shard.data_path, await loadTreeCollection(shard.data_path)] as const)
+        const loaded = await Promise.all(
+          missingRequiredShardEntries.map(async ({ region, shard }) => {
+            return [region, shard.data_path, await loadTreeCollection(shard.data_path)] as const;
+          })
         );
         if (cancelled) {
           return;
         }
-        setRegionShardCache((current) => ({
-          ...current,
-          [activeRegion]: {
-            ...(current[activeRegion] ?? {}),
-            ...Object.fromEntries(shardCollections)
-          }
-        }));
+        setRegionShardCache((current) => {
+          const next = { ...current };
+          loaded.forEach(([region, dataPath, collection]) => {
+            next[region] = {
+              ...(next[region] ?? {}),
+              [dataPath]: collection
+            };
+          });
+          return next;
+        });
       } catch (loadError) {
-        if (cancelled) {
-          return;
+        if (!cancelled) {
+          setError(loadError instanceof Error ? loadError.message : "Unknown tree loading error");
         }
-        const message = loadError instanceof Error ? loadError.message : "Unknown region loading error";
-        setError(message);
       } finally {
         if (!cancelled) {
-          setRegionLoading((current) => (current === activeRegion ? null : current));
+          setLoadingShards(false);
         }
       }
     })();
@@ -1683,16 +1690,16 @@ export default function App(): JSX.Element {
     return () => {
       cancelled = true;
     };
-  }, [activeRegion, activeRegionMeta, missingRequiredShards]);
+  }, [missingRequiredShardEntries]);
 
   const currentTrees = useMemo(
     () =>
       mergeTreeCollections(
-        requiredShards
-          .map((shard) => activeRegionShardCache[shard.data_path])
+        requiredShardEntries
+          .map(({ region, shard }) => regionShardCache[region]?.[shard.data_path])
           .filter((collection): collection is TreeCollection => Boolean(collection))
       ),
-    [activeRegionShardCache, requiredShards]
+    [regionShardCache, requiredShardEntries]
   );
 
   const jumpCountries = useMemo(() => {
@@ -1767,100 +1774,34 @@ export default function App(): JSX.Element {
     return new Map(displayCoverage.features.map((feature) => [String(feature.properties.jurisdiction), feature] as const));
   }, [displayCoverage.features]);
 
-  useEffect(() => {
-    if (!activeRegionAreaIndex) {
-      return;
-    }
-    const nextOwnership = [...allOwnershipOptions];
-
-    if (!initialRegionFiltersAppliedRef.current && activeRegion === initialUrlState.region) {
-      setSelectedCities(cities);
-      setSelectedZipCodes(allRegionZipCodes);
-      if (!initialUrlState.hasSpeciesParam) {
-        setSelectedSpecies([...ALL_SPECIES]);
-      }
-      if (!initialUrlState.hasOwnershipParam) {
-        setSelectedOwnership(nextOwnership);
-      }
-      initialRegionFiltersAppliedRef.current = true;
-      pendingRegionResetRef.current = null;
-      return;
-    }
-
-    if (pendingRegionResetRef.current === activeRegion) {
-      setSelectedSpecies([...ALL_SPECIES]);
-      setSelectedCities(cities);
-      setSelectedZipCodes(allRegionZipCodes);
-      setSelectedOwnership(nextOwnership);
-      pendingRegionResetRef.current = null;
-    }
-  }, [
-    activeRegion,
-    activeRegionAreaIndex,
-    allOwnershipOptions,
-    cities,
-    initialUrlState.cities,
-    initialUrlState.hasCityParam,
-    initialUrlState.hasOwnershipParam,
-    initialUrlState.hasSpeciesParam,
-    initialUrlState.region,
-    allRegionZipCodes
-  ]);
-
   const filteredFeatures = useMemo(() => {
-    if (
-      selectedSpecies.length === 0 ||
-      selectedOwnership.length === 0 ||
-      selectedCities.length === 0 ||
-      selectedZipCodes.length === 0
-    ) {
+    if (selectedSpecies.length === 0 || selectedOwnership.length === 0) {
       return [] as TreeCollection["features"];
     }
 
     const speciesSet = new Set(selectedSpecies);
     const ownershipSet = new Set(selectedOwnership);
-    const citySet = new Set(selectedCities);
-    const zipSet = new Set(selectedZipCodes);
 
     return currentTrees.features.filter((feature) => {
       const props = feature.properties;
-      return (
-        speciesSet.has(props.species_group) &&
-        ownershipSet.has(props.ownership) &&
-        citySet.has(props.city) &&
-        zipSet.has(props.zip_code ?? "unknown")
-      );
+      return speciesSet.has(props.species_group) && ownershipSet.has(props.ownership);
     });
-  }, [currentTrees, selectedCities, selectedOwnership, selectedSpecies, selectedZipCodes]);
+  }, [currentTrees, selectedOwnership, selectedSpecies]);
 
   const ownershipOptions = useMemo(() => {
-    if (selectedSpecies.length === 0 || selectedCities.length === 0 || selectedZipCodes.length === 0) {
-      return [] as OwnershipGroup[];
-    }
-
-    if (allCitiesSelected && allZipCodesSelected) {
+    if (currentTrees.features.length === 0) {
       return allOwnershipOptions;
     }
 
-    const speciesSet = new Set(selectedSpecies);
-    const citySet = new Set(selectedCities);
-    const zipSet = new Set(selectedZipCodes);
     const options = new Set<OwnershipGroup>();
 
     currentTrees.features.forEach((feature) => {
-      const props = feature.properties;
-      if (
-        speciesSet.has(props.species_group) &&
-        citySet.has(props.city) &&
-        zipSet.has(props.zip_code ?? "unknown")
-      ) {
-        options.add(props.ownership);
-      }
+      options.add(feature.properties.ownership);
     });
 
     const narrowed = (["public", "private", "unknown"] as const).filter((item) => options.has(item));
     return narrowed.length > 0 ? [...narrowed] : allOwnershipOptions;
-  }, [allCitiesSelected, allOwnershipOptions, allZipCodesSelected, currentTrees, selectedCities, selectedSpecies, selectedZipCodes]);
+  }, [allOwnershipOptions, currentTrees]);
 
   const filteredCollection = useMemo(() => toTreeCollection(filteredFeatures), [filteredFeatures]);
 
@@ -2428,6 +2369,11 @@ export default function App(): JSX.Element {
         map.on("moveend", () => {
           const center = map.getCenter();
           const bounds = map.getBounds();
+          const availableRegions = (data?.meta.regions ?? []).filter((region) => region.available);
+          const centerRegion = availableRegions.find((region) =>
+            boundsContainPoint(region.bounds, center.lng, center.lat)
+          );
+
           setViewportBounds([
             [bounds.getWest(), bounds.getSouth()],
             [bounds.getEast(), bounds.getNorth()]
@@ -2437,6 +2383,10 @@ export default function App(): JSX.Element {
             lat: Number(center.lat.toFixed(5)),
             lon: Number(center.lng.toFixed(5))
           });
+
+          if (centerRegion && activeRegionRef.current !== centerRegion.id) {
+            setActiveRegion(centerRegion.id);
+          }
         });
 
         if (!initialUrlState.hasViewportParam) {
@@ -2747,25 +2697,13 @@ export default function App(): JSX.Element {
 
     setSelectedTree(null);
     setSelectedCoverage(null);
+    setJumpNotice(null);
     setSelectedSpecies([...ALL_SPECIES]);
-    const cachedAreaIndex = regionAreaIndexCache[region];
-    if (cachedAreaIndex) {
-      const nextCities = cachedAreaIndex.items.map((item) => item.jurisdiction).sort((left, right) => SORT_COLLATOR.compare(left, right));
-      const nextZipCodes = sortZipCodeValues(cachedAreaIndex.items.flatMap((item) => item.zip_codes ?? []));
-      const nextOwnership =
-        regionMeta.ownership_groups && regionMeta.ownership_groups.length > 0
-          ? [...regionMeta.ownership_groups]
-          : (["public", "private"] as OwnershipGroup[]);
-      setSelectedCities(nextCities);
-      setSelectedZipCodes(nextZipCodes);
-      setSelectedOwnership(nextOwnership);
-      pendingRegionResetRef.current = null;
-    } else {
-      setSelectedCities([]);
-      setSelectedZipCodes([]);
-      setSelectedOwnership([...ALL_OWNERSHIP]);
-      pendingRegionResetRef.current = region;
-    }
+    setSelectedOwnership(
+      regionMeta.ownership_groups && regionMeta.ownership_groups.length > 0
+        ? [...regionMeta.ownership_groups]
+        : [...ALL_OWNERSHIP]
+    );
     setActiveRegion(region);
     if (bounds) {
       setViewportBounds(bounds);
@@ -2799,8 +2737,8 @@ export default function App(): JSX.Element {
     setJumpNotice(null);
     setSelectedCoverage(null);
 
-    if (targetRegion && targetRegion !== activeRegion) {
-      switchRegion(targetRegion);
+    if (targetRegion) {
+      setActiveRegion(targetRegion);
     }
     fitMapToBounds(targetBounds);
 
@@ -2840,8 +2778,6 @@ export default function App(): JSX.Element {
 
   function showAllFilters(): void {
     setSelectedSpecies([...ALL_SPECIES]);
-    setSelectedCities([...cities]);
-    setSelectedZipCodes([...allRegionZipCodes]);
     setSelectedOwnership([...allOwnershipOptions]);
     setSelectedTree(null);
     setSelectedCoverage(null);
@@ -2850,8 +2786,6 @@ export default function App(): JSX.Element {
 
   function clearAllFilters(): void {
     setSelectedSpecies([]);
-    setSelectedCities([...cities]);
-    setSelectedZipCodes([...allRegionZipCodes]);
     setSelectedOwnership([]);
     setSelectedTree(null);
     setSelectedCoverage(null);

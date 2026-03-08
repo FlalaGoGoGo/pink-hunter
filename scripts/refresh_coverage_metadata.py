@@ -3,21 +3,15 @@ from __future__ import annotations
 
 import argparse
 import json
-import sys
+import re
 from pathlib import Path
 from typing import Any
 
-ROOT = Path(__file__).resolve().parents[1]
-if str(ROOT) not in sys.path:
-    sys.path.insert(0, str(ROOT))
-
-from etl.build_data import (
-    OFFICIAL_DATA_UNAVAILABLE_CITIES,
-    STRICT_OFFICIAL_JURISDICTION_BOUNDARY_ONLY,
-    WA_METRO_OVERVIEW_BOUNDS,
-    build_region_bounds,
-    load_city_boundary_geometry,
-)
+STRICT_OFFICIAL_JURISDICTION_BOUNDARY_ONLY = True
+SPECIAL_BOUNDARY_SLUGS = {
+    "Richmond BC": "richmond_bc",
+    "Vancouver WA": "vancouver",
+}
 
 
 def make_coverage_feature(city: str, geometry: dict[str, Any], status: str, note: str) -> dict[str, Any]:
@@ -33,16 +27,28 @@ def make_coverage_feature(city: str, geometry: dict[str, Any], status: str, note
     }
 
 
+def slugify_city(city: str) -> str:
+    if city in SPECIAL_BOUNDARY_SLUGS:
+        return SPECIAL_BOUNDARY_SLUGS[city]
+    return re.sub(r"[^a-z0-9]+", "_", city.lower()).strip("_")
+
+
+def load_city_boundary_geometry(reference_dir: Path, city: str) -> dict[str, Any] | None:
+    boundary_path = reference_dir / f"boundary_{slugify_city(city)}.geojson"
+    if not boundary_path.exists():
+        return None
+    payload = json.loads(boundary_path.read_text(encoding="utf-8"))
+    return payload.get("geometry")
+
+
 def load_covered_cities(data_dir: Path) -> list[str]:
     covered_cities: set[str] = set()
-    for city_file_path in sorted(data_dir.glob("trees.*.city.*.v1.geojson")):
-        payload = json.loads(city_file_path.read_text(encoding="utf-8"))
-        features = payload.get("features", [])
-        if not features:
-            continue
-        city = str(features[0].get("properties", {}).get("city", "")).strip()
-        if city:
-            covered_cities.add(city)
+    for area_index_path in sorted(data_dir.glob("trees.*.area-index.v2.json")):
+        payload = json.loads(area_index_path.read_text(encoding="utf-8"))
+        for item in payload.get("items", []):
+            city = str(item.get("jurisdiction", "")).strip()
+            if city and int(item.get("tree_count", 0) or 0) > 0:
+                covered_cities.add(city)
     return sorted(covered_cities)
 
 
@@ -57,16 +63,17 @@ def main() -> int:
         raise FileNotFoundError(f"Missing metadata file: {meta_path}")
 
     meta = json.loads(meta_path.read_text(encoding="utf-8"))
+    reference_dir = data_dir.parents[1] / "data" / "reference"
     covered_cities = load_covered_cities(data_dir)
     covered_city_set = set(covered_cities)
     official_unavailable_cities = sorted(
-        city for city in OFFICIAL_DATA_UNAVAILABLE_CITIES if city not in covered_city_set
+        city for city in meta.get("coverage_official_unavailable_cities", []) if city not in covered_city_set
     )
 
     coverage_features: list[dict[str, Any]] = []
     skipped_coverage_cities: list[str] = []
     for city in covered_cities:
-        geometry = load_city_boundary_geometry(city)
+        geometry = load_city_boundary_geometry(reference_dir, city)
         if not geometry:
             skipped_coverage_cities.append(city)
             if STRICT_OFFICIAL_JURISDICTION_BOUNDARY_ONLY:
@@ -83,27 +90,25 @@ def main() -> int:
 
     skipped_official_unavailable_cities: list[str] = []
     for city in official_unavailable_cities:
-        geometry = load_city_boundary_geometry(city)
+        geometry = load_city_boundary_geometry(reference_dir, city)
         if not geometry:
             skipped_official_unavailable_cities.append(city)
             if STRICT_OFFICIAL_JURISDICTION_BOUNDARY_ONLY:
                 continue
             raise RuntimeError(f"Missing official jurisdiction boundary geometry for: {city}")
-        coverage_features.append(
-            make_coverage_feature(city, geometry, "official_unavailable", OFFICIAL_DATA_UNAVAILABLE_CITIES[city])
-        )
+        existing_note = ""
+        for feature in meta.get("coverage_notes", []):
+            if feature.get("jurisdiction") == city:
+                existing_note = str(feature.get("note", ""))
+                break
+        coverage_features.append(make_coverage_feature(city, geometry, "official_unavailable", existing_note))
 
     coverage_geojson = {"type": "FeatureCollection", "features": coverage_features}
-    region_bounds = build_region_bounds(coverage_features)
 
     meta["coverage_rule"] = "official_jurisdiction_boundary_only"
     meta["coverage_skipped_cities"] = skipped_coverage_cities
     meta["coverage_official_unavailable_cities"] = official_unavailable_cities
     meta["coverage_official_unavailable_skipped_cities"] = skipped_official_unavailable_cities
-
-    for region_entry in meta.get("regions", []):
-        region_id = region_entry.get("id")
-        region_entry["bounds"] = region_bounds.get(region_id, WA_METRO_OVERVIEW_BOUNDS)
 
     (data_dir / "coverage.v1.geojson").write_text(
         json.dumps(coverage_geojson, ensure_ascii=False),
