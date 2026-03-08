@@ -88,6 +88,21 @@ Live domain:
 </details>
 
 <details>
+<summary>Ontario</summary>
+
+- Ottawa
+- Toronto
+
+</details>
+
+<details>
+<summary>Quebec</summary>
+
+- Montreal
+
+</details>
+
+<details>
 <summary>Oregon</summary>
 
 - Portland
@@ -131,7 +146,7 @@ Live domain:
 
 ### Gray Coverage
 - Gray coverage marks cities whose official boundary is public but whose official public single-tree dataset is not available yet.
-- Current gray-coverage examples include `Alexandria`, `Mountain View`, `Sunnyvale`, `Santa Clara`, `Monterey`, `Sacramento`, `Napa`, `Richmond`, `Santa Cruz`, `Santa Rosa`, `Stockton`, `Redwood City`, `Alameda`, `Hayward`, `Daly City`, `Beaverton`, `Gresham`, `Hillsboro`, `Salem`, `Tigard`, `Burnaby`, `Delta`, and `Saanich`.
+- Current gray-coverage examples include `Alexandria`, `Montgomery County`, `Mountain View`, `Sunnyvale`, `Santa Clara`, `Monterey`, `Sacramento`, `Napa`, `Richmond`, `Santa Cruz`, `Santa Rosa`, `Stockton`, `Redwood City`, `Alameda`, `Hayward`, `Daly City`, `Beaverton`, `Gresham`, `Hillsboro`, `Salem`, `Tigard`, `Burnaby`, `Delta`, `Richmond BC`, and `Saanich`.
 - Tracking details: [docs/CITY_COVERAGE_TRACKER.md](docs/CITY_COVERAGE_TRACKER.md)
 
 ## Official Data Sources
@@ -199,6 +214,21 @@ Live domain:
 
 - Boston: [BPRD Trees](https://data.boston.gov/dataset/bprd-trees)
 - Cambridge: [Street Trees](https://www.cambridgema.gov/GIS/gisdatadictionary/Environmental/ENVIRONMENTAL_StreetTrees)
+
+</details>
+
+<details>
+<summary>Ontario</summary>
+
+- Ottawa: [Canopy cover and tree inventory](https://ottawa.ca/en/canopy-cover-and-tree-inventory)
+- Toronto: [Street Tree Data](https://open.toronto.ca/dataset/street-tree-data/)
+
+</details>
+
+<details>
+<summary>Quebec</summary>
+
+- Montreal: [Arbres publics sur le territoire de la Ville](https://donnees.montreal.ca/fr/dataset/arbres)
 
 </details>
 

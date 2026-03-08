@@ -1,6 +1,6 @@
 {
   "version": "v2",
-  "generated_at": "2026-03-07T17:22:42.339749+00:00",
+  "generated_at": "2026-03-08T02:11:50.548404+00:00",
   "default_region": "wa",
   "coverage_rule": "official_jurisdiction_boundary_only",
   "coverage_skipped_cities": [],
@@ -50,6 +50,7 @@
     "Mill Creek",
     "Monroe",
     "Monterey",
+    "Montgomery County",
     "Mountain View",
     "Mountlake Terrace",
     "Mukilteo",
@@ -62,6 +63,7 @@
     "Redwood City",
     "Richland",
     "Richmond",
+    "Richmond BC",
     "Saanich",
     "Sacramento",
     "Salem",
@@ -85,9 +87,9 @@
     "Yarrow Point"
   ],
   "coverage_official_unavailable_skipped_cities": [],
-  "source_count": 45,
-  "total_records": 508348,
-  "included_records": 301249,
+  "source_count": 48,
+  "total_records": 1184789,
+  "included_records": 366722,
   "unknown_records": 317552,
   "regions": [
     {
@@ -100,7 +102,7 @@
           48.40249758903433
         ],
         [
-          -123.02314758300781,
+          -122.95723281161227,
           49.31617355253472
         ]
       ],
@@ -259,8 +261,8 @@
       "available": true,
       "bounds": [
         [
-          -76.71151900037253,
-          39.197207000187646
+          -77.5276853901476,
+          38.93424875542158
         ],
         [
           -76.52945299957095,
@@ -365,6 +367,44 @@
       }
     },
     {
+      "id": "on",
+      "label": "ON",
+      "available": true,
+      "bounds": [
+        [
+          -79.63926826,
+          43.58100456
+        ],
+        [
+          -75.24658121841775,
+          45.53710305537738
+        ]
+      ],
+      "data_path": null,
+      "tree_count": 49215,
+      "city_count": 2,
+      "cities": [
+        "Ottawa",
+        "Toronto"
+      ],
+      "raw_bytes": 23542100,
+      "gzip_bytes": 1090705,
+      "warning_level": "none",
+      "city_split": {
+        "strategy": "city",
+        "index_path": "/data/trees.on.city-index.v1.json",
+        "file_count": 2,
+        "ready": true
+      },
+      "species_counts": {
+        "cherry": 33450,
+        "plum": 2281,
+        "peach": 470,
+        "magnolia": 2882,
+        "crabapple": 10132
+      }
+    },
+    {
       "id": "or",
       "label": "OR",
       "available": true,
@@ -437,6 +477,43 @@
         "peach": 128,
         "magnolia": 1048,
         "crabapple": 3579
+      }
+    },
+    {
+      "id": "qc",
+      "label": "QC",
+      "available": true,
+      "bounds": [
+        [
+          -73.9743512352816,
+          45.4096530547697
+        ],
+        [
+          -73.4738652778201,
+          45.7075796336657
+        ]
+      ],
+      "data_path": null,
+      "tree_count": 16258,
+      "city_count": 1,
+      "cities": [
+        "Montreal"
+      ],
+      "raw_bytes": 8319935,
+      "gzip_bytes": 265892,
+      "warning_level": "none",
+      "city_split": {
+        "strategy": "city",
+        "index_path": "/data/trees.qc.city-index.v1.json",
+        "file_count": 1,
+        "ready": true
+      },
+      "species_counts": {
+        "cherry": 6727,
+        "plum": 88,
+        "peach": 25,
+        "magnolia": 294,
+        "crabapple": 9124
       }
     },
     {
@@ -675,6 +752,15 @@
       "records_included": 1696
     },
     {
+      "name": "Arbres publics sur le territoire de la Ville",
+      "city": "Montreal",
+      "endpoint": "https://donnees.montreal.ca/fr/dataset/arbres",
+      "last_edit_at": "",
+      "records_fetched": 333547,
+      "records_included": 16258,
+      "note": "Integrated from the official Ville de Montréal public-trees CSV and arrondissement-derived official jurisdiction boundary."
+    },
+    {
       "name": "2015 Street Tree Census - Tree Data",
       "city": "New York City",
       "endpoint": "https://data.cityofnewyork.us/Environment/2015-Street-Tree-Census-Tree-Data/uvpi-gqnh",
@@ -690,6 +776,15 @@
       "last_edit_at": "2013-01-22T20:50:21+00:00",
       "records_fetched": 38613,
       "records_included": 3977
+    },
+    {
+      "name": "Tree Inventory / Inventaire des arbres",
+      "city": "Ottawa",
+      "endpoint": "https://ottawa.ca/en/canopy-cover-and-tree-inventory",
+      "last_edit_at": "",
+      "records_fetched": 14289,
+      "records_included": 12913,
+      "note": "Integrated from the official City of Ottawa Tree Inventory ArcGIS layer and official city boundary."
     },
     {
       "name": "Tree Data",
@@ -865,6 +960,15 @@
       "records_included": 8472
     },
     {
+      "name": "Street Tree Data",
+      "city": "Toronto",
+      "endpoint": "https://open.toronto.ca/dataset/street-tree-data/",
+      "last_edit_at": "",
+      "records_fetched": 662152,
+      "records_included": 36302,
+      "note": "Integrated from the official City of Toronto Street Tree Data CSV and official municipal boundary."
+    },
+    {
       "name": "Public trees",
       "city": "Vancouver BC",
       "endpoint": "https://opendata.vancouver.ca/api/explore/v2.1/catalog/datasets/public-trees",
@@ -906,11 +1010,11 @@
     }
   ],
   "species_counts": {
-    "cherry": 122235,
-    "plum": 76448,
-    "peach": 3025,
-    "magnolia": 54884,
-    "crabapple": 44657
+    "cherry": 162412,
+    "plum": 78817,
+    "peach": 3520,
+    "magnolia": 58060,
+    "crabapple": 63913
   },
   "areas": [
     {
@@ -1178,6 +1282,30 @@
       }
     },
     {
+      "jurisdiction": "Ottawa",
+      "region": "on",
+      "tree_count": 12913,
+      "species_counts": {
+        "cherry": 2661,
+        "plum": 8,
+        "peach": 0,
+        "magnolia": 154,
+        "crabapple": 10090
+      }
+    },
+    {
+      "jurisdiction": "Toronto",
+      "region": "on",
+      "tree_count": 36302,
+      "species_counts": {
+        "cherry": 30789,
+        "plum": 2273,
+        "peach": 470,
+        "magnolia": 2728,
+        "crabapple": 42
+      }
+    },
+    {
       "jurisdiction": "Portland",
       "region": "or",
       "tree_count": 24775,
@@ -1211,6 +1339,18 @@
         "peach": 47,
         "magnolia": 261,
         "crabapple": 673
+      }
+    },
+    {
+      "jurisdiction": "Montreal",
+      "region": "qc",
+      "tree_count": 16258,
+      "species_counts": {
+        "cherry": 6727,
+        "plum": 88,
+        "peach": 25,
+        "magnolia": 294,
+        "crabapple": 9124
       }
     },
     {

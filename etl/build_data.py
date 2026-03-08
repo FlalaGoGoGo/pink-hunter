@@ -78,6 +78,9 @@ BOSTON_DATASET_PAGE = "https://data.boston.gov/dataset/bprd-trees"
 ARLINGTON_TREES_LAYER = "https://arlgis.arlingtonva.us/arcgis/rest/services/Open_Data/od_DPR_Tree_Points/FeatureServer/0"
 ARLINGTON_BOUNDARY_LAYER = "https://arlgis.arlingtonva.us/arcgis/rest/services/Open_Data/od_County_Polygon/FeatureServer/0"
 ARLINGTON_DATASET_PAGE = "https://www.arlingtonva.us/About-Arlington/Data-and-Research/Open-Data-Portal"
+MONTGOMERY_TREE_POINTS_LAYER = "https://gis4.montgomerycountymd.gov/arcgis/rest/services/DEP/DEPTreePoints_MapOnly/MapServer/0"
+MONTGOMERY_BOUNDARY_LAYER = "https://gis4.montgomerycountymd.gov/arcgis/rest/services/general/MoCo_boundary/FeatureServer/0"
+MONTGOMERY_DATASET_PAGE = "https://data.montgomerycountymd.gov/"
 BALTIMORE_TREES_LAYER = "https://gis.baltimorecity.gov/egis/rest/services/Foresty/Trees/MapServer/0"
 BALTIMORE_DATASET_PAGE = "https://data.baltimorecity.gov/"
 JERSEY_CITY_TREES_LAYER = "https://services2.arcgis.com/UXbywc7dSkfgdPp4/arcgis/rest/services/City_of_Jersey_City_Tree_WFL1/FeatureServer/0"
@@ -147,6 +150,16 @@ VICTORIA_PARK_TREES_ITEM = "https://www.arcgis.com/sharing/rest/content/items/36
 BURNABY_BOUNDARY_LAYER = "https://gis.burnaby.ca/arcgis/rest/services/OpenData/OpenData3/MapServer/12"
 DELTA_BOUNDARY_LAYER = "https://maps.delta.ca/arcgis/rest/services/DeltaMap/PropertyBasemap/MapServer/13"
 SAANICH_BOUNDARY_LAYER = "https://map.saanich.ca/server/rest/services/MAPS/SaanichBaseMap/MapServer/6"
+RICHMOND_BC_BOUNDARY_LAYER = "https://maps.richmond.ca/internal/rest/services/Hansen/Hansen_Base/MapServer/5"
+OTTAWA_TREES_LAYER = "https://maps.ottawa.ca/arcgis/rest/services/Forestry/MapServer/0"
+OTTAWA_BOUNDARY_LAYER = "https://maps.ottawa.ca/arcgis/rest/services/OfficialPlan/MapServer/71"
+OTTAWA_DATASET_PAGE = "https://ottawa.ca/en/canopy-cover-and-tree-inventory"
+MONTREAL_TREES_CSV = "https://donnees.montreal.ca/dataset/b89fd27d-4b49-461b-8e54-fa2b34a628c4/resource/64e28fe6-ef37-437a-972d-d1d3f1f7d891/download/arbres-publics.csv"
+MONTREAL_BOUNDARY_GEOJSON = "https://donnees.montreal.ca/dataset/9797a946-9da8-41ec-8815-f6b276dec7e9/resource/e18bfd07-edc8-4ce8-8a5a-3b617662a794/download/limites-administratives-agglomeration.geojson"
+MONTREAL_DATASET_PAGE = "https://donnees.montreal.ca/fr/dataset/arbres"
+TORONTO_STREET_TREE_CSV = "https://ckan0.cf.opendata.inter.prod-toronto.ca/dataset/6ac4569e-fd37-4cbc-ac63-db3624c5f6a2/resource/b65cd31d-fabc-4222-83ef-8ddd11295d2b/download/street-tree-data-4326.csv"
+TORONTO_BOUNDARY_ZIP = "https://ckan0.cf.opendata.inter.prod-toronto.ca/dataset/841fb820-46d0-46ac-8dcb-d20f27e57bcc/resource/41bf97f0-da1a-46a9-ac25-5ce0078d6760/download/toronto-boundary-wgs84.zip"
+TORONTO_DATASET_PAGE = "https://open.toronto.ca/dataset/street-tree-data/"
 ZIP_LAYER = "https://services.arcgis.com/Ej0PsM5Aw677QF1W/arcgis/rest/services/ZIPCODE_AREA_113/FeatureServer/0"
 US_CENSUS_CITIES_LAYER = (
     "https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/Places_CouSub_ConCity_SubMCD/MapServer/18"
@@ -171,6 +184,8 @@ REGION_LABELS: dict[str, str] = {
     "or": "OR",
     "dc": "DC",
     "bc": "BC",
+    "on": "ON",
+    "qc": "QC",
     "va": "VA",
     "md": "MD",
     "nj": "NJ",
@@ -182,6 +197,7 @@ SPECIES_GROUPS: list[str] = ["cherry", "plum", "peach", "magnolia", "crabapple"]
 REGION_CITY_OVERRIDES: dict[str, str] = {
     "Arlington": "va",
     "Alexandria": "va",
+    "Montgomery County": "md",
     "Baltimore": "md",
     "Jersey City": "nj",
     "Boston": "ma",
@@ -189,7 +205,11 @@ REGION_CITY_OVERRIDES: dict[str, str] = {
     "Pittsburgh": "pa",
     "Philadelphia": "pa",
     "Cambridge": "ma",
+    "Ottawa": "on",
+    "Toronto": "on",
+    "Montreal": "qc",
     "Washington DC": "dc",
+    "Richmond BC": "bc",
     "Vancouver BC": "bc",
     "Victoria BC": "bc",
     "Portland": "or",
@@ -231,6 +251,7 @@ REGION_CITY_OVERRIDES: dict[str, str] = {
 CITY_BOUNDARY_HINTS: dict[str, dict[str, str]] = {
     "Arlington": {"state": "51", "basename": "Arlington", "boundary_source": "arlington_county_arcgis"},
     "Alexandria": {"state": "51"},
+    "Montgomery County": {"boundary_source": "montgomery_county_arcgis"},
     "Baltimore": {"state": "24"},
     "Jersey City": {"state": "34"},
     "Boston": {"state": "25"},
@@ -238,6 +259,9 @@ CITY_BOUNDARY_HINTS: dict[str, dict[str, str]] = {
     "Pittsburgh": {"state": "42"},
     "Philadelphia": {"state": "42"},
     "Cambridge": {"state": "25"},
+    "Ottawa": {"boundary_source": "ottawa_arcgis"},
+    "Toronto": {"boundary_source": "toronto_zip"},
+    "Montreal": {"boundary_source": "montreal_arrondissements_geojson"},
     "Washington DC": {"state": "11", "basename": "Washington"},
     "Portland": {"boundary_source": "portland_or_arcgis"},
     "Beaverton": {"state": "41", "boundary_source": "beaverton_arcgis"},
@@ -274,6 +298,7 @@ CITY_BOUNDARY_HINTS: dict[str, dict[str, str]] = {
     "San Jose": {"state": "06"},
     "South San Francisco": {"state": "06", "boundary_source": "south_sf_arcgis"},
     "Vancouver BC": {"boundary_source": "vancouver_bc_ods"},
+    "Richmond BC": {"boundary_source": "richmond_bc_arcgis"},
     "Vancouver WA": {"state": "53", "basename": "Vancouver"},
     "Victoria BC": {"boundary_source": "victoria_bc_arcgis"},
     "Burnaby": {"boundary_source": "burnaby_arcgis"},
@@ -326,6 +351,7 @@ OFFICIAL_DATA_UNAVAILABLE_CITIES: dict[str, str] = {
     "Marysville": "City investigated; search hits were false positives from other states, not a City of Marysville dataset.",
     "Medina": "Official GIS entry points were rechecked and no public tree inventory layer was confirmed.",
     "Mercer Island": "Only a partial 2018 Town Center inventory is documented publicly; a citywide public single-tree dataset is not confirmed.",
+    "Montgomery County": "Official Montgomery County public GIS layers were reviewed; the public Tree Montgomery point layer is a planting-program dataset rather than a countywide single-tree inventory.",
     "Mill Creek": "City investigated; no official public single-tree species dataset was confirmed.",
     "Monroe": "City investigated; search hits were false positives, not a City of Monroe tree inventory.",
     "Monterey": "Official city tree standards and GIS entry points were reviewed, but no public citywide single-tree species dataset was confirmed.",
@@ -341,6 +367,7 @@ OFFICIAL_DATA_UNAVAILABLE_CITIES: dict[str, str] = {
     "Redwood City": "Official city GIS and public-works materials were reviewed, but no verified public citywide single-tree dataset was confirmed in this round.",
     "Richmond": "Official Richmond, CA ArcGIS and city data searches in this round did not confirm a public citywide single-tree species dataset.",
     "Richland": "City investigated; public search hits in this round were non-city or non-Washington datasets, not a verified City of Richland public tree inventory.",
+    "Richmond BC": "Official City of Richmond GIS boundary services were confirmed, but no public citywide single-tree species inventory was confirmed in this round.",
     "Sacramento": "Official city pages and open-data entry points were checked, but no public citywide single-tree species dataset was confirmed in this round.",
     "Saanich": "Official Saanich GIS/open-data sources were reviewed, but no public single-tree species inventory was confirmed.",
     "Salem": "Official ArcGIS and city GIS searches in this round did not confirm a public citywide single-tree species dataset.",
@@ -1825,6 +1852,62 @@ def fetch_special_city_boundary_feature(city: str) -> dict[str, Any] | None:
             return None
         return make_city_boundary_feature(city, geometry, source="City of Palo Alto Open GIS")
 
+    if boundary_source == "ottawa_arcgis":
+        payload = fetch_json(
+            f"{OTTAWA_BOUNDARY_LAYER}/query",
+            {
+                "where": "1=1",
+                "outFields": "*",
+                "returnGeometry": "true",
+                "outSR": "4326",
+                "f": "geojson",
+            },
+        )
+        features = payload.get("features", [])
+        if not features:
+            return None
+        geometry = features[0].get("geometry") or {}
+        if not geometry:
+            return None
+        return make_city_boundary_feature(city, geometry, source="City of Ottawa Open Data")
+
+    if boundary_source == "toronto_zip":
+        geometry = load_zipped_boundary_geometry(TORONTO_BOUNDARY_ZIP)
+        if not geometry:
+            return None
+        return make_city_boundary_feature(city, geometry, source="City of Toronto Open Data")
+
+    if boundary_source == "montreal_arrondissements_geojson":
+        result = subprocess.run(
+            ["curl", "-sL", "-A", "Mozilla/5.0", MONTREAL_BOUNDARY_GEOJSON],
+            capture_output=True,
+            text=True,
+            check=False,
+        )
+        if result.returncode == 0 and result.stdout.strip():
+            payload = json.loads(result.stdout.lstrip("\ufeff"))
+        else:
+            payload = json.loads(fetch_binary(MONTREAL_BOUNDARY_GEOJSON).decode("utf-8-sig"))
+        polygons: list[Any] = []
+        for feature in payload.get("features", []):
+            properties = feature.get("properties") or {}
+            if properties.get("TYPE") != "Arrondissement":
+                continue
+            geometry = feature.get("geometry") or {}
+            geom_type = geometry.get("type")
+            coordinates = geometry.get("coordinates") or []
+            if geom_type == "Polygon":
+                polygons.append(coordinates)
+            elif geom_type == "MultiPolygon":
+                polygons.extend(coordinates)
+        if not polygons:
+            return None
+        return make_city_boundary_feature(
+            city,
+            {"type": "MultiPolygon", "coordinates": polygons},
+            source="Ville de Montréal Données ouvertes",
+        )
+
     if boundary_source == "us_census_place":
         feature = fetch_city_boundary_feature(city)
         if not feature:
@@ -1878,6 +1961,12 @@ def fetch_special_city_boundary_feature(city: str) -> dict[str, Any] | None:
             source="Arlington County Open Data",
         )
 
+    if boundary_source == "montgomery_county_arcgis":
+        return fetch_arcgis_boundary_feature(
+            MONTGOMERY_BOUNDARY_LAYER,
+            source="Montgomery County GIS",
+        )
+
     if boundary_source == "victoria_bc_arcgis":
         payload = fetch_json(
             f"{VICTORIA_BOUNDARY_LAYER}/query",
@@ -1904,6 +1993,9 @@ def fetch_special_city_boundary_feature(city: str) -> dict[str, Any] | None:
 
     if boundary_source == "saanich_arcgis":
         return fetch_arcgis_boundary_feature(SAANICH_BOUNDARY_LAYER, source="District of Saanich Maps")
+
+    if boundary_source == "richmond_bc_arcgis":
+        return fetch_arcgis_boundary_feature(RICHMOND_BC_BOUNDARY_LAYER, source="City of Richmond Maps")
 
     return None
 

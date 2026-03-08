@@ -89,6 +89,7 @@ type JurisdictionType = "city" | "county";
 const REGION_CITY_OVERRIDES: Partial<Record<string, CoverageRegion>> = {
   Arlington: "va",
   Alexandria: "va",
+  "Montgomery County": "md",
   Baltimore: "md",
   "Jersey City": "nj",
   Boston: "ma",
@@ -96,7 +97,11 @@ const REGION_CITY_OVERRIDES: Partial<Record<string, CoverageRegion>> = {
   Pittsburgh: "pa",
   Philadelphia: "pa",
   Cambridge: "ma",
+  Ottawa: "on",
+  Toronto: "on",
+  Montreal: "qc",
   "Washington DC": "dc",
+  "Richmond BC": "bc",
   "Vancouver BC": "bc",
   "Victoria BC": "bc",
   Portland: "or",
@@ -135,6 +140,14 @@ const JURISDICTION_OVERRIDES: Partial<Record<string, { displayName: string; type
   Arlington: {
     displayName: "Arlington County",
     type: "county"
+  },
+  "Montgomery County": {
+    displayName: "Montgomery County",
+    type: "county"
+  },
+  "Richmond BC": {
+    displayName: "Richmond",
+    type: "city"
   },
   "Vancouver WA": {
     displayName: "Vancouver",
@@ -660,13 +673,29 @@ const REGION_SWITCH_BOUNDS: Partial<Record<CoverageRegion, [[number, number], [n
   ]
 };
 
-const GLOBAL_REGION_OPTIONS: CoverageRegion[] = ["wa", "ca", "dc", "or", "bc", "va", "md", "nj", "ny", "pa", "ma"];
+const GLOBAL_REGION_OPTIONS: CoverageRegion[] = [
+  "wa",
+  "ca",
+  "dc",
+  "or",
+  "va",
+  "md",
+  "nj",
+  "ny",
+  "pa",
+  "ma",
+  "bc",
+  "on",
+  "qc"
+];
 const REGION_COUNTRY_EMOJIS: Record<CoverageRegion, string> = {
   wa: "🇺🇸",
   ca: "🇺🇸",
   dc: "🇺🇸",
   or: "🇺🇸",
   bc: "🇨🇦",
+  on: "🇨🇦",
+  qc: "🇨🇦",
   va: "🇺🇸",
   md: "🇺🇸",
   nj: "🇺🇸",
@@ -680,6 +709,8 @@ const REGION_SORT_LABELS: Record<CoverageRegion, string> = {
   dc: "Washington, DC",
   or: "Oregon",
   bc: "British Columbia",
+  on: "Ontario",
+  qc: "Quebec",
   va: "Virginia",
   md: "Maryland",
   nj: "New Jersey",
@@ -694,6 +725,8 @@ const REGION_COUNTRY_KEYS: Record<CoverageRegion, CountryKey> = {
   dc: "us",
   or: "us",
   bc: "ca",
+  on: "ca",
+  qc: "ca",
   va: "us",
   md: "us",
   nj: "us",

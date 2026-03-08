@@ -15,6 +15,8 @@ Published city-split index for one region.
 - `ny`
 - `pa`
 - `ma`
+- `on`
+- `qc`
 
 ### Shape
 - `generated_at`

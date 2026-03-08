@@ -7,7 +7,10 @@ Last updated: 2026-03-07 (America/Los_Angeles)
 |---|---|---:|---|---|
 | ✅ | Seattle | 46,114 | Official jurisdiction boundary | Includes UW supplemental points; ornamental cherry keyword sweep rerun |
 | ✅ | New York City | 40,685 | Official jurisdiction boundary | Official NYC Parks `2015 Street Tree Census - Tree Data` integrated from NYC Open Data; rows are limited to living trees before blossom filtering |
+| ✅ | Toronto | 36,302 | Official jurisdiction boundary | Official City of Toronto `Street Tree Data` CSV integrated from Toronto Open Data using the official municipal boundary shapefile |
 | ✅ | Philadelphia | 17,717 | Official jurisdiction boundary | Official Philadelphia Parks & Recreation `PPR Tree Inventory 2025` layer integrated from the city's ArcGIS/metadata catalog |
+| ✅ | Montreal | 16,258 | Official jurisdiction boundary | Official Ville de Montréal `Arbres publics sur le territoire de la Ville` CSV integrated; official boundary is assembled from arrondissement polygons |
+| ✅ | Ottawa | 12,913 | Official jurisdiction boundary | Official City of Ottawa `Tree Inventory / Inventaire des arbres` ArcGIS layer integrated with blossom-side server filtering and official city boundary |
 | ✅ | Boston | 4,488 | Official jurisdiction boundary | Official Analyze Boston `BPRD Trees` download integrated; includes both street and park trees published by Boston Parks and Recreation |
 | ✅ | Pittsburgh | 3,691 | Official jurisdiction boundary | Official public Pittsburgh TreeKeeper inventory domain integrated; blossom names are parsed from `SITE_ATTR6` |
 | ✅ | Jersey City | 2,148 | Official jurisdiction boundary | Public Jersey City tree inventory service integrated from the city-referenced Urban Forests materials and official jurisdiction boundary |
@@ -61,10 +64,12 @@ Last updated: 2026-03-07 (America/Los_Angeles)
 | 🩶 | Hayward | In gray coverage | Official jurisdiction boundary | Official city urban-forestry and GIS entry points were reviewed, but no verified public citywide single-tree species dataset was confirmed in this round |
 | 🩶 | Hillsboro | In gray coverage | Official jurisdiction boundary | Official ArcGIS search and city-site checks did not confirm a public citywide single-tree species dataset |
 | 🩶 | Monterey | In gray coverage | Official jurisdiction boundary | Official city tree standards and GIS entry points were reviewed, but no public citywide single-tree species dataset was confirmed |
+| 🩶 | Montgomery County, MD | In gray coverage | Official jurisdiction boundary | Official Montgomery County GIS layers were reviewed; the public `Tree Planting Locations` layer is a planting-program dataset rather than a countywide single-tree inventory |
 | 🩶 | Mountain View | In gray coverage | Official jurisdiction boundary | Official city forestry materials were reviewed, but no public citywide single-tree species dataset was confirmed |
 | 🩶 | Napa | In gray coverage | Official jurisdiction boundary | Official ArcGIS and city data portal searches did not confirm a public citywide single-tree species dataset |
 | 🩶 | Redwood City | In gray coverage | Official jurisdiction boundary | Official city GIS and public-works materials were reviewed, but no verified public citywide single-tree dataset was confirmed in this round |
 | 🩶 | Richmond | In gray coverage | Official jurisdiction boundary | Official Richmond, CA ArcGIS and city data searches did not confirm a public citywide public single-tree species dataset |
+| 🩶 | Richmond BC | In gray coverage | Official jurisdiction boundary | Official City of Richmond GIS boundary services were confirmed, but no public citywide single-tree species inventory was confirmed in this round |
 | 🩶 | Sacramento | In gray coverage | Official jurisdiction boundary | Official city pages and open-data entry points were checked, but no public citywide single-tree species dataset was confirmed |
 | 🩶 | Saanich | In gray coverage | Official jurisdiction boundary | Official Saanich GIS/open-data sources were reviewed; no public single-tree species inventory was confirmed |
 | 🩶 | Salem | In gray coverage | Official jurisdiction boundary | Official ArcGIS and city GIS searches did not confirm a public citywide single-tree species dataset |
@@ -80,7 +85,6 @@ Last updated: 2026-03-07 (America/Los_Angeles)
 |---|---|---:|---|---|
 | ⏳ | Mercer Island | 803 (Town Center only) | Partial-only | Official urban-forestry page documents a 2018 Town Center street-tree inventory, but a verified citywide public single-tree endpoint is still not confirmed |
 | ⏳ | Bremerton | Unknown | Blocked public map | Official Park Tree Map web map exists under a city account, but the underlying feature service currently returns `403 Forbidden` to direct public queries |
-| ⏳ | Montgomery County, MD | Unknown | Partial-only | Official data portal exposes `Tree Planting Locations`, but that is a planting-program layer rather than a countywide single-tree species inventory |
 | ⏳ | Poulsbo | 75 | Partial-only | Official `Historic Trees of Poulsbo` feature service is public, but it is a curated historic-tree layer, not a citywide public inventory |
 | ⏳ | Pasco | Unknown | Partial-only | Official city content found in this round was a `Volunteer Park Tree Walk` map, not a citywide public single-tree inventory |
 
@@ -226,3 +230,10 @@ Last updated: 2026-03-07 (America/Los_Angeles)
 - Rechecked the Seattle-to-Vancouver corridor beyond already-covered cities.
 - Confirmed `Surrey` has official partial tree layers (`Important Trees`, `Park Specimen Trees`) but not a citywide public single-tree inventory.
 - Official site / GIS checks in this round did not confirm citywide public single-tree inventories for `Mount Vernon`, `Burlington`, `Anacortes`, `White Rock`, `New Westminster`, `Coquitlam`, or `Abbotsford`.
+
+## March 2026 Ontario-Quebec / Mid-Atlantic Sweep
+- Integrated `Ottawa` from the official City of Ottawa `Tree Inventory / Inventaire des arbres` ArcGIS layer and official city boundary.
+- Integrated `Toronto` from the official Toronto Open Data `Street Tree Data` CSV and official Toronto municipal boundary.
+- Integrated `Montreal` from the official Ville de Montréal `Arbres publics sur le territoire de la Ville` CSV; the official jurisdiction boundary is assembled from arrondissement polygons.
+- Confirmed `Montgomery County, MD` should remain gray coverage because the official public `Tree Planting Locations` layer is a planting-program dataset, not a countywide single-tree inventory.
+- Added gray coverage for `Richmond BC` after confirming the official City of Richmond boundary but not a public citywide single-tree species inventory.

@@ -2,14 +2,18 @@
 from __future__ import annotations
 
 import argparse
+import ast
 import csv
 import datetime as dt
 import json
 import os
 import re
+import ssl
 import subprocess
 import sys
 import tempfile
+import io
+import urllib.request
 from collections import Counter
 from pathlib import Path
 from typing import Any
@@ -40,7 +44,11 @@ from etl.build_data import (
     PHILADELPHIA_LAYER,
     JERSEY_CITY_DATASET_PAGE,
     JERSEY_CITY_TREES_LAYER,
+    MONTREAL_DATASET_PAGE,
+    MONTREAL_TREES_CSV,
     MILPITAS_LAYER,
+    OTTAWA_DATASET_PAGE,
+    OTTAWA_TREES_LAYER,
     PUBLIC_DATA_DIR,
     REGION_LABELS,
     MAPPING_PATH,
@@ -54,12 +62,14 @@ from etl.build_data import (
     SOUTH_SF_GRIDS_ENDPOINT,
     SOUTH_SF_SEARCH_ENDPOINT,
     SUBTYPE_MAPPING_PATH,
+    TORONTO_DATASET_PAGE,
     assign_zip_code,
     canonical_ownership,
     classify_tree_record,
     decode_wkb_point_hex,
     expand_abbreviated_botanical_name,
     fetch_all_features,
+    fetch_binary,
     fetch_json,
     fetch_ods_export_rows,
     fetch_soda_count,
@@ -75,7 +85,6 @@ from etl.build_data import (
     post_form_with_curl,
     slugify_token,
     title_case_if_upper,
-    web_mercator_to_lon_lat,
 )
 
 NORMALIZED_HEADER = [
@@ -103,6 +112,17 @@ SALINAS_DATASET = "https://cityofsalinas.opendatasoft.com/api/explore/v2.1/catal
 PITTSBURGH_BASE = "https://pittsburghpa.treekeepersoftware.com"
 PITTSBURGH_SEARCH_ENDPOINT = f"{PITTSBURGH_BASE}/cffiles/search.cfc"
 PITTSBURGH_GRIDS_ENDPOINT = f"{PITTSBURGH_BASE}/cffiles/grids.cfc"
+TORONTO_STREET_TREE_ALT_CSV = "https://ckan0.cf.opendata.inter.prod-toronto.ca/dataset/6ac4569e-fd37-4cbc-ac63-db3624c5f6a2/resource/5930412c-408e-4ee3-b473-56a790c9dfb7/download/street-tree-data_csv.csv"
+OTTAWA_BLOSSOM_WHERE = (
+    "STATUS = 'Active' AND ("
+    "UPPER(SPECIES) LIKE '%CHERRY%' OR "
+    "UPPER(SPECIES) LIKE '%PLUM%' OR "
+    "UPPER(SPECIES) LIKE '%PEACH%' OR "
+    "UPPER(SPECIES) LIKE '%MAGNOLIA%' OR "
+    "UPPER(SPECIES) LIKE '%CRABAPPLE%' OR "
+    "UPPER(SPECIES) LIKE '%APPLE%'"
+    ")"
+)
 SPECIES_TEXT_PATTERN = re.compile(r"^\s*(?P<common>.+?)\s*\((?P<scientific>[^()]+)\)\s*$")
 DISPLAY_NAME_REPLACEMENTS = {
     "Chery": "Cherry",
@@ -125,6 +145,9 @@ SUPPORTED_CITIES = (
     "Philadelphia",
     "Cambridge",
     "Pittsburgh",
+    "Ottawa",
+    "Toronto",
+    "Montreal",
 )
 
 
@@ -226,6 +249,61 @@ def load_remote_geojson(url: str) -> dict[str, Any]:
     return json.loads(response.stdout.lstrip("\ufeff"))
 
 
+def iter_remote_csv_rows(url: str) -> Any:
+    request = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0"})
+    try:
+        with urllib.request.urlopen(request, timeout=180) as response:
+            text_stream = io.TextIOWrapper(response, encoding="utf-8-sig", newline="")
+            yield from csv.DictReader(text_stream)
+            return
+    except Exception:
+        pass
+
+    insecure_context = ssl.create_default_context()
+    insecure_context.check_hostname = False
+    insecure_context.verify_mode = ssl.CERT_NONE
+    try:
+        with urllib.request.urlopen(request, timeout=180, context=insecure_context) as response:
+            text_stream = io.TextIOWrapper(response, encoding="utf-8-sig", newline="")
+            yield from csv.DictReader(text_stream)
+            return
+    except Exception:
+        pass
+
+    with tempfile.NamedTemporaryFile("wb", suffix=".csv") as handle:
+        result = subprocess.run(
+            ["curl", "-sL", "-k", "--max-time", "600", "-o", handle.name, url],
+            check=False,
+            capture_output=True,
+            text=True,
+        )
+        if result.returncode != 0:
+            raise RuntimeError(f"Failed to download CSV from {url}: {result.stderr.strip()}")
+        with open(handle.name, "r", encoding="utf-8-sig", newline="") as csv_handle:
+            yield from csv.DictReader(csv_handle)
+
+
+def parse_point_geometry_text(raw_value: str | None) -> tuple[float | None, float | None]:
+    text = (raw_value or "").strip()
+    if not text:
+        return None, None
+    try:
+        payload = json.loads(text)
+    except json.JSONDecodeError:
+        try:
+            payload = ast.literal_eval(text)
+        except (ValueError, SyntaxError):
+            return None, None
+    coordinates = payload.get("coordinates") or []
+    if payload.get("type") == "MultiPoint" and coordinates and coordinates[0]:
+        lon, lat = coordinates[0][:2]
+        return float(lon), float(lat)
+    if payload.get("type") == "Point" and len(coordinates) >= 2:
+        lon, lat = coordinates[:2]
+        return float(lon), float(lat)
+    return None, None
+
+
 def write_city_geojson(region: str, city: str, features: list[dict[str, Any]]) -> Path:
     path = PUBLIC_DATA_DIR / f"trees.{region}.city.{slugify_token(city)}.v1.geojson"
     payload = {"type": "FeatureCollection", "features": sorted(features, key=lambda item: item["properties"]["id"])}
@@ -313,6 +391,10 @@ def refresh_publish_indexes(target_regions: set[str]) -> None:
         )
     subprocess.run(
         ["python3", "scripts/refresh_coverage_metadata.py", "--data-dir", "public/data"],
+        check=True,
+    )
+    subprocess.run(
+        ["python3", "scripts/refresh_meta_species_summary.py", "--data-dir", "public/data"],
         check=True,
     )
 
@@ -1771,6 +1853,257 @@ def fetch_cambridge() -> dict[str, Any]:
     }
 
 
+def fetch_ottawa() -> dict[str, Any]:
+    layer_info = fetch_json(OTTAWA_TREES_LAYER, {"f": "pjson"})
+    total_payload = fetch_json(
+        f"{OTTAWA_TREES_LAYER}/query",
+        {"where": OTTAWA_BLOSSOM_WHERE, "returnCountOnly": "true", "f": "json"},
+    )
+    features = fetch_all_features(
+        OTTAWA_TREES_LAYER,
+        OTTAWA_BLOSSOM_WHERE,
+        ["OBJECTID", "TREEID", "SPECIES", "OWNERSHIP", "STATUS", "PROGRAM", "TREATMENT"],
+        "OBJECTID",
+    )
+    mapping_rows = load_mapping(MAPPING_PATH)
+    subtype_rows = load_subtype_mapping(SUBTYPE_MAPPING_PATH)
+    last_edit_at = iso_from_epoch((layer_info.get("editingInfo") or {}).get("lastEditDate"))
+
+    output_features: list[dict[str, Any]] = []
+    normalized_rows: list[dict[str, Any]] = []
+    for feature in features:
+        attrs = feature.get("attributes", {})
+        geom = feature.get("geometry", {})
+        lon_raw = geom.get("x")
+        lat_raw = geom.get("y")
+        lon = float(lon_raw) if lon_raw is not None else None
+        lat = float(lat_raw) if lat_raw is not None else None
+        if lon is None or lat is None:
+            continue
+        common_name = clean_common_name(attrs.get("SPECIES"))
+        scientific_raw = generic_scientific_name_for_common_hint(common_name)
+        scientific_normalized = normalize_scientific_name(scientific_raw)
+        species_group, subtype_name = classify_tree_record(scientific_raw, common_name, mapping_rows, subtype_rows)
+        ownership_raw = clean_display_name(attrs.get("OWNERSHIP")) or "City of Ottawa"
+        row_id = f"ottawa-{attrs.get('TREEID') or attrs.get('OBJECTID')}"
+
+        normalized_rows.append(
+            {
+                "id": row_id,
+                "city": "Ottawa",
+                "source_dataset": "Tree Inventory / Inventaire des arbres",
+                "scientific_raw": scientific_raw,
+                "scientific_normalized": scientific_normalized,
+                "common_name": common_name or "",
+                "subtype_name": subtype_name or "",
+                "zip_code": "",
+                "species_group": species_group or "",
+                "ownership": canonical_ownership(ownership_raw),
+                "ownership_raw": ownership_raw,
+                "lat": lat,
+                "lon": lon,
+                "included": "1" if species_group else "0",
+            }
+        )
+        if not species_group:
+            continue
+        output_features.append(
+            {
+                "type": "Feature",
+                "geometry": {"type": "Point", "coordinates": [lon, lat]},
+                "properties": {
+                    "id": row_id,
+                    "species_group": species_group,
+                    "scientific_name": scientific_raw,
+                    "common_name": common_name,
+                    "subtype_name": subtype_name,
+                    "zip_code": None,
+                    "ownership": canonical_ownership(ownership_raw),
+                    "ownership_raw": ownership_raw,
+                    "city": "Ottawa",
+                    "source_dataset": "Tree Inventory / Inventaire des arbres",
+                    "source_department": "City of Ottawa",
+                    "source_last_edit_at": last_edit_at,
+                },
+            }
+        )
+
+    return {
+        "city": "Ottawa",
+        "region": "on",
+        "features": output_features,
+        "normalized_rows": normalized_rows,
+        "source": {
+            "name": "Tree Inventory / Inventaire des arbres",
+            "city": "Ottawa",
+            "endpoint": OTTAWA_DATASET_PAGE,
+            "last_edit_at": last_edit_at,
+            "records_fetched": int(total_payload.get("count") or len(features)),
+            "records_included": len(output_features),
+            "note": "Integrated from the official City of Ottawa Tree Inventory ArcGIS layer and official city boundary.",
+        },
+    }
+
+
+def fetch_toronto() -> dict[str, Any]:
+    mapping_rows = load_mapping(MAPPING_PATH)
+    subtype_rows = load_subtype_mapping(SUBTYPE_MAPPING_PATH)
+
+    output_features: list[dict[str, Any]] = []
+    normalized_rows: list[dict[str, Any]] = []
+    total_records = 0
+    for row in iter_remote_csv_rows(TORONTO_STREET_TREE_ALT_CSV):
+        total_records += 1
+        lon, lat = parse_point_geometry_text(row.get("geometry"))
+        if lon is None or lat is None:
+            continue
+        common_name = clean_common_name(row.get("COMMON_NAME"))
+        scientific_raw = generic_scientific_name_for_common_hint(common_name)
+        scientific_normalized = normalize_scientific_name(scientific_raw)
+        species_group, subtype_name = classify_tree_record(scientific_raw, common_name, mapping_rows, subtype_rows)
+        ownership_raw = "City of Toronto"
+        row_id = f"toronto-{row.get('_id') or row.get('OBJECTID') or total_records}"
+
+        normalized_rows.append(
+            {
+                "id": row_id,
+                "city": "Toronto",
+                "source_dataset": "Street Tree Data",
+                "scientific_raw": scientific_raw,
+                "scientific_normalized": scientific_normalized,
+                "common_name": common_name or "",
+                "subtype_name": subtype_name or "",
+                "zip_code": "",
+                "species_group": species_group or "",
+                "ownership": canonical_ownership(ownership_raw),
+                "ownership_raw": ownership_raw,
+                "lat": lat,
+                "lon": lon,
+                "included": "1" if species_group else "0",
+            }
+        )
+        if not species_group:
+            continue
+        output_features.append(
+            {
+                "type": "Feature",
+                "geometry": {"type": "Point", "coordinates": [lon, lat]},
+                "properties": {
+                    "id": row_id,
+                    "species_group": species_group,
+                    "scientific_name": scientific_raw,
+                    "common_name": common_name,
+                    "subtype_name": subtype_name,
+                    "zip_code": None,
+                    "ownership": canonical_ownership(ownership_raw),
+                    "ownership_raw": ownership_raw,
+                    "city": "Toronto",
+                    "source_dataset": "Street Tree Data",
+                    "source_department": "City of Toronto Urban Forestry",
+                    "source_last_edit_at": "",
+                },
+            }
+        )
+
+    return {
+        "city": "Toronto",
+        "region": "on",
+        "features": output_features,
+        "normalized_rows": normalized_rows,
+        "source": {
+            "name": "Street Tree Data",
+            "city": "Toronto",
+            "endpoint": TORONTO_DATASET_PAGE,
+            "last_edit_at": "",
+            "records_fetched": total_records,
+            "records_included": len(output_features),
+            "note": "Integrated from the official City of Toronto Street Tree Data CSV and official municipal boundary.",
+        },
+    }
+
+
+def fetch_montreal() -> dict[str, Any]:
+    mapping_rows = load_mapping(MAPPING_PATH)
+    subtype_rows = load_subtype_mapping(SUBTYPE_MAPPING_PATH)
+
+    output_features: list[dict[str, Any]] = []
+    normalized_rows: list[dict[str, Any]] = []
+    total_records = 0
+    for row in iter_remote_csv_rows(MONTREAL_TREES_CSV):
+        total_records += 1
+        lon_raw = row.get("Longitude")
+        lat_raw = row.get("Latitude")
+        if lon_raw in (None, "") or lat_raw in (None, ""):
+            continue
+        lon = float(lon_raw)
+        lat = float(lat_raw)
+        common_name = clean_common_name(row.get("Essence_ang") or row.get("Essence_fr"))
+        scientific_raw = format_scientific_display_name(row.get("Essence_latin"), common_name)
+        if not scientific_raw:
+            scientific_raw = generic_scientific_name_for_common_hint(common_name)
+        scientific_normalized = normalize_scientific_name(scientific_raw)
+        species_group, subtype_name = classify_tree_record(scientific_raw, common_name, mapping_rows, subtype_rows)
+        ownership_raw = "Ville de Montréal"
+        row_id = f"montreal-{total_records}"
+
+        normalized_rows.append(
+            {
+                "id": row_id,
+                "city": "Montreal",
+                "source_dataset": "Arbres publics sur le territoire de la Ville",
+                "scientific_raw": scientific_raw,
+                "scientific_normalized": scientific_normalized,
+                "common_name": common_name or "",
+                "subtype_name": subtype_name or "",
+                "zip_code": "",
+                "species_group": species_group or "",
+                "ownership": canonical_ownership(ownership_raw),
+                "ownership_raw": ownership_raw,
+                "lat": lat,
+                "lon": lon,
+                "included": "1" if species_group else "0",
+            }
+        )
+        if not species_group:
+            continue
+        output_features.append(
+            {
+                "type": "Feature",
+                "geometry": {"type": "Point", "coordinates": [lon, lat]},
+                "properties": {
+                    "id": row_id,
+                    "species_group": species_group,
+                    "scientific_name": scientific_raw,
+                    "common_name": common_name,
+                    "subtype_name": subtype_name,
+                    "zip_code": None,
+                    "ownership": canonical_ownership(ownership_raw),
+                    "ownership_raw": ownership_raw,
+                    "city": "Montreal",
+                    "source_dataset": "Arbres publics sur le territoire de la Ville",
+                    "source_department": "Ville de Montréal",
+                    "source_last_edit_at": "",
+                },
+            }
+        )
+
+    return {
+        "city": "Montreal",
+        "region": "qc",
+        "features": output_features,
+        "normalized_rows": normalized_rows,
+        "source": {
+            "name": "Arbres publics sur le territoire de la Ville",
+            "city": "Montreal",
+            "endpoint": MONTREAL_DATASET_PAGE,
+            "last_edit_at": "",
+            "records_fetched": total_records,
+            "records_included": len(output_features),
+            "note": "Integrated from the official Ville de Montréal public-trees consolidated CSV and arrondissement-derived city boundary.",
+        },
+    }
+
+
 CITY_FETCHERS = {
     "Arlington": fetch_arlington,
     "Baltimore": fetch_baltimore,
@@ -1787,6 +2120,9 @@ CITY_FETCHERS = {
     "New York City": fetch_new_york_city,
     "Philadelphia": fetch_philadelphia,
     "Cambridge": fetch_cambridge,
+    "Ottawa": fetch_ottawa,
+    "Toronto": fetch_toronto,
+    "Montreal": fetch_montreal,
 }
 
 

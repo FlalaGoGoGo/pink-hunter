@@ -13,7 +13,7 @@ export type Language =
   | "ja-JP"
   | "fr-FR"
   | "vi-VN";
-export type CoverageRegion = "wa" | "ca" | "or" | "dc" | "bc" | "va" | "md" | "nj" | "ny" | "pa" | "ma";
+export type CoverageRegion = "wa" | "ca" | "or" | "dc" | "bc" | "on" | "qc" | "va" | "md" | "nj" | "ny" | "pa" | "ma";
 export type RegionWarningLevel = "none" | "warning" | "high_warning" | "hard_fail";
 export type SpeciesCounts = Record<SpeciesGroup, number>;
 

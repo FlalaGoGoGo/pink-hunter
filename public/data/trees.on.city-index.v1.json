@@ -1,0 +1,21 @@
+{
+  "generated_at": "2026-03-08T02:09:49.389854+00:00",
+  "region": "on",
+  "strategy": "city",
+  "items": [
+    {
+      "city": "Ottawa",
+      "data_path": "/data/trees.on.city.ottawa.v1.geojson",
+      "tree_count": 12913,
+      "raw_bytes": 6379242,
+      "gzip_bytes": 359729
+    },
+    {
+      "city": "Toronto",
+      "data_path": "/data/trees.on.city.toronto.v1.geojson",
+      "tree_count": 36302,
+      "raw_bytes": 17162901,
+      "gzip_bytes": 731296
+    }
+  ]
+}
