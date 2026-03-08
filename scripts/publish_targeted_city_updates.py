@@ -122,6 +122,8 @@ SAN_DIEGO_TREES_LAYER = "https://webmaps.sandiego.gov/arcgis/rest/services/DSD/E
 SAN_DIEGO_DATASET_PAGE = "https://webmaps.sandiego.gov/arcgis/rest/services/DSD/Environment/MapServer/20"
 HOUSTON_TREES_LAYER = "https://services.arcgis.com/NummVBqZSIJKUeVR/arcgis/rest/services/COH_UrbanForestry_Trees_VIEW_ONLY/FeatureServer/0"
 HOUSTON_DATASET_PAGE = "https://www.arcgis.com/home/item.html?id=ef3851fa482d41d49cf2d82a399919f5"
+DENVER_TREES_LAYER = "https://services1.arcgis.com/zdB7qR0BtYrg0Xpl/arcgis/rest/services/ODC_PARK_TREEINVENTORY_P/FeatureServer/241"
+DENVER_DATASET_PAGE = "https://opendata-geospatialdenver.hub.arcgis.com/datasets/public-tree-inventory"
 LAS_VEGAS_TREES_LAYER = "https://services1.arcgis.com/F1v0ufATbBQScMtY/ArcGIS/rest/services/CLV_Tree_Sites/FeatureServer/0"
 LAS_VEGAS_DATASET_PAGE = "https://services1.arcgis.com/F1v0ufATbBQScMtY/ArcGIS/rest/services/CLV_Tree_Sites/FeatureServer"
 SALT_LAKE_CITY_TREES_LAYER = "https://services.arcgis.com/mMBpeYj0vPFotzbe/arcgis/rest/services/Urban_Forestry_Inventory/FeatureServer/0"
@@ -230,6 +232,17 @@ HOUSTON_BLOSSOM_WHERE = (
     "UPPER(SPECIES) LIKE '%CRABAPPLE%' OR "
     "UPPER(SPECIES) LIKE '%APPLE%'"
 )
+DENVER_BLOSSOM_WHERE = (
+    "UPPER(SPECIES_COMMON) LIKE '%CHERRY%' OR "
+    "UPPER(SPECIES_COMMON) LIKE '%PLUM%' OR "
+    "UPPER(SPECIES_COMMON) LIKE '%PEACH%' OR "
+    "UPPER(SPECIES_COMMON) LIKE '%MAGNOLIA%' OR "
+    "UPPER(SPECIES_COMMON) LIKE '%CRABAPPLE%' OR "
+    "UPPER(SPECIES_COMMON) LIKE '%APPLE%' OR "
+    "UPPER(SPECIES_BOTANIC) LIKE 'PRUNUS%' OR "
+    "UPPER(SPECIES_BOTANIC) LIKE 'MALUS%' OR "
+    "UPPER(SPECIES_BOTANIC) LIKE 'MAGNOLIA%'"
+)
 SUNNYVALE_BLOSSOM_WHERE = (
     "City = 'Sunnyvale' AND ("
     "UPPER(Scientific) LIKE 'PRUNUS%' OR "
@@ -264,6 +277,7 @@ SUPPORTED_CITIES = (
     "Baltimore",
     "Boston",
     "Dallas",
+    "Denver",
     "Houston",
     "Irvine",
     "Jersey City",
@@ -3830,12 +3844,111 @@ def fetch_houston() -> dict[str, Any]:
     }
 
 
+def fetch_denver() -> dict[str, Any]:
+    layer_info = fetch_json(DENVER_TREES_LAYER, {"f": "pjson"})
+    total_payload = fetch_json(
+        f"{DENVER_TREES_LAYER}/query",
+        {"where": DENVER_BLOSSOM_WHERE, "returnCountOnly": "true", "f": "json"},
+    )
+    features = fetch_all_features(
+        DENVER_TREES_LAYER,
+        DENVER_BLOSSOM_WHERE,
+        ["OBJECTID", "SPECIES_COMMON", "SPECIES_BOTANIC", "LOCATION_NAME", "ADDRESS", "X_LONG", "Y_LAT"],
+        "OBJECTID",
+    )
+    zip_index = fetch_us_city_zip_index("Denver")
+    mapping_rows = load_mapping(MAPPING_PATH)
+    subtype_rows = load_subtype_mapping(SUBTYPE_MAPPING_PATH)
+    last_edit_at = iso_from_epoch((layer_info.get("editingInfo") or {}).get("lastEditDate"))
+
+    output_features: list[dict[str, Any]] = []
+    normalized_rows: list[dict[str, Any]] = []
+    for feature in features:
+        attrs = feature.get("attributes", {})
+        geom = feature.get("geometry", {})
+        lon_raw = geom.get("x")
+        lat_raw = geom.get("y")
+        if lon_raw is None or lat_raw is None:
+            lon_raw = attrs.get("X_LONG")
+            lat_raw = attrs.get("Y_LAT")
+        lon = float(lon_raw) if lon_raw is not None else None
+        lat = float(lat_raw) if lat_raw is not None else None
+        if lon is None or lat is None:
+            continue
+
+        common_name = clean_common_name(attrs.get("SPECIES_COMMON"))
+        scientific_raw = format_scientific_display_name(attrs.get("SPECIES_BOTANIC"), common_name)
+        scientific_normalized = normalize_scientific_name(scientific_raw)
+        species_group, subtype_name = classify_tree_record(scientific_raw, common_name, mapping_rows, subtype_rows)
+        ownership_raw = "City and County of Denver"
+        zip_code = assign_zip_code(lon, lat, zip_index)
+        row_id = f"denver-{attrs.get('OBJECTID')}"
+
+        normalized_rows.append(
+            {
+                "id": row_id,
+                "city": "Denver",
+                "source_dataset": "Public Tree Inventory",
+                "scientific_raw": scientific_raw,
+                "scientific_normalized": scientific_normalized,
+                "common_name": common_name or "",
+                "subtype_name": subtype_name or "",
+                "zip_code": zip_code or "",
+                "species_group": species_group or "",
+                "ownership": canonical_ownership(ownership_raw),
+                "ownership_raw": ownership_raw,
+                "lat": lat,
+                "lon": lon,
+                "included": "1" if species_group else "0",
+            }
+        )
+        if not species_group:
+            continue
+        output_features.append(
+            {
+                "type": "Feature",
+                "geometry": {"type": "Point", "coordinates": [lon, lat]},
+                "properties": {
+                    "id": row_id,
+                    "species_group": species_group,
+                    "scientific_name": scientific_raw,
+                    "common_name": common_name,
+                    "subtype_name": subtype_name,
+                    "zip_code": zip_code,
+                    "ownership": canonical_ownership(ownership_raw),
+                    "ownership_raw": ownership_raw,
+                    "city": "Denver",
+                    "source_dataset": "Public Tree Inventory",
+                    "source_department": "City and County of Denver Department of Parks and Recreation",
+                    "source_last_edit_at": last_edit_at,
+                },
+            }
+        )
+
+    return {
+        "city": "Denver",
+        "region": "co",
+        "features": output_features,
+        "normalized_rows": normalized_rows,
+        "source": {
+            "name": "Public Tree Inventory",
+            "city": "Denver",
+            "endpoint": DENVER_DATASET_PAGE,
+            "last_edit_at": last_edit_at,
+            "records_fetched": int(total_payload.get("count") or len(features)),
+            "records_included": len(output_features),
+            "note": "Integrated from the official City and County of Denver public tree inventory and official jurisdiction boundary.",
+        },
+    }
+
+
 CITY_FETCHERS = {
     "Arlington": fetch_arlington,
     "Austin": fetch_austin,
     "Baltimore": fetch_baltimore,
     "Boston": fetch_boston,
     "Dallas": fetch_dallas,
+    "Denver": fetch_denver,
     "Houston": fetch_houston,
     "Irvine": fetch_irvine,
     "Jersey City": fetch_jersey_city,

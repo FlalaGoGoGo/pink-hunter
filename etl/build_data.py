@@ -188,6 +188,7 @@ PUBLISH_HARD_FAIL_BYTES = 30 * 1024 * 1024
 REGION_LABELS: dict[str, str] = {
     "wa": "WA",
     "ca": "CA",
+    "co": "CO",
     "nv": "NV",
     "or": "OR",
     "tx": "TX",
@@ -205,6 +206,7 @@ REGION_LABELS: dict[str, str] = {
 }
 SPECIES_GROUPS: list[str] = ["cherry", "plum", "peach", "magnolia", "crabapple"]
 REGION_CITY_OVERRIDES: dict[str, str] = {
+    "Denver": "co",
     "Austin": "tx",
     "Dallas": "tx",
     "Houston": "tx",
@@ -291,6 +293,7 @@ REGION_CITY_OVERRIDES: dict[str, str] = {
 }
 
 CITY_BOUNDARY_HINTS: dict[str, dict[str, str]] = {
+    "Denver": {"state": "08"},
     "Austin": {"state": "48"},
     "Dallas": {"state": "48"},
     "Houston": {"state": "48"},

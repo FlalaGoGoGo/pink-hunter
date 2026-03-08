@@ -667,6 +667,7 @@ const regionLabelMap: Record<Language, Record<CoverageRegion, string>> = {
   "en-US": {
     wa: "Washington",
     ca: "California",
+    co: "Colorado",
     nv: "Nevada",
     or: "Oregon",
     ut: "Utah",
@@ -685,6 +686,7 @@ const regionLabelMap: Record<Language, Record<CoverageRegion, string>> = {
   "zh-CN": {
     wa: "华盛顿州",
     ca: "加利福尼亚州",
+    co: "科罗拉多州",
     nv: "内华达州",
     or: "俄勒冈州",
     ut: "犹他州",
@@ -703,6 +705,7 @@ const regionLabelMap: Record<Language, Record<CoverageRegion, string>> = {
   "zh-TW": {
     wa: "華盛頓州",
     ca: "加利福尼亞州",
+    co: "科羅拉多州",
     nv: "內華達州",
     or: "俄勒岡州",
     ut: "猶他州",
@@ -721,6 +724,7 @@ const regionLabelMap: Record<Language, Record<CoverageRegion, string>> = {
   "es-ES": {
     wa: "Washington",
     ca: "California",
+    co: "Colorado",
     nv: "Nevada",
     or: "Oregón",
     ut: "Utah",
@@ -739,6 +743,7 @@ const regionLabelMap: Record<Language, Record<CoverageRegion, string>> = {
   "ko-KR": {
     wa: "워싱턴주",
     ca: "캘리포니아주",
+    co: "콜로라도주",
     nv: "네바다주",
     or: "오리건주",
     ut: "유타주",
@@ -757,6 +762,7 @@ const regionLabelMap: Record<Language, Record<CoverageRegion, string>> = {
   "ja-JP": {
     wa: "ワシントン州",
     ca: "カリフォルニア州",
+    co: "コロラド州",
     nv: "ネバダ州",
     or: "オレゴン州",
     ut: "ユタ州",
@@ -775,6 +781,7 @@ const regionLabelMap: Record<Language, Record<CoverageRegion, string>> = {
   "fr-FR": {
     wa: "Washington",
     ca: "Californie",
+    co: "Colorado",
     nv: "Nevada",
     or: "Oregon",
     ut: "Utah",
@@ -793,6 +800,7 @@ const regionLabelMap: Record<Language, Record<CoverageRegion, string>> = {
   "vi-VN": {
     wa: "Washington",
     ca: "California",
+    co: "Colorado",
     nv: "Nevada",
     or: "Oregon",
     ut: "Utah",

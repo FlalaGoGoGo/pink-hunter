@@ -91,6 +91,7 @@ const COVERAGE_COLORS = {
 type BoundsTuple = [[number, number], [number, number]];
 
 const REGION_CITY_OVERRIDES: Partial<Record<string, CoverageRegion>> = {
+  Denver: "co",
   Austin: "tx",
   Dallas: "tx",
   "Las Vegas": "nv",
@@ -851,6 +852,7 @@ const REGION_SWITCH_BOUNDS: Partial<Record<CoverageRegion, [[number, number], [n
 const REGION_COUNTRY_EMOJIS: Record<CoverageRegion, string> = {
   wa: "🇺🇸",
   ca: "🇺🇸",
+  co: "🇺🇸",
   nv: "🇺🇸",
   dc: "🇺🇸",
   or: "🇺🇸",
@@ -869,6 +871,7 @@ const REGION_COUNTRY_EMOJIS: Record<CoverageRegion, string> = {
 const REGION_SORT_LABELS: Record<CoverageRegion, string> = {
   wa: "Washington",
   ca: "California",
+  co: "Colorado",
   nv: "Nevada",
   dc: "Washington, DC",
   or: "Oregon",
@@ -888,6 +891,7 @@ type CountryKey = "us" | "ca";
 const REGION_COUNTRY_KEYS: Record<CoverageRegion, CountryKey> = {
   wa: "us",
   ca: "us",
+  co: "us",
   nv: "us",
   dc: "us",
   or: "us",
@@ -1297,7 +1301,7 @@ function clipMultiPolygonToGeometry(
 }
 
 function parseRegion(raw: string | null, cities: string[]): CoverageRegion {
-  if (raw === "wa" || raw === "ca" || raw === "or" || raw === "dc" || raw === "bc" || raw === "on" || raw === "qc" || raw === "va" || raw === "md" || raw === "nj" || raw === "ny" || raw === "pa" || raw === "ma") {
+  if (raw === "wa" || raw === "ca" || raw === "co" || raw === "or" || raw === "dc" || raw === "bc" || raw === "on" || raw === "qc" || raw === "va" || raw === "md" || raw === "nj" || raw === "ny" || raw === "pa" || raw === "ma") {
     return raw;
   }
   if (cities.length > 0) {
@@ -1339,6 +1343,9 @@ function regionForCity(city: string): CoverageRegion {
   }
   if (city.endsWith(" OR") || city.endsWith(", OR")) {
     return "or";
+  }
+  if (city.endsWith(" CO") || city.endsWith(", CO")) {
+    return "co";
   }
   if (city.endsWith(" CA") || city.endsWith(", CA")) {
     return "ca";
@@ -1383,6 +1390,9 @@ function stateCodeForCity(city: string): string {
   }
   if (region === "or") {
     return "OR";
+  }
+  if (region === "co") {
+    return "CO";
   }
   if (region === "ca") {
     return "CA";

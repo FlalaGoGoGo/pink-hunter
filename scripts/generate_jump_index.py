@@ -31,6 +31,7 @@ US_COUNTY_LAYER_URL = "https://tigerweb.geo.census.gov/arcgis/rest/services/TIGE
 REGION_COUNTRY: dict[str, str] = {
     "wa": "us",
     "ca": "us",
+    "co": "us",
     "nv": "us",
     "or": "us",
     "tx": "us",
@@ -50,6 +51,7 @@ REGION_COUNTRY: dict[str, str] = {
 REGION_FULL_NAMES: dict[str, str] = {
     "wa": "Washington",
     "ca": "California",
+    "co": "Colorado",
     "nv": "Nevada",
     "or": "Oregon",
     "tx": "Texas",
@@ -144,6 +146,7 @@ COUNTRY_META = {
 STATE_FIPS_TO_REGION = {
     "53": "wa",
     "06": "ca",
+    "08": "co",
     "32": "nv",
     "41": "or",
     "48": "tx",
@@ -160,6 +163,7 @@ STATE_FIPS_TO_REGION = {
 COVERED_REGION_BY_STATE_CODE = {
     "wa": "wa",
     "ca": "ca",
+    "co": "co",
     "nv": "nv",
     "or": "or",
     "tx": "tx",
@@ -455,12 +459,17 @@ def build_jump_index(data_dir: Path) -> dict[str, Any]:
     }
 
     area_map: dict[tuple[str, str], dict[str, Any]] = {}
-    coverage_status_map: dict[str, str] = {
-        str(feature.get("properties", {}).get("jurisdiction", "")).strip(): str(
+    coverage_status_map: dict[tuple[str, str], str] = {}
+    for feature in coverage.get("features", []):
+        jurisdiction = str(feature.get("properties", {}).get("jurisdiction", "")).strip()
+        if not jurisdiction:
+            continue
+        region = infer_region_for_jurisdiction(jurisdiction)
+        if not region:
+            continue
+        coverage_status_map[(region, jurisdiction)] = str(
             feature.get("properties", {}).get("status", "untracked")
         )
-        for feature in coverage.get("features", [])
-    }
 
     for area_index_path in sorted(data_dir.glob("trees.*.area-index.v2.json")):
         area_index = load_json(area_index_path)
@@ -469,12 +478,12 @@ def build_jump_index(data_dir: Path) -> dict[str, Any]:
             jurisdiction = str(item.get("jurisdiction", "")).strip()
             if not jurisdiction:
                 continue
-        key = (region, jurisdiction)
-        area_map[key] = {
-            "id": f"{region}:{slugify_token(jurisdiction)}",
-            "country_id": REGION_COUNTRY[region],
-            "state_id": region,
-            "jurisdiction": jurisdiction,
+            key = (region, jurisdiction)
+            area_map[key] = {
+                "id": f"{region}:{slugify_token(jurisdiction)}",
+                "country_id": REGION_COUNTRY[region],
+                "state_id": region,
+                "jurisdiction": jurisdiction,
                 "display_name": normalize_display_name(str(item.get("display_name") or jurisdiction)),
                 "area_type": str(item.get("jurisdiction_type") or infer_jurisdiction_type(jurisdiction)),
                 "bounds": item.get("bounds"),
@@ -527,7 +536,7 @@ def build_jump_index(data_dir: Path) -> dict[str, Any]:
             "area_type": infer_jurisdiction_type(jurisdiction),
             "bounds": bounds,
             "region_hint": region,
-            "coverage_status": coverage_status_map.get(jurisdiction, "untracked"),
+            "coverage_status": coverage_status_map.get((region, jurisdiction), "untracked"),
         }
 
     existing_display_keys = {
@@ -554,7 +563,7 @@ def build_jump_index(data_dir: Path) -> dict[str, Any]:
             "area_type": str(item["area_type"]),
             "bounds": item["bounds"],
             "region_hint": region_hint,
-            "coverage_status": coverage_status_map.get(jurisdiction, "untracked"),
+            "coverage_status": coverage_status_map.get((str(region_hint or state_id), jurisdiction), "untracked"),
         }
         existing_display_keys.add(display_key)
 

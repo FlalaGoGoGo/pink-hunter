@@ -1,6 +1,6 @@
 {
   "version": "v2",
-  "generated_at": "2026-03-08T20:52:16.995961+00:00",
+  "generated_at": "2026-03-08T21:27:38.921978+00:00",
   "default_region": "wa",
   "coverage_rule": "official_jurisdiction_boundary_only",
   "coverage_skipped_cities": [],
@@ -102,7 +102,7 @@
   ],
   "source_count": 65,
   "total_records": 1633193,
-  "included_records": 448523,
+  "included_records": 468423,
   "unknown_records": 657345,
   "regions": [
     {
@@ -226,6 +226,54 @@
         "index_path": "/data/trees.ca.area-index.v2.json",
         "area_count": 25,
         "shard_count": 25,
+        "ready": true
+      },
+      "largest_shard_warning_level": "none"
+    },
+    {
+      "id": "co",
+      "label": "CO",
+      "available": true,
+      "bounds": [
+        [
+          -105.31339591970013,
+          39.6146637067493
+        ],
+        [
+          -104.73483552591162,
+          39.82636962561561
+        ]
+      ],
+      "data_path": null,
+      "tree_count": 19900,
+      "city_count": 1,
+      "cities": [
+        "Denver"
+      ],
+      "species_counts": {
+        "cherry": 1543,
+        "plum": 2527,
+        "peach": 987,
+        "magnolia": 220,
+        "crabapple": 14623
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "raw_bytes": 11604093,
+      "gzip_bytes": 526311,
+      "warning_level": "none",
+      "aggregate_raw_bytes": 11604093,
+      "aggregate_gzip_bytes": 526311,
+      "aggregate_warning_level": "none",
+      "largest_shard_raw_bytes": 11604093,
+      "largest_shard_gzip_bytes": 526311,
+      "largest_shard_area": "Denver",
+      "area_split": {
+        "strategy": "area_shard",
+        "index_path": "/data/trees.co.area-index.v2.json",
+        "area_count": 1,
+        "shard_count": 1,
         "ready": true
       },
       "largest_shard_warning_level": "none"
@@ -1495,11 +1543,11 @@
     }
   ],
   "species_counts": {
-    "cherry": 170609,
-    "plum": 95490,
-    "peach": 5893,
-    "magnolia": 107789,
-    "crabapple": 68742
+    "cherry": 172152,
+    "plum": 98017,
+    "peach": 6880,
+    "magnolia": 108009,
+    "crabapple": 83365
   },
   "areas": [
     {
@@ -1893,6 +1941,20 @@
       },
       "jurisdiction_type": "city",
       "state_province": "CA"
+    },
+    {
+      "jurisdiction": "Denver",
+      "region": "co",
+      "tree_count": 19900,
+      "species_counts": {
+        "cherry": 1543,
+        "plum": 2527,
+        "peach": 987,
+        "magnolia": 220,
+        "crabapple": 14623
+      },
+      "jurisdiction_type": "city",
+      "state_province": "CO"
     },
     {
       "jurisdiction": "Washington DC",

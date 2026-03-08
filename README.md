@@ -97,6 +97,13 @@ Live domain:
 </details>
 
 <details>
+<summary>Colorado</summary>
+
+- Denver
+
+</details>
+
+<details>
 <summary>Nevada</summary>
 
 - Las Vegas
@@ -258,6 +265,13 @@ Live domain:
 - Austin: [Tree Inventory](https://data.austintexas.gov/Environment/Tree-Inventory/wrik-xasw)
 - Dallas: [Dallas Public Tree Inventory](https://dallas.gov/projects/forestry/Pages/inventory.aspx)
 - Houston: [City of Houston Tree Inventory - PUBLIC](https://www.arcgis.com/home/item.html?id=ef3851fa482d41d49cf2d82a399919f5)
+
+</details>
+
+<details>
+<summary>Colorado</summary>
+
+- Denver: [Public Tree Inventory](https://opendata-geospatialdenver.hub.arcgis.com/datasets/public-tree-inventory)
 
 </details>
 
