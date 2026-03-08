@@ -28,6 +28,7 @@ from etl.build_data import (  # noqa: E402
 
 def load_area_feature_map(data_dir: Path, region_id: str) -> dict[str, list[dict]]:
     area_features: dict[str, list[dict]] = defaultdict(list)
+    jurisdictions_from_city_files: set[str] = set()
 
     for path in sorted(data_dir.glob(f"trees.{region_id}.city.*.v1.geojson")):
         payload = json.loads(path.read_text(encoding="utf-8"))
@@ -36,15 +37,18 @@ def load_area_feature_map(data_dir: Path, region_id: str) -> dict[str, list[dict
             continue
         jurisdiction = str(features[0].get("properties", {}).get("city", "")).strip()
         if jurisdiction:
+            jurisdictions_from_city_files.add(jurisdiction)
             area_features[jurisdiction].extend(features)
 
     for path in sorted(data_dir.glob(f"trees.{region_id}.area.*.v2.geojson")):
         payload = json.loads(path.read_text(encoding="utf-8"))
-        for feature in payload.get("features", []):
-            jurisdiction = str(feature.get("properties", {}).get("city", "")).strip()
-            if not jurisdiction or area_features.get(jurisdiction):
-                continue
-            area_features[jurisdiction].append(feature)
+        features = payload.get("features", [])
+        if not features:
+            continue
+        jurisdiction = str(features[0].get("properties", {}).get("city", "")).strip()
+        if not jurisdiction or jurisdiction in jurisdictions_from_city_files:
+            continue
+        area_features[jurisdiction].extend(features)
 
     return dict(area_features)
 

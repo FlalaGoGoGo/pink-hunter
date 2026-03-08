@@ -1,6 +1,6 @@
 {
   "version": "v2",
-  "generated_at": "2026-03-08T15:42:53.468383+00:00",
+  "generated_at": "2026-03-08T19:53:59.613444+00:00",
   "default_region": "wa",
   "coverage_rule": "official_jurisdiction_boundary_only",
   "coverage_skipped_cities": [],
@@ -54,7 +54,6 @@
     "Monroe",
     "Monterey",
     "Montgomery County",
-    "Mountain View",
     "Mountlake Terrace",
     "Mukilteo",
     "Napa",
@@ -71,7 +70,6 @@
     "Richmond",
     "Richmond BC",
     "Saanich",
-    "Sacramento",
     "Salem",
     "Santa Ana",
     "Santa Clara",
@@ -81,7 +79,6 @@
     "Snoqualmie",
     "Stockton",
     "Sumner",
-    "Sunnyvale",
     "Surrey",
     "Tacoma",
     "Tigard",
@@ -99,10 +96,10 @@
   "coverage_official_unavailable_skipped_cities": [
     "Vancouver WA"
   ],
-  "source_count": 56,
-  "total_records": 1615677,
-  "included_records": 431916,
-  "unknown_records": 656444,
+  "source_count": 59,
+  "total_records": 1622913,
+  "included_records": 438273,
+  "unknown_records": 657323,
   "regions": [
     {
       "id": "bc",
@@ -110,12 +107,12 @@
       "available": true,
       "bounds": [
         [
-          -123.47799044362478,
-          48.40249758903433
+          -123.39426089582695,
+          48.406498105122765
         ],
         [
-          -122.62108637425426,
-          49.4138112645356
+          -122.88560021399996,
+          49.29362199847541
         ]
       ],
       "data_path": null,
@@ -161,17 +158,17 @@
       "available": true,
       "bounds": [
         [
-          -123.17382500036122,
-          32.534786999728034
+          -122.57296798402149,
+          32.54441471717994
         ],
         [
-          -116.90518099986093,
-          38.68560299975214
+          -116.92799001850382,
+          38.68529312901432
         ]
       ],
       "data_path": null,
-      "tree_count": 132080,
-      "city_count": 17,
+      "tree_count": 138437,
+      "city_count": 20,
       "cities": [
         "Berkeley",
         "Burlingame",
@@ -181,33 +178,36 @@
         "Irvine",
         "Los Angeles",
         "Milpitas",
+        "Mountain View",
         "Oakland",
         "Palo Alto",
+        "Sacramento",
         "Salinas",
         "San Diego",
         "San Francisco",
         "San Jose",
         "San Mateo",
         "San Rafael",
-        "South San Francisco"
+        "South San Francisco",
+        "Sunnyvale"
       ],
-      "raw_bytes": 67417507,
-      "gzip_bytes": 2839730,
+      "raw_bytes": 70907069,
+      "gzip_bytes": 2995190,
       "warning_level": "none",
       "city_split": null,
       "species_counts": {
-        "cherry": 15360,
-        "plum": 36511,
-        "peach": 4091,
-        "magnolia": 72391,
-        "crabapple": 3727
+        "cherry": 15927,
+        "plum": 38566,
+        "peach": 4129,
+        "magnolia": 75540,
+        "crabapple": 4275
       },
       "ownership_groups": [
         "public",
         "private"
       ],
-      "aggregate_raw_bytes": 67417507,
-      "aggregate_gzip_bytes": 2839730,
+      "aggregate_raw_bytes": 70907069,
+      "aggregate_gzip_bytes": 2995190,
       "aggregate_warning_level": "very_large",
       "largest_shard_raw_bytes": 20242132,
       "largest_shard_gzip_bytes": 770544,
@@ -215,8 +215,8 @@
       "area_split": {
         "strategy": "area_shard",
         "index_path": "/data/trees.ca.area-index.v2.json",
-        "area_count": 17,
-        "shard_count": 17,
+        "area_count": 20,
+        "shard_count": 20,
         "ready": true
       },
       "largest_shard_warning_level": "none"
@@ -227,12 +227,12 @@
       "available": true,
       "bounds": [
         [
-          -77.11975900017987,
-          38.791644999914155
+          -77.1126653331193,
+          38.81730729982075
         ],
         [
-          -76.90939300018182,
-          38.99584500030949
+          -76.77322596840716,
+          39.108121168263004
         ]
       ],
       "data_path": null,
@@ -277,12 +277,12 @@
       "available": true,
       "bounds": [
         [
-          -71.19124700019616,
-          42.227910999858594
+          -71.18596774099996,
+          42.23287600000003
         ],
         [
-          -70.74880200023236,
-          42.40416700026896
+          -70.99723874199998,
+          42.40211963694448
         ]
       ],
       "data_path": null,
@@ -328,12 +328,12 @@
       "available": true,
       "bounds": [
         [
-          -77.5276853901476,
-          38.93424875542158
+          -76.71078953837228,
+          39.20827147666665
         ],
         [
-          -76.52945299957095,
-          39.372205999983926
+          -76.53061449460056,
+          39.37198006694359
         ]
       ],
       "data_path": null,
@@ -377,12 +377,12 @@
       "available": true,
       "bounds": [
         [
-          -74.25136099975268,
-          40.66163400021707
+          -74.10476052098124,
+          40.688807439511784
         ],
         [
-          -74.02063900024501,
-          40.78826700012708
+          -74.03213147488759,
+          40.758711906729154
         ]
       ],
       "data_path": null,
@@ -474,12 +474,12 @@
       "available": true,
       "bounds": [
         [
-          -74.25884300038047,
-          40.4765780002232
+          -74.25438541,
+          40.49928952
         ],
         [
-          -73.70016900037544,
-          40.917705000258394
+          -73.70203024,
+          40.91215184
         ]
       ],
       "data_path": null,
@@ -523,12 +523,12 @@
       "available": true,
       "bounds": [
         [
-          -79.63926826,
-          43.58100456
+          -79.6378558902,
+          43.5866509121
         ],
         [
-          -75.24658121841775,
-          45.53710305537738
+          -75.26063675999347,
+          45.51791442692148
         ]
       ],
       "data_path": null,
@@ -573,12 +573,12 @@
       "available": true,
       "bounds": [
         [
-          -123.12291699979801,
-          44.851231999965705
+          -122.82454888237926,
+          45.4350079092413
         ],
         [
-          -122.36755900003719,
-          45.652886166421595
+          -122.48250881977508,
+          45.63452836335847
         ]
       ],
       "data_path": null,
@@ -622,12 +622,12 @@
       "available": true,
       "bounds": [
         [
-          -80.09532800017763,
-          39.86746400022409
+          -80.085186635915,
+          39.88700382151612
         ],
         [
-          -74.95576300016803,
-          40.50103700011603
+          -74.96522626391625,
+          40.499279674576
         ]
       ],
       "data_path": null,
@@ -672,12 +672,12 @@
       "available": true,
       "bounds": [
         [
-          -73.9743512352816,
-          45.4096530547697
+          -73.907971,
+          45.428586
         ],
         [
-          -73.4738652778201,
-          45.7075796336657
+          -73.477656,
+          45.702299
         ]
       ],
       "data_path": null,
@@ -818,12 +818,12 @@
       "available": true,
       "bounds": [
         [
-          -77.17231603095209,
-          38.785215999746356
+          -77.16817348415724,
+          38.833543326032775
         ],
         [
-          -77.03217614407714,
-          38.93430951739172
+          -77.04476359923983,
+          38.92654478764372
         ]
       ],
       "data_path": null,
@@ -868,12 +868,12 @@
       "available": true,
       "bounds": [
         [
-          -123.08,
-          47.02
+          -122.60378460068982,
+          46.03045961992176
         ],
         [
-          -121.55,
-          48.08
+          -117.31436943740762,
+          48.7963270217033
         ]
       ],
       "data_path": null,
@@ -1128,6 +1128,15 @@
       "note": "Integrated from the official Ville de Montréal public-trees CSV and arrondissement-derived official jurisdiction boundary."
     },
     {
+      "name": "Trees",
+      "city": "Mountain View",
+      "endpoint": "https://services8.arcgis.com/A76GjgcBUTTcwFGS/arcgis/rest/services/Heritage_Trees_JM/FeatureServer/10",
+      "last_edit_at": "2023-04-02T06:53:50.789000+00:00",
+      "records_fetched": 3128,
+      "records_included": 2907,
+      "note": "Integrated from the official City of Mountain View Trees ArcGIS layer and official city boundary."
+    },
+    {
       "name": "Tree Inventory (Active Trees)",
       "city": "New Westminster",
       "endpoint": "https://services3.arcgis.com/A7O8YnTNtzRPIn7T/arcgis/rest/services/Tree_Inventory_(PROD)_4_view/FeatureServer",
@@ -1220,6 +1229,15 @@
       "records_fetched": 2218,
       "records_included": 1879,
       "note": ""
+    },
+    {
+      "name": "City Maintained Trees",
+      "city": "Sacramento",
+      "endpoint": "https://data.cityofsacramento.org/datasets/b9b716e09b5048179ab648bb4518452b_0/explore",
+      "last_edit_at": "2026-03-08T11:33:18.523000+00:00",
+      "records_fetched": 4100,
+      "records_included": 3442,
+      "note": "Integrated from the official City of Sacramento City Maintained Trees ArcGIS layer and official jurisdiction boundary."
     },
     {
       "name": "Tree Inventory",
@@ -1354,6 +1372,15 @@
       "records_included": 8472
     },
     {
+      "name": "Tree Inventories in Santa Clara County",
+      "city": "Sunnyvale",
+      "endpoint": "https://www.arcgis.com/home/item.html?id=58f9d735c5b94915ba5374c82415a26f",
+      "last_edit_at": "2021-08-11T14:36:02.375000+00:00",
+      "records_fetched": 8,
+      "records_included": 8,
+      "note": "Integrated from the official Santa Clara County public tree inventory service using the city = Sunnyvale subset and the official jurisdiction boundary."
+    },
+    {
       "name": "Street Tree Data",
       "city": "Toronto",
       "endpoint": "https://open.toronto.ca/dataset/street-tree-data/",
@@ -1404,11 +1431,11 @@
     }
   ],
   "species_counts": {
-    "cherry": 168361,
-    "plum": 91488,
-    "peach": 5622,
-    "magnolia": 98424,
-    "crabapple": 68021
+    "cherry": 168928,
+    "plum": 93543,
+    "peach": 5660,
+    "magnolia": 101573,
+    "crabapple": 68569
   },
   "areas": [
     {
@@ -1566,6 +1593,20 @@
       "state_province": "CA"
     },
     {
+      "jurisdiction": "Mountain View",
+      "region": "ca",
+      "tree_count": 2907,
+      "species_counts": {
+        "cherry": 397,
+        "plum": 678,
+        "peach": 38,
+        "magnolia": 1718,
+        "crabapple": 76
+      },
+      "jurisdiction_type": "city",
+      "state_province": "CA"
+    },
+    {
       "jurisdiction": "Oakland",
       "region": "ca",
       "tree_count": 3977,
@@ -1589,6 +1630,20 @@
         "peach": 21,
         "magnolia": 4270,
         "crabapple": 78
+      },
+      "jurisdiction_type": "city",
+      "state_province": "CA"
+    },
+    {
+      "jurisdiction": "Sacramento",
+      "region": "ca",
+      "tree_count": 3442,
+      "species_counts": {
+        "cherry": 170,
+        "plum": 1377,
+        "peach": 0,
+        "magnolia": 1423,
+        "crabapple": 472
       },
       "jurisdiction_type": "city",
       "state_province": "CA"
@@ -1687,6 +1742,20 @@
         "peach": 6,
         "magnolia": 497,
         "crabapple": 2
+      },
+      "jurisdiction_type": "city",
+      "state_province": "CA"
+    },
+    {
+      "jurisdiction": "Sunnyvale",
+      "region": "ca",
+      "tree_count": 8,
+      "species_counts": {
+        "cherry": 0,
+        "plum": 0,
+        "peach": 0,
+        "magnolia": 8,
+        "crabapple": 0
       },
       "jurisdiction_type": "city",
       "state_province": "CA"

@@ -134,6 +134,12 @@ DALLAS_DATASET_PAGE = "https://dallas.gov/projects/forestry/Pages/inventory.aspx
 IRVINE_TREES_LAYER = "https://gis.cityofirvine.org/arcgis/rest/services/City_Landscape/MapServer/0"
 IRVINE_BOUNDARY_LAYER = "https://gis.cityofirvine.org/arcgis/rest/services/City_Landscape/MapServer/3"
 IRVINE_DATASET_PAGE = "https://gis.cityofirvine.org/arcgis/rest/services/City_Landscape/MapServer/0"
+MOUNTAIN_VIEW_TREES_LAYER = "https://services8.arcgis.com/A76GjgcBUTTcwFGS/arcgis/rest/services/Heritage_Trees_JM/FeatureServer/10"
+MOUNTAIN_VIEW_DATASET_PAGE = "https://services8.arcgis.com/A76GjgcBUTTcwFGS/arcgis/rest/services/Heritage_Trees_JM/FeatureServer/10"
+SACRAMENTO_TREES_LAYER = "https://services5.arcgis.com/54falWtcpty3V47Z/arcgis/rest/services/City_Maintained_Trees/FeatureServer/0"
+SACRAMENTO_DATASET_PAGE = "https://data.cityofsacramento.org/datasets/b9b716e09b5048179ab648bb4518452b_0/explore"
+SUNNYVALE_TREES_LAYER = "https://services.arcgis.com/NkcnS0qk4w2wasOJ/arcgis/rest/services/Tree_Inventories_in_Santa_Clara_County_WFL1/FeatureServer/0"
+SUNNYVALE_DATASET_PAGE = "https://www.arcgis.com/home/item.html?id=58f9d735c5b94915ba5374c82415a26f"
 SAN_DIEGO_BLOSSOM_WHERE = (
     "UPPER(COMMON_NAME) LIKE '%CHERRY%' OR "
     "UPPER(COMMON_NAME) LIKE '%PLUM%' OR "
@@ -186,6 +192,41 @@ IRVINE_BLOSSOM_WHERE = (
     "UPPER(TRG_COMMON) LIKE '%CRABAPPLE%' OR "
     "UPPER(TRG_COMMON) LIKE '%APPLE%'"
 )
+MOUNTAIN_VIEW_BLOSSOM_WHERE = (
+    "UPPER(SCINAME) LIKE 'PRUNUS%' OR "
+    "UPPER(SCINAME) LIKE 'MALUS%' OR "
+    "UPPER(SCINAME) LIKE 'MAGNOLIA%' OR "
+    "UPPER(BOTNAMEDESCRPT) LIKE '%CHERRY%' OR "
+    "UPPER(BOTNAMEDESCRPT) LIKE '%PLUM%' OR "
+    "UPPER(BOTNAMEDESCRPT) LIKE '%PEACH%' OR "
+    "UPPER(BOTNAMEDESCRPT) LIKE '%MAGNOLIA%' OR "
+    "UPPER(BOTNAMEDESCRPT) LIKE '%CRABAPPLE%' OR "
+    "UPPER(BOTNAMEDESCRPT) LIKE '%APPLE%'"
+)
+SACRAMENTO_BLOSSOM_WHERE = (
+    "UPPER(BOTANICAL) LIKE 'PRUNUS%' OR "
+    "UPPER(BOTANICAL) LIKE 'MALUS%' OR "
+    "UPPER(BOTANICAL) LIKE 'MAGNOLIA%' OR "
+    "UPPER(SPECIES) LIKE '%CHERRY%' OR "
+    "UPPER(SPECIES) LIKE '%PLUM%' OR "
+    "UPPER(SPECIES) LIKE '%PEACH%' OR "
+    "UPPER(SPECIES) LIKE '%MAGNOLIA%' OR "
+    "UPPER(SPECIES) LIKE '%CRABAPPLE%' OR "
+    "UPPER(SPECIES) LIKE '%APPLE%'"
+)
+SUNNYVALE_BLOSSOM_WHERE = (
+    "City = 'Sunnyvale' AND ("
+    "UPPER(Scientific) LIKE 'PRUNUS%' OR "
+    "UPPER(Scientific) LIKE 'MALUS%' OR "
+    "UPPER(Scientific) LIKE 'MAGNOLIA%' OR "
+    "UPPER(CommonName) LIKE '%CHERRY%' OR "
+    "UPPER(CommonName) LIKE '%PLUM%' OR "
+    "UPPER(CommonName) LIKE '%PEACH%' OR "
+    "UPPER(CommonName) LIKE '%MAGNOLIA%' OR "
+    "UPPER(CommonName) LIKE '%CRABAPPLE%' OR "
+    "UPPER(CommonName) LIKE '%APPLE%'"
+    ")"
+)
 AUSTIN_BLOSSOM_WHERE = (
     "lower(species) like '%cherry%' OR "
     "lower(species) like '%plum%' OR "
@@ -211,9 +252,12 @@ SUPPORTED_CITIES = (
     "Jersey City",
     "Las Vegas",
     "Los Angeles",
+    "Mountain View",
     "Milpitas",
+    "Sacramento",
     "San Mateo",
     "San Rafael",
+    "Sunnyvale",
     "Fremont",
     "Salinas",
     "Concord",
@@ -435,24 +479,12 @@ def rewrite_normalized_rows(target_cities: set[str], new_rows: list[dict[str, An
         writer = csv.DictWriter(handle, fieldnames=NORMALIZED_HEADER)
         writer.writeheader()
         if path.exists():
-            with tempfile.NamedTemporaryFile(
-                "wb",
-                dir=path.parent,
-                prefix=f"{path.stem}.snapshot.",
-                suffix=".csv",
-                delete=False,
-            ) as snapshot_handle:
-                snapshot_path = Path(snapshot_handle.name)
-            try:
-                shutil.copyfile(path, snapshot_path)
-                with snapshot_path.open("r", encoding="utf-8", newline="") as source_handle:
-                    reader = csv.DictReader(source_handle)
-                    for row in reader:
-                        if row.get("city") in target_cities:
-                            continue
-                        writer.writerow({column: str(row.get(column, "")) for column in NORMALIZED_HEADER})
-            finally:
-                snapshot_path.unlink(missing_ok=True)
+            with path.open("r", encoding="utf-8", newline="") as source_handle:
+                reader = csv.DictReader(source_handle)
+                for row in reader:
+                    if row.get("city") in target_cities:
+                        continue
+                    writer.writerow({column: str(row.get(column, "")) for column in NORMALIZED_HEADER})
         writer.writerows(normalized_new_rows)
 
     temp_path.replace(path)
@@ -3159,6 +3191,294 @@ def fetch_irvine() -> dict[str, Any]:
     }
 
 
+def fetch_mountain_view() -> dict[str, Any]:
+    layer_info = fetch_json(MOUNTAIN_VIEW_TREES_LAYER, {"f": "pjson"})
+    total_payload = fetch_json(
+        f"{MOUNTAIN_VIEW_TREES_LAYER}/query",
+        {"where": MOUNTAIN_VIEW_BLOSSOM_WHERE, "returnCountOnly": "true", "f": "json"},
+    )
+    features = fetch_all_features(
+        MOUNTAIN_VIEW_TREES_LAYER,
+        MOUNTAIN_VIEW_BLOSSOM_WHERE,
+        ["OBJECTID", "BOTNAMEDESCRPT", "SCINAME", "HERITAGE", "ADDRESS", "UNITID"],
+        "OBJECTID",
+    )
+    zip_index = fetch_us_city_zip_index("Mountain View")
+    mapping_rows = load_mapping(MAPPING_PATH)
+    subtype_rows = load_subtype_mapping(SUBTYPE_MAPPING_PATH)
+    last_edit_at = iso_from_epoch((layer_info.get("editingInfo") or {}).get("lastEditDate"))
+
+    output_features: list[dict[str, Any]] = []
+    normalized_rows: list[dict[str, Any]] = []
+    for feature in features:
+        attrs = feature.get("attributes", {})
+        geom = feature.get("geometry", {})
+        lon_raw = geom.get("x")
+        lat_raw = geom.get("y")
+        lon = float(lon_raw) if lon_raw is not None else None
+        lat = float(lat_raw) if lat_raw is not None else None
+        if lon is None or lat is None:
+            continue
+
+        common_name = clean_common_name(attrs.get("BOTNAMEDESCRPT"))
+        scientific_raw = format_scientific_display_name(attrs.get("SCINAME"), common_name)
+        scientific_normalized = normalize_scientific_name(scientific_raw)
+        species_group, subtype_name = classify_tree_record(scientific_raw, common_name, mapping_rows, subtype_rows)
+        ownership_raw = "City of Mountain View"
+        zip_code = assign_zip_code(lon, lat, zip_index)
+        row_id = f"mountain-view-{attrs.get('OBJECTID')}"
+
+        normalized_rows.append(
+            {
+                "id": row_id,
+                "city": "Mountain View",
+                "source_dataset": "Heritage Trees / Trees",
+                "scientific_raw": scientific_raw,
+                "scientific_normalized": scientific_normalized,
+                "common_name": common_name or "",
+                "subtype_name": subtype_name or "",
+                "zip_code": zip_code or "",
+                "species_group": species_group or "",
+                "ownership": canonical_ownership(ownership_raw),
+                "ownership_raw": ownership_raw,
+                "lat": lat,
+                "lon": lon,
+                "included": "1" if species_group else "0",
+            }
+        )
+        if not species_group:
+            continue
+        output_features.append(
+            {
+                "type": "Feature",
+                "geometry": {"type": "Point", "coordinates": [lon, lat]},
+                "properties": {
+                    "id": row_id,
+                    "species_group": species_group,
+                    "scientific_name": scientific_raw,
+                    "common_name": common_name,
+                    "subtype_name": subtype_name,
+                    "zip_code": zip_code,
+                    "ownership": canonical_ownership(ownership_raw),
+                    "ownership_raw": ownership_raw,
+                    "city": "Mountain View",
+                    "source_dataset": "Heritage Trees / Trees",
+                    "source_department": "City of Mountain View",
+                    "source_last_edit_at": last_edit_at,
+                },
+            }
+        )
+
+    return {
+        "city": "Mountain View",
+        "region": "ca",
+        "features": output_features,
+        "normalized_rows": normalized_rows,
+        "source": {
+            "name": "Trees",
+            "city": "Mountain View",
+            "endpoint": MOUNTAIN_VIEW_DATASET_PAGE,
+            "last_edit_at": last_edit_at,
+            "records_fetched": int(total_payload.get("count") or len(features)),
+            "records_included": len(output_features),
+            "note": "Integrated from the official City of Mountain View Trees ArcGIS layer and official city boundary.",
+        },
+    }
+
+
+def fetch_sacramento() -> dict[str, Any]:
+    layer_info = fetch_json(SACRAMENTO_TREES_LAYER, {"f": "pjson"})
+    total_payload = fetch_json(
+        f"{SACRAMENTO_TREES_LAYER}/query",
+        {"where": SACRAMENTO_BLOSSOM_WHERE, "returnCountOnly": "true", "f": "json"},
+    )
+    features = fetch_all_features(
+        SACRAMENTO_TREES_LAYER,
+        SACRAMENTO_BLOSSOM_WHERE,
+        ["ASSET_ID", "SPECIES", "BOTANICAL", "CULTIVAR"],
+        "ASSET_ID",
+    )
+    zip_index = fetch_us_city_zip_index("Sacramento")
+    mapping_rows = load_mapping(MAPPING_PATH)
+    subtype_rows = load_subtype_mapping(SUBTYPE_MAPPING_PATH)
+    last_edit_at = iso_from_epoch((layer_info.get("editingInfo") or {}).get("lastEditDate"))
+
+    output_features: list[dict[str, Any]] = []
+    normalized_rows: list[dict[str, Any]] = []
+    for feature in features:
+        attrs = feature.get("attributes", {})
+        geom = feature.get("geometry", {})
+        lon_raw = geom.get("x")
+        lat_raw = geom.get("y")
+        lon = float(lon_raw) if lon_raw is not None else None
+        lat = float(lat_raw) if lat_raw is not None else None
+        if lon is None or lat is None:
+            continue
+
+        common_name = clean_common_name(attrs.get("SPECIES"))
+        scientific_raw = format_scientific_display_name(attrs.get("BOTANICAL"), common_name)
+        scientific_normalized = normalize_scientific_name(scientific_raw)
+        species_group, subtype_name = classify_tree_record(scientific_raw, common_name, mapping_rows, subtype_rows)
+        cultivar = clean_display_name(attrs.get("CULTIVAR"))
+        if not subtype_name and cultivar:
+            subtype_name = cultivar
+        ownership_raw = "City of Sacramento"
+        zip_code = assign_zip_code(lon, lat, zip_index)
+        row_id = f"sacramento-{attrs.get('ASSET_ID')}"
+
+        normalized_rows.append(
+            {
+                "id": row_id,
+                "city": "Sacramento",
+                "source_dataset": "City Maintained Trees",
+                "scientific_raw": scientific_raw,
+                "scientific_normalized": scientific_normalized,
+                "common_name": common_name or "",
+                "subtype_name": subtype_name or "",
+                "zip_code": zip_code or "",
+                "species_group": species_group or "",
+                "ownership": canonical_ownership(ownership_raw),
+                "ownership_raw": ownership_raw,
+                "lat": lat,
+                "lon": lon,
+                "included": "1" if species_group else "0",
+            }
+        )
+        if not species_group:
+            continue
+        output_features.append(
+            {
+                "type": "Feature",
+                "geometry": {"type": "Point", "coordinates": [lon, lat]},
+                "properties": {
+                    "id": row_id,
+                    "species_group": species_group,
+                    "scientific_name": scientific_raw,
+                    "common_name": common_name,
+                    "subtype_name": subtype_name,
+                    "zip_code": zip_code,
+                    "ownership": canonical_ownership(ownership_raw),
+                    "ownership_raw": ownership_raw,
+                    "city": "Sacramento",
+                    "source_dataset": "City Maintained Trees",
+                    "source_department": "City of Sacramento",
+                    "source_last_edit_at": last_edit_at,
+                },
+            }
+        )
+
+    return {
+        "city": "Sacramento",
+        "region": "ca",
+        "features": output_features,
+        "normalized_rows": normalized_rows,
+        "source": {
+            "name": "City Maintained Trees",
+            "city": "Sacramento",
+            "endpoint": SACRAMENTO_DATASET_PAGE,
+            "last_edit_at": last_edit_at,
+            "records_fetched": int(total_payload.get("count") or len(features)),
+            "records_included": len(output_features),
+            "note": "Integrated from the official City of Sacramento City Maintained Trees ArcGIS layer and official jurisdiction boundary.",
+        },
+    }
+
+
+def fetch_sunnyvale() -> dict[str, Any]:
+    layer_info = fetch_json(SUNNYVALE_TREES_LAYER, {"f": "pjson"})
+    total_payload = fetch_json(
+        f"{SUNNYVALE_TREES_LAYER}/query",
+        {"where": SUNNYVALE_BLOSSOM_WHERE, "returnCountOnly": "true", "f": "json"},
+    )
+    features = fetch_all_features(
+        SUNNYVALE_TREES_LAYER,
+        SUNNYVALE_BLOSSOM_WHERE,
+        ["FID", "City", "CommonName", "Scientific", "Address", "SiteName", "SiteID"],
+        "FID",
+    )
+    zip_index = fetch_us_city_zip_index("Sunnyvale")
+    mapping_rows = load_mapping(MAPPING_PATH)
+    subtype_rows = load_subtype_mapping(SUBTYPE_MAPPING_PATH)
+    last_edit_at = iso_from_epoch((layer_info.get("editingInfo") or {}).get("lastEditDate"))
+
+    output_features: list[dict[str, Any]] = []
+    normalized_rows: list[dict[str, Any]] = []
+    for feature in features:
+        attrs = feature.get("attributes", {})
+        geom = feature.get("geometry", {})
+        lon_raw = geom.get("x")
+        lat_raw = geom.get("y")
+        lon = float(lon_raw) if lon_raw is not None else None
+        lat = float(lat_raw) if lat_raw is not None else None
+        if lon is None or lat is None:
+            continue
+
+        common_name = clean_common_name(attrs.get("CommonName"))
+        scientific_raw = format_scientific_display_name(attrs.get("Scientific"), common_name)
+        scientific_normalized = normalize_scientific_name(scientific_raw)
+        species_group, subtype_name = classify_tree_record(scientific_raw, common_name, mapping_rows, subtype_rows)
+        ownership_raw = "Public / Santa Clara County tree inventory"
+        zip_code = assign_zip_code(lon, lat, zip_index)
+        row_id = f"sunnyvale-{attrs.get('FID') or attrs.get('SiteID')}"
+
+        normalized_rows.append(
+            {
+                "id": row_id,
+                "city": "Sunnyvale",
+                "source_dataset": "Tree Inventories in Santa Clara County",
+                "scientific_raw": scientific_raw,
+                "scientific_normalized": scientific_normalized,
+                "common_name": common_name or "",
+                "subtype_name": subtype_name or "",
+                "zip_code": zip_code or "",
+                "species_group": species_group or "",
+                "ownership": canonical_ownership(ownership_raw),
+                "ownership_raw": ownership_raw,
+                "lat": lat,
+                "lon": lon,
+                "included": "1" if species_group else "0",
+            }
+        )
+        if not species_group:
+            continue
+        output_features.append(
+            {
+                "type": "Feature",
+                "geometry": {"type": "Point", "coordinates": [lon, lat]},
+                "properties": {
+                    "id": row_id,
+                    "species_group": species_group,
+                    "scientific_name": scientific_raw,
+                    "common_name": common_name,
+                    "subtype_name": subtype_name,
+                    "zip_code": zip_code,
+                    "ownership": canonical_ownership(ownership_raw),
+                    "ownership_raw": ownership_raw,
+                    "city": "Sunnyvale",
+                    "source_dataset": "Tree Inventories in Santa Clara County",
+                    "source_department": "County of Santa Clara / Santa Clara Valley Urban Forestry Alliance",
+                    "source_last_edit_at": last_edit_at,
+                },
+            }
+        )
+
+    return {
+        "city": "Sunnyvale",
+        "region": "ca",
+        "features": output_features,
+        "normalized_rows": normalized_rows,
+        "source": {
+            "name": "Tree Inventories in Santa Clara County",
+            "city": "Sunnyvale",
+            "endpoint": SUNNYVALE_DATASET_PAGE,
+            "last_edit_at": last_edit_at,
+            "records_fetched": int(total_payload.get("count") or len(features)),
+            "records_included": len(output_features),
+            "note": "Integrated from the official Santa Clara County public tree inventory service using the city = Sunnyvale subset and the official jurisdiction boundary.",
+        },
+    }
+
+
 CITY_FETCHERS = {
     "Arlington": fetch_arlington,
     "Austin": fetch_austin,
@@ -3169,9 +3489,12 @@ CITY_FETCHERS = {
     "Jersey City": fetch_jersey_city,
     "Las Vegas": fetch_las_vegas,
     "Los Angeles": fetch_los_angeles,
+    "Mountain View": fetch_mountain_view,
     "Milpitas": fetch_milpitas,
+    "Sacramento": fetch_sacramento,
     "San Mateo": fetch_san_mateo,
     "San Rafael": fetch_san_rafael,
+    "Sunnyvale": fetch_sunnyvale,
     "Fremont": fetch_fremont,
     "Salinas": fetch_salinas,
     "Concord": fetch_concord,

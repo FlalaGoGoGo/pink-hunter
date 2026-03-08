@@ -409,7 +409,6 @@ OFFICIAL_DATA_UNAVAILABLE_CITIES: dict[str, str] = {
     "Mill Creek": "City investigated; no official public single-tree species dataset was confirmed.",
     "Monroe": "City investigated; search hits were false positives, not a City of Monroe tree inventory.",
     "Monterey": "Official city tree standards and GIS entry points were reviewed, but no public citywide single-tree species dataset was confirmed.",
-    "Mountain View": "Official city forestry materials describe inventory work, but no public citywide single-tree species dataset was confirmed in this round.",
     "Mountlake Terrace": "City investigated; no official public single-tree species dataset was confirmed.",
     "Mukilteo": "City investigated; no official public single-tree species dataset was confirmed.",
     "Newcastle": "City investigated; no official public single-tree species dataset was confirmed.",
@@ -425,7 +424,6 @@ OFFICIAL_DATA_UNAVAILABLE_CITIES: dict[str, str] = {
     "Richmond": "Official Richmond, CA ArcGIS and city data searches in this round did not confirm a public citywide single-tree species dataset.",
     "Richland": "City investigated; public search hits in this round were non-city or non-Washington datasets, not a verified City of Richland public tree inventory.",
     "Richmond BC": "Official City of Richmond GIS boundary services were confirmed, but no public citywide single-tree species inventory was confirmed in this round.",
-    "Sacramento": "Official city pages and open-data entry points were checked, but no public citywide single-tree species dataset was confirmed in this round.",
     "Saanich": "Official Saanich GIS/open-data sources were reviewed, but no public single-tree species inventory was confirmed.",
     "Salem": "Official ArcGIS and city GIS searches in this round did not confirm a public citywide single-tree species dataset.",
     "Santa Ana": "Official City of Santa Ana public tree resources expose neighborhood street-tree species maps, but not a public citywide single-tree species inventory.",
@@ -449,7 +447,6 @@ OFFICIAL_DATA_UNAVAILABLE_CITIES: dict[str, str] = {
     "Woodinville": "Official city pages did not confirm a public single-tree species point inventory.",
     "Woodway": "City investigated; no official public single-tree species dataset was confirmed.",
     "Yarrow Point": "City investigated; no official public single-tree species dataset was confirmed.",
-    "Sunnyvale": "County and city GIS sources were reviewed, but no verified public citywide single-tree species dataset was confirmed in this round.",
 }
 
 UW_SUPPLEMENTAL_PATH = SUPPLEMENTAL_DIR / "uw_prunus_overpass.json"

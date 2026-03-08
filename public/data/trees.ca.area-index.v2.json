@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-03-08T05:52:02.582637+00:00",
+  "generated_at": "2026-03-08T19:53:59.613444+00:00",
   "region": "ca",
   "strategy": "area_shard",
   "items": [
@@ -561,6 +561,59 @@
       ]
     },
     {
+      "jurisdiction": "Mountain View",
+      "slug": "mountain-view",
+      "display_name": "Mountain View",
+      "jurisdiction_type": "city",
+      "state_province": "CA",
+      "country": "United States",
+      "bounds": [
+        [
+          -122.11455576835974,
+          37.35796200498404
+        ],
+        [
+          -122.04724594570828,
+          37.43070708836266
+        ]
+      ],
+      "tree_count": 2907,
+      "zip_codes": [
+        "94040",
+        "94041",
+        "94043"
+      ],
+      "species_counts": {
+        "cherry": 397,
+        "plum": 678,
+        "peach": 38,
+        "magnolia": 1718,
+        "crabapple": 76
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "mountain-view-001",
+          "bounds": [
+            [
+              -122.11455576835974,
+              37.35796200498404
+            ],
+            [
+              -122.04724594570828,
+              37.43070708836266
+            ]
+          ],
+          "data_path": "/data/trees.ca.area.mountain-view.v2.geojson",
+          "tree_count": 2907,
+          "raw_bytes": 1615259,
+          "gzip_bytes": 70362
+        }
+      ]
+    },
+    {
       "jurisdiction": "Oakland",
       "slug": "oakland",
       "display_name": "Oakland",
@@ -663,6 +716,80 @@
           "tree_count": 4996,
           "raw_bytes": 2515865,
           "gzip_bytes": 114221
+        }
+      ]
+    },
+    {
+      "jurisdiction": "Sacramento",
+      "slug": "sacramento",
+      "display_name": "Sacramento",
+      "jurisdiction_type": "city",
+      "state_province": "CA",
+      "country": "United States",
+      "bounds": [
+        [
+          -121.55485458755115,
+          38.43814101481721
+        ],
+        [
+          -121.37681117597901,
+          38.68529312901432
+        ]
+      ],
+      "tree_count": 3442,
+      "zip_codes": [
+        "95758",
+        "95811",
+        "95814",
+        "95815",
+        "95816",
+        "95817",
+        "95818",
+        "95819",
+        "95820",
+        "95821",
+        "95822",
+        "95823",
+        "95824",
+        "95825",
+        "95826",
+        "95828",
+        "95831",
+        "95832",
+        "95833",
+        "95834",
+        "95835",
+        "95838",
+        "95841",
+        "95864"
+      ],
+      "species_counts": {
+        "cherry": 170,
+        "plum": 1377,
+        "peach": 0,
+        "magnolia": 1423,
+        "crabapple": 472
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "sacramento-001",
+          "bounds": [
+            [
+              -121.55485458755115,
+              38.43814101481721
+            ],
+            [
+              -121.37681117597901,
+              38.68529312901432
+            ]
+          ],
+          "data_path": "/data/trees.ca.area.sacramento.v2.geojson",
+          "tree_count": 3442,
+          "raw_bytes": 1869202,
+          "gzip_bytes": 84498
         }
       ]
     },
@@ -1121,6 +1248,57 @@
           "tree_count": 784,
           "raw_bytes": 428752,
           "gzip_bytes": 15023
+        }
+      ]
+    },
+    {
+      "jurisdiction": "Sunnyvale",
+      "slug": "sunnyvale",
+      "display_name": "Sunnyvale",
+      "jurisdiction_type": "city",
+      "state_province": "CA",
+      "country": "United States",
+      "bounds": [
+        [
+          -122.00034939991502,
+          37.41331363010158
+        ],
+        [
+          -122.0000310998604,
+          37.41347128024036
+        ]
+      ],
+      "tree_count": 8,
+      "zip_codes": [
+        "94089"
+      ],
+      "species_counts": {
+        "cherry": 0,
+        "plum": 0,
+        "peach": 0,
+        "magnolia": 8,
+        "crabapple": 0
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "sunnyvale-001",
+          "bounds": [
+            [
+              -122.00034939991502,
+              37.41331363010158
+            ],
+            [
+              -122.0000310998604,
+              37.41347128024036
+            ]
+          ],
+          "data_path": "/data/trees.ca.area.sunnyvale.v2.geojson",
+          "tree_count": 8,
+          "raw_bytes": 5101,
+          "gzip_bytes": 600
         }
       ]
     }
