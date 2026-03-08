@@ -1,6 +1,6 @@
 {
   "version": "v2",
-  "generated_at": "2026-03-08T03:36:24.032023+00:00",
+  "generated_at": "2026-03-08T05:52:02.582637+00:00",
   "default_region": "wa",
   "coverage_rule": "official_jurisdiction_boundary_only",
   "coverage_skipped_cities": [],
@@ -43,6 +43,7 @@
     "Lake Stevens",
     "Lakewood",
     "Langley City",
+    "Long Beach",
     "Lynden",
     "Lynnwood",
     "Maple Valley",
@@ -72,6 +73,7 @@
     "Saanich",
     "Sacramento",
     "Salem",
+    "Santa Ana",
     "Santa Clara",
     "Santa Cruz",
     "Santa Rosa",
@@ -95,10 +97,10 @@
     "Yarrow Point"
   ],
   "coverage_official_unavailable_skipped_cities": [],
-  "source_count": 50,
-  "total_records": 1549606,
-  "included_records": 381818,
-  "unknown_records": 648761,
+  "source_count": 52,
+  "total_records": 1596126,
+  "included_records": 423263,
+  "unknown_records": 653834,
   "regions": [
     {
       "id": "bc",
@@ -107,7 +109,7 @@
       "bounds": [
         [
           -123.47799044362478,
-          48.40249758903433
+          48.43338793227941
         ],
         [
           -122.62108637425426,
@@ -148,7 +150,8 @@
         "area_count": 3,
         "shard_count": 3,
         "ready": true
-      }
+      },
+      "largest_shard_warning_level": "none"
     },
     {
       "id": "ca",
@@ -156,23 +159,25 @@
       "available": true,
       "bounds": [
         [
-          -123.17382500036122,
-          32.534786999728034
+          -122.83443699983434,
+          33.69059300029065
         ],
         [
-          -116.90518099986093,
+          -117.83025700017464,
           38.68560299975214
         ]
       ],
       "data_path": null,
-      "tree_count": 90635,
-      "city_count": 15,
+      "tree_count": 132080,
+      "city_count": 17,
       "cities": [
         "Berkeley",
         "Burlingame",
         "Concord",
         "Cupertino",
         "Fremont",
+        "Irvine",
+        "Los Angeles",
         "Milpitas",
         "Oakland",
         "Palo Alto",
@@ -184,34 +189,35 @@
         "San Rafael",
         "South San Francisco"
       ],
-      "raw_bytes": 46690624,
-      "gzip_bytes": 2045239,
-      "warning_level": "warning",
+      "raw_bytes": 67417507,
+      "gzip_bytes": 2839730,
+      "warning_level": "none",
       "city_split": null,
       "species_counts": {
-        "cherry": 15002,
-        "plum": 31270,
-        "peach": 2498,
-        "magnolia": 38822,
-        "crabapple": 3043
+        "cherry": 15360,
+        "plum": 36511,
+        "peach": 4091,
+        "magnolia": 72391,
+        "crabapple": 3727
       },
       "ownership_groups": [
         "public",
         "private"
       ],
-      "aggregate_raw_bytes": 46690624,
-      "aggregate_gzip_bytes": 2045239,
-      "aggregate_warning_level": "warning",
-      "largest_shard_raw_bytes": 12853690,
-      "largest_shard_gzip_bytes": 556355,
-      "largest_shard_area": "San Francisco",
+      "aggregate_raw_bytes": 67417507,
+      "aggregate_gzip_bytes": 2839730,
+      "aggregate_warning_level": "very_large",
+      "largest_shard_raw_bytes": 20242132,
+      "largest_shard_gzip_bytes": 770544,
+      "largest_shard_area": "Los Angeles",
       "area_split": {
         "strategy": "area_shard",
         "index_path": "/data/trees.ca.area-index.v2.json",
-        "area_count": 15,
-        "shard_count": 15,
+        "area_count": 17,
+        "shard_count": 17,
         "ready": true
-      }
+      },
+      "largest_shard_warning_level": "none"
     },
     {
       "id": "dc",
@@ -219,12 +225,12 @@
       "available": true,
       "bounds": [
         [
-          -77.11975900017987,
-          38.791644999914155
+          -123.08,
+          47.02
         ],
         [
-          -76.90939300018182,
-          38.99584500030949
+          -121.55,
+          48.08
         ]
       ],
       "data_path": null,
@@ -260,7 +266,8 @@
         "area_count": 1,
         "shard_count": 1,
         "ready": true
-      }
+      },
+      "largest_shard_warning_level": "none"
     },
     {
       "id": "ma",
@@ -268,12 +275,12 @@
       "available": true,
       "bounds": [
         [
-          -71.19124700019616,
-          42.227910999858594
+          -123.08,
+          47.02
         ],
         [
-          -70.74880200023236,
-          42.40416700026896
+          -121.55,
+          48.08
         ]
       ],
       "data_path": null,
@@ -310,7 +317,8 @@
         "area_count": 2,
         "shard_count": 2,
         "ready": true
-      }
+      },
+      "largest_shard_warning_level": "none"
     },
     {
       "id": "md",
@@ -322,8 +330,8 @@
           38.93424875542158
         ],
         [
-          -76.52945299957095,
-          39.372205999983926
+          -76.88763834031488,
+          39.354336126989374
         ]
       ],
       "data_path": null,
@@ -358,7 +366,8 @@
         "area_count": 1,
         "shard_count": 1,
         "ready": true
-      }
+      },
+      "largest_shard_warning_level": "none"
     },
     {
       "id": "nj",
@@ -367,10 +376,10 @@
       "bounds": [
         [
           -74.25136099975268,
-          40.66163400021707
+          40.67436799975193
         ],
         [
-          -74.02063900024501,
+          -74.11278699990707,
           40.78826700012708
         ]
       ],
@@ -406,7 +415,8 @@
         "area_count": 1,
         "shard_count": 1,
         "ready": true
-      }
+      },
+      "largest_shard_warning_level": "none"
     },
     {
       "id": "ny",
@@ -414,12 +424,12 @@
       "available": true,
       "bounds": [
         [
-          -74.25884300038047,
-          40.4765780002232
+          -123.08,
+          47.02
         ],
         [
-          -73.70016900037544,
-          40.917705000258394
+          -121.55,
+          48.08
         ]
       ],
       "data_path": null,
@@ -454,7 +464,8 @@
         "area_count": 1,
         "shard_count": 2,
         "ready": true
-      }
+      },
+      "largest_shard_warning_level": "none"
     },
     {
       "id": "on",
@@ -462,12 +473,12 @@
       "available": true,
       "bounds": [
         [
-          -79.63926826,
-          43.58100456
+          -123.08,
+          47.02
         ],
         [
-          -75.24658121841775,
-          45.53710305537738
+          -121.55,
+          48.08
         ]
       ],
       "data_path": null,
@@ -503,7 +514,8 @@
         "area_count": 2,
         "shard_count": 2,
         "ready": true
-      }
+      },
+      "largest_shard_warning_level": "none"
     },
     {
       "id": "or",
@@ -516,7 +528,7 @@
         ],
         [
           -122.36755900003719,
-          45.652886166421595
+          45.57578899991605
         ]
       ],
       "data_path": null,
@@ -551,7 +563,8 @@
         "area_count": 1,
         "shard_count": 1,
         "ready": true
-      }
+      },
+      "largest_shard_warning_level": "none"
     },
     {
       "id": "pa",
@@ -559,12 +572,12 @@
       "available": true,
       "bounds": [
         [
-          -80.09532800017763,
-          39.86746400022409
+          -123.08,
+          47.02
         ],
         [
-          -74.95576300016803,
-          40.50103700011603
+          -121.55,
+          48.08
         ]
       ],
       "data_path": null,
@@ -600,7 +613,8 @@
         "area_count": 2,
         "shard_count": 2,
         "ready": true
-      }
+      },
+      "largest_shard_warning_level": "none"
     },
     {
       "id": "qc",
@@ -608,12 +622,12 @@
       "available": true,
       "bounds": [
         [
-          -73.9743512352816,
-          45.4096530547697
+          -123.08,
+          47.02
         ],
         [
-          -73.4738652778201,
-          45.7075796336657
+          -121.55,
+          48.08
         ]
       ],
       "data_path": null,
@@ -648,7 +662,8 @@
         "area_count": 1,
         "shard_count": 1,
         "ready": true
-      }
+      },
+      "largest_shard_warning_level": "none"
     },
     {
       "id": "va",
@@ -656,12 +671,12 @@
       "available": true,
       "bounds": [
         [
-          -77.17231603095209,
+          -77.1443590004178,
           38.785215999746356
         ],
         [
-          -77.03217614407714,
-          38.93430951739172
+          -77.03728800040635,
+          38.84492299988886
         ]
       ],
       "data_path": null,
@@ -697,7 +712,8 @@
         "area_count": 1,
         "shard_count": 1,
         "ready": true
-      }
+      },
+      "largest_shard_warning_level": "none"
     },
     {
       "id": "wa",
@@ -762,7 +778,8 @@
         "area_count": 17,
         "shard_count": 18,
         "ready": true
-      }
+      },
+      "largest_shard_warning_level": "none"
     }
   ],
   "sources": [
@@ -877,6 +894,15 @@
       "records_included": 63
     },
     {
+      "name": "City Trees",
+      "city": "Irvine",
+      "endpoint": "https://gis.cityofirvine.org/arcgis/rest/services/City_Landscape/MapServer/0",
+      "last_edit_at": "",
+      "records_fetched": 988,
+      "records_included": 986,
+      "note": "Integrated from the official City of Irvine City Trees layer and official city boundary."
+    },
+    {
       "name": "City of Jersey City Tree Inventory",
       "city": "Jersey City",
       "endpoint": "https://www.jerseycitynj.gov/cityhall/infrastructure/division_of_sustainability/urbanforests",
@@ -900,6 +926,15 @@
       "last_edit_at": "",
       "records_fetched": 39014,
       "records_included": 3122
+    },
+    {
+      "name": "TreeKeeper Street Sites",
+      "city": "Los Angeles",
+      "endpoint": "https://streetsla.lacity.org/tree-inventory-and-maintenance",
+      "last_edit_at": "",
+      "records_fetched": 45532,
+      "records_included": 40459,
+      "note": "Integrated from the official StreetsLA public TreeKeeper street-tree inventory using server-side blossom filtering."
     },
     {
       "name": "Trees RO",
@@ -1186,11 +1221,11 @@
     }
   ],
   "species_counts": {
-    "cherry": 166397,
-    "plum": 82835,
-    "peach": 3750,
-    "magnolia": 64745,
-    "crabapple": 64091
+    "cherry": 166755,
+    "plum": 88076,
+    "peach": 5343,
+    "magnolia": 98314,
+    "crabapple": 64775
   },
   "areas": [
     {
@@ -1301,6 +1336,34 @@
         "peach": 199,
         "magnolia": 2270,
         "crabapple": 263
+      },
+      "jurisdiction_type": "city",
+      "state_province": "CA"
+    },
+    {
+      "jurisdiction": "Irvine",
+      "region": "ca",
+      "tree_count": 986,
+      "species_counts": {
+        "cherry": 94,
+        "plum": 274,
+        "peach": 1,
+        "magnolia": 617,
+        "crabapple": 0
+      },
+      "jurisdiction_type": "city",
+      "state_province": "CA"
+    },
+    {
+      "jurisdiction": "Los Angeles",
+      "region": "ca",
+      "tree_count": 40459,
+      "species_counts": {
+        "cherry": 264,
+        "plum": 4967,
+        "peach": 1592,
+        "magnolia": 32952,
+        "crabapple": 684
       },
       "jurisdiction_type": "city",
       "state_province": "CA"

@@ -15,7 +15,8 @@ if str(ROOT) not in sys.path:
 from etl.build_data import (
     REGION_LABELS,
     SPECIES_GROUPS,
-    classify_warning_level,
+    classify_aggregate_advisory_level,
+    classify_publish_warning_level,
     summarize_ownership_groups,
     summarize_species_counts,
 )
@@ -110,13 +111,14 @@ def main() -> int:
                 region_entry["area_split"] = area_split
         region_entry["raw_bytes"] = aggregate_raw_bytes
         region_entry["gzip_bytes"] = aggregate_gzip_bytes
-        region_entry["warning_level"] = classify_warning_level(aggregate_raw_bytes)
+        region_entry["warning_level"] = classify_publish_warning_level(largest_shard_raw_bytes)
         region_entry["aggregate_raw_bytes"] = aggregate_raw_bytes
         region_entry["aggregate_gzip_bytes"] = aggregate_gzip_bytes
-        region_entry["aggregate_warning_level"] = classify_warning_level(aggregate_raw_bytes)
+        region_entry["aggregate_warning_level"] = classify_aggregate_advisory_level(aggregate_raw_bytes)
         region_entry["largest_shard_raw_bytes"] = largest_shard_raw_bytes
         region_entry["largest_shard_gzip_bytes"] = largest_shard_gzip_bytes
         region_entry["largest_shard_area"] = largest_shard_area
+        region_entry["largest_shard_warning_level"] = classify_publish_warning_level(largest_shard_raw_bytes)
 
     meta["included_records"] = len(all_features)
     meta["species_counts"] = summarize_species_counts(all_features) if all_features else empty_species_counts()

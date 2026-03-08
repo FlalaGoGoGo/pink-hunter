@@ -117,6 +117,8 @@ Live domain:
 - Concord
 - Cupertino
 - Fremont
+- Irvine
+- Los Angeles
 - Milpitas
 - Oakland
 - Palo Alto
@@ -148,7 +150,7 @@ Live domain:
 
 ### Gray Coverage
 - Gray coverage marks cities whose official boundary is public but whose official public single-tree dataset is not available yet.
-- Current gray-coverage examples include `Alexandria`, `Montgomery County`, `Newark`, `Mountain View`, `Sunnyvale`, `Santa Clara`, `Monterey`, `Sacramento`, `Napa`, `Richmond`, `Santa Cruz`, `Santa Rosa`, `Stockton`, `Redwood City`, `Alameda`, `Hayward`, `Daly City`, `Beaverton`, `Gresham`, `Hillsboro`, `Salem`, `Tigard`, `Burnaby`, `Coquitlam`, `Delta`, `Langley City`, `North Vancouver City`, `North Vancouver District`, `Richmond BC`, `Saanich`, `Surrey`, `West Vancouver`, and `White Rock`.
+- Current gray-coverage examples include `Alexandria`, `Montgomery County`, `Newark`, `Mountain View`, `Sunnyvale`, `Santa Clara`, `Monterey`, `Sacramento`, `Napa`, `Richmond`, `Santa Cruz`, `Santa Rosa`, `Stockton`, `Redwood City`, `Alameda`, `Hayward`, `Daly City`, `Long Beach`, `Santa Ana`, `Beaverton`, `Gresham`, `Hillsboro`, `Salem`, `Tigard`, `Burnaby`, `Coquitlam`, `Delta`, `Langley City`, `North Vancouver City`, `North Vancouver District`, `Richmond BC`, `Saanich`, `Surrey`, `West Vancouver`, and `White Rock`.
 - Tracking details: [docs/CITY_COVERAGE_TRACKER.md](docs/CITY_COVERAGE_TRACKER.md)
 
 ## Official Data Sources
@@ -250,6 +252,8 @@ Live domain:
 - Berkeley: [Tree_Berkeley20191107](https://www.arcgis.com/home/item.html?id=88829f4ae7254b5280732e88e65e6df5)
 - Cupertino: [Cupertino Open Data GIS](https://gis-cupertino.opendata.arcgis.com/)
 - Fremont: [Tree Inventory / Tree Value](https://www.fremont.gov/government/departments/maintenance-operations/urban-forestry/tree-inventory-tree-value)
+- Irvine: [City Trees](https://gis.cityofirvine.org/arcgis/rest/services/City_Landscape/MapServer/0)
+- Los Angeles: [Tree Inventory and Maintenance](https://streetsla.lacity.org/tree-inventory-and-maintenance)
 - Milpitas: [Trees RO](https://services8.arcgis.com/OPmRdssd8jj0bT5H/arcgis/rest/services/Trees_RO/FeatureServer/0)
 - Oakland: [Oakland Street Trees](https://data.oaklandca.gov/Environmental/Oakland-Street-Trees/4jcx-enxf)
 - Salinas: [Tree Inventory](https://cityofsalinas.opendatasoft.com/explore/dataset/tree-inventory/)

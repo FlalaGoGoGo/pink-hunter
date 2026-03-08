@@ -15,7 +15,8 @@ if str(ROOT) not in sys.path:
 from etl.build_data import (  # noqa: E402
     REGION_LABELS,
     bounds_from_features,
-    classify_warning_level,
+    classify_aggregate_advisory_level,
+    classify_publish_warning_level,
     encode_feature_collection,
     slugify_token,
     split_features_for_publish,
@@ -34,9 +35,6 @@ def load_area_feature_map(data_dir: Path, region_id: str) -> dict[str, list[dict
             jurisdiction = str(feature.get("properties", {}).get("city", "")).strip()
             if jurisdiction:
                 area_features[jurisdiction].append(feature)
-
-    if area_features:
-        return dict(area_features)
 
     for path in sorted(data_dir.glob(f"trees.{region_id}.city.*.v1.geojson")):
         payload = json.loads(path.read_text(encoding="utf-8"))
@@ -148,13 +146,14 @@ def write_region_area_shards(data_dir: Path, region_entry: dict[str, object], ge
     )
     region_entry["raw_bytes"] = aggregate_raw_bytes
     region_entry["gzip_bytes"] = aggregate_gzip_bytes
-    region_entry["warning_level"] = classify_warning_level(aggregate_raw_bytes)
+    region_entry["warning_level"] = classify_publish_warning_level(largest_shard_raw_bytes)
     region_entry["aggregate_raw_bytes"] = aggregate_raw_bytes
     region_entry["aggregate_gzip_bytes"] = aggregate_gzip_bytes
-    region_entry["aggregate_warning_level"] = classify_warning_level(aggregate_raw_bytes)
+    region_entry["aggregate_warning_level"] = classify_aggregate_advisory_level(aggregate_raw_bytes)
     region_entry["largest_shard_raw_bytes"] = largest_shard_raw_bytes
     region_entry["largest_shard_gzip_bytes"] = largest_shard_gzip_bytes
     region_entry["largest_shard_area"] = largest_shard_area
+    region_entry["largest_shard_warning_level"] = classify_publish_warning_level(largest_shard_raw_bytes)
     region_entry["area_split"] = {
         "strategy": "area_shard",
         "index_path": f"/data/{area_index_name}",

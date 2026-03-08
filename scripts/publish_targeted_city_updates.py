@@ -117,6 +117,12 @@ NEW_WESTMINSTER_TREES_LAYER = "https://services3.arcgis.com/A7O8YnTNtzRPIn7T/arc
 NEW_WESTMINSTER_DATASET_PAGE = "https://services3.arcgis.com/A7O8YnTNtzRPIn7T/arcgis/rest/services/Tree_Inventory_(PROD)_4_view/FeatureServer"
 SAN_DIEGO_TREES_LAYER = "https://webmaps.sandiego.gov/arcgis/rest/services/DSD/Environment/MapServer/20"
 SAN_DIEGO_DATASET_PAGE = "https://webmaps.sandiego.gov/arcgis/rest/services/DSD/Environment/MapServer/20"
+LOS_ANGELES_STREETSLA_PAGE = "https://streetsla.lacity.org/tree-inventory-and-maintenance"
+LOS_ANGELES_TREEKEEPER_BASE = "https://losangelesca.treekeepersoftware.com"
+LOS_ANGELES_FACILITY_ID = 7
+IRVINE_TREES_LAYER = "https://gis.cityofirvine.org/arcgis/rest/services/City_Landscape/MapServer/0"
+IRVINE_BOUNDARY_LAYER = "https://gis.cityofirvine.org/arcgis/rest/services/City_Landscape/MapServer/3"
+IRVINE_DATASET_PAGE = "https://gis.cityofirvine.org/arcgis/rest/services/City_Landscape/MapServer/0"
 SAN_DIEGO_BLOSSOM_WHERE = (
     "UPPER(COMMON_NAME) LIKE '%CHERRY%' OR "
     "UPPER(COMMON_NAME) LIKE '%PLUM%' OR "
@@ -135,6 +141,15 @@ OTTAWA_BLOSSOM_WHERE = (
     "UPPER(SPECIES) LIKE '%APPLE%'"
     ")"
 )
+IRVINE_BLOSSOM_WHERE = (
+    "UPPER(TRG_COMMON) LIKE '%CHERRY%' OR "
+    "UPPER(TRG_COMMON) LIKE '%PLUM%' OR "
+    "UPPER(TRG_COMMON) LIKE '%PEACH%' OR "
+    "UPPER(TRG_COMMON) LIKE '%MAGNOLIA%' OR "
+    "UPPER(TRG_COMMON) LIKE '%CRABAPPLE%' OR "
+    "UPPER(TRG_COMMON) LIKE '%APPLE%'"
+)
+LOS_ANGELES_TREEKEEPER_TERMS = ("%cherry%", "%plum%", "%peach%", "%magnolia%", "%crabapple%", "%apple%")
 SPECIES_TEXT_PATTERN = re.compile(r"^\s*(?P<common>.+?)\s*\((?P<scientific>[^()]+)\)\s*$")
 DISPLAY_NAME_REPLACEMENTS = {
     "Chery": "Cherry",
@@ -145,7 +160,9 @@ SUPPORTED_CITIES = (
     "Arlington",
     "Baltimore",
     "Boston",
+    "Irvine",
     "Jersey City",
+    "Los Angeles",
     "Milpitas",
     "San Mateo",
     "San Rafael",
@@ -333,17 +350,44 @@ def load_normalized_rows() -> list[dict[str, str]]:
         return list(csv.DictReader(handle))
 
 
+def normalize_row_for_csv(row: dict[str, Any]) -> dict[str, str]:
+    return {column: str(row.get(column, "")) for column in NORMALIZED_HEADER}
+
+
 def write_normalized_rows(rows: list[dict[str, Any]]) -> None:
     path = NORMALIZED_DIR / "trees_normalized.csv"
     path.parent.mkdir(parents=True, exist_ok=True)
     normalized_rows = []
     for row in rows:
-        normalized_rows.append({column: str(row.get(column, "")) for column in NORMALIZED_HEADER})
+        normalized_rows.append(normalize_row_for_csv(row))
     normalized_rows.sort(key=lambda item: item["id"])
     with path.open("w", encoding="utf-8", newline="") as handle:
         writer = csv.DictWriter(handle, fieldnames=NORMALIZED_HEADER)
         writer.writeheader()
         writer.writerows(normalized_rows)
+
+
+def rewrite_normalized_rows(target_cities: set[str], new_rows: list[dict[str, Any]]) -> Path:
+    path = NORMALIZED_DIR / "trees_normalized.csv"
+    path.parent.mkdir(parents=True, exist_ok=True)
+    temp_path = path.with_suffix(".tmp")
+    normalized_new_rows = [normalize_row_for_csv(row) for row in new_rows]
+    normalized_new_rows.sort(key=lambda item: item["id"])
+
+    with temp_path.open("w", encoding="utf-8", newline="") as handle:
+        writer = csv.DictWriter(handle, fieldnames=NORMALIZED_HEADER)
+        writer.writeheader()
+        if path.exists():
+            with path.open("r", encoding="utf-8", newline="") as source_handle:
+                reader = csv.DictReader(source_handle)
+                for row in reader:
+                    if row.get("city") in target_cities:
+                        continue
+                    writer.writerow({column: str(row.get(column, "")) for column in NORMALIZED_HEADER})
+        writer.writerows(normalized_new_rows)
+
+    temp_path.replace(path)
+    return path
 
 
 def recompute_unknown_items(rows: list[dict[str, str]]) -> list[dict[str, Any]]:
@@ -354,6 +398,24 @@ def recompute_unknown_items(rows: list[dict[str, str]]) -> list[dict[str, Any]]:
         scientific = (row.get("scientific_normalized") or "").strip()
         if scientific:
             counter[scientific] += 1
+    return [
+        {"scientific_name_normalized": name, "count": count}
+        for name, count in counter.most_common()
+    ]
+
+
+def recompute_unknown_items_from_path(path: Path) -> list[dict[str, Any]]:
+    counter: Counter[str] = Counter()
+    if not path.exists():
+        return []
+    with path.open("r", encoding="utf-8", newline="") as handle:
+        reader = csv.DictReader(handle)
+        for row in reader:
+            if row.get("included") == "1":
+                continue
+            scientific = (row.get("scientific_normalized") or "").strip()
+            if scientific:
+                counter[scientific] += 1
     return [
         {"scientific_name_normalized": name, "count": count}
         for name, count in counter.most_common()
@@ -1308,6 +1370,126 @@ def fetch_treekeeper_rows(search_endpoint: str, grids_endpoint: str, uid: str, f
         offset += limit
 
     return summary_payload if isinstance(summary_payload, dict) else {}, rows
+
+
+def fetch_los_angeles_filtered_rows() -> list[dict[str, Any]]:
+    uid = "pinkhunter-los-angeles"
+    search_url = (
+        f"{LOS_ANGELES_TREEKEEPER_BASE}/cffiles/search.cfc"
+        f"?method=submitMapSearch&uid={uid}&facID={LOS_ANGELES_FACILITY_ID}&searchCurrentSelection=false&returnFormat=json"
+    )
+    grids_url = (
+        f"{LOS_ANGELES_TREEKEEPER_BASE}/cffiles/grids.cfc"
+        f"?method=getTreeKeeperGridOptionsData&session_id={uid}&layer_id={LOS_ANGELES_FACILITY_ID}"
+        "&gridType=sites&calls_search=true"
+    )
+    rows_by_site_id: dict[str, dict[str, Any]] = {}
+
+    with tempfile.NamedTemporaryFile(prefix="la_tk_", suffix=".cookies", delete=False) as handle:
+        cookie_path = handle.name
+
+    try:
+        bootstrap = subprocess.run(
+            [
+                "curl",
+                "-k",
+                "-sL",
+                "-c",
+                cookie_path,
+                "-b",
+                cookie_path,
+                f"{LOS_ANGELES_TREEKEEPER_BASE}/index.cfm?deviceWidth=1440",
+            ],
+            capture_output=True,
+            text=True,
+            check=False,
+        )
+        if bootstrap.returncode != 0:
+            raise RuntimeError(f"Failed to open Los Angeles TreeKeeper landing page: {bootstrap.stderr.strip()}")
+
+        start_search = subprocess.run(
+            [
+                "curl",
+                "-k",
+                "-sL",
+                "-c",
+                cookie_path,
+                "-b",
+                cookie_path,
+                "-H",
+                "Content-Type: application/json",
+                "-X",
+                "POST",
+                "--data",
+                "{}",
+                search_url,
+            ],
+            capture_output=True,
+            text=True,
+            check=False,
+        )
+        if start_search.returncode != 0:
+            raise RuntimeError(f"Los Angeles submitMapSearch failed: {start_search.stderr.strip()}")
+
+        for term in LOS_ANGELES_TREEKEEPER_TERMS:
+            offset = 0
+            limit = 5000
+            total_rows = None
+            while True:
+                body = json.dumps(
+                    {
+                        "filters": json.dumps([{"name": "SITE_ATTR1", "term": term}]),
+                        "sorts": "[]",
+                    }
+                )
+                response = subprocess.run(
+                    [
+                        "curl",
+                        "-k",
+                        "-sL",
+                        "-c",
+                        cookie_path,
+                        "-b",
+                        cookie_path,
+                        "-H",
+                        "Content-Type: application/json",
+                        "-X",
+                        "POST",
+                        "--data",
+                        body,
+                        f"{grids_url}&limit={limit}&offset={offset}&stopCache={int(dt.datetime.now(tz=dt.timezone.utc).timestamp() * 1000)}",
+                    ],
+                    capture_output=True,
+                    text=True,
+                    check=False,
+                )
+                if response.returncode != 0:
+                    raise RuntimeError(
+                        f"Los Angeles TreeKeeper filtered grid fetch failed for term {term}: {response.stderr.strip()}"
+                    )
+                payload = json.loads(response.stdout or "{}")
+                batch = payload.get("data") or []
+                if isinstance(batch, str):
+                    batch = json.loads(batch)
+                if total_rows is None:
+                    try:
+                        total_rows = int(payload.get("rowCount") or 0)
+                    except Exception:
+                        total_rows = 0
+                if not batch:
+                    break
+                for row in batch:
+                    site_id = str(row.get("SITE_ID") or row.get("SITE_ATTR40") or "").strip()
+                    if site_id:
+                        rows_by_site_id[site_id] = row
+                if total_rows and offset + len(batch) >= total_rows:
+                    break
+                if len(batch) < limit:
+                    break
+                offset += len(batch)
+        return list(rows_by_site_id.values())
+    finally:
+        Path(cookie_path).unlink(missing_ok=True)
 
 
 def fetch_fremont() -> dict[str, Any]:
@@ -2321,11 +2503,200 @@ def fetch_san_diego() -> dict[str, Any]:
     }
 
 
+def fetch_los_angeles() -> dict[str, Any]:
+    rows = fetch_los_angeles_filtered_rows()
+    zip_index = fetch_us_city_zip_index("Los Angeles")
+    mapping_rows = load_mapping(MAPPING_PATH)
+    subtype_rows = load_subtype_mapping(SUBTYPE_MAPPING_PATH)
+
+    output_features: list[dict[str, Any]] = []
+    normalized_rows: list[dict[str, Any]] = []
+    for row in rows:
+        lon_raw = row.get("LONGITUDE")
+        lat_raw = row.get("LATITUDE")
+        lon = float(lon_raw) if lon_raw is not None else None
+        lat = float(lat_raw) if lat_raw is not None else None
+        if lon is None or lat is None:
+            geometry_raw = row.get("SITE_GEOMETRY")
+            if isinstance(geometry_raw, str) and geometry_raw.strip():
+                try:
+                    geometry_payload = json.loads(geometry_raw)
+                    coordinates = geometry_payload.get("coordinates") or []
+                    lon = float(coordinates[0])
+                    lat = float(coordinates[1])
+                except Exception:
+                    lon = None
+                    lat = None
+        if lon is None or lat is None:
+            continue
+
+        scientific_raw, common_name = parse_species_text(row.get("SITE_ATTR1"))
+        scientific_normalized = normalize_scientific_name(scientific_raw)
+        species_group, subtype_name = classify_tree_record(scientific_raw, common_name, mapping_rows, subtype_rows)
+        ownership_raw = "City of Los Angeles"
+        zip_code = assign_zip_code(lon, lat, zip_index)
+        row_id = f"los-angeles-{row.get('SITE_ID') or row.get('SITE_ATTR40')}"
+
+        normalized_rows.append(
+            {
+                "id": row_id,
+                "city": "Los Angeles",
+                "source_dataset": "TreeKeeper Street Sites",
+                "scientific_raw": scientific_raw,
+                "scientific_normalized": scientific_normalized,
+                "common_name": common_name or "",
+                "subtype_name": subtype_name or "",
+                "zip_code": zip_code or "",
+                "species_group": species_group or "",
+                "ownership": canonical_ownership(ownership_raw),
+                "ownership_raw": ownership_raw,
+                "lat": lat,
+                "lon": lon,
+                "included": "1" if species_group else "0",
+            }
+        )
+        if not species_group:
+            continue
+        output_features.append(
+            {
+                "type": "Feature",
+                "geometry": {"type": "Point", "coordinates": [lon, lat]},
+                "properties": {
+                    "id": row_id,
+                    "species_group": species_group,
+                    "scientific_name": scientific_raw,
+                    "common_name": common_name,
+                    "subtype_name": subtype_name,
+                    "zip_code": zip_code,
+                    "ownership": canonical_ownership(ownership_raw),
+                    "ownership_raw": ownership_raw,
+                    "city": "Los Angeles",
+                    "source_dataset": "TreeKeeper Street Sites",
+                    "source_department": "StreetsLA",
+                    "source_last_edit_at": "",
+                },
+            }
+        )
+
+    return {
+        "city": "Los Angeles",
+        "region": "ca",
+        "features": output_features,
+        "normalized_rows": normalized_rows,
+        "source": {
+            "name": "TreeKeeper Street Sites",
+            "city": "Los Angeles",
+            "endpoint": LOS_ANGELES_STREETSLA_PAGE,
+            "last_edit_at": "",
+            "records_fetched": len(rows),
+            "records_included": len(output_features),
+            "note": "Integrated from the official StreetsLA public TreeKeeper street-tree inventory using server-side blossom filtering.",
+        },
+    }
+
+
+def fetch_irvine() -> dict[str, Any]:
+    layer_info = fetch_json(IRVINE_TREES_LAYER, {"f": "pjson"})
+    total_payload = fetch_json(
+        f"{IRVINE_TREES_LAYER}/query",
+        {"where": IRVINE_BLOSSOM_WHERE, "returnCountOnly": "true", "f": "json"},
+    )
+    features = fetch_all_features(
+        IRVINE_TREES_LAYER,
+        IRVINE_BLOSSOM_WHERE,
+        ["OBJECTID", "TRG_COMMON", "CITYMAINTAINED"],
+        "OBJECTID",
+    )
+    zip_index = fetch_us_city_zip_index("Irvine")
+    mapping_rows = load_mapping(MAPPING_PATH)
+    subtype_rows = load_subtype_mapping(SUBTYPE_MAPPING_PATH)
+    last_edit_at = iso_from_epoch((layer_info.get("editingInfo") or {}).get("lastEditDate"))
+
+    output_features: list[dict[str, Any]] = []
+    normalized_rows: list[dict[str, Any]] = []
+    for feature in features:
+        attrs = feature.get("attributes", {})
+        geom = feature.get("geometry", {})
+        lon_raw = geom.get("x")
+        lat_raw = geom.get("y")
+        lon = float(lon_raw) if lon_raw is not None else None
+        lat = float(lat_raw) if lat_raw is not None else None
+        if lon is None or lat is None:
+            continue
+
+        common_name = clean_common_name(attrs.get("TRG_COMMON"))
+        scientific_raw = generic_scientific_name_for_common_hint(common_name)
+        scientific_normalized = normalize_scientific_name(scientific_raw)
+        species_group, subtype_name = classify_tree_record(scientific_raw, common_name, mapping_rows, subtype_rows)
+        ownership_raw = "City of Irvine" if str(attrs.get("CITYMAINTAINED") or "").upper() == "TRUE" else "Private / non-city maintained"
+        zip_code = assign_zip_code(lon, lat, zip_index)
+        row_id = f"irvine-{attrs.get('OBJECTID')}"
+
+        normalized_rows.append(
+            {
+                "id": row_id,
+                "city": "Irvine",
+                "source_dataset": "City Trees",
+                "scientific_raw": scientific_raw,
+                "scientific_normalized": scientific_normalized,
+                "common_name": common_name or "",
+                "subtype_name": subtype_name or "",
+                "zip_code": zip_code or "",
+                "species_group": species_group or "",
+                "ownership": canonical_ownership(ownership_raw),
+                "ownership_raw": ownership_raw,
+                "lat": lat,
+                "lon": lon,
+                "included": "1" if species_group else "0",
+            }
+        )
+        if not species_group:
+            continue
+        output_features.append(
+            {
+                "type": "Feature",
+                "geometry": {"type": "Point", "coordinates": [lon, lat]},
+                "properties": {
+                    "id": row_id,
+                    "species_group": species_group,
+                    "scientific_name": scientific_raw,
+                    "common_name": common_name,
+                    "subtype_name": subtype_name,
+                    "zip_code": zip_code,
+                    "ownership": canonical_ownership(ownership_raw),
+                    "ownership_raw": ownership_raw,
+                    "city": "Irvine",
+                    "source_dataset": "City Trees",
+                    "source_department": "City of Irvine",
+                    "source_last_edit_at": last_edit_at,
+                },
+            }
+        )
+
+    return {
+        "city": "Irvine",
+        "region": "ca",
+        "features": output_features,
+        "normalized_rows": normalized_rows,
+        "source": {
+            "name": "City Trees",
+            "city": "Irvine",
+            "endpoint": IRVINE_DATASET_PAGE,
+            "last_edit_at": last_edit_at,
+            "records_fetched": int(total_payload.get("count") or len(features)),
+            "records_included": len(output_features),
+            "note": "Integrated from the official City of Irvine City Trees layer and official city boundary.",
+        },
+    }
+
+
 CITY_FETCHERS = {
     "Arlington": fetch_arlington,
     "Baltimore": fetch_baltimore,
     "Boston": fetch_boston,
+    "Irvine": fetch_irvine,
     "Jersey City": fetch_jersey_city,
+    "Los Angeles": fetch_los_angeles,
     "Milpitas": fetch_milpitas,
     "San Mateo": fetch_san_mateo,
     "San Rafael": fetch_san_rafael,
@@ -2353,23 +2724,21 @@ def main() -> int:
     target_cities = args.city or list(SUPPORTED_CITIES)
     results = [CITY_FETCHERS[city]() for city in target_cities]
     target_regions = {result["region"] for result in results}
-
-    current_rows = load_normalized_rows()
-    remaining_rows = [row for row in current_rows if row.get("city") not in target_cities]
-    next_rows = remaining_rows[:]
+    target_city_set = set(target_cities)
+    next_rows: list[dict[str, Any]] = []
 
     for result in results:
         write_city_geojson(result["region"], result["city"], result["features"])
         next_rows.extend(result["normalized_rows"])
 
-    write_normalized_rows(next_rows)
+    normalized_path = rewrite_normalized_rows(target_city_set, next_rows)
     meta = load_meta()
     meta["generated_at"] = dt.datetime.now(tz=dt.timezone.utc).isoformat()
     ensure_region_entries(meta, target_regions)
     save_meta(meta)
     refresh_publish_indexes(target_regions)
 
-    unknown_items = recompute_unknown_items(load_normalized_rows())
+    unknown_items = recompute_unknown_items_from_path(normalized_path)
     (PUBLIC_DATA_DIR / "unknown_scientific_names.v1.json").write_text(
         json.dumps(unknown_items, ensure_ascii=False, indent=2),
         encoding="utf-8",

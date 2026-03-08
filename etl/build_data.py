@@ -128,6 +128,7 @@ SOUTH_SF_DATASET_PAGE = "https://www.ssfca.gov/Departments/Parks-Recreation/Divi
 SAN_RAFAEL_TREES_LAYER = "https://services5.arcgis.com/sruoiBDPu8SihcGN/arcgis/rest/services/Trees/FeatureServer/0"
 SAN_RAFAEL_BOUNDARY_LAYER = "https://services5.arcgis.com/sruoiBDPu8SihcGN/arcgis/rest/services/sanrafael2/FeatureServer/0"
 SAN_RAFAEL_DATASET_PAGE = "https://www.arcgis.com/home/item.html?id=8a236959df6f438ba38bdf5db85ce54a"
+IRVINE_BOUNDARY_LAYER = "https://gis.cityofirvine.org/arcgis/rest/services/City_Landscape/MapServer/3"
 BEAVERTON_BOUNDARY_LAYER = (
     "https://gisweb.beavertonoregon.gov/server/rest/services/Public_SharedServices/pubAdministrativeBoundaries/MapServer/0"
 )
@@ -247,9 +248,13 @@ REGION_CITY_OVERRIDES: dict[str, str] = {
     "Daly City": "ca",
     "Concord": "ca",
     "Fremont": "ca",
+    "Irvine": "ca",
+    "Long Beach": "ca",
+    "Los Angeles": "ca",
     "Newark": "nj",
     "Hayward": "ca",
     "Alameda": "ca",
+    "Ontario": "ca",
     "Palo Alto": "ca",
     "Berkeley": "ca",
     "Cupertino": "ca",
@@ -260,6 +265,7 @@ REGION_CITY_OVERRIDES: dict[str, str] = {
     "San Francisco": "ca",
     "San Jose": "ca",
     "South San Francisco": "ca",
+    "Santa Ana": "ca",
     "Beaverton": "or",
     "Gresham": "or",
     "Hillsboro": "or",
@@ -306,8 +312,12 @@ CITY_BOUNDARY_HINTS: dict[str, dict[str, str]] = {
     "Daly City": {"state": "06"},
     "Concord": {"state": "06", "boundary_source": "concord_arcgis"},
     "Fremont": {"state": "06", "boundary_source": "fremont_arcgis"},
+    "Irvine": {"state": "06", "boundary_source": "irvine_arcgis"},
     "Hayward": {"state": "06"},
     "Alameda": {"state": "06"},
+    "Long Beach": {"state": "06"},
+    "Los Angeles": {"state": "06"},
+    "Ontario": {"state": "06"},
     "Palo Alto": {"state": "06", "boundary_source": "us_census_place"},
     "Berkeley": {"boundary_source": "berkeley_arcgis"},
     "Cupertino": {"boundary_source": "cupertino_arcgis"},
@@ -317,6 +327,7 @@ CITY_BOUNDARY_HINTS: dict[str, dict[str, str]] = {
     "San Diego": {"state": "06"},
     "San Francisco": {"state": "06"},
     "San Jose": {"state": "06"},
+    "Santa Ana": {"state": "06"},
     "South San Francisco": {"state": "06", "boundary_source": "south_sf_arcgis"},
     "Vancouver BC": {"boundary_source": "vancouver_bc_ods"},
     "Richmond BC": {"boundary_source": "richmond_bc_arcgis"},
@@ -376,6 +387,7 @@ OFFICIAL_DATA_UNAVAILABLE_CITIES: dict[str, str] = {
     "Lakewood": "Official materials reference inventory work, but current public city sources do not expose a raw single-tree species layer.",
     "Lake Stevens": "City investigated; no official public single-tree species dataset was confirmed.",
     "Langley City": "Official City of Langley / Metro Vancouver public GIS entry points were reviewed; the official jurisdiction boundary is available, but no public citywide single-tree species inventory was confirmed.",
+    "Long Beach": "Official Long Beach open-data materials expose a partial `Public Trees Planted Since 2018` dataset, but not a citywide public single-tree species inventory.",
     "Lynden": "City investigated; no official public single-tree species dataset was confirmed.",
     "Lynnwood": "Official ArcGIS content reviewed was project-specific, not a citywide public single-tree inventory.",
     "Maple Valley": "City investigated; no reliable official public single-tree species dataset was confirmed.",
@@ -405,6 +417,7 @@ OFFICIAL_DATA_UNAVAILABLE_CITIES: dict[str, str] = {
     "Sacramento": "Official city pages and open-data entry points were checked, but no public citywide single-tree species dataset was confirmed in this round.",
     "Saanich": "Official Saanich GIS/open-data sources were reviewed, but no public single-tree species inventory was confirmed.",
     "Salem": "Official ArcGIS and city GIS searches in this round did not confirm a public citywide single-tree species dataset.",
+    "Santa Ana": "Official City of Santa Ana public tree resources expose neighborhood street-tree species maps, but not a public citywide single-tree species inventory.",
     "Santa Clara": "Official city urban-forest materials were reviewed, but no public citywide single-tree species dataset was confirmed in this round.",
     "Santa Cruz": "Official ArcGIS and city GIS searches in this round did not confirm a public citywide single-tree species dataset.",
     "Santa Rosa": "Official city GIS results found fire-damaged tree-removal layers, not a citywide public single-tree inventory.",
@@ -1721,6 +1734,16 @@ def classify_publish_warning_level(raw_bytes: int) -> str:
     return "none"
 
 
+def classify_aggregate_advisory_level(raw_bytes: int) -> str:
+    if raw_bytes >= HARD_FAIL_BYTES:
+        return "very_large"
+    if raw_bytes >= HIGH_WARNING_BYTES:
+        return "large"
+    if raw_bytes >= WARNING_BYTES:
+        return "watch"
+    return "none"
+
+
 def geometry_points(geometry: dict[str, Any]) -> list[tuple[float, float]]:
     points: list[tuple[float, float]] = []
 
@@ -2045,6 +2068,9 @@ def fetch_special_city_boundary_feature(city: str) -> dict[str, Any] | None:
 
     if boundary_source == "concord_arcgis":
         return fetch_arcgis_boundary_feature(CONCORD_BOUNDARY_LAYER, source="City of Concord GIS")
+
+    if boundary_source == "irvine_arcgis":
+        return fetch_arcgis_boundary_feature(IRVINE_BOUNDARY_LAYER, source="City of Irvine GIS")
 
     if boundary_source == "san_rafael_arcgis":
         return fetch_arcgis_boundary_feature(SAN_RAFAEL_BOUNDARY_LAYER, source="City of San Rafael GIS")
@@ -5144,6 +5170,7 @@ def main() -> int:
             "largest_shard_raw_bytes": 0,
             "largest_shard_gzip_bytes": 0,
             "largest_shard_area": None,
+            "largest_shard_warning_level": "none",
             "city_split": None,
             "area_split": None,
         }
@@ -5236,13 +5263,14 @@ def main() -> int:
             }
             region_entry["raw_bytes"] = aggregate_raw_bytes
             region_entry["gzip_bytes"] = aggregate_gzip_bytes
-            region_entry["warning_level"] = classify_warning_level(aggregate_raw_bytes)
+            region_entry["warning_level"] = classify_publish_warning_level(largest_shard_raw_bytes)
             region_entry["aggregate_raw_bytes"] = aggregate_raw_bytes
             region_entry["aggregate_gzip_bytes"] = aggregate_gzip_bytes
-            region_entry["aggregate_warning_level"] = classify_warning_level(aggregate_raw_bytes)
+            region_entry["aggregate_warning_level"] = classify_aggregate_advisory_level(aggregate_raw_bytes)
             region_entry["largest_shard_raw_bytes"] = largest_shard_raw_bytes
             region_entry["largest_shard_gzip_bytes"] = largest_shard_gzip_bytes
             region_entry["largest_shard_area"] = largest_shard_area
+            region_entry["largest_shard_warning_level"] = classify_publish_warning_level(largest_shard_raw_bytes)
 
         region_meta.append(region_entry)
         region_size_summary.append(

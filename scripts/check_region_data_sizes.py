@@ -27,11 +27,11 @@ def classify_shard_level(raw_bytes: int) -> str:
 
 def classify_aggregate_level(raw_bytes: int) -> str:
     if raw_bytes >= AGGREGATE_HARD_FAIL_BYTES:
-        return "hard_fail"
+        return "very_large"
     if raw_bytes >= AGGREGATE_HIGH_WARNING_BYTES:
-        return "high_warning"
+        return "large"
     if raw_bytes >= AGGREGATE_WARNING_BYTES:
-        return "warning"
+        return "watch"
     return "none"
 
 
@@ -99,6 +99,8 @@ def build_report(data_dir: Path) -> dict[str, Any]:
             raise RuntimeError(f"Aggregate warning level mismatch for region {region['id']}.")
         if int(region.get("largest_shard_raw_bytes", -1)) != int((largest_shard or {}).get("raw_bytes", 0)):
             raise RuntimeError(f"Largest shard raw size mismatch for region {region['id']}.")
+        if str(region.get("largest_shard_warning_level", "")) != str((largest_shard or {}).get("warning_level", "none")):
+            raise RuntimeError(f"Largest shard warning level mismatch for region {region['id']}.")
 
         regions.append(
             {
@@ -124,9 +126,9 @@ def build_report(data_dir: Path) -> dict[str, Any]:
             "target_split": TARGET_SPLIT_BYTES,
             "must_split": MUST_SPLIT_BYTES,
             "hard_fail": HARD_FAIL_BYTES,
-            "aggregate_warning": AGGREGATE_WARNING_BYTES,
-            "aggregate_high_warning": AGGREGATE_HIGH_WARNING_BYTES,
-            "aggregate_hard_fail": AGGREGATE_HARD_FAIL_BYTES,
+            "aggregate_watch": AGGREGATE_WARNING_BYTES,
+            "aggregate_large": AGGREGATE_HIGH_WARNING_BYTES,
+            "aggregate_very_large": AGGREGATE_HARD_FAIL_BYTES,
         },
         "regions": regions,
         "hard_fail": hard_fail,
@@ -136,7 +138,7 @@ def build_report(data_dir: Path) -> dict[str, Any]:
 def print_table(report: dict[str, Any]) -> None:
     header = (
         f"{'Region':<8} {'Trees':>10} {'Agg Raw':>12} {'Agg Gzip':>12} "
-        f"{'Agg Level':>12} {'Largest':>12} {'Shard Level':>12} {'Shards':>8}  Index"
+        f"{'Agg Advisory':>12} {'Largest':>12} {'Shard Risk':>12} {'Shards':>8}  Index"
     )
     print(header)
     print("-" * len(header))
@@ -159,7 +161,7 @@ def append_summary(report: dict[str, Any], summary_path: Path) -> None:
     lines = [
         "## Area Shard Size Check",
         "",
-        "| Region | Trees | Aggregate Raw | Aggregate Gzip | Aggregate Level | Largest Shard | Largest Shard Level | Shards | Index |",
+        "| Region | Trees | Aggregate Raw | Aggregate Gzip | Aggregate Advisory | Largest Shard | Largest Shard Risk | Shards | Index |",
         "| --- | ---: | ---: | ---: | --- | ---: | --- | ---: | --- |",
     ]
     for region in report["regions"]:

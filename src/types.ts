@@ -16,6 +16,7 @@ export type Language =
   | "vi-VN";
 export type CoverageRegion = "wa" | "ca" | "or" | "dc" | "bc" | "on" | "qc" | "va" | "md" | "nj" | "ny" | "pa" | "ma";
 export type RegionWarningLevel = "none" | "warning" | "high_warning" | "hard_fail";
+export type RegionAggregateAdvisoryLevel = "none" | "watch" | "large" | "very_large";
 export type SpeciesCounts = Record<SpeciesGroup, number>;
 
 export type LayoutMode = "mobile_sheet" | "desktop_split";
@@ -59,10 +60,11 @@ export interface RegionMeta {
   warning_level: RegionWarningLevel;
   aggregate_raw_bytes?: number;
   aggregate_gzip_bytes?: number;
-  aggregate_warning_level?: RegionWarningLevel;
+  aggregate_warning_level?: RegionAggregateAdvisoryLevel;
   largest_shard_raw_bytes?: number;
   largest_shard_gzip_bytes?: number;
   largest_shard_area?: string | null;
+  largest_shard_warning_level?: RegionWarningLevel;
   area_split?: {
     strategy: "area_shard";
     index_path: string;

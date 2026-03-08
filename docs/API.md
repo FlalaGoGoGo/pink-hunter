@@ -113,13 +113,14 @@ Dataset metadata and source refresh details.
   - `crabapple`
 - `raw_bytes`
 - `gzip_bytes`
-- `warning_level`
+- `warning_level` (largest shard publish risk for this region)
 - `aggregate_raw_bytes`
 - `aggregate_gzip_bytes`
-- `aggregate_warning_level`
+- `aggregate_warning_level` (`none | watch | large | very_large`; advisory only)
 - `largest_shard_raw_bytes`
 - `largest_shard_gzip_bytes`
 - `largest_shard_area`
+- `largest_shard_warning_level`
 - `area_split`
   - `strategy`
   - `index_path`

@@ -19,7 +19,9 @@ Last updated: 2026-03-07 (America/Los_Angeles)
 | ✅ | Arlington | 1,882 | Official jurisdiction boundary | Official Arlington County `DPR Trees` layer integrated using the official county-equivalent jurisdiction boundary |
 | ✅ | San Francisco | 24,099 | Official jurisdiction boundary | Official San Francisco Public Works `Street Tree List` integrated from the city open-data portal |
 | ✅ | San Jose | 18,021 | Official jurisdiction boundary | Official City of San Jose `Street Tree` layer integrated from the city open-data ArcGIS service |
+| ✅ | Los Angeles | 40,459 | Official jurisdiction boundary | Official StreetsLA public TreeKeeper `Street Sites` inventory integrated using server-side blossom filtering against `SITE_ATTR1` |
 | ✅ | San Diego | 13,310 | Official jurisdiction boundary | Official City of San Diego `Trees (Street Trees)` ArcGIS layer integrated with server-side blossom filtering |
+| ✅ | Irvine | 986 | Official jurisdiction boundary | Official City of Irvine `City Trees` layer integrated from the city ArcGIS landscape service and official city boundary |
 | ✅ | Palo Alto | 4,996 | Official jurisdiction boundary | Official City of Palo Alto `Tree Data` layer integrated from the city open GIS portal; official boundary comes from the city-published boundary shapefile |
 | ✅ | Oakland | 3,977 | Official jurisdiction boundary | Official City of Oakland `Oakland Street Trees` Socrata dataset integrated from the city open-data portal |
 | ✅ | Berkeley | 3,973 | Official jurisdiction boundary | Official City of Berkeley public shapefile inventory integrated from the city ArcGIS item download |
@@ -66,6 +68,7 @@ Last updated: 2026-03-07 (America/Los_Angeles)
 | 🩶 | Gresham | In gray coverage | Official jurisdiction boundary | Official ArcGIS search and city-site checks did not confirm a public citywide single-tree species dataset |
 | 🩶 | Hayward | In gray coverage | Official jurisdiction boundary | Official city urban-forestry and GIS entry points were reviewed, but no verified public citywide single-tree species dataset was confirmed in this round |
 | 🩶 | Hillsboro | In gray coverage | Official jurisdiction boundary | Official ArcGIS search and city-site checks did not confirm a public citywide single-tree species dataset |
+| 🩶 | Long Beach | In gray coverage | Official jurisdiction boundary | Official Long Beach open-data materials expose a partial `Public Trees Planted Since 2018` dataset, but not a citywide public single-tree species inventory |
 | 🩶 | Monterey | In gray coverage | Official jurisdiction boundary | Official city tree standards and GIS entry points were reviewed, but no public citywide single-tree species dataset was confirmed |
 | 🩶 | Montgomery County, MD | In gray coverage | Official jurisdiction boundary | Official Montgomery County GIS layers were reviewed; the public `Tree Planting Locations` layer is a planting-program dataset rather than a countywide single-tree inventory |
 | 🩶 | Mountain View | In gray coverage | Official jurisdiction boundary | Official city forestry materials were reviewed, but no public citywide single-tree species dataset was confirmed |
@@ -79,6 +82,7 @@ Last updated: 2026-03-07 (America/Los_Angeles)
 | 🩶 | Sacramento | In gray coverage | Official jurisdiction boundary | Official city pages and open-data entry points were checked, but no public citywide single-tree species dataset was confirmed |
 | 🩶 | Saanich | In gray coverage | Official jurisdiction boundary | Official Saanich GIS/open-data sources were reviewed; no public single-tree species inventory was confirmed |
 | 🩶 | Salem | In gray coverage | Official jurisdiction boundary | Official ArcGIS and city GIS searches did not confirm a public citywide single-tree species dataset |
+| 🩶 | Santa Ana | In gray coverage | Official jurisdiction boundary | Official City of Santa Ana public tree resources expose neighborhood street-tree species maps, but not a public citywide single-tree species inventory |
 | 🩶 | Santa Cruz | In gray coverage | Official jurisdiction boundary | Official ArcGIS and city GIS searches did not confirm a public citywide single-tree species dataset |
 | 🩶 | Santa Clara | In gray coverage | Official jurisdiction boundary | Official city urban-forest materials were reviewed, but no public citywide single-tree species dataset was confirmed |
 | 🩶 | Santa Rosa | In gray coverage | Official jurisdiction boundary | Official city GIS results found fire-damaged tree-removal layers, not a citywide public single-tree inventory |
@@ -95,7 +99,6 @@ Last updated: 2026-03-07 (America/Los_Angeles)
 |---|---|---:|---|---|
 | ⏳ | Mercer Island | 803 (Town Center only) | Partial-only | Official urban-forestry page documents a 2018 Town Center street-tree inventory, but a verified citywide public single-tree endpoint is still not confirmed |
 | ⏳ | Bremerton | Unknown | Blocked public map | Official Park Tree Map web map exists under a city account, but the underlying feature service currently returns `403 Forbidden` to direct public queries |
-| ⏳ | Los Angeles | 925,729 total public trees before blossom filtering | Public dataset too large / filter unresolved | Official public TreeKeeper inventory is available and the starting facility/layer is confirmed, but current ETL does not yet have a safe server-side blossom filtering path for a citywide dataset at this scale |
 | ⏳ | Poulsbo | 75 | Partial-only | Official `Historic Trees of Poulsbo` feature service is public, but it is a curated historic-tree layer, not a citywide public inventory |
 | ⏳ | Pasco | Unknown | Partial-only | Official city content found in this round was a `Volunteer Park Tree Walk` map, not a citywide public single-tree inventory |
 
@@ -113,6 +116,7 @@ Last updated: 2026-03-07 (America/Los_Angeles)
 | ⚠️ | Burien | Not usable | Species values are internal codes (e.g. `ULFR`) without public mapping table |
 | ⚠️ | Lynnwood | Not usable yet | Official ArcGIS content found in this round was a South Lynnwood urban-forest project web map, not a citywide single-tree species inventory |
 | ⚠️ | Olympia | Not usable yet | Search turned up a 2007 street-tree layer owned by a non-city account; no current official city single-tree species layer was confirmed |
+| ⚠️ | Ontario | Not found yet | Official city site and GIS entry points reviewed in this round did not confirm a public citywide single-tree species inventory |
 | ⚠️ | Bothell | Not usable yet | Official Urban Forest Management Plan references a street-tree inventory summary PDF, but no public raw single-tree species endpoint was confirmed |
 | ⚠️ | Medina | Not found yet | The previously guessed GIS page path now resolves to 404 and no official public tree inventory layer was confirmed |
 | ⚠️ | Lake Forest Park | Not found yet | Official city pages and ArcGIS search did not confirm a city-owned public single-tree species layer |
