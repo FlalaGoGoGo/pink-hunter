@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-03-07T03:53:31.600000+00:00",
+  "generated_at": "2026-03-08T03:35:42.459727+00:00",
   "region": "ca",
   "strategy": "city",
   "items": [
@@ -65,6 +65,13 @@
       "tree_count": 4535,
       "raw_bytes": 2329654,
       "gzip_bytes": 107226
+    },
+    {
+      "city": "San Diego",
+      "data_path": "/data/trees.ca.city.san-diego.v1.geojson",
+      "tree_count": 13310,
+      "raw_bytes": 6660911,
+      "gzip_bytes": 315255
     },
     {
       "city": "San Francisco",

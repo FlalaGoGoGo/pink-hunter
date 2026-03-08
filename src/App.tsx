@@ -138,10 +138,12 @@ const REGION_CITY_OVERRIDES: Partial<Record<string, CoverageRegion>> = {
   Concord: "ca",
   Fremont: "ca",
   Milpitas: "ca",
+  Newark: "nj",
   "Palo Alto": "ca",
   Berkeley: "ca",
   Cupertino: "ca",
   Oakland: "ca",
+  "San Diego": "ca",
   "South San Francisco": "ca",
   "San Francisco": "ca",
   "San Jose": "ca"

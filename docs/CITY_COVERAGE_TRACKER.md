@@ -19,6 +19,7 @@ Last updated: 2026-03-07 (America/Los_Angeles)
 | ✅ | Arlington | 1,882 | Official jurisdiction boundary | Official Arlington County `DPR Trees` layer integrated using the official county-equivalent jurisdiction boundary |
 | ✅ | San Francisco | 24,099 | Official jurisdiction boundary | Official San Francisco Public Works `Street Tree List` integrated from the city open-data portal |
 | ✅ | San Jose | 18,021 | Official jurisdiction boundary | Official City of San Jose `Street Tree` layer integrated from the city open-data ArcGIS service |
+| ✅ | San Diego | 13,310 | Official jurisdiction boundary | Official City of San Diego `Trees (Street Trees)` ArcGIS layer integrated with server-side blossom filtering |
 | ✅ | Palo Alto | 4,996 | Official jurisdiction boundary | Official City of Palo Alto `Tree Data` layer integrated from the city open GIS portal; official boundary comes from the city-published boundary shapefile |
 | ✅ | Oakland | 3,977 | Official jurisdiction boundary | Official City of Oakland `Oakland Street Trees` Socrata dataset integrated from the city open-data portal |
 | ✅ | Berkeley | 3,973 | Official jurisdiction boundary | Official City of Berkeley public shapefile inventory integrated from the city ArcGIS item download |
@@ -69,6 +70,7 @@ Last updated: 2026-03-07 (America/Los_Angeles)
 | 🩶 | Montgomery County, MD | In gray coverage | Official jurisdiction boundary | Official Montgomery County GIS layers were reviewed; the public `Tree Planting Locations` layer is a planting-program dataset rather than a countywide single-tree inventory |
 | 🩶 | Mountain View | In gray coverage | Official jurisdiction boundary | Official city forestry materials were reviewed, but no public citywide single-tree species dataset was confirmed |
 | 🩶 | Napa | In gray coverage | Official jurisdiction boundary | Official ArcGIS and city data portal searches did not confirm a public citywide single-tree species dataset |
+| 🩶 | Newark | In gray coverage | Official jurisdiction boundary | Official City of Newark open-data and GIS entry points were reviewed, but no verified public citywide single-tree species inventory was confirmed |
 | 🩶 | North Vancouver City | In gray coverage | Official jurisdiction boundary | Official Metro Vancouver administrative boundaries confirm the jurisdiction geometry, but this round did not confirm a public citywide single-tree species inventory for the City of North Vancouver |
 | 🩶 | North Vancouver District | In gray coverage | Official jurisdiction boundary | Official Metro Vancouver administrative boundaries confirm the jurisdiction geometry, but this round did not confirm a public jurisdiction-wide single-tree species inventory for the District of North Vancouver |
 | 🩶 | Redwood City | In gray coverage | Official jurisdiction boundary | Official city GIS and public-works materials were reviewed, but no verified public citywide single-tree dataset was confirmed in this round |
@@ -93,6 +95,7 @@ Last updated: 2026-03-07 (America/Los_Angeles)
 |---|---|---:|---|---|
 | ⏳ | Mercer Island | 803 (Town Center only) | Partial-only | Official urban-forestry page documents a 2018 Town Center street-tree inventory, but a verified citywide public single-tree endpoint is still not confirmed |
 | ⏳ | Bremerton | Unknown | Blocked public map | Official Park Tree Map web map exists under a city account, but the underlying feature service currently returns `403 Forbidden` to direct public queries |
+| ⏳ | Los Angeles | 925,729 total public trees before blossom filtering | Public dataset too large / filter unresolved | Official public TreeKeeper inventory is available and the starting facility/layer is confirmed, but current ETL does not yet have a safe server-side blossom filtering path for a citywide dataset at this scale |
 | ⏳ | Poulsbo | 75 | Partial-only | Official `Historic Trees of Poulsbo` feature service is public, but it is a curated historic-tree layer, not a citywide public inventory |
 | ⏳ | Pasco | Unknown | Partial-only | Official city content found in this round was a `Volunteer Park Tree Walk` map, not a citywide public single-tree inventory |
 
@@ -150,7 +153,7 @@ Last updated: 2026-03-07 (America/Los_Angeles)
 | ⚠️ | Lacey | Open data searched, no tree layer found | Official `data.cityoflacey.org` search in this round did not surface a public single-tree species dataset |
 | ⚠️ | Tumwater | GIS pages found, no tree layer found | Official GIS/open-data entry points were reviewed in this round, but no public single-tree species point layer was confirmed |
 | ⚠️ | Vancouver WA | Not usable yet | Official city geohub search in this round surfaced urban-tree-canopy and signage inventory layers, but not a public single-tree species inventory |
-| ⚠️ | Newark / Essex County, NJ | Not found yet | Official city and county open-data entry points were reviewed, but no verified public citywide/countywide single-tree species inventory was confirmed |
+| ⚠️ | Essex County, NJ | Not found yet | Official county open-data entry points were reviewed, but no verified countywide single-tree species inventory was confirmed |
 | ⚠️ | Mount Vernon | Not found yet | Official city GIS / urban-forestry entry points reviewed in this round did not confirm a public citywide single-tree inventory |
 | ⚠️ | Burlington, WA | Not found yet | Official city pages reviewed in this round did not confirm a public citywide single-tree inventory |
 | ⚠️ | Anacortes | Not found yet | Official city GIS pages reviewed in this round did not confirm a public citywide single-tree inventory |
@@ -226,7 +229,8 @@ Last updated: 2026-03-07 (America/Los_Angeles)
 - Integrated `Arlington` from the official Arlington County `DPR Trees` layer using the county-equivalent jurisdiction boundary.
 - Added gray coverage for `Alexandria` after reviewing the official urban-forestry and GIS pages without finding a public single-tree inventory.
 - Confirmed `Montgomery County, MD` currently exposes `Tree Planting Locations`, not a countywide single-tree species inventory.
-- Official Newark / Essex County open-data entry points were reviewed without confirming a verified public citywide/countywide single-tree species inventory.
+- Promoted `Newark` into gray coverage after rechecking official city open-data and GIS entry points without finding a verified public citywide single-tree inventory.
+- Official Essex County open-data entry points were reviewed without confirming a verified countywide single-tree species inventory.
 
 ## March 2026 Seattle-Vancouver Corridor Sweep
 - Rechecked the Seattle-to-Vancouver corridor beyond already-covered cities.
@@ -247,3 +251,11 @@ Last updated: 2026-03-07 (America/Los_Angeles)
 - Integrated `Montreal` from the official Ville de Montréal `Arbres publics sur le territoire de la Ville` CSV; the official jurisdiction boundary is assembled from arrondissement polygons.
 - Confirmed `Montgomery County, MD` should remain gray coverage because the official public `Tree Planting Locations` layer is a planting-program dataset, not a countywide single-tree inventory.
 - Added gray coverage for `Richmond BC` after confirming the official City of Richmond boundary but not a public citywide single-tree species inventory.
+
+## March 2026 East Coast / Southern California Follow-up
+- Rechecked `Alexandria, VA`; official city urban-forestry and GIS materials still do not expose a verified public single-tree inventory, so it remains gray coverage.
+- Rechecked `Montgomery County, MD`; the official public `Tree Planting Locations` layer remains a planting-program dataset rather than a countywide single-tree inventory, so it remains gray coverage.
+- Promoted `Newark` into gray coverage after confirming the official city boundary workflow and rechecking official city data sources without finding a verified public single-tree inventory.
+- Official Essex County open-data entry points were reviewed again without confirming a countywide public single-tree inventory.
+- Integrated `San Diego` from the official City of San Diego `Trees (Street Trees)` ArcGIS layer using server-side blossom filtering on `COMMON_NAME`.
+- Confirmed that official public `Los Angeles` TreeKeeper inventory is available at city scale, but it currently remains not integrated because the blossom-filter path for a ~925k-tree public dataset has not yet been safely implemented.

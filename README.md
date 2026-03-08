@@ -121,6 +121,7 @@ Live domain:
 - Oakland
 - Palo Alto
 - Salinas
+- San Diego
 - San Francisco
 - San Jose
 - San Mateo
@@ -147,7 +148,7 @@ Live domain:
 
 ### Gray Coverage
 - Gray coverage marks cities whose official boundary is public but whose official public single-tree dataset is not available yet.
-- Current gray-coverage examples include `Alexandria`, `Montgomery County`, `Mountain View`, `Sunnyvale`, `Santa Clara`, `Monterey`, `Sacramento`, `Napa`, `Richmond`, `Santa Cruz`, `Santa Rosa`, `Stockton`, `Redwood City`, `Alameda`, `Hayward`, `Daly City`, `Beaverton`, `Gresham`, `Hillsboro`, `Salem`, `Tigard`, `Burnaby`, `Coquitlam`, `Delta`, `Langley City`, `North Vancouver City`, `North Vancouver District`, `Richmond BC`, `Saanich`, `Surrey`, `West Vancouver`, and `White Rock`.
+- Current gray-coverage examples include `Alexandria`, `Montgomery County`, `Newark`, `Mountain View`, `Sunnyvale`, `Santa Clara`, `Monterey`, `Sacramento`, `Napa`, `Richmond`, `Santa Cruz`, `Santa Rosa`, `Stockton`, `Redwood City`, `Alameda`, `Hayward`, `Daly City`, `Beaverton`, `Gresham`, `Hillsboro`, `Salem`, `Tigard`, `Burnaby`, `Coquitlam`, `Delta`, `Langley City`, `North Vancouver City`, `North Vancouver District`, `Richmond BC`, `Saanich`, `Surrey`, `West Vancouver`, and `White Rock`.
 - Tracking details: [docs/CITY_COVERAGE_TRACKER.md](docs/CITY_COVERAGE_TRACKER.md)
 
 ## Official Data Sources
@@ -252,6 +253,7 @@ Live domain:
 - Milpitas: [Trees RO](https://services8.arcgis.com/OPmRdssd8jj0bT5H/arcgis/rest/services/Trees_RO/FeatureServer/0)
 - Oakland: [Oakland Street Trees](https://data.oaklandca.gov/Environmental/Oakland-Street-Trees/4jcx-enxf)
 - Salinas: [Tree Inventory](https://cityofsalinas.opendatasoft.com/explore/dataset/tree-inventory/)
+- San Diego: [Trees (Street Trees)](https://webmaps.sandiego.gov/arcgis/rest/services/DSD/Environment/MapServer/20)
 - San Francisco: [Street Tree List](https://data.sfgov.org/City-Infrastructure/Street-Tree-List/tkzw-k3nq)
 - San Jose: [Street Tree](https://data.sanjoseca.gov/dataset/street-tree)
 - San Mateo: [Street Trees](https://www.arcgis.com/home/item.html?id=67c8b57d2d91459c9f951df9de961a06)

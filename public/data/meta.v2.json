@@ -1,6 +1,6 @@
 {
   "version": "v2",
-  "generated_at": "2026-03-08T03:13:33.098517+00:00",
+  "generated_at": "2026-03-08T03:36:24.032023+00:00",
   "default_region": "wa",
   "coverage_rule": "official_jurisdiction_boundary_only",
   "coverage_skipped_cities": [],
@@ -57,6 +57,7 @@
     "Mountlake Terrace",
     "Mukilteo",
     "Napa",
+    "Newark",
     "Newcastle",
     "Normandy Park",
     "North Bend",
@@ -94,9 +95,9 @@
     "Yarrow Point"
   ],
   "coverage_official_unavailable_skipped_cities": [],
-  "source_count": 49,
-  "total_records": 1536037,
-  "included_records": 368508,
+  "source_count": 50,
+  "total_records": 1549606,
+  "included_records": 381818,
   "unknown_records": 648761,
   "regions": [
     {
@@ -145,16 +146,16 @@
       "bounds": [
         [
           -123.17382500036122,
-          36.57149999971581
+          32.534786999728034
         ],
         [
-          -121.18388899974322,
+          -116.90518099986093,
           38.68560299975214
         ]
       ],
       "data_path": null,
-      "tree_count": 77325,
-      "city_count": 14,
+      "tree_count": 90635,
+      "city_count": 15,
       "cities": [
         "Berkeley",
         "Burlingame",
@@ -165,27 +166,28 @@
         "Oakland",
         "Palo Alto",
         "Salinas",
+        "San Diego",
         "San Francisco",
         "San Jose",
         "San Mateo",
         "San Rafael",
         "South San Francisco"
       ],
-      "raw_bytes": 40029154,
-      "gzip_bytes": 1729467,
+      "raw_bytes": 46690022,
+      "gzip_bytes": 2044461,
       "warning_level": "warning",
       "city_split": {
         "strategy": "city",
         "index_path": "/data/trees.ca.city-index.v1.json",
-        "file_count": 14,
+        "file_count": 15,
         "ready": true
       },
       "species_counts": {
-        "cherry": 11736,
-        "plum": 27550,
-        "peach": 2268,
-        "magnolia": 32747,
-        "crabapple": 3024
+        "cherry": 15002,
+        "plum": 31270,
+        "peach": 2498,
+        "magnolia": 38822,
+        "crabapple": 3043
       }
     },
     {
@@ -306,12 +308,12 @@
       "available": true,
       "bounds": [
         [
-          -74.11705699967631,
+          -74.25136099975268,
           40.66163400021707
         ],
         [
           -74.02063900024501,
-          40.7689870000658
+          40.78826700012708
         ]
       ],
       "data_path": null,
@@ -888,6 +890,15 @@
       "records_included": 916
     },
     {
+      "name": "Trees (Street Trees)",
+      "city": "San Diego",
+      "endpoint": "https://webmaps.sandiego.gov/arcgis/rest/services/DSD/Environment/MapServer/20",
+      "last_edit_at": "",
+      "records_fetched": 13569,
+      "records_included": 13310,
+      "note": "Integrated from the official City of San Diego street-trees ArcGIS layer with server-side blossom filtering."
+    },
+    {
       "name": "Street Tree List",
       "city": "San Francisco",
       "endpoint": "https://data.sfgov.org/City-Infrastructure/Street-Tree-List/tkzw-k3nq",
@@ -1027,11 +1038,11 @@
     }
   ],
   "species_counts": {
-    "cherry": 163131,
-    "plum": 79115,
-    "peach": 3520,
-    "magnolia": 58670,
-    "crabapple": 64072
+    "cherry": 166397,
+    "plum": 82835,
+    "peach": 3750,
+    "magnolia": 64745,
+    "crabapple": 64091
   },
   "areas": [
     {
@@ -1176,6 +1187,18 @@
         "peach": 55,
         "magnolia": 1739,
         "crabapple": 74
+      }
+    },
+    {
+      "jurisdiction": "San Diego",
+      "region": "ca",
+      "tree_count": 13310,
+      "species_counts": {
+        "cherry": 3266,
+        "plum": 3720,
+        "peach": 230,
+        "magnolia": 6075,
+        "crabapple": 19
       }
     },
     {
