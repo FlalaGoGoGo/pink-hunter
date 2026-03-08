@@ -151,6 +151,7 @@ BURNABY_BOUNDARY_LAYER = "https://gis.burnaby.ca/arcgis/rest/services/OpenData/O
 DELTA_BOUNDARY_LAYER = "https://maps.delta.ca/arcgis/rest/services/DeltaMap/PropertyBasemap/MapServer/13"
 SAANICH_BOUNDARY_LAYER = "https://map.saanich.ca/server/rest/services/MAPS/SaanichBaseMap/MapServer/6"
 SURREY_BOUNDARY_LAYER = "https://gisservices.surrey.ca/arcgis/rest/services/OpenData/MapServer/133"
+COQUITLAM_BOUNDARY_LAYER = "https://geodata.coquitlam.ca/arcgis/rest/services/DynamicServices/Cadastral/MapServer/14"
 RICHMOND_BC_BOUNDARY_LAYER = "https://maps.richmond.ca/internal/rest/services/Hansen/Hansen_Base/MapServer/5"
 OTTAWA_TREES_LAYER = "https://maps.ottawa.ca/arcgis/rest/services/Forestry/MapServer/0"
 OTTAWA_BOUNDARY_LAYER = "https://maps.ottawa.ca/arcgis/rest/services/OfficialPlan/MapServer/71"
@@ -211,6 +212,7 @@ REGION_CITY_OVERRIDES: dict[str, str] = {
     "Montreal": "qc",
     "Washington DC": "dc",
     "Burnaby": "bc",
+    "Coquitlam": "bc",
     "Delta": "bc",
     "Richmond BC": "bc",
     "Saanich": "bc",
@@ -307,6 +309,7 @@ CITY_BOUNDARY_HINTS: dict[str, dict[str, str]] = {
     "Vancouver WA": {"state": "53", "basename": "Vancouver"},
     "Victoria BC": {"boundary_source": "victoria_bc_arcgis"},
     "Burnaby": {"boundary_source": "burnaby_arcgis"},
+    "Coquitlam": {"boundary_source": "coquitlam_arcgis"},
     "Delta": {"boundary_source": "delta_arcgis"},
     "Saanich": {"boundary_source": "saanich_arcgis"},
     "Surrey": {"boundary_source": "surrey_arcgis"},
@@ -325,6 +328,7 @@ OFFICIAL_DATA_UNAVAILABLE_CITIES: dict[str, str] = {
     "Bothell": "Official planning documents mention inventory work, but no public raw single-tree species endpoint was confirmed.",
     "Bremerton": "An official tree web map exists, but the underlying feature service is not publicly queryable for ETL access.",
     "Burnaby": "Official Burnaby GIS/open-data sources were reviewed, but no public single-tree species inventory was confirmed.",
+    "Coquitlam": "Official City of Coquitlam GIS services expose the official city boundary, but this round did not confirm a public citywide single-tree species inventory.",
     "Brier": "City investigated; public search hits were false positives, not an official city tree inventory.",
     "Burien": "Official tree data uses internal species codes without a public mapping table usable for current taxonomy.",
     "Carnation": "City investigated; no official public single-tree species dataset was confirmed.",
@@ -1994,6 +1998,9 @@ def fetch_special_city_boundary_feature(city: str) -> dict[str, Any] | None:
 
     if boundary_source == "burnaby_arcgis":
         return fetch_arcgis_boundary_feature(BURNABY_BOUNDARY_LAYER, source="City of Burnaby Open Data")
+
+    if boundary_source == "coquitlam_arcgis":
+        return fetch_arcgis_boundary_feature(COQUITLAM_BOUNDARY_LAYER, source="City of Coquitlam GeoData")
 
     if boundary_source == "delta_arcgis":
         return fetch_arcgis_boundary_feature(DELTA_BOUNDARY_LAYER, source="City of Delta GIS")

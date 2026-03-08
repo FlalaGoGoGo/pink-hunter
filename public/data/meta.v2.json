@@ -19,6 +19,7 @@
     "Burnaby",
     "Carnation",
     "Clyde Hill",
+    "Coquitlam",
     "Covington",
     "Daly City",
     "Davenport",
@@ -103,8 +104,8 @@
           48.40249758903433
         ],
         [
-          -122.67910141561416,
-          49.31617355253472
+          -122.62108637425426,
+          49.351166953407144
         ]
       ],
       "data_path": null,

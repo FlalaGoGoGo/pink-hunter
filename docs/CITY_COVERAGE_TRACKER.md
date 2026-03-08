@@ -57,6 +57,7 @@ Last updated: 2026-03-07 (America/Los_Angeles)
 | 🩶 | Alexandria | In gray coverage | Official jurisdiction boundary | Official City of Alexandria urban-forestry and GIS pages were reviewed, but no public single-tree species inventory was confirmed |
 | 🩶 | Burnaby | In gray coverage | Official jurisdiction boundary | Official Burnaby GIS/open-data sources were reviewed; no public single-tree species inventory was confirmed |
 | 🩶 | Beaverton | In gray coverage | Official jurisdiction boundary | Official inventory web maps exist, but the raw city tree inventory service currently requires a token and is not publicly queryable for stable ETL access |
+| 🩶 | Coquitlam | In gray coverage | Official jurisdiction boundary | Official City of Coquitlam GIS services expose the official city boundary, but this round did not confirm a public citywide single-tree species inventory |
 | 🩶 | Delta | In gray coverage | Official jurisdiction boundary | Official Delta GIS/open-data sources were reviewed; no public single-tree species inventory was confirmed |
 | 🩶 | Alameda | In gray coverage | Official jurisdiction boundary | Official city tree and urban-forest materials were reviewed, but no verified public citywide single-tree dataset was confirmed in this round |
 | 🩶 | Daly City | In gray coverage | Official jurisdiction boundary | Official city urban-forestry and GIS entry points were reviewed, but no verified public citywide single-tree species dataset was confirmed in this round |
@@ -229,7 +230,13 @@ Last updated: 2026-03-07 (America/Los_Angeles)
 ## March 2026 Seattle-Vancouver Corridor Sweep
 - Rechecked the Seattle-to-Vancouver corridor beyond already-covered cities.
 - Promoted `Surrey` into gray coverage after confirming the official city boundary and re-confirming that the official public tree layers are still partial-only (`Important Trees`, `Park Specimen Trees`), not a citywide single-tree inventory.
-- Official site / GIS checks in this round did not confirm citywide public single-tree inventories for `Mount Vernon`, `Burlington`, `Anacortes`, `White Rock`, `New Westminster`, `Coquitlam`, or `Abbotsford`.
+- Added gray coverage for `Coquitlam` after confirming the official city boundary and re-checking official GIS services without finding a citywide public single-tree inventory.
+- Official site / GIS checks in this round did not confirm citywide public single-tree inventories for `Mount Vernon`, `Burlington`, `Anacortes`, `White Rock`, or `Abbotsford`.
+
+## March 2026 Metro Vancouver Follow-up
+- `New Westminster`: official ArcGIS organization search surfaced `Tree Inventory (Active Trees)`, but an official jurisdiction boundary source has not been confirmed yet under the hard rule, so it remains not integrated.
+- `West Vancouver`: ArcGIS search surfaced parks and planning-related services plus a non-official tree-planning layer, but an official public citywide single-tree inventory still has not been confirmed.
+- `Langley City`: official and ArcGIS search results in this round did not confirm a public single-tree inventory or a stable official boundary layer suitable for coverage.
 
 ## March 2026 Ontario-Quebec / Mid-Atlantic Sweep
 - Integrated `Ottawa` from the official City of Ottawa `Tree Inventory / Inventaire des arbres` ArcGIS layer and official city boundary.

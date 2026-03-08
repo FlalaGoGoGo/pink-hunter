@@ -102,6 +102,7 @@ const REGION_CITY_OVERRIDES: Partial<Record<string, CoverageRegion>> = {
   Montreal: "qc",
   "Washington DC": "dc",
   Burnaby: "bc",
+  Coquitlam: "bc",
   Delta: "bc",
   "Richmond BC": "bc",
   Saanich: "bc",
