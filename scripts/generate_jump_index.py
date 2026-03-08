@@ -3,6 +3,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import requests
 import sys
 from pathlib import Path
 from typing import Any
@@ -21,6 +22,10 @@ from etl.build_data import (  # noqa: E402
 
 DATA_DIR = ROOT / "public" / "data"
 REFERENCE_DIR = ROOT / "data" / "reference"
+US_JUMP_CACHE_PATH = REFERENCE_DIR / "jump_us_areas.v1.json"
+
+US_PLACE_LAYER_URL = "https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/Places_CouSub_ConCity_SubMCD/MapServer/18/query"
+US_COUNTY_LAYER_URL = "https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/State_County/MapServer/55/query"
 
 REGION_COUNTRY: dict[str, str] = {
     "wa": "us",
@@ -177,6 +182,29 @@ def normalize_display_name(name: str) -> str:
     return DISPLAY_NAME_OVERRIDES.get(name, name)
 
 
+def normalize_us_place_name(properties: dict[str, Any]) -> str:
+    raw_name = str(properties.get("BASENAME") or properties.get("NAME") or "").strip()
+    lowered = raw_name.lower()
+    suffixes = (" city", " town", " village", " borough")
+    for suffix in suffixes:
+        if lowered.endswith(suffix):
+            return raw_name[: -len(suffix)].strip()
+    return raw_name
+
+
+def normalize_us_county_name(properties: dict[str, Any]) -> tuple[str, str]:
+    basename = str(properties.get("BASENAME") or "").strip()
+    raw_name = str(properties.get("NAME") or basename).strip()
+    lowered = raw_name.lower()
+    if lowered.endswith(" city") and basename:
+        return basename, "city"
+    if raw_name.endswith("County"):
+        return raw_name, "county"
+    if raw_name.endswith(" County"):
+        return raw_name, "county"
+    return raw_name, "county"
+
+
 def normalize_bounds(bounds: tuple[float, float, float, float] | list[list[float]] | None) -> list[list[float]] | None:
     if bounds is None:
         return None
@@ -200,6 +228,12 @@ def load_json(path: Path) -> Any:
     return json.loads(path.read_text(encoding="utf-8"))
 
 
+def fetch_json(url: str, params: dict[str, Any]) -> Any:
+    response = requests.get(url, params=params, timeout=90)
+    response.raise_for_status()
+    return response.json()
+
+
 def load_boundary_bounds(path: Path) -> list[list[float]] | None:
     payload = load_json(path)
     if payload.get("type") == "FeatureCollection":
@@ -210,6 +244,90 @@ def load_boundary_bounds(path: Path) -> list[list[float]] | None:
     if payload.get("type") == "Feature":
         return normalize_bounds(bounds_for_geometry(payload.get("geometry")))
     return None
+
+
+def load_us_jump_areas() -> list[dict[str, Any]]:
+    supported_state_codes = sorted(code for code in STATE_FIPS_TO_REGION if code != "11")
+    place_features: list[dict[str, Any]] = []
+    county_features: list[dict[str, Any]] = []
+
+    try:
+        for state_code in supported_state_codes:
+            place_payload = fetch_json(
+                US_PLACE_LAYER_URL,
+                {
+                    "where": f"STATE='{state_code}'",
+                    "outFields": "STATE,BASENAME,NAME,LSADC,GEOID",
+                    "returnGeometry": "true",
+                    "geometryPrecision": "4",
+                    "maxAllowableOffset": "0.01",
+                    "f": "geojson"
+                },
+            )
+            county_payload = fetch_json(
+                US_COUNTY_LAYER_URL,
+                {
+                    "where": f"STATE='{state_code}'",
+                    "outFields": "STATE,BASENAME,NAME,LSADC,GEOID",
+                    "returnGeometry": "true",
+                    "geometryPrecision": "4",
+                    "maxAllowableOffset": "0.01",
+                    "f": "geojson"
+                },
+            )
+            place_features.extend(place_payload.get("features", []))
+            county_features.extend(county_payload.get("features", []))
+    except Exception:
+        if US_JUMP_CACHE_PATH.exists():
+            return load_json(US_JUMP_CACHE_PATH)
+        raise
+
+    areas: list[dict[str, Any]] = []
+
+    for feature in place_features:
+        properties = feature.get("properties", {})
+        state = str(properties.get("STATE", "")).strip()
+        region = STATE_FIPS_TO_REGION.get(state)
+        if not region:
+            continue
+        jurisdiction = normalize_us_place_name(properties)
+        bounds = normalize_bounds(bounds_for_geometry(feature.get("geometry")))
+        if not jurisdiction or not bounds:
+            continue
+        areas.append(
+            {
+                "region": region,
+                "jurisdiction": jurisdiction,
+                "display_name": normalize_display_name(jurisdiction),
+                "area_type": "city",
+                "bounds": bounds,
+                "coverage_status": "untracked",
+            }
+        )
+
+    for feature in county_features:
+        properties = feature.get("properties", {})
+        state = str(properties.get("STATE", "")).strip()
+        region = STATE_FIPS_TO_REGION.get(state)
+        if not region:
+            continue
+        jurisdiction, area_type = normalize_us_county_name(properties)
+        bounds = normalize_bounds(bounds_for_geometry(feature.get("geometry")))
+        if not jurisdiction or not bounds:
+            continue
+        areas.append(
+            {
+                "region": region,
+                "jurisdiction": jurisdiction,
+                "display_name": normalize_display_name(jurisdiction),
+                "area_type": area_type,
+                "bounds": bounds,
+                "coverage_status": "untracked",
+            }
+        )
+
+    US_JUMP_CACHE_PATH.write_text(json.dumps(areas, ensure_ascii=False, indent=2), encoding="utf-8")
+    return areas
 
 
 def build_jump_index(data_dir: Path) -> dict[str, Any]:
@@ -291,6 +409,33 @@ def build_jump_index(data_dir: Path) -> dict[str, Any]:
             "region_hint": region,
             "coverage_status": coverage_status_map.get(jurisdiction, "untracked"),
         }
+
+    existing_display_keys = {
+        (str(item["state_id"]), normalize_display_name(str(item["jurisdiction"])))
+        for item in area_map.values()
+    }
+
+    for item in load_us_jump_areas():
+        region = str(item["region"]).strip()
+        jurisdiction = str(item["jurisdiction"]).strip()
+        if not region or not jurisdiction:
+            continue
+        key = (region, jurisdiction)
+        display_key = (region, normalize_display_name(jurisdiction))
+        if key in area_map or display_key in existing_display_keys:
+            continue
+        area_map[key] = {
+            "id": f"{region}:{slugify_token(jurisdiction)}",
+            "country_id": REGION_COUNTRY[region],
+            "state_id": region,
+            "jurisdiction": jurisdiction,
+            "display_name": str(item["display_name"]),
+            "area_type": str(item["area_type"]),
+            "bounds": item["bounds"],
+            "region_hint": region,
+            "coverage_status": coverage_status_map.get(jurisdiction, "untracked"),
+        }
+        existing_display_keys.add(display_key)
 
     states: list[dict[str, Any]] = []
     for region in REGION_LABELS:
