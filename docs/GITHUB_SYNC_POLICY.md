@@ -7,6 +7,7 @@ Last updated: 2026-03-06 (America/Los_Angeles)
   - the local working project at `/Users/zhangziling/Documents/Project-Pink-Hunter`
   - the GitHub export repo at `/Users/zhangziling/Documents/Project-Pink-Hunter/GitHub/pink-hunter`
 - After the GitHub export repo is updated, the change must be committed and pushed to `https://github.com/FlalaGoGoGo/pink-hunter`.
+- For UI work specifically, the task is not complete until `https://pinkhunter.flalaz.com/` is checked and confirmed to be serving the latest version.
 
 ## Required Workflow
 1. Make and verify the local change first.
@@ -15,6 +16,7 @@ Last updated: 2026-03-06 (America/Los_Angeles)
 4. Sync the project into the GitHub export repo.
 5. Commit the GitHub export repo.
 6. Push the GitHub export repo to GitHub.
+7. Confirm the production domain `https://pinkhunter.flalaz.com/` reflects the new build.
 
 ## Canonical Helper
 - Preferred sync helper: `scripts/sync_github_export.sh`

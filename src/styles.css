@@ -844,6 +844,7 @@ body {
 
 .about-source-head {
   display: flex;
+  min-width: 0;
 }
 
 .about-source-title-block {
@@ -856,9 +857,12 @@ body {
   align-items: center;
   justify-content: space-between;
   gap: 0.5rem;
+  width: 100%;
 }
 
 .about-source-head strong {
+  flex: 1;
+  min-width: 0;
   font-size: 0.76rem;
   line-height: 1.3;
 }
