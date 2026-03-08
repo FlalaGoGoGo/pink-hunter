@@ -113,6 +113,8 @@ PITTSBURGH_BASE = "https://pittsburghpa.treekeepersoftware.com"
 PITTSBURGH_SEARCH_ENDPOINT = f"{PITTSBURGH_BASE}/cffiles/search.cfc"
 PITTSBURGH_GRIDS_ENDPOINT = f"{PITTSBURGH_BASE}/cffiles/grids.cfc"
 TORONTO_STREET_TREE_ALT_CSV = "https://ckan0.cf.opendata.inter.prod-toronto.ca/dataset/6ac4569e-fd37-4cbc-ac63-db3624c5f6a2/resource/5930412c-408e-4ee3-b473-56a790c9dfb7/download/street-tree-data_csv.csv"
+NEW_WESTMINSTER_TREES_LAYER = "https://services3.arcgis.com/A7O8YnTNtzRPIn7T/arcgis/rest/services/Tree_Inventory_(PROD)_4_view/FeatureServer/0"
+NEW_WESTMINSTER_DATASET_PAGE = "https://services3.arcgis.com/A7O8YnTNtzRPIn7T/arcgis/rest/services/Tree_Inventory_(PROD)_4_view/FeatureServer"
 OTTAWA_BLOSSOM_WHERE = (
     "STATUS = 'Active' AND ("
     "UPPER(SPECIES) LIKE '%CHERRY%' OR "
@@ -148,6 +150,7 @@ SUPPORTED_CITIES = (
     "Ottawa",
     "Toronto",
     "Montreal",
+    "New Westminster",
 )
 
 
@@ -2104,6 +2107,105 @@ def fetch_montreal() -> dict[str, Any]:
     }
 
 
+def fetch_new_westminster() -> dict[str, Any]:
+    layer_info = fetch_json(NEW_WESTMINSTER_TREES_LAYER, {"f": "pjson"})
+    total_payload = fetch_json(
+        f"{NEW_WESTMINSTER_TREES_LAYER}/query",
+        {"where": "1=1", "returnCountOnly": "true", "f": "json"},
+    )
+    features = fetch_all_features(
+        NEW_WESTMINSTER_TREES_LAYER,
+        "1=1",
+        ["objectid", "ADDRESS", "MAINTBY", "OWNEDBY", "SPECIES", "CULTIVAR", "GENUS", "FULL_NAME"],
+        "objectid",
+    )
+    mapping_rows = load_mapping(MAPPING_PATH)
+    subtype_rows = load_subtype_mapping(SUBTYPE_MAPPING_PATH)
+    last_edit_at = iso_from_epoch((layer_info.get("editingInfo") or {}).get("lastEditDate"))
+
+    output_features: list[dict[str, Any]] = []
+    normalized_rows: list[dict[str, Any]] = []
+    for feature in features:
+        attrs = feature.get("attributes", {})
+        geom = feature.get("geometry", {})
+        lon_raw = geom.get("x")
+        lat_raw = geom.get("y")
+        lon = float(lon_raw) if lon_raw is not None else None
+        lat = float(lat_raw) if lat_raw is not None else None
+        if lon is None or lat is None:
+            continue
+
+        scientific_raw = format_scientific_display_name(attrs.get("FULL_NAME"))
+        if not scientific_raw:
+            genus = clean_display_name(attrs.get("GENUS")) or ""
+            species = clean_display_name(attrs.get("SPECIES")) or ""
+            scientific_raw = format_scientific_display_name(" ".join(part for part in [genus, species] if part))
+        scientific_normalized = normalize_scientific_name(scientific_raw)
+        species_group, subtype_name = classify_tree_record(scientific_raw, None, mapping_rows, subtype_rows)
+        cultivar = clean_display_name(attrs.get("CULTIVAR"))
+        if not subtype_name and cultivar:
+            subtype_name = cultivar
+        ownership_raw = clean_display_name(attrs.get("OWNEDBY")) or clean_display_name(attrs.get("MAINTBY")) or "City of New Westminster"
+        row_id = f"new-westminster-{attrs.get('objectid')}"
+
+        normalized_rows.append(
+            {
+                "id": row_id,
+                "city": "New Westminster",
+                "source_dataset": "Tree Inventory (Active Trees)",
+                "scientific_raw": scientific_raw,
+                "scientific_normalized": scientific_normalized,
+                "common_name": "",
+                "subtype_name": subtype_name or "",
+                "zip_code": "",
+                "species_group": species_group or "",
+                "ownership": canonical_ownership(ownership_raw),
+                "ownership_raw": ownership_raw,
+                "lat": lat,
+                "lon": lon,
+                "included": "1" if species_group else "0",
+            }
+        )
+        if not species_group:
+            continue
+        output_features.append(
+            {
+                "type": "Feature",
+                "geometry": {"type": "Point", "coordinates": [lon, lat]},
+                "properties": {
+                    "id": row_id,
+                    "species_group": species_group,
+                    "scientific_name": scientific_raw,
+                    "common_name": None,
+                    "subtype_name": subtype_name,
+                    "zip_code": None,
+                    "ownership": canonical_ownership(ownership_raw),
+                    "ownership_raw": ownership_raw,
+                    "city": "New Westminster",
+                    "source_dataset": "Tree Inventory (Active Trees)",
+                    "source_department": "City of New Westminster",
+                    "source_last_edit_at": last_edit_at,
+                },
+            }
+        )
+
+    return {
+        "city": "New Westminster",
+        "region": "bc",
+        "features": output_features,
+        "normalized_rows": normalized_rows,
+        "source": {
+            "name": "Tree Inventory (Active Trees)",
+            "city": "New Westminster",
+            "endpoint": NEW_WESTMINSTER_DATASET_PAGE,
+            "last_edit_at": last_edit_at,
+            "records_fetched": int(total_payload.get("count") or len(features)),
+            "records_included": len(output_features),
+            "note": "Integrated from the official City of New Westminster Tree Inventory ArcGIS layer and official Metro Vancouver administrative boundary.",
+        },
+    }
+
+
 CITY_FETCHERS = {
     "Arlington": fetch_arlington,
     "Baltimore": fetch_baltimore,
@@ -2123,6 +2225,7 @@ CITY_FETCHERS = {
     "Ottawa": fetch_ottawa,
     "Toronto": fetch_toronto,
     "Montreal": fetch_montreal,
+    "New Westminster": fetch_new_westminster,
 }
 
 

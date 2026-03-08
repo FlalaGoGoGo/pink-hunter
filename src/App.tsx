@@ -104,12 +104,17 @@ const REGION_CITY_OVERRIDES: Partial<Record<string, CoverageRegion>> = {
   Burnaby: "bc",
   Coquitlam: "bc",
   Delta: "bc",
+  "Langley City": "bc",
+  "New Westminster": "bc",
+  "North Vancouver City": "bc",
+  "North Vancouver District": "bc",
   "Richmond BC": "bc",
   Saanich: "bc",
   Surrey: "bc",
   "Vancouver BC": "bc",
   "Victoria BC": "bc",
   "West Vancouver": "bc",
+  "White Rock": "bc",
   Portland: "or",
   Beaverton: "or",
   Gresham: "or",
@@ -1062,7 +1067,7 @@ function clipMultiPolygonToGeometry(
 }
 
 function parseRegion(raw: string | null, cities: string[]): CoverageRegion {
-  if (raw === "wa" || raw === "ca" || raw === "or" || raw === "dc" || raw === "bc" || raw === "va" || raw === "md" || raw === "nj" || raw === "ny" || raw === "pa" || raw === "ma") {
+  if (raw === "wa" || raw === "ca" || raw === "or" || raw === "dc" || raw === "bc" || raw === "on" || raw === "qc" || raw === "va" || raw === "md" || raw === "nj" || raw === "ny" || raw === "pa" || raw === "ma") {
     return raw;
   }
   if (cities.length > 0) {
@@ -1095,6 +1100,12 @@ function regionForCity(city: string): CoverageRegion {
   }
   if (city.endsWith(" MA") || city.endsWith(", MA")) {
     return "ma";
+  }
+  if (city.endsWith(" ON") || city.endsWith(", ON")) {
+    return "on";
+  }
+  if (city.endsWith(" QC") || city.endsWith(", QC")) {
+    return "qc";
   }
   if (city.endsWith(" OR") || city.endsWith(", OR")) {
     return "or";
@@ -1133,6 +1144,12 @@ function stateCodeForCity(city: string): string {
   }
   if (region === "ma") {
     return "MA";
+  }
+  if (region === "on") {
+    return "ON";
+  }
+  if (region === "qc") {
+    return "QC";
   }
   if (region === "or") {
     return "OR";

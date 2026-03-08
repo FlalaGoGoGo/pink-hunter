@@ -1,8 +1,15 @@
 {
-  "generated_at": "2026-03-07T01:50:55.671870+00:00",
+  "generated_at": "2026-03-08T03:12:52.681376+00:00",
   "region": "bc",
   "strategy": "city",
   "items": [
+    {
+      "city": "New Westminster",
+      "data_path": "/data/trees.bc.city.new-westminster.v1.geojson",
+      "tree_count": 1786,
+      "raw_bytes": 952340,
+      "gzip_bytes": 40285
+    },
     {
       "city": "Vancouver BC",
       "data_path": "/data/trees.bc.city.vancouver-bc.v1.geojson",

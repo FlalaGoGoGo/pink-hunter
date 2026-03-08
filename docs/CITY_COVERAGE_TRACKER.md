@@ -29,6 +29,7 @@ Last updated: 2026-03-07 (America/Los_Angeles)
 | ✅ | South San Francisco | 784 | Official jurisdiction boundary | Official City of South San Francisco public TreeKeeper inventory integrated from the city trees page plus official GIS boundary |
 | ✅ | Washington DC | 16,533 | Official jurisdiction boundary | Urban Tree Canopy (DDOT); ornamental cherry cultivar mapping expanded |
 | ✅ | Vancouver BC | 34,369 | Official jurisdiction boundary | Official City of Vancouver `public-trees` ODS dataset integrated; boundary polygon derived from official city-boundary line dataset |
+| ✅ | New Westminster | 1,786 | Official jurisdiction boundary | Official ArcGIS `Tree Inventory (Active Trees)` integrated with the official Metro Vancouver administrative boundary for the City of New Westminster |
 | ✅ | Spokane | 8,472 | Official jurisdiction boundary | City of Spokane Parks tree inventory integrated from official open GIS service; genus-level rows normalized to generic scientific placeholders |
 | ✅ | Walla Walla | 1,167 | Official jurisdiction boundary | Official City of Walla Walla `GISBaseMap_TreesVisible` layer integrated from the city ArcGIS service |
 | ✅ | Victoria BC | 6,094 | Official jurisdiction boundary | Official City of Victoria Parks tree-species layer integrated; surveyed-trees layer was reviewed separately but excluded because it has no species field |
@@ -68,6 +69,8 @@ Last updated: 2026-03-07 (America/Los_Angeles)
 | 🩶 | Montgomery County, MD | In gray coverage | Official jurisdiction boundary | Official Montgomery County GIS layers were reviewed; the public `Tree Planting Locations` layer is a planting-program dataset rather than a countywide single-tree inventory |
 | 🩶 | Mountain View | In gray coverage | Official jurisdiction boundary | Official city forestry materials were reviewed, but no public citywide single-tree species dataset was confirmed |
 | 🩶 | Napa | In gray coverage | Official jurisdiction boundary | Official ArcGIS and city data portal searches did not confirm a public citywide single-tree species dataset |
+| 🩶 | North Vancouver City | In gray coverage | Official jurisdiction boundary | Official Metro Vancouver administrative boundaries confirm the jurisdiction geometry, but this round did not confirm a public citywide single-tree species inventory for the City of North Vancouver |
+| 🩶 | North Vancouver District | In gray coverage | Official jurisdiction boundary | Official Metro Vancouver administrative boundaries confirm the jurisdiction geometry, but this round did not confirm a public jurisdiction-wide single-tree species inventory for the District of North Vancouver |
 | 🩶 | Redwood City | In gray coverage | Official jurisdiction boundary | Official city GIS and public-works materials were reviewed, but no verified public citywide single-tree dataset was confirmed in this round |
 | 🩶 | Richmond | In gray coverage | Official jurisdiction boundary | Official Richmond, CA ArcGIS and city data searches did not confirm a public citywide public single-tree species dataset |
 | 🩶 | Richmond BC | In gray coverage | Official jurisdiction boundary | Official City of Richmond GIS boundary services were confirmed, but no public citywide single-tree species inventory was confirmed in this round |
@@ -82,13 +85,14 @@ Last updated: 2026-03-07 (America/Los_Angeles)
 | 🩶 | Sunnyvale | In gray coverage | Official jurisdiction boundary | County and city GIS sources were reviewed, but no verified public citywide single-tree species dataset was confirmed |
 | 🩶 | Tigard | In gray coverage | Official jurisdiction boundary | Official ArcGIS results exposed an ash-tree inventory, not a citywide public single-tree species inventory |
 | 🩶 | West Vancouver | In gray coverage | Official jurisdiction boundary | Official West Vancouver GIS and urban-forest planning materials were reviewed; an official administrative boundary is public, but no public citywide single-tree species inventory was confirmed |
+| 🩶 | White Rock | In gray coverage | Official jurisdiction boundary | Official Metro Vancouver administrative boundaries confirm the City of White Rock geometry, but this round did not confirm a public citywide single-tree species inventory |
+| 🩶 | Langley City | In gray coverage | Official jurisdiction boundary | Official City of Langley / Metro Vancouver public GIS entry points were reviewed; the official jurisdiction boundary is available, but no public citywide single-tree species inventory was confirmed |
 
 ## Validated, Not Yet Integrated
 | Done | City | Estimated In-Scope Count | Status | Blocker |
 |---|---|---:|---|---|
 | ⏳ | Mercer Island | 803 (Town Center only) | Partial-only | Official urban-forestry page documents a 2018 Town Center street-tree inventory, but a verified citywide public single-tree endpoint is still not confirmed |
 | ⏳ | Bremerton | Unknown | Blocked public map | Official Park Tree Map web map exists under a city account, but the underlying feature service currently returns `403 Forbidden` to direct public queries |
-| ⏳ | New Westminster | Unknown | Boundary unresolved | Official ArcGIS organization search surfaced `Tree Inventory (Active Trees)`, but an official jurisdiction boundary source satisfying the hard rule is still not confirmed |
 | ⏳ | Poulsbo | 75 | Partial-only | Official `Historic Trees of Poulsbo` feature service is public, but it is a curated historic-tree layer, not a citywide public inventory |
 | ⏳ | Pasco | Unknown | Partial-only | Official city content found in this round was a `Volunteer Park Tree Walk` map, not a citywide public single-tree inventory |
 
@@ -150,7 +154,6 @@ Last updated: 2026-03-07 (America/Los_Angeles)
 | ⚠️ | Mount Vernon | Not found yet | Official city GIS / urban-forestry entry points reviewed in this round did not confirm a public citywide single-tree inventory |
 | ⚠️ | Burlington, WA | Not found yet | Official city pages reviewed in this round did not confirm a public citywide single-tree inventory |
 | ⚠️ | Anacortes | Not found yet | Official city GIS pages reviewed in this round did not confirm a public citywide single-tree inventory |
-| ⚠️ | White Rock | Not found yet | Official city open-data entry points were checked in this round, but no public citywide single-tree inventory was confirmed |
 | ⚠️ | Abbotsford | Not found yet | Official city maps / GIS entry points reviewed in this round did not confirm a public citywide single-tree inventory |
 | ⚠️ | Edmonds / Mukilteo / Mountlake Terrace / Mill Creek | Not found yet | No reliable official public single-tree species point layers confirmed yet |
 | ⚠️ | Tukwila / Des Moines / Maple Valley / Covington / Auburn | Not found or rejected | No reliable official city-level single-tree + species point layers, or false-geography matches |
@@ -229,12 +232,14 @@ Last updated: 2026-03-07 (America/Los_Angeles)
 - Rechecked the Seattle-to-Vancouver corridor beyond already-covered cities.
 - Promoted `Surrey` into gray coverage after confirming the official city boundary and re-confirming that the official public tree layers are still partial-only (`Important Trees`, `Park Specimen Trees`), not a citywide single-tree inventory.
 - Added gray coverage for `Coquitlam` after confirming the official city boundary and re-checking official GIS services without finding a citywide public single-tree inventory.
-- Official site / GIS checks in this round did not confirm citywide public single-tree inventories for `Mount Vernon`, `Burlington`, `Anacortes`, `White Rock`, or `Abbotsford`.
+- Official site / GIS checks in this round did not confirm citywide public single-tree inventories for `Mount Vernon`, `Burlington`, `Anacortes`, or `Abbotsford`.
 
 ## March 2026 Metro Vancouver Follow-up
-- `New Westminster`: official ArcGIS organization search surfaced `Tree Inventory (Active Trees)`, but an official jurisdiction boundary source has not been confirmed yet under the hard rule, so it remains not integrated.
+- `New Westminster`: integrated from the official `Tree Inventory (Active Trees)` ArcGIS layer after confirming the official Metro Vancouver administrative boundary for the City of New Westminster.
 - `West Vancouver`: promoted into gray coverage after confirming an official administrative boundary source and re-checking urban-forest materials that still do not expose a public citywide single-tree inventory.
-- `Langley City`: official and ArcGIS search results in this round did not confirm a public single-tree inventory or a stable official boundary layer suitable for coverage.
+- `Langley City`: promoted into gray coverage after confirming the official Metro Vancouver administrative boundary for the City of Langley, while official tree-data searches still did not confirm a public citywide single-tree inventory.
+- `White Rock`: promoted into gray coverage after confirming the official Metro Vancouver administrative boundary for the City of White Rock without finding a public citywide single-tree inventory.
+- `North Vancouver City / North Vancouver District`: promoted into gray coverage after confirming both official Metro Vancouver administrative boundaries and re-checking official sources without finding public single-tree inventories.
 
 ## March 2026 Ontario-Quebec / Mid-Atlantic Sweep
 - Integrated `Ottawa` from the official City of Ottawa `Tree Inventory / Inventaire des arbres` ArcGIS layer and official city boundary.

@@ -152,7 +152,7 @@ DELTA_BOUNDARY_LAYER = "https://maps.delta.ca/arcgis/rest/services/DeltaMap/Prop
 SAANICH_BOUNDARY_LAYER = "https://map.saanich.ca/server/rest/services/MAPS/SaanichBaseMap/MapServer/6"
 SURREY_BOUNDARY_LAYER = "https://gisservices.surrey.ca/arcgis/rest/services/OpenData/MapServer/133"
 COQUITLAM_BOUNDARY_LAYER = "https://geodata.coquitlam.ca/arcgis/rest/services/DynamicServices/Cadastral/MapServer/14"
-WEST_VANCOUVER_BOUNDARY_LAYER = "https://services6.arcgis.com/56eqCzQ5SZhBaDST/arcgis/rest/services/Administrative_Boundaries/FeatureServer/10"
+METRO_VANCOUVER_BOUNDARY_LAYER = "https://services6.arcgis.com/56eqCzQ5SZhBaDST/arcgis/rest/services/Administrative_Boundaries/FeatureServer/10"
 RICHMOND_BC_BOUNDARY_LAYER = "https://maps.richmond.ca/internal/rest/services/Hansen/Hansen_Base/MapServer/5"
 OTTAWA_TREES_LAYER = "https://maps.ottawa.ca/arcgis/rest/services/Forestry/MapServer/0"
 OTTAWA_BOUNDARY_LAYER = "https://maps.ottawa.ca/arcgis/rest/services/OfficialPlan/MapServer/71"
@@ -215,12 +215,17 @@ REGION_CITY_OVERRIDES: dict[str, str] = {
     "Burnaby": "bc",
     "Coquitlam": "bc",
     "Delta": "bc",
+    "Langley City": "bc",
+    "New Westminster": "bc",
+    "North Vancouver City": "bc",
+    "North Vancouver District": "bc",
     "Richmond BC": "bc",
     "Saanich": "bc",
     "Surrey": "bc",
     "Vancouver BC": "bc",
     "Victoria BC": "bc",
     "West Vancouver": "bc",
+    "White Rock": "bc",
     "Portland": "or",
     "Mountain View": "ca",
     "Milpitas": "ca",
@@ -313,9 +318,14 @@ CITY_BOUNDARY_HINTS: dict[str, dict[str, str]] = {
     "Burnaby": {"boundary_source": "burnaby_arcgis"},
     "Coquitlam": {"boundary_source": "coquitlam_arcgis"},
     "Delta": {"boundary_source": "delta_arcgis"},
+    "Langley City": {"boundary_source": "metro_vancouver_admin", "fullname": "City of Langley"},
+    "New Westminster": {"boundary_source": "metro_vancouver_admin", "fullname": "City of New Westminster"},
+    "North Vancouver City": {"boundary_source": "metro_vancouver_admin", "fullname": "City of North Vancouver"},
+    "North Vancouver District": {"boundary_source": "metro_vancouver_admin", "fullname": "District of North Vancouver"},
     "Saanich": {"boundary_source": "saanich_arcgis"},
     "Surrey": {"boundary_source": "surrey_arcgis"},
-    "West Vancouver": {"boundary_source": "west_vancouver_arcgis"},
+    "West Vancouver": {"boundary_source": "metro_vancouver_admin", "fullname": "District of West Vancouver"},
+    "White Rock": {"boundary_source": "metro_vancouver_admin", "fullname": "City of White Rock"},
 }
 
 ALLOWED_CENSUS_PLACE_LSADC = {"25", "43"}
@@ -358,6 +368,7 @@ OFFICIAL_DATA_UNAVAILABLE_CITIES: dict[str, str] = {
     "Lake Forest Park": "Official city pages and ArcGIS search did not confirm a city-owned public single-tree species layer.",
     "Lakewood": "Official materials reference inventory work, but current public city sources do not expose a raw single-tree species layer.",
     "Lake Stevens": "City investigated; no official public single-tree species dataset was confirmed.",
+    "Langley City": "Official City of Langley / Metro Vancouver public GIS entry points were reviewed; the official jurisdiction boundary is available, but no public citywide single-tree species inventory was confirmed.",
     "Lynden": "City investigated; no official public single-tree species dataset was confirmed.",
     "Lynnwood": "Official ArcGIS content reviewed was project-specific, not a citywide public single-tree inventory.",
     "Maple Valley": "City investigated; no reliable official public single-tree species dataset was confirmed.",
@@ -375,6 +386,8 @@ OFFICIAL_DATA_UNAVAILABLE_CITIES: dict[str, str] = {
     "Napa": "Official ArcGIS and city data portal searches in this round did not confirm a public citywide single-tree species dataset.",
     "Normandy Park": "City investigated; no official public single-tree species dataset was confirmed.",
     "North Bend": "City investigated; no official public single-tree species dataset was confirmed.",
+    "North Vancouver City": "Official Metro Vancouver administrative boundaries confirm the jurisdiction geometry, but this round did not confirm a public citywide single-tree species inventory for the City of North Vancouver.",
+    "North Vancouver District": "Official Metro Vancouver administrative boundaries confirm the jurisdiction geometry, but this round did not confirm a public jurisdiction-wide single-tree species inventory for the District of North Vancouver.",
     "Olympia": "No current official city single-tree species layer was confirmed; only older or non-city sources were found.",
     "Port Orchard": "City investigated; no official public single-tree species dataset was confirmed.",
     "Redwood City": "Official city GIS and public-works materials were reviewed, but no verified public citywide single-tree dataset was confirmed in this round.",
@@ -400,6 +413,7 @@ OFFICIAL_DATA_UNAVAILABLE_CITIES: dict[str, str] = {
     "Vancouver WA": "Official geohub content surfaced canopy and other inventories, but not a public single-tree species dataset.",
     "Wenatchee": "City investigated; only Wenatchee Valley College campus tree maps surfaced in this round, not a verified City of Wenatchee public tree inventory.",
     "West Vancouver": "Official West Vancouver GIS and urban-forest planning materials were reviewed; an official administrative boundary is public, but no public citywide single-tree species inventory was confirmed.",
+    "White Rock": "Official Metro Vancouver administrative boundaries confirm the City of White Rock geometry, but this round did not confirm a public citywide single-tree species inventory.",
     "Woodinville": "Official city pages did not confirm a public single-tree species point inventory.",
     "Woodway": "City investigated; no official public single-tree species dataset was confirmed.",
     "Yarrow Point": "City investigated; no official public single-tree species dataset was confirmed.",
@@ -2015,10 +2029,13 @@ def fetch_special_city_boundary_feature(city: str) -> dict[str, Any] | None:
     if boundary_source == "surrey_arcgis":
         return fetch_arcgis_boundary_feature(SURREY_BOUNDARY_LAYER, source="City of Surrey Open Data")
 
-    if boundary_source == "west_vancouver_arcgis":
+    if boundary_source == "metro_vancouver_admin":
+        full_name = hint.get("fullname")
+        if not full_name:
+            return None
         return fetch_arcgis_boundary_feature(
-            WEST_VANCOUVER_BOUNDARY_LAYER,
-            where="FullName = 'District of West Vancouver'",
+            METRO_VANCOUVER_BOUNDARY_LAYER,
+            where=f"FullName = '{full_name}'",
             source="Metro Vancouver Administrative Boundaries",
         )
 

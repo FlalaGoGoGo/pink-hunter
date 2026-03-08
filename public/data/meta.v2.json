@@ -1,6 +1,6 @@
 {
   "version": "v2",
-  "generated_at": "2026-03-08T02:11:50.548404+00:00",
+  "generated_at": "2026-03-08T03:13:33.098517+00:00",
   "default_region": "wa",
   "coverage_rule": "official_jurisdiction_boundary_only",
   "coverage_skipped_cities": [],
@@ -42,6 +42,7 @@
     "Lake Forest Park",
     "Lake Stevens",
     "Lakewood",
+    "Langley City",
     "Lynden",
     "Lynnwood",
     "Maple Valley",
@@ -59,6 +60,8 @@
     "Newcastle",
     "Normandy Park",
     "North Bend",
+    "North Vancouver City",
+    "North Vancouver District",
     "Olympia",
     "Port Orchard",
     "Redwood City",
@@ -85,15 +88,16 @@
     "Vancouver WA",
     "Wenatchee",
     "West Vancouver",
+    "White Rock",
     "Woodinville",
     "Woodway",
     "Yarrow Point"
   ],
   "coverage_official_unavailable_skipped_cities": [],
-  "source_count": 48,
-  "total_records": 1184789,
-  "included_records": 366722,
-  "unknown_records": 317552,
+  "source_count": 49,
+  "total_records": 1536037,
+  "included_records": 368508,
+  "unknown_records": 648761,
   "regions": [
     {
       "id": "bc",
@@ -106,31 +110,32 @@
         ],
         [
           -122.62108637425426,
-          49.4073985120608
+          49.4138112645356
         ]
       ],
       "data_path": null,
-      "tree_count": 40463,
-      "city_count": 2,
+      "tree_count": 42249,
+      "city_count": 3,
       "cities": [
+        "New Westminster",
         "Vancouver BC",
         "Victoria BC"
       ],
-      "raw_bytes": 21383630,
-      "gzip_bytes": 971234,
+      "raw_bytes": 22335927,
+      "gzip_bytes": 1011298,
       "warning_level": "none",
       "city_split": {
         "strategy": "city",
         "index_path": "/data/trees.bc.city-index.v1.json",
-        "file_count": 2,
+        "file_count": 3,
         "ready": true
       },
       "species_counts": {
-        "cherry": 19363,
-        "plum": 12800,
+        "cherry": 20082,
+        "plum": 13098,
         "peach": 0,
-        "magnolia": 4068,
-        "crabapple": 4232
+        "magnolia": 4678,
+        "crabapple": 4391
       }
     },
     {
@@ -764,6 +769,15 @@
       "note": "Integrated from the official Ville de Montréal public-trees CSV and arrondissement-derived official jurisdiction boundary."
     },
     {
+      "name": "Tree Inventory (Active Trees)",
+      "city": "New Westminster",
+      "endpoint": "https://services3.arcgis.com/A7O8YnTNtzRPIn7T/arcgis/rest/services/Tree_Inventory_(PROD)_4_view/FeatureServer",
+      "last_edit_at": "2026-03-08T02:02:42.092000+00:00",
+      "records_fetched": 17701,
+      "records_included": 1786,
+      "note": "Integrated from the official City of New Westminster Tree Inventory ArcGIS layer and official Metro Vancouver administrative boundary."
+    },
+    {
       "name": "2015 Street Tree Census - Tree Data",
       "city": "New York City",
       "endpoint": "https://data.cityofnewyork.us/Environment/2015-Street-Tree-Census-Tree-Data/uvpi-gqnh",
@@ -1013,13 +1027,25 @@
     }
   ],
   "species_counts": {
-    "cherry": 162412,
-    "plum": 78817,
+    "cherry": 163131,
+    "plum": 79115,
     "peach": 3520,
-    "magnolia": 58060,
-    "crabapple": 63913
+    "magnolia": 58670,
+    "crabapple": 64072
   },
   "areas": [
+    {
+      "jurisdiction": "New Westminster",
+      "region": "bc",
+      "tree_count": 1786,
+      "species_counts": {
+        "cherry": 719,
+        "plum": 298,
+        "peach": 0,
+        "magnolia": 610,
+        "crabapple": 159
+      }
+    },
     {
       "jurisdiction": "Vancouver BC",
       "region": "bc",
