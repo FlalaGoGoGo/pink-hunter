@@ -33,7 +33,6 @@ import type {
   CoverageCollection,
   CoverageFeatureProps,
   CoverageRegion,
-  JumpArea,
   JumpCountry,
   JumpState,
   JurisdictionType,
@@ -669,6 +668,179 @@ const ABOUT_COPY: Record<
   }
 };
 
+const FIND_PANEL_COPY: Record<
+  Language,
+  {
+    showTitle: string;
+    showBody: string;
+    showButton: string;
+    jumpTitle: string;
+    jumpBody: string;
+    jumpCountry: string;
+    jumpState: string;
+    jumpProvince: string;
+    jumpAnyState: string;
+    jumpAnyProvince: string;
+    jumpButton: string;
+    searchState: string;
+    searchProvince: string;
+    filtersTitle: string;
+    jumpUntrackedTitle: string;
+    jumpUntrackedBody: string;
+  }
+> = {
+  "en-US": {
+    showTitle: "Show Trees",
+    showBody:
+      "Reload all covered tree data for the current visible map area. If the map does not refresh automatically after moving or jumping, try pressing the refresh button once.",
+    showButton: "Refresh visible trees",
+    jumpTitle: "Jump to a specific area",
+    jumpBody: "Choose a country and a state or province, then jump to that area.",
+    jumpCountry: "Country",
+    jumpState: "State",
+    jumpProvince: "Province",
+    jumpAnyState: "Any state",
+    jumpAnyProvince: "Any province",
+    jumpButton: "Jump",
+    searchState: "Search state",
+    searchProvince: "Search province",
+    filtersTitle: "Filters",
+    jumpUntrackedTitle: "Not added to Pink Hunter yet",
+    jumpUntrackedBody: "Pink Hunter has not added tree data for this area yet."
+  },
+  "zh-CN": {
+    showTitle: "显示树木",
+    showBody: "会刷新重新加载当前屏幕地图区域的所有已覆盖树木的数据。如果地图在变换过程中没有自动刷新，请尝试点击旁边的刷新按钮。",
+    showButton: "刷新当前画面树木",
+    jumpTitle: "跳转至指定区域",
+    jumpBody: "选择国家和州/省后，点击 Jump 按钮即可跳转到对应区域。",
+    jumpCountry: "国家",
+    jumpState: "州",
+    jumpProvince: "省",
+    jumpAnyState: "任意州",
+    jumpAnyProvince: "任意省",
+    jumpButton: "跳转",
+    searchState: "搜索州",
+    searchProvince: "搜索省",
+    filtersTitle: "筛选",
+    jumpUntrackedTitle: "Pink Hunter 暂未收录",
+    jumpUntrackedBody: "Pink Hunter 目前还没有添加这个地区的树木数据。"
+  },
+  "zh-TW": {
+    showTitle: "顯示樹木",
+    showBody: "會重新整理並載入目前畫面地圖區域中的所有已覆蓋樹木資料。如果地圖在變換過程中沒有自動更新，請嘗試點擊旁邊的重新整理按鈕。",
+    showButton: "重新整理目前畫面樹木",
+    jumpTitle: "跳轉至指定區域",
+    jumpBody: "選擇國家和州／省後，點擊 Jump 按鈕即可跳轉到對應區域。",
+    jumpCountry: "國家",
+    jumpState: "州",
+    jumpProvince: "省",
+    jumpAnyState: "任意州",
+    jumpAnyProvince: "任意省",
+    jumpButton: "跳轉",
+    searchState: "搜尋州",
+    searchProvince: "搜尋省",
+    filtersTitle: "篩選",
+    jumpUntrackedTitle: "Pink Hunter 尚未收錄",
+    jumpUntrackedBody: "Pink Hunter 目前還沒有加入這個地區的樹木資料。"
+  },
+  "es-ES": {
+    showTitle: "Mostrar árboles",
+    showBody:
+      "Vuelve a cargar todos los datos de árboles cubiertos dentro del área visible del mapa. Si el mapa no se actualiza automáticamente después de moverlo o saltar a otra zona, prueba con el botón de recarga.",
+    showButton: "Recargar árboles visibles",
+    jumpTitle: "Saltar a una zona específica",
+    jumpBody: "Elige un país y un estado o provincia, y luego pulsa Jump para ir a esa zona.",
+    jumpCountry: "País",
+    jumpState: "Estado",
+    jumpProvince: "Provincia",
+    jumpAnyState: "Cualquier estado",
+    jumpAnyProvince: "Cualquier provincia",
+    jumpButton: "Saltar",
+    searchState: "Buscar estado",
+    searchProvince: "Buscar provincia",
+    filtersTitle: "Filtros",
+    jumpUntrackedTitle: "Aún no se ha añadido a Pink Hunter",
+    jumpUntrackedBody: "Pink Hunter todavía no ha añadido datos de árboles para esta zona."
+  },
+  "ko-KR": {
+    showTitle: "나무 표시",
+    showBody:
+      "현재 화면에 보이는 지도 영역 안의 모든 커버된 나무 데이터를 다시 불러옵니다. 지도를 이동하거나 점프한 뒤 자동으로 새로고침되지 않으면 옆의 새로고침 버튼을 눌러 보세요.",
+    showButton: "현재 화면 나무 새로고침",
+    jumpTitle: "지정한 지역으로 이동",
+    jumpBody: "국가와 주 또는 도를 선택한 뒤 Jump 버튼을 누르면 해당 지역으로 이동합니다.",
+    jumpCountry: "국가",
+    jumpState: "주",
+    jumpProvince: "도",
+    jumpAnyState: "모든 주",
+    jumpAnyProvince: "모든 도",
+    jumpButton: "이동",
+    searchState: "주 검색",
+    searchProvince: "도 검색",
+    filtersTitle: "필터",
+    jumpUntrackedTitle: "Pink Hunter에 아직 추가되지 않음",
+    jumpUntrackedBody: "Pink Hunter는 아직 이 지역의 나무 데이터를 추가하지 않았습니다."
+  },
+  "ja-JP": {
+    showTitle: "木を表示",
+    showBody:
+      "現在画面に表示されている地図範囲の、すべての対象樹木データを再読み込みします。地図を移動したりジャンプしたあと自動更新されない場合は、横の更新ボタンを押してください。",
+    showButton: "表示中の木を更新",
+    jumpTitle: "指定した地域へ移動",
+    jumpBody: "国と州または県を選んでから Jump ボタンを押すと、その地域へ移動します。",
+    jumpCountry: "国",
+    jumpState: "州",
+    jumpProvince: "県",
+    jumpAnyState: "すべての州",
+    jumpAnyProvince: "すべての県",
+    jumpButton: "移動",
+    searchState: "州を検索",
+    searchProvince: "県を検索",
+    filtersTitle: "フィルター",
+    jumpUntrackedTitle: "Pink Hunter に未追加",
+    jumpUntrackedBody: "Pink Hunter はこの地域の樹木データをまだ追加していません。"
+  },
+  "fr-FR": {
+    showTitle: "Afficher les arbres",
+    showBody:
+      "Recharge toutes les données d’arbres couvertes dans la zone actuellement visible sur la carte. Si la carte ne se met pas à jour automatiquement après un déplacement ou un saut, utilisez le bouton d’actualisation.",
+    showButton: "Actualiser les arbres visibles",
+    jumpTitle: "Aller vers une zone précise",
+    jumpBody: "Choisissez un pays puis un état ou une province, puis appuyez sur Jump pour aller vers cette zone.",
+    jumpCountry: "Pays",
+    jumpState: "État",
+    jumpProvince: "Province",
+    jumpAnyState: "Tout état",
+    jumpAnyProvince: "Toute province",
+    jumpButton: "Aller",
+    searchState: "Rechercher un état",
+    searchProvince: "Rechercher une province",
+    filtersTitle: "Filtres",
+    jumpUntrackedTitle: "Pas encore ajouté à Pink Hunter",
+    jumpUntrackedBody: "Pink Hunter n’a pas encore ajouté de données d’arbres pour cette zone."
+  },
+  "vi-VN": {
+    showTitle: "Hiển thị cây",
+    showBody:
+      "Tải lại toàn bộ dữ liệu cây đã được bao phủ trong vùng bản đồ hiện đang nhìn thấy. Nếu bản đồ không tự làm mới sau khi di chuyển hoặc nhảy tới vùng khác, hãy thử bấm nút làm mới bên cạnh.",
+    showButton: "Làm mới cây đang nhìn thấy",
+    jumpTitle: "Nhảy tới khu vực cụ thể",
+    jumpBody: "Chọn quốc gia rồi chọn tiểu bang hoặc tỉnh, sau đó bấm Jump để chuyển tới khu vực đó.",
+    jumpCountry: "Quốc gia",
+    jumpState: "Tiểu bang",
+    jumpProvince: "Tỉnh",
+    jumpAnyState: "Mọi tiểu bang",
+    jumpAnyProvince: "Mọi tỉnh",
+    jumpButton: "Nhảy",
+    searchState: "Tìm tiểu bang",
+    searchProvince: "Tìm tỉnh",
+    filtersTitle: "Bộ lọc",
+    jumpUntrackedTitle: "Pink Hunter chưa thêm khu vực này",
+    jumpUntrackedBody: "Pink Hunter hiện chưa thêm dữ liệu cây cho khu vực này."
+  }
+};
+
 const REGION_SWITCH_BOUNDS: Partial<Record<CoverageRegion, [[number, number], [number, number]]>> = {
   wa: [
     [-122.62, 47.23],
@@ -972,6 +1144,30 @@ function preferredBoundsForRegion(
   regionMeta: RegionMeta | null
 ): [[number, number], [number, number]] | null {
   return REGION_SWITCH_BOUNDS[region] ?? boundsForRegion(regionMeta);
+}
+
+function webMercatorToLonLat(x: number, y: number): [number, number] {
+  const lon = (x / 20037508.34) * 180;
+  const lat = (Math.atan(Math.exp((y / 20037508.34) * Math.PI)) * 360) / Math.PI - 90;
+  return [lon, lat];
+}
+
+function normalizeMapBounds(bounds: BoundsTuple | null): BoundsTuple | null {
+  if (!bounds) {
+    return null;
+  }
+
+  const hasProjectedCoordinates = Math.abs(bounds[0][0]) > 180 || Math.abs(bounds[0][1]) > 90;
+  if (!hasProjectedCoordinates) {
+    return normalizeBounds(bounds);
+  }
+
+  const [minLon, minLat] = webMercatorToLonLat(bounds[0][0], bounds[0][1]);
+  const [maxLon, maxLat] = webMercatorToLonLat(bounds[1][0], bounds[1][1]);
+  return normalizeBounds([
+    [minLon, minLat],
+    [maxLon, maxLat]
+  ]);
 }
 
 function normalizeBounds(bounds: BoundsTuple): BoundsTuple {
@@ -1395,8 +1591,6 @@ export default function App(): JSX.Element {
   const [jumpCountry, setJumpCountry] = useState<JumpCountry["id"]>("us");
   const [jumpState, setJumpState] = useState<string>("");
   const [jumpStateSearch, setJumpStateSearch] = useState("");
-  const [jumpArea, setJumpArea] = useState<string>("");
-  const [jumpAreaSearch, setJumpAreaSearch] = useState("");
   const [jumpNotice, setJumpNotice] = useState<JumpNotice | null>(null);
   const [languageMenuOpen, setLanguageMenuOpen] = useState(false);
   const [sheetHeight, setSheetHeight] = useState<number>(0.4);
@@ -1619,6 +1813,33 @@ export default function App(): JSX.Element {
     return ordered.length > 0 ? [...ordered] : (["public", "private"] as OwnershipGroup[]);
   }, [visibleAreaEntries]);
 
+  const viewportAreaEntries = useMemo(() => {
+    if (!effectiveViewportBounds) {
+      return visibleAreaEntries;
+    }
+    return visibleAreaEntries.filter(({ item }) => boundsIntersect(item.bounds, effectiveViewportBounds));
+  }, [effectiveViewportBounds, visibleAreaEntries]);
+
+  const viewportShardEntries = useMemo(() => {
+    const next: Array<{ region: CoverageRegion; shard: AreaShard }> = [];
+    const seen = new Set<string>();
+
+    viewportAreaEntries.forEach(({ region, item }) => {
+      const candidateShards = effectiveViewportBounds
+        ? item.shards.filter((shard) => boundsIntersect(shard.bounds, effectiveViewportBounds))
+        : item.shards;
+      candidateShards.forEach((shard) => {
+        const key = `${region}:${shard.data_path}`;
+        if (!seen.has(key)) {
+          seen.add(key);
+          next.push({ region, shard });
+        }
+      });
+    });
+
+    return next;
+  }, [effectiveViewportBounds, viewportAreaEntries]);
+
   const requiredAreaEntries = useMemo(() => {
     if (selectedSpecies.length === 0 || selectedOwnership.length === 0) {
       return [] as Array<{ region: CoverageRegion; item: AreaIndexItem }>;
@@ -1626,8 +1847,8 @@ export default function App(): JSX.Element {
     if (!effectiveViewportBounds) {
       return visibleAreaEntries;
     }
-    return visibleAreaEntries.filter(({ item }) => boundsIntersect(item.bounds, effectiveViewportBounds));
-  }, [effectiveViewportBounds, selectedOwnership.length, selectedSpecies.length, visibleAreaEntries]);
+    return viewportAreaEntries;
+  }, [effectiveViewportBounds, selectedOwnership.length, selectedSpecies.length, viewportAreaEntries, visibleAreaEntries]);
 
   const requiredShardEntries = useMemo(() => {
     const next: Array<{ region: CoverageRegion; shard: AreaShard }> = [];
@@ -1740,34 +1961,6 @@ export default function App(): JSX.Element {
     });
   }, [allJumpStates, jumpStateSearch]);
 
-  const allJumpAreas = useMemo(() => {
-    if (!data) {
-      return [] as JumpArea[];
-    }
-    return [...data.jumpIndex.areas]
-      .filter((item) => item.country_id === jumpCountry)
-      .filter((item) => !jumpState || item.state_id === jumpState)
-      .sort((left, right) => SORT_COLLATOR.compare(left.display_name, right.display_name));
-  }, [data, jumpCountry, jumpState]);
-
-  const jumpAreas = useMemo(() => {
-    const query = jumpAreaSearch.trim().toLowerCase();
-    if (!jumpState && query.length < 2) {
-      return [] as JumpArea[];
-    }
-    if (!query) {
-      return allJumpAreas;
-    }
-    return allJumpAreas.filter((item) => {
-      return (
-        item.display_name.toLowerCase().includes(query) ||
-        item.jurisdiction.toLowerCase().includes(query)
-      );
-    });
-  }, [allJumpAreas, jumpAreaSearch]);
-
-  const jumpAreaById = useMemo(() => new Map(allJumpAreas.map((item) => [item.id, item] as const)), [allJumpAreas]);
-
   useEffect(() => {
     if (!data) {
       return;
@@ -1783,20 +1976,12 @@ export default function App(): JSX.Element {
 
   useEffect(() => {
     if (!jumpState) {
-      setJumpArea("");
       return;
     }
     if (!allJumpStates.some((item) => item.id === jumpState)) {
       setJumpState("");
-      setJumpArea("");
     }
   }, [allJumpStates, jumpState]);
-
-  useEffect(() => {
-    if (jumpArea && !jumpAreaById.has(jumpArea)) {
-      setJumpArea("");
-    }
-  }, [jumpArea, jumpAreaById]);
 
   const displayCoverage = useMemo(() => {
     if (!data) {
@@ -1807,10 +1992,6 @@ export default function App(): JSX.Element {
     }
     return buildCoverageCollection(data.coverage.features, mapRuntime.polygonClipping);
   }, [data, mapRuntime]);
-
-  const coverageFeatureByJurisdiction = useMemo(() => {
-    return new Map(displayCoverage.features.map((feature) => [String(feature.properties.jurisdiction), feature] as const));
-  }, [displayCoverage.features]);
 
   const filteredFeatures = useMemo(() => {
     if (selectedSpecies.length === 0 || selectedOwnership.length === 0) {
@@ -1875,6 +2056,10 @@ export default function App(): JSX.Element {
 
   const guideCompareCopy = GUIDE_COMPARE_COPY[language];
   const aboutCopy = ABOUT_COPY[language];
+  const findPanelCopy = FIND_PANEL_COPY[language];
+  const jumpSubnationalLabel = jumpCountry === "us" ? findPanelCopy.jumpState : findPanelCopy.jumpProvince;
+  const jumpAnySubnationalLabel = jumpCountry === "us" ? findPanelCopy.jumpAnyState : findPanelCopy.jumpAnyProvince;
+  const jumpSubnationalSearchPlaceholder = jumpCountry === "us" ? findPanelCopy.searchState : findPanelCopy.searchProvince;
 
   useEffect(() => {
     document.title = t(language, "browserTitle");
@@ -2713,15 +2898,16 @@ export default function App(): JSX.Element {
   }
 
   function fitMapToBounds(bounds: BoundsTuple | null): void {
-    if (!bounds) {
+    const normalizedBounds = normalizeMapBounds(bounds);
+    if (!normalizedBounds) {
       return;
     }
-    setViewportBounds(bounds);
+    setViewportBounds(normalizedBounds);
     const map = mapRef.current;
     if (!map || !mapReady) {
       return;
     }
-    map.fitBounds(bounds, {
+    map.fitBounds(normalizedBounds, {
       padding: isDesktop ? 80 : 48,
       duration: 700
     });
@@ -2767,11 +2953,10 @@ export default function App(): JSX.Element {
       return;
     }
 
-    const selectedJumpArea = jumpArea ? jumpAreaById.get(jumpArea) ?? null : null;
     const selectedJumpState = jumpState ? jumpStates.find((item) => item.id === jumpState) ?? null : null;
     const selectedJumpCountry = jumpCountries.find((item) => item.id === jumpCountry) ?? null;
-    const targetBounds = selectedJumpArea?.bounds ?? selectedJumpState?.bounds ?? selectedJumpCountry?.bounds ?? null;
-    const targetRegion = selectedJumpArea?.region_hint ?? selectedJumpState?.region_hint ?? null;
+    const targetBounds = selectedJumpState?.bounds ?? selectedJumpCountry?.bounds ?? null;
+    const targetRegion = selectedJumpState?.region_hint ?? null;
 
     setSelectedTree(null);
     setJumpNotice(null);
@@ -2782,38 +2967,11 @@ export default function App(): JSX.Element {
     }
     fitMapToBounds(targetBounds);
 
-    if (selectedJumpArea) {
-      if (selectedJumpArea.coverage_status === "official_unavailable") {
-        const coverageFeature = coverageFeatureByJurisdiction.get(selectedJumpArea.jurisdiction);
-        if (coverageFeature) {
-          const bounds = targetBounds;
-          setSelectedCoverage({
-            coordinates: bounds
-              ? [
-                  (bounds[0][0] + bounds[1][0]) / 2,
-                  (bounds[0][1] + bounds[1][1]) / 2
-                ]
-              : [mapView.lon, mapView.lat],
-            properties: coverageFeature.properties
-          });
-        }
-        setJumpNotice({
-          kind: "official_unavailable",
-          title: t(language, "jumpOfficialUnavailableTitle"),
-          body: t(language, "jumpOfficialUnavailableBody")
-        });
-      } else if (selectedJumpArea.coverage_status === "untracked") {
-        setJumpNotice({
-          kind: "untracked",
-          title: t(language, "jumpUntrackedTitle"),
-          body: t(language, "jumpUntrackedBody")
-        });
-      }
-    } else if (selectedJumpState && !selectedJumpState.region_hint) {
+    if (selectedJumpState && !selectedJumpState.region_hint) {
       setJumpNotice({
         kind: "untracked",
-        title: t(language, "jumpUntrackedTitle"),
-        body: t(language, "jumpUntrackedBody")
+        title: findPanelCopy.jumpUntrackedTitle,
+        body: findPanelCopy.jumpUntrackedBody
       });
     }
 
@@ -2822,12 +2980,24 @@ export default function App(): JSX.Element {
     }
   }
 
-  function showAllFilters(): void {
+  function refreshViewportTrees(): void {
     setSelectedSpecies([...ALL_SPECIES]);
     setSelectedOwnership([...allOwnershipOptions]);
     setSelectedTree(null);
     setSelectedCoverage(null);
     setJumpNotice(null);
+    setRegionShardCache((current) => {
+      const next = { ...current };
+      viewportShardEntries.forEach(({ region, shard }) => {
+        if (!next[region]?.[shard.data_path]) {
+          return;
+        }
+        const regionCache = { ...(next[region] ?? {}) };
+        delete regionCache[shard.data_path];
+        next[region] = regionCache;
+      });
+      return next;
+    });
   }
 
   function clearAllFilters(): void {
@@ -3035,48 +3205,69 @@ export default function App(): JSX.Element {
               <section className="filters show-panel">
                 <section className="show-block">
                   <div className="show-block-header">
-                    <h3>{t(language, "showAllPanelTitle")}</h3>
-                    <button className="clear-btn show-all-btn" onClick={showAllFilters} type="button">
-                      {t(language, "showAll")}
+                    <h3>{findPanelCopy.showTitle}</h3>
+                    <button
+                      aria-label={findPanelCopy.showButton}
+                      className="clear-btn show-all-btn"
+                      onClick={refreshViewportTrees}
+                      title={findPanelCopy.showButton}
+                      type="button"
+                    >
+                      <svg aria-hidden="true" viewBox="0 0 24 24">
+                        <path
+                          d="M20 12a8 8 0 1 1-2.34-5.66"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth="2"
+                        />
+                        <path
+                          d="M20 4v6h-6"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth="2"
+                        />
+                      </svg>
                     </button>
                   </div>
-                  <p className="show-block-copy">{t(language, "showAllPanelBody")}</p>
+                  <p className="show-block-copy">{findPanelCopy.showBody}</p>
                 </section>
 
                 <section className="show-block">
                   <div className="show-block-header">
-                    <h3>{t(language, "jumpTitle")}</h3>
+                    <h3>{findPanelCopy.jumpTitle}</h3>
                   </div>
-                  <p className="show-block-copy">{t(language, "jumpBody")}</p>
+                  <p className="show-block-copy">{findPanelCopy.jumpBody}</p>
                   <div className="jump-grid">
                     <label className="jump-field">
-                      <span>{t(language, "jumpCountry")}</span>
+                      <span>{findPanelCopy.jumpCountry}</span>
                       <select
                         className="jump-select"
                         onChange={(event) => {
                           const nextCountry = event.target.value as JumpCountry["id"];
                           setJumpCountry(nextCountry);
                           setJumpState("");
-                          setJumpArea("");
                           setJumpStateSearch("");
-                          setJumpAreaSearch("");
                         }}
                         value={jumpCountry}
                       >
                         {jumpCountries.map((country) => (
                           <option key={country.id} value={country.id}>
-                            {country.emoji} {country.label}
+                            {country.emoji} {COUNTRY_LABELS[language][country.id]}
                           </option>
                         ))}
                       </select>
                     </label>
 
                     <label className="jump-field">
-                      <span>{t(language, "jumpStateProvince")}</span>
+                      <span>{jumpSubnationalLabel}</span>
                       <input
                         className="filter-search-input jump-search-input"
                         onChange={(event) => setJumpStateSearch(event.target.value)}
-                        placeholder={t(language, "searchStateProvincePlaceholder")}
+                        placeholder={jumpSubnationalSearchPlaceholder}
                         type="search"
                         value={jumpStateSearch}
                       />
@@ -3085,12 +3276,10 @@ export default function App(): JSX.Element {
                         onChange={(event) => {
                           const nextState = event.target.value;
                           setJumpState(nextState);
-                          setJumpArea("");
-                          setJumpAreaSearch("");
                         }}
                         value={jumpState}
                       >
-                        <option value="">{t(language, "jumpAnyStateProvince")}</option>
+                        <option value="">{jumpAnySubnationalLabel}</option>
                         {jumpStates.map((state) => (
                           <option key={state.id} value={state.id}>
                             {state.label}
@@ -3098,33 +3287,10 @@ export default function App(): JSX.Element {
                         ))}
                       </select>
                     </label>
-
-                    <label className="jump-field">
-                      <span>{t(language, "jumpArea")}</span>
-                      <input
-                        className="filter-search-input jump-search-input"
-                        onChange={(event) => setJumpAreaSearch(event.target.value)}
-                        placeholder={t(language, "searchCityPlaceholder")}
-                        type="search"
-                        value={jumpAreaSearch}
-                      />
-                      <select
-                        className="jump-select"
-                        onChange={(event) => setJumpArea(event.target.value)}
-                        value={jumpArea}
-                      >
-                        <option value="">{t(language, "jumpAnyArea")}</option>
-                        {jumpAreas.map((area) => (
-                          <option key={area.id} value={area.id}>
-                            {area.display_name}
-                          </option>
-                        ))}
-                      </select>
-                    </label>
                   </div>
                   <div className="jump-actions">
                     <button className="clear-btn jump-btn" onClick={handleJump} type="button">
-                      {t(language, "jumpButton")}
+                      {findPanelCopy.jumpButton}
                     </button>
                   </div>
                   {jumpNotice && (
@@ -3137,7 +3303,7 @@ export default function App(): JSX.Element {
 
                 <section className="show-block">
                   <div className="filters-heading">
-                    <h3>{t(language, "filtersSectionTitle")}</h3>
+                    <h3>{findPanelCopy.filtersTitle}</h3>
                     <div className="filter-actions">
                       <button className="clear-btn" onClick={selectAllFilters} type="button">
                         {t(language, "selectAll")}
@@ -3456,6 +3622,11 @@ export default function App(): JSX.Element {
 
               <div className="about-section">
                 <h3 className="about-section-title">{aboutCopy.sourcesTitle}</h3>
+                <div className="about-copy-block">
+                  {aboutCopy.disclaimer.map((paragraph) => (
+                    <p key={paragraph}>{paragraph}</p>
+                  ))}
+                </div>
                 <article className="about-card about-sources-shell">
                   <input
                     className="filter-search-input about-source-search-input"
@@ -3557,15 +3728,6 @@ export default function App(): JSX.Element {
                     </div>
                   )}
                 </article>
-              </div>
-
-              <div className="about-section">
-                <h3 className="about-section-title">{aboutCopy.disclaimerTitle}</h3>
-                <div className="about-copy-block">
-                  {aboutCopy.disclaimer.map((paragraph) => (
-                    <p key={paragraph}>{paragraph}</p>
-                  ))}
-                </div>
               </div>
 
               <div className="about-section">

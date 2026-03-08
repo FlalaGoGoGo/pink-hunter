@@ -17,6 +17,20 @@
   box-sizing: border-box;
 }
 
+button,
+select,
+input,
+textarea {
+  font: inherit;
+  color: inherit;
+}
+
+button,
+select {
+  -webkit-appearance: none;
+  appearance: none;
+}
+
 html,
 body,
 #root {
@@ -359,6 +373,7 @@ body {
   border-radius: 12px;
   border: 1px solid rgba(139, 78, 103, 0.3);
   background: #fff;
+  color: #5d3e4d;
   font-weight: 700;
   font-size: 0.78rem;
 }
@@ -366,6 +381,7 @@ body {
 .tab-btn.active {
   background: var(--rose-100);
   border-color: rgba(161, 70, 109, 0.52);
+  color: #5d3e4d;
 }
 
 .record-count {
@@ -415,7 +431,19 @@ body {
 }
 
 .show-all-btn {
+  width: 2.75rem;
+  min-width: 2.75rem;
+  min-height: 2.75rem;
+  padding: 0;
+  border-radius: 999px;
+  display: inline-grid;
+  place-items: center;
   background: linear-gradient(180deg, #fff0f6, #ffe6ef);
+}
+
+.show-all-btn svg {
+  width: 1.1rem;
+  height: 1.1rem;
 }
 
 .show-panel {
@@ -543,6 +571,7 @@ body {
   border-radius: 999px;
   border: 1px solid rgba(139, 78, 103, 0.3);
   background: #fff;
+  color: #5d3e4d;
   font-size: 0.76rem;
   font-weight: 700;
 }
@@ -550,6 +579,7 @@ body {
 .chip.active {
   background: linear-gradient(180deg, #ffe5ef, #ffd7e7);
   border-color: rgba(163, 70, 112, 0.54);
+  color: #5d3e4d;
 }
 
 .species-chip {
@@ -557,8 +587,9 @@ body {
 }
 
 .species-chip.species-chip-cherry {
-  background: rgba(239, 121, 173, 0.1);
+  background: #fff;
   border-color: rgba(239, 121, 173, 0.4);
+  color: #cf5f92;
 }
 
 .species-chip.species-chip-cherry.active {
@@ -568,8 +599,9 @@ body {
 }
 
 .species-chip.species-chip-plum {
-  background: rgba(217, 118, 180, 0.1);
+  background: #fff;
   border-color: rgba(217, 118, 180, 0.4);
+  color: #b85a99;
 }
 
 .species-chip.species-chip-plum.active {
@@ -579,8 +611,9 @@ body {
 }
 
 .species-chip.species-chip-peach {
-  background: rgba(243, 154, 136, 0.12);
+  background: #fff;
   border-color: rgba(243, 154, 136, 0.42);
+  color: #d8846e;
 }
 
 .species-chip.species-chip-peach.active {
@@ -590,8 +623,9 @@ body {
 }
 
 .species-chip.species-chip-magnolia {
-  background: rgba(184, 134, 234, 0.12);
+  background: #fff;
   border-color: rgba(184, 134, 234, 0.42);
+  color: #8d63ca;
 }
 
 .species-chip.species-chip-magnolia.active {
@@ -601,8 +635,9 @@ body {
 }
 
 .species-chip.species-chip-crabapple {
-  background: rgba(255, 111, 159, 0.1);
+  background: #fff;
   border-color: rgba(255, 111, 159, 0.4);
+  color: #da5b8a;
 }
 
 .species-chip.species-chip-crabapple.active {

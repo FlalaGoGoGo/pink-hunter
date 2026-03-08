@@ -339,6 +339,7 @@ def fetch_us_state_extent(state_fips: str) -> list[list[float]] | None:
         {
             "where": f"STATE='{state_fips}'",
             "returnExtentOnly": "true",
+            "outSR": "4326",
             "f": "json",
         },
     )

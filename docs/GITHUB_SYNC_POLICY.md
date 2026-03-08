@@ -22,6 +22,8 @@ Last updated: 2026-03-06 (America/Los_Angeles)
 - Preferred sync helper: `scripts/sync_github_export.sh`
 - Example:
   - `./scripts/sync_github_export.sh "Sync latest product changes"`
+- The helper must sync through a fresh temporary clone on every run, then replace the local export repo only after a successful push.
+- Do not rely on a long-lived `.git/index` inside `/Users/zhangziling/Documents/Project-Pink-Hunter/GitHub/pink-hunter`; that was the source of repeated hangs and index corruption.
 
 ## Notes
 - The GitHub export repo intentionally excludes local-only build caches such as `node_modules/`, `dist/`, `.DS_Store`, and `*.tsbuildinfo`.
@@ -39,3 +41,4 @@ Last updated: 2026-03-06 (America/Los_Angeles)
   - `hard_fail`: `>= 30 MiB raw`
 - Aggregate region size is tracked as advisory only and does not count as a GitHub single-file risk.
 - Keep `public/CNAME` synchronized because the production custom domain is `pinkhunter.flalaz.com`.
+- If the local export repo ever becomes unhealthy, delete it and let the sync helper recreate it from a fresh clone rather than trying to recover the old git metadata.
