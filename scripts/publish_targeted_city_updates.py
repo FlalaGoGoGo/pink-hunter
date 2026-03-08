@@ -140,6 +140,8 @@ MOUNTAIN_VIEW_TREES_LAYER = "https://services8.arcgis.com/A76GjgcBUTTcwFGS/arcgi
 MOUNTAIN_VIEW_DATASET_PAGE = "https://services8.arcgis.com/A76GjgcBUTTcwFGS/arcgis/rest/services/Heritage_Trees_JM/FeatureServer/10"
 SACRAMENTO_TREES_LAYER = "https://services5.arcgis.com/54falWtcpty3V47Z/arcgis/rest/services/City_Maintained_Trees/FeatureServer/0"
 SACRAMENTO_DATASET_PAGE = "https://data.cityofsacramento.org/datasets/b9b716e09b5048179ab648bb4518452b_0/explore"
+WEST_SACRAMENTO_TREES_LAYER = "https://gis.cityofwestsacramento.org/server/rest/services/Tree_Inventory_MIL1/MapServer/0"
+WEST_SACRAMENTO_DATASET_PAGE = "https://gis.cityofwestsacramento.org/server/rest/services/Tree_Inventory_MIL1/MapServer/0"
 SUNNYVALE_TREES_LAYER = "https://services.arcgis.com/NkcnS0qk4w2wasOJ/arcgis/rest/services/Tree_Inventories_in_Santa_Clara_County_WFL1/FeatureServer/0"
 SUNNYVALE_DATASET_PAGE = "https://www.arcgis.com/home/item.html?id=58f9d735c5b94915ba5374c82415a26f"
 SANTA_CLARA_COUNTY_TREES_DATASET_PAGE = SUNNYVALE_DATASET_PAGE
@@ -272,6 +274,7 @@ SUPPORTED_CITIES = (
     "Milpitas",
     "Morgan Hill",
     "Sacramento",
+    "West Sacramento",
     "San Mateo",
     "San Rafael",
     "Saratoga",
@@ -3403,6 +3406,115 @@ def fetch_sacramento() -> dict[str, Any]:
     }
 
 
+def fetch_west_sacramento() -> dict[str, Any]:
+    layer_info = fetch_json(WEST_SACRAMENTO_TREES_LAYER, {"f": "pjson"})
+    where = (
+        "UPPER(BotanicalN) LIKE 'PRUNUS%' OR "
+        "UPPER(BotanicalN) LIKE 'MALUS%' OR "
+        "UPPER(BotanicalN) LIKE 'MAGNOLIA%' OR "
+        "UPPER(CommonName) LIKE '%CHERRY%' OR "
+        "UPPER(CommonName) LIKE '%PLUM%' OR "
+        "UPPER(CommonName) LIKE '%PEACH%' OR "
+        "UPPER(CommonName) LIKE '%MAGNOLIA%' OR "
+        "UPPER(CommonName) LIKE '%CRABAPPLE%' OR "
+        "UPPER(CommonName) LIKE '%APPLE%'"
+    )
+    total_payload = fetch_json(
+        f"{WEST_SACRAMENTO_TREES_LAYER}/query",
+        {"where": where, "returnCountOnly": "true", "f": "json"},
+    )
+    features = fetch_all_features(
+        WEST_SACRAMENTO_TREES_LAYER,
+        where,
+        ["OBJECTID", "CommonName", "BotanicalN", "Latitude", "Longitude"],
+        "OBJECTID",
+    )
+    zip_index = fetch_us_city_zip_index("West Sacramento")
+    mapping_rows = load_mapping(MAPPING_PATH)
+    subtype_rows = load_subtype_mapping(SUBTYPE_MAPPING_PATH)
+    last_edit_at = iso_from_epoch((layer_info.get("editingInfo") or {}).get("lastEditDate"))
+
+    output_features: list[dict[str, Any]] = []
+    normalized_rows: list[dict[str, Any]] = []
+    for feature in features:
+        attrs = feature.get("attributes", {})
+        geom = feature.get("geometry", {})
+        lon_raw = geom.get("x")
+        lat_raw = geom.get("y")
+        if lon_raw is None or lat_raw is None:
+            lon_raw = attrs.get("Longitude")
+            lat_raw = attrs.get("Latitude")
+        lon = float(lon_raw) if lon_raw is not None else None
+        lat = float(lat_raw) if lat_raw is not None else None
+        if lon is None or lat is None:
+            continue
+
+        common_name = clean_common_name(attrs.get("CommonName"))
+        scientific_raw = format_scientific_display_name(attrs.get("BotanicalN"), common_name)
+        scientific_normalized = normalize_scientific_name(scientific_raw)
+        species_group, subtype_name = classify_tree_record(scientific_raw, common_name, mapping_rows, subtype_rows)
+        ownership_raw = "City of West Sacramento"
+        zip_code = assign_zip_code(lon, lat, zip_index)
+        row_id = f"west-sacramento-{attrs.get('OBJECTID')}"
+
+        normalized_rows.append(
+            {
+                "id": row_id,
+                "city": "West Sacramento",
+                "source_dataset": "Tree Inventory",
+                "scientific_raw": scientific_raw,
+                "scientific_normalized": scientific_normalized,
+                "common_name": common_name or "",
+                "subtype_name": subtype_name or "",
+                "zip_code": zip_code or "",
+                "species_group": species_group or "",
+                "ownership": canonical_ownership(ownership_raw),
+                "ownership_raw": ownership_raw,
+                "lat": lat,
+                "lon": lon,
+                "included": "1" if species_group else "0",
+            }
+        )
+        if not species_group:
+            continue
+        output_features.append(
+            {
+                "type": "Feature",
+                "geometry": {"type": "Point", "coordinates": [lon, lat]},
+                "properties": {
+                    "id": row_id,
+                    "species_group": species_group,
+                    "scientific_name": scientific_raw,
+                    "common_name": common_name,
+                    "subtype_name": subtype_name,
+                    "zip_code": zip_code,
+                    "ownership": canonical_ownership(ownership_raw),
+                    "ownership_raw": ownership_raw,
+                    "city": "West Sacramento",
+                    "source_dataset": "Tree Inventory",
+                    "source_department": "City of West Sacramento",
+                    "source_last_edit_at": last_edit_at,
+                },
+            }
+        )
+
+    return {
+        "city": "West Sacramento",
+        "region": "ca",
+        "features": output_features,
+        "normalized_rows": normalized_rows,
+        "source": {
+            "name": "Tree Inventory",
+            "city": "West Sacramento",
+            "endpoint": WEST_SACRAMENTO_DATASET_PAGE,
+            "last_edit_at": last_edit_at,
+            "records_fetched": int(total_payload.get("count") or len(features)),
+            "records_included": len(output_features),
+            "note": "Integrated from the official City of West Sacramento Tree Inventory ArcGIS layer and official jurisdiction boundary.",
+        },
+    }
+
+
 def fetch_sunnyvale() -> dict[str, Any]:
     layer_info = fetch_json(SUNNYVALE_TREES_LAYER, {"f": "pjson"})
     total_payload = fetch_json(
@@ -3734,6 +3846,7 @@ CITY_FETCHERS = {
     "Milpitas": fetch_milpitas,
     "Morgan Hill": fetch_morgan_hill,
     "Sacramento": fetch_sacramento,
+    "West Sacramento": fetch_west_sacramento,
     "San Mateo": fetch_san_mateo,
     "San Rafael": fetch_san_rafael,
     "Saratoga": fetch_saratoga,

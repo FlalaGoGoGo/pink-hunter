@@ -159,6 +159,7 @@ Live domain:
 - Saratoga
 - South San Francisco
 - Sunnyvale
+- West Sacramento
 
 </details>
 
@@ -323,6 +324,7 @@ Live domain:
 - Saratoga: [Tree Inventories in Santa Clara County](https://www.arcgis.com/home/item.html?id=58f9d735c5b94915ba5374c82415a26f)
 - South San Francisco: [City Trees](https://www.ssfca.gov/Departments/Parks-Recreation/Divisions/Parks-Division/Trees)
 - Sunnyvale: [Tree Inventories in Santa Clara County](https://www.arcgis.com/home/item.html?id=58f9d735c5b94915ba5374c82415a26f)
+- West Sacramento: [Tree Inventory](https://gis.cityofwestsacramento.org/server/rest/services/Tree_Inventory_MIL1/MapServer/0)
 
 </details>
 

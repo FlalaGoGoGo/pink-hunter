@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-03-08T20:25:41.052516+00:00",
+  "generated_at": "2026-03-08T20:45:49.697396+00:00",
   "region": "ca",
   "strategy": "area_shard",
   "items": [
@@ -1504,6 +1504,59 @@
           "tree_count": 8,
           "raw_bytes": 5101,
           "gzip_bytes": 600
+        }
+      ]
+    },
+    {
+      "jurisdiction": "West Sacramento",
+      "slug": "west-sacramento",
+      "display_name": "West Sacramento",
+      "jurisdiction_type": "city",
+      "state_province": "CA",
+      "country": "United States",
+      "bounds": [
+        [
+          -121.58120677878227,
+          2.080308854912202e-06
+        ],
+        [
+          2.0301611073187027e-05,
+          38.60013380914057
+        ]
+      ],
+      "tree_count": 1480,
+      "zip_codes": [
+        "95605",
+        "95691",
+        "None"
+      ],
+      "species_counts": {
+        "cherry": 127,
+        "plum": 764,
+        "peach": 9,
+        "magnolia": 535,
+        "crabapple": 45
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "west-sacramento-001",
+          "bounds": [
+            [
+              -121.58120677878227,
+              2.080308854912202e-06
+            ],
+            [
+              2.0301611073187027e-05,
+              38.60013380914057
+            ]
+          ],
+          "data_path": "/data/trees.ca.area.west-sacramento.v2.geojson",
+          "tree_count": 1480,
+          "raw_bytes": 773322,
+          "gzip_bytes": 26592
         }
       ]
     }

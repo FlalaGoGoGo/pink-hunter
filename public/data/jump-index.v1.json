@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-03-08T20:29:04.472957+00:00",
+  "generated_at": "2026-03-08T20:51:35.927641+00:00",
   "countries": [
     {
       "id": "ca",
@@ -3752,16 +3752,16 @@
       "area_type": "city",
       "bounds": [
         [
-          -121.7939,
-          38.5349
+          -121.79393999994149,
+          38.53486999995253
         ],
         [
-          -121.6758,
-          38.5756
+          -121.67577699985708,
+          38.57555500004569
         ]
       ],
       "region_hint": "ca",
-      "coverage_status": "untracked"
+      "coverage_status": "official_unavailable"
     },
     {
       "id": "ca:del-mar",
@@ -4232,16 +4232,16 @@
       "area_type": "city",
       "bounds": [
         [
-          -121.4885,
-          38.3614
+          -121.48847000041418,
+          38.36136800013541
         ],
         [
-          -121.2693,
-          38.4529
+          -121.26934100039658,
+          38.452912000200314
         ]
       ],
       "region_hint": "ca",
-      "coverage_status": "untracked"
+      "coverage_status": "official_unavailable"
     },
     {
       "id": "ca:emeryville",
@@ -4512,16 +4512,16 @@
       "area_type": "city",
       "bounds": [
         [
-          -121.2101,
-          38.6102
+          -121.21014299964182,
+          38.61019699992191
         ],
         [
-          -121.0791,
-          38.7179
+          -121.07908900005881,
+          38.71786299993136
         ]
       ],
       "region_hint": "ca",
-      "coverage_status": "untracked"
+      "coverage_status": "official_unavailable"
     },
     {
       "id": "ca:fontana",
@@ -9312,16 +9312,16 @@
       "area_type": "city",
       "bounds": [
         [
-          -121.4466,
-          38.7162
+          -121.44664799991074,
+          38.716185000270585
         ],
         [
-          -121.2165,
-          38.8244
+          -121.21648600026973,
+          38.8243940002148
         ]
       ],
       "region_hint": "ca",
-      "coverage_status": "untracked"
+      "coverage_status": "official_unavailable"
     },
     {
       "id": "ca:ross",
@@ -10992,12 +10992,12 @@
       "area_type": "city",
       "bounds": [
         [
-          -122.00034939991502,
-          37.41331363010158
+          -122.06519199979188,
+          37.3302259996565
         ],
         [
-          -122.0000310998604,
-          37.41347128024036
+          -121.98240200017612,
+          37.464087000089634
         ]
       ],
       "region_hint": "ca",
@@ -11852,16 +11852,16 @@
       "area_type": "city",
       "bounds": [
         [
-          -121.5883,
-          38.5019
+          -121.58120677878227,
+          2.080308854912202e-06
         ],
         [
-          -121.5116,
-          38.6009
+          2.0301611073187027e-05,
+          38.60013380914057
         ]
       ],
       "region_hint": "ca",
-      "coverage_status": "untracked"
+      "coverage_status": "covered"
     },
     {
       "id": "ca:westlake",
@@ -19301,7 +19301,7 @@
         ]
       ],
       "region_hint": "nj",
-      "coverage_status": "untracked"
+      "coverage_status": "official_unavailable"
     },
     {
       "id": "nj:fort-lee",
@@ -59801,7 +59801,7 @@
         ]
       ],
       "region_hint": "pa",
-      "coverage_status": "untracked"
+      "coverage_status": "official_unavailable"
     },
     {
       "id": "pa:rosslyn-farms",

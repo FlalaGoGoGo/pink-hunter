@@ -1,6 +1,6 @@
 {
   "version": "v2",
-  "generated_at": "2026-03-08T20:29:04.472957+00:00",
+  "generated_at": "2026-03-08T20:52:16.995961+00:00",
   "default_region": "wa",
   "coverage_rule": "official_jurisdiction_boundary_only",
   "coverage_skipped_cities": [],
@@ -23,14 +23,17 @@
     "Covington",
     "Daly City",
     "Davenport",
+    "Davis",
     "Delta",
     "Des Moines",
     "Duvall",
     "Edmonds",
+    "Elk Grove",
     "Enumclaw",
     "Federal Way",
     "Ferndale",
     "Fife",
+    "Folsom",
     "Granite Falls",
     "Gresham",
     "Hayward",
@@ -69,6 +72,7 @@
     "Richland",
     "Richmond",
     "Richmond BC",
+    "Roseville",
     "Saanich",
     "Salem",
     "Santa Ana",
@@ -96,10 +100,10 @@
   "coverage_official_unavailable_skipped_cities": [
     "Vancouver WA"
   ],
-  "source_count": 64,
-  "total_records": 1631709,
-  "included_records": 447043,
-  "unknown_records": 657323,
+  "source_count": 65,
+  "total_records": 1633193,
+  "included_records": 448523,
+  "unknown_records": 657345,
   "regions": [
     {
       "id": "bc",
@@ -159,16 +163,16 @@
       "bounds": [
         [
           -122.57296798402149,
-          32.54441471717994
+          2.080308854912202e-06
         ],
         [
-          -116.92799001850382,
+          2.0301611073187027e-05,
           38.68529312901432
         ]
       ],
       "data_path": null,
-      "tree_count": 138584,
-      "city_count": 24,
+      "tree_count": 140064,
+      "city_count": 25,
       "cities": [
         "Berkeley",
         "Burlingame",
@@ -193,25 +197,26 @@
         "San Rafael",
         "Saratoga",
         "South San Francisco",
-        "Sunnyvale"
+        "Sunnyvale",
+        "West Sacramento"
       ],
-      "raw_bytes": 70998171,
-      "gzip_bytes": 3000846,
+      "raw_bytes": 71771493,
+      "gzip_bytes": 3027438,
       "warning_level": "none",
       "city_split": null,
       "species_counts": {
-        "cherry": 15943,
-        "plum": 38662,
-        "peach": 4133,
-        "magnolia": 75566,
-        "crabapple": 4280
+        "cherry": 16070,
+        "plum": 39426,
+        "peach": 4142,
+        "magnolia": 76101,
+        "crabapple": 4325
       },
       "ownership_groups": [
         "public",
         "private"
       ],
-      "aggregate_raw_bytes": 70998171,
-      "aggregate_gzip_bytes": 3000846,
+      "aggregate_raw_bytes": 71771493,
+      "aggregate_gzip_bytes": 3027438,
       "aggregate_warning_level": "very_large",
       "largest_shard_raw_bytes": 20242132,
       "largest_shard_gzip_bytes": 770544,
@@ -219,8 +224,8 @@
       "area_split": {
         "strategy": "area_shard",
         "index_path": "/data/trees.ca.area-index.v2.json",
-        "area_count": 24,
-        "shard_count": 24,
+        "area_count": 25,
+        "shard_count": 25,
         "ready": true
       },
       "largest_shard_warning_level": "none"
@@ -1472,6 +1477,15 @@
       "records_included": 16533
     },
     {
+      "name": "Tree Inventory",
+      "city": "West Sacramento",
+      "endpoint": "https://gis.cityofwestsacramento.org/server/rest/services/Tree_Inventory_MIL1/MapServer/0",
+      "last_edit_at": "",
+      "records_fetched": 1484,
+      "records_included": 1480,
+      "note": "Integrated from the official City of West Sacramento Tree Inventory ArcGIS layer and official jurisdiction boundary."
+    },
+    {
       "name": "Yakima Trees",
       "city": "Yakima",
       "endpoint": "https://gis.yakimawa.gov/arcgis/rest/services/Parks/Trees/MapServer/0",
@@ -1481,11 +1495,11 @@
     }
   ],
   "species_counts": {
-    "cherry": 170482,
-    "plum": 94726,
-    "peach": 5884,
-    "magnolia": 107254,
-    "crabapple": 68697
+    "cherry": 170609,
+    "plum": 95490,
+    "peach": 5893,
+    "magnolia": 107789,
+    "crabapple": 68742
   },
   "areas": [
     {
@@ -1862,6 +1876,20 @@
         "peach": 0,
         "magnolia": 8,
         "crabapple": 0
+      },
+      "jurisdiction_type": "city",
+      "state_province": "CA"
+    },
+    {
+      "jurisdiction": "West Sacramento",
+      "region": "ca",
+      "tree_count": 1480,
+      "species_counts": {
+        "cherry": 127,
+        "plum": 764,
+        "peach": 9,
+        "magnolia": 535,
+        "crabapple": 45
       },
       "jurisdiction_type": "city",
       "state_province": "CA"

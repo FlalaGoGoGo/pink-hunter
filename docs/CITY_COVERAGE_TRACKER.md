@@ -42,6 +42,7 @@ Last updated: 2026-03-08 (America/Los_Angeles)
 | ✅ | Saratoga | 6 | Official jurisdiction boundary | Official Santa Clara County public `Tree Inventories in Santa Clara County` service integrated using the `City = Saratoga` subset and official jurisdiction boundary |
 | ✅ | South San Francisco | 784 | Official jurisdiction boundary | Official City of South San Francisco public TreeKeeper inventory integrated from the city trees page plus official GIS boundary |
 | ✅ | Sunnyvale | 8 | Official jurisdiction boundary | Official Santa Clara County public `Tree Inventories in Santa Clara County` service integrated using the `City = Sunnyvale` subset and official jurisdiction boundary |
+| ✅ | West Sacramento | 1,480 | Official jurisdiction boundary | Official City of West Sacramento `Tree Inventory` ArcGIS layer integrated from the city's GIS service and official jurisdiction boundary |
 | ✅ | Washington DC | 16,533 | Official jurisdiction boundary | Urban Tree Canopy (DDOT); ornamental cherry cultivar mapping expanded |
 | ✅ | Vancouver BC | 34,369 | Official jurisdiction boundary | Official City of Vancouver `public-trees` ODS dataset integrated; boundary polygon derived from official city-boundary line dataset |
 | ✅ | New Westminster | 1,786 | Official jurisdiction boundary | Official ArcGIS `Tree Inventory (Active Trees)` integrated with the official Metro Vancouver administrative boundary for the City of New Westminster |
@@ -77,6 +78,9 @@ Last updated: 2026-03-08 (America/Los_Angeles)
 | 🩶 | Delta | In gray coverage | Official jurisdiction boundary | Official Delta GIS/open-data sources were reviewed; no public single-tree species inventory was confirmed |
 | 🩶 | Alameda | In gray coverage | Official jurisdiction boundary | Official city tree and urban-forest materials were reviewed, but no verified public citywide single-tree dataset was confirmed in this round |
 | 🩶 | Daly City | In gray coverage | Official jurisdiction boundary | Official city urban-forestry and GIS entry points were reviewed, but no verified public citywide single-tree species dataset was confirmed in this round |
+| 🩶 | Davis | In gray coverage | Official jurisdiction boundary | Official City of Davis GIS and urban-forest materials were reviewed, but no public citywide single-tree species inventory was confirmed in this round |
+| 🩶 | Elk Grove | In gray coverage | Official jurisdiction boundary | Official City of Elk Grove GIS and open-data entry points were reviewed, but no public citywide single-tree species inventory was confirmed in this round |
+| 🩶 | Folsom | In gray coverage | Official jurisdiction boundary | Official City of Folsom GIS and open-data entry points were reviewed, but no public citywide single-tree species inventory was confirmed in this round |
 | 🩶 | Gresham | In gray coverage | Official jurisdiction boundary | Official ArcGIS search and city-site checks did not confirm a public citywide single-tree species dataset |
 | 🩶 | Hayward | In gray coverage | Official jurisdiction boundary | Official city urban-forestry and GIS entry points were reviewed, but no verified public citywide single-tree species dataset was confirmed in this round |
 | 🩶 | Hillsboro | In gray coverage | Official jurisdiction boundary | Official ArcGIS search and city-site checks did not confirm a public citywide single-tree species dataset |
@@ -88,6 +92,7 @@ Last updated: 2026-03-08 (America/Los_Angeles)
 | 🩶 | North Vancouver City | In gray coverage | Official jurisdiction boundary | Official Metro Vancouver administrative boundaries confirm the jurisdiction geometry, but this round did not confirm a public citywide single-tree species inventory for the City of North Vancouver |
 | 🩶 | North Vancouver District | In gray coverage | Official jurisdiction boundary | Official Metro Vancouver administrative boundaries confirm the jurisdiction geometry, but this round did not confirm a public jurisdiction-wide single-tree species inventory for the District of North Vancouver |
 | 🩶 | Redwood City | In gray coverage | Official jurisdiction boundary | Official city GIS and public-works materials were reviewed, but no verified public citywide single-tree dataset was confirmed in this round |
+| 🩶 | Roseville | In gray coverage | Official jurisdiction boundary | Official City of Roseville GIS and open-data entry points were reviewed, but no public citywide single-tree species inventory was confirmed in this round |
 | 🩶 | Richmond | In gray coverage | Official jurisdiction boundary | Official Richmond, CA ArcGIS and city data searches did not confirm a public citywide public single-tree species dataset |
 | 🩶 | Richmond BC | In gray coverage | Official jurisdiction boundary | Official City of Richmond GIS boundary services were confirmed, but no public citywide single-tree species inventory was confirmed in this round |
 | 🩶 | Saanich | In gray coverage | Official jurisdiction boundary | Official Saanich GIS/open-data sources were reviewed; no public single-tree species inventory was confirmed |
@@ -238,6 +243,10 @@ Last updated: 2026-03-08 (America/Los_Angeles)
 ## March 2026 Texas / South Bay Expansion
 - Integrated `Houston` from the official City of Houston public `COH Urban Forestry Trees` web-map service using blossom filtering on `SPECIES` and the official jurisdiction boundary.
 - Integrated `Los Gatos`, `Morgan Hill`, `Gilroy`, and `Saratoga` from the official Santa Clara County public `Tree Inventories in Santa Clara County` service using city-specific subsets and official jurisdiction boundaries.
+
+## March 2026 Sacramento Ring Expansion
+- Integrated `West Sacramento` from the official City of West Sacramento `Tree Inventory` ArcGIS layer and official jurisdiction boundary.
+- Added gray coverage for `Elk Grove`, `Roseville`, `Folsom`, and `Davis` after reviewing official GIS and open-data entry points without confirming a public citywide single-tree species inventory.
 
 ## March 2026 Northeast Expansion
 - Integrated `New York City` from the official NYC Parks `2015 Street Tree Census - Tree Data` dataset on NYC Open Data.
