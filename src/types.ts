@@ -122,7 +122,7 @@ export interface JumpCountry {
 }
 
 export interface JumpState {
-  id: CoverageRegion;
+  id: string;
   country_id: JumpCountry["id"];
   code: string;
   label: string;
@@ -133,7 +133,7 @@ export interface JumpState {
 export interface JumpArea {
   id: string;
   country_id: JumpCountry["id"];
-  state_id: CoverageRegion;
+  state_id: string;
   jurisdiction: string;
   display_name: string;
   area_type: JurisdictionType;

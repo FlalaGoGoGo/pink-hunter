@@ -24,6 +24,7 @@ DATA_DIR = ROOT / "public" / "data"
 REFERENCE_DIR = ROOT / "data" / "reference"
 US_JUMP_CACHE_PATH = REFERENCE_DIR / "jump_us_areas.v1.json"
 
+US_STATE_LAYER_URL = "https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/State_County/MapServer/0/query"
 US_PLACE_LAYER_URL = "https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/Places_CouSub_ConCity_SubMCD/MapServer/18/query"
 US_COUNTY_LAYER_URL = "https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/State_County/MapServer/55/query"
 
@@ -59,6 +60,76 @@ REGION_FULL_NAMES: dict[str, str] = {
     "qc": "Quebec",
 }
 
+US_STATE_META_BY_FIPS: dict[str, dict[str, str]] = {
+    "01": {"code": "al", "label": "Alabama"},
+    "02": {"code": "ak", "label": "Alaska"},
+    "04": {"code": "az", "label": "Arizona"},
+    "05": {"code": "ar", "label": "Arkansas"},
+    "06": {"code": "ca", "label": "California"},
+    "08": {"code": "co", "label": "Colorado"},
+    "09": {"code": "ct", "label": "Connecticut"},
+    "10": {"code": "de", "label": "Delaware"},
+    "11": {"code": "dc", "label": "District of Columbia"},
+    "12": {"code": "fl", "label": "Florida"},
+    "13": {"code": "ga", "label": "Georgia"},
+    "15": {"code": "hi", "label": "Hawaii"},
+    "16": {"code": "id", "label": "Idaho"},
+    "17": {"code": "il", "label": "Illinois"},
+    "18": {"code": "in", "label": "Indiana"},
+    "19": {"code": "ia", "label": "Iowa"},
+    "20": {"code": "ks", "label": "Kansas"},
+    "21": {"code": "ky", "label": "Kentucky"},
+    "22": {"code": "la", "label": "Louisiana"},
+    "23": {"code": "me", "label": "Maine"},
+    "24": {"code": "md", "label": "Maryland"},
+    "25": {"code": "ma", "label": "Massachusetts"},
+    "26": {"code": "mi", "label": "Michigan"},
+    "27": {"code": "mn", "label": "Minnesota"},
+    "28": {"code": "ms", "label": "Mississippi"},
+    "29": {"code": "mo", "label": "Missouri"},
+    "30": {"code": "mt", "label": "Montana"},
+    "31": {"code": "ne", "label": "Nebraska"},
+    "32": {"code": "nv", "label": "Nevada"},
+    "33": {"code": "nh", "label": "New Hampshire"},
+    "34": {"code": "nj", "label": "New Jersey"},
+    "35": {"code": "nm", "label": "New Mexico"},
+    "36": {"code": "ny", "label": "New York"},
+    "37": {"code": "nc", "label": "North Carolina"},
+    "38": {"code": "nd", "label": "North Dakota"},
+    "39": {"code": "oh", "label": "Ohio"},
+    "40": {"code": "ok", "label": "Oklahoma"},
+    "41": {"code": "or", "label": "Oregon"},
+    "42": {"code": "pa", "label": "Pennsylvania"},
+    "44": {"code": "ri", "label": "Rhode Island"},
+    "45": {"code": "sc", "label": "South Carolina"},
+    "46": {"code": "sd", "label": "South Dakota"},
+    "47": {"code": "tn", "label": "Tennessee"},
+    "48": {"code": "tx", "label": "Texas"},
+    "49": {"code": "ut", "label": "Utah"},
+    "50": {"code": "vt", "label": "Vermont"},
+    "51": {"code": "va", "label": "Virginia"},
+    "53": {"code": "wa", "label": "Washington"},
+    "54": {"code": "wv", "label": "West Virginia"},
+    "55": {"code": "wi", "label": "Wisconsin"},
+    "56": {"code": "wy", "label": "Wyoming"},
+}
+
+CANADA_PROVINCE_META: dict[str, dict[str, Any]] = {
+    "ab": {"label": "Alberta", "bounds": [[-120.0, 48.9], [-109.0, 60.0]]},
+    "bc": {"label": "British Columbia", "bounds": [[-139.1, 48.2], [-114.0, 60.1]]},
+    "mb": {"label": "Manitoba", "bounds": [[-102.1, 48.9], [-88.9, 60.0]]},
+    "nb": {"label": "New Brunswick", "bounds": [[-69.2, 44.5], [-63.7, 48.1]]},
+    "nl": {"label": "Newfoundland and Labrador", "bounds": [[-67.9, 46.5], [-52.5, 60.4]]},
+    "ns": {"label": "Nova Scotia", "bounds": [[-66.5, 43.3], [-59.7, 47.1]]},
+    "nt": {"label": "Northwest Territories", "bounds": [[-136.7, 59.9], [-102.0, 78.0]]},
+    "nu": {"label": "Nunavut", "bounds": [[-109.0, 60.0], [-61.0, 83.2]]},
+    "on": {"label": "Ontario", "bounds": [[-95.2, 41.7], [-74.3, 56.9]]},
+    "pe": {"label": "Prince Edward Island", "bounds": [[-64.5, 45.9], [-61.9, 47.1]]},
+    "qc": {"label": "Quebec", "bounds": [[-79.8, 44.9], [-57.1, 62.6]]},
+    "sk": {"label": "Saskatchewan", "bounds": [[-110.1, 49.0], [-101.4, 60.0]]},
+    "yt": {"label": "Yukon", "bounds": [[-141.1, 59.9], [-123.8, 69.7]]},
+}
+
 COUNTRY_META = {
     "us": {"label": "United States", "emoji": "🇺🇸"},
     "ca": {"label": "Canada", "emoji": "🇨🇦"},
@@ -75,6 +146,22 @@ STATE_FIPS_TO_REGION = {
     "36": "ny",
     "42": "pa",
     "25": "ma",
+}
+
+COVERED_REGION_BY_STATE_CODE = {
+    "wa": "wa",
+    "ca": "ca",
+    "or": "or",
+    "dc": "dc",
+    "va": "va",
+    "md": "md",
+    "nj": "nj",
+    "ny": "ny",
+    "pa": "pa",
+    "ma": "ma",
+    "bc": "bc",
+    "on": "on",
+    "qc": "qc",
 }
 
 DISPLAY_NAME_OVERRIDES = {
@@ -234,6 +321,21 @@ def fetch_json(url: str, params: dict[str, Any]) -> Any:
     return response.json()
 
 
+def fetch_us_state_extent(state_fips: str) -> list[list[float]] | None:
+    payload = fetch_json(
+        US_STATE_LAYER_URL,
+        {
+            "where": f"STATE='{state_fips}'",
+            "returnExtentOnly": "true",
+            "f": "json",
+        },
+    )
+    extent = payload.get("extent")
+    if not extent:
+        return None
+    return normalize_bounds((extent["xmin"], extent["ymin"], extent["xmax"], extent["ymax"]))
+
+
 def load_boundary_bounds(path: Path) -> list[list[float]] | None:
     payload = load_json(path)
     if payload.get("type") == "FeatureCollection":
@@ -287,8 +389,8 @@ def load_us_jump_areas() -> list[dict[str, Any]]:
     for feature in place_features:
         properties = feature.get("properties", {})
         state = str(properties.get("STATE", "")).strip()
-        region = STATE_FIPS_TO_REGION.get(state)
-        if not region:
+        state_meta = US_STATE_META_BY_FIPS.get(state)
+        if not state_meta:
             continue
         jurisdiction = normalize_us_place_name(properties)
         bounds = normalize_bounds(bounds_for_geometry(feature.get("geometry")))
@@ -296,11 +398,12 @@ def load_us_jump_areas() -> list[dict[str, Any]]:
             continue
         areas.append(
             {
-                "region": region,
+                "state_id": state_meta["code"],
                 "jurisdiction": jurisdiction,
                 "display_name": normalize_display_name(jurisdiction),
                 "area_type": "city",
                 "bounds": bounds,
+                "region_hint": COVERED_REGION_BY_STATE_CODE.get(state_meta["code"]),
                 "coverage_status": "untracked",
             }
         )
@@ -308,8 +411,8 @@ def load_us_jump_areas() -> list[dict[str, Any]]:
     for feature in county_features:
         properties = feature.get("properties", {})
         state = str(properties.get("STATE", "")).strip()
-        region = STATE_FIPS_TO_REGION.get(state)
-        if not region:
+        state_meta = US_STATE_META_BY_FIPS.get(state)
+        if not state_meta:
             continue
         jurisdiction, area_type = normalize_us_county_name(properties)
         bounds = normalize_bounds(bounds_for_geometry(feature.get("geometry")))
@@ -317,11 +420,12 @@ def load_us_jump_areas() -> list[dict[str, Any]]:
             continue
         areas.append(
             {
-                "region": region,
+                "state_id": state_meta["code"],
                 "jurisdiction": jurisdiction,
                 "display_name": normalize_display_name(jurisdiction),
                 "area_type": area_type,
                 "bounds": bounds,
+                "region_hint": COVERED_REGION_BY_STATE_CODE.get(state_meta["code"]),
                 "coverage_status": "untracked",
             }
         )
@@ -333,6 +437,9 @@ def load_us_jump_areas() -> list[dict[str, Any]]:
 def build_jump_index(data_dir: Path) -> dict[str, Any]:
     meta = load_json(data_dir / "meta.v2.json")
     coverage = load_json(data_dir / "coverage.v1.geojson")
+    region_meta_by_id = {
+        str(entry.get("id")): entry for entry in meta.get("regions", [])
+    }
 
     area_map: dict[tuple[str, str], dict[str, Any]] = {}
     coverage_status_map: dict[str, str] = {
@@ -349,12 +456,12 @@ def build_jump_index(data_dir: Path) -> dict[str, Any]:
             jurisdiction = str(item.get("jurisdiction", "")).strip()
             if not jurisdiction:
                 continue
-            key = (region, jurisdiction)
-            area_map[key] = {
-                "id": f"{region}:{slugify_token(jurisdiction)}",
-                "country_id": REGION_COUNTRY[region],
-                "state_id": region,
-                "jurisdiction": jurisdiction,
+        key = (region, jurisdiction)
+        area_map[key] = {
+            "id": f"{region}:{slugify_token(jurisdiction)}",
+            "country_id": REGION_COUNTRY[region],
+            "state_id": region,
+            "jurisdiction": jurisdiction,
                 "display_name": normalize_display_name(str(item.get("display_name") or jurisdiction)),
                 "area_type": str(item.get("jurisdiction_type") or infer_jurisdiction_type(jurisdiction)),
                 "bounds": item.get("bounds"),
@@ -416,43 +523,66 @@ def build_jump_index(data_dir: Path) -> dict[str, Any]:
     }
 
     for item in load_us_jump_areas():
-        region = str(item["region"]).strip()
+        state_id = str(item["state_id"]).strip()
         jurisdiction = str(item["jurisdiction"]).strip()
-        if not region or not jurisdiction:
+        if not state_id or not jurisdiction:
             continue
-        key = (region, jurisdiction)
-        display_key = (region, normalize_display_name(jurisdiction))
+        region_hint = item.get("region_hint")
+        key = (str(region_hint or state_id), jurisdiction)
+        display_key = (state_id, normalize_display_name(jurisdiction))
         if key in area_map or display_key in existing_display_keys:
             continue
         area_map[key] = {
-            "id": f"{region}:{slugify_token(jurisdiction)}",
-            "country_id": REGION_COUNTRY[region],
-            "state_id": region,
+            "id": f"{state_id}:{slugify_token(jurisdiction)}",
+            "country_id": "us",
+            "state_id": state_id,
             "jurisdiction": jurisdiction,
             "display_name": str(item["display_name"]),
             "area_type": str(item["area_type"]),
             "bounds": item["bounds"],
-            "region_hint": region,
+            "region_hint": region_hint,
             "coverage_status": coverage_status_map.get(jurisdiction, "untracked"),
         }
         existing_display_keys.add(display_key)
 
     states: list[dict[str, Any]] = []
-    for region in REGION_LABELS:
-        state_bounds = union_bounds([item["bounds"] for (item_region, _), item in area_map.items() if item_region == region and item.get("bounds")])
+    for state_meta in US_STATE_META_BY_FIPS.values():
+        state_id = state_meta["code"]
+        state_fips = next((fips for fips, meta_item in US_STATE_META_BY_FIPS.items() if meta_item["code"] == state_id), None)
+        state_bounds = fetch_us_state_extent(state_fips) if state_fips else None
         if not state_bounds:
-            region_meta = next((entry for entry in meta.get("regions", []) if entry.get("id") == region), None)
-            state_bounds = region_meta.get("bounds") if region_meta else None
+            state_bounds = union_bounds(
+                [
+                    item["bounds"]
+                    for item in area_map.values()
+                    if item.get("country_id") == "us" and item.get("state_id") == state_id and item.get("bounds")
+                ]
+            )
         if not state_bounds:
             continue
         states.append(
             {
-                "id": region,
-                "country_id": REGION_COUNTRY[region],
-                "code": region.upper(),
-                "label": REGION_FULL_NAMES[region],
+                "id": state_id,
+                "country_id": "us",
+                "code": state_id.upper(),
+                "label": state_meta["label"],
                 "bounds": state_bounds,
-                "region_hint": region,
+                "region_hint": COVERED_REGION_BY_STATE_CODE.get(state_id),
+            }
+        )
+
+    for state_id, province_meta in CANADA_PROVINCE_META.items():
+        state_bounds = province_meta["bounds"]
+        if state_id in region_meta_by_id and region_meta_by_id[state_id].get("bounds"):
+            state_bounds = region_meta_by_id[state_id]["bounds"]
+        states.append(
+            {
+                "id": state_id,
+                "country_id": "ca",
+                "code": state_id.upper(),
+                "label": province_meta["label"],
+                "bounds": state_bounds,
+                "region_hint": COVERED_REGION_BY_STATE_CODE.get(state_id),
             }
         )
 

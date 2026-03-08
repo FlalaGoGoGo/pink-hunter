@@ -1380,8 +1380,10 @@ export default function App(): JSX.Element {
   const [selectedSpecies, setSelectedSpecies] = useState<SpeciesGroup[]>(initialUrlState.species);
   const [selectedOwnership, setSelectedOwnership] = useState<OwnershipGroup[]>(initialUrlState.ownership);
   const [jumpCountry, setJumpCountry] = useState<JumpCountry["id"]>("us");
-  const [jumpState, setJumpState] = useState<CoverageRegion | "">("");
+  const [jumpState, setJumpState] = useState<string>("");
+  const [jumpStateSearch, setJumpStateSearch] = useState("");
   const [jumpArea, setJumpArea] = useState<string>("");
+  const [jumpAreaSearch, setJumpAreaSearch] = useState("");
   const [jumpNotice, setJumpNotice] = useState<JumpNotice | null>(null);
   const [languageMenuOpen, setLanguageMenuOpen] = useState(false);
   const [sheetHeight, setSheetHeight] = useState<number>(0.4);
@@ -1706,7 +1708,7 @@ export default function App(): JSX.Element {
     return [...data.jumpIndex.countries].sort((left, right) => SORT_COLLATOR.compare(left.label, right.label));
   }, [data]);
 
-  const jumpStates = useMemo(() => {
+  const allJumpStates = useMemo(() => {
     if (!data) {
       return [] as JumpState[];
     }
@@ -1715,7 +1717,17 @@ export default function App(): JSX.Element {
       .sort((left, right) => SORT_COLLATOR.compare(left.label, right.label));
   }, [data, jumpCountry]);
 
-  const jumpAreas = useMemo(() => {
+  const jumpStates = useMemo(() => {
+    const query = jumpStateSearch.trim().toLowerCase();
+    if (!query) {
+      return allJumpStates;
+    }
+    return allJumpStates.filter((item) => {
+      return item.label.toLowerCase().includes(query) || item.code.toLowerCase().includes(query);
+    });
+  }, [allJumpStates, jumpStateSearch]);
+
+  const allJumpAreas = useMemo(() => {
     if (!data) {
       return [] as JumpArea[];
     }
@@ -1725,7 +1737,23 @@ export default function App(): JSX.Element {
       .sort((left, right) => SORT_COLLATOR.compare(left.display_name, right.display_name));
   }, [data, jumpCountry, jumpState]);
 
-  const jumpAreaById = useMemo(() => new Map(jumpAreas.map((item) => [item.id, item] as const)), [jumpAreas]);
+  const jumpAreas = useMemo(() => {
+    const query = jumpAreaSearch.trim().toLowerCase();
+    if (!jumpState && query.length < 2) {
+      return [] as JumpArea[];
+    }
+    if (!query) {
+      return allJumpAreas;
+    }
+    return allJumpAreas.filter((item) => {
+      return (
+        item.display_name.toLowerCase().includes(query) ||
+        item.jurisdiction.toLowerCase().includes(query)
+      );
+    });
+  }, [allJumpAreas, jumpAreaSearch]);
+
+  const jumpAreaById = useMemo(() => new Map(allJumpAreas.map((item) => [item.id, item] as const)), [allJumpAreas]);
 
   useEffect(() => {
     if (!data) {
@@ -1745,11 +1773,11 @@ export default function App(): JSX.Element {
       setJumpArea("");
       return;
     }
-    if (!jumpStates.some((item) => item.id === jumpState)) {
+    if (!allJumpStates.some((item) => item.id === jumpState)) {
       setJumpState("");
       setJumpArea("");
     }
-  }, [jumpState, jumpStates]);
+  }, [allJumpStates, jumpState]);
 
   useEffect(() => {
     if (jumpArea && !jumpAreaById.has(jumpArea)) {
@@ -2768,6 +2796,12 @@ export default function App(): JSX.Element {
           body: t(language, "jumpUntrackedBody")
         });
       }
+    } else if (selectedJumpState && !selectedJumpState.region_hint) {
+      setJumpNotice({
+        kind: "untracked",
+        title: t(language, "jumpUntrackedTitle"),
+        body: t(language, "jumpUntrackedBody")
+      });
     }
 
     if (!isDesktop) {
@@ -2786,6 +2820,14 @@ export default function App(): JSX.Element {
   function clearAllFilters(): void {
     setSelectedSpecies([]);
     setSelectedOwnership([]);
+    setSelectedTree(null);
+    setSelectedCoverage(null);
+    setJumpNotice(null);
+  }
+
+  function selectAllFilters(): void {
+    setSelectedSpecies([...ALL_SPECIES]);
+    setSelectedOwnership([...allOwnershipOptions]);
     setSelectedTree(null);
     setSelectedCoverage(null);
     setJumpNotice(null);
@@ -3003,6 +3045,8 @@ export default function App(): JSX.Element {
                           setJumpCountry(nextCountry);
                           setJumpState("");
                           setJumpArea("");
+                          setJumpStateSearch("");
+                          setJumpAreaSearch("");
                         }}
                         value={jumpCountry}
                       >
@@ -3016,19 +3060,27 @@ export default function App(): JSX.Element {
 
                     <label className="jump-field">
                       <span>{t(language, "jumpStateProvince")}</span>
+                      <input
+                        className="filter-search-input jump-search-input"
+                        onChange={(event) => setJumpStateSearch(event.target.value)}
+                        placeholder={t(language, "searchStateProvincePlaceholder")}
+                        type="search"
+                        value={jumpStateSearch}
+                      />
                       <select
                         className="jump-select"
                         onChange={(event) => {
-                          const nextState = event.target.value as CoverageRegion | "";
+                          const nextState = event.target.value;
                           setJumpState(nextState);
                           setJumpArea("");
+                          setJumpAreaSearch("");
                         }}
                         value={jumpState}
                       >
                         <option value="">{t(language, "jumpAnyStateProvince")}</option>
                         {jumpStates.map((state) => (
                           <option key={state.id} value={state.id}>
-                            {REGION_COUNTRY_EMOJIS[state.id]} {state.label}
+                            {state.label}
                           </option>
                         ))}
                       </select>
@@ -3036,6 +3088,13 @@ export default function App(): JSX.Element {
 
                     <label className="jump-field">
                       <span>{t(language, "jumpArea")}</span>
+                      <input
+                        className="filter-search-input jump-search-input"
+                        onChange={(event) => setJumpAreaSearch(event.target.value)}
+                        placeholder={t(language, "searchCityPlaceholder")}
+                        type="search"
+                        value={jumpAreaSearch}
+                      />
                       <select
                         className="jump-select"
                         onChange={(event) => setJumpArea(event.target.value)}
@@ -3067,6 +3126,9 @@ export default function App(): JSX.Element {
                   <div className="filters-heading">
                     <h3>{t(language, "filtersSectionTitle")}</h3>
                     <div className="filter-actions">
+                      <button className="clear-btn" onClick={selectAllFilters} type="button">
+                        {t(language, "selectAll")}
+                      </button>
                       <button className="clear-btn" onClick={clearAllFilters} type="button">
                         {t(language, "clearAll")}
                       </button>
