@@ -132,10 +132,10 @@ Last updated: 2026-03-08 (America/Los_Angeles)
 | ⚠️ | Lynnwood | Not usable yet | Official ArcGIS content found in this round was a South Lynnwood urban-forest project web map, not a citywide single-tree species inventory |
 | ⚠️ | Olympia | Not usable yet | Search turned up a 2007 street-tree layer owned by a non-city account; no current official city single-tree species layer was confirmed |
 | ⚠️ | Ontario | Not found yet | Official city site and GIS entry points reviewed in this round did not confirm a public citywide single-tree species inventory |
-| ⚠️ | Chicago | Not found yet | Official City of Chicago open-data and ArcGIS entry points reviewed in this round did not confirm a public citywide single-tree species inventory |
-| ⚠️ | Phoenix | Not found yet | Official City of Phoenix open-data CKAN catalog and city GIS entry points reviewed in this round did not confirm a public citywide single-tree species inventory |
-| ⚠️ | Detroit | Not found yet | Official Detroit open-data and ArcGIS Hub searches reviewed in this round did not confirm a public citywide single-tree species inventory |
-| ⚠️ | Atlanta | Not found yet | Official City of Atlanta GIS and open-data entry points reviewed in this round did not confirm a public citywide single-tree species inventory |
+| ⚠️ | Chicago | Official unavailable (gray coverage) | Official City of Chicago open-data and ArcGIS entry points reviewed in this round did not confirm a public citywide single-tree species inventory |
+| ⚠️ | Phoenix | Official unavailable (gray coverage) | Official City of Phoenix open-data CKAN catalog, ArcGIS entries, and urban-forest materials reviewed in this round did not confirm a public citywide single-tree species inventory |
+| ⚠️ | Detroit | Official unavailable (gray coverage) | Official Detroit open-data and ArcGIS Hub searches reviewed in this round did not confirm a public citywide single-tree species inventory |
+| ⚠️ | Atlanta | Official unavailable (gray coverage) | Official City of Atlanta GIS and open-data entry points reviewed in this round did not confirm a public citywide single-tree species inventory |
 | ⚠️ | Bothell | Not usable yet | Official Urban Forest Management Plan references a street-tree inventory summary PDF, but no public raw single-tree species endpoint was confirmed |
 | ⚠️ | Medina | Not found yet | The previously guessed GIS page path now resolves to 404 and no official public tree inventory layer was confirmed |
 | ⚠️ | Lake Forest Park | Not found yet | Official city pages and ArcGIS search did not confirm a city-owned public single-tree species layer |

@@ -186,6 +186,10 @@ PUBLISH_TARGET_SPLIT_BYTES = 20 * 1024 * 1024
 PUBLISH_MUST_SPLIT_BYTES = 25 * 1024 * 1024
 PUBLISH_HARD_FAIL_BYTES = 30 * 1024 * 1024
 REGION_LABELS: dict[str, str] = {
+    "az": "AZ",
+    "ga": "GA",
+    "il": "IL",
+    "mi": "MI",
     "wa": "WA",
     "ca": "CA",
     "co": "CO",
@@ -206,6 +210,10 @@ REGION_LABELS: dict[str, str] = {
 }
 SPECIES_GROUPS: list[str] = ["cherry", "plum", "peach", "magnolia", "crabapple"]
 REGION_CITY_OVERRIDES: dict[str, str] = {
+    "Phoenix": "az",
+    "Atlanta": "ga",
+    "Chicago": "il",
+    "Detroit": "mi",
     "Denver": "co",
     "Austin": "tx",
     "Dallas": "tx",
@@ -293,6 +301,10 @@ REGION_CITY_OVERRIDES: dict[str, str] = {
 }
 
 CITY_BOUNDARY_HINTS: dict[str, dict[str, str]] = {
+    "Phoenix": {"state": "04"},
+    "Atlanta": {"state": "13"},
+    "Chicago": {"state": "17"},
+    "Detroit": {"state": "26"},
     "Denver": {"state": "08"},
     "Austin": {"state": "48"},
     "Dallas": {"state": "48"},
@@ -386,6 +398,7 @@ OFFICIAL_DATA_UNAVAILABLE_CITIES: dict[str, str] = {
     "Alexandria": "The official City of Alexandria urban-forestry and GIS pages were reviewed, but no public single-tree species inventory was confirmed.",
     "Auburn": "City investigated; no reliable official public single-tree species dataset was confirmed.",
     "Alameda": "Official city tree and urban-forest materials were reviewed, but no verified public citywide single-tree species dataset was confirmed.",
+    "Atlanta": "Official City of Atlanta GIS and open-data entry points were reviewed, but no verified public citywide single-tree species inventory was confirmed.",
     "Beaux Arts Village": "Only a contractor-published public map was found; no verified official public city-hosted tree dataset was confirmed.",
     "Beaverton": "Official inventory web maps exist, but the raw city tree inventory service currently requires a token and is not publicly queryable for stable ETL access.",
     "Black Diamond": "City investigated; no official public single-tree species dataset was confirmed.",
@@ -397,10 +410,12 @@ OFFICIAL_DATA_UNAVAILABLE_CITIES: dict[str, str] = {
     "Brier": "City investigated; public search hits were false positives, not an official city tree inventory.",
     "Burien": "Official tree data uses internal species codes without a public mapping table usable for current taxonomy.",
     "Carnation": "City investigated; no official public single-tree species dataset was confirmed.",
+    "Chicago": "Official City of Chicago open-data and ArcGIS entry points were reviewed, but no verified public citywide single-tree species inventory was confirmed.",
     "Clyde Hill": "City investigated; no official public single-tree species dataset was confirmed.",
     "Covington": "City investigated; no reliable official public single-tree species dataset was confirmed.",
     "Des Moines": "City investigated; no reliable official public single-tree species dataset was confirmed.",
     "Delta": "Official Delta GIS/open-data sources were reviewed, but no public single-tree species inventory was confirmed.",
+    "Detroit": "Official Detroit open-data and ArcGIS Hub searches were reviewed, but no verified public citywide single-tree species inventory was confirmed.",
     "Davenport": "City investigated; public ArcGIS hits in this round were Davenport, Iowa datasets, not a verified City of Davenport, WA tree inventory.",
     "Daly City": "Official city urban-forestry and GIS entry points were reviewed, but no verified public citywide single-tree species dataset was confirmed.",
     "Davis": "Official City of Davis GIS and urban-forest materials were reviewed, but no public citywide single-tree species inventory was confirmed in this round.",
@@ -445,6 +460,7 @@ OFFICIAL_DATA_UNAVAILABLE_CITIES: dict[str, str] = {
     "North Vancouver City": "Official Metro Vancouver administrative boundaries confirm the jurisdiction geometry, but this round did not confirm a public citywide single-tree species inventory for the City of North Vancouver.",
     "North Vancouver District": "Official Metro Vancouver administrative boundaries confirm the jurisdiction geometry, but this round did not confirm a public jurisdiction-wide single-tree species inventory for the District of North Vancouver.",
     "Olympia": "No current official city single-tree species layer was confirmed; only older or non-city sources were found.",
+    "Phoenix": "Official City of Phoenix open-data CKAN catalog, ArcGIS entries, and urban-forest materials were reviewed, but no verified public citywide single-tree species inventory was confirmed.",
     "Roseville": "Official City of Roseville GIS and open-data entry points were reviewed, but no public citywide single-tree species inventory was confirmed in this round.",
     "Port Orchard": "City investigated; no official public single-tree species dataset was confirmed.",
     "Redwood City": "Official city GIS and public-works materials were reviewed, but no verified public citywide single-tree dataset was confirmed in this round.",

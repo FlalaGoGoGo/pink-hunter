@@ -4,8 +4,15 @@ from __future__ import annotations
 import argparse
 import json
 import re
+import sys
 from pathlib import Path
 from typing import Any
+
+PROJECT_ROOT = Path(__file__).resolve().parents[1]
+if str(PROJECT_ROOT) not in sys.path:
+    sys.path.insert(0, str(PROJECT_ROOT))
+
+from etl.build_data import OFFICIAL_DATA_UNAVAILABLE_CITIES
 
 STRICT_OFFICIAL_JURISDICTION_BOUNDARY_ONLY = True
 SPECIAL_BOUNDARY_SLUGS = {
@@ -70,11 +77,13 @@ def main() -> int:
         raise FileNotFoundError(f"Missing metadata file: {meta_path}")
 
     meta = json.loads(meta_path.read_text(encoding="utf-8"))
-    reference_dir = data_dir.parents[1] / "data" / "reference"
+    reference_dir = PROJECT_ROOT / "data" / "reference"
     covered_cities = load_covered_cities(data_dir)
     covered_city_set = set(covered_cities)
+    configured_official_unavailable = set(meta.get("coverage_official_unavailable_cities", []))
+    configured_official_unavailable.update(OFFICIAL_DATA_UNAVAILABLE_CITIES.keys())
     official_unavailable_cities = sorted(
-        city for city in meta.get("coverage_official_unavailable_cities", []) if city not in covered_city_set
+        city for city in configured_official_unavailable if city not in covered_city_set
     )
 
     coverage_features: list[dict[str, Any]] = []
@@ -103,11 +112,12 @@ def main() -> int:
             if STRICT_OFFICIAL_JURISDICTION_BOUNDARY_ONLY:
                 continue
             raise RuntimeError(f"Missing official jurisdiction boundary geometry for: {city}")
-        existing_note = ""
-        for feature in meta.get("coverage_notes", []):
-            if feature.get("jurisdiction") == city:
-                existing_note = str(feature.get("note", ""))
-                break
+        existing_note = OFFICIAL_DATA_UNAVAILABLE_CITIES.get(city, "")
+        if not existing_note:
+            for feature in meta.get("coverage_notes", []):
+                if feature.get("jurisdiction") == city:
+                    existing_note = str(feature.get("note", ""))
+                    break
         coverage_features.append(make_coverage_feature(city, geometry, "official_unavailable", existing_note))
 
     coverage_geojson = {"type": "FeatureCollection", "features": coverage_features}
