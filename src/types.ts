@@ -114,6 +114,41 @@ export interface AreaSummary {
   state_province?: string;
 }
 
+export interface JumpCountry {
+  id: "us" | "ca";
+  label: string;
+  emoji: string;
+  bounds: [[number, number], [number, number]];
+}
+
+export interface JumpState {
+  id: CoverageRegion;
+  country_id: JumpCountry["id"];
+  code: string;
+  label: string;
+  bounds: [[number, number], [number, number]];
+  region_hint?: CoverageRegion | null;
+}
+
+export interface JumpArea {
+  id: string;
+  country_id: JumpCountry["id"];
+  state_id: CoverageRegion;
+  jurisdiction: string;
+  display_name: string;
+  area_type: JurisdictionType;
+  bounds: [[number, number], [number, number]];
+  region_hint?: CoverageRegion | null;
+  coverage_status: "covered" | "official_unavailable" | "untracked";
+}
+
+export interface JumpIndex {
+  generated_at: string;
+  countries: JumpCountry[];
+  states: JumpState[];
+  areas: JumpArea[];
+}
+
 export interface AppMeta {
   version: string;
   generated_at: string;
@@ -161,4 +196,5 @@ export interface StaticAppData {
   coverage: CoverageCollection;
   guide: SpeciesGuide;
   meta: AppMeta;
+  jumpIndex: JumpIndex;
 }

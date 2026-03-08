@@ -1,6 +1,7 @@
 import type {
   AreaIndex,
   CoverageCollection,
+  JumpIndex,
   SpeciesGuide,
   AppMeta,
   StaticAppData,
@@ -16,13 +17,14 @@ async function loadJson<T>(path: string): Promise<T> {
 }
 
 export async function loadStaticAppData(): Promise<StaticAppData> {
-  const [coverage, guide, meta] = await Promise.all([
+  const [coverage, guide, meta, jumpIndex] = await Promise.all([
     loadJson<CoverageCollection>("/data/coverage.v1.geojson"),
     loadJson<SpeciesGuide>("/data/species-guide.v1.json"),
-    loadJson<AppMeta>("/data/meta.v2.json")
+    loadJson<AppMeta>("/data/meta.v2.json"),
+    loadJson<JumpIndex>("/data/jump-index.v1.json")
   ]);
 
-  return { coverage, guide, meta };
+  return { coverage, guide, meta, jumpIndex };
 }
 
 export async function loadTreeCollection(path: string): Promise<TreeCollection> {

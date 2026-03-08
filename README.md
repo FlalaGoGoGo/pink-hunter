@@ -308,6 +308,7 @@ Live domain:
 - `public/data/trees.<region>.area.<slug>.shard-###.v2.geojson` (for larger areas)
 - `public/data/coverage.v1.geojson`
 - `public/data/species-guide.v1.json`
+- `public/data/jump-index.v1.json`
 - `public/data/meta.v2.json`
 - `public/data/unknown_scientific_names.v1.json`
 
@@ -330,6 +331,7 @@ Live domain:
   - `MA`
 - Local-only ETL audit outputs such as `data/normalized/trees_normalized.csv` and `data/tmp/*` are not part of the GitHub export repo.
 - `public/data/meta.v2.json` contains the region index, region bounds, species-count summaries, aggregate size metadata, and area-shard publish metadata for the full site, each region, and each published area.
+- `public/data/jump-index.v1.json` provides lightweight `country -> state/province -> city/county` navigation bounds for the `Show -> Jump` workflow without coupling navigation to tree payload loading.
 - All published tree-point files now follow the same area-shard contract:
   - `public/data/trees.<region>.area-index.v2.json`
   - `public/data/trees.<region>.area.<slug>.v2.geojson`

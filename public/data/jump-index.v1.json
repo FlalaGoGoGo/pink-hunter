@@ -1,0 +1,1980 @@
+{
+  "generated_at": "2026-03-08T05:52:02.582637+00:00",
+  "countries": [
+    {
+      "id": "ca",
+      "label": "Canada",
+      "emoji": "🇨🇦",
+      "bounds": [
+        [
+          -123.47799044362478,
+          43.5866509121
+        ],
+        [
+          -73.477656,
+          49.4138112645356
+        ]
+      ]
+    },
+    {
+      "id": "us",
+      "label": "United States",
+      "emoji": "🇺🇸",
+      "bounds": [
+        [
+          -123.12291699979801,
+          32.54441471717994
+        ],
+        [
+          -70.99723874199998,
+          48.7963270217033
+        ]
+      ]
+    }
+  ],
+  "states": [
+    {
+      "id": "bc",
+      "country_id": "ca",
+      "code": "BC",
+      "label": "British Columbia",
+      "bounds": [
+        [
+          -123.47799044362478,
+          48.406498105122765
+        ],
+        [
+          -122.62108637425426,
+          49.4138112645356
+        ]
+      ],
+      "region_hint": "bc"
+    },
+    {
+      "id": "on",
+      "country_id": "ca",
+      "code": "ON",
+      "label": "Ontario",
+      "bounds": [
+        [
+          -79.6378558902,
+          43.5866509121
+        ],
+        [
+          -75.26063675999347,
+          45.51791442692148
+        ]
+      ],
+      "region_hint": "on"
+    },
+    {
+      "id": "qc",
+      "country_id": "ca",
+      "code": "QC",
+      "label": "Quebec",
+      "bounds": [
+        [
+          -73.907971,
+          45.428586
+        ],
+        [
+          -73.477656,
+          45.702299
+        ]
+      ],
+      "region_hint": "qc"
+    },
+    {
+      "id": "ca",
+      "country_id": "us",
+      "code": "CA",
+      "label": "California",
+      "bounds": [
+        [
+          -122.83443699983434,
+          32.54441471717994
+        ],
+        [
+          -116.92799001850382,
+          38.68560299975214
+        ]
+      ],
+      "region_hint": "ca"
+    },
+    {
+      "id": "md",
+      "country_id": "us",
+      "code": "MD",
+      "label": "Maryland",
+      "bounds": [
+        [
+          -77.5276853901476,
+          38.93424875542158
+        ],
+        [
+          -76.53061449460056,
+          39.37198006694359
+        ]
+      ],
+      "region_hint": "md"
+    },
+    {
+      "id": "ma",
+      "country_id": "us",
+      "code": "MA",
+      "label": "Massachusetts",
+      "bounds": [
+        [
+          -71.18596774099996,
+          42.23287600000003
+        ],
+        [
+          -70.99723874199998,
+          42.40211963694448
+        ]
+      ],
+      "region_hint": "ma"
+    },
+    {
+      "id": "nj",
+      "country_id": "us",
+      "code": "NJ",
+      "label": "New Jersey",
+      "bounds": [
+        [
+          -74.25136099975268,
+          40.67436799975193
+        ],
+        [
+          -74.03213147488759,
+          40.78826700012708
+        ]
+      ],
+      "region_hint": "nj"
+    },
+    {
+      "id": "ny",
+      "country_id": "us",
+      "code": "NY",
+      "label": "New York",
+      "bounds": [
+        [
+          -74.25438541,
+          40.49928952
+        ],
+        [
+          -73.70203024,
+          40.91215184
+        ]
+      ],
+      "region_hint": "ny"
+    },
+    {
+      "id": "or",
+      "country_id": "us",
+      "code": "OR",
+      "label": "Oregon",
+      "bounds": [
+        [
+          -123.12291699979801,
+          44.851231999965705
+        ],
+        [
+          -122.36755900003719,
+          45.63452836335847
+        ]
+      ],
+      "region_hint": "or"
+    },
+    {
+      "id": "pa",
+      "country_id": "us",
+      "code": "PA",
+      "label": "Pennsylvania",
+      "bounds": [
+        [
+          -80.085186635915,
+          39.88700382151612
+        ],
+        [
+          -74.96522626391625,
+          40.499279674576
+        ]
+      ],
+      "region_hint": "pa"
+    },
+    {
+      "id": "va",
+      "country_id": "us",
+      "code": "VA",
+      "label": "Virginia",
+      "bounds": [
+        [
+          -77.16817348415724,
+          38.785215999746356
+        ],
+        [
+          -77.03728800040635,
+          38.92654478764372
+        ]
+      ],
+      "region_hint": "va"
+    },
+    {
+      "id": "wa",
+      "country_id": "us",
+      "code": "WA",
+      "label": "Washington",
+      "bounds": [
+        [
+          -122.77451099988176,
+          45.576895000071
+        ],
+        [
+          -117.31436943740762,
+          48.7963270217033
+        ]
+      ],
+      "region_hint": "wa"
+    },
+    {
+      "id": "dc",
+      "country_id": "us",
+      "code": "DC",
+      "label": "Washington, DC",
+      "bounds": [
+        [
+          -77.1126653331193,
+          38.81730729982075
+        ],
+        [
+          -76.77322596840716,
+          39.108121168263004
+        ]
+      ],
+      "region_hint": "dc"
+    }
+  ],
+  "areas": [
+    {
+      "id": "bc:burnaby",
+      "country_id": "ca",
+      "state_id": "bc",
+      "jurisdiction": "Burnaby",
+      "display_name": "Burnaby",
+      "area_type": "city",
+      "bounds": [
+        [
+          -123.02359219167397,
+          49.18019752706117
+        ],
+        [
+          -122.89248768037601,
+          49.29969456801276
+        ]
+      ],
+      "region_hint": "bc",
+      "coverage_status": "official_unavailable"
+    },
+    {
+      "id": "bc:coquitlam",
+      "country_id": "ca",
+      "state_id": "bc",
+      "jurisdiction": "Coquitlam",
+      "display_name": "Coquitlam",
+      "area_type": "city",
+      "bounds": [
+        [
+          -122.89343395942514,
+          49.21986506503633
+        ],
+        [
+          -122.62108637425426,
+          49.351166953407144
+        ]
+      ],
+      "region_hint": "bc",
+      "coverage_status": "official_unavailable"
+    },
+    {
+      "id": "bc:delta",
+      "country_id": "ca",
+      "state_id": "bc",
+      "jurisdiction": "Delta",
+      "display_name": "Delta",
+      "area_type": "city",
+      "bounds": [
+        [
+          -123.30935306649606,
+          49.002060902144805
+        ],
+        [
+          -122.890168745761,
+          49.1940779005227
+        ]
+      ],
+      "region_hint": "bc",
+      "coverage_status": "official_unavailable"
+    },
+    {
+      "id": "bc:langley-city",
+      "country_id": "ca",
+      "state_id": "bc",
+      "jurisdiction": "Langley City",
+      "display_name": "Langley City",
+      "area_type": "city",
+      "bounds": [
+        [
+          -122.679989393343,
+          49.0819754668312
+        ],
+        [
+          -122.637889921091,
+          49.1154358896736
+        ]
+      ],
+      "region_hint": "bc",
+      "coverage_status": "official_unavailable"
+    },
+    {
+      "id": "bc:new-westminster",
+      "country_id": "ca",
+      "state_id": "bc",
+      "jurisdiction": "New Westminster",
+      "display_name": "New Westminster",
+      "area_type": "city",
+      "bounds": [
+        [
+          -122.95688184899996,
+          49.17739680600005
+        ],
+        [
+          -122.88560021399996,
+          49.23784194900003
+        ]
+      ],
+      "region_hint": "bc",
+      "coverage_status": "covered"
+    },
+    {
+      "id": "bc:north-vancouver-city",
+      "country_id": "ca",
+      "state_id": "bc",
+      "jurisdiction": "North Vancouver City",
+      "display_name": "North Vancouver City",
+      "area_type": "city",
+      "bounds": [
+        [
+          -123.102614729825,
+          49.2959942182863
+        ],
+        [
+          -123.038172714364,
+          49.3356549760565
+        ]
+      ],
+      "region_hint": "bc",
+      "coverage_status": "official_unavailable"
+    },
+    {
+      "id": "bc:north-vancouver-district",
+      "country_id": "ca",
+      "state_id": "bc",
+      "jurisdiction": "North Vancouver District",
+      "display_name": "North Vancouver District",
+      "area_type": "district",
+      "bounds": [
+        [
+          -123.127793687602,
+          49.294658089152
+        ],
+        [
+          -122.8764184378,
+          49.4138112645356
+        ]
+      ],
+      "region_hint": "bc",
+      "coverage_status": "official_unavailable"
+    },
+    {
+      "id": "bc:richmond-bc",
+      "country_id": "ca",
+      "state_id": "bc",
+      "jurisdiction": "Richmond BC",
+      "display_name": "Richmond",
+      "area_type": "city",
+      "bounds": [
+        [
+          -123.3140520331285,
+          49.086123387905175
+        ],
+        [
+          -122.95723281161227,
+          49.255601028347265
+        ]
+      ],
+      "region_hint": "bc",
+      "coverage_status": "official_unavailable"
+    },
+    {
+      "id": "bc:saanich",
+      "country_id": "ca",
+      "state_id": "bc",
+      "jurisdiction": "Saanich",
+      "display_name": "Saanich",
+      "area_type": "city",
+      "bounds": [
+        [
+          -123.47799044362478,
+          48.43338793227941
+        ],
+        [
+          -123.26059644589202,
+          48.55800596055583
+        ]
+      ],
+      "region_hint": "bc",
+      "coverage_status": "official_unavailable"
+    },
+    {
+      "id": "bc:surrey",
+      "country_id": "ca",
+      "state_id": "bc",
+      "jurisdiction": "Surrey",
+      "display_name": "Surrey",
+      "area_type": "city",
+      "bounds": [
+        [
+          -122.82310288201008,
+          49.15527510437811
+        ],
+        [
+          -122.67910141561416,
+          49.21812639009649
+        ]
+      ],
+      "region_hint": "bc",
+      "coverage_status": "official_unavailable"
+    },
+    {
+      "id": "bc:vancouver-bc",
+      "country_id": "ca",
+      "state_id": "bc",
+      "jurisdiction": "Vancouver BC",
+      "display_name": "Vancouver BC",
+      "area_type": "city",
+      "bounds": [
+        [
+          -123.22313000032625,
+          49.20125799917632
+        ],
+        [
+          -123.02356800014752,
+          49.29362199847541
+        ]
+      ],
+      "region_hint": "bc",
+      "coverage_status": "covered"
+    },
+    {
+      "id": "bc:victoria-bc",
+      "country_id": "ca",
+      "state_id": "bc",
+      "jurisdiction": "Victoria BC",
+      "display_name": "Victoria BC",
+      "area_type": "city",
+      "bounds": [
+        [
+          -123.39426089582695,
+          48.406498105122765
+        ],
+        [
+          -123.32298510842695,
+          48.44957884182786
+        ]
+      ],
+      "region_hint": "bc",
+      "coverage_status": "covered"
+    },
+    {
+      "id": "bc:west-vancouver",
+      "country_id": "ca",
+      "state_id": "bc",
+      "jurisdiction": "West Vancouver",
+      "display_name": "West Vancouver",
+      "area_type": "city",
+      "bounds": [
+        [
+          -123.297753224997,
+          49.3109560818494
+        ],
+        [
+          -123.117201895672,
+          49.4073985120608
+        ]
+      ],
+      "region_hint": "bc",
+      "coverage_status": "official_unavailable"
+    },
+    {
+      "id": "bc:white-rock",
+      "country_id": "ca",
+      "state_id": "bc",
+      "jurisdiction": "White Rock",
+      "display_name": "White Rock",
+      "area_type": "city",
+      "bounds": [
+        [
+          -122.845474370247,
+          49.0021263078077
+        ],
+        [
+          -122.77921293681,
+          49.0312357777067
+        ]
+      ],
+      "region_hint": "bc",
+      "coverage_status": "official_unavailable"
+    },
+    {
+      "id": "on:ottawa",
+      "country_id": "ca",
+      "state_id": "on",
+      "jurisdiction": "Ottawa",
+      "display_name": "Ottawa",
+      "area_type": "city",
+      "bounds": [
+        [
+          -76.27994670105957,
+          44.980306508216366
+        ],
+        [
+          -75.26063675999347,
+          45.51791442692148
+        ]
+      ],
+      "region_hint": "on",
+      "coverage_status": "covered"
+    },
+    {
+      "id": "on:toronto",
+      "country_id": "ca",
+      "state_id": "on",
+      "jurisdiction": "Toronto",
+      "display_name": "Toronto",
+      "area_type": "city",
+      "bounds": [
+        [
+          -79.6378558902,
+          43.5866509121
+        ],
+        [
+          -79.12438726,
+          43.8367290225
+        ]
+      ],
+      "region_hint": "on",
+      "coverage_status": "covered"
+    },
+    {
+      "id": "qc:montreal",
+      "country_id": "ca",
+      "state_id": "qc",
+      "jurisdiction": "Montreal",
+      "display_name": "Montreal",
+      "area_type": "city",
+      "bounds": [
+        [
+          -73.907971,
+          45.428586
+        ],
+        [
+          -73.477656,
+          45.702299
+        ]
+      ],
+      "region_hint": "qc",
+      "coverage_status": "covered"
+    },
+    {
+      "id": "ca:alameda",
+      "country_id": "us",
+      "state_id": "ca",
+      "jurisdiction": "Alameda",
+      "display_name": "Alameda",
+      "area_type": "city",
+      "bounds": [
+        [
+          -122.34102099955813,
+          37.707110000317776
+        ],
+        [
+          -122.22327599994848,
+          37.80183000024131
+        ]
+      ],
+      "region_hint": "ca",
+      "coverage_status": "official_unavailable"
+    },
+    {
+      "id": "ca:berkeley",
+      "country_id": "us",
+      "state_id": "ca",
+      "jurisdiction": "Berkeley",
+      "display_name": "Berkeley",
+      "area_type": "city",
+      "bounds": [
+        [
+          -122.32057010362085,
+          37.84640113493349
+        ],
+        [
+          -122.23475742052554,
+          37.904402110984186
+        ]
+      ],
+      "region_hint": "ca",
+      "coverage_status": "covered"
+    },
+    {
+      "id": "ca:burlingame",
+      "country_id": "us",
+      "state_id": "ca",
+      "jurisdiction": "Burlingame",
+      "display_name": "Burlingame",
+      "area_type": "city",
+      "bounds": [
+        [
+          -122.40094219981216,
+          37.57012693012639
+        ],
+        [
+          -122.33125840010445,
+          37.6003954999849
+        ]
+      ],
+      "region_hint": "ca",
+      "coverage_status": "covered"
+    },
+    {
+      "id": "ca:concord",
+      "country_id": "us",
+      "state_id": "ca",
+      "jurisdiction": "Concord",
+      "display_name": "Concord",
+      "area_type": "city",
+      "bounds": [
+        [
+          -122.0613381015122,
+          37.92723123921552
+        ],
+        [
+          -121.93806822806427,
+          38.01976205991789
+        ]
+      ],
+      "region_hint": "ca",
+      "coverage_status": "covered"
+    },
+    {
+      "id": "ca:cupertino",
+      "country_id": "us",
+      "state_id": "ca",
+      "jurisdiction": "Cupertino",
+      "display_name": "Cupertino",
+      "area_type": "city",
+      "bounds": [
+        [
+          -122.07578882853319,
+          37.29385773332155
+        ],
+        [
+          -121.99661561023348,
+          37.33752689167643
+        ]
+      ],
+      "region_hint": "ca",
+      "coverage_status": "covered"
+    },
+    {
+      "id": "ca:daly-city",
+      "country_id": "us",
+      "state_id": "ca",
+      "jurisdiction": "Daly City",
+      "display_name": "Daly City",
+      "area_type": "city",
+      "bounds": [
+        [
+          -122.50086300003083,
+          37.64850499991511
+        ],
+        [
+          -122.40514299966011,
+          37.70928000008254
+        ]
+      ],
+      "region_hint": "ca",
+      "coverage_status": "official_unavailable"
+    },
+    {
+      "id": "ca:fremont",
+      "country_id": "us",
+      "state_id": "ca",
+      "jurisdiction": "Fremont",
+      "display_name": "Fremont",
+      "area_type": "city",
+      "bounds": [
+        [
+          -122.06542680982693,
+          37.457397165708045
+        ],
+        [
+          -121.90057799211901,
+          37.59208897489442
+        ]
+      ],
+      "region_hint": "ca",
+      "coverage_status": "covered"
+    },
+    {
+      "id": "ca:hayward",
+      "country_id": "us",
+      "state_id": "ca",
+      "jurisdiction": "Hayward",
+      "display_name": "Hayward",
+      "area_type": "city",
+      "bounds": [
+        [
+          -122.21871699957593,
+          37.54583500032039
+        ],
+        [
+          -121.92039800024031,
+          37.6899620003315
+        ]
+      ],
+      "region_hint": "ca",
+      "coverage_status": "official_unavailable"
+    },
+    {
+      "id": "ca:irvine",
+      "country_id": "us",
+      "state_id": "ca",
+      "jurisdiction": "Irvine",
+      "display_name": "Irvine",
+      "area_type": "city",
+      "bounds": [
+        [
+          -117.85319365799326,
+          33.63012431223091
+        ],
+        [
+          -117.69963087987874,
+          33.74086077439405
+        ]
+      ],
+      "region_hint": "ca",
+      "coverage_status": "covered"
+    },
+    {
+      "id": "ca:long-beach",
+      "country_id": "us",
+      "state_id": "ca",
+      "jurisdiction": "Long Beach",
+      "display_name": "Long Beach",
+      "area_type": "city",
+      "bounds": [
+        [
+          -118.2489660004391,
+          33.69059300029065
+        ],
+        [
+          -118.06316999964345,
+          33.88553099977162
+        ]
+      ],
+      "region_hint": "ca",
+      "coverage_status": "official_unavailable"
+    },
+    {
+      "id": "ca:los-angeles",
+      "country_id": "us",
+      "state_id": "ca",
+      "jurisdiction": "Los Angeles",
+      "display_name": "Los Angeles",
+      "area_type": "city",
+      "bounds": [
+        [
+          -118.660408935307,
+          33.7071976349
+        ],
+        [
+          -118.156102984,
+          34.326885697469
+        ]
+      ],
+      "region_hint": "ca",
+      "coverage_status": "covered"
+    },
+    {
+      "id": "ca:milpitas",
+      "country_id": "us",
+      "state_id": "ca",
+      "jurisdiction": "Milpitas",
+      "display_name": "Milpitas",
+      "area_type": "city",
+      "bounds": [
+        [
+          -121.9252788,
+          37.3988245
+        ],
+        [
+          -121.8630799,
+          37.4643663
+        ]
+      ],
+      "region_hint": "ca",
+      "coverage_status": "covered"
+    },
+    {
+      "id": "ca:monterey",
+      "country_id": "us",
+      "state_id": "ca",
+      "jurisdiction": "Monterey",
+      "display_name": "Monterey",
+      "area_type": "city",
+      "bounds": [
+        [
+          -121.9271140002388,
+          36.57149999971581
+        ],
+        [
+          -121.806774000437,
+          36.6545839999857
+        ]
+      ],
+      "region_hint": "ca",
+      "coverage_status": "official_unavailable"
+    },
+    {
+      "id": "ca:mountain-view",
+      "country_id": "us",
+      "state_id": "ca",
+      "jurisdiction": "Mountain View",
+      "display_name": "Mountain View",
+      "area_type": "city",
+      "bounds": [
+        [
+          -122.11762199977127,
+          37.3540680003012
+        ],
+        [
+          -122.04497900039738,
+          37.46988699982414
+        ]
+      ],
+      "region_hint": "ca",
+      "coverage_status": "official_unavailable"
+    },
+    {
+      "id": "ca:napa",
+      "country_id": "us",
+      "state_id": "ca",
+      "jurisdiction": "Napa",
+      "display_name": "Napa",
+      "area_type": "city",
+      "bounds": [
+        [
+          -122.35878699979678,
+          38.20867300028713
+        ],
+        [
+          -122.22210299961343,
+          38.35088199973389
+        ]
+      ],
+      "region_hint": "ca",
+      "coverage_status": "official_unavailable"
+    },
+    {
+      "id": "ca:oakland",
+      "country_id": "us",
+      "state_id": "ca",
+      "jurisdiction": "Oakland",
+      "display_name": "Oakland",
+      "area_type": "city",
+      "bounds": [
+        [
+          -122.27301999967312,
+          37.80505999961946
+        ],
+        [
+          -122.27301999967312,
+          37.80505999961946
+        ]
+      ],
+      "region_hint": "ca",
+      "coverage_status": "covered"
+    },
+    {
+      "id": "ca:palo-alto",
+      "country_id": "us",
+      "state_id": "ca",
+      "jurisdiction": "Palo Alto",
+      "display_name": "Palo Alto",
+      "area_type": "city",
+      "bounds": [
+        [
+          -122.17006086573504,
+          37.3915233354914
+        ],
+        [
+          -122.10447416737678,
+          37.46723610876356
+        ]
+      ],
+      "region_hint": "ca",
+      "coverage_status": "covered"
+    },
+    {
+      "id": "ca:redwood-city",
+      "country_id": "us",
+      "state_id": "ca",
+      "jurisdiction": "Redwood City",
+      "display_name": "Redwood City",
+      "area_type": "city",
+      "bounds": [
+        [
+          -122.29113600044047,
+          37.44720400019379
+        ],
+        [
+          -122.13977499995505,
+          37.569534000130545
+        ]
+      ],
+      "region_hint": "ca",
+      "coverage_status": "official_unavailable"
+    },
+    {
+      "id": "ca:richmond",
+      "country_id": "us",
+      "state_id": "ca",
+      "jurisdiction": "Richmond",
+      "display_name": "Richmond",
+      "area_type": "city",
+      "bounds": [
+        [
+          -122.44148400042442,
+          37.88372500002528
+        ],
+        [
+          -122.24344900005832,
+          38.028136000333234
+        ]
+      ],
+      "region_hint": "ca",
+      "coverage_status": "official_unavailable"
+    },
+    {
+      "id": "ca:sacramento",
+      "country_id": "us",
+      "state_id": "ca",
+      "jurisdiction": "Sacramento",
+      "display_name": "Sacramento",
+      "area_type": "city",
+      "bounds": [
+        [
+          -121.56012000027641,
+          38.437893999773685
+        ],
+        [
+          -121.36274000021152,
+          38.68560299975214
+        ]
+      ],
+      "region_hint": "ca",
+      "coverage_status": "official_unavailable"
+    },
+    {
+      "id": "ca:salinas",
+      "country_id": "us",
+      "state_id": "ca",
+      "jurisdiction": "Salinas",
+      "display_name": "Salinas",
+      "area_type": "city",
+      "bounds": [
+        [
+          -121.6832199794408,
+          36.651255722900984
+        ],
+        [
+          -121.59276009489318,
+          36.7318609480359
+        ]
+      ],
+      "region_hint": "ca",
+      "coverage_status": "covered"
+    },
+    {
+      "id": "ca:san-diego",
+      "country_id": "us",
+      "state_id": "ca",
+      "jurisdiction": "San Diego",
+      "display_name": "San Diego",
+      "area_type": "city",
+      "bounds": [
+        [
+          -117.27993340924583,
+          32.54441471717994
+        ],
+        [
+          -116.92799001850382,
+          33.050144764993526
+        ]
+      ],
+      "region_hint": "ca",
+      "coverage_status": "covered"
+    },
+    {
+      "id": "ca:san-francisco",
+      "country_id": "us",
+      "state_id": "ca",
+      "jurisdiction": "San Francisco",
+      "display_name": "San Francisco",
+      "area_type": "city",
+      "bounds": [
+        [
+          -122.50930075514466,
+          37.70824221728633
+        ],
+        [
+          -122.37522580172649,
+          37.807794446511195
+        ]
+      ],
+      "region_hint": "ca",
+      "coverage_status": "covered"
+    },
+    {
+      "id": "ca:san-jose",
+      "country_id": "us",
+      "state_id": "ca",
+      "jurisdiction": "San Jose",
+      "display_name": "San Jose",
+      "area_type": "city",
+      "bounds": [
+        [
+          -122.03033638564078,
+          37.196178956219526
+        ],
+        [
+          -121.73476917246366,
+          37.43264522494693
+        ]
+      ],
+      "region_hint": "ca",
+      "coverage_status": "covered"
+    },
+    {
+      "id": "ca:san-mateo",
+      "country_id": "us",
+      "state_id": "ca",
+      "jurisdiction": "San Mateo",
+      "display_name": "San Mateo",
+      "area_type": "city",
+      "bounds": [
+        [
+          -122.35358883558938,
+          37.52187524053123
+        ],
+        [
+          -122.27963601456563,
+          37.585457738049534
+        ]
+      ],
+      "region_hint": "ca",
+      "coverage_status": "covered"
+    },
+    {
+      "id": "ca:san-rafael",
+      "country_id": "us",
+      "state_id": "ca",
+      "jurisdiction": "San Rafael",
+      "display_name": "San Rafael",
+      "area_type": "city",
+      "bounds": [
+        [
+          -122.57296798402149,
+          37.95860533433682
+        ],
+        [
+          -122.45710426991413,
+          38.025728193982346
+        ]
+      ],
+      "region_hint": "ca",
+      "coverage_status": "covered"
+    },
+    {
+      "id": "ca:santa-ana",
+      "country_id": "us",
+      "state_id": "ca",
+      "jurisdiction": "Santa Ana",
+      "display_name": "Santa Ana",
+      "area_type": "city",
+      "bounds": [
+        [
+          -117.94394499955207,
+          33.69193900019211
+        ],
+        [
+          -117.83025700017464,
+          33.784012000301566
+        ]
+      ],
+      "region_hint": "ca",
+      "coverage_status": "official_unavailable"
+    },
+    {
+      "id": "ca:santa-clara",
+      "country_id": "us",
+      "state_id": "ca",
+      "jurisdiction": "Santa Clara",
+      "display_name": "Santa Clara",
+      "area_type": "city",
+      "bounds": [
+        [
+          -122.00473299973679,
+          37.32307000015035
+        ],
+        [
+          -121.92968000011865,
+          37.419005000053744
+        ]
+      ],
+      "region_hint": "ca",
+      "coverage_status": "official_unavailable"
+    },
+    {
+      "id": "ca:santa-cruz",
+      "country_id": "us",
+      "state_id": "ca",
+      "jurisdiction": "Santa Cruz",
+      "display_name": "Santa Cruz",
+      "area_type": "city",
+      "bounds": [
+        [
+          -122.10908200023279,
+          36.940933999843985
+        ],
+        [
+          -121.98671399977815,
+          37.01084899967398
+        ]
+      ],
+      "region_hint": "ca",
+      "coverage_status": "official_unavailable"
+    },
+    {
+      "id": "ca:santa-rosa",
+      "country_id": "us",
+      "state_id": "ca",
+      "jurisdiction": "Santa Rosa",
+      "display_name": "Santa Rosa",
+      "area_type": "city",
+      "bounds": [
+        [
+          -122.83443699983434,
+          38.36428900032031
+        ],
+        [
+          -122.57003900007471,
+          38.50817599971646
+        ]
+      ],
+      "region_hint": "ca",
+      "coverage_status": "official_unavailable"
+    },
+    {
+      "id": "ca:south-san-francisco",
+      "country_id": "us",
+      "state_id": "ca",
+      "jurisdiction": "South San Francisco",
+      "display_name": "South San Francisco",
+      "area_type": "city",
+      "bounds": [
+        [
+          -122.468729344,
+          37.6351692572
+        ],
+        [
+          -122.387130273,
+          37.6708599663
+        ]
+      ],
+      "region_hint": "ca",
+      "coverage_status": "covered"
+    },
+    {
+      "id": "ca:stockton",
+      "country_id": "us",
+      "state_id": "ca",
+      "jurisdiction": "Stockton",
+      "display_name": "Stockton",
+      "area_type": "city",
+      "bounds": [
+        [
+          -121.4197360002362,
+          37.86748199992407
+        ],
+        [
+          -121.18388899974322,
+          38.05875899982505
+        ]
+      ],
+      "region_hint": "ca",
+      "coverage_status": "official_unavailable"
+    },
+    {
+      "id": "ca:sunnyvale",
+      "country_id": "us",
+      "state_id": "ca",
+      "jurisdiction": "Sunnyvale",
+      "display_name": "Sunnyvale",
+      "area_type": "city",
+      "bounds": [
+        [
+          -122.06519199979188,
+          37.3302259996565
+        ],
+        [
+          -121.98240200017612,
+          37.464087000089634
+        ]
+      ],
+      "region_hint": "ca",
+      "coverage_status": "official_unavailable"
+    },
+    {
+      "id": "dc:washington-dc",
+      "country_id": "us",
+      "state_id": "dc",
+      "jurisdiction": "Washington DC",
+      "display_name": "Washington DC",
+      "area_type": "city",
+      "bounds": [
+        [
+          -77.1126653331193,
+          38.81730729982075
+        ],
+        [
+          -76.77322596840716,
+          39.108121168263004
+        ]
+      ],
+      "region_hint": "dc",
+      "coverage_status": "covered"
+    },
+    {
+      "id": "ma:boston",
+      "country_id": "us",
+      "state_id": "ma",
+      "jurisdiction": "Boston",
+      "display_name": "Boston",
+      "area_type": "city",
+      "bounds": [
+        [
+          -71.18596774099996,
+          42.23287600000003
+        ],
+        [
+          -70.99723874199998,
+          42.39339400000006
+        ]
+      ],
+      "region_hint": "ma",
+      "coverage_status": "covered"
+    },
+    {
+      "id": "ma:cambridge",
+      "country_id": "us",
+      "state_id": "ma",
+      "jurisdiction": "Cambridge",
+      "display_name": "Cambridge",
+      "area_type": "city",
+      "bounds": [
+        [
+          -71.15950603290113,
+          42.35476514186403
+        ],
+        [
+          -71.06907926927938,
+          42.40211963694448
+        ]
+      ],
+      "region_hint": "ma",
+      "coverage_status": "covered"
+    },
+    {
+      "id": "md:baltimore",
+      "country_id": "us",
+      "state_id": "md",
+      "jurisdiction": "Baltimore",
+      "display_name": "Baltimore",
+      "area_type": "city",
+      "bounds": [
+        [
+          -76.71078953837228,
+          39.20827147666665
+        ],
+        [
+          -76.53061449460056,
+          39.37198006694359
+        ]
+      ],
+      "region_hint": "md",
+      "coverage_status": "covered"
+    },
+    {
+      "id": "md:montgomery-county",
+      "country_id": "us",
+      "state_id": "md",
+      "jurisdiction": "Montgomery County",
+      "display_name": "Montgomery County",
+      "area_type": "county",
+      "bounds": [
+        [
+          -77.5276853901476,
+          38.93424875542158
+        ],
+        [
+          -76.88763834031488,
+          39.354336126989374
+        ]
+      ],
+      "region_hint": "md",
+      "coverage_status": "official_unavailable"
+    },
+    {
+      "id": "nj:jersey-city",
+      "country_id": "us",
+      "state_id": "nj",
+      "jurisdiction": "Jersey City",
+      "display_name": "Jersey City",
+      "area_type": "city",
+      "bounds": [
+        [
+          -74.10476052098124,
+          40.688807439511784
+        ],
+        [
+          -74.03213147488759,
+          40.758711906729154
+        ]
+      ],
+      "region_hint": "nj",
+      "coverage_status": "covered"
+    },
+    {
+      "id": "nj:newark",
+      "country_id": "us",
+      "state_id": "nj",
+      "jurisdiction": "Newark",
+      "display_name": "Newark",
+      "area_type": "city",
+      "bounds": [
+        [
+          -74.25136099975268,
+          40.67436799975193
+        ],
+        [
+          -74.11278699990707,
+          40.78826700012708
+        ]
+      ],
+      "region_hint": "nj",
+      "coverage_status": "official_unavailable"
+    },
+    {
+      "id": "ny:new-york-city",
+      "country_id": "us",
+      "state_id": "ny",
+      "jurisdiction": "New York City",
+      "display_name": "New York City",
+      "area_type": "city",
+      "bounds": [
+        [
+          -74.25438541,
+          40.49928952
+        ],
+        [
+          -73.70203024,
+          40.91215184
+        ]
+      ],
+      "region_hint": "ny",
+      "coverage_status": "covered"
+    },
+    {
+      "id": "or:beaverton",
+      "country_id": "us",
+      "state_id": "or",
+      "jurisdiction": "Beaverton",
+      "display_name": "Beaverton",
+      "area_type": "city",
+      "bounds": [
+        [
+          -122.8777033936799,
+          45.42466006878904
+        ],
+        [
+          -122.74365611431203,
+          45.542964137589706
+        ]
+      ],
+      "region_hint": "or",
+      "coverage_status": "official_unavailable"
+    },
+    {
+      "id": "or:gresham",
+      "country_id": "us",
+      "state_id": "or",
+      "jurisdiction": "Gresham",
+      "display_name": "Gresham",
+      "area_type": "city",
+      "bounds": [
+        [
+          -122.49807600021808,
+          45.46094100017012
+        ],
+        [
+          -122.36755900003719,
+          45.56080899998894
+        ]
+      ],
+      "region_hint": "or",
+      "coverage_status": "official_unavailable"
+    },
+    {
+      "id": "or:hillsboro",
+      "country_id": "us",
+      "state_id": "or",
+      "jurisdiction": "Hillsboro",
+      "display_name": "Hillsboro",
+      "area_type": "city",
+      "bounds": [
+        [
+          -123.01181799986666,
+          45.47650399981258
+        ],
+        [
+          -122.8594689998924,
+          45.57578899991605
+        ]
+      ],
+      "region_hint": "or",
+      "coverage_status": "official_unavailable"
+    },
+    {
+      "id": "or:portland",
+      "country_id": "us",
+      "state_id": "or",
+      "jurisdiction": "Portland",
+      "display_name": "Portland",
+      "area_type": "city",
+      "bounds": [
+        [
+          -122.82454888237926,
+          45.4350079092413
+        ],
+        [
+          -122.48250881977508,
+          45.63452836335847
+        ]
+      ],
+      "region_hint": "or",
+      "coverage_status": "covered"
+    },
+    {
+      "id": "or:salem",
+      "country_id": "us",
+      "state_id": "or",
+      "jurisdiction": "Salem",
+      "display_name": "Salem",
+      "area_type": "city",
+      "bounds": [
+        [
+          -123.12291699979801,
+          44.851231999965705
+        ],
+        [
+          -122.93520899959879,
+          45.01658399980336
+        ]
+      ],
+      "region_hint": "or",
+      "coverage_status": "official_unavailable"
+    },
+    {
+      "id": "or:tigard",
+      "country_id": "us",
+      "state_id": "or",
+      "jurisdiction": "Tigard",
+      "display_name": "Tigard",
+      "area_type": "city",
+      "bounds": [
+        [
+          -122.85691700025623,
+          45.393406999948105
+        ],
+        [
+          -122.74364900010508,
+          45.456412999701996
+        ]
+      ],
+      "region_hint": "or",
+      "coverage_status": "official_unavailable"
+    },
+    {
+      "id": "pa:philadelphia",
+      "country_id": "us",
+      "state_id": "pa",
+      "jurisdiction": "Philadelphia",
+      "display_name": "Philadelphia",
+      "area_type": "city",
+      "bounds": [
+        [
+          -75.2815572919213,
+          39.88700382151612
+        ],
+        [
+          -74.96522626391625,
+          40.13734403579811
+        ]
+      ],
+      "region_hint": "pa",
+      "coverage_status": "covered"
+    },
+    {
+      "id": "pa:pittsburgh",
+      "country_id": "us",
+      "state_id": "pa",
+      "jurisdiction": "Pittsburgh",
+      "display_name": "Pittsburgh",
+      "area_type": "city",
+      "bounds": [
+        [
+          -80.085186635915,
+          40.363214202853
+        ],
+        [
+          -79.846298218074,
+          40.499279674576
+        ]
+      ],
+      "region_hint": "pa",
+      "coverage_status": "covered"
+    },
+    {
+      "id": "va:alexandria",
+      "country_id": "us",
+      "state_id": "va",
+      "jurisdiction": "Alexandria",
+      "display_name": "Alexandria",
+      "area_type": "city",
+      "bounds": [
+        [
+          -77.1443590004178,
+          38.785215999746356
+        ],
+        [
+          -77.03728800040635,
+          38.84492299988886
+        ]
+      ],
+      "region_hint": "va",
+      "coverage_status": "official_unavailable"
+    },
+    {
+      "id": "va:arlington",
+      "country_id": "us",
+      "state_id": "va",
+      "jurisdiction": "Arlington",
+      "display_name": "Arlington County",
+      "area_type": "county",
+      "bounds": [
+        [
+          -77.16817348415724,
+          38.833543326032775
+        ],
+        [
+          -77.04476359923983,
+          38.92654478764372
+        ]
+      ],
+      "region_hint": "va",
+      "coverage_status": "covered"
+    },
+    {
+      "id": "wa:bellevue",
+      "country_id": "us",
+      "state_id": "wa",
+      "jurisdiction": "Bellevue",
+      "display_name": "Bellevue",
+      "area_type": "city",
+      "bounds": [
+        [
+          -122.22143083789702,
+          47.54481758930642
+        ],
+        [
+          -122.11566852874432,
+          47.63849726563137
+        ]
+      ],
+      "region_hint": "wa",
+      "coverage_status": "covered"
+    },
+    {
+      "id": "wa:bellingham",
+      "country_id": "us",
+      "state_id": "wa",
+      "jurisdiction": "Bellingham",
+      "display_name": "Bellingham",
+      "area_type": "city",
+      "bounds": [
+        [
+          -122.50530321847974,
+          48.697505185651096
+        ],
+        [
+          -122.40982427813297,
+          48.7963270217033
+        ]
+      ],
+      "region_hint": "wa",
+      "coverage_status": "covered"
+    },
+    {
+      "id": "wa:everett",
+      "country_id": "us",
+      "state_id": "wa",
+      "jurisdiction": "Everett",
+      "display_name": "Everett",
+      "area_type": "city",
+      "bounds": [
+        [
+          -122.284251665,
+          47.89093
+        ],
+        [
+          -122.177361805,
+          48.0176250782
+        ]
+      ],
+      "region_hint": "wa",
+      "coverage_status": "covered"
+    },
+    {
+      "id": "wa:gig-harbor",
+      "country_id": "us",
+      "state_id": "wa",
+      "jurisdiction": "Gig Harbor",
+      "display_name": "Gig Harbor",
+      "area_type": "city",
+      "bounds": [
+        [
+          -122.60378460068982,
+          47.322571918160136
+        ],
+        [
+          -122.58009271060554,
+          47.35203888088289
+        ]
+      ],
+      "region_hint": "wa",
+      "coverage_status": "covered"
+    },
+    {
+      "id": "wa:kenmore",
+      "country_id": "us",
+      "state_id": "wa",
+      "jurisdiction": "Kenmore",
+      "display_name": "Kenmore",
+      "area_type": "city",
+      "bounds": [
+        [
+          -122.2700232454727,
+          47.73297949387597
+        ],
+        [
+          -122.2215550023334,
+          47.7767148747082
+        ]
+      ],
+      "region_hint": "wa",
+      "coverage_status": "covered"
+    },
+    {
+      "id": "wa:kirkland",
+      "country_id": "us",
+      "state_id": "wa",
+      "jurisdiction": "Kirkland",
+      "display_name": "Kirkland",
+      "area_type": "city",
+      "bounds": [
+        [
+          -122.25568993388127,
+          47.643562978143486
+        ],
+        [
+          -122.16387066155262,
+          47.734145730503094
+        ]
+      ],
+      "region_hint": "wa",
+      "coverage_status": "covered"
+    },
+    {
+      "id": "wa:puyallup",
+      "country_id": "us",
+      "state_id": "wa",
+      "jurisdiction": "Puyallup",
+      "display_name": "Puyallup",
+      "area_type": "city",
+      "bounds": [
+        [
+          -122.32581246285078,
+          47.18517380582869
+        ],
+        [
+          -122.25354528143367,
+          47.19813171597989
+        ]
+      ],
+      "region_hint": "wa",
+      "coverage_status": "covered"
+    },
+    {
+      "id": "wa:redmond",
+      "country_id": "us",
+      "state_id": "wa",
+      "jurisdiction": "Redmond",
+      "display_name": "Redmond",
+      "area_type": "city",
+      "bounds": [
+        [
+          -122.14109647217562,
+          47.646007434335544
+        ],
+        [
+          -122.09392339143267,
+          47.703940040492895
+        ]
+      ],
+      "region_hint": "wa",
+      "coverage_status": "covered"
+    },
+    {
+      "id": "wa:renton",
+      "country_id": "us",
+      "state_id": "wa",
+      "jurisdiction": "Renton",
+      "display_name": "Renton",
+      "area_type": "city",
+      "bounds": [
+        [
+          -122.24443157127817,
+          47.42433671114742
+        ],
+        [
+          -122.12241842078294,
+          47.53490826486922
+        ]
+      ],
+      "region_hint": "wa",
+      "coverage_status": "covered"
+    },
+    {
+      "id": "wa:sammamish",
+      "country_id": "us",
+      "state_id": "wa",
+      "jurisdiction": "Sammamish",
+      "display_name": "Sammamish",
+      "area_type": "city",
+      "bounds": [
+        [
+          -122.08939752,
+          47.5589835494
+        ],
+        [
+          -121.971136878,
+          47.65600045
+        ]
+      ],
+      "region_hint": "wa",
+      "coverage_status": "covered"
+    },
+    {
+      "id": "wa:seatac",
+      "country_id": "us",
+      "state_id": "wa",
+      "jurisdiction": "SeaTac",
+      "display_name": "SeaTac",
+      "area_type": "city",
+      "bounds": [
+        [
+          -122.3107523777718,
+          47.42566432174194
+        ],
+        [
+          -122.27446865455865,
+          47.48758438055454
+        ]
+      ],
+      "region_hint": "wa",
+      "coverage_status": "covered"
+    },
+    {
+      "id": "wa:seattle",
+      "country_id": "us",
+      "state_id": "wa",
+      "jurisdiction": "Seattle",
+      "display_name": "Seattle",
+      "area_type": "city",
+      "bounds": [
+        [
+          -122.42046409992147,
+          47.49646981402653
+        ],
+        [
+          -122.24121121056568,
+          47.73405616810464
+        ]
+      ],
+      "region_hint": "wa",
+      "coverage_status": "covered"
+    },
+    {
+      "id": "wa:shoreline",
+      "country_id": "us",
+      "state_id": "wa",
+      "jurisdiction": "Shoreline",
+      "display_name": "Shoreline",
+      "area_type": "city",
+      "bounds": [
+        [
+          -122.39264820948623,
+          47.734315930780866
+        ],
+        [
+          -122.29371688872423,
+          47.77765394638591
+        ]
+      ],
+      "region_hint": "wa",
+      "coverage_status": "covered"
+    },
+    {
+      "id": "wa:snohomish",
+      "country_id": "us",
+      "state_id": "wa",
+      "jurisdiction": "Snohomish",
+      "display_name": "Snohomish",
+      "area_type": "city",
+      "bounds": [
+        [
+          -122.11447463353556,
+          47.90753346359222
+        ],
+        [
+          -122.07816864328491,
+          47.95187168144569
+        ]
+      ],
+      "region_hint": "wa",
+      "coverage_status": "covered"
+    },
+    {
+      "id": "wa:spokane",
+      "country_id": "us",
+      "state_id": "wa",
+      "jurisdiction": "Spokane",
+      "display_name": "Spokane",
+      "area_type": "city",
+      "bounds": [
+        [
+          -117.54802826108586,
+          47.59230095410108
+        ],
+        [
+          -117.31436943740762,
+          47.75787657260972
+        ]
+      ],
+      "region_hint": "wa",
+      "coverage_status": "covered"
+    },
+    {
+      "id": "wa:vancouver-wa",
+      "country_id": "us",
+      "state_id": "wa",
+      "jurisdiction": "Vancouver WA",
+      "display_name": "Vancouver",
+      "area_type": "city",
+      "bounds": [
+        [
+          -122.77451099988176,
+          45.576895000071
+        ],
+        [
+          -122.46450200007338,
+          45.6980029997628
+        ]
+      ],
+      "region_hint": "wa",
+      "coverage_status": "official_unavailable"
+    },
+    {
+      "id": "wa:walla-walla",
+      "country_id": "us",
+      "state_id": "wa",
+      "jurisdiction": "Walla Walla",
+      "display_name": "Walla Walla",
+      "area_type": "city",
+      "bounds": [
+        [
+          -118.36761070006963,
+          46.03045961992176
+        ],
+        [
+          -118.28347670062162,
+          46.086472869901804
+        ]
+      ],
+      "region_hint": "wa",
+      "coverage_status": "covered"
+    },
+    {
+      "id": "wa:yakima",
+      "country_id": "us",
+      "state_id": "wa",
+      "jurisdiction": "Yakima",
+      "display_name": "Yakima",
+      "area_type": "city",
+      "bounds": [
+        [
+          -120.59474266341475,
+          46.57375395179144
+        ],
+        [
+          -120.4710806090462,
+          46.617782229693276
+        ]
+      ],
+      "region_hint": "wa",
+      "coverage_status": "covered"
+    }
+  ]
+}

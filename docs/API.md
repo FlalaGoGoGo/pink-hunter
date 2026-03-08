@@ -74,6 +74,34 @@ GeoJSON `FeatureCollection` for coverage overlays.
 ## `GET /data/species-guide.v1.json`
 Bilingual species education content.
 
+## `GET /data/jump-index.v1.json`
+Lightweight country / state-province / city-county navigation index for the `Show -> Jump` panel.
+
+### Top-level fields
+- `generated_at`
+- `countries[]`
+  - `id`
+  - `label`
+  - `emoji`
+  - `bounds`
+- `states[]`
+  - `id`
+  - `country_id`
+  - `code`
+  - `label`
+  - `bounds`
+  - `region_hint`
+- `areas[]`
+  - `id`
+  - `country_id`
+  - `state_id`
+  - `jurisdiction`
+  - `display_name`
+  - `area_type`
+  - `bounds`
+  - `region_hint`
+  - `coverage_status` (`covered | official_unavailable | untracked`)
+
 ## `GET /data/meta.v2.json`
 Dataset metadata and source refresh details.
 

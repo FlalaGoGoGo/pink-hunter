@@ -33,6 +33,9 @@ import type {
   CoverageCollection,
   CoverageFeatureProps,
   CoverageRegion,
+  JumpArea,
+  JumpCountry,
+  JumpState,
   JurisdictionType,
   Language,
   LayoutMode,
@@ -669,21 +672,6 @@ const REGION_SWITCH_BOUNDS: Partial<Record<CoverageRegion, [[number, number], [n
   ]
 };
 
-const GLOBAL_REGION_OPTIONS: CoverageRegion[] = [
-  "wa",
-  "ca",
-  "dc",
-  "or",
-  "va",
-  "md",
-  "nj",
-  "ny",
-  "pa",
-  "ma",
-  "bc",
-  "on",
-  "qc"
-];
 const REGION_COUNTRY_EMOJIS: Record<CoverageRegion, string> = {
   wa: "🇺🇸",
   ca: "🇺🇸",
@@ -804,6 +792,12 @@ interface SelectedTree {
 interface SelectedCoverage {
   coordinates: [number, number];
   properties: CoverageFeatureProps;
+}
+
+interface JumpNotice {
+  kind: "official_unavailable" | "untracked";
+  title: string;
+  body: string;
 }
 
 type AboutSummaryMode = "region" | "area";
@@ -1260,10 +1254,6 @@ function formatCrossRegionPopup(language: Language, region: CoverageRegion): { t
   };
 }
 
-function formatCityLabel(city: string): string {
-  return formatAreaLabel(city);
-}
-
 function createSelectedBloomImageData(): ImageData {
   const size = 120;
   const canvas = document.createElement("canvas");
@@ -1321,15 +1311,6 @@ function createSelectedBloomImageData(): ImageData {
   ctx.stroke();
 
   return ctx.getImageData(0, 0, size, size);
-}
-
-function sortZipCodesByMasterOrder(values: Iterable<string>, order: string[]): string[] {
-  const lookup = new Map(order.map((zipCode, index) => [zipCode, index]));
-  return Array.from(new Set(values)).sort((left, right) => {
-    const leftIndex = lookup.get(left) ?? Number.MAX_SAFE_INTEGER;
-    const rightIndex = lookup.get(right) ?? Number.MAX_SAFE_INTEGER;
-    return leftIndex - rightIndex || left.localeCompare(right);
-  });
 }
 
 function sortZipCodeValues(values: Iterable<string>): string[] {
@@ -1408,13 +1389,11 @@ export default function App(): JSX.Element {
   const [selectedOwnership, setSelectedOwnership] = useState<OwnershipGroup[]>(initialUrlState.ownership);
   const [selectedCities, setSelectedCities] = useState<string[]>(initialUrlState.cities);
   const [selectedZipCodes, setSelectedZipCodes] = useState<string[]>(initialUrlState.zipCodes);
+  const [jumpCountry, setJumpCountry] = useState<JumpCountry["id"]>("us");
+  const [jumpState, setJumpState] = useState<CoverageRegion | "">("");
+  const [jumpArea, setJumpArea] = useState<string>("");
+  const [jumpNotice, setJumpNotice] = useState<JumpNotice | null>(null);
   const [languageMenuOpen, setLanguageMenuOpen] = useState(false);
-  const [stateDropdownOpen, setStateDropdownOpen] = useState(false);
-  const [stateSearchQuery, setStateSearchQuery] = useState("");
-  const [cityDropdownOpen, setCityDropdownOpen] = useState(false);
-  const [citySearchQuery, setCitySearchQuery] = useState("");
-  const [zipDropdownOpen, setZipDropdownOpen] = useState(false);
-  const [zipSearchQuery, setZipSearchQuery] = useState("");
   const [sheetHeight, setSheetHeight] = useState<number>(0.4);
   const [activePanel, setActivePanel] = useState<"filters" | "guide" | "about">("filters");
   const [aboutSourcesPage, setAboutSourcesPage] = useState(0);
@@ -1528,12 +1507,7 @@ export default function App(): JSX.Element {
   const activeRegionMeta = regionMetaById.get(activeRegion) ?? null;
   const activeRegionAreaIndex = regionAreaIndexCache[activeRegion] ?? null;
   const activeLanguageOption = LANGUAGE_OPTIONS.find((option) => option.id === language) ?? LANGUAGE_OPTIONS[0];
-  const activeRegionDisplayLabel = regionOptionLabel(language, activeRegion);
   const regionAreaItems = activeRegionAreaIndex?.items ?? [];
-  const areaItemByJurisdiction = useMemo(
-    () => new Map(regionAreaItems.map((item) => [item.jurisdiction, item] as const)),
-    [regionAreaItems]
-  );
 
   useEffect(() => {
     const map = mapRef.current;
@@ -1606,31 +1580,10 @@ export default function App(): JSX.Element {
     [regionAreaItems]
   );
 
-  const zipCodesByCity = useMemo(() => {
-    return new Map(
-      regionAreaItems.map((item) => [item.jurisdiction, [...new Set(item.zip_codes ?? [])].sort((left, right) => left.localeCompare(right))])
-    );
-  }, [regionAreaItems]);
-
   const allRegionZipCodes = useMemo(
     () => sortZipCodeValues(regionAreaItems.flatMap((item) => item.zip_codes ?? [])),
     [regionAreaItems]
   );
-
-  const zipCodes = useMemo(() => {
-    if (selectedCities.length === 0) {
-      return allRegionZipCodes;
-    }
-    const values = new Set<string>();
-    const selectedCitySet = new Set(selectedCities);
-    regionAreaItems.forEach((item) => {
-      if (selectedCitySet.size > 0 && !selectedCitySet.has(item.jurisdiction)) {
-        return;
-      }
-      (item.zip_codes ?? []).forEach((zipCode) => values.add(zipCode));
-    });
-    return sortZipCodeValues(values);
-  }, [allRegionZipCodes, regionAreaItems, selectedCities]);
 
   const allOwnershipOptions = useMemo(() => {
     const groups = activeRegionMeta?.ownership_groups ?? regionAreaItems.flatMap((item) => item.ownership_groups ?? []);
@@ -1742,40 +1695,63 @@ export default function App(): JSX.Element {
     [activeRegionShardCache, requiredShards]
   );
 
-  const stateProvinceOptions = useMemo(
-    () =>
-      GLOBAL_REGION_OPTIONS.filter((region) => regionMetaById.get(region)?.available)
-        .map((region) => ({
-          region,
-          label: regionLabel(language, region),
-          displayLabel: regionOptionLabel(language, region),
-          sortLabel: REGION_SORT_LABELS[region]
-        }))
-        .sort((left, right) => SORT_COLLATOR.compare(left.sortLabel, right.sortLabel)),
-    [language, regionMetaById]
-  );
+  const jumpCountries = useMemo(() => {
+    if (!data) {
+      return [] as JumpCountry[];
+    }
+    return [...data.jumpIndex.countries].sort((left, right) => SORT_COLLATOR.compare(left.label, right.label));
+  }, [data]);
 
-  const cityOptions = useMemo(
-    () =>
-      cities
-        .map((city) => {
-          const areaItem = areaItemByJurisdiction.get(city);
-          const displayName = areaItem?.display_name ?? jurisdictionDisplayName(city);
-          const jurisdictionType = areaItem?.jurisdiction_type ?? jurisdictionTypeForCity(city);
-          const stateCode = areaItem?.state_province ?? stateCodeForCity(city);
-          return {
-            city,
-            displayName,
-            jurisdictionType,
-            label: formatCityLabel(city),
-            stateCode,
-            sortLabel: displayName,
-            regionSearchLabel: regionLabel(language, regionForCity(city))
-          };
-        })
-        .sort((left, right) => SORT_COLLATOR.compare(left.sortLabel, right.sortLabel)),
-    [areaItemByJurisdiction, cities, language]
-  );
+  const jumpStates = useMemo(() => {
+    if (!data) {
+      return [] as JumpState[];
+    }
+    return [...data.jumpIndex.states]
+      .filter((item) => item.country_id === jumpCountry)
+      .sort((left, right) => SORT_COLLATOR.compare(left.label, right.label));
+  }, [data, jumpCountry]);
+
+  const jumpAreas = useMemo(() => {
+    if (!data) {
+      return [] as JumpArea[];
+    }
+    return [...data.jumpIndex.areas]
+      .filter((item) => item.country_id === jumpCountry)
+      .filter((item) => !jumpState || item.state_id === jumpState)
+      .sort((left, right) => SORT_COLLATOR.compare(left.display_name, right.display_name));
+  }, [data, jumpCountry, jumpState]);
+
+  const jumpAreaById = useMemo(() => new Map(jumpAreas.map((item) => [item.id, item] as const)), [jumpAreas]);
+
+  useEffect(() => {
+    if (!data) {
+      return;
+    }
+    const fallbackCountry = REGION_COUNTRY_KEYS[activeRegion];
+    setJumpCountry((current) =>
+      current && data.jumpIndex.countries.some((item) => item.id === current) ? current : fallbackCountry
+    );
+    setJumpState((current) =>
+      current && data.jumpIndex.states.some((item) => item.id === current) ? current : activeRegion
+    );
+  }, [activeRegion, data]);
+
+  useEffect(() => {
+    if (!jumpState) {
+      setJumpArea("");
+      return;
+    }
+    if (!jumpStates.some((item) => item.id === jumpState)) {
+      setJumpState("");
+      setJumpArea("");
+    }
+  }, [jumpState, jumpStates]);
+
+  useEffect(() => {
+    if (jumpArea && !jumpAreaById.has(jumpArea)) {
+      setJumpArea("");
+    }
+  }, [jumpArea, jumpAreaById]);
 
   const displayCoverage = useMemo(() => {
     if (!data) {
@@ -1787,6 +1763,10 @@ export default function App(): JSX.Element {
     return buildCoverageCollection(data.coverage.features, mapRuntime.polygonClipping);
   }, [data, mapRuntime]);
 
+  const coverageFeatureByJurisdiction = useMemo(() => {
+    return new Map(displayCoverage.features.map((feature) => [String(feature.properties.jurisdiction), feature] as const));
+  }, [displayCoverage.features]);
+
   useEffect(() => {
     if (!activeRegionAreaIndex) {
       return;
@@ -1794,15 +1774,8 @@ export default function App(): JSX.Element {
     const nextOwnership = [...allOwnershipOptions];
 
     if (!initialRegionFiltersAppliedRef.current && activeRegion === initialUrlState.region) {
-      const nextCities = initialUrlState.hasCityParam
-        ? cities.filter((city) => initialUrlState.cities.includes(city))
-        : cities;
-      const nextZipCodes = initialUrlState.hasZipParam
-        ? allRegionZipCodes.filter((zipCode) => initialUrlState.zipCodes.includes(zipCode))
-        : allRegionZipCodes;
-
-      setSelectedCities(nextCities);
-      setSelectedZipCodes(nextZipCodes);
+      setSelectedCities(cities);
+      setSelectedZipCodes(allRegionZipCodes);
       if (!initialUrlState.hasSpeciesParam) {
         setSelectedSpecies([...ALL_SPECIES]);
       }
@@ -1830,9 +1803,7 @@ export default function App(): JSX.Element {
     initialUrlState.hasCityParam,
     initialUrlState.hasOwnershipParam,
     initialUrlState.hasSpeciesParam,
-    initialUrlState.hasZipParam,
     initialUrlState.region,
-    initialUrlState.zipCodes,
     allRegionZipCodes
   ]);
 
@@ -1910,18 +1881,6 @@ export default function App(): JSX.Element {
   }, [ownershipOptions]);
 
   useEffect(() => {
-    if (activePanel !== "filters" && stateDropdownOpen) {
-      setStateDropdownOpen(false);
-    }
-    if (activePanel !== "filters" && cityDropdownOpen) {
-      setCityDropdownOpen(false);
-    }
-    if (activePanel !== "filters" && zipDropdownOpen) {
-      setZipDropdownOpen(false);
-    }
-  }, [activePanel, cityDropdownOpen, stateDropdownOpen, zipDropdownOpen]);
-
-  useEffect(() => {
     const handlePointerDown = (event: PointerEvent): void => {
       if (!languageMenuRef.current?.contains(event.target as Node)) {
         setLanguageMenuOpen(false);
@@ -1933,68 +1892,6 @@ export default function App(): JSX.Element {
       document.removeEventListener("pointerdown", handlePointerDown);
     };
   }, []);
-
-  useEffect(() => {
-    if (!stateDropdownOpen) {
-      setStateSearchQuery("");
-    }
-  }, [stateDropdownOpen]);
-
-  useEffect(() => {
-    if (!cityDropdownOpen) {
-      setCitySearchQuery("");
-    }
-  }, [cityDropdownOpen]);
-
-  useEffect(() => {
-    if (!zipDropdownOpen) {
-      setZipSearchQuery("");
-    }
-  }, [zipDropdownOpen]);
-
-  const visibleStateProvinces = useMemo(() => {
-    const query = stateSearchQuery.trim().toLowerCase();
-    if (!query) {
-      return stateProvinceOptions;
-    }
-
-    return stateProvinceOptions.filter(({ label, displayLabel, sortLabel, region }) => {
-      return (
-        label.toLowerCase().includes(query) ||
-        displayLabel.toLowerCase().includes(query) ||
-        sortLabel.toLowerCase().includes(query) ||
-        region.toLowerCase().includes(query)
-      );
-    });
-  }, [stateProvinceOptions, stateSearchQuery]);
-
-  const visibleCities = useMemo(() => {
-    const query = citySearchQuery.trim().toLowerCase();
-    if (!query) {
-      return cityOptions;
-    }
-
-    return cityOptions.filter(({ city, displayName, label, stateCode, regionSearchLabel }) => {
-      return (
-        city.toLowerCase().includes(query) ||
-        displayName.toLowerCase().includes(query) ||
-        label.toLowerCase().includes(query) ||
-        stateCode.toLowerCase().includes(query) ||
-        regionSearchLabel.toLowerCase().includes(query)
-      );
-    });
-  }, [cityOptions, citySearchQuery]);
-
-  const visibleZipCodes = useMemo(() => {
-    const query = zipSearchQuery.trim().toLowerCase();
-    if (!query) {
-      return zipCodes;
-    }
-    return zipCodes.filter((zipCode) => {
-      const label = zipCode === "unknown" ? t(language, "unknown").toLowerCase() : zipCode.toLowerCase();
-      return label.includes(query);
-    });
-  }, [language, zipCodes, zipSearchQuery]);
 
   const guideCompareCopy = GUIDE_COMPARE_COPY[language];
   const aboutCopy = ABOUT_COPY[language];
@@ -2238,7 +2135,7 @@ export default function App(): JSX.Element {
           style: styleUrl,
           center: [initialUrlState.lon, initialUrlState.lat],
           zoom: initialUrlState.zoom,
-          minZoom: 7,
+          minZoom: 5,
           maxZoom: 18,
           attributionControl: false
         });
@@ -2786,18 +2683,6 @@ export default function App(): JSX.Element {
       params.set("ownership", selectedOwnership.join(","));
     }
 
-    if (selectedCities.length === 0) {
-      params.set("city", "none");
-    } else if (selectedCities.length !== cities.length) {
-      params.set("city", selectedCities.join(","));
-    }
-
-    if (selectedZipCodes.length === 0) {
-      params.set("zip", "none");
-    } else if (selectedZipCodes.length !== zipCodes.length) {
-      params.set("zip", selectedZipCodes.join(","));
-    }
-
     params.set("z", mapView.zoom.toString());
     params.set("lat", mapView.lat.toString());
     params.set("lon", mapView.lon.toString());
@@ -2807,15 +2692,11 @@ export default function App(): JSX.Element {
   }, [
     activeRegion,
     allOwnershipOptions.length,
-    cities.length,
     data,
     language,
     mapView,
-    selectedCities,
     selectedOwnership,
     selectedSpecies,
-    selectedZipCodes,
-    zipCodes.length
   ]);
 
   function toggleSpecies(species: SpeciesGroup): void {
@@ -2836,53 +2717,24 @@ export default function App(): JSX.Element {
     });
   }
 
-  function toggleCity(city: string): void {
-    const isSelected = selectedCities.includes(city);
-    const nextCities = isSelected ? selectedCities.filter((item) => item !== city) : [...selectedCities, city];
-    const nextOwnership =
-      allOwnershipOptions.length > 0 ? [...allOwnershipOptions] : (["public", "private"] as OwnershipGroup[]);
-
-    setSelectedCities(nextCities);
-    setSelectedZipCodes((current) => {
-      if (!isSelected) {
-        const nextZipCodes = new Set(current);
-        (zipCodesByCity.get(city) ?? []).forEach((zipCode) => nextZipCodes.add(zipCode));
-        return sortZipCodesByMasterOrder(nextZipCodes, zipCodes);
-      }
-
-      if (nextCities.length === 0) {
-        return [];
-      }
-
-      const allowedZipCodes = new Set(nextCities.flatMap((item) => zipCodesByCity.get(item) ?? []));
-      return sortZipCodesByMasterOrder(
-        current.filter((zipCode) => allowedZipCodes.has(zipCode)),
-        zipCodes
-      );
-    });
-
-    if (!isSelected) {
-      if (selectedSpecies.length === 0) {
-        setSelectedSpecies([...ALL_SPECIES]);
-      }
-      if (selectedOwnership.length === 0) {
-        setSelectedOwnership(nextOwnership);
-      }
-    }
-  }
-
-  function toggleZipCode(zipCode: string): void {
-    setSelectedZipCodes((current) => {
-      if (current.includes(zipCode)) {
-        return current.filter((item) => item !== zipCode);
-      }
-      return [...current, zipCode];
-    });
-  }
-
   function changeLanguage(nextLanguage: Language): void {
     setLanguage(nextLanguage);
     setLanguageMenuOpen(false);
+  }
+
+  function fitMapToBounds(bounds: BoundsTuple | null): void {
+    if (!bounds) {
+      return;
+    }
+    setViewportBounds(bounds);
+    const map = mapRef.current;
+    if (!map || !mapReady) {
+      return;
+    }
+    map.fitBounds(bounds, {
+      padding: isDesktop ? 80 : 48,
+      duration: 700
+    });
   }
 
   function switchRegion(region: CoverageRegion): void {
@@ -2895,9 +2747,6 @@ export default function App(): JSX.Element {
 
     setSelectedTree(null);
     setSelectedCoverage(null);
-    setStateDropdownOpen(false);
-    setCityDropdownOpen(false);
-    setZipDropdownOpen(false);
     setSelectedSpecies([...ALL_SPECIES]);
     const cachedAreaIndex = regionAreaIndexCache[region];
     if (cachedAreaIndex) {
@@ -2935,6 +2784,60 @@ export default function App(): JSX.Element {
     pendingRegionFitRef.current = region;
   }
 
+  function handleJump(): void {
+    if (!data) {
+      return;
+    }
+
+    const selectedJumpArea = jumpArea ? jumpAreaById.get(jumpArea) ?? null : null;
+    const selectedJumpState = jumpState ? jumpStates.find((item) => item.id === jumpState) ?? null : null;
+    const selectedJumpCountry = jumpCountries.find((item) => item.id === jumpCountry) ?? null;
+    const targetBounds = selectedJumpArea?.bounds ?? selectedJumpState?.bounds ?? selectedJumpCountry?.bounds ?? null;
+    const targetRegion = selectedJumpArea?.region_hint ?? selectedJumpState?.region_hint ?? null;
+
+    setSelectedTree(null);
+    setJumpNotice(null);
+    setSelectedCoverage(null);
+
+    if (targetRegion && targetRegion !== activeRegion) {
+      switchRegion(targetRegion);
+    }
+    fitMapToBounds(targetBounds);
+
+    if (selectedJumpArea) {
+      if (selectedJumpArea.coverage_status === "official_unavailable") {
+        const coverageFeature = coverageFeatureByJurisdiction.get(selectedJumpArea.jurisdiction);
+        if (coverageFeature) {
+          const bounds = targetBounds;
+          setSelectedCoverage({
+            coordinates: bounds
+              ? [
+                  (bounds[0][0] + bounds[1][0]) / 2,
+                  (bounds[0][1] + bounds[1][1]) / 2
+                ]
+              : [mapView.lon, mapView.lat],
+            properties: coverageFeature.properties
+          });
+        }
+        setJumpNotice({
+          kind: "official_unavailable",
+          title: t(language, "jumpOfficialUnavailableTitle"),
+          body: t(language, "jumpOfficialUnavailableBody")
+        });
+      } else if (selectedJumpArea.coverage_status === "untracked") {
+        setJumpNotice({
+          kind: "untracked",
+          title: t(language, "jumpUntrackedTitle"),
+          body: t(language, "jumpUntrackedBody")
+        });
+      }
+    }
+
+    if (!isDesktop) {
+      setActivePanel("filters");
+    }
+  }
+
   function showAllFilters(): void {
     setSelectedSpecies([...ALL_SPECIES]);
     setSelectedCities([...cities]);
@@ -2942,19 +2845,17 @@ export default function App(): JSX.Element {
     setSelectedOwnership([...allOwnershipOptions]);
     setSelectedTree(null);
     setSelectedCoverage(null);
-    setCityDropdownOpen(false);
-    setZipDropdownOpen(false);
+    setJumpNotice(null);
   }
 
   function clearAllFilters(): void {
     setSelectedSpecies([]);
-    setSelectedCities([]);
-    setSelectedZipCodes([]);
+    setSelectedCities([...cities]);
+    setSelectedZipCodes([...allRegionZipCodes]);
     setSelectedOwnership([]);
     setSelectedTree(null);
     setSelectedCoverage(null);
-    setCityDropdownOpen(false);
-    setZipDropdownOpen(false);
+    setJumpNotice(null);
   }
 
   function handleSheetPointerDown(event: ReactPointerEvent<HTMLButtonElement>): void {
@@ -3143,183 +3044,138 @@ export default function App(): JSX.Element {
 
           {activePanel === "filters" ? (
             <>
-              <section className="filters">
-                <div className="filters-heading">
-                  <h3>{t(language, "filtersTitle")}</h3>
-                  <div className="filter-actions">
+              <section className="filters show-panel">
+                <section className="show-block">
+                  <div className="show-block-header">
+                    <h3>{t(language, "showAllPanelTitle")}</h3>
                     <button className="clear-btn show-all-btn" onClick={showAllFilters} type="button">
                       {t(language, "showAll")}
                     </button>
-                    <button className="clear-btn" onClick={clearAllFilters} type="button">
-                      {t(language, "clearAll")}
+                  </div>
+                  <p className="show-block-copy">{t(language, "showAllPanelBody")}</p>
+                </section>
+
+                <section className="show-block">
+                  <div className="show-block-header">
+                    <h3>{t(language, "jumpTitle")}</h3>
+                  </div>
+                  <p className="show-block-copy">{t(language, "jumpBody")}</p>
+                  <div className="jump-grid">
+                    <label className="jump-field">
+                      <span>{t(language, "jumpCountry")}</span>
+                      <select
+                        className="jump-select"
+                        onChange={(event) => {
+                          const nextCountry = event.target.value as JumpCountry["id"];
+                          setJumpCountry(nextCountry);
+                          setJumpState("");
+                          setJumpArea("");
+                        }}
+                        value={jumpCountry}
+                      >
+                        {jumpCountries.map((country) => (
+                          <option key={country.id} value={country.id}>
+                            {country.emoji} {country.label}
+                          </option>
+                        ))}
+                      </select>
+                    </label>
+
+                    <label className="jump-field">
+                      <span>{t(language, "jumpStateProvince")}</span>
+                      <select
+                        className="jump-select"
+                        onChange={(event) => {
+                          const nextState = event.target.value as CoverageRegion | "";
+                          setJumpState(nextState);
+                          setJumpArea("");
+                        }}
+                        value={jumpState}
+                      >
+                        <option value="">{t(language, "jumpAnyStateProvince")}</option>
+                        {jumpStates.map((state) => (
+                          <option key={state.id} value={state.id}>
+                            {REGION_COUNTRY_EMOJIS[state.id]} {state.label}
+                          </option>
+                        ))}
+                      </select>
+                    </label>
+
+                    <label className="jump-field">
+                      <span>{t(language, "jumpArea")}</span>
+                      <select
+                        className="jump-select"
+                        onChange={(event) => setJumpArea(event.target.value)}
+                        value={jumpArea}
+                      >
+                        <option value="">{t(language, "jumpAnyArea")}</option>
+                        {jumpAreas.map((area) => (
+                          <option key={area.id} value={area.id}>
+                            {area.display_name}
+                          </option>
+                        ))}
+                      </select>
+                    </label>
+                  </div>
+                  <div className="jump-actions">
+                    <button className="clear-btn jump-btn" onClick={handleJump} type="button">
+                      {t(language, "jumpButton")}
                     </button>
                   </div>
-                </div>
+                  {jumpNotice && (
+                    <div className={`jump-notice ${jumpNotice.kind}`}>
+                      <strong>{jumpNotice.title}</strong>
+                      <p>{jumpNotice.body}</p>
+                    </div>
+                  )}
+                </section>
 
-                <div className="filter-group">
-                  <strong>{t(language, "speciesFilter")}</strong>
-                  <div className="chip-wrap">
-                    {ALL_SPECIES.map((species) => (
-                      <button
-                        key={species}
-                        className={
-                          selectedSpecies.includes(species)
-                            ? `chip species-chip species-chip-${species} active`
-                            : `chip species-chip species-chip-${species}`
-                        }
-                        onClick={() => toggleSpecies(species)}
-                        type="button"
-                      >
-                        {speciesLabel(language, species)}
+                <section className="show-block">
+                  <div className="filters-heading">
+                    <h3>{t(language, "filtersSectionTitle")}</h3>
+                    <div className="filter-actions">
+                      <button className="clear-btn" onClick={clearAllFilters} type="button">
+                        {t(language, "clearAll")}
                       </button>
-                    ))}
+                    </div>
                   </div>
-                </div>
 
-                <div className="filter-group">
-                  <strong>{t(language, "stateProvinceFilter")}</strong>
-                  <button
-                    aria-expanded={stateDropdownOpen}
-                    className="filter-dropdown-trigger"
-                    onClick={() => setStateDropdownOpen((current) => !current)}
-                    type="button"
-                  >
-                    <span>{activeRegionDisplayLabel}</span>
-                    <span className={stateDropdownOpen ? "caret open" : "caret"} />
-                  </button>
-                  {stateDropdownOpen && (
-                    <div className="filter-dropdown-menu">
-                      <input
-                        className="filter-search-input"
-                        onChange={(event) => setStateSearchQuery(event.target.value)}
-                        placeholder={t(language, "searchStateProvincePlaceholder")}
-                        type="search"
-                        value={stateSearchQuery}
-                      />
-                      {visibleStateProvinces.map((option) => (
-                        <label
-                          className="filter-option"
-                          key={option.region}
-                          onClick={() => switchRegion(option.region)}
+                  <div className="filter-group">
+                    <strong>{t(language, "speciesFilter")}</strong>
+                    <div className="chip-wrap">
+                      {ALL_SPECIES.map((species) => (
+                        <button
+                          key={species}
+                          className={
+                            selectedSpecies.includes(species)
+                              ? `chip species-chip species-chip-${species} active`
+                              : `chip species-chip species-chip-${species}`
+                          }
+                          onClick={() => toggleSpecies(species)}
+                          type="button"
                         >
-                          <input
-                            checked={activeRegion === option.region}
-                            name="state-province"
-                            readOnly
-                            type="radio"
-                          />
-                          <span>{option.displayLabel}</span>
-                        </label>
+                          {speciesLabel(language, species)}
+                        </button>
                       ))}
-                      {visibleStateProvinces.length === 0 && (
-                        <p className="filter-empty">{t(language, "noResultsBody")}</p>
-                      )}
                     </div>
-                  )}
-                </div>
-
-                <div className="filter-group">
-                  <strong>{t(language, "cityFilter")}</strong>
-                  <button
-                    aria-expanded={cityDropdownOpen}
-                    className="filter-dropdown-trigger"
-                    onClick={() => setCityDropdownOpen((current) => !current)}
-                    type="button"
-                  >
-                    <span>
-                      {t(language, "cityFilter")} ({selectedCities.length}/{cities.length})
-                    </span>
-                    <span className={cityDropdownOpen ? "caret open" : "caret"} />
-                  </button>
-                  {cityDropdownOpen && (
-                    <div className="filter-dropdown-menu">
-                      <input
-                        className="filter-search-input"
-                        onChange={(event) => setCitySearchQuery(event.target.value)}
-                        placeholder={t(language, "searchCityPlaceholder")}
-                        type="search"
-                        value={citySearchQuery}
-                      />
-                      {visibleCities.map(({ city, jurisdictionType, label }) => (
-                        <label className="filter-option" key={city}>
-                          <input
-                            checked={selectedCities.includes(city)}
-                            onChange={() => toggleCity(city)}
-                            type="checkbox"
-                          />
-                          <span className="filter-option-copy">
-                            <span className="filter-option-label-row">
-                              <span className="filter-option-text">{label}</span>
-                              <span className={`area-type-badge ${jurisdictionType}`}>
-                                {jurisdictionType === "county"
-                                  ? t(language, "countyBadge")
-                                  : t(language, "cityBadge")}
-                              </span>
-                            </span>
-                          </span>
-                        </label>
-                      ))}
-                      {visibleCities.length === 0 && (
-                        <p className="filter-empty">{t(language, "noResultsBody")}</p>
-                      )}
-                    </div>
-                  )}
-                </div>
-
-                <div className="filter-group">
-                  <strong>{t(language, "zipFilter")}</strong>
-                  <button
-                    aria-expanded={zipDropdownOpen}
-                    className="filter-dropdown-trigger"
-                    onClick={() => setZipDropdownOpen((current) => !current)}
-                    type="button"
-                  >
-                    <span>
-                      {t(language, "zipFilter")} ({selectedZipCodes.length}/{zipCodes.length})
-                    </span>
-                    <span className={zipDropdownOpen ? "caret open" : "caret"} />
-                  </button>
-                  {zipDropdownOpen && (
-                    <div className="filter-dropdown-menu">
-                      <input
-                        className="filter-search-input"
-                        onChange={(event) => setZipSearchQuery(event.target.value)}
-                        placeholder={t(language, "searchZipPlaceholder")}
-                        type="search"
-                        value={zipSearchQuery}
-                      />
-                      {visibleZipCodes.map((zipCode) => (
-                        <label className="filter-option" key={zipCode}>
-                          <input
-                            checked={selectedZipCodes.includes(zipCode)}
-                            onChange={() => toggleZipCode(zipCode)}
-                            type="checkbox"
-                          />
-                          <span>{zipCode === "unknown" ? t(language, "unknown") : zipCode}</span>
-                        </label>
-                      ))}
-                      {visibleZipCodes.length === 0 && (
-                        <p className="filter-empty">{t(language, "noResultsBody")}</p>
-                      )}
-                    </div>
-                  )}
-                </div>
-
-                <div className="filter-group">
-                  <strong>{t(language, "ownershipFilter")}</strong>
-                  <div className="chip-wrap">
-                    {ownershipOptions.map((item) => (
-                      <button
-                        key={item}
-                        className={selectedOwnership.includes(item) ? "chip active" : "chip"}
-                        onClick={() => toggleOwnership(item)}
-                        type="button"
-                      >
-                        {ownershipLabel(language, item)}
-                      </button>
-                    ))}
                   </div>
-                </div>
+
+                  <div className="filter-group">
+                    <strong>{t(language, "ownershipFilter")}</strong>
+                    <div className="chip-wrap">
+                      {ownershipOptions.map((item) => (
+                        <button
+                          key={item}
+                          className={selectedOwnership.includes(item) ? "chip active" : "chip"}
+                          onClick={() => toggleOwnership(item)}
+                          type="button"
+                        >
+                          {ownershipLabel(language, item)}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+                </section>
               </section>
               {activeRegionPending ? null : filteredFeatures.length === 0 ? (
                 <div className="empty-state">
