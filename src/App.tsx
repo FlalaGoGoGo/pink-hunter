@@ -92,6 +92,8 @@ const COVERAGE_COLORS = {
 type BoundsTuple = [[number, number], [number, number]];
 
 const REGION_CITY_OVERRIDES: Partial<Record<string, CoverageRegion>> = {
+  Austin: "tx",
+  Dallas: "tx",
   Arlington: "va",
   Alexandria: "va",
   "Montgomery County": "md",
@@ -677,6 +679,7 @@ const REGION_COUNTRY_EMOJIS: Record<CoverageRegion, string> = {
   ca: "🇺🇸",
   dc: "🇺🇸",
   or: "🇺🇸",
+  tx: "🇺🇸",
   bc: "🇨🇦",
   on: "🇨🇦",
   qc: "🇨🇦",
@@ -692,6 +695,7 @@ const REGION_SORT_LABELS: Record<CoverageRegion, string> = {
   ca: "California",
   dc: "Washington, DC",
   or: "Oregon",
+  tx: "Texas",
   bc: "British Columbia",
   on: "Ontario",
   qc: "Quebec",
@@ -708,6 +712,7 @@ const REGION_COUNTRY_KEYS: Record<CoverageRegion, CountryKey> = {
   ca: "us",
   dc: "us",
   or: "us",
+  tx: "us",
   bc: "ca",
   on: "ca",
   qc: "ca",

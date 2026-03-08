@@ -88,6 +88,14 @@ Live domain:
 </details>
 
 <details>
+<summary>Texas</summary>
+
+- Austin
+- Dallas
+
+</details>
+
+<details>
 <summary>Ontario</summary>
 
 - Ottawa
@@ -218,6 +226,14 @@ Live domain:
 
 - Boston: [BPRD Trees](https://data.boston.gov/dataset/bprd-trees)
 - Cambridge: [Street Trees](https://www.cambridgema.gov/GIS/gisdatadictionary/Environmental/ENVIRONMENTAL_StreetTrees)
+
+</details>
+
+<details>
+<summary>Texas</summary>
+
+- Austin: [Tree Inventory](https://data.austintexas.gov/Environment/Tree-Inventory/wrik-xasw)
+- Dallas: [Dallas Public Tree Inventory](https://dallas.gov/projects/forestry/Pages/inventory.aspx)
 
 </details>
 

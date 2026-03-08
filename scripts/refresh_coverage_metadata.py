@@ -38,6 +38,13 @@ def load_city_boundary_geometry(reference_dir: Path, city: str) -> dict[str, Any
     if not boundary_path.exists():
         return None
     payload = json.loads(boundary_path.read_text(encoding="utf-8"))
+    if payload.get("type") == "FeatureCollection":
+        features = payload.get("features") or []
+        if not features:
+            return None
+        return (features[0] or {}).get("geometry")
+    if payload.get("type") == "Feature":
+        return payload.get("geometry")
     return payload.get("geometry")
 
 

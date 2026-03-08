@@ -5,6 +5,7 @@ import argparse
 import ast
 import csv
 import datetime as dt
+import hashlib
 import json
 import os
 import re
@@ -51,6 +52,7 @@ from etl.build_data import (
     OTTAWA_TREES_LAYER,
     PUBLIC_DATA_DIR,
     REGION_LABELS,
+    SPECIES_GROUPS,
     MAPPING_PATH,
     NORMALIZED_DIR,
     SAN_MATEO_DATASET_PAGE,
@@ -120,6 +122,10 @@ SAN_DIEGO_DATASET_PAGE = "https://webmaps.sandiego.gov/arcgis/rest/services/DSD/
 LOS_ANGELES_STREETSLA_PAGE = "https://streetsla.lacity.org/tree-inventory-and-maintenance"
 LOS_ANGELES_TREEKEEPER_BASE = "https://losangelesca.treekeepersoftware.com"
 LOS_ANGELES_FACILITY_ID = 7
+AUSTIN_DATASET = "https://data.austintexas.gov/resource/wrik-xasw.json"
+AUSTIN_DATASET_PAGE = "https://data.austintexas.gov/Environment/Tree-Inventory/wrik-xasw"
+DALLAS_TREEKEEPER_BASE = "https://dallastx.treekeepersoftware.com"
+DALLAS_DATASET_PAGE = "https://dallas.gov/projects/forestry/Pages/inventory.aspx"
 IRVINE_TREES_LAYER = "https://gis.cityofirvine.org/arcgis/rest/services/City_Landscape/MapServer/0"
 IRVINE_BOUNDARY_LAYER = "https://gis.cityofirvine.org/arcgis/rest/services/City_Landscape/MapServer/3"
 IRVINE_DATASET_PAGE = "https://gis.cityofirvine.org/arcgis/rest/services/City_Landscape/MapServer/0"
@@ -149,6 +155,14 @@ IRVINE_BLOSSOM_WHERE = (
     "UPPER(TRG_COMMON) LIKE '%CRABAPPLE%' OR "
     "UPPER(TRG_COMMON) LIKE '%APPLE%'"
 )
+AUSTIN_BLOSSOM_WHERE = (
+    "lower(species) like '%cherry%' OR "
+    "lower(species) like '%plum%' OR "
+    "lower(species) like '%peach%' OR "
+    "lower(species) like '%magnolia%' OR "
+    "lower(species) like '%crabapple%' OR "
+    "lower(species) like '%apple%'"
+)
 LOS_ANGELES_TREEKEEPER_TERMS = ("%cherry%", "%plum%", "%peach%", "%magnolia%", "%crabapple%", "%apple%")
 SPECIES_TEXT_PATTERN = re.compile(r"^\s*(?P<common>.+?)\s*\((?P<scientific>[^()]+)\)\s*$")
 DISPLAY_NAME_REPLACEMENTS = {
@@ -158,8 +172,10 @@ DISPLAY_NAME_REPLACEMENTS = {
 
 SUPPORTED_CITIES = (
     "Arlington",
+    "Austin",
     "Baltimore",
     "Boston",
+    "Dallas",
     "Irvine",
     "Jersey City",
     "Los Angeles",
@@ -370,11 +386,19 @@ def write_normalized_rows(rows: list[dict[str, Any]]) -> None:
 def rewrite_normalized_rows(target_cities: set[str], new_rows: list[dict[str, Any]]) -> Path:
     path = NORMALIZED_DIR / "trees_normalized.csv"
     path.parent.mkdir(parents=True, exist_ok=True)
-    temp_path = path.with_suffix(".tmp")
     normalized_new_rows = [normalize_row_for_csv(row) for row in new_rows]
     normalized_new_rows.sort(key=lambda item: item["id"])
 
-    with temp_path.open("w", encoding="utf-8", newline="") as handle:
+    with tempfile.NamedTemporaryFile(
+        "w",
+        encoding="utf-8",
+        newline="",
+        dir=path.parent,
+        prefix=f"{path.stem}.",
+        suffix=".tmp",
+        delete=False,
+    ) as handle:
+        temp_path = Path(handle.name)
         writer = csv.DictWriter(handle, fieldnames=NORMALIZED_HEADER)
         writer.writeheader()
         if path.exists():
@@ -584,6 +608,113 @@ def fetch_arlington() -> dict[str, Any]:
     }
 
 
+def fetch_austin() -> dict[str, Any]:
+    rows = fetch_soda_rows(AUSTIN_DATASET, where=AUSTIN_BLOSSOM_WHERE, order="species")
+    total_records = fetch_soda_count(AUSTIN_DATASET, where=AUSTIN_BLOSSOM_WHERE)
+    zip_index = fetch_us_city_zip_index("Austin")
+    mapping_rows = load_mapping(MAPPING_PATH)
+    subtype_rows = load_subtype_mapping(SUBTYPE_MAPPING_PATH)
+
+    output_features: list[dict[str, Any]] = []
+    normalized_rows: list[dict[str, Any]] = []
+    for row in rows:
+        lon: float | None = None
+        lat: float | None = None
+        try:
+            lon = float(row.get("longtitude"))
+            lat = float(row.get("latitude"))
+        except (TypeError, ValueError):
+            lon = None
+            lat = None
+        if lon is None or lat is None or not (-180.0 <= lon <= 180.0 and -90.0 <= lat <= 90.0):
+            geometry = row.get("geometry") or {}
+            coordinates = geometry.get("coordinates") or []
+            if len(coordinates) >= 2:
+                try:
+                    geometry_lon = float(coordinates[0])
+                    geometry_lat = float(coordinates[1])
+                except (TypeError, ValueError):
+                    geometry_lon = None
+                    geometry_lat = None
+                if (
+                    geometry_lon is not None
+                    and geometry_lat is not None
+                    and -180.0 <= geometry_lon <= 180.0
+                    and -90.0 <= geometry_lat <= 90.0
+                ):
+                    lon = geometry_lon
+                    lat = geometry_lat
+        if lon is None or lat is None or not (-180.0 <= lon <= 180.0 and -90.0 <= lat <= 90.0):
+            continue
+
+        scientific_raw, common_name = parse_species_text(row.get("species"))
+        scientific_normalized = normalize_scientific_name(scientific_raw)
+        species_group, subtype_name = classify_tree_record(scientific_raw, common_name, mapping_rows, subtype_rows)
+        ownership_raw = "City of Austin"
+        zip_code = assign_zip_code(lon, lat, zip_index)
+        fingerprint = hashlib.md5(
+            f"{common_name or scientific_raw}|{lat:.6f}|{lon:.6f}".encode("utf-8")
+        ).hexdigest()[:12]
+        row_id = f"austin-{fingerprint}"
+
+        normalized_rows.append(
+            {
+                "id": row_id,
+                "city": "Austin",
+                "source_dataset": "Tree Inventory",
+                "scientific_raw": scientific_raw,
+                "scientific_normalized": scientific_normalized,
+                "common_name": common_name or "",
+                "subtype_name": subtype_name or "",
+                "zip_code": zip_code or "",
+                "species_group": species_group or "",
+                "ownership": canonical_ownership(ownership_raw),
+                "ownership_raw": ownership_raw,
+                "lat": lat,
+                "lon": lon,
+                "included": "1" if species_group else "0",
+            }
+        )
+        if not species_group:
+            continue
+        output_features.append(
+            {
+                "type": "Feature",
+                "geometry": {"type": "Point", "coordinates": [lon, lat]},
+                "properties": {
+                    "id": row_id,
+                    "species_group": species_group,
+                    "scientific_name": scientific_raw,
+                    "common_name": common_name,
+                    "subtype_name": subtype_name,
+                    "zip_code": zip_code,
+                    "ownership": canonical_ownership(ownership_raw),
+                    "ownership_raw": ownership_raw,
+                    "city": "Austin",
+                    "source_dataset": "Tree Inventory",
+                    "source_department": "City of Austin",
+                    "source_last_edit_at": "",
+                },
+            }
+        )
+
+    return {
+        "city": "Austin",
+        "region": "tx",
+        "features": output_features,
+        "normalized_rows": normalized_rows,
+        "source": {
+            "name": "Tree Inventory",
+            "city": "Austin",
+            "endpoint": AUSTIN_DATASET_PAGE,
+            "last_edit_at": "",
+            "records_fetched": total_records,
+            "records_included": len(output_features),
+            "note": "Integrated from the official City of Austin Tree Inventory dataset using blossom-side Socrata filtering.",
+        },
+    }
+
+
 def fetch_boston() -> dict[str, Any]:
     payload = load_remote_geojson(BOSTON_TREES_GEOJSON)
     features = payload.get("features", [])
@@ -761,6 +892,100 @@ def fetch_baltimore() -> dict[str, Any]:
             "records_fetched": int(total_payload.get("count") or len(features)),
             "records_included": len(output_features),
             "note": "Integrated from the official Baltimore city forestry ArcGIS tree layer on gis.baltimorecity.gov.",
+        },
+    }
+
+
+def fetch_dallas() -> dict[str, Any]:
+    summary_payload, rows = fetch_treekeeper_rows(
+        f"{DALLAS_TREEKEEPER_BASE}/cffiles/search.cfc",
+        f"{DALLAS_TREEKEEPER_BASE}/cffiles/grids.cfc",
+        uid="pinkhunter-dallas",
+        fac_id=1,
+    )
+    zip_index = fetch_us_city_zip_index("Dallas")
+    mapping_rows = load_mapping(MAPPING_PATH)
+    subtype_rows = load_subtype_mapping(SUBTYPE_MAPPING_PATH)
+
+    output_features: list[dict[str, Any]] = []
+    normalized_rows: list[dict[str, Any]] = []
+    for row in rows:
+        lon = row.get("LONGITUDE")
+        lat = row.get("LATITUDE")
+        if lon is None or lat is None:
+            geometry_raw = row.get("SITE_GEOMETRY")
+            if isinstance(geometry_raw, str) and geometry_raw.strip():
+                try:
+                    geometry_payload = json.loads(geometry_raw)
+                    coordinates = geometry_payload.get("coordinates") or []
+                    lon, lat = coordinates[0], coordinates[1]
+                except Exception:
+                    lon = None
+                    lat = None
+        if lon is None or lat is None:
+            continue
+
+        scientific_raw, common_name = parse_species_text(row.get("SITE_ATTR1"))
+        scientific_normalized = normalize_scientific_name(scientific_raw)
+        species_group, subtype_name = classify_tree_record(scientific_raw, common_name, mapping_rows, subtype_rows)
+        ownership_raw = clean_display_name(row.get("SITE_ATTR33")) or clean_display_name(row.get("SITE_ATTR32")) or "City of Dallas"
+        zip_code = assign_zip_code(lon, lat, zip_index)
+        row_id = f"dallas-{row.get('SITE_ID')}"
+
+        normalized_rows.append(
+            {
+                "id": row_id,
+                "city": "Dallas",
+                "source_dataset": "Public Tree Inventory",
+                "scientific_raw": scientific_raw,
+                "scientific_normalized": scientific_normalized,
+                "common_name": common_name or "",
+                "subtype_name": subtype_name or "",
+                "zip_code": zip_code or "",
+                "species_group": species_group or "",
+                "ownership": canonical_ownership(ownership_raw),
+                "ownership_raw": ownership_raw,
+                "lat": lat,
+                "lon": lon,
+                "included": "1" if species_group else "0",
+            }
+        )
+        if not species_group:
+            continue
+        output_features.append(
+            {
+                "type": "Feature",
+                "geometry": {"type": "Point", "coordinates": [lon, lat]},
+                "properties": {
+                    "id": row_id,
+                    "species_group": species_group,
+                    "scientific_name": scientific_raw,
+                    "common_name": common_name,
+                    "subtype_name": subtype_name,
+                    "zip_code": zip_code,
+                    "ownership": canonical_ownership(ownership_raw),
+                    "ownership_raw": ownership_raw,
+                    "city": "Dallas",
+                    "source_dataset": "Public Tree Inventory",
+                    "source_department": "City of Dallas",
+                    "source_last_edit_at": "",
+                },
+            }
+        )
+
+    return {
+        "city": "Dallas",
+        "region": "tx",
+        "features": output_features,
+        "normalized_rows": normalized_rows,
+        "source": {
+            "name": "Public Tree Inventory",
+            "city": "Dallas",
+            "endpoint": DALLAS_DATASET_PAGE,
+            "last_edit_at": "",
+            "records_fetched": int(summary_payload.get("siteCount") or len(rows)),
+            "records_included": len(output_features),
+            "note": "Integrated from the official Dallas Public Tree Inventory TreeKeeper page linked by the city forestry page.",
         },
     }
 
@@ -2692,8 +2917,10 @@ def fetch_irvine() -> dict[str, Any]:
 
 CITY_FETCHERS = {
     "Arlington": fetch_arlington,
+    "Austin": fetch_austin,
     "Baltimore": fetch_baltimore,
     "Boston": fetch_boston,
+    "Dallas": fetch_dallas,
     "Irvine": fetch_irvine,
     "Jersey City": fetch_jersey_city,
     "Los Angeles": fetch_los_angeles,

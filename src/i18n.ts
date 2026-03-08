@@ -677,7 +677,8 @@ const regionLabelMap: Record<Language, Record<CoverageRegion, string>> = {
     nj: "New Jersey",
     ny: "New York",
     pa: "Pennsylvania",
-    ma: "Massachusetts"
+    ma: "Massachusetts",
+    tx: "Texas"
   },
   "zh-CN": {
     wa: "华盛顿州",
@@ -692,7 +693,8 @@ const regionLabelMap: Record<Language, Record<CoverageRegion, string>> = {
     nj: "新泽西州",
     ny: "纽约州",
     pa: "宾夕法尼亚州",
-    ma: "马萨诸塞州"
+    ma: "马萨诸塞州",
+    tx: "得克萨斯州"
   },
   "zh-TW": {
     wa: "華盛頓州",
@@ -707,7 +709,8 @@ const regionLabelMap: Record<Language, Record<CoverageRegion, string>> = {
     nj: "紐澤西州",
     ny: "紐約州",
     pa: "賓夕法尼亞州",
-    ma: "麻薩諸塞州"
+    ma: "麻薩諸塞州",
+    tx: "德州"
   },
   "es-ES": {
     wa: "Washington",
@@ -722,7 +725,8 @@ const regionLabelMap: Record<Language, Record<CoverageRegion, string>> = {
     nj: "Nueva Jersey",
     ny: "Nueva York",
     pa: "Pensilvania",
-    ma: "Massachusetts"
+    ma: "Massachusetts",
+    tx: "Texas"
   },
   "ko-KR": {
     wa: "워싱턴주",
@@ -737,7 +741,8 @@ const regionLabelMap: Record<Language, Record<CoverageRegion, string>> = {
     nj: "뉴저지주",
     ny: "뉴욕주",
     pa: "펜실베이니아주",
-    ma: "매사추세츠주"
+    ma: "매사추세츠주",
+    tx: "텍사스주"
   },
   "ja-JP": {
     wa: "ワシントン州",
@@ -752,7 +757,8 @@ const regionLabelMap: Record<Language, Record<CoverageRegion, string>> = {
     nj: "ニュージャージー州",
     ny: "ニューヨーク州",
     pa: "ペンシルベニア州",
-    ma: "マサチューセッツ州"
+    ma: "マサチューセッツ州",
+    tx: "テキサス州"
   },
   "fr-FR": {
     wa: "Washington",
@@ -767,7 +773,8 @@ const regionLabelMap: Record<Language, Record<CoverageRegion, string>> = {
     nj: "New Jersey",
     ny: "New York",
     pa: "Pennsylvanie",
-    ma: "Massachusetts"
+    ma: "Massachusetts",
+    tx: "Texas"
   },
   "vi-VN": {
     wa: "Washington",
@@ -782,7 +789,8 @@ const regionLabelMap: Record<Language, Record<CoverageRegion, string>> = {
     nj: "New Jersey",
     ny: "New York",
     pa: "Pennsylvania",
-    ma: "Massachusetts"
+    ma: "Massachusetts",
+    tx: "Texas"
   }
 };
 

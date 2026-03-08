@@ -1,6 +1,6 @@
 {
   "version": "v2",
-  "generated_at": "2026-03-08T05:52:02.582637+00:00",
+  "generated_at": "2026-03-08T14:39:01.422270+00:00",
   "default_region": "wa",
   "coverage_rule": "official_jurisdiction_boundary_only",
   "coverage_skipped_cities": [],
@@ -96,11 +96,13 @@
     "Woodway",
     "Yarrow Point"
   ],
-  "coverage_official_unavailable_skipped_cities": [],
-  "source_count": 52,
-  "total_records": 1596126,
-  "included_records": 423263,
-  "unknown_records": 653834,
+  "coverage_official_unavailable_skipped_cities": [
+    "Vancouver WA"
+  ],
+  "source_count": 54,
+  "total_records": 1607097,
+  "included_records": 423991,
+  "unknown_records": 655789,
   "regions": [
     {
       "id": "bc",
@@ -666,6 +668,55 @@
       "largest_shard_warning_level": "none"
     },
     {
+      "id": "tx",
+      "label": "TX",
+      "available": true,
+      "bounds": [
+        [
+          -97.9118173363,
+          30.1412673753
+        ],
+        [
+          -96.641460684332,
+          32.873893150943
+        ]
+      ],
+      "data_path": null,
+      "tree_count": 728,
+      "city_count": 2,
+      "cities": [
+        "Austin",
+        "Dallas"
+      ],
+      "species_counts": {
+        "cherry": 82,
+        "plum": 524,
+        "peach": 64,
+        "magnolia": 58,
+        "crabapple": 0
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "raw_bytes": 343610,
+      "gzip_bytes": 19901,
+      "warning_level": "none",
+      "aggregate_raw_bytes": 343610,
+      "aggregate_gzip_bytes": 19901,
+      "aggregate_warning_level": "none",
+      "largest_shard_raw_bytes": 316472,
+      "largest_shard_gzip_bytes": 18264,
+      "largest_shard_area": "Austin",
+      "area_split": {
+        "strategy": "area_shard",
+        "index_path": "/data/trees.tx.area-index.v2.json",
+        "area_count": 2,
+        "shard_count": 2,
+        "ready": true
+      },
+      "largest_shard_warning_level": "none"
+    },
+    {
       "id": "va",
       "label": "VA",
       "available": true,
@@ -793,6 +844,15 @@
       "note": "Integrated from Arlington County's official public DPR Trees layer using the official county jurisdiction boundary."
     },
     {
+      "name": "Tree Inventory",
+      "city": "Austin",
+      "endpoint": "https://data.austintexas.gov/Environment/Tree-Inventory/wrik-xasw",
+      "last_edit_at": "",
+      "records_fetched": 675,
+      "records_included": 675,
+      "note": "Integrated from the official City of Austin Tree Inventory dataset using blossom-side Socrata filtering."
+    },
+    {
       "name": "Trees",
       "city": "Baltimore",
       "endpoint": "https://data.baltimorecity.gov/",
@@ -867,6 +927,15 @@
       "last_edit_at": "",
       "records_fetched": 24613,
       "records_included": 1299
+    },
+    {
+      "name": "Public Tree Inventory",
+      "city": "Dallas",
+      "endpoint": "https://dallas.gov/projects/forestry/Pages/inventory.aspx",
+      "last_edit_at": "",
+      "records_fetched": 10296,
+      "records_included": 53,
+      "note": "Integrated from the official Dallas Public Tree Inventory TreeKeeper page linked by the city forestry page."
     },
     {
       "name": "Everett TreeKeeper Park Sites",
@@ -1221,10 +1290,10 @@
     }
   ],
   "species_counts": {
-    "cherry": 166755,
-    "plum": 88076,
-    "peach": 5343,
-    "magnolia": 98314,
+    "cherry": 166837,
+    "plum": 88600,
+    "peach": 5407,
+    "magnolia": 98372,
     "crabapple": 64775
   },
   "areas": [
@@ -1675,6 +1744,34 @@
       },
       "jurisdiction_type": "city",
       "state_province": "QC"
+    },
+    {
+      "jurisdiction": "Austin",
+      "region": "tx",
+      "tree_count": 675,
+      "species_counts": {
+        "cherry": 50,
+        "plum": 524,
+        "peach": 59,
+        "magnolia": 42,
+        "crabapple": 0
+      },
+      "jurisdiction_type": "city",
+      "state_province": "TX"
+    },
+    {
+      "jurisdiction": "Dallas",
+      "region": "tx",
+      "tree_count": 53,
+      "species_counts": {
+        "cherry": 32,
+        "plum": 0,
+        "peach": 5,
+        "magnolia": 16,
+        "crabapple": 0
+      },
+      "jurisdiction_type": "city",
+      "state_province": "TX"
     },
     {
       "jurisdiction": "Arlington",

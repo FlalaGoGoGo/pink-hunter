@@ -1,6 +1,6 @@
 # City Coverage Tracker
 
-Last updated: 2026-03-07 (America/Los_Angeles)
+Last updated: 2026-03-08 (America/Los_Angeles)
 
 ## Integrated (In Product)
 | Done | City | Included Trees | Boundary Rule | Notes |
@@ -17,6 +17,8 @@ Last updated: 2026-03-07 (America/Los_Angeles)
 | ✅ | Cambridge | 1,954 | Official jurisdiction boundary | Official City of Cambridge `Street Trees` shapefile integrated; only current `SiteType = Tree` rows are included |
 | ✅ | Baltimore | 1,920 | Official jurisdiction boundary | Official Baltimore city forestry tree layer integrated from `gis.baltimorecity.gov`; botanical names come from `SPP` |
 | ✅ | Arlington | 1,882 | Official jurisdiction boundary | Official Arlington County `DPR Trees` layer integrated using the official county-equivalent jurisdiction boundary |
+| ✅ | Austin | 675 | Official jurisdiction boundary | Official City of Austin `Tree Inventory` Socrata dataset integrated; invalid projected coordinate rows in the blossom subset are repaired by falling back to the dataset `geometry` point before publish |
+| ✅ | Dallas | 53 | Official jurisdiction boundary | Official City of Dallas public TreeKeeper inventory integrated from the city forestry page; blossom rows are filtered from `SITE_ATTR1` and coordinates come from the public lon/lat fields |
 | ✅ | San Francisco | 24,099 | Official jurisdiction boundary | Official San Francisco Public Works `Street Tree List` integrated from the city open-data portal |
 | ✅ | San Jose | 18,021 | Official jurisdiction boundary | Official City of San Jose `Street Tree` layer integrated from the city open-data ArcGIS service |
 | ✅ | Los Angeles | 40,459 | Official jurisdiction boundary | Official StreetsLA public TreeKeeper `Street Sites` inventory integrated using server-side blossom filtering against `SITE_ATTR1` |
@@ -117,6 +119,8 @@ Last updated: 2026-03-07 (America/Los_Angeles)
 | ⚠️ | Lynnwood | Not usable yet | Official ArcGIS content found in this round was a South Lynnwood urban-forest project web map, not a citywide single-tree species inventory |
 | ⚠️ | Olympia | Not usable yet | Search turned up a 2007 street-tree layer owned by a non-city account; no current official city single-tree species layer was confirmed |
 | ⚠️ | Ontario | Not found yet | Official city site and GIS entry points reviewed in this round did not confirm a public citywide single-tree species inventory |
+| ⚠️ | Chicago | Not found yet | Official City of Chicago open-data and ArcGIS entry points reviewed in this round did not confirm a public citywide single-tree species inventory |
+| ⚠️ | Houston | Not found yet | Official Houston open-data and ArcGIS entry points reviewed in this round did not confirm a public citywide single-tree species inventory |
 | ⚠️ | Bothell | Not usable yet | Official Urban Forest Management Plan references a street-tree inventory summary PDF, but no public raw single-tree species endpoint was confirmed |
 | ⚠️ | Medina | Not found yet | The previously guessed GIS page path now resolves to 404 and no official public tree inventory layer was confirmed |
 | ⚠️ | Lake Forest Park | Not found yet | Official city pages and ArcGIS search did not confirm a city-owned public single-tree species layer |
@@ -263,3 +267,11 @@ Last updated: 2026-03-07 (America/Los_Angeles)
 - Official Essex County open-data entry points were reviewed again without confirming a countywide public single-tree inventory.
 - Integrated `San Diego` from the official City of San Diego `Trees (Street Trees)` ArcGIS layer using server-side blossom filtering on `COMMON_NAME`.
 - Confirmed that official public `Los Angeles` TreeKeeper inventory is available at city scale, but it currently remains not integrated because the blossom-filter path for a ~925k-tree public dataset has not yet been safely implemented.
+
+## March 2026 Texas / Large-City Follow-up
+- Integrated `Los Angeles` after implementing the city-scale blossom-filter path against the official public StreetsLA TreeKeeper inventory.
+- Integrated `Irvine` from the official City of Irvine `City Trees` ArcGIS layer and official city boundary.
+- Integrated `Austin` from the official City of Austin `Tree Inventory` Socrata dataset; blossom rows with projected `longtitude/latitude` values now fall back to the valid GeoJSON `geometry` point before publish.
+- Integrated `Dallas` from the official City of Dallas public TreeKeeper inventory linked from the city forestry page.
+- Rechecked `Chicago`; official City of Chicago open-data and ArcGIS entry points reviewed in this round did not confirm a public citywide single-tree species inventory.
+- Rechecked `Houston`; official Houston open-data and ArcGIS entry points reviewed in this round did not confirm a public citywide single-tree species inventory.

@@ -7,7 +7,7 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "preview": "vite preview",
-    "etl": "python3 etl/build_data.py && python3 scripts/publish_targeted_city_updates.py --city Arlington --city Baltimore --city Boston --city Irvine --city Jersey\\ City --city Los\\ Angeles --city Milpitas --city San\\ Mateo --city San\\ Rafael --city Salinas --city Fremont --city Concord --city South\\ San\\ Francisco --city New\\ York\\ City --city Philadelphia --city Cambridge --city Pittsburgh --city Ottawa --city Toronto --city Montreal --city New\\ Westminster --city San\\ Diego && python3 scripts/generate_jump_index.py --data-dir public/data"
+    "etl": "python3 etl/build_data.py && python3 scripts/publish_targeted_city_updates.py --city Arlington --city Austin --city Baltimore --city Boston --city Dallas --city Irvine --city Jersey\\ City --city Los\\ Angeles --city Milpitas --city San\\ Mateo --city San\\ Rafael --city Salinas --city Fremont --city Concord --city South\\ San\\ Francisco --city New\\ York\\ City --city Philadelphia --city Cambridge --city Pittsburgh --city Ottawa --city Toronto --city Montreal --city New\\ Westminster --city San\\ Diego && python3 scripts/generate_jump_index.py --data-dir public/data"
   },
   "dependencies": {
     "maplibre-gl": "^4.7.1",

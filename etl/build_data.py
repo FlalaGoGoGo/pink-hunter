@@ -189,6 +189,7 @@ REGION_LABELS: dict[str, str] = {
     "wa": "WA",
     "ca": "CA",
     "or": "OR",
+    "tx": "TX",
     "dc": "DC",
     "bc": "BC",
     "on": "ON",
@@ -202,6 +203,8 @@ REGION_LABELS: dict[str, str] = {
 }
 SPECIES_GROUPS: list[str] = ["cherry", "plum", "peach", "magnolia", "crabapple"]
 REGION_CITY_OVERRIDES: dict[str, str] = {
+    "Austin": "tx",
+    "Dallas": "tx",
     "Arlington": "va",
     "Alexandria": "va",
     "Montgomery County": "md",
@@ -274,6 +277,8 @@ REGION_CITY_OVERRIDES: dict[str, str] = {
 }
 
 CITY_BOUNDARY_HINTS: dict[str, dict[str, str]] = {
+    "Austin": {"state": "48"},
+    "Dallas": {"state": "48"},
     "Arlington": {"state": "51", "basename": "Arlington", "boundary_source": "arlington_county_arcgis"},
     "Alexandria": {"state": "51"},
     "Montgomery County": {"boundary_source": "montgomery_county_arcgis"},

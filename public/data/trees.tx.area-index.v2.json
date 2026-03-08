@@ -1,0 +1,144 @@
+{
+  "generated_at": "2026-03-08T14:39:01.422270+00:00",
+  "region": "tx",
+  "strategy": "area_shard",
+  "items": [
+    {
+      "jurisdiction": "Austin",
+      "slug": "austin",
+      "display_name": "Austin",
+      "jurisdiction_type": "city",
+      "state_province": "TX",
+      "country": "United States",
+      "bounds": [
+        [
+          -97.9118173363,
+          30.1412673753
+        ],
+        [
+          -97.6540343722,
+          30.433713
+        ]
+      ],
+      "tree_count": 675,
+      "zip_codes": [
+        "78701",
+        "78702",
+        "78703",
+        "78704",
+        "78705",
+        "78721",
+        "78722",
+        "78723",
+        "78727",
+        "78731",
+        "78739",
+        "78741",
+        "78744",
+        "78745",
+        "78746",
+        "78748",
+        "78749",
+        "78751",
+        "78752",
+        "78753",
+        "78756",
+        "78757",
+        "78758",
+        "78759"
+      ],
+      "species_counts": {
+        "cherry": 50,
+        "plum": 524,
+        "peach": 59,
+        "magnolia": 42,
+        "crabapple": 0
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "austin-001",
+          "bounds": [
+            [
+              -97.9118173363,
+              30.1412673753
+            ],
+            [
+              -97.6540343722,
+              30.433713
+            ]
+          ],
+          "data_path": "/data/trees.tx.area.austin.v2.geojson",
+          "tree_count": 675,
+          "raw_bytes": 316472,
+          "gzip_bytes": 18264
+        }
+      ]
+    },
+    {
+      "jurisdiction": "Dallas",
+      "slug": "dallas",
+      "display_name": "Dallas",
+      "jurisdiction_type": "city",
+      "state_province": "TX",
+      "country": "United States",
+      "bounds": [
+        [
+          -96.875248477184,
+          32.671381786046
+        ],
+        [
+          -96.641460684332,
+          32.873893150943
+        ]
+      ],
+      "tree_count": 53,
+      "zip_codes": [
+        "75203",
+        "75214",
+        "75215",
+        "75217",
+        "75218",
+        "75219",
+        "75220",
+        "75223",
+        "75227",
+        "75228",
+        "75231",
+        "75235",
+        "75241"
+      ],
+      "species_counts": {
+        "cherry": 32,
+        "plum": 0,
+        "peach": 5,
+        "magnolia": 16,
+        "crabapple": 0
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "dallas-001",
+          "bounds": [
+            [
+              -96.875248477184,
+              32.671381786046
+            ],
+            [
+              -96.641460684332,
+              32.873893150943
+            ]
+          ],
+          "data_path": "/data/trees.tx.area.dallas.v2.geojson",
+          "tree_count": 53,
+          "raw_bytes": 27138,
+          "gzip_bytes": 1637
+        }
+      ]
+    }
+  ]
+}
