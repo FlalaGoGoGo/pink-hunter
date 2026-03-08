@@ -19,6 +19,7 @@ Last updated: 2026-03-08 (America/Los_Angeles)
 | ✅ | Arlington | 1,882 | Official jurisdiction boundary | Official Arlington County `DPR Trees` layer integrated using the official county-equivalent jurisdiction boundary |
 | ✅ | Austin | 675 | Official jurisdiction boundary | Official City of Austin `Tree Inventory` Socrata dataset integrated; invalid projected coordinate rows in the blossom subset are repaired by falling back to the dataset `geometry` point before publish |
 | ✅ | Dallas | 53 | Official jurisdiction boundary | Official City of Dallas public TreeKeeper inventory integrated from the city forestry page; blossom rows are filtered from `SITE_ATTR1` and coordinates come from the public lon/lat fields |
+| ✅ | Houston | 8,623 | Official jurisdiction boundary | Official City of Houston `COH Urban Forestry Trees` ArcGIS layer integrated from the city's public tree inventory web map and official jurisdiction boundary |
 | ✅ | Las Vegas | 115 | Official jurisdiction boundary | Official City of Las Vegas `CLV Tree Sites` ArcGIS layer integrated using server-side blossom filtering on `SPP_BOT` / `SPP_COM` |
 | ✅ | Salt Lake City | 7,810 | Official jurisdiction boundary | Official Salt Lake City Public Lands `Urban Forestry Inventory` ArcGIS layer integrated after excluding vacant sites and classifying `SPP` values |
 | ✅ | San Francisco | 24,099 | Official jurisdiction boundary | Official San Francisco Public Works `Street Tree List` integrated from the city open-data portal |
@@ -33,8 +34,12 @@ Last updated: 2026-03-08 (America/Los_Angeles)
 | ✅ | Cupertino | 1,299 | Official jurisdiction boundary | Official City of Cupertino `Trees` layer integrated from the city GIS portal |
 | ✅ | Fremont | 5,555 | Official jurisdiction boundary | Official City of Fremont public TreePlotter inventory integrated from the city urban-forestry portal plus public species lookup table |
 | ✅ | Concord | 4,103 | Official jurisdiction boundary | Official City of Concord public TreePlotter inventory integrated from the city tree-inventory portal plus official GIS boundary |
+| ✅ | Gilroy | 43 | Official jurisdiction boundary | Official Santa Clara County public `Tree Inventories in Santa Clara County` service integrated using the `City = Gilroy` subset and official jurisdiction boundary |
+| ✅ | Los Gatos | 15 | Official jurisdiction boundary | Official Santa Clara County public `Tree Inventories in Santa Clara County` service integrated using the `City = Los Gatos` subset and official jurisdiction boundary |
+| ✅ | Morgan Hill | 83 | Official jurisdiction boundary | Official Santa Clara County public `Tree Inventories in Santa Clara County` service integrated using the `City = Morgan Hill` subset and official jurisdiction boundary |
 | ✅ | Sacramento | 3,442 | Official jurisdiction boundary | Official City of Sacramento `City Maintained Trees` ArcGIS layer integrated from the city open-data portal and official jurisdiction boundary |
 | ✅ | Salinas | 4,535 | Official jurisdiction boundary | Official City of Salinas OpenDataSoft `Tree Inventory` dataset integrated from the city open-data portal |
+| ✅ | Saratoga | 6 | Official jurisdiction boundary | Official Santa Clara County public `Tree Inventories in Santa Clara County` service integrated using the `City = Saratoga` subset and official jurisdiction boundary |
 | ✅ | South San Francisco | 784 | Official jurisdiction boundary | Official City of South San Francisco public TreeKeeper inventory integrated from the city trees page plus official GIS boundary |
 | ✅ | Sunnyvale | 8 | Official jurisdiction boundary | Official Santa Clara County public `Tree Inventories in Santa Clara County` service integrated using the `City = Sunnyvale` subset and official jurisdiction boundary |
 | ✅ | Washington DC | 16,533 | Official jurisdiction boundary | Urban Tree Canopy (DDOT); ornamental cherry cultivar mapping expanded |
@@ -122,7 +127,6 @@ Last updated: 2026-03-08 (America/Los_Angeles)
 | ⚠️ | Olympia | Not usable yet | Search turned up a 2007 street-tree layer owned by a non-city account; no current official city single-tree species layer was confirmed |
 | ⚠️ | Ontario | Not found yet | Official city site and GIS entry points reviewed in this round did not confirm a public citywide single-tree species inventory |
 | ⚠️ | Chicago | Not found yet | Official City of Chicago open-data and ArcGIS entry points reviewed in this round did not confirm a public citywide single-tree species inventory |
-| ⚠️ | Houston | Not found yet | Official Houston open-data and ArcGIS entry points reviewed in this round did not confirm a public citywide single-tree species inventory |
 | ⚠️ | Bothell | Not usable yet | Official Urban Forest Management Plan references a street-tree inventory summary PDF, but no public raw single-tree species endpoint was confirmed |
 | ⚠️ | Medina | Not found yet | The previously guessed GIS page path now resolves to 404 and no official public tree inventory layer was confirmed |
 | ⚠️ | Lake Forest Park | Not found yet | Official city pages and ArcGIS search did not confirm a city-owned public single-tree species layer |
@@ -231,6 +235,10 @@ Last updated: 2026-03-08 (America/Los_Angeles)
 - Added gray coverage for `Redwood City`, `Alameda`, `Hayward`, and `Daly City` after official-source review did not confirm a public citywide single-tree species dataset.
 - Added gray coverage for `Beaverton`, `Gresham`, `Hillsboro`, `Salem`, and `Tigard` after official-source review did not confirm a public citywide single-tree species dataset or raw public endpoint.
 
+## March 2026 Texas / South Bay Expansion
+- Integrated `Houston` from the official City of Houston public `COH Urban Forestry Trees` web-map service using blossom filtering on `SPECIES` and the official jurisdiction boundary.
+- Integrated `Los Gatos`, `Morgan Hill`, `Gilroy`, and `Saratoga` from the official Santa Clara County public `Tree Inventories in Santa Clara County` service using city-specific subsets and official jurisdiction boundaries.
+
 ## March 2026 Northeast Expansion
 - Integrated `New York City` from the official NYC Parks `2015 Street Tree Census - Tree Data` dataset on NYC Open Data.
 - Integrated `Philadelphia` from the official Philadelphia Parks & Recreation `PPR Tree Inventory 2025` layer.
@@ -279,7 +287,7 @@ Last updated: 2026-03-08 (America/Los_Angeles)
 - Integrated `Austin` from the official City of Austin `Tree Inventory` Socrata dataset; blossom rows with projected `longtitude/latitude` values now fall back to the valid GeoJSON `geometry` point before publish.
 - Integrated `Dallas` from the official City of Dallas public TreeKeeper inventory linked from the city forestry page.
 - Rechecked `Chicago`; official City of Chicago open-data and ArcGIS entry points reviewed in this round did not confirm a public citywide single-tree species inventory.
-- Rechecked `Houston`; official Houston open-data and ArcGIS entry points reviewed in this round did not confirm a public citywide single-tree species inventory.
+- Integrated `Houston` from the official City of Houston public `COH Urban Forestry Trees` ArcGIS layer after confirming a stable blossom-filter path on `SPECIES`.
 
 ## March 2026 Intermountain / Great Lakes Follow-up
 - Integrated `Las Vegas` from the official City of Las Vegas `CLV Tree Sites` ArcGIS layer using blossom filtering on `SPP_BOT` / `SPP_COM`.

@@ -1,6 +1,6 @@
 {
   "version": "v2",
-  "generated_at": "2026-03-08T19:53:59.613444+00:00",
+  "generated_at": "2026-03-08T20:29:04.472957+00:00",
   "default_region": "wa",
   "coverage_rule": "official_jurisdiction_boundary_only",
   "coverage_skipped_cities": [],
@@ -96,9 +96,9 @@
   "coverage_official_unavailable_skipped_cities": [
     "Vancouver WA"
   ],
-  "source_count": 59,
-  "total_records": 1622913,
-  "included_records": 438273,
+  "source_count": 64,
+  "total_records": 1631709,
+  "included_records": 447043,
   "unknown_records": 657323,
   "regions": [
     {
@@ -167,17 +167,20 @@
         ]
       ],
       "data_path": null,
-      "tree_count": 138437,
-      "city_count": 20,
+      "tree_count": 138584,
+      "city_count": 24,
       "cities": [
         "Berkeley",
         "Burlingame",
         "Concord",
         "Cupertino",
         "Fremont",
+        "Gilroy",
         "Irvine",
         "Los Angeles",
+        "Los Gatos",
         "Milpitas",
+        "Morgan Hill",
         "Mountain View",
         "Oakland",
         "Palo Alto",
@@ -188,26 +191,27 @@
         "San Jose",
         "San Mateo",
         "San Rafael",
+        "Saratoga",
         "South San Francisco",
         "Sunnyvale"
       ],
-      "raw_bytes": 70907069,
-      "gzip_bytes": 2995190,
+      "raw_bytes": 70998171,
+      "gzip_bytes": 3000846,
       "warning_level": "none",
       "city_split": null,
       "species_counts": {
-        "cherry": 15927,
-        "plum": 38566,
-        "peach": 4129,
-        "magnolia": 75540,
-        "crabapple": 4275
+        "cherry": 15943,
+        "plum": 38662,
+        "peach": 4133,
+        "magnolia": 75566,
+        "crabapple": 4280
       },
       "ownership_groups": [
         "public",
         "private"
       ],
-      "aggregate_raw_bytes": 70907069,
-      "aggregate_gzip_bytes": 2995190,
+      "aggregate_raw_bytes": 70998171,
+      "aggregate_gzip_bytes": 3000846,
       "aggregate_warning_level": "very_large",
       "largest_shard_raw_bytes": 20242132,
       "largest_shard_gzip_bytes": 770544,
@@ -215,8 +219,8 @@
       "area_split": {
         "strategy": "area_shard",
         "index_path": "/data/trees.ca.area-index.v2.json",
-        "area_count": 20,
-        "shard_count": 20,
+        "area_count": 24,
+        "shard_count": 24,
         "ready": true
       },
       "largest_shard_warning_level": "none"
@@ -722,44 +726,45 @@
       "bounds": [
         [
           -97.9118173363,
-          30.1412673753
+          29.556968739290117
         ],
         [
-          -96.641460684332,
+          -95.10446879317766,
           32.873893150943
         ]
       ],
       "data_path": null,
-      "tree_count": 728,
-      "city_count": 2,
+      "tree_count": 9351,
+      "city_count": 3,
       "cities": [
         "Austin",
-        "Dallas"
+        "Dallas",
+        "Houston"
       ],
       "species_counts": {
-        "cherry": 82,
-        "plum": 524,
-        "peach": 64,
-        "magnolia": 58,
-        "crabapple": 0
+        "cherry": 1620,
+        "plum": 1611,
+        "peach": 284,
+        "magnolia": 5713,
+        "crabapple": 123
       },
       "ownership_groups": [
         "public"
       ],
-      "raw_bytes": 343610,
-      "gzip_bytes": 19901,
+      "raw_bytes": 4894061,
+      "gzip_bytes": 231519,
       "warning_level": "none",
-      "aggregate_raw_bytes": 343610,
-      "aggregate_gzip_bytes": 19901,
+      "aggregate_raw_bytes": 4894061,
+      "aggregate_gzip_bytes": 231519,
       "aggregate_warning_level": "none",
-      "largest_shard_raw_bytes": 316472,
-      "largest_shard_gzip_bytes": 18264,
-      "largest_shard_area": "Austin",
+      "largest_shard_raw_bytes": 4550451,
+      "largest_shard_gzip_bytes": 211618,
+      "largest_shard_area": "Houston",
       "area_split": {
         "strategy": "area_shard",
         "index_path": "/data/trees.tx.area-index.v2.json",
-        "area_count": 2,
-        "shard_count": 2,
+        "area_count": 3,
+        "shard_count": 3,
         "ready": true
       },
       "largest_shard_warning_level": "none"
@@ -1059,6 +1064,24 @@
       "records_included": 63
     },
     {
+      "name": "Tree Inventories in Santa Clara County",
+      "city": "Gilroy",
+      "endpoint": "https://www.arcgis.com/home/item.html?id=58f9d735c5b94915ba5374c82415a26f",
+      "last_edit_at": "2021-08-11T14:36:02.375000+00:00",
+      "records_fetched": 51,
+      "records_included": 43,
+      "note": "Integrated from the official Santa Clara County public tree inventory service using the City = Gilroy subset and official jurisdiction boundary."
+    },
+    {
+      "name": "COH Urban Forestry Trees",
+      "city": "Houston",
+      "endpoint": "https://www.arcgis.com/home/item.html?id=ef3851fa482d41d49cf2d82a399919f5",
+      "last_edit_at": "2026-03-06T19:44:54.426000+00:00",
+      "records_fetched": 8631,
+      "records_included": 8623,
+      "note": "Integrated from the official City of Houston public Urban Forestry tree inventory web map and official jurisdiction boundary."
+    },
+    {
       "name": "City Trees",
       "city": "Irvine",
       "endpoint": "https://gis.cityofirvine.org/arcgis/rest/services/City_Landscape/MapServer/0",
@@ -1111,6 +1134,15 @@
       "note": "Integrated from the official StreetsLA public TreeKeeper street-tree inventory using server-side blossom filtering."
     },
     {
+      "name": "Tree Inventories in Santa Clara County",
+      "city": "Los Gatos",
+      "endpoint": "https://www.arcgis.com/home/item.html?id=58f9d735c5b94915ba5374c82415a26f",
+      "last_edit_at": "2021-08-11T14:36:02.375000+00:00",
+      "records_fetched": 25,
+      "records_included": 15,
+      "note": "Integrated from the official Santa Clara County public tree inventory service using the City = Los Gatos subset and official jurisdiction boundary."
+    },
+    {
       "name": "Trees RO",
       "city": "Milpitas",
       "endpoint": "https://services8.arcgis.com/OPmRdssd8jj0bT5H/arcgis/rest/services/Trees_RO/FeatureServer/0",
@@ -1126,6 +1158,15 @@
       "records_fetched": 333547,
       "records_included": 16258,
       "note": "Integrated from the official Ville de Montréal public-trees CSV and arrondissement-derived official jurisdiction boundary."
+    },
+    {
+      "name": "Tree Inventories in Santa Clara County",
+      "city": "Morgan Hill",
+      "endpoint": "https://www.arcgis.com/home/item.html?id=58f9d735c5b94915ba5374c82415a26f",
+      "last_edit_at": "2021-08-11T14:36:02.375000+00:00",
+      "records_fetched": 83,
+      "records_included": 83,
+      "note": "Integrated from the official Santa Clara County public tree inventory service using the City = Morgan Hill subset and official jurisdiction boundary."
     },
     {
       "name": "Trees",
@@ -1315,6 +1356,15 @@
       "records_included": 422
     },
     {
+      "name": "Tree Inventories in Santa Clara County",
+      "city": "Saratoga",
+      "endpoint": "https://www.arcgis.com/home/item.html?id=58f9d735c5b94915ba5374c82415a26f",
+      "last_edit_at": "2021-08-11T14:36:02.375000+00:00",
+      "records_fetched": 6,
+      "records_included": 6,
+      "note": "Integrated from the official Santa Clara County public tree inventory service using the City = Saratoga subset and official jurisdiction boundary."
+    },
+    {
       "name": "Trees",
       "city": "SeaTac",
       "endpoint": "https://services3.arcgis.com/DLryYCwhA8W7Jq7Q/arcgis/rest/services/Trees/FeatureServer/1",
@@ -1431,11 +1481,11 @@
     }
   ],
   "species_counts": {
-    "cherry": 168928,
-    "plum": 93543,
-    "peach": 5660,
-    "magnolia": 101573,
-    "crabapple": 68569
+    "cherry": 170482,
+    "plum": 94726,
+    "peach": 5884,
+    "magnolia": 107254,
+    "crabapple": 68697
   },
   "areas": [
     {
@@ -1551,6 +1601,20 @@
       "state_province": "CA"
     },
     {
+      "jurisdiction": "Gilroy",
+      "region": "ca",
+      "tree_count": 43,
+      "species_counts": {
+        "cherry": 13,
+        "plum": 13,
+        "peach": 4,
+        "magnolia": 13,
+        "crabapple": 0
+      },
+      "jurisdiction_type": "city",
+      "state_province": "CA"
+    },
+    {
       "jurisdiction": "Irvine",
       "region": "ca",
       "tree_count": 986,
@@ -1579,6 +1643,20 @@
       "state_province": "CA"
     },
     {
+      "jurisdiction": "Los Gatos",
+      "region": "ca",
+      "tree_count": 15,
+      "species_counts": {
+        "cherry": 2,
+        "plum": 0,
+        "peach": 0,
+        "magnolia": 12,
+        "crabapple": 1
+      },
+      "jurisdiction_type": "city",
+      "state_province": "CA"
+    },
+    {
       "jurisdiction": "Milpitas",
       "region": "ca",
       "tree_count": 1696,
@@ -1588,6 +1666,20 @@
         "peach": 143,
         "magnolia": 977,
         "crabapple": 146
+      },
+      "jurisdiction_type": "city",
+      "state_province": "CA"
+    },
+    {
+      "jurisdiction": "Morgan Hill",
+      "region": "ca",
+      "tree_count": 83,
+      "species_counts": {
+        "cherry": 1,
+        "plum": 82,
+        "peach": 0,
+        "magnolia": 0,
+        "crabapple": 0
       },
       "jurisdiction_type": "city",
       "state_province": "CA"
@@ -1728,6 +1820,20 @@
         "peach": 0,
         "magnolia": 87,
         "crabapple": 0
+      },
+      "jurisdiction_type": "city",
+      "state_province": "CA"
+    },
+    {
+      "jurisdiction": "Saratoga",
+      "region": "ca",
+      "tree_count": 6,
+      "species_counts": {
+        "cherry": 0,
+        "plum": 1,
+        "peach": 0,
+        "magnolia": 1,
+        "crabapple": 4
       },
       "jurisdiction_type": "city",
       "state_province": "CA"
@@ -1966,6 +2072,20 @@
         "peach": 5,
         "magnolia": 16,
         "crabapple": 0
+      },
+      "jurisdiction_type": "city",
+      "state_province": "TX"
+    },
+    {
+      "jurisdiction": "Houston",
+      "region": "tx",
+      "tree_count": 8623,
+      "species_counts": {
+        "cherry": 1538,
+        "plum": 1087,
+        "peach": 220,
+        "magnolia": 5655,
+        "crabapple": 123
       },
       "jurisdiction_type": "city",
       "state_province": "TX"

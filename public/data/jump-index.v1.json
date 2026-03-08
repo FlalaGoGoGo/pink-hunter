@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-03-08T19:50:45.578289+00:00",
+  "generated_at": "2026-03-08T20:29:04.472957+00:00",
   "countries": [
     {
       "id": "ca",
@@ -4812,16 +4812,16 @@
       "area_type": "city",
       "bounds": [
         [
-          -121.6435,
-          36.9724
+          -121.64352099981241,
+          36.97236199988973
         ],
         [
-          -121.5187,
-          37.0482
+          -121.51868600011048,
+          37.04823200018827
         ]
       ],
       "region_hint": "ca",
-      "coverage_status": "untracked"
+      "coverage_status": "covered"
     },
     {
       "id": "ca:glendale",
@@ -6712,16 +6712,16 @@
       "area_type": "city",
       "bounds": [
         [
-          -121.9971,
-          37.1993
+          -121.99707699993006,
+          37.19926100022129
         ],
         [
-          -121.9055,
-          37.2652
+          -121.9055419998381,
+          37.26520400021422
         ]
       ],
       "region_hint": "ca",
-      "coverage_status": "untracked"
+      "coverage_status": "covered"
     },
     {
       "id": "ca:loyalton",
@@ -7532,16 +7532,16 @@
       "area_type": "city",
       "bounds": [
         [
-          -121.698,
-          37.0891
+          -121.69804800004162,
+          37.08881300005542
         ],
         [
-          -121.5833,
-          37.1697
+          -121.58325299955307,
+          37.169717000028044
         ]
       ],
       "region_hint": "ca",
-      "coverage_status": "untracked"
+      "coverage_status": "covered"
     },
     {
       "id": "ca:morro-bay",
@@ -10352,16 +10352,16 @@
       "area_type": "city",
       "bounds": [
         [
-          -122.0686,
-          37.2373
+          -122.06866700041613,
+          37.237298999865395
         ],
         [
-          -121.9897,
-          37.2962
+          -121.98947999967454,
+          37.29641099968515
         ]
       ],
       "region_hint": "ca",
-      "coverage_status": "untracked"
+      "coverage_status": "covered"
     },
     {
       "id": "ca:sausalito",
@@ -52221,7 +52221,7 @@
         ]
       ],
       "region_hint": "pa",
-      "coverage_status": "untracked"
+      "coverage_status": "covered"
     },
     {
       "id": "pa:houtzdale",
@@ -71632,12 +71632,12 @@
       "area_type": "city",
       "bounds": [
         [
-          -96.875248477184,
-          32.671381786046
+          -97.00048199962183,
+          32.613215999897015
         ],
         [
-          -96.641460684332,
-          32.873893150943
+          -96.4637099997304,
+          33.0237919997644
         ]
       ],
       "region_hint": "tx",
@@ -77292,16 +77292,16 @@
       "area_type": "city",
       "bounds": [
         [
-          -95.9097,
-          29.5163
+          -95.69522824744126,
+          29.556968739290117
         ],
         [
-          -95.0126,
-          30.1559
+          -95.10446879317766,
+          30.072213861674776
         ]
       ],
       "region_hint": "tx",
-      "coverage_status": "untracked"
+      "coverage_status": "covered"
     },
     {
       "id": "tx:houston-county",

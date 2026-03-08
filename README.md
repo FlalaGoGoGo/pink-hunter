@@ -92,6 +92,7 @@ Live domain:
 
 - Austin
 - Dallas
+- Houston
 
 </details>
 
@@ -139,10 +140,13 @@ Live domain:
 - Concord
 - Cupertino
 - Fremont
+- Gilroy
 - Irvine
 - Los Angeles
+- Los Gatos
 - Mountain View
 - Milpitas
+- Morgan Hill
 - Oakland
 - Palo Alto
 - Sacramento
@@ -152,6 +156,7 @@ Live domain:
 - San Jose
 - San Mateo
 - San Rafael
+- Saratoga
 - South San Francisco
 - Sunnyvale
 
@@ -251,6 +256,7 @@ Live domain:
 
 - Austin: [Tree Inventory](https://data.austintexas.gov/Environment/Tree-Inventory/wrik-xasw)
 - Dallas: [Dallas Public Tree Inventory](https://dallas.gov/projects/forestry/Pages/inventory.aspx)
+- Houston: [City of Houston Tree Inventory - PUBLIC](https://www.arcgis.com/home/item.html?id=ef3851fa482d41d49cf2d82a399919f5)
 
 </details>
 
@@ -299,10 +305,13 @@ Live domain:
 - Berkeley: [Tree_Berkeley20191107](https://www.arcgis.com/home/item.html?id=88829f4ae7254b5280732e88e65e6df5)
 - Cupertino: [Cupertino Open Data GIS](https://gis-cupertino.opendata.arcgis.com/)
 - Fremont: [Tree Inventory / Tree Value](https://www.fremont.gov/government/departments/maintenance-operations/urban-forestry/tree-inventory-tree-value)
+- Gilroy: [Tree Inventories in Santa Clara County](https://www.arcgis.com/home/item.html?id=58f9d735c5b94915ba5374c82415a26f)
 - Irvine: [City Trees](https://gis.cityofirvine.org/arcgis/rest/services/City_Landscape/MapServer/0)
 - Los Angeles: [Tree Inventory and Maintenance](https://streetsla.lacity.org/tree-inventory-and-maintenance)
+- Los Gatos: [Tree Inventories in Santa Clara County](https://www.arcgis.com/home/item.html?id=58f9d735c5b94915ba5374c82415a26f)
 - Mountain View: [Trees](https://services8.arcgis.com/A76GjgcBUTTcwFGS/arcgis/rest/services/Heritage_Trees_JM/FeatureServer/10)
 - Milpitas: [Trees RO](https://services8.arcgis.com/OPmRdssd8jj0bT5H/arcgis/rest/services/Trees_RO/FeatureServer/0)
+- Morgan Hill: [Tree Inventories in Santa Clara County](https://www.arcgis.com/home/item.html?id=58f9d735c5b94915ba5374c82415a26f)
 - Oakland: [Oakland Street Trees](https://data.oaklandca.gov/Environmental/Oakland-Street-Trees/4jcx-enxf)
 - Salinas: [Tree Inventory](https://cityofsalinas.opendatasoft.com/explore/dataset/tree-inventory/)
 - Sacramento: [City Maintained Trees](https://data.cityofsacramento.org/datasets/b9b716e09b5048179ab648bb4518452b_0/explore)
@@ -311,6 +320,7 @@ Live domain:
 - San Jose: [Street Tree](https://data.sanjoseca.gov/dataset/street-tree)
 - San Mateo: [Street Trees](https://www.arcgis.com/home/item.html?id=67c8b57d2d91459c9f951df9de961a06)
 - San Rafael: [Trees](https://www.arcgis.com/home/item.html?id=8a236959df6f438ba38bdf5db85ce54a)
+- Saratoga: [Tree Inventories in Santa Clara County](https://www.arcgis.com/home/item.html?id=58f9d735c5b94915ba5374c82415a26f)
 - South San Francisco: [City Trees](https://www.ssfca.gov/Departments/Parks-Recreation/Divisions/Parks-Division/Trees)
 - Sunnyvale: [Tree Inventories in Santa Clara County](https://www.arcgis.com/home/item.html?id=58f9d735c5b94915ba5374c82415a26f)
 

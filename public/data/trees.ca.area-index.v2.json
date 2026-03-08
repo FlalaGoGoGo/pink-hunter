@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-03-08T19:53:59.613444+00:00",
+  "generated_at": "2026-03-08T20:25:41.052516+00:00",
   "region": "ca",
   "strategy": "area_shard",
   "items": [
@@ -281,6 +281,58 @@
       ]
     },
     {
+      "jurisdiction": "Gilroy",
+      "slug": "gilroy",
+      "display_name": "Gilroy",
+      "jurisdiction_type": "city",
+      "state_province": "CA",
+      "country": "United States",
+      "bounds": [
+        [
+          -121.64861919956122,
+          37.03429700964257
+        ],
+        [
+          -121.53183289998913,
+          37.168515000129496
+        ]
+      ],
+      "tree_count": 43,
+      "zip_codes": [
+        "95020",
+        "None"
+      ],
+      "species_counts": {
+        "cherry": 13,
+        "plum": 13,
+        "peach": 4,
+        "magnolia": 13,
+        "crabapple": 0
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "gilroy-001",
+          "bounds": [
+            [
+              -121.64861919956122,
+              37.03429700964257
+            ],
+            [
+              -121.53183289998913,
+              37.168515000129496
+            ]
+          ],
+          "data_path": "/data/trees.ca.area.gilroy.v2.geojson",
+          "tree_count": 43,
+          "raw_bytes": 26603,
+          "gzip_bytes": 1719
+        }
+      ]
+    },
+    {
       "jurisdiction": "Irvine",
       "slug": "irvine",
       "display_name": "Irvine",
@@ -509,6 +561,57 @@
       ]
     },
     {
+      "jurisdiction": "Los Gatos",
+      "slug": "los-gatos",
+      "display_name": "Los Gatos",
+      "jurisdiction_type": "city",
+      "state_province": "CA",
+      "country": "United States",
+      "bounds": [
+        [
+          -121.97262409971822,
+          37.23895158975771
+        ],
+        [
+          -121.96595870002305,
+          37.24290616013476
+        ]
+      ],
+      "tree_count": 15,
+      "zip_codes": [
+        "95032"
+      ],
+      "species_counts": {
+        "cherry": 2,
+        "plum": 0,
+        "peach": 0,
+        "magnolia": 12,
+        "crabapple": 1
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "los-gatos-001",
+          "bounds": [
+            [
+              -121.97262409971822,
+              37.23895158975771
+            ],
+            [
+              -121.96595870002305,
+              37.24290616013476
+            ]
+          ],
+          "data_path": "/data/trees.ca.area.los-gatos.v2.geojson",
+          "tree_count": 15,
+          "raw_bytes": 9482,
+          "gzip_bytes": 867
+        }
+      ]
+    },
+    {
       "jurisdiction": "Milpitas",
       "slug": "milpitas",
       "display_name": "Milpitas",
@@ -557,6 +660,57 @@
           "tree_count": 1696,
           "raw_bytes": 844628,
           "gzip_bytes": 25811
+        }
+      ]
+    },
+    {
+      "jurisdiction": "Morgan Hill",
+      "slug": "morgan-hill",
+      "display_name": "Morgan Hill",
+      "jurisdiction_type": "city",
+      "state_province": "CA",
+      "country": "United States",
+      "bounds": [
+        [
+          -121.64754010012282,
+          37.15280097015726
+        ],
+        [
+          -121.6453438998145,
+          37.155842359709816
+        ]
+      ],
+      "tree_count": 83,
+      "zip_codes": [
+        "95037"
+      ],
+      "species_counts": {
+        "cherry": 1,
+        "plum": 82,
+        "peach": 0,
+        "magnolia": 0,
+        "crabapple": 0
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "morgan-hill-001",
+          "bounds": [
+            [
+              -121.64754010012282,
+              37.15280097015726
+            ],
+            [
+              -121.6453438998145,
+              37.155842359709816
+            ]
+          ],
+          "data_path": "/data/trees.ca.area.morgan-hill.v2.geojson",
+          "tree_count": 83,
+          "raw_bytes": 51350,
+          "gzip_bytes": 2473
         }
       ]
     },
@@ -1196,6 +1350,57 @@
           "tree_count": 422,
           "raw_bytes": 219038,
           "gzip_bytes": 10169
+        }
+      ]
+    },
+    {
+      "jurisdiction": "Saratoga",
+      "slug": "saratoga",
+      "display_name": "Saratoga",
+      "jurisdiction_type": "city",
+      "state_province": "CA",
+      "country": "United States",
+      "bounds": [
+        [
+          -122.07210359985862,
+          37.23407858991832
+        ],
+        [
+          -122.06382590029827,
+          37.23966127027525
+        ]
+      ],
+      "tree_count": 6,
+      "zip_codes": [
+        "95070"
+      ],
+      "species_counts": {
+        "cherry": 0,
+        "plum": 1,
+        "peach": 0,
+        "magnolia": 1,
+        "crabapple": 4
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "saratoga-001",
+          "bounds": [
+            [
+              -122.07210359985862,
+              37.23407858991832
+            ],
+            [
+              -122.06382590029827,
+              37.23966127027525
+            ]
+          ],
+          "data_path": "/data/trees.ca.area.saratoga.v2.geojson",
+          "tree_count": 6,
+          "raw_bytes": 3667,
+          "gzip_bytes": 597
         }
       ]
     },

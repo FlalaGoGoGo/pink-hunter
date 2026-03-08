@@ -120,6 +120,8 @@ NEW_WESTMINSTER_TREES_LAYER = "https://services3.arcgis.com/A7O8YnTNtzRPIn7T/arc
 NEW_WESTMINSTER_DATASET_PAGE = "https://services3.arcgis.com/A7O8YnTNtzRPIn7T/arcgis/rest/services/Tree_Inventory_(PROD)_4_view/FeatureServer"
 SAN_DIEGO_TREES_LAYER = "https://webmaps.sandiego.gov/arcgis/rest/services/DSD/Environment/MapServer/20"
 SAN_DIEGO_DATASET_PAGE = "https://webmaps.sandiego.gov/arcgis/rest/services/DSD/Environment/MapServer/20"
+HOUSTON_TREES_LAYER = "https://services.arcgis.com/NummVBqZSIJKUeVR/arcgis/rest/services/COH_UrbanForestry_Trees_VIEW_ONLY/FeatureServer/0"
+HOUSTON_DATASET_PAGE = "https://www.arcgis.com/home/item.html?id=ef3851fa482d41d49cf2d82a399919f5"
 LAS_VEGAS_TREES_LAYER = "https://services1.arcgis.com/F1v0ufATbBQScMtY/ArcGIS/rest/services/CLV_Tree_Sites/FeatureServer/0"
 LAS_VEGAS_DATASET_PAGE = "https://services1.arcgis.com/F1v0ufATbBQScMtY/ArcGIS/rest/services/CLV_Tree_Sites/FeatureServer"
 SALT_LAKE_CITY_TREES_LAYER = "https://services.arcgis.com/mMBpeYj0vPFotzbe/arcgis/rest/services/Urban_Forestry_Inventory/FeatureServer/0"
@@ -140,6 +142,7 @@ SACRAMENTO_TREES_LAYER = "https://services5.arcgis.com/54falWtcpty3V47Z/arcgis/r
 SACRAMENTO_DATASET_PAGE = "https://data.cityofsacramento.org/datasets/b9b716e09b5048179ab648bb4518452b_0/explore"
 SUNNYVALE_TREES_LAYER = "https://services.arcgis.com/NkcnS0qk4w2wasOJ/arcgis/rest/services/Tree_Inventories_in_Santa_Clara_County_WFL1/FeatureServer/0"
 SUNNYVALE_DATASET_PAGE = "https://www.arcgis.com/home/item.html?id=58f9d735c5b94915ba5374c82415a26f"
+SANTA_CLARA_COUNTY_TREES_DATASET_PAGE = SUNNYVALE_DATASET_PAGE
 SAN_DIEGO_BLOSSOM_WHERE = (
     "UPPER(COMMON_NAME) LIKE '%CHERRY%' OR "
     "UPPER(COMMON_NAME) LIKE '%PLUM%' OR "
@@ -214,6 +217,17 @@ SACRAMENTO_BLOSSOM_WHERE = (
     "UPPER(SPECIES) LIKE '%CRABAPPLE%' OR "
     "UPPER(SPECIES) LIKE '%APPLE%'"
 )
+HOUSTON_BLOSSOM_WHERE = (
+    "UPPER(SPECIES) LIKE 'PRUNUS%' OR "
+    "UPPER(SPECIES) LIKE 'MALUS%' OR "
+    "UPPER(SPECIES) LIKE 'MAGNOLIA%' OR "
+    "UPPER(SPECIES) LIKE '%CHERRY%' OR "
+    "UPPER(SPECIES) LIKE '%PLUM%' OR "
+    "UPPER(SPECIES) LIKE '%PEACH%' OR "
+    "UPPER(SPECIES) LIKE '%MAGNOLIA%' OR "
+    "UPPER(SPECIES) LIKE '%CRABAPPLE%' OR "
+    "UPPER(SPECIES) LIKE '%APPLE%'"
+)
 SUNNYVALE_BLOSSOM_WHERE = (
     "City = 'Sunnyvale' AND ("
     "UPPER(Scientific) LIKE 'PRUNUS%' OR "
@@ -248,16 +262,21 @@ SUPPORTED_CITIES = (
     "Baltimore",
     "Boston",
     "Dallas",
+    "Houston",
     "Irvine",
     "Jersey City",
     "Las Vegas",
     "Los Angeles",
+    "Los Gatos",
     "Mountain View",
     "Milpitas",
+    "Morgan Hill",
     "Sacramento",
     "San Mateo",
     "San Rafael",
+    "Saratoga",
     "Sunnyvale",
+    "Gilroy",
     "Fremont",
     "Salinas",
     "Concord",
@@ -3479,22 +3498,247 @@ def fetch_sunnyvale() -> dict[str, Any]:
     }
 
 
+def fetch_santa_clara_county_city(city: str) -> dict[str, Any]:
+    layer_info = fetch_json(SUNNYVALE_TREES_LAYER, {"f": "pjson"})
+    escaped_city = city.replace("'", "''")
+    where = (
+        f"City = '{escaped_city}' AND ("
+        "UPPER(Scientific) LIKE 'PRUNUS%' OR "
+        "UPPER(Scientific) LIKE 'MALUS%' OR "
+        "UPPER(Scientific) LIKE 'MAGNOLIA%' OR "
+        "UPPER(CommonName) LIKE '%CHERRY%' OR "
+        "UPPER(CommonName) LIKE '%PLUM%' OR "
+        "UPPER(CommonName) LIKE '%PEACH%' OR "
+        "UPPER(CommonName) LIKE '%MAGNOLIA%' OR "
+        "UPPER(CommonName) LIKE '%CRABAPPLE%' OR "
+        "UPPER(CommonName) LIKE '%APPLE%'"
+        ")"
+    )
+    total_payload = fetch_json(
+        f"{SUNNYVALE_TREES_LAYER}/query",
+        {"where": where, "returnCountOnly": "true", "f": "json"},
+    )
+    features = fetch_all_features(
+        SUNNYVALE_TREES_LAYER,
+        where,
+        ["FID", "City", "CommonName", "Scientific", "Address", "SiteName", "SiteID"],
+        "FID",
+    )
+    zip_index = fetch_us_city_zip_index(city)
+    mapping_rows = load_mapping(MAPPING_PATH)
+    subtype_rows = load_subtype_mapping(SUBTYPE_MAPPING_PATH)
+    last_edit_at = iso_from_epoch((layer_info.get("editingInfo") or {}).get("lastEditDate"))
+
+    output_features: list[dict[str, Any]] = []
+    normalized_rows: list[dict[str, Any]] = []
+    for feature in features:
+        attrs = feature.get("attributes", {})
+        geom = feature.get("geometry", {})
+        lon_raw = geom.get("x")
+        lat_raw = geom.get("y")
+        lon = float(lon_raw) if lon_raw is not None else None
+        lat = float(lat_raw) if lat_raw is not None else None
+        if lon is None or lat is None:
+            continue
+
+        common_name = clean_common_name(attrs.get("CommonName"))
+        scientific_raw = format_scientific_display_name(attrs.get("Scientific"), common_name)
+        scientific_normalized = normalize_scientific_name(scientific_raw)
+        species_group, subtype_name = classify_tree_record(scientific_raw, common_name, mapping_rows, subtype_rows)
+        ownership_raw = "Public / Santa Clara County tree inventory"
+        zip_code = assign_zip_code(lon, lat, zip_index)
+        row_id = f"{slugify_token(city)}-{attrs.get('FID') or attrs.get('SiteID')}"
+
+        normalized_rows.append(
+            {
+                "id": row_id,
+                "city": city,
+                "source_dataset": "Tree Inventories in Santa Clara County",
+                "scientific_raw": scientific_raw,
+                "scientific_normalized": scientific_normalized,
+                "common_name": common_name or "",
+                "subtype_name": subtype_name or "",
+                "zip_code": zip_code or "",
+                "species_group": species_group or "",
+                "ownership": canonical_ownership(ownership_raw),
+                "ownership_raw": ownership_raw,
+                "lat": lat,
+                "lon": lon,
+                "included": "1" if species_group else "0",
+            }
+        )
+        if not species_group:
+            continue
+        output_features.append(
+            {
+                "type": "Feature",
+                "geometry": {"type": "Point", "coordinates": [lon, lat]},
+                "properties": {
+                    "id": row_id,
+                    "species_group": species_group,
+                    "scientific_name": scientific_raw,
+                    "common_name": common_name,
+                    "subtype_name": subtype_name,
+                    "zip_code": zip_code,
+                    "ownership": canonical_ownership(ownership_raw),
+                    "ownership_raw": ownership_raw,
+                    "city": city,
+                    "source_dataset": "Tree Inventories in Santa Clara County",
+                    "source_department": "County of Santa Clara / Santa Clara Valley Urban Forestry Alliance",
+                    "source_last_edit_at": last_edit_at,
+                },
+            }
+        )
+
+    return {
+        "city": city,
+        "region": "ca",
+        "features": output_features,
+        "normalized_rows": normalized_rows,
+        "source": {
+            "name": "Tree Inventories in Santa Clara County",
+            "city": city,
+            "endpoint": SANTA_CLARA_COUNTY_TREES_DATASET_PAGE,
+            "last_edit_at": last_edit_at,
+            "records_fetched": int(total_payload.get("count") or len(features)),
+            "records_included": len(output_features),
+            "note": f"Integrated from the official Santa Clara County public tree inventory service using the City = {city} subset and official jurisdiction boundary.",
+        },
+    }
+
+
+def fetch_los_gatos() -> dict[str, Any]:
+    return fetch_santa_clara_county_city("Los Gatos")
+
+
+def fetch_morgan_hill() -> dict[str, Any]:
+    return fetch_santa_clara_county_city("Morgan Hill")
+
+
+def fetch_gilroy() -> dict[str, Any]:
+    return fetch_santa_clara_county_city("Gilroy")
+
+
+def fetch_saratoga() -> dict[str, Any]:
+    return fetch_santa_clara_county_city("Saratoga")
+
+
+def fetch_houston() -> dict[str, Any]:
+    layer_info = fetch_json(HOUSTON_TREES_LAYER, {"f": "pjson"})
+    total_payload = fetch_json(
+        f"{HOUSTON_TREES_LAYER}/query",
+        {"where": HOUSTON_BLOSSOM_WHERE, "returnCountOnly": "true", "f": "json"},
+    )
+    features = fetch_all_features(
+        HOUSTON_TREES_LAYER,
+        HOUSTON_BLOSSOM_WHERE,
+        ["OBJECTID", "SPECIES", "ADDRESS", "STATUS", "LOCATION"],
+        "OBJECTID",
+    )
+    zip_index = fetch_us_city_zip_index("Houston")
+    mapping_rows = load_mapping(MAPPING_PATH)
+    subtype_rows = load_subtype_mapping(SUBTYPE_MAPPING_PATH)
+    last_edit_at = iso_from_epoch((layer_info.get("editingInfo") or {}).get("lastEditDate"))
+
+    output_features: list[dict[str, Any]] = []
+    normalized_rows: list[dict[str, Any]] = []
+    for feature in features:
+        attrs = feature.get("attributes", {})
+        geom = feature.get("geometry", {})
+        lon_raw = geom.get("x")
+        lat_raw = geom.get("y")
+        lon = float(lon_raw) if lon_raw is not None else None
+        lat = float(lat_raw) if lat_raw is not None else None
+        if lon is None or lat is None:
+            continue
+
+        common_name = clean_common_name(attrs.get("SPECIES"))
+        scientific_raw = generic_scientific_name_for_common_hint(common_name)
+        scientific_normalized = normalize_scientific_name(scientific_raw)
+        species_group, subtype_name = classify_tree_record(scientific_raw, common_name, mapping_rows, subtype_rows)
+        ownership_raw = "City of Houston"
+        zip_code = assign_zip_code(lon, lat, zip_index)
+        row_id = f"houston-{attrs.get('OBJECTID')}"
+
+        normalized_rows.append(
+            {
+                "id": row_id,
+                "city": "Houston",
+                "source_dataset": "COH Urban Forestry Trees",
+                "scientific_raw": scientific_raw,
+                "scientific_normalized": scientific_normalized,
+                "common_name": common_name or "",
+                "subtype_name": subtype_name or "",
+                "zip_code": zip_code or "",
+                "species_group": species_group or "",
+                "ownership": canonical_ownership(ownership_raw),
+                "ownership_raw": ownership_raw,
+                "lat": lat,
+                "lon": lon,
+                "included": "1" if species_group else "0",
+            }
+        )
+        if not species_group:
+            continue
+        output_features.append(
+            {
+                "type": "Feature",
+                "geometry": {"type": "Point", "coordinates": [lon, lat]},
+                "properties": {
+                    "id": row_id,
+                    "species_group": species_group,
+                    "scientific_name": scientific_raw,
+                    "common_name": common_name,
+                    "subtype_name": subtype_name,
+                    "zip_code": zip_code,
+                    "ownership": canonical_ownership(ownership_raw),
+                    "ownership_raw": ownership_raw,
+                    "city": "Houston",
+                    "source_dataset": "COH Urban Forestry Trees",
+                    "source_department": "City of Houston",
+                    "source_last_edit_at": last_edit_at,
+                },
+            }
+        )
+
+    return {
+        "city": "Houston",
+        "region": "tx",
+        "features": output_features,
+        "normalized_rows": normalized_rows,
+        "source": {
+            "name": "COH Urban Forestry Trees",
+            "city": "Houston",
+            "endpoint": HOUSTON_DATASET_PAGE,
+            "last_edit_at": last_edit_at,
+            "records_fetched": int(total_payload.get("count") or len(features)),
+            "records_included": len(output_features),
+            "note": "Integrated from the official City of Houston public Urban Forestry tree inventory web map and official jurisdiction boundary.",
+        },
+    }
+
+
 CITY_FETCHERS = {
     "Arlington": fetch_arlington,
     "Austin": fetch_austin,
     "Baltimore": fetch_baltimore,
     "Boston": fetch_boston,
     "Dallas": fetch_dallas,
+    "Houston": fetch_houston,
     "Irvine": fetch_irvine,
     "Jersey City": fetch_jersey_city,
     "Las Vegas": fetch_las_vegas,
     "Los Angeles": fetch_los_angeles,
+    "Los Gatos": fetch_los_gatos,
     "Mountain View": fetch_mountain_view,
     "Milpitas": fetch_milpitas,
+    "Morgan Hill": fetch_morgan_hill,
     "Sacramento": fetch_sacramento,
     "San Mateo": fetch_san_mateo,
     "San Rafael": fetch_san_rafael,
+    "Saratoga": fetch_saratoga,
     "Sunnyvale": fetch_sunnyvale,
+    "Gilroy": fetch_gilroy,
     "Fremont": fetch_fremont,
     "Salinas": fetch_salinas,
     "Concord": fetch_concord,
