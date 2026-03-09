@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-03-09T00:15:35.842175+00:00",
+  "generated_at": "2026-03-09T01:33:48.784575+00:00",
   "region": "ca",
   "strategy": "area_shard",
   "items": [
@@ -390,6 +390,59 @@
       ]
     },
     {
+      "jurisdiction": "Costa Mesa",
+      "slug": "costa-mesa",
+      "display_name": "Costa Mesa",
+      "jurisdiction_type": "city",
+      "state_province": "CA",
+      "country": "United States",
+      "bounds": [
+        [
+          -117.94783799999999,
+          33.62718187000007
+        ],
+        [
+          -117.87666669999999,
+          33.694800550000025
+        ]
+      ],
+      "tree_count": 887,
+      "zip_codes": [
+        "92626",
+        "92627",
+        "92660"
+      ],
+      "species_counts": {
+        "cherry": 0,
+        "plum": 106,
+        "peach": 22,
+        "magnolia": 755,
+        "crabapple": 4
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "costa-mesa-001",
+          "bounds": [
+            [
+              -117.94783799999999,
+              33.62718187000007
+            ],
+            [
+              -117.87666669999999,
+              33.694800550000025
+            ]
+          ],
+          "data_path": "/data/trees.ca.area.costa-mesa.v2.geojson",
+          "tree_count": 887,
+          "raw_bytes": 488068,
+          "gzip_bytes": 17508
+        }
+      ]
+    },
+    {
       "jurisdiction": "Cupertino",
       "slug": "cupertino",
       "display_name": "Cupertino",
@@ -491,6 +544,60 @@
           "tree_count": 348,
           "raw_bytes": 189299,
           "gzip_bytes": 7143
+        }
+      ]
+    },
+    {
+      "jurisdiction": "Fontana",
+      "slug": "fontana",
+      "display_name": "Fontana",
+      "jurisdiction_type": "city",
+      "state_province": "CA",
+      "country": "United States",
+      "bounds": [
+        [
+          -117.51784432999995,
+          34.03730420100003
+        ],
+        [
+          -117.40554349199999,
+          34.17583375000004
+        ]
+      ],
+      "tree_count": 3732,
+      "zip_codes": [
+        "92316",
+        "92335",
+        "92336",
+        "92337"
+      ],
+      "species_counts": {
+        "cherry": 11,
+        "plum": 245,
+        "peach": 10,
+        "magnolia": 3462,
+        "crabapple": 4
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "fontana-001",
+          "bounds": [
+            [
+              -117.51784432999995,
+              34.03730420100003
+            ],
+            [
+              -117.40554349199999,
+              34.17583375000004
+            ]
+          ],
+          "data_path": "/data/trees.ca.area.fontana.v2.geojson",
+          "tree_count": 3732,
+          "raw_bytes": 2003318,
+          "gzip_bytes": 73603
         }
       ]
     },
@@ -716,6 +823,57 @@
       ]
     },
     {
+      "jurisdiction": "La Canada Flintridge",
+      "slug": "la-canada-flintridge",
+      "display_name": "La Canada Flintridge",
+      "jurisdiction_type": "city",
+      "state_province": "CA",
+      "country": "United States",
+      "bounds": [
+        [
+          -118.22758574999995,
+          34.182490184000066
+        ],
+        [
+          -118.17448084999997,
+          34.237727620000044
+        ]
+      ],
+      "tree_count": 314,
+      "zip_codes": [
+        "None"
+      ],
+      "species_counts": {
+        "cherry": 3,
+        "plum": 121,
+        "peach": 16,
+        "magnolia": 160,
+        "crabapple": 14
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "la-canada-flintridge-001",
+          "bounds": [
+            [
+              -118.22758574999995,
+              34.182490184000066
+            ],
+            [
+              -118.17448084999997,
+              34.237727620000044
+            ]
+          ],
+          "data_path": "/data/trees.ca.area.la-canada-flintridge.v2.geojson",
+          "tree_count": 314,
+          "raw_bytes": 187420,
+          "gzip_bytes": 7564
+        }
+      ]
+    },
+    {
       "jurisdiction": "Los Angeles",
       "slug": "los-angeles",
       "display_name": "Los Angeles",
@@ -935,6 +1093,58 @@
       ]
     },
     {
+      "jurisdiction": "Maywood",
+      "slug": "maywood",
+      "display_name": "Maywood",
+      "jurisdiction_type": "city",
+      "state_province": "CA",
+      "country": "United States",
+      "bounds": [
+        [
+          -118.20260789999999,
+          33.98040062000006
+        ],
+        [
+          -118.17448249999995,
+          33.99457549000004
+        ]
+      ],
+      "tree_count": 71,
+      "zip_codes": [
+        "90201",
+        "90270"
+      ],
+      "species_counts": {
+        "cherry": 1,
+        "plum": 18,
+        "peach": 1,
+        "magnolia": 50,
+        "crabapple": 1
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "maywood-001",
+          "bounds": [
+            [
+              -118.20260789999999,
+              33.98040062000006
+            ],
+            [
+              -118.17448249999995,
+              33.99457549000004
+            ]
+          ],
+          "data_path": "/data/trees.ca.area.maywood.v2.geojson",
+          "tree_count": 71,
+          "raw_bytes": 37746,
+          "gzip_bytes": 1855
+        }
+      ]
+    },
+    {
       "jurisdiction": "Milpitas",
       "slug": "milpitas",
       "display_name": "Milpitas",
@@ -983,6 +1193,58 @@
           "tree_count": 1696,
           "raw_bytes": 844628,
           "gzip_bytes": 25811
+        }
+      ]
+    },
+    {
+      "jurisdiction": "Monterey Park",
+      "slug": "monterey-park",
+      "display_name": "Monterey Park",
+      "jurisdiction_type": "city",
+      "state_province": "CA",
+      "country": "United States",
+      "bounds": [
+        [
+          -118.1595802,
+          34.03379036000007
+        ],
+        [
+          -118.10728229999995,
+          34.06958491000006
+        ]
+      ],
+      "tree_count": 480,
+      "zip_codes": [
+        "91754",
+        "91755"
+      ],
+      "species_counts": {
+        "cherry": 36,
+        "plum": 16,
+        "peach": 7,
+        "magnolia": 420,
+        "crabapple": 1
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "monterey-park-001",
+          "bounds": [
+            [
+              -118.1595802,
+              34.03379036000007
+            ],
+            [
+              -118.10728229999995,
+              34.06958491000006
+            ]
+          ],
+          "data_path": "/data/trees.ca.area.monterey-park.v2.geojson",
+          "tree_count": 480,
+          "raw_bytes": 274572,
+          "gzip_bytes": 9385
         }
       ]
     },
@@ -1251,6 +1513,171 @@
           "tree_count": 5770,
           "raw_bytes": 3070231,
           "gzip_bytes": 131814
+        }
+      ]
+    },
+    {
+      "jurisdiction": "Pomona",
+      "slug": "pomona",
+      "display_name": "Pomona",
+      "jurisdiction_type": "city",
+      "state_province": "CA",
+      "country": "United States",
+      "bounds": [
+        [
+          -117.81160889999995,
+          34.02734344000004
+        ],
+        [
+          -117.71682489999995,
+          34.10479314000003
+        ]
+      ],
+      "tree_count": 475,
+      "zip_codes": [
+        "91766",
+        "91767",
+        "91768"
+      ],
+      "species_counts": {
+        "cherry": 1,
+        "plum": 97,
+        "peach": 37,
+        "magnolia": 331,
+        "crabapple": 9
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "pomona-001",
+          "bounds": [
+            [
+              -117.81160889999995,
+              34.02734344000004
+            ],
+            [
+              -117.71682489999995,
+              34.10479314000003
+            ]
+          ],
+          "data_path": "/data/trees.ca.area.pomona.v2.geojson",
+          "tree_count": 475,
+          "raw_bytes": 259194,
+          "gzip_bytes": 9661
+        }
+      ]
+    },
+    {
+      "jurisdiction": "Rancho Cucamonga",
+      "slug": "rancho-cucamonga",
+      "display_name": "Rancho Cucamonga",
+      "jurisdiction_type": "city",
+      "state_province": "CA",
+      "country": "United States",
+      "bounds": [
+        [
+          -117.63444679999999,
+          34.07836788000003
+        ],
+        [
+          -117.49438599999996,
+          34.164288830000025
+        ]
+      ],
+      "tree_count": 4486,
+      "zip_codes": [
+        "91701",
+        "91730",
+        "91737",
+        "91739"
+      ],
+      "species_counts": {
+        "cherry": 4,
+        "plum": 309,
+        "peach": 56,
+        "magnolia": 4108,
+        "crabapple": 9
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "rancho-cucamonga-001",
+          "bounds": [
+            [
+              -117.63444679999999,
+              34.07836788000003
+            ],
+            [
+              -117.49438599999996,
+              34.164288830000025
+            ]
+          ],
+          "data_path": "/data/trees.ca.area.rancho-cucamonga.v2.geojson",
+          "tree_count": 4486,
+          "raw_bytes": 2590604,
+          "gzip_bytes": 81447
+        }
+      ]
+    },
+    {
+      "jurisdiction": "Riverside",
+      "slug": "riverside",
+      "display_name": "Riverside",
+      "jurisdiction_type": "city",
+      "state_province": "CA",
+      "country": "United States",
+      "bounds": [
+        [
+          -117.51107052099997,
+          5.088887490341627e-14
+        ],
+        [
+          5.684341886080802e-14,
+          34.01351533600006
+        ]
+      ],
+      "tree_count": 5479,
+      "zip_codes": [
+        "92501",
+        "92503",
+        "92504",
+        "92505",
+        "92506",
+        "92507",
+        "92508",
+        "None"
+      ],
+      "species_counts": {
+        "cherry": 7,
+        "plum": 67,
+        "peach": 103,
+        "magnolia": 5232,
+        "crabapple": 70
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "riverside-001",
+          "bounds": [
+            [
+              -117.51107052099997,
+              5.088887490341627e-14
+            ],
+            [
+              5.684341886080802e-14,
+              34.01351533600006
+            ]
+          ],
+          "data_path": "/data/trees.ca.area.riverside.v2.geojson",
+          "tree_count": 5479,
+          "raw_bytes": 3025077,
+          "gzip_bytes": 112717
         }
       ]
     },
@@ -1786,6 +2213,63 @@
       ]
     },
     {
+      "jurisdiction": "Santa Clarita",
+      "slug": "santa-clarita",
+      "display_name": "Santa Clarita",
+      "jurisdiction_type": "city",
+      "state_province": "CA",
+      "country": "United States",
+      "bounds": [
+        [
+          -118.57388812999994,
+          34.361965699000045
+        ],
+        [
+          -118.37900676199996,
+          34.47897915000005
+        ]
+      ],
+      "tree_count": 1927,
+      "zip_codes": [
+        "91321",
+        "91350",
+        "91351",
+        "91354",
+        "91355",
+        "91387",
+        "91390"
+      ],
+      "species_counts": {
+        "cherry": 10,
+        "plum": 906,
+        "peach": 42,
+        "magnolia": 946,
+        "crabapple": 23
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "santa-clarita-001",
+          "bounds": [
+            [
+              -118.57388812999994,
+              34.361965699000045
+            ],
+            [
+              -118.37900676199996,
+              34.47897915000005
+            ]
+          ],
+          "data_path": "/data/trees.ca.area.santa-clarita.v2.geojson",
+          "tree_count": 1927,
+          "raw_bytes": 1125939,
+          "gzip_bytes": 41746
+        }
+      ]
+    },
+    {
       "jurisdiction": "Saratoga",
       "slug": "saratoga",
       "display_name": "Saratoga",
@@ -1936,6 +2420,59 @@
           "tree_count": 8,
           "raw_bytes": 5101,
           "gzip_bytes": 600
+        }
+      ]
+    },
+    {
+      "jurisdiction": "West Hollywood",
+      "slug": "west-hollywood",
+      "display_name": "West Hollywood",
+      "jurisdiction_type": "city",
+      "state_province": "CA",
+      "country": "United States",
+      "bounds": [
+        [
+          -118.39206,
+          34.07729
+        ],
+        [
+          -118.345232,
+          34.096654
+        ]
+      ],
+      "tree_count": 438,
+      "zip_codes": [
+        "90046",
+        "90048",
+        "90069"
+      ],
+      "species_counts": {
+        "cherry": 2,
+        "plum": 27,
+        "peach": 1,
+        "magnolia": 406,
+        "crabapple": 2
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "west-hollywood-001",
+          "bounds": [
+            [
+              -118.39206,
+              34.07729
+            ],
+            [
+              -118.345232,
+              34.096654
+            ]
+          ],
+          "data_path": "/data/trees.ca.area.west-hollywood.v2.geojson",
+          "tree_count": 438,
+          "raw_bytes": 227018,
+          "gzip_bytes": 9347
         }
       ]
     },

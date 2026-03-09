@@ -81,10 +81,12 @@ from etl.build_data import (
     generic_scientific_name_for_common_hint,
     iso_from_epoch,
     load_mapping,
+    load_city_boundary_geometry,
     load_zipped_point_shapefile_rows,
     load_zipped_shapefile,
     load_subtype_mapping,
     normalize_scientific_name,
+    point_in_geometry,
     post_form_with_curl,
     slugify_token,
     title_case_if_upper,
@@ -163,6 +165,34 @@ FULLERTON_TREES_LAYER = "https://services2.arcgis.com/yrktbS5Xw87hJQvs/arcgis/re
 FULLERTON_DATASET_PAGE = "https://services2.arcgis.com/yrktbS5Xw87hJQvs/arcgis/rest/services/Fullerton_Tree_Benefits_WFL1/FeatureServer"
 ANAHEIM_TREES_LAYER = "https://services2.arcgis.com/yrktbS5Xw87hJQvs/arcgis/rest/services/WebMap_Anaheim_AllLayers_WFL1/FeatureServer/0"
 ANAHEIM_DATASET_PAGE = "https://services2.arcgis.com/yrktbS5Xw87hJQvs/arcgis/rest/services/WebMap_Anaheim_AllLayers_WFL1/FeatureServer"
+POMONA_TREES_LAYER = "https://services2.arcgis.com/yrktbS5Xw87hJQvs/arcgis/rest/services/CityOfPomona_iTreeBenefits_CanopyCover_WFL1/FeatureServer/0"
+POMONA_DATASET_PAGE = "https://services2.arcgis.com/yrktbS5Xw87hJQvs/arcgis/rest/services/CityOfPomona_iTreeBenefits_CanopyCover_WFL1/FeatureServer"
+SANTA_CLARITA_TREES_LAYER = "https://services2.arcgis.com/yrktbS5Xw87hJQvs/arcgis/rest/services/CityofSantaClarita_iTreeBenefits_CanopyCover_WFL1/FeatureServer/0"
+SANTA_CLARITA_DATASET_PAGE = "https://services2.arcgis.com/yrktbS5Xw87hJQvs/arcgis/rest/services/CityofSantaClarita_iTreeBenefits_CanopyCover_WFL1/FeatureServer"
+MONTEREY_PARK_TREES_LAYER = "https://services2.arcgis.com/yrktbS5Xw87hJQvs/arcgis/rest/services/MontereyParkiTreebenefitsSummary_XYTableToPoint/FeatureServer/0"
+MONTEREY_PARK_DATASET_PAGE = "https://services2.arcgis.com/yrktbS5Xw87hJQvs/arcgis/rest/services/MontereyParkiTreebenefitsSummary_XYTableToPoint/FeatureServer"
+RANCHO_CUCAMONGA_TREES_LAYER = "https://services2.arcgis.com/yrktbS5Xw87hJQvs/arcgis/rest/services/Rancho_Cucamonga_Tree_Benefits_WFL1/FeatureServer/0"
+RANCHO_CUCAMONGA_DATASET_PAGE = "https://services2.arcgis.com/yrktbS5Xw87hJQvs/arcgis/rest/services/Rancho_Cucamonga_Tree_Benefits_WFL1/FeatureServer"
+MAYWOOD_TREES_LAYER = "https://services2.arcgis.com/yrktbS5Xw87hJQvs/arcgis/rest/services/Maywood_iTree_Inventory_WFL1/FeatureServer/0"
+MAYWOOD_DATASET_PAGE = "https://services2.arcgis.com/yrktbS5Xw87hJQvs/arcgis/rest/services/Maywood_iTree_Inventory_WFL1/FeatureServer"
+COSTA_MESA_TREES_LAYER = "https://services2.arcgis.com/yrktbS5Xw87hJQvs/arcgis/rest/services/Costa_Mesa_Tree_benefits/FeatureServer/0"
+COSTA_MESA_DATASET_PAGE = "https://services2.arcgis.com/yrktbS5Xw87hJQvs/arcgis/rest/services/Costa_Mesa_Tree_benefits/FeatureServer"
+RIVERSIDE_TREES_LAYER = "https://services2.arcgis.com/yrktbS5Xw87hJQvs/arcgis/rest/services/CityOfRiverside_iTreeBenefits_WFL1/FeatureServer/0"
+RIVERSIDE_DATASET_PAGE = "https://services2.arcgis.com/yrktbS5Xw87hJQvs/arcgis/rest/services/CityOfRiverside_iTreeBenefits_WFL1/FeatureServer"
+LA_CANADA_FLINTRIDGE_TREES_LAYER = "https://services2.arcgis.com/yrktbS5Xw87hJQvs/arcgis/rest/services/LaCanadaFlintrid_Homepage_Inventory/FeatureServer/0"
+LA_CANADA_FLINTRIDGE_DATASET_PAGE = "https://services2.arcgis.com/yrktbS5Xw87hJQvs/arcgis/rest/services/LaCanadaFlintrid_Homepage_Inventory/FeatureServer"
+FONTANA_TREES_LAYER = "https://services2.arcgis.com/yrktbS5Xw87hJQvs/arcgis/rest/services/Fontana_iTree_Inv/FeatureServer/0"
+FONTANA_DATASET_PAGE = "https://services2.arcgis.com/yrktbS5Xw87hJQvs/arcgis/rest/services/Fontana_iTree_Inv/FeatureServer"
+WEST_HOLLYWOOD_DATASET_PAGE = "https://data.weho.org/Infrastructure/City-Tree-Inventory/qqwt-wx9z"
+WEST_HOLLYWOOD_API = "https://data.weho.org/resource/qqwt-wx9z.json"
+HOBOKEN_TREES_LAYER = "https://services8.arcgis.com/LDmC4ZVHdfKcEzxl/arcgis/rest/services/2023_Tree_Inventory_/FeatureServer/0"
+HOBOKEN_DATASET_PAGE = "https://services8.arcgis.com/LDmC4ZVHdfKcEzxl/arcgis/rest/services/2023_Tree_Inventory_/FeatureServer"
+MORRISTOWN_TREES_LAYER = "https://services.arcgis.com/xhDV83hFoiDFnMbw/arcgis/rest/services/Legacy_Trees_2021/FeatureServer/0"
+MORRISTOWN_DATASET_PAGE = "https://services.arcgis.com/xhDV83hFoiDFnMbw/arcgis/rest/services/Legacy_Trees_2021/FeatureServer"
+LINDEN_TREES_LAYER = "https://services.arcgis.com/VgmyyKiMPvUPgldo/arcgis/rest/services/Linden_Tree_Survey/FeatureServer/0"
+LINDEN_DATASET_PAGE = "https://services.arcgis.com/VgmyyKiMPvUPgldo/arcgis/rest/services/Linden_Tree_Survey/FeatureServer"
+MONTCLAIR_TREES_LAYER = "https://services9.arcgis.com/QHXEWAb0pE2rvfbb/arcgis/rest/services/Montclair_Trees_2017_WFL1/FeatureServer/0"
+MONTCLAIR_DATASET_PAGE = "https://services9.arcgis.com/QHXEWAb0pE2rvfbb/arcgis/rest/services/Montclair_Trees_2017_WFL1/FeatureServer"
 SAN_DIEGO_BLOSSOM_WHERE = (
     "UPPER(COMMON_NAME) LIKE '%CHERRY%' OR "
     "UPPER(COMMON_NAME) LIKE '%PLUM%' OR "
@@ -276,6 +306,17 @@ SPECIES_NAME_BLOSSOM_WHERE = (
     "UPPER(Species_Name) LIKE 'MALUS%' OR "
     "UPPER(Species_Name) LIKE 'MAGNOLIA%'"
 )
+SPECIES_NAME_COMMON_BLOSSOM_WHERE = (
+    "UPPER(Species_Name) LIKE 'PRUNUS%' OR "
+    "UPPER(Species_Name) LIKE 'MALUS%' OR "
+    "UPPER(Species_Name) LIKE 'MAGNOLIA%' OR "
+    "UPPER(CommonName) LIKE '%CHERRY%' OR "
+    "UPPER(CommonName) LIKE '%PLUM%' OR "
+    "UPPER(CommonName) LIKE '%PEACH%' OR "
+    "UPPER(CommonName) LIKE '%MAGNOLIA%' OR "
+    "UPPER(CommonName) LIKE '%CRABAPPLE%' OR "
+    "UPPER(CommonName) LIKE '%APPLE%'"
+)
 ANAHEIM_BLOSSOM_WHERE = (
     "UPPER(Species_Name) LIKE 'PRUNUS%' OR "
     "UPPER(Species_Name) LIKE 'MALUS%' OR "
@@ -310,11 +351,92 @@ AUSTIN_BLOSSOM_WHERE = (
     "lower(species) like '%crabapple%' OR "
     "lower(species) like '%apple%'"
 )
+WEST_HOLLYWOOD_BLOSSOM_WHERE = (
+    "upper(botanicalname) like 'PRUNUS%' OR "
+    "upper(botanicalname) like 'MALUS%' OR "
+    "upper(botanicalname) like 'MAGNOLIA%' OR "
+    "upper(commonname) like '%CHERRY%' OR "
+    "upper(commonname) like '%PLUM%' OR "
+    "upper(commonname) like '%PEACH%' OR "
+    "upper(commonname) like '%MAGNOLIA%' OR "
+    "upper(commonname) like '%CRABAPPLE%' OR "
+    "upper(commonname) like '%APPLE%'"
+)
 LOS_ANGELES_TREEKEEPER_TERMS = ("%cherry%", "%plum%", "%peach%", "%magnolia%", "%crabapple%", "%apple%")
 SPECIES_TEXT_PATTERN = re.compile(r"^\s*(?P<common>.+?)\s*\((?P<scientific>[^()]+)\)\s*$")
 DISPLAY_NAME_REPLACEMENTS = {
     "Chery": "Cherry",
     "Crab Apple": "Crabapple",
+}
+
+NYC_METRO_TREEKEEPER_CONFIGS: dict[str, dict[str, str]] = {
+    "Newark": {"base_url": "https://newarknj.treekeepersoftware.com", "uid": "pinkhunter-newark-nj"},
+    "Millburn": {"base_url": "https://millburnnj.treekeepersoftware.com", "uid": "pinkhunter-millburn-nj"},
+    "Princeton": {"base_url": "https://princetonnj.treekeepersoftware.com", "uid": "pinkhunter-princeton-nj"},
+    "Ho-Ho-Kus": {"base_url": "https://hohokusnj.treekeepersoftware.com", "uid": "pinkhunter-hohokus-nj"},
+    "Oradell": {"base_url": "https://oradellnj.treekeepersoftware.com", "uid": "pinkhunter-oradell-nj"},
+    "Rutherford": {"base_url": "https://rutherfordnj.treekeepersoftware.com", "uid": "pinkhunter-rutherford-nj"},
+    "River Edge": {"base_url": "https://riveredgenj.treekeepersoftware.com", "uid": "pinkhunter-river-edge-nj"},
+    "Dumont": {"base_url": "https://dumontnj.treekeepersoftware.com", "uid": "pinkhunter-dumont-nj"},
+    "Westwood": {"base_url": "https://westwoodnj.treekeepersoftware.com", "uid": "pinkhunter-westwood-nj"},
+    "Tenafly": {"base_url": "https://tenaflynj.treekeepersoftware.com", "uid": "pinkhunter-tenafly-nj"},
+    "Teaneck": {"base_url": "https://teanecknj.treekeepersoftware.com", "uid": "pinkhunter-teaneck-nj"},
+    "Ridgewood": {"base_url": "https://ridgewoodnj.treekeepersoftware.com", "uid": "pinkhunter-ridgewood-nj"},
+    "Bergenfield": {"base_url": "https://bergenfieldnj.treekeepersoftware.com", "uid": "pinkhunter-bergenfield-nj"},
+    "Montvale": {"base_url": "https://montvalenj.treekeepersoftware.com", "uid": "pinkhunter-montvale-nj"},
+    "Glen Rock": {"base_url": "https://glenrocknj.treekeepersoftware.com", "uid": "pinkhunter-glen-rock-nj"},
+    "Englewood": {"base_url": "https://englewoodnj.treekeepersoftware.com", "uid": "pinkhunter-englewood-nj"},
+    "Franklin Lakes": {"base_url": "https://franklinlakesnj.treekeepersoftware.com", "uid": "pinkhunter-franklin-lakes-nj"},
+    "Demarest": {"base_url": "https://demarestnj.treekeepersoftware.com", "uid": "pinkhunter-demarest-nj"},
+    "Haworth": {"base_url": "https://haworthnj.treekeepersoftware.com", "uid": "pinkhunter-haworth-nj"},
+    "New Milford": {"base_url": "https://newmilfordnj.treekeepersoftware.com", "uid": "pinkhunter-new-milford-nj"},
+    "Ramsey": {"base_url": "https://ramseynj.treekeepersoftware.com", "uid": "pinkhunter-ramsey-nj"},
+    "Wyckoff": {"base_url": "https://wyckoffnj.treekeepersoftware.com", "uid": "pinkhunter-wyckoff-nj"},
+    "Fair Lawn": {"base_url": "https://fairlawnnj.treekeepersoftware.com", "uid": "pinkhunter-fair-lawn-nj"},
+    "Allendale": {"base_url": "https://allendalenj.treekeepersoftware.com", "uid": "pinkhunter-allendale-nj"},
+    "Mahwah": {"base_url": "https://mahwahnj.treekeepersoftware.com", "uid": "pinkhunter-mahwah-nj"},
+    "Fort Lee": {"base_url": "https://fortleenj.treekeepersoftware.com", "uid": "pinkhunter-fort-lee-nj"},
+}
+
+NYC_METRO_ARCGIS_CONFIGS: dict[str, dict[str, Any]] = {
+    "Hoboken": {
+        "layer_url": HOBOKEN_TREES_LAYER,
+        "dataset_page": HOBOKEN_DATASET_PAGE,
+        "object_id_field": "FID",
+        "common_field": "CommonName",
+        "genus_field": "Genus",
+        "species_field": "Species",
+        "source_department": "City of Hoboken",
+        "note": "Integrated from the official City of Hoboken public tree inventory ArcGIS layer.",
+    },
+    "Morristown": {
+        "layer_url": MORRISTOWN_TREES_LAYER,
+        "dataset_page": MORRISTOWN_DATASET_PAGE,
+        "object_id_field": "FID",
+        "genus_field": "GENUS",
+        "species_field": "SPECIES",
+        "source_department": "Town of Morristown",
+        "note": "Integrated from the official Morristown public tree inventory ArcGIS layer.",
+    },
+    "Linden": {
+        "layer_url": LINDEN_TREES_LAYER,
+        "dataset_page": LINDEN_DATASET_PAGE,
+        "object_id_field": "F__OBJECTID",
+        "common_field": "Tree_Species",
+        "lon_field": "x",
+        "lat_field": "y",
+        "source_department": "City of Linden",
+        "note": "Integrated from the official City of Linden tree survey ArcGIS layer.",
+    },
+    "Montclair": {
+        "layer_url": MONTCLAIR_TREES_LAYER,
+        "dataset_page": MONTCLAIR_DATASET_PAGE,
+        "object_id_field": "OBJECTID",
+        "common_field": "COMMON_NAME",
+        "scientific_field": "SCIENTIFIC_NAME",
+        "source_department": "Township of Montclair",
+        "note": "Integrated from the official Township of Montclair public tree inventory ArcGIS layer.",
+    },
 }
 
 SUPPORTED_CITIES = (
@@ -326,25 +448,35 @@ SUPPORTED_CITIES = (
     "Bell",
     "Beverly Hills",
     "Boston",
+    "Costa Mesa",
     "Dallas",
     "Denver",
     "El Segundo",
+    "Fontana",
     "Fullerton",
     "Houston",
     "Irvine",
     "Jersey City",
+    "La Canada Flintridge",
     "Las Vegas",
     "Los Angeles",
     "Los Gatos",
+    "Maywood",
+    "Monterey Park",
     "Mountain View",
     "Milpitas",
     "Morgan Hill",
+    "Pomona",
+    "Rancho Cucamonga",
+    "Riverside",
     "Sacramento",
+    "Santa Clarita",
     "West Sacramento",
     "San Mateo",
     "San Rafael",
     "Saratoga",
     "Sunnyvale",
+    "West Hollywood",
     "Gilroy",
     "Fremont",
     "Salinas",
@@ -362,6 +494,36 @@ SUPPORTED_CITIES = (
     "Montreal",
     "New Westminster",
     "San Diego",
+    "Newark",
+    "Millburn",
+    "Princeton",
+    "Ho-Ho-Kus",
+    "Oradell",
+    "Rutherford",
+    "River Edge",
+    "Dumont",
+    "Westwood",
+    "Tenafly",
+    "Teaneck",
+    "Ridgewood",
+    "Bergenfield",
+    "Montvale",
+    "Glen Rock",
+    "Englewood",
+    "Franklin Lakes",
+    "Demarest",
+    "Haworth",
+    "New Milford",
+    "Ramsey",
+    "Wyckoff",
+    "Fair Lawn",
+    "Allendale",
+    "Mahwah",
+    "Fort Lee",
+    "Hoboken",
+    "Morristown",
+    "Linden",
+    "Montclair",
 )
 
 
@@ -1906,6 +2068,202 @@ def fetch_treekeeper_rows(search_endpoint: str, grids_endpoint: str, uid: str, f
         offset += limit
 
     return summary_payload if isinstance(summary_payload, dict) else {}, rows
+
+
+def treekeeper_point_from_row(row: dict[str, Any]) -> tuple[float | None, float | None]:
+    lon = row.get("LONGITUDE")
+    lat = row.get("LATITUDE")
+    try:
+        if lon is not None and lat is not None:
+            return float(lon), float(lat)
+    except (TypeError, ValueError):
+        pass
+
+    geometry_raw = row.get("SITE_GEOMETRY")
+    if isinstance(geometry_raw, str) and geometry_raw.strip():
+        try:
+            geometry_payload = json.loads(geometry_raw)
+            coordinates = geometry_payload.get("coordinates") or []
+            if len(coordinates) >= 2:
+                return float(coordinates[0]), float(coordinates[1])
+        except Exception:
+            return None, None
+    return None, None
+
+
+def detect_treekeeper_species_field(
+    rows: list[dict[str, Any]],
+    mapping_rows: list[dict[str, str]],
+    subtype_rows: list[dict[str, str]],
+) -> str | None:
+    sample_rows = rows[: min(len(rows), 400)]
+    candidate_keys = sorted(
+        {
+            key
+            for row in sample_rows
+            for key, value in row.items()
+            if re.fullmatch(r"SITE_ATTR\d+", key)
+            and value not in (None, "")
+            and re.search(r"[A-Za-z]", str(value))
+        }
+    )
+    best_key: str | None = None
+    best_score = -1
+    best_nonempty = -1
+
+    for key in candidate_keys:
+        score = 0
+        nonempty = 0
+        for row in sample_rows:
+            raw_value = row.get(key)
+            text = clean_display_name(str(raw_value) if raw_value is not None else None)
+            if not text:
+                continue
+            nonempty += 1
+            scientific_raw, common_name = parse_species_text(text)
+            species_group, _ = classify_scientific_first(scientific_raw, common_name, mapping_rows, subtype_rows)
+            if species_group:
+                score += 1
+        if score > best_score or (score == best_score and nonempty > best_nonempty):
+            best_key = key
+            best_score = score
+            best_nonempty = nonempty
+
+    return best_key
+
+
+def fetch_treekeeper_inventory_city(
+    *,
+    city: str,
+    base_url: str,
+    uid: str,
+    region: str = "nj",
+    fac_id: int = 1,
+    source_name: str = "TreeKeeper Inventory",
+    source_department: str | None = None,
+    ownership_raw: str | None = None,
+    note: str | None = None,
+) -> dict[str, Any]:
+    summary_payload, rows = fetch_treekeeper_rows(
+        f"{base_url.rstrip('/')}/cffiles/search.cfc",
+        f"{base_url.rstrip('/')}/cffiles/grids.cfc",
+        uid=uid,
+        fac_id=fac_id,
+    )
+    boundary_geometry = load_city_boundary_geometry(city)
+    zip_index = fetch_us_city_zip_index(city)
+    mapping_rows = load_mapping(MAPPING_PATH)
+    subtype_rows = load_subtype_mapping(SUBTYPE_MAPPING_PATH)
+    species_field = detect_treekeeper_species_field(rows, mapping_rows, subtype_rows) or "SITE_ATTR1"
+    owner_label = ownership_raw or f"City of {city}"
+    department_label = source_department or city
+    city_slug = slugify_token(city)
+
+    output_features: list[dict[str, Any]] = []
+    normalized_rows: list[dict[str, Any]] = []
+    for row in rows:
+        lon, lat = treekeeper_point_from_row(row)
+        if lon is None or lat is None:
+            continue
+        if boundary_geometry and not point_in_geometry(lon, lat, boundary_geometry):
+            continue
+        scientific_raw, common_name = parse_species_text(row.get(species_field))
+        scientific_normalized = normalize_scientific_name(scientific_raw)
+        species_group, subtype_name = classify_scientific_first(scientific_raw, common_name, mapping_rows, subtype_rows)
+        zip_code = assign_zip_code(lon, lat, zip_index)
+        row_id = f"{city_slug}-{row.get('SITE_ID')}"
+
+        normalized_rows.append(
+            {
+                "id": row_id,
+                "city": city,
+                "source_dataset": source_name,
+                "scientific_raw": scientific_raw,
+                "scientific_normalized": scientific_normalized,
+                "common_name": common_name or "",
+                "subtype_name": subtype_name or "",
+                "zip_code": zip_code or "",
+                "species_group": species_group or "",
+                "ownership": canonical_ownership(owner_label),
+                "ownership_raw": owner_label,
+                "lat": lat,
+                "lon": lon,
+                "included": "1" if species_group else "0",
+            }
+        )
+        if not species_group:
+            continue
+        output_features.append(
+            {
+                "type": "Feature",
+                "geometry": {"type": "Point", "coordinates": [lon, lat]},
+                "properties": {
+                    "id": row_id,
+                    "species_group": species_group,
+                    "scientific_name": scientific_raw,
+                    "common_name": common_name,
+                    "subtype_name": subtype_name,
+                    "zip_code": zip_code,
+                    "ownership": canonical_ownership(owner_label),
+                    "ownership_raw": owner_label,
+                    "city": city,
+                    "source_dataset": source_name,
+                    "source_department": department_label,
+                    "source_last_edit_at": "",
+                },
+            }
+        )
+
+    return {
+        "city": city,
+        "region": region,
+        "features": output_features,
+        "normalized_rows": normalized_rows,
+        "source": {
+            "name": source_name,
+            "city": city,
+            "endpoint": base_url,
+            "last_edit_at": "",
+            "records_fetched": int(summary_payload.get("siteCount") or len(rows)),
+            "records_included": len(output_features),
+            "note": note
+            or f"Integrated from the official {city} public TreeKeeper inventory and jurisdiction boundary.",
+        },
+    }
+
+
+def build_nyc_metro_treekeeper_fetcher(city: str, config: dict[str, str]) -> Any:
+    return lambda city=city, config=config: fetch_treekeeper_inventory_city(
+        city=city,
+        base_url=config["base_url"],
+        uid=config["uid"],
+        region="nj",
+        source_department=city,
+    )
+
+
+def build_nyc_metro_arcgis_fetcher(city: str, config: dict[str, Any]) -> Any:
+    return lambda city=city, config=config: fetch_arcgis_inventory_city(
+        city=city,
+        region="nj",
+        layer_url=config["layer_url"],
+        dataset_page=config["dataset_page"],
+        where="1=1",
+        out_fields=["*"],
+        object_id_field=config["object_id_field"],
+        source_name="Tree Inventory",
+        source_department=config["source_department"],
+        ownership_raw=f"City of {city}",
+        note=config["note"],
+        common_field=config.get("common_field"),
+        botanical_field=config.get("botanical_field"),
+        scientific_field=config.get("scientific_field"),
+        genus_field=config.get("genus_field"),
+        species_field=config.get("species_field"),
+        lon_field=config.get("lon_field"),
+        lat_field=config.get("lat_field"),
+        zip_field=config.get("zip_field"),
+    )
 
 
 def fetch_los_angeles_filtered_rows() -> list[dict[str, Any]]:
@@ -4297,6 +4655,288 @@ def fetch_denver() -> dict[str, Any]:
     }
 
 
+def fetch_pomona() -> dict[str, Any]:
+    return fetch_arcgis_inventory_city(
+        city="Pomona",
+        region="ca",
+        layer_url=POMONA_TREES_LAYER,
+        dataset_page=POMONA_DATASET_PAGE,
+        where=SPECIES_NAME_COMMON_BLOSSOM_WHERE,
+        out_fields=["OBJECTID", "Species_Name", "CommonName", "BotanicalName"],
+        object_id_field="OBJECTID",
+        source_name="CityOfPomona i-Tree Benefits Canopy Cover",
+        source_department="City of Pomona",
+        ownership_raw="City of Pomona",
+        note="Integrated from the official City of Pomona public i-Tree tree inventory layer and official jurisdiction boundary.",
+        common_field="CommonName",
+        botanical_field="BotanicalName",
+    )
+
+
+def fetch_santa_clarita() -> dict[str, Any]:
+    return fetch_arcgis_inventory_city(
+        city="Santa Clarita",
+        region="ca",
+        layer_url=SANTA_CLARITA_TREES_LAYER,
+        dataset_page=SANTA_CLARITA_DATASET_PAGE,
+        where=SPECIES_NAME_COMMON_BLOSSOM_WHERE,
+        out_fields=["OBJECTID", "Species_Name", "CommonName", "BotanicalName"],
+        object_id_field="OBJECTID",
+        source_name="City of Santa Clarita i-Tree Benefits Canopy Cover",
+        source_department="City of Santa Clarita",
+        ownership_raw="City of Santa Clarita",
+        note="Integrated from the official City of Santa Clarita public i-Tree inventory layer and official jurisdiction boundary.",
+        common_field="CommonName",
+        botanical_field="BotanicalName",
+    )
+
+
+def fetch_monterey_park() -> dict[str, Any]:
+    return fetch_arcgis_inventory_city(
+        city="Monterey Park",
+        region="ca",
+        layer_url=MONTEREY_PARK_TREES_LAYER,
+        dataset_page=MONTEREY_PARK_DATASET_PAGE,
+        where=SPECIES_NAME_COMMON_BLOSSOM_WHERE,
+        out_fields=["OBJECTID", "Species_Name", "CommonName", "BotanicalName"],
+        object_id_field="OBJECTID",
+        source_name="Monterey Park i-Tree Benefits Summary",
+        source_department="City of Monterey Park",
+        ownership_raw="City of Monterey Park",
+        note="Integrated from the official City of Monterey Park public i-Tree inventory layer and official jurisdiction boundary.",
+        common_field="CommonName",
+        botanical_field="BotanicalName",
+    )
+
+
+def fetch_rancho_cucamonga() -> dict[str, Any]:
+    return fetch_arcgis_inventory_city(
+        city="Rancho Cucamonga",
+        region="ca",
+        layer_url=RANCHO_CUCAMONGA_TREES_LAYER,
+        dataset_page=RANCHO_CUCAMONGA_DATASET_PAGE,
+        where=SPECIES_NAME_COMMON_BLOSSOM_WHERE,
+        out_fields=["OBJECTID", "Species_Name", "CommonName", "BotanicalName", "iTree_Species"],
+        object_id_field="OBJECTID",
+        source_name="Rancho Cucamonga Tree Benefits",
+        source_department="City of Rancho Cucamonga",
+        ownership_raw="City of Rancho Cucamonga",
+        note="Integrated from the official City of Rancho Cucamonga public tree benefits inventory layer and official jurisdiction boundary.",
+        common_field="CommonName",
+        botanical_field="BotanicalName",
+    )
+
+
+def fetch_maywood() -> dict[str, Any]:
+    return fetch_arcgis_inventory_city(
+        city="Maywood",
+        region="ca",
+        layer_url=MAYWOOD_TREES_LAYER,
+        dataset_page=MAYWOOD_DATASET_PAGE,
+        where=SPECIES_NAME_COMMON_BLOSSOM_WHERE,
+        out_fields=["OBJECTID", "Species_Name", "CommonName", "BotanicalName"],
+        object_id_field="OBJECTID",
+        source_name="Maywood i-Tree Inventory",
+        source_department="City of Maywood",
+        ownership_raw="City of Maywood",
+        note="Integrated from the official City of Maywood public i-Tree inventory layer and official jurisdiction boundary.",
+        common_field="CommonName",
+        botanical_field="BotanicalName",
+    )
+
+
+def fetch_costa_mesa() -> dict[str, Any]:
+    return fetch_arcgis_inventory_city(
+        city="Costa Mesa",
+        region="ca",
+        layer_url=COSTA_MESA_TREES_LAYER,
+        dataset_page=COSTA_MESA_DATASET_PAGE,
+        where=SPECIES_NAME_COMMON_BLOSSOM_WHERE,
+        out_fields=["OBJECTID", "Species_Name", "CommonName", "BotanicalName"],
+        object_id_field="OBJECTID",
+        source_name="Costa Mesa Tree Benefits",
+        source_department="City of Costa Mesa",
+        ownership_raw="City of Costa Mesa",
+        note="Integrated from the official City of Costa Mesa public tree benefits inventory layer and official jurisdiction boundary.",
+        common_field="CommonName",
+        botanical_field="BotanicalName",
+    )
+
+
+def fetch_riverside() -> dict[str, Any]:
+    return fetch_arcgis_inventory_city(
+        city="Riverside",
+        region="ca",
+        layer_url=RIVERSIDE_TREES_LAYER,
+        dataset_page=RIVERSIDE_DATASET_PAGE,
+        where=SPECIES_NAME_COMMON_BLOSSOM_WHERE,
+        out_fields=["OBJECTID", "Species_Name", "CommonName", "BotanicalName"],
+        object_id_field="OBJECTID",
+        source_name="CityOfRiverside i-Tree Benefits",
+        source_department="City of Riverside",
+        ownership_raw="City of Riverside",
+        note="Integrated from the official City of Riverside public i-Tree inventory layer and official jurisdiction boundary.",
+        common_field="CommonName",
+        botanical_field="BotanicalName",
+    )
+
+
+def fetch_la_canada_flintridge() -> dict[str, Any]:
+    blossom_where = (
+        "UPPER(T_La_Canada_Flintridge_Inv_0_13) LIKE 'PRUNUS%' OR "
+        "UPPER(T_La_Canada_Flintridge_Inv_0_13) LIKE 'MALUS%' OR "
+        "UPPER(T_La_Canada_Flintridge_Inv_0_13) LIKE 'MAGNOLIA%' OR "
+        "UPPER(T_La_Canada_Flintridge_Inv_0_12) LIKE '%CHERRY%' OR "
+        "UPPER(T_La_Canada_Flintridge_Inv_0_12) LIKE '%PLUM%' OR "
+        "UPPER(T_La_Canada_Flintridge_Inv_0_12) LIKE '%PEACH%' OR "
+        "UPPER(T_La_Canada_Flintridge_Inv_0_12) LIKE '%MAGNOLIA%' OR "
+        "UPPER(T_La_Canada_Flintridge_Inv_0_12) LIKE '%CRABAPPLE%' OR "
+        "UPPER(T_La_Canada_Flintridge_Inv_0_12) LIKE '%APPLE%'"
+    )
+    return fetch_arcgis_inventory_city(
+        city="La Canada Flintridge",
+        region="ca",
+        layer_url=LA_CANADA_FLINTRIDGE_TREES_LAYER,
+        dataset_page=LA_CANADA_FLINTRIDGE_DATASET_PAGE,
+        where=blossom_where,
+        out_fields=["OBJECTID", "T_La_Canada_Flintridge_Inv_0_12", "T_La_Canada_Flintridge_Inv_0_13"],
+        object_id_field="OBJECTID",
+        source_name="La Canada Flintridge Homepage Inventory",
+        source_department="City of La Canada Flintridge",
+        ownership_raw="City of La Canada Flintridge",
+        note="Integrated from the official City of La Canada Flintridge public tree inventory layer and official jurisdiction boundary.",
+        common_field="T_La_Canada_Flintridge_Inv_0_12",
+        botanical_field="T_La_Canada_Flintridge_Inv_0_13",
+    )
+
+
+def fetch_fontana() -> dict[str, Any]:
+    blossom_where = (
+        "UPPER(T_Fontanainventory__XYTableT_11) LIKE 'PRUNUS%' OR "
+        "UPPER(T_Fontanainventory__XYTableT_11) LIKE 'MALUS%' OR "
+        "UPPER(T_Fontanainventory__XYTableT_11) LIKE 'MAGNOLIA%' OR "
+        "UPPER(T_Fontanainventory__XYTableT_10) LIKE '%CHERRY%' OR "
+        "UPPER(T_Fontanainventory__XYTableT_10) LIKE '%PLUM%' OR "
+        "UPPER(T_Fontanainventory__XYTableT_10) LIKE '%PEACH%' OR "
+        "UPPER(T_Fontanainventory__XYTableT_10) LIKE '%MAGNOLIA%' OR "
+        "UPPER(T_Fontanainventory__XYTableT_10) LIKE '%CRABAPPLE%' OR "
+        "UPPER(T_Fontanainventory__XYTableT_10) LIKE '%APPLE%'"
+    )
+    return fetch_arcgis_inventory_city(
+        city="Fontana",
+        region="ca",
+        layer_url=FONTANA_TREES_LAYER,
+        dataset_page=FONTANA_DATASET_PAGE,
+        where=blossom_where,
+        out_fields=["OBJECTID", "T_Fontanainventory__XYTableT_10", "T_Fontanainventory__XYTableT_11"],
+        object_id_field="OBJECTID",
+        source_name="Fontana i-Tree Inventory",
+        source_department="City of Fontana",
+        ownership_raw="City of Fontana",
+        note="Integrated from the official City of Fontana public tree inventory layer and official jurisdiction boundary.",
+        common_field="T_Fontanainventory__XYTableT_10",
+        botanical_field="T_Fontanainventory__XYTableT_11",
+    )
+
+
+def fetch_west_hollywood() -> dict[str, Any]:
+    rows = fetch_soda_rows(WEST_HOLLYWOOD_API, where=WEST_HOLLYWOOD_BLOSSOM_WHERE, order="botanicalname")
+    total_records = fetch_soda_count(WEST_HOLLYWOOD_API, where=WEST_HOLLYWOOD_BLOSSOM_WHERE)
+    zip_index = fetch_us_city_zip_index("West Hollywood")
+    mapping_rows = load_mapping(MAPPING_PATH)
+    subtype_rows = load_subtype_mapping(SUBTYPE_MAPPING_PATH)
+
+    output_features: list[dict[str, Any]] = []
+    normalized_rows: list[dict[str, Any]] = []
+    for row in rows:
+        location = row.get("location_1") or {}
+        if isinstance(location, str):
+            try:
+                location = json.loads(location)
+            except json.JSONDecodeError:
+                location = {}
+        lon = lat = None
+        if isinstance(location, dict):
+            try:
+                lon = float(location.get("longitude"))
+                lat = float(location.get("latitude"))
+            except (TypeError, ValueError):
+                lon = None
+                lat = None
+        if lon is None or lat is None or lon == 0.0 or lat == 0.0:
+            continue
+        if not (-180.0 <= lon <= 180.0 and -90.0 <= lat <= 90.0):
+            continue
+
+        common_name = clean_common_name(row.get("commonname"))
+        scientific_raw = format_scientific_display_name(row.get("botanicalname"), common_name)
+        if not scientific_raw:
+            scientific_raw = generic_scientific_name_for_common_hint(common_name)
+        scientific_normalized = normalize_scientific_name(scientific_raw)
+        species_group, subtype_name = classify_tree_record(scientific_raw, common_name, mapping_rows, subtype_rows)
+        zip_code = assign_zip_code(lon, lat, zip_index)
+        ownership_raw = "City of West Hollywood"
+        row_seed = f"{row.get('tree') or ''}|{common_name or ''}|{scientific_raw}|{lat:.6f}|{lon:.6f}"
+        row_id = f"west-hollywood-{hashlib.md5(row_seed.encode('utf-8')).hexdigest()[:12]}"
+
+        normalized_rows.append(
+            {
+                "id": row_id,
+                "city": "West Hollywood",
+                "source_dataset": "City Tree Inventory",
+                "scientific_raw": scientific_raw,
+                "scientific_normalized": scientific_normalized,
+                "common_name": common_name or "",
+                "subtype_name": subtype_name or "",
+                "zip_code": zip_code or "",
+                "species_group": species_group or "",
+                "ownership": canonical_ownership(ownership_raw),
+                "ownership_raw": ownership_raw,
+                "lat": lat,
+                "lon": lon,
+                "included": "1" if species_group else "0",
+            }
+        )
+        if not species_group:
+            continue
+        output_features.append(
+            {
+                "type": "Feature",
+                "geometry": {"type": "Point", "coordinates": [lon, lat]},
+                "properties": {
+                    "id": row_id,
+                    "species_group": species_group,
+                    "scientific_name": scientific_raw,
+                    "common_name": common_name,
+                    "subtype_name": subtype_name,
+                    "zip_code": zip_code,
+                    "ownership": canonical_ownership(ownership_raw),
+                    "ownership_raw": ownership_raw,
+                    "city": "West Hollywood",
+                    "source_dataset": "City Tree Inventory",
+                    "source_department": "City of West Hollywood",
+                    "source_last_edit_at": "",
+                },
+            }
+        )
+
+    return {
+        "city": "West Hollywood",
+        "region": "ca",
+        "features": output_features,
+        "normalized_rows": normalized_rows,
+        "source": {
+            "name": "City Tree Inventory",
+            "city": "West Hollywood",
+            "endpoint": WEST_HOLLYWOOD_DATASET_PAGE,
+            "last_edit_at": "",
+            "records_fetched": total_records,
+            "records_included": len(output_features),
+            "note": "Integrated from the official City of West Hollywood public tree inventory dataset and official jurisdiction boundary.",
+        },
+    }
+
+
 CITY_FETCHERS = {
     "Anaheim": fetch_anaheim,
     "Arlington": fetch_arlington,
@@ -4306,20 +4946,29 @@ CITY_FETCHERS = {
     "Bell": fetch_bell,
     "Beverly Hills": fetch_beverly_hills,
     "Boston": fetch_boston,
+    "Costa Mesa": fetch_costa_mesa,
     "Dallas": fetch_dallas,
     "Denver": fetch_denver,
     "El Segundo": fetch_el_segundo,
+    "Fontana": fetch_fontana,
     "Fullerton": fetch_fullerton,
     "Houston": fetch_houston,
     "Irvine": fetch_irvine,
     "Jersey City": fetch_jersey_city,
+    "La Canada Flintridge": fetch_la_canada_flintridge,
     "Las Vegas": fetch_las_vegas,
     "Los Angeles": fetch_los_angeles,
     "Los Gatos": fetch_los_gatos,
+    "Maywood": fetch_maywood,
+    "Monterey Park": fetch_monterey_park,
     "Mountain View": fetch_mountain_view,
     "Milpitas": fetch_milpitas,
     "Morgan Hill": fetch_morgan_hill,
+    "Pomona": fetch_pomona,
+    "Rancho Cucamonga": fetch_rancho_cucamonga,
+    "Riverside": fetch_riverside,
     "Sacramento": fetch_sacramento,
+    "Santa Clarita": fetch_santa_clarita,
     "West Sacramento": fetch_west_sacramento,
     "San Mateo": fetch_san_mateo,
     "San Rafael": fetch_san_rafael,
@@ -4330,6 +4979,7 @@ CITY_FETCHERS = {
     "Salinas": fetch_salinas,
     "Concord": fetch_concord,
     "South San Francisco": fetch_south_san_francisco,
+    "West Hollywood": fetch_west_hollywood,
     "Pittsburgh": fetch_pittsburgh,
     "New York City": fetch_new_york_city,
     "Philadelphia": fetch_philadelphia,
@@ -4343,6 +4993,9 @@ CITY_FETCHERS = {
     "New Westminster": fetch_new_westminster,
     "San Diego": fetch_san_diego,
 }
+
+CITY_FETCHERS.update({city: build_nyc_metro_treekeeper_fetcher(city, config) for city, config in NYC_METRO_TREEKEEPER_CONFIGS.items()})
+CITY_FETCHERS.update({city: build_nyc_metro_arcgis_fetcher(city, config) for city, config in NYC_METRO_ARCGIS_CONFIGS.items()})
 
 
 def main() -> int:

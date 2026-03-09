@@ -28,9 +28,17 @@ Last updated: 2026-03-08 (America/Los_Angeles)
 | ✅ | Los Angeles | 40,459 | Official jurisdiction boundary | Official StreetsLA public TreeKeeper `Street Sites` inventory integrated using server-side blossom filtering against `SITE_ATTR1` |
 | ✅ | Pasadena | 5,770 | Official jurisdiction boundary | Official City of Pasadena `Street ROW Trees` ArcGIS layer integrated from the city's open GIS services and official jurisdiction boundary |
 | ✅ | Anaheim | 4,778 | Official jurisdiction boundary | Official City of Anaheim public street-tree inventory integrated from the city's ArcGIS service and official jurisdiction boundary |
+| ✅ | Costa Mesa | 887 | Official jurisdiction boundary | Official City of Costa Mesa public tree-benefits inventory integrated from the city's ArcGIS service and official jurisdiction boundary |
+| ✅ | Fontana | 3,732 | Official jurisdiction boundary | Official City of Fontana public i-Tree inventory integrated from the city's ArcGIS service and official jurisdiction boundary |
 | ✅ | Fullerton | 4,399 | Official jurisdiction boundary | Official City of Fullerton public tree-benefits inventory integrated from the city's ArcGIS service and official jurisdiction boundary |
+| ✅ | La Canada Flintridge | 314 | Official jurisdiction boundary | Official City of La Canada Flintridge public tree inventory integrated from the city's ArcGIS service and official jurisdiction boundary |
+| ✅ | Maywood | 71 | Official jurisdiction boundary | Official City of Maywood public i-Tree inventory integrated from the city's ArcGIS service and official jurisdiction boundary |
 | ✅ | Mountain View | 2,907 | Official jurisdiction boundary | Official City of Mountain View `Trees` ArcGIS layer integrated from the city Heritage Trees service and official jurisdiction boundary |
 | ✅ | Beverly Hills | 1,464 | Official jurisdiction boundary | Official City of Beverly Hills `Trees of Beverly Hills` ArcGIS layer integrated from the city's public GIS services and official jurisdiction boundary |
+| ✅ | Monterey Park | 480 | Official jurisdiction boundary | Official City of Monterey Park public i-Tree inventory integrated from the city's ArcGIS service and official jurisdiction boundary |
+| ✅ | Pomona | 475 | Official jurisdiction boundary | Official City of Pomona public i-Tree inventory integrated from the city's ArcGIS service and official jurisdiction boundary |
+| ✅ | Rancho Cucamonga | 4,486 | Official jurisdiction boundary | Official City of Rancho Cucamonga public tree-benefits inventory integrated from the city's ArcGIS service and official jurisdiction boundary |
+| ✅ | Riverside | 5,479 | Official jurisdiction boundary | Official City of Riverside public i-Tree inventory integrated from the city's ArcGIS service and official jurisdiction boundary |
 | ✅ | San Diego | 13,310 | Official jurisdiction boundary | Official City of San Diego `Trees (Street Trees)` ArcGIS layer integrated with server-side blossom filtering |
 | ✅ | Irvine | 986 | Official jurisdiction boundary | Official City of Irvine `City Trees` layer integrated from the city ArcGIS landscape service and official city boundary |
 | ✅ | Azusa | 757 | Official jurisdiction boundary | Official City of Azusa public tree-benefits inventory integrated from the city's ArcGIS service and official jurisdiction boundary |
@@ -46,10 +54,12 @@ Last updated: 2026-03-08 (America/Los_Angeles)
 | ✅ | Morgan Hill | 83 | Official jurisdiction boundary | Official Santa Clara County public `Tree Inventories in Santa Clara County` service integrated using the `City = Morgan Hill` subset and official jurisdiction boundary |
 | ✅ | Sacramento | 3,442 | Official jurisdiction boundary | Official City of Sacramento `City Maintained Trees` ArcGIS layer integrated from the city open-data portal and official jurisdiction boundary |
 | ✅ | Salinas | 4,535 | Official jurisdiction boundary | Official City of Salinas OpenDataSoft `Tree Inventory` dataset integrated from the city open-data portal |
+| ✅ | Santa Clarita | 1,927 | Official jurisdiction boundary | Official City of Santa Clarita public i-Tree inventory integrated from the city's ArcGIS service and official jurisdiction boundary |
 | ✅ | Saratoga | 6 | Official jurisdiction boundary | Official Santa Clara County public `Tree Inventories in Santa Clara County` service integrated using the `City = Saratoga` subset and official jurisdiction boundary |
 | ✅ | South San Francisco | 784 | Official jurisdiction boundary | Official City of South San Francisco public TreeKeeper inventory integrated from the city trees page plus official GIS boundary |
 | ✅ | Sunnyvale | 8 | Official jurisdiction boundary | Official Santa Clara County public `Tree Inventories in Santa Clara County` service integrated using the `City = Sunnyvale` subset and official jurisdiction boundary |
 | ✅ | West Sacramento | 1,480 | Official jurisdiction boundary | Official City of West Sacramento `Tree Inventory` ArcGIS layer integrated from the city's GIS service and official jurisdiction boundary |
+| ✅ | West Hollywood | 438 | Official jurisdiction boundary | Official City of West Hollywood public tree inventory integrated from the city's open-data GIS service and official jurisdiction boundary |
 | ✅ | Bell | 93 | Official jurisdiction boundary | Official City of Bell public tree-benefits inventory integrated from the city's ArcGIS service and official jurisdiction boundary |
 | ✅ | San Fernando | 11 | Official jurisdiction boundary | Official City of San Fernando CAL FIRE public tree layer integrated from the city's ArcGIS service and official jurisdiction boundary |
 | ✅ | Washington DC | 16,533 | Official jurisdiction boundary | Urban Tree Canopy (DDOT); ornamental cherry cultivar mapping expanded |

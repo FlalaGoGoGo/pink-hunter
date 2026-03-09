@@ -168,6 +168,9 @@ ZIP_LAYER = "https://services.arcgis.com/Ej0PsM5Aw677QF1W/arcgis/rest/services/Z
 US_CENSUS_CITIES_LAYER = (
     "https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/Places_CouSub_ConCity_SubMCD/MapServer/18"
 )
+US_CENSUS_COUNTY_SUBDIVISIONS_LAYER = (
+    "https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/Places_CouSub_ConCity_SubMCD/MapServer/22"
+)
 US_CENSUS_ZCTA_LAYER = (
     "https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/PUMA_TAD_TAZ_UGA_ZCTA/MapServer/11"
 )
@@ -223,6 +226,36 @@ REGION_CITY_OVERRIDES: dict[str, str] = {
     "Montgomery County": "md",
     "Baltimore": "md",
     "Jersey City": "nj",
+    "Newark": "nj",
+    "Millburn": "nj",
+    "Princeton": "nj",
+    "Ho-Ho-Kus": "nj",
+    "Oradell": "nj",
+    "Rutherford": "nj",
+    "River Edge": "nj",
+    "Dumont": "nj",
+    "Westwood": "nj",
+    "Tenafly": "nj",
+    "Teaneck": "nj",
+    "Ridgewood": "nj",
+    "Bergenfield": "nj",
+    "Montvale": "nj",
+    "Glen Rock": "nj",
+    "Englewood": "nj",
+    "Franklin Lakes": "nj",
+    "Demarest": "nj",
+    "Haworth": "nj",
+    "New Milford": "nj",
+    "Ramsey": "nj",
+    "Wyckoff": "nj",
+    "Fair Lawn": "nj",
+    "Allendale": "nj",
+    "Mahwah": "nj",
+    "Fort Lee": "nj",
+    "Hoboken": "nj",
+    "Morristown": "nj",
+    "Linden": "nj",
+    "Montclair": "nj",
     "Boston": "ma",
     "New York City": "ny",
     "Pittsburgh": "pa",
@@ -298,18 +331,28 @@ REGION_CITY_OVERRIDES: dict[str, str] = {
     "Roseville": "ca",
     "Folsom": "ca",
     "Davis": "ca",
+    "Costa Mesa": "ca",
     "Anaheim": "ca",
     "Azusa": "ca",
     "Bell": "ca",
     "Beverly Hills": "ca",
     "Commerce": "ca",
     "El Segundo": "ca",
+    "Fontana": "ca",
     "Fullerton": "ca",
     "Huntington Park": "ca",
     "Inglewood": "ca",
+    "La Canada Flintridge": "ca",
     "Lynwood": "ca",
+    "Maywood": "ca",
+    "Monterey Park": "ca",
     "Pasadena": "ca",
+    "Pomona": "ca",
+    "Rancho Cucamonga": "ca",
+    "Riverside": "ca",
     "San Fernando": "ca",
+    "Santa Clarita": "ca",
+    "West Hollywood": "ca",
 }
 
 CITY_BOUNDARY_HINTS: dict[str, dict[str, str]] = {
@@ -327,6 +370,35 @@ CITY_BOUNDARY_HINTS: dict[str, dict[str, str]] = {
     "Baltimore": {"state": "24"},
     "Jersey City": {"state": "34"},
     "Newark": {"state": "34"},
+    "Millburn": {"state": "34"},
+    "Princeton": {"state": "34"},
+    "Ho-Ho-Kus": {"state": "34"},
+    "Oradell": {"state": "34"},
+    "Rutherford": {"state": "34"},
+    "River Edge": {"state": "34"},
+    "Dumont": {"state": "34"},
+    "Westwood": {"state": "34"},
+    "Tenafly": {"state": "34"},
+    "Teaneck": {"state": "34"},
+    "Ridgewood": {"state": "34"},
+    "Bergenfield": {"state": "34"},
+    "Montvale": {"state": "34"},
+    "Glen Rock": {"state": "34"},
+    "Englewood": {"state": "34"},
+    "Franklin Lakes": {"state": "34"},
+    "Demarest": {"state": "34"},
+    "Haworth": {"state": "34"},
+    "New Milford": {"state": "34"},
+    "Ramsey": {"state": "34"},
+    "Wyckoff": {"state": "34"},
+    "Fair Lawn": {"state": "34"},
+    "Allendale": {"state": "34"},
+    "Mahwah": {"state": "34"},
+    "Fort Lee": {"state": "34"},
+    "Hoboken": {"state": "34"},
+    "Morristown": {"state": "34"},
+    "Linden": {"state": "34"},
+    "Montclair": {"state": "34"},
     "Boston": {"state": "25"},
     "New York City": {"state": "36", "basename": "New York"},
     "Pittsburgh": {"state": "42"},
@@ -363,18 +435,28 @@ CITY_BOUNDARY_HINTS: dict[str, dict[str, str]] = {
     "Roseville": {"state": "06"},
     "Folsom": {"state": "06"},
     "Davis": {"state": "06"},
+    "Costa Mesa": {"state": "06"},
     "Anaheim": {"state": "06"},
     "Azusa": {"state": "06"},
     "Bell": {"state": "06"},
     "Beverly Hills": {"state": "06"},
     "Commerce": {"state": "06"},
     "El Segundo": {"state": "06"},
+    "Fontana": {"state": "06"},
     "Fullerton": {"state": "06"},
     "Huntington Park": {"state": "06"},
     "Inglewood": {"state": "06"},
+    "La Canada Flintridge": {"state": "06", "basename": "La Cañada Flintridge"},
     "Lynwood": {"state": "06"},
+    "Maywood": {"state": "06"},
+    "Monterey Park": {"state": "06"},
     "Pasadena": {"state": "06"},
+    "Pomona": {"state": "06"},
+    "Rancho Cucamonga": {"state": "06"},
+    "Riverside": {"state": "06"},
     "San Fernando": {"state": "06"},
+    "Santa Clarita": {"state": "06"},
+    "West Hollywood": {"state": "06"},
     "Burlingame": {"state": "06"},
     "Daly City": {"state": "06"},
     "Concord": {"state": "06", "boundary_source": "concord_arcgis"},
@@ -1970,21 +2052,28 @@ def make_city_boundary_feature(city: str, geometry: dict[str, Any], *, source: s
 def fetch_city_boundary_feature(city: str) -> dict[str, Any] | None:
     basename, state = city_boundary_query_parts(city)
     escaped_city = basename.replace("'", "''")
-    payload = fetch_json(
-        f"{US_CENSUS_CITIES_LAYER}/query",
-        {
-            "where": f"STATE = '{state}' AND BASENAME = '{escaped_city}' AND LSADC IN ('25','43')",
-            "outFields": "BASENAME,NAME,STATE,GEOID,LSADC",
-            "returnGeometry": "true",
-            "outSR": "4326",
-            "f": "geojson",
-        },
-    )
-
-    features = payload.get("features", [])
-    if not features:
-        return None
-    return features[0]
+    query_base = {
+        "outFields": "BASENAME,NAME,STATE,GEOID,LSADC",
+        "returnGeometry": "true",
+        "outSR": "4326",
+        "f": "geojson",
+    }
+    for where in (
+        f"STATE = '{state}' AND BASENAME = '{escaped_city}' AND LSADC IN ('25','43')",
+        f"STATE = '{state}' AND BASENAME = '{escaped_city}'",
+    ):
+        for layer_url in (US_CENSUS_CITIES_LAYER, US_CENSUS_COUNTY_SUBDIVISIONS_LAYER):
+            payload = fetch_json(
+                f"{layer_url}/query",
+                {
+                    **query_base,
+                    "where": where,
+                },
+            )
+            features = payload.get("features", [])
+            if features:
+                return features[0]
+    return None
 
 
 def fetch_special_city_boundary_feature(city: str) -> dict[str, Any] | None:
