@@ -33,6 +33,7 @@ import type {
   AppMeta,
   CoverageCollection,
   CoverageFeatureProps,
+  JumpArea,
   CoverageRegion,
   JumpCountry,
   JumpState,
@@ -873,6 +874,257 @@ const FIND_PANEL_COPY: Record<
   }
 };
 
+const DISCOVERY_COPY: Record<
+  Language,
+  {
+    areaSearchShow: string;
+    areaSearchHide: string;
+    areaSearchEmpty: string;
+    areaStatusCovered: string;
+    areaStatusOfficialUnavailable: string;
+    areaStatusUntracked: string;
+    locationLoading: string;
+    locationRetry: string;
+    locationUnsupportedTitle: string;
+    locationUnsupportedBody: string;
+    locationDeniedTitle: string;
+    locationDeniedBody: string;
+    locationTimeoutTitle: string;
+    locationTimeoutBody: string;
+    locationUnavailableTitle: string;
+    locationUnavailableBody: string;
+    officialUnavailableTitle: string;
+    officialUnavailableBody: string;
+    officialUnavailableCta: string;
+    untrackedTitle: string;
+    untrackedBody: string;
+    untrackedCta: string;
+    coveredEmptyTitle: string;
+    coveredEmptyBody: string;
+  }
+> = {
+  "en-US": {
+    areaSearchShow: "Search city / county",
+    areaSearchHide: "Hide city / county search",
+    areaSearchEmpty: "No city or county matched that search.",
+    areaStatusCovered: "Covered",
+    areaStatusOfficialUnavailable: "Official data unavailable",
+    areaStatusUntracked: "Not added yet",
+    locationLoading: "Locating your position...",
+    locationRetry: "Try locate again",
+    locationUnsupportedTitle: "This browser cannot locate you",
+    locationUnsupportedBody: "Your browser does not support geolocation in this session.",
+    locationDeniedTitle: "Location permission was denied",
+    locationDeniedBody: "Pink Hunter could not access your location. Please allow location access and try again.",
+    locationTimeoutTitle: "Location lookup timed out",
+    locationTimeoutBody: "Pink Hunter could not get your position in time. Try again in a stronger-signal spot.",
+    locationUnavailableTitle: "Location is unavailable",
+    locationUnavailableBody: "Pink Hunter could not determine your current position right now.",
+    officialUnavailableTitle: "Official boundary found, but no official public tree dataset yet",
+    officialUnavailableBody:
+      "Pink Hunter knows this area and can draw its official boundary, but there is still no official public single-tree dataset to load here.",
+    officialUnavailableCta: "Share a data lead",
+    untrackedTitle: "Pink Hunter has not added this area yet",
+    untrackedBody:
+      "This area is not integrated into Pink Hunter yet. If you know a public official dataset, please send it over.",
+    untrackedCta: "Request this area",
+    coveredEmptyTitle: "No trees match the current filters here",
+    coveredEmptyBody:
+      "This area is covered, but the current filters left no matching trees. Clear the filters or reload visible trees."
+  },
+  "zh-CN": {
+    areaSearchShow: "搜索城市 / 县",
+    areaSearchHide: "收起城市 / 县搜索",
+    areaSearchEmpty: "没有匹配的城市或县。",
+    areaStatusCovered: "已覆盖",
+    areaStatusOfficialUnavailable: "官方暂无公开数据",
+    areaStatusUntracked: "尚未加入",
+    locationLoading: "正在定位你的位置...",
+    locationRetry: "重新定位",
+    locationUnsupportedTitle: "当前浏览器不支持定位",
+    locationUnsupportedBody: "这个浏览器会话暂时无法使用地理定位。",
+    locationDeniedTitle: "定位权限被拒绝",
+    locationDeniedBody: "Pink Hunter 无法访问你的位置。请允许定位权限后再试一次。",
+    locationTimeoutTitle: "定位超时",
+    locationTimeoutBody: "Pink Hunter 在限定时间内没有拿到你的位置。请在信号更好的地方再试一次。",
+    locationUnavailableTitle: "暂时无法获取位置",
+    locationUnavailableBody: "Pink Hunter 现在无法确定你的当前位置。",
+    officialUnavailableTitle: "已确认官方边界，但暂无官方公开树木数据",
+    officialUnavailableBody:
+      "Pink Hunter 已经知道这个地区，也能绘制它的官方边界，但目前还没有可公开接入的官方单株树木数据。",
+    officialUnavailableCta: "提供数据线索",
+    untrackedTitle: "Pink Hunter 还没有接入这个地区",
+    untrackedBody: "这个地区目前还没有被 Pink Hunter 收录。如果你知道官方公开数据源，欢迎发给我们。",
+    untrackedCta: "请求添加该地区",
+    coveredEmptyTitle: "这个地区当前没有符合筛选条件的树",
+    coveredEmptyBody: "该地区已经覆盖，但当前筛选条件下没有匹配树木。你可以清空筛选，或重新显示当前视口的树木。"
+  },
+  "zh-TW": {
+    areaSearchShow: "搜尋城市 / 縣",
+    areaSearchHide: "收起城市 / 縣搜尋",
+    areaSearchEmpty: "沒有符合的城市或縣。",
+    areaStatusCovered: "已覆蓋",
+    areaStatusOfficialUnavailable: "官方暫無公開資料",
+    areaStatusUntracked: "尚未加入",
+    locationLoading: "正在定位你的位置...",
+    locationRetry: "重新定位",
+    locationUnsupportedTitle: "目前瀏覽器不支援定位",
+    locationUnsupportedBody: "這個瀏覽器工作階段目前無法使用地理定位。",
+    locationDeniedTitle: "定位權限被拒絕",
+    locationDeniedBody: "Pink Hunter 無法取得你的位置。請允許定位權限後再試一次。",
+    locationTimeoutTitle: "定位逾時",
+    locationTimeoutBody: "Pink Hunter 沒有在限定時間內取得你的位置。請到訊號更好的地方再試一次。",
+    locationUnavailableTitle: "暫時無法取得位置",
+    locationUnavailableBody: "Pink Hunter 目前無法確認你的即時位置。",
+    officialUnavailableTitle: "已確認官方邊界，但暫無官方公開樹木資料",
+    officialUnavailableBody:
+      "Pink Hunter 已知道這個地區，也能繪製它的官方邊界，但目前還沒有可公開接入的官方單株樹木資料。",
+    officialUnavailableCta: "提供資料線索",
+    untrackedTitle: "Pink Hunter 尚未接入這個地區",
+    untrackedBody: "這個地區目前尚未被 Pink Hunter 收錄。如果你知道官方公開資料來源，歡迎提供給我們。",
+    untrackedCta: "請求加入這個地區",
+    coveredEmptyTitle: "這個地區目前沒有符合篩選條件的樹",
+    coveredEmptyBody: "這個地區已經覆蓋，但目前的篩選條件下沒有符合的樹木。你可以清空篩選，或重新顯示目前視窗內的樹木。"
+  },
+  "es-ES": {
+    areaSearchShow: "Buscar ciudad / condado",
+    areaSearchHide: "Ocultar búsqueda de ciudad / condado",
+    areaSearchEmpty: "Ninguna ciudad o condado coincide con la búsqueda.",
+    areaStatusCovered: "Cubierto",
+    areaStatusOfficialUnavailable: "Sin datos oficiales",
+    areaStatusUntracked: "Aún no añadido",
+    locationLoading: "Buscando tu ubicación...",
+    locationRetry: "Intentar de nuevo",
+    locationUnsupportedTitle: "Este navegador no puede ubicarte",
+    locationUnsupportedBody: "La geolocalización no está disponible en este navegador ahora mismo.",
+    locationDeniedTitle: "Permiso de ubicación denegado",
+    locationDeniedBody: "Pink Hunter no pudo acceder a tu ubicación. Activa el permiso y vuelve a intentarlo.",
+    locationTimeoutTitle: "La búsqueda de ubicación tardó demasiado",
+    locationTimeoutBody: "Pink Hunter no obtuvo tu posición a tiempo. Prueba otra vez en un lugar con mejor señal.",
+    locationUnavailableTitle: "Ubicación no disponible",
+    locationUnavailableBody: "Pink Hunter no pudo determinar tu posición actual en este momento.",
+    officialUnavailableTitle: "Límite oficial confirmado, pero sin datos públicos oficiales de árboles",
+    officialUnavailableBody:
+      "Pink Hunter conoce esta zona y puede dibujar su límite oficial, pero todavía no existe un conjunto público oficial árbol por árbol para cargar aquí.",
+    officialUnavailableCta: "Compartir una pista de datos",
+    untrackedTitle: "Pink Hunter aún no ha añadido esta zona",
+    untrackedBody: "Esta zona todavía no está integrada en Pink Hunter. Si conoces un conjunto oficial público, envíalo.",
+    untrackedCta: "Solicitar esta zona",
+    coveredEmptyTitle: "No hay árboles aquí que coincidan con los filtros actuales",
+    coveredEmptyBody:
+      "Esta zona sí está cubierta, pero los filtros actuales no dejaron resultados. Borra los filtros o vuelve a cargar los árboles visibles."
+  },
+  "ko-KR": {
+    areaSearchShow: "시 / 카운티 검색",
+    areaSearchHide: "시 / 카운티 검색 닫기",
+    areaSearchEmpty: "검색과 일치하는 시 또는 카운티가 없습니다.",
+    areaStatusCovered: "커버됨",
+    areaStatusOfficialUnavailable: "공식 공개 데이터 없음",
+    areaStatusUntracked: "아직 미추가",
+    locationLoading: "현재 위치를 찾는 중...",
+    locationRetry: "다시 위치 찾기",
+    locationUnsupportedTitle: "이 브라우저에서는 위치를 찾을 수 없습니다",
+    locationUnsupportedBody: "현재 브라우저 세션에서는 위치 정보를 사용할 수 없습니다.",
+    locationDeniedTitle: "위치 권한이 거부되었습니다",
+    locationDeniedBody: "Pink Hunter가 위치에 접근하지 못했습니다. 위치 권한을 허용한 뒤 다시 시도해 주세요.",
+    locationTimeoutTitle: "위치 확인 시간이 초과되었습니다",
+    locationTimeoutBody: "Pink Hunter가 제시간에 위치를 받지 못했습니다. 신호가 더 좋은 곳에서 다시 시도해 주세요.",
+    locationUnavailableTitle: "위치를 사용할 수 없습니다",
+    locationUnavailableBody: "Pink Hunter가 현재 위치를 확인할 수 없습니다.",
+    officialUnavailableTitle: "공식 경계는 확인됐지만 공개된 공식 수목 데이터가 없습니다",
+    officialUnavailableBody:
+      "Pink Hunter는 이 지역과 공식 경계를 알고 있지만, 현재는 불러올 수 있는 공식 공개 단일 수목 데이터셋이 없습니다.",
+    officialUnavailableCta: "데이터 제보하기",
+    untrackedTitle: "Pink Hunter에 아직 이 지역이 추가되지 않았습니다",
+    untrackedBody: "이 지역은 아직 Pink Hunter에 통합되지 않았습니다. 공식 공개 데이터셋을 알고 있다면 보내 주세요.",
+    untrackedCta: "이 지역 요청하기",
+    coveredEmptyTitle: "현재 필터로는 이 지역에 맞는 나무가 없습니다",
+    coveredEmptyBody: "이 지역은 커버되어 있지만 현재 필터 조건에서는 결과가 없습니다. 필터를 지우거나 현재 화면의 나무를 다시 불러오세요."
+  },
+  "ja-JP": {
+    areaSearchShow: "市 / 郡を検索",
+    areaSearchHide: "市 / 郡の検索を閉じる",
+    areaSearchEmpty: "一致する市または郡はありません。",
+    areaStatusCovered: "カバー済み",
+    areaStatusOfficialUnavailable: "公式データ未公開",
+    areaStatusUntracked: "未追加",
+    locationLoading: "現在地を取得しています...",
+    locationRetry: "もう一度試す",
+    locationUnsupportedTitle: "このブラウザでは現在地を取得できません",
+    locationUnsupportedBody: "このブラウザでは今回のセッションで位置情報を利用できません。",
+    locationDeniedTitle: "位置情報の許可が拒否されました",
+    locationDeniedBody: "Pink Hunter は現在地にアクセスできませんでした。位置情報の許可を有効にして再度お試しください。",
+    locationTimeoutTitle: "位置情報の取得がタイムアウトしました",
+    locationTimeoutBody: "Pink Hunter は時間内に現在地を取得できませんでした。電波のよい場所で再度お試しください。",
+    locationUnavailableTitle: "現在地を取得できません",
+    locationUnavailableBody: "Pink Hunter は今この瞬間の位置を特定できませんでした。",
+    officialUnavailableTitle: "公式境界は確認済みですが、公開された公式樹木データはまだありません",
+    officialUnavailableBody:
+      "Pink Hunter はこの地域と公式境界を把握していますが、ここで読み込める公式公開の単木データセットはまだありません。",
+    officialUnavailableCta: "データの手がかりを送る",
+    untrackedTitle: "Pink Hunter にはまだこの地域が追加されていません",
+    untrackedBody: "この地域はまだ Pink Hunter に統合されていません。公開された公式データをご存じなら共有してください。",
+    untrackedCta: "この地域を依頼する",
+    coveredEmptyTitle: "現在の条件に一致する木がこの地域にはありません",
+    coveredEmptyBody: "この地域自体はカバー済みですが、現在のフィルター条件では一致する木がありません。フィルターを解除するか、表示中の木を再読み込みしてください。"
+  },
+  "fr-FR": {
+    areaSearchShow: "Rechercher une ville / un comté",
+    areaSearchHide: "Masquer la recherche ville / comté",
+    areaSearchEmpty: "Aucune ville ou aucun comté ne correspond à cette recherche.",
+    areaStatusCovered: "Couvert",
+    areaStatusOfficialUnavailable: "Pas de données officielles",
+    areaStatusUntracked: "Pas encore ajouté",
+    locationLoading: "Localisation en cours...",
+    locationRetry: "Réessayer",
+    locationUnsupportedTitle: "Ce navigateur ne peut pas vous localiser",
+    locationUnsupportedBody: "La géolocalisation n'est pas disponible dans ce navigateur pour le moment.",
+    locationDeniedTitle: "Autorisation de localisation refusée",
+    locationDeniedBody: "Pink Hunter n'a pas pu accéder à votre position. Autorisez la localisation puis réessayez.",
+    locationTimeoutTitle: "La localisation a expiré",
+    locationTimeoutBody: "Pink Hunter n'a pas obtenu votre position à temps. Réessayez dans un endroit avec un meilleur signal.",
+    locationUnavailableTitle: "Localisation indisponible",
+    locationUnavailableBody: "Pink Hunter n'a pas pu déterminer votre position actuelle pour le moment.",
+    officialUnavailableTitle: "Limite officielle confirmée, mais pas encore de données publiques officielles d'arbres",
+    officialUnavailableBody:
+      "Pink Hunter connaît cette zone et peut dessiner sa limite officielle, mais aucun jeu de données public officiel arbre par arbre n'est encore disponible ici.",
+    officialUnavailableCta: "Partager une piste de données",
+    untrackedTitle: "Pink Hunter n'a pas encore ajouté cette zone",
+    untrackedBody: "Cette zone n'est pas encore intégrée à Pink Hunter. Si vous connaissez un jeu de données public officiel, envoyez-le.",
+    untrackedCta: "Demander cette zone",
+    coveredEmptyTitle: "Aucun arbre ici ne correspond aux filtres actuels",
+    coveredEmptyBody:
+      "Cette zone est couverte, mais les filtres actuels ne laissent aucun résultat. Effacez les filtres ou rechargez les arbres visibles."
+  },
+  "vi-VN": {
+    areaSearchShow: "Tìm thành phố / quận hạt",
+    areaSearchHide: "Ẩn tìm kiếm thành phố / quận hạt",
+    areaSearchEmpty: "Không có thành phố hoặc quận hạt nào khớp.",
+    areaStatusCovered: "Đã phủ",
+    areaStatusOfficialUnavailable: "Chưa có dữ liệu chính thức",
+    areaStatusUntracked: "Chưa thêm",
+    locationLoading: "Đang xác định vị trí của bạn...",
+    locationRetry: "Thử lại",
+    locationUnsupportedTitle: "Trình duyệt này không thể định vị bạn",
+    locationUnsupportedBody: "Phiên trình duyệt hiện tại không hỗ trợ định vị địa lý.",
+    locationDeniedTitle: "Quyền truy cập vị trí bị từ chối",
+    locationDeniedBody: "Pink Hunter không thể truy cập vị trí của bạn. Hãy cho phép truy cập vị trí rồi thử lại.",
+    locationTimeoutTitle: "Định vị bị quá thời gian",
+    locationTimeoutBody: "Pink Hunter không lấy được vị trí của bạn kịp lúc. Hãy thử lại ở nơi có tín hiệu tốt hơn.",
+    locationUnavailableTitle: "Không thể lấy vị trí",
+    locationUnavailableBody: "Pink Hunter hiện không thể xác định vị trí của bạn.",
+    officialUnavailableTitle: "Đã xác nhận ranh giới chính thức nhưng chưa có dữ liệu cây công khai chính thức",
+    officialUnavailableBody:
+      "Pink Hunter biết khu vực này và có thể vẽ ranh giới chính thức của nó, nhưng hiện chưa có bộ dữ liệu công khai chính thức cho từng cây để tải ở đây.",
+    officialUnavailableCta: "Gửi manh mối dữ liệu",
+    untrackedTitle: "Pink Hunter chưa thêm khu vực này",
+    untrackedBody: "Khu vực này vẫn chưa được tích hợp vào Pink Hunter. Nếu bạn biết bộ dữ liệu công khai chính thức, hãy gửi cho chúng tôi.",
+    untrackedCta: "Yêu cầu thêm khu vực này",
+    coveredEmptyTitle: "Không có cây nào ở đây khớp với bộ lọc hiện tại",
+    coveredEmptyBody: "Khu vực này đã được phủ, nhưng bộ lọc hiện tại không còn kết quả nào. Hãy xóa bộ lọc hoặc tải lại các cây đang hiển thị."
+  }
+};
+
 const REGION_SWITCH_BOUNDS: Partial<Record<CoverageRegion, [[number, number], [number, number]]>> = {
   wa: [
     [-122.62, 47.23],
@@ -1103,10 +1355,17 @@ interface SelectedCoverage {
   properties: CoverageFeatureProps;
 }
 
-interface JumpNotice {
-  kind: "official_unavailable" | "untracked";
-  title: string;
-  body: string;
+type StatusNoticeKind =
+  | "official_unavailable"
+  | "untracked"
+  | "location_unsupported"
+  | "location_denied"
+  | "location_timeout"
+  | "location_unavailable";
+
+interface StatusNotice {
+  kind: StatusNoticeKind;
+  areaName?: string;
 }
 
 type AboutSummaryMode = "region" | "area";
@@ -1176,6 +1435,7 @@ interface UrlState {
   language: Language;
   species: SpeciesGroup[];
   ownership: OwnershipGroup[];
+  areaId: string | null;
   cities: string[];
   zipCodes: string[];
   hasSpeciesParam: boolean;
@@ -1228,6 +1488,7 @@ function parseUrlState(): UrlState {
   const cities = parseStringList(params.get("city"));
   const region = parseRegion(params.get("region"), cities);
   const language = parseLanguage(params.get("lang"));
+  const areaId = params.get("area");
   const hasSpeciesParam = params.has("species");
   const hasOwnershipParam = params.has("ownership");
   const hasCityParam = params.has("city");
@@ -1246,6 +1507,7 @@ function parseUrlState(): UrlState {
     language,
     species,
     ownership,
+    areaId,
     cities,
     zipCodes,
     hasSpeciesParam,
@@ -1306,6 +1568,11 @@ function boundsIntersect(left: BoundsTuple, right: BoundsTuple): boolean {
   const [[leftMinX, leftMinY], [leftMaxX, leftMaxY]] = normalizeBounds(left);
   const [[rightMinX, rightMinY], [rightMaxX, rightMaxY]] = normalizeBounds(right);
   return !(leftMaxX < rightMinX || rightMaxX < leftMinX || leftMaxY < rightMinY || rightMaxY < leftMinY);
+}
+
+function boundsContainCoordinate(bounds: BoundsTuple, coordinate: [number, number]): boolean {
+  const [[minX, minY], [maxX, maxY]] = normalizeBounds(bounds);
+  return coordinate[0] >= minX && coordinate[0] <= maxX && coordinate[1] >= minY && coordinate[1] <= maxY;
 }
 
 function mergeTreeCollections(collections: TreeCollection[]): TreeCollection {
@@ -1416,7 +1683,25 @@ function clipMultiPolygonToGeometry(
 }
 
 function parseRegion(raw: string | null, cities: string[]): CoverageRegion {
-  if (raw === "wa" || raw === "ca" || raw === "co" || raw === "or" || raw === "dc" || raw === "bc" || raw === "on" || raw === "qc" || raw === "va" || raw === "md" || raw === "nj" || raw === "ny" || raw === "pa" || raw === "ma") {
+  if (
+    raw === "wa" ||
+    raw === "ca" ||
+    raw === "co" ||
+    raw === "nv" ||
+    raw === "or" ||
+    raw === "tx" ||
+    raw === "ut" ||
+    raw === "dc" ||
+    raw === "bc" ||
+    raw === "on" ||
+    raw === "qc" ||
+    raw === "va" ||
+    raw === "md" ||
+    raw === "nj" ||
+    raw === "ny" ||
+    raw === "pa" ||
+    raw === "ma"
+  ) {
     return raw;
   }
   if (cities.length > 0) {
@@ -1688,6 +1973,23 @@ function escapeHtml(raw: string): string {
     .replace(/'/g, "&#39;");
 }
 
+function buildContactMailtoHref(kind: "official_unavailable" | "untracked", areaName: string): string {
+  const subject =
+    kind === "official_unavailable"
+      ? `Pink Hunter data lead: ${areaName}`
+      : `Pink Hunter area request: ${areaName}`;
+  const lines = [
+    `Area: ${areaName}`,
+    `Status: ${kind}`,
+    typeof window !== "undefined" ? `Page: ${window.location.href}` : "",
+    "",
+    kind === "official_unavailable"
+      ? "I know a public source or lead for this area:"
+      : "I would like Pink Hunter to add this area. Possible public source:"
+  ].filter(Boolean);
+  return `mailto:flalaz@uw.edu?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(lines.join("\n"))}`;
+}
+
 async function resolveMapStyle(): Promise<{ styleUrl: string; preset: MapStylePreset }> {
   try {
     const response = await fetch(POSITRON_STYLE_URL, { method: "GET" });
@@ -1725,7 +2027,12 @@ export default function App(): JSX.Element {
   const [selectedOwnership, setSelectedOwnership] = useState<OwnershipGroup[]>(initialUrlState.ownership);
   const [jumpCountry, setJumpCountry] = useState<JumpCountry["id"]>("us");
   const [jumpState, setJumpState] = useState<string>("");
-  const [jumpNotice, setJumpNotice] = useState<JumpNotice | null>(null);
+  const [selectedJumpAreaId, setSelectedJumpAreaId] = useState<string | null>(initialUrlState.areaId);
+  const [jumpAreaQuery, setJumpAreaQuery] = useState("");
+  const [jumpAreaExpanded, setJumpAreaExpanded] = useState(false);
+  const [statusNotice, setStatusNotice] = useState<StatusNotice | null>(null);
+  const [locatingUser, setLocatingUser] = useState(false);
+  const [userLocation, setUserLocation] = useState<[number, number] | null>(null);
   const [languageMenuOpen, setLanguageMenuOpen] = useState(false);
   const [sheetHeight, setSheetHeight] = useState<number>(0.4);
   const [activePanel, setActivePanel] = useState<"details" | "filters" | "guide" | "about">("filters");
@@ -2132,6 +2439,90 @@ export default function App(): JSX.Element {
     [resolvedStateCodeForArea]
   );
 
+  const jumpAreaById = useMemo(() => {
+    if (!data) {
+      return new Map<string, JumpArea>();
+    }
+    return new Map(data.jumpIndex.areas.map((area) => [area.id, area]));
+  }, [data]);
+
+  const selectedJumpArea = useMemo(
+    () => (selectedJumpAreaId ? jumpAreaById.get(selectedJumpAreaId) ?? null : null),
+    [jumpAreaById, selectedJumpAreaId]
+  );
+
+  const initialJumpArea = useMemo(
+    () => (initialUrlState.areaId ? jumpAreaById.get(initialUrlState.areaId) ?? null : null),
+    [initialUrlState.areaId, jumpAreaById]
+  );
+
+  const normalizedJumpAreaQuery = jumpAreaQuery.trim().toLowerCase();
+
+  const jumpAreaMatches = useMemo(() => {
+    if (!data || !normalizedJumpAreaQuery) {
+      return [] as JumpArea[];
+    }
+
+    const collator = new Intl.Collator(language, { sensitivity: "base" });
+
+    return data.jumpIndex.areas
+      .map((area) => {
+        const state = jumpStateById.get(area.state_id);
+        const formattedLabel = formatAreaLabelResolved(area.jurisdiction);
+        const stateLabel = state ? jumpStateDisplayLabel(language, state) : "";
+        const stateCode = state?.code.toUpperCase() ?? "";
+        const countryLabel = COUNTRY_LABELS[language][area.country_id];
+        const searchHaystack = [
+          area.display_name,
+          area.jurisdiction,
+          formattedLabel,
+          stateLabel,
+          stateCode,
+          countryLabel
+        ]
+          .join(" ")
+          .toLowerCase();
+
+        if (!searchHaystack.includes(normalizedJumpAreaQuery)) {
+          return null;
+        }
+
+        const startsWithMatch =
+          formattedLabel.toLowerCase().startsWith(normalizedJumpAreaQuery) ||
+          area.display_name.toLowerCase().startsWith(normalizedJumpAreaQuery) ||
+          area.jurisdiction.toLowerCase().startsWith(normalizedJumpAreaQuery);
+
+        let score = startsWithMatch ? 20 : 0;
+        if (area.country_id === jumpCountry) {
+          score += 12;
+        }
+        if (jumpState && area.state_id === jumpState) {
+          score += 8;
+        }
+        if (area.coverage_status === "covered") {
+          score += 4;
+        }
+
+        return {
+          area,
+          label: formattedLabel,
+          score
+        };
+      })
+      .filter((item): item is { area: JumpArea; label: string; score: number } => item !== null)
+      .sort((left, right) => right.score - left.score || collator.compare(left.label, right.label))
+      .slice(0, 20)
+      .map((item) => item.area);
+  }, [
+    data,
+    formatAreaLabelResolved,
+    jumpCountry,
+    jumpState,
+    jumpStateById,
+    language,
+    normalizedJumpAreaQuery
+  ]);
+
   useEffect(() => {
     if (!data) {
       return;
@@ -2142,6 +2533,19 @@ export default function App(): JSX.Element {
     );
     setJumpState((current) => (current && data.jumpIndex.states.some((item) => item.id === current) ? current : ""));
   }, [data, initialUrlState.region]);
+
+  useEffect(() => {
+    if (!selectedJumpAreaId) {
+      return;
+    }
+    const area = jumpAreaById.get(selectedJumpAreaId);
+    if (!area) {
+      setSelectedJumpAreaId(null);
+      return;
+    }
+    setJumpCountry(area.country_id);
+    setJumpState(area.state_id);
+  }, [jumpAreaById, selectedJumpAreaId]);
 
   useEffect(() => {
     if (!jumpState) {
@@ -2232,6 +2636,7 @@ export default function App(): JSX.Element {
   const guideCompareCopy = GUIDE_COMPARE_COPY[language];
   const aboutCopy = ABOUT_COPY[language];
   const findPanelCopy = FIND_PANEL_COPY[language];
+  const discoveryCopy = DISCOVERY_COPY[language];
   const jumpSubnationalLabel = jumpCountry === "us" ? findPanelCopy.jumpState : findPanelCopy.jumpProvince;
   const jumpAnySubnationalLabel = jumpCountry === "us" ? findPanelCopy.jumpAnyState : findPanelCopy.jumpAnyProvince;
 
@@ -2624,6 +3029,38 @@ export default function App(): JSX.Element {
           }
         });
 
+        map.addSource("user-location", {
+          type: "geojson",
+          data: {
+            type: "FeatureCollection",
+            features: []
+          }
+        });
+
+        map.addLayer({
+          id: "user-location-halo",
+          type: "circle",
+          source: "user-location",
+          paint: {
+            "circle-color": "rgba(63, 131, 248, 0.16)",
+            "circle-radius": 14,
+            "circle-stroke-color": "rgba(63, 131, 248, 0.32)",
+            "circle-stroke-width": 1.5
+          }
+        });
+
+        map.addLayer({
+          id: "user-location-dot",
+          type: "circle",
+          source: "user-location",
+          paint: {
+            "circle-color": "#3f83f8",
+            "circle-radius": 5,
+            "circle-stroke-color": "#ffffff",
+            "circle-stroke-width": 2
+          }
+        });
+
         map.on("click", "tree-clusters", (event: MapLayerMouseEvent) => {
           const features = map.queryRenderedFeatures(event.point, { layers: ["tree-clusters"] });
           if (features.length === 0) {
@@ -2718,7 +3155,7 @@ export default function App(): JSX.Element {
             properties: matched.properties
           });
           setSelectedCoverage(null);
-          setJumpNotice(null);
+          setStatusNotice(null);
           if (!isDesktopRef.current) {
             setSheetHeight(0.72);
             setActivePanel("details");
@@ -2771,10 +3208,9 @@ export default function App(): JSX.Element {
         });
 
         if (!initialUrlState.hasViewportParam) {
-          const defaultBounds = preferredBoundsForRegion(
-            initialUrlState.region,
-            regionMetaById.get(initialUrlState.region) ?? null
-          );
+          const defaultBounds =
+            initialJumpArea?.bounds ??
+            preferredBoundsForRegion(initialUrlState.region, regionMetaById.get(initialUrlState.region) ?? null);
           if (defaultBounds) {
             map.fitBounds(defaultBounds, {
               padding: isDesktopRef.current ? 80 : 48,
@@ -2823,6 +3259,7 @@ export default function App(): JSX.Element {
     initialUrlState.lon,
     initialUrlState.region,
     initialUrlState.zoom,
+    initialJumpArea,
     mapRuntime,
     regionMetaById
   ]);
@@ -2853,6 +3290,39 @@ export default function App(): JSX.Element {
       source.setData(displayCoverage);
     }
   }, [displayCoverage]);
+
+  useEffect(() => {
+    const map = mapRef.current;
+    if (!map) {
+      return;
+    }
+
+    const source = map.getSource("user-location") as GeoJSONSource | undefined;
+    if (!source) {
+      return;
+    }
+
+    source.setData(
+      userLocation
+        ? {
+            type: "FeatureCollection",
+            features: [
+              {
+                type: "Feature",
+                geometry: {
+                  type: "Point",
+                  coordinates: userLocation
+                },
+                properties: {}
+              }
+            ]
+          }
+        : {
+            type: "FeatureCollection",
+            features: []
+          }
+    );
+  }, [userLocation]);
 
   useEffect(() => {
     const map = mapRef.current;
@@ -2971,6 +3441,9 @@ export default function App(): JSX.Element {
     const params = new URLSearchParams();
     params.set("region", activeRegion);
     params.set("lang", language);
+    if (selectedJumpAreaId) {
+      params.set("area", selectedJumpAreaId);
+    }
 
     if (selectedSpecies.length === 0) {
       params.set("species", "none");
@@ -2996,6 +3469,7 @@ export default function App(): JSX.Element {
     data,
     language,
     mapView,
+    selectedJumpAreaId,
     selectedOwnership,
     selectedSpecies,
   ]);
@@ -3023,6 +3497,21 @@ export default function App(): JSX.Element {
     setLanguageMenuOpen(false);
   }
 
+  function clearSelectedJumpArea(): void {
+    setSelectedJumpAreaId(null);
+    setJumpAreaQuery("");
+    setStatusNotice(null);
+  }
+
+  function handleSelectJumpArea(area: JumpArea): void {
+    setJumpCountry(area.country_id);
+    setJumpState(area.state_id);
+    setSelectedJumpAreaId(area.id);
+    setJumpAreaExpanded(false);
+    setJumpAreaQuery("");
+    setStatusNotice(null);
+  }
+
   function fitMapToBounds(bounds: BoundsTuple | null): void {
     const normalizedBounds = normalizeMapBounds(bounds);
     if (!normalizedBounds) {
@@ -3044,21 +3533,42 @@ export default function App(): JSX.Element {
       return;
     }
 
+    const selectedArea = selectedJumpArea;
     const selectedJumpState = jumpState ? jumpStates.find((item) => item.id === jumpState) ?? null : null;
     const selectedJumpCountry = jumpCountries.find((item) => item.id === jumpCountry) ?? null;
-    const targetBounds = selectedJumpState?.bounds ?? selectedJumpCountry?.bounds ?? null;
+    const targetBounds = selectedArea?.bounds ?? selectedJumpState?.bounds ?? selectedJumpCountry?.bounds ?? null;
 
     setSelectedTree(null);
-    setJumpNotice(null);
     setSelectedCoverage(null);
+    setStatusNotice(null);
+    setUserLocation(null);
+    setJumpAreaExpanded(false);
+
+    if (selectedArea?.region_hint) {
+      setActiveRegion(selectedArea.region_hint);
+    } else if (selectedJumpState?.region_hint) {
+      setActiveRegion(selectedJumpState.region_hint);
+    }
 
     fitMapToBounds(targetBounds);
 
-    if (selectedJumpState && !selectedJumpState.region_hint) {
-      setJumpNotice({
+    if (selectedArea) {
+      const areaName = formatAreaLabelResolved(selectedArea.jurisdiction);
+      if (selectedArea.coverage_status === "official_unavailable") {
+        setStatusNotice({
+          kind: "official_unavailable",
+          areaName
+        });
+      } else if (selectedArea.coverage_status === "untracked") {
+        setStatusNotice({
+          kind: "untracked",
+          areaName
+        });
+      }
+    } else if (selectedJumpState && !selectedJumpState.region_hint) {
+      setStatusNotice({
         kind: "untracked",
-        title: findPanelCopy.jumpUntrackedTitle,
-        body: findPanelCopy.jumpUntrackedBody
+        areaName: jumpStateDisplayLabel(language, selectedJumpState)
       });
     }
 
@@ -3067,12 +3577,99 @@ export default function App(): JSX.Element {
     }
   }
 
+  function handleLocateNearby(): void {
+    if (typeof navigator === "undefined" || !navigator.geolocation) {
+      setStatusNotice({ kind: "location_unsupported" });
+      return;
+    }
+
+    if (!data) {
+      return;
+    }
+
+    setLocatingUser(true);
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        const coordinates: [number, number] = [position.coords.longitude, position.coords.latitude];
+        const matchedArea =
+          [...data.jumpIndex.areas]
+            .filter((area) => boundsContainCoordinate(area.bounds, coordinates))
+            .sort(
+              (left, right) =>
+                (left.bounds[1][0] - left.bounds[0][0]) * (left.bounds[1][1] - left.bounds[0][1]) -
+                (right.bounds[1][0] - right.bounds[0][0]) * (right.bounds[1][1] - right.bounds[0][1])
+            )[0] ?? null;
+        const matchedRegion =
+          data.meta.regions.find((region) => boundsContainCoordinate(region.bounds, coordinates)) ?? null;
+
+        setLocatingUser(false);
+        setSelectedTree(null);
+        setSelectedCoverage(null);
+        setSelectedJumpAreaId(null);
+        setJumpAreaQuery("");
+        setJumpAreaExpanded(false);
+        setUserLocation(coordinates);
+        setStatusNotice(null);
+        if (matchedArea) {
+          setJumpCountry(matchedArea.country_id);
+          setJumpState(matchedArea.state_id);
+        }
+        if (matchedArea?.region_hint) {
+          setActiveRegion(matchedArea.region_hint);
+        } else if (matchedRegion?.id) {
+          setActiveRegion(matchedRegion.id);
+        }
+
+        if (matchedArea?.coverage_status === "official_unavailable") {
+          setStatusNotice({
+            kind: "official_unavailable",
+            areaName: formatAreaLabelResolved(matchedArea.jurisdiction)
+          });
+        } else if (matchedArea?.coverage_status === "untracked") {
+          setStatusNotice({
+            kind: "untracked",
+            areaName: formatAreaLabelResolved(matchedArea.jurisdiction)
+          });
+        }
+
+        const map = mapRef.current;
+        if (map && mapReady) {
+          map.easeTo({
+            center: coordinates,
+            zoom: Math.max(13, map.getZoom()),
+            duration: 700
+          });
+        }
+
+        if (!isDesktopRef.current) {
+          setActivePanel("filters");
+        }
+      },
+      (positionError) => {
+        setLocatingUser(false);
+        if (positionError.code === 1) {
+          setStatusNotice({ kind: "location_denied" });
+          return;
+        }
+        if (positionError.code === 3) {
+          setStatusNotice({ kind: "location_timeout" });
+          return;
+        }
+        setStatusNotice({ kind: "location_unavailable" });
+      },
+      {
+        enableHighAccuracy: true,
+        timeout: 10000,
+        maximumAge: 60000
+      }
+    );
+  }
+
   function refreshViewportTrees(): void {
     setSelectedSpecies([...ALL_SPECIES]);
     setSelectedOwnership([...allOwnershipOptions]);
     setSelectedTree(null);
     setSelectedCoverage(null);
-    setJumpNotice(null);
     setRegionShardCache((current) => {
       const next = { ...current };
       viewportShardEntries.forEach(({ region, shard }) => {
@@ -3092,7 +3689,6 @@ export default function App(): JSX.Element {
     setSelectedOwnership([]);
     setSelectedTree(null);
     setSelectedCoverage(null);
-    setJumpNotice(null);
   }
 
   function selectAllFilters(): void {
@@ -3100,7 +3696,6 @@ export default function App(): JSX.Element {
     setSelectedOwnership([...allOwnershipOptions]);
     setSelectedTree(null);
     setSelectedCoverage(null);
-    setJumpNotice(null);
   }
 
   function handleSheetPointerDown(event: ReactPointerEvent<HTMLButtonElement>): void {
@@ -3133,6 +3728,111 @@ export default function App(): JSX.Element {
 
   function formatCount(value: number): string {
     return value.toLocaleString(language);
+  }
+
+  const selectedJumpAreaLabel = selectedJumpArea ? formatAreaLabelResolved(selectedJumpArea.jurisdiction) : null;
+  const locateButtonStyle = isDesktop
+    ? { right: "446px", bottom: "4.9rem" }
+    : { right: "0.88rem", bottom: `calc(${sheetHeight * 100}vh + 1rem)` };
+
+  function renderStatusCard(): JSX.Element | null {
+    if (locatingUser) {
+      return (
+        <article className="status-card location_loading">
+          <div className="status-card-loading-row">
+            <span className="status-card-loading-dot" />
+            <strong>{discoveryCopy.locationLoading}</strong>
+          </div>
+        </article>
+      );
+    }
+
+    if (statusNotice) {
+      let title = "";
+      let body = "";
+      let action: ReactNode = null;
+
+      if (statusNotice.kind === "official_unavailable") {
+        title = discoveryCopy.officialUnavailableTitle;
+        body = discoveryCopy.officialUnavailableBody;
+        action = (
+          <a
+            className="detail-route-btn status-card-primary-link"
+            href={buildContactMailtoHref("official_unavailable", statusNotice.areaName ?? "Unknown area")}
+          >
+            {discoveryCopy.officialUnavailableCta}
+          </a>
+        );
+      } else if (statusNotice.kind === "untracked") {
+        title = discoveryCopy.untrackedTitle;
+        body = discoveryCopy.untrackedBody;
+        action = (
+          <a
+            className="detail-route-btn status-card-primary-link"
+            href={buildContactMailtoHref("untracked", statusNotice.areaName ?? "Unknown area")}
+          >
+            {discoveryCopy.untrackedCta}
+          </a>
+        );
+      } else if (statusNotice.kind === "location_unsupported") {
+        title = discoveryCopy.locationUnsupportedTitle;
+        body = discoveryCopy.locationUnsupportedBody;
+      } else if (statusNotice.kind === "location_denied") {
+        title = discoveryCopy.locationDeniedTitle;
+        body = discoveryCopy.locationDeniedBody;
+        action = (
+          <button className="clear-btn" onClick={handleLocateNearby} type="button">
+            {discoveryCopy.locationRetry}
+          </button>
+        );
+      } else if (statusNotice.kind === "location_timeout") {
+        title = discoveryCopy.locationTimeoutTitle;
+        body = discoveryCopy.locationTimeoutBody;
+        action = (
+          <button className="clear-btn" onClick={handleLocateNearby} type="button">
+            {discoveryCopy.locationRetry}
+          </button>
+        );
+      } else if (statusNotice.kind === "location_unavailable") {
+        title = discoveryCopy.locationUnavailableTitle;
+        body = discoveryCopy.locationUnavailableBody;
+        action = (
+          <button className="clear-btn" onClick={handleLocateNearby} type="button">
+            {discoveryCopy.locationRetry}
+          </button>
+        );
+      }
+
+      return (
+        <article className={`status-card ${statusNotice.kind}`}>
+          {statusNotice.areaName && <p className="status-card-area">{statusNotice.areaName}</p>}
+          <h4>{title}</h4>
+          <p>{body}</p>
+          {action && <div className="status-card-actions">{action}</div>}
+        </article>
+      );
+    }
+
+    if (!activeRegionPending && filteredFeatures.length === 0) {
+      const filtersCleared = selectedSpecies.length === 0 || selectedOwnership.length === 0;
+      return (
+        <article className="status-card covered_empty">
+          {selectedJumpAreaLabel && <p className="status-card-area">{selectedJumpAreaLabel}</p>}
+          <h4>{discoveryCopy.coveredEmptyTitle}</h4>
+          <p>{discoveryCopy.coveredEmptyBody}</p>
+          <div className="status-card-actions">
+            <button className="clear-btn" onClick={filtersCleared ? selectAllFilters : clearAllFilters} type="button">
+              {filtersCleared ? t(language, "selectAll") : t(language, "clearFilters")}
+            </button>
+            <button className="clear-btn" onClick={refreshViewportTrees} type="button">
+              {findPanelCopy.showButton}
+            </button>
+          </div>
+        </article>
+      );
+    }
+
+    return null;
   }
 
   function renderSpeciesCountRows(counts: SpeciesCounts, compact = false): JSX.Element {
@@ -3199,6 +3899,37 @@ export default function App(): JSX.Element {
         </div>
         {mapStylePreset === "demotiles" && <p>{t(language, "fallbackBasemap")}</p>}
       </section>
+      <button
+        aria-label={t(language, "locateNearby")}
+        className={locatingUser ? "map-locate-btn locating" : "map-locate-btn"}
+        disabled={locatingUser}
+        onClick={handleLocateNearby}
+        style={locateButtonStyle}
+        title={t(language, "locateNearby")}
+        type="button"
+      >
+        <svg aria-hidden="true" viewBox="0 0 24 24">
+          <path
+            d="M12 3.5v3.2M12 17.3v3.2M20.5 12h-3.2M6.7 12H3.5"
+            fill="none"
+            stroke="currentColor"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="1.8"
+          />
+          <circle
+            cx="12"
+            cy="12"
+            fill="none"
+            r="5.25"
+            stroke="currentColor"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="1.8"
+          />
+          <circle cx="12" cy="12" fill="currentColor" r="1.6" />
+        </svg>
+      </button>
 
       <section className="sheet" style={isDesktop ? undefined : { height: `${sheetHeight * 100}vh` }}>
         <button
@@ -3406,6 +4137,10 @@ export default function App(): JSX.Element {
                           const nextCountry = event.target.value as JumpCountry["id"];
                           setJumpCountry(nextCountry);
                           setJumpState("");
+                          clearSelectedJumpArea();
+                          setJumpAreaExpanded(false);
+                          setStatusNotice(null);
+                          setUserLocation(null);
                         }}
                         value={jumpCountry}
                       >
@@ -3424,6 +4159,9 @@ export default function App(): JSX.Element {
                         onChange={(event) => {
                           const nextState = event.target.value;
                           setJumpState(nextState);
+                          clearSelectedJumpArea();
+                          setStatusNotice(null);
+                          setUserLocation(null);
                         }}
                         value={jumpState}
                       >
@@ -3436,18 +4174,88 @@ export default function App(): JSX.Element {
                       </select>
                     </label>
                   </div>
+                  <div className="jump-area-tools">
+                    <button
+                      className="jump-area-toggle"
+                      onClick={() => setJumpAreaExpanded((current) => !current)}
+                      type="button"
+                    >
+                      {jumpAreaExpanded ? discoveryCopy.areaSearchHide : discoveryCopy.areaSearchShow}
+                    </button>
+                    {selectedJumpAreaLabel && (
+                      <div className="jump-selected-area">
+                        <span>{selectedJumpAreaLabel}</span>
+                        <button
+                          aria-label={t(language, "clearAll")}
+                          className="jump-selected-area-clear"
+                          onClick={clearSelectedJumpArea}
+                          type="button"
+                        >
+                          ×
+                        </button>
+                      </div>
+                    )}
+                  </div>
+                  {jumpAreaExpanded && (
+                    <div className="jump-area-search-shell">
+                      <input
+                        className="filter-search-input jump-area-search-input"
+                        onChange={(event) => setJumpAreaQuery(event.target.value)}
+                        placeholder={t(language, "searchCityPlaceholder")}
+                        type="search"
+                        value={jumpAreaQuery}
+                      />
+                      {normalizedJumpAreaQuery ? (
+                        jumpAreaMatches.length > 0 ? (
+                          <div className="jump-area-results">
+                            {jumpAreaMatches.map((area) => {
+                              const state = jumpStateById.get(area.state_id);
+                              const areaStatusLabel =
+                                area.coverage_status === "covered"
+                                  ? discoveryCopy.areaStatusCovered
+                                  : area.coverage_status === "official_unavailable"
+                                    ? discoveryCopy.areaStatusOfficialUnavailable
+                                    : discoveryCopy.areaStatusUntracked;
+                              return (
+                                <button
+                                  className={
+                                    area.id === selectedJumpAreaId
+                                      ? "jump-area-result active"
+                                      : "jump-area-result"
+                                  }
+                                  key={area.id}
+                                  onClick={() => handleSelectJumpArea(area)}
+                                  type="button"
+                                >
+                                  <div className="jump-area-result-head">
+                                    <strong>{formatAreaLabelResolved(area.jurisdiction)}</strong>
+                                    <span className={`jump-area-status-badge ${area.coverage_status}`}>
+                                      {areaStatusLabel}
+                                    </span>
+                                  </div>
+                                  <div className="jump-area-result-meta">
+                                    <span className={`coverage-area-type-badge ${areaTypeClassName(area.jurisdiction)}`}>
+                                      {areaTypeLabel(language, area.jurisdiction)}
+                                    </span>
+                                    <span>{state ? jumpStateDisplayLabel(language, state) : area.state_id.toUpperCase()}</span>
+                                  </div>
+                                </button>
+                              );
+                            })}
+                          </div>
+                        ) : (
+                          <p className="filter-empty jump-area-empty">{discoveryCopy.areaSearchEmpty}</p>
+                        )
+                      ) : null}
+                    </div>
+                  )}
                   <div className="jump-actions">
                     <button className="clear-btn jump-btn" onClick={handleJump} type="button">
                       {findPanelCopy.jumpButton}
                     </button>
                   </div>
-                  {jumpNotice && (
-                    <div className={`jump-notice ${jumpNotice.kind}`}>
-                      <strong>{jumpNotice.title}</strong>
-                      <p>{jumpNotice.body}</p>
-                    </div>
-                  )}
                 </section>
+                {renderStatusCard()}
 
                 <section className="show-block">
                   <div className="filters-heading">
@@ -3499,19 +4307,9 @@ export default function App(): JSX.Element {
                   </div>
                 </section>
               </section>
-              {activeRegionPending ? null : filteredFeatures.length === 0 ? (
-                <div className="empty-state">
-                  <img
-                    src="/assets/ui/placeholders/empty_state_spring_tree.svg"
-                    alt="No results"
-                    loading="lazy"
-                  />
-                  <h4>{t(language, "noResultsTitle")}</h4>
-                  <p>{t(language, "noResultsBody")}</p>
-                </div>
-              ) : (
+              {activeRegionPending ? null : filteredFeatures.length > 0 ? (
                 <p className="selection-hint">{t(language, "tapTreeHint")}</p>
-              )}
+              ) : null}
             </>
           ) : activePanel === "guide" ? (
             <section className="guide-panel">

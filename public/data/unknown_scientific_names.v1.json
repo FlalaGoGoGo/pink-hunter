@@ -85,7 +85,7 @@
   },
   {
     "scientific_name_normalized": "prunus spp",
-    "count": 6937
+    "count": 6949
   },
   {
     "scientific_name_normalized": "platanus x acerifolia",
@@ -156,6 +156,10 @@
     "count": 3652
   },
   {
+    "scientific_name_normalized": "prunus caroliniana",
+    "count": 3633
+  },
+  {
     "scientific_name_normalized": "quercus macrocarpa",
     "count": 3481
   },
@@ -170,10 +174,6 @@
   {
     "scientific_name_normalized": "prunus serotina",
     "count": 3362
-  },
-  {
-    "scientific_name_normalized": "prunus caroliniana",
-    "count": 3325
   },
   {
     "scientific_name_normalized": "cupressus sempervirens",
@@ -433,7 +433,7 @@
   },
   {
     "scientific_name_normalized": "prunus amygdalus",
-    "count": 1341
+    "count": 1342
   },
   {
     "scientific_name_normalized": "acer x freemanii",
@@ -689,7 +689,7 @@
   },
   {
     "scientific_name_normalized": "prunus armeniaca",
-    "count": 675
+    "count": 679
   },
   {
     "scientific_name_normalized": "populus deltoides siouxland",
@@ -869,7 +869,7 @@
   },
   {
     "scientific_name_normalized": "plumeria rubra",
-    "count": 481
+    "count": 482
   },
   {
     "scientific_name_normalized": "acer saccharinum silver queen",
@@ -981,7 +981,7 @@
   },
   {
     "scientific_name_normalized": "prunus dulcis",
-    "count": 393
+    "count": 397
   },
   {
     "scientific_name_normalized": "quercus polymorpha",
@@ -1050,6 +1050,10 @@
   {
     "scientific_name_normalized": "cercis canadensis var texensis",
     "count": 354
+  },
+  {
+    "scientific_name_normalized": "harpephyllum caffrum",
+    "count": 353
   },
   {
     "scientific_name_normalized": "ulmus x morton stalwart",
@@ -1152,6 +1156,10 @@
     "count": 299
   },
   {
+    "scientific_name_normalized": "syzygium austale",
+    "count": 299
+  },
+  {
     "scientific_name_normalized": "acer rubrum armstrong",
     "count": 294
   },
@@ -1176,28 +1184,24 @@
     "count": 289
   },
   {
-    "scientific_name_normalized": "syzygium austale",
-    "count": 288
-  },
-  {
     "scientific_name_normalized": "amelanchier",
     "count": 286
+  },
+  {
+    "scientific_name_normalized": "prunus ilicifolia",
+    "count": 284
   },
   {
     "scientific_name_normalized": "acer rubrum october glory",
     "count": 284
   },
   {
-    "scientific_name_normalized": "prunus ilicifolia",
-    "count": 277
+    "scientific_name_normalized": "acca sellowiana",
+    "count": 272
   },
   {
     "scientific_name_normalized": "salix alba tristis",
     "count": 270
-  },
-  {
-    "scientific_name_normalized": "acca sellowiana",
-    "count": 269
   },
   {
     "scientific_name_normalized": "tilia tomentosa sterling",
@@ -1253,7 +1257,7 @@
   },
   {
     "scientific_name_normalized": "prunus ilicifolia ssp lyonii",
-    "count": 250
+    "count": 251
   },
   {
     "scientific_name_normalized": "ulmus pumila park royal",
@@ -1560,10 +1564,6 @@
     "count": 170
   },
   {
-    "scientific_name_normalized": "harpephyllum caffrum",
-    "count": 169
-  },
-  {
     "scientific_name_normalized": "rhamnus cathartica",
     "count": 167
   },
@@ -1613,6 +1613,10 @@
   },
   {
     "scientific_name_normalized": "quercus velutina",
+    "count": 156
+  },
+  {
+    "scientific_name_normalized": "syzygium paniculatum",
     "count": 156
   },
   {
@@ -1780,6 +1784,10 @@
     "count": 119
   },
   {
+    "scientific_name_normalized": "prunus lyonii",
+    "count": 119
+  },
+  {
     "scientific_name_normalized": "cupaniopsis anacardioides",
     "count": 118
   },
@@ -1901,10 +1909,6 @@
   },
   {
     "scientific_name_normalized": "populus nigra thevestina",
-    "count": 103
-  },
-  {
-    "scientific_name_normalized": "prunus lyonii",
     "count": 103
   },
   {
@@ -2076,15 +2080,15 @@
     "count": 82
   },
   {
+    "scientific_name_normalized": "feijoa sellowiana",
+    "count": 81
+  },
+  {
     "scientific_name_normalized": "picea abies cupressina",
     "count": 81
   },
   {
     "scientific_name_normalized": "prunus emarginata",
-    "count": 80
-  },
-  {
-    "scientific_name_normalized": "syzygium paniculatum",
     "count": 80
   },
   {
@@ -2190,10 +2194,6 @@
   {
     "scientific_name_normalized": "thujopsis dolabrata",
     "count": 72
-  },
-  {
-    "scientific_name_normalized": "feijoa sellowiana",
-    "count": 71
   },
   {
     "scientific_name_normalized": "pittosporum species",
@@ -3088,6 +3088,10 @@
     "count": 28
   },
   {
+    "scientific_name_normalized": "syzygium jambos",
+    "count": 28
+  },
+  {
     "scientific_name_normalized": "ravenala madagascariensis",
     "count": 27
   },
@@ -3121,10 +3125,6 @@
   },
   {
     "scientific_name_normalized": "acer rufinerve",
-    "count": 27
-  },
-  {
-    "scientific_name_normalized": "syzygium jambos",
     "count": 27
   },
   {
@@ -3700,6 +3700,10 @@
     "count": 16
   },
   {
+    "scientific_name_normalized": "albizia distachya",
+    "count": 16
+  },
+  {
     "scientific_name_normalized": "ficus retusa ssp nitida",
     "count": 15
   },
@@ -3772,7 +3776,7 @@
     "count": 15
   },
   {
-    "scientific_name_normalized": "albizia distachya",
+    "scientific_name_normalized": "prunus capuli",
     "count": 15
   },
   {
@@ -5040,6 +5044,10 @@
     "count": 5
   },
   {
+    "scientific_name_normalized": "syzygium spp",
+    "count": 5
+  },
+  {
     "scientific_name_normalized": "erythrina crista-galli",
     "count": 5
   },
@@ -5301,10 +5309,6 @@
   },
   {
     "scientific_name_normalized": "melaleuca armillaris",
-    "count": 4
-  },
-  {
-    "scientific_name_normalized": "syzygium spp",
     "count": 4
   },
   {
@@ -7769,6 +7773,14 @@
   },
   {
     "scientific_name_normalized": "spiraea",
+    "count": 1
+  },
+  {
+    "scientific_name_normalized": "prunus ilicifolia spp lyonii",
+    "count": 1
+  },
+  {
+    "scientific_name_normalized": "eugenia aggregata",
     "count": 1
   }
 ]

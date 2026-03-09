@@ -193,6 +193,16 @@ LINDEN_TREES_LAYER = "https://services.arcgis.com/VgmyyKiMPvUPgldo/arcgis/rest/s
 LINDEN_DATASET_PAGE = "https://services.arcgis.com/VgmyyKiMPvUPgldo/arcgis/rest/services/Linden_Tree_Survey/FeatureServer"
 MONTCLAIR_TREES_LAYER = "https://services9.arcgis.com/QHXEWAb0pE2rvfbb/arcgis/rest/services/Montclair_Trees_2017_WFL1/FeatureServer/0"
 MONTCLAIR_DATASET_PAGE = "https://services9.arcgis.com/QHXEWAb0pE2rvfbb/arcgis/rest/services/Montclair_Trees_2017_WFL1/FeatureServer"
+NEWPORT_BEACH_TREES_LAYER = "https://nbgis.newportbeachca.gov/arcgis/rest/services/DashBuildingPermits/MapServer/58"
+NEWPORT_BEACH_DATASET_PAGE = "https://nbgis.newportbeachca.gov/gispub/Dashboards/TreeInventoryDash.htm"
+SAN_DIMAS_TREES_LAYER = "https://arcgis.sandimasca.gov/server/rest/services/City_Owned_Trees/FeatureServer/15"
+SAN_DIMAS_DATASET_PAGE = "https://files.sandimasca.gov/departments/parks_and_recreation/trees/index.php"
+RANCHO_PALOS_VERDES_TREES_LAYER = "https://gis.rpvca.gov/server/rest/services/Public_Services_Public/MapServer/23"
+RANCHO_PALOS_VERDES_DATASET_PAGE = "https://www.rpvca.gov/869/GIS-Services"
+SANTA_MONICA_TREES_LAYER = "https://gis.santamonica.gov/server/rest/services/Trees/FeatureServer/0"
+SANTA_MONICA_DATASET_PAGE = "https://data.sustainablesm.org/datasets/e82j-fp4t"
+OXNARD_TREES_LAYER = "https://maps.oxnard.org/arcgis/rest/services/ParksLayers/MapServer/1"
+OXNARD_DATASET_PAGE = "https://maps.oxnard.org/portal/apps/webappviewer/index.html?id=2b5e4c2ecf4a49fa82d3ecf924ff8ad7"
 SAN_DIEGO_BLOSSOM_WHERE = (
     "UPPER(COMMON_NAME) LIKE '%CHERRY%' OR "
     "UPPER(COMMON_NAME) LIKE '%PLUM%' OR "
@@ -266,6 +276,61 @@ SACRAMENTO_BLOSSOM_WHERE = (
     "UPPER(SPECIES) LIKE '%MAGNOLIA%' OR "
     "UPPER(SPECIES) LIKE '%CRABAPPLE%' OR "
     "UPPER(SPECIES) LIKE '%APPLE%'"
+)
+NEWPORT_BEACH_BLOSSOM_WHERE = (
+    "UPPER(Botanical) LIKE 'PRUNUS%' OR "
+    "UPPER(Botanical) LIKE 'MALUS%' OR "
+    "UPPER(Botanical) LIKE 'MAGNOLIA%' OR "
+    "UPPER(CommonName) LIKE '%CHERRY%' OR "
+    "UPPER(CommonName) LIKE '%PLUM%' OR "
+    "UPPER(CommonName) LIKE '%PEACH%' OR "
+    "UPPER(CommonName) LIKE '%MAGNOLIA%' OR "
+    "UPPER(CommonName) LIKE '%CRABAPPLE%' OR "
+    "UPPER(CommonName) LIKE '%APPLE%'"
+)
+SAN_DIMAS_BLOSSOM_WHERE = (
+    "UPPER(BotanicalName) LIKE 'PRUNUS%' OR "
+    "UPPER(BotanicalName) LIKE ' MALUS%' OR "
+    "UPPER(BotanicalName) LIKE 'MAGNOLIA%' OR "
+    "UPPER(CommonName) LIKE '%CHERRY%' OR "
+    "UPPER(CommonName) LIKE '%PLUM%' OR "
+    "UPPER(CommonName) LIKE '%PEACH%' OR "
+    "UPPER(CommonName) LIKE '%MAGNOLIA%' OR "
+    "UPPER(CommonName) LIKE '%CRABAPPLE%' OR "
+    "UPPER(CommonName) LIKE '%APPLE%'"
+)
+RANCHO_PALOS_VERDES_BLOSSOM_WHERE = (
+    "UPPER(BOTANICAL) LIKE 'PRUNUS%' OR "
+    "UPPER(BOTANICAL) LIKE 'MALUS%' OR "
+    "UPPER(BOTANICAL) LIKE 'MAGNOLIA%' OR "
+    "UPPER(COMMON) LIKE '%CHERRY%' OR "
+    "UPPER(COMMON) LIKE '%PLUM%' OR "
+    "UPPER(COMMON) LIKE '%PEACH%' OR "
+    "UPPER(COMMON) LIKE '%MAGNOLIA%' OR "
+    "UPPER(COMMON) LIKE '%CRABAPPLE%' OR "
+    "UPPER(COMMON) LIKE '%APPLE%'"
+)
+SANTA_MONICA_BLOSSOM_WHERE = (
+    "botanicalname LIKE 'Prunus%' OR "
+    "botanicalname LIKE 'Malus%' OR "
+    "botanicalname LIKE 'Magnolia%' OR "
+    "commonname LIKE '%CHERRY%' OR "
+    "commonname LIKE '%PLUM%' OR "
+    "commonname LIKE '%PEACH%' OR "
+    "commonname LIKE '%MAGNOLIA%' OR "
+    "commonname LIKE '%CRABAPPLE%' OR "
+    "commonname LIKE '%APPLE%'"
+)
+OXNARD_BLOSSOM_WHERE = (
+    "BOTANICALN LIKE 'Prunus%' OR "
+    "BOTANICALN LIKE 'Malus%' OR "
+    "BOTANICALN LIKE 'Magnolia%' OR "
+    "COMMONNAME LIKE '%CHERRY%' OR "
+    "COMMONNAME LIKE '%PLUM%' OR "
+    "COMMONNAME LIKE '%PEACH%' OR "
+    "COMMONNAME LIKE '%MAGNOLIA%' OR "
+    "COMMONNAME LIKE '%CRABAPPLE%' OR "
+    "COMMONNAME LIKE '%APPLE%'"
 )
 HOUSTON_BLOSSOM_WHERE = (
     "UPPER(SPECIES) LIKE 'PRUNUS%' OR "
@@ -496,12 +561,17 @@ SUPPORTED_CITIES = (
     "San Diego",
     "Newark",
     "Millburn",
+    "Newport Beach",
+    "Oxnard",
     "Princeton",
+    "Rancho Palos Verdes",
     "Ho-Ho-Kus",
     "Oradell",
     "Rutherford",
     "River Edge",
     "Dumont",
+    "San Dimas",
+    "Santa Monica",
     "Westwood",
     "Tenafly",
     "Teaneck",
@@ -4937,6 +5007,102 @@ def fetch_west_hollywood() -> dict[str, Any]:
     }
 
 
+def fetch_newport_beach() -> dict[str, Any]:
+    return fetch_arcgis_inventory_city(
+        city="Newport Beach",
+        region="ca",
+        layer_url=NEWPORT_BEACH_TREES_LAYER,
+        dataset_page=NEWPORT_BEACH_DATASET_PAGE,
+        where=NEWPORT_BEACH_BLOSSOM_WHERE,
+        out_fields=["OBJECTID", "Botanical", "CommonName", "Latitude", "Longitude"],
+        object_id_field="OBJECTID",
+        source_name="Tree Inventory",
+        source_department="City of Newport Beach",
+        ownership_raw="City of Newport Beach",
+        note="Integrated from the official City of Newport Beach public tree inventory dashboard layer and official jurisdiction boundary.",
+        common_field="CommonName",
+        botanical_field="Botanical",
+        lon_field="Longitude",
+        lat_field="Latitude",
+    )
+
+
+def fetch_san_dimas() -> dict[str, Any]:
+    return fetch_arcgis_inventory_city(
+        city="San Dimas",
+        region="ca",
+        layer_url=SAN_DIMAS_TREES_LAYER,
+        dataset_page=SAN_DIMAS_DATASET_PAGE,
+        where=SAN_DIMAS_BLOSSOM_WHERE,
+        out_fields=["OBJECTID", "CommonName", "BotanicalName", "Latitude", "Longitude"],
+        object_id_field="OBJECTID",
+        source_name="City Owned Tree",
+        source_department="City of San Dimas",
+        ownership_raw="City of San Dimas",
+        note="Integrated from the official City of San Dimas public tree inventory layer and official jurisdiction boundary.",
+        common_field="CommonName",
+        botanical_field="BotanicalName",
+        lon_field="Longitude",
+        lat_field="Latitude",
+    )
+
+
+def fetch_rancho_palos_verdes() -> dict[str, Any]:
+    return fetch_arcgis_inventory_city(
+        city="Rancho Palos Verdes",
+        region="ca",
+        layer_url=RANCHO_PALOS_VERDES_TREES_LAYER,
+        dataset_page=RANCHO_PALOS_VERDES_DATASET_PAGE,
+        where=RANCHO_PALOS_VERDES_BLOSSOM_WHERE,
+        out_fields=["OBJECTID", "BOTANICAL", "COMMON", "ADDRESS", "STREET"],
+        object_id_field="OBJECTID",
+        source_name="Tree Inventory and Trimming Schedule",
+        source_department="City of Rancho Palos Verdes",
+        ownership_raw="City of Rancho Palos Verdes",
+        note="Integrated from the official City of Rancho Palos Verdes public tree inventory layer and official jurisdiction boundary.",
+        common_field="COMMON",
+        botanical_field="BOTANICAL",
+    )
+
+
+def fetch_santa_monica() -> dict[str, Any]:
+    return fetch_arcgis_inventory_city(
+        city="Santa Monica",
+        region="ca",
+        layer_url=SANTA_MONICA_TREES_LAYER,
+        dataset_page=SANTA_MONICA_DATASET_PAGE,
+        where=SANTA_MONICA_BLOSSOM_WHERE,
+        out_fields=["objectid", "commonname", "botanicalname", "latitude", "longitude"],
+        object_id_field="objectid",
+        source_name="Trees",
+        source_department="City of Santa Monica",
+        ownership_raw="City of Santa Monica",
+        note="Integrated from the official City of Santa Monica public trees feature service and official jurisdiction boundary.",
+        common_field="commonname",
+        botanical_field="botanicalname",
+        lon_field="longitude",
+        lat_field="latitude",
+    )
+
+
+def fetch_oxnard() -> dict[str, Any]:
+    return fetch_arcgis_inventory_city(
+        city="Oxnard",
+        region="ca",
+        layer_url=OXNARD_TREES_LAYER,
+        dataset_page=OXNARD_DATASET_PAGE,
+        where=OXNARD_BLOSSOM_WHERE,
+        out_fields=["OBJECTID", "BOTANICALN", "COMMONNAME", "OwnedBy", "MaintainedBy"],
+        object_id_field="OBJECTID",
+        source_name="Trees",
+        source_department="City of Oxnard",
+        ownership_raw="City of Oxnard",
+        note="Integrated from the official City of Oxnard public trees layer and official jurisdiction boundary.",
+        common_field="COMMONNAME",
+        botanical_field="BOTANICALN",
+    )
+
+
 CITY_FETCHERS = {
     "Anaheim": fetch_anaheim,
     "Arlington": fetch_arlington,
@@ -4964,11 +5130,16 @@ CITY_FETCHERS = {
     "Mountain View": fetch_mountain_view,
     "Milpitas": fetch_milpitas,
     "Morgan Hill": fetch_morgan_hill,
+    "Newport Beach": fetch_newport_beach,
+    "Oxnard": fetch_oxnard,
     "Pomona": fetch_pomona,
     "Rancho Cucamonga": fetch_rancho_cucamonga,
+    "Rancho Palos Verdes": fetch_rancho_palos_verdes,
     "Riverside": fetch_riverside,
     "Sacramento": fetch_sacramento,
+    "San Dimas": fetch_san_dimas,
     "Santa Clarita": fetch_santa_clarita,
+    "Santa Monica": fetch_santa_monica,
     "West Sacramento": fetch_west_sacramento,
     "San Mateo": fetch_san_mateo,
     "San Rafael": fetch_san_rafael,

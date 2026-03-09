@@ -8676,6 +8676,4902 @@
     "coverage_status": "untracked"
   },
   {
+    "state_id": "co",
+    "jurisdiction": "Sawpit",
+    "display_name": "Sawpit",
+    "area_type": "city",
+    "bounds": [
+      [
+        -108.0047,
+        37.9939
+      ],
+      [
+        -107.9995,
+        37.9954
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Montezuma",
+    "display_name": "Montezuma",
+    "area_type": "city",
+    "bounds": [
+      [
+        -105.8705,
+        39.5794
+      ],
+      [
+        -105.8645,
+        39.5849
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Starkville",
+    "display_name": "Starkville",
+    "area_type": "city",
+    "bounds": [
+      [
+        -104.5256,
+        37.1117
+      ],
+      [
+        -104.5216,
+        37.122
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Rye",
+    "display_name": "Rye",
+    "area_type": "city",
+    "bounds": [
+      [
+        -104.9369,
+        37.9174
+      ],
+      [
+        -104.928,
+        37.9228
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Mountain View",
+    "display_name": "Mountain View",
+    "area_type": "city",
+    "bounds": [
+      [
+        -105.0602,
+        39.7729
+      ],
+      [
+        -105.0532,
+        39.7766
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Garden",
+    "display_name": "Garden",
+    "area_type": "city",
+    "bounds": [
+      [
+        -104.6939,
+        40.3933
+      ],
+      [
+        -104.6842,
+        40.3972
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Vilas",
+    "display_name": "Vilas",
+    "area_type": "city",
+    "bounds": [
+      [
+        -102.452,
+        37.3718
+      ],
+      [
+        -102.4415,
+        37.3755
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Crook",
+    "display_name": "Crook",
+    "area_type": "city",
+    "bounds": [
+      [
+        -102.8063,
+        40.8569
+      ],
+      [
+        -102.7961,
+        40.8612
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Campo",
+    "display_name": "Campo",
+    "area_type": "city",
+    "bounds": [
+      [
+        -102.5817,
+        37.1013
+      ],
+      [
+        -102.5753,
+        37.1063
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Cokedale",
+    "display_name": "Cokedale",
+    "area_type": "city",
+    "bounds": [
+      [
+        -104.6253,
+        37.139
+      ],
+      [
+        -104.6174,
+        37.15
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Log Lane",
+    "display_name": "Log Lane",
+    "area_type": "city",
+    "bounds": [
+      [
+        -103.8372,
+        40.2664
+      ],
+      [
+        -103.8208,
+        40.2736
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Peetz",
+    "display_name": "Peetz",
+    "area_type": "city",
+    "bounds": [
+      [
+        -103.1206,
+        40.9565
+      ],
+      [
+        -103.1068,
+        40.963
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Crowley",
+    "display_name": "Crowley",
+    "area_type": "city",
+    "bounds": [
+      [
+        -103.8666,
+        38.1896
+      ],
+      [
+        -103.848,
+        38.1954
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Vona",
+    "display_name": "Vona",
+    "area_type": "city",
+    "bounds": [
+      [
+        -102.7487,
+        39.2983
+      ],
+      [
+        -102.7387,
+        39.3055
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Lakeside",
+    "display_name": "Lakeside",
+    "area_type": "city",
+    "bounds": [
+      [
+        -105.0627,
+        39.7766
+      ],
+      [
+        -105.0532,
+        39.7838
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Cheraw",
+    "display_name": "Cheraw",
+    "area_type": "city",
+    "bounds": [
+      [
+        -103.5161,
+        38.1037
+      ],
+      [
+        -103.5084,
+        38.1135
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Hillrose",
+    "display_name": "Hillrose",
+    "area_type": "city",
+    "bounds": [
+      [
+        -103.5274,
+        40.321
+      ],
+      [
+        -103.518,
+        40.328
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Merino",
+    "display_name": "Merino",
+    "area_type": "city",
+    "bounds": [
+      [
+        -103.3583,
+        40.4778
+      ],
+      [
+        -103.3493,
+        40.4863
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Iliff",
+    "display_name": "Iliff",
+    "area_type": "city",
+    "bounds": [
+      [
+        -103.0703,
+        40.7543
+      ],
+      [
+        -103.0608,
+        40.7621
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Bethune",
+    "display_name": "Bethune",
+    "area_type": "city",
+    "bounds": [
+      [
+        -102.4281,
+        39.3014
+      ],
+      [
+        -102.4187,
+        39.3061
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Ovid",
+    "display_name": "Ovid",
+    "area_type": "city",
+    "bounds": [
+      [
+        -102.3925,
+        40.9574
+      ],
+      [
+        -102.385,
+        40.9648
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Swink",
+    "display_name": "Swink",
+    "area_type": "city",
+    "bounds": [
+      [
+        -103.6335,
+        38.0093
+      ],
+      [
+        -103.6193,
+        38.0171
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Victor",
+    "display_name": "Victor",
+    "area_type": "city",
+    "bounds": [
+      [
+        -105.1471,
+        38.7041
+      ],
+      [
+        -105.1357,
+        38.7096
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Empire",
+    "display_name": "Empire",
+    "area_type": "city",
+    "bounds": [
+      [
+        -105.6886,
+        39.7552
+      ],
+      [
+        -105.6709,
+        39.763
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Hartman",
+    "display_name": "Hartman",
+    "area_type": "city",
+    "bounds": [
+      [
+        -102.2289,
+        38.1189
+      ],
+      [
+        -102.2145,
+        38.124
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Manzanola",
+    "display_name": "Manzanola",
+    "area_type": "city",
+    "bounds": [
+      [
+        -103.8744,
+        38.1051
+      ],
+      [
+        -103.8616,
+        38.1124
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Hooper",
+    "display_name": "Hooper",
+    "area_type": "city",
+    "bounds": [
+      [
+        -105.8825,
+        37.7424
+      ],
+      [
+        -105.873,
+        37.7495
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Pitkin",
+    "display_name": "Pitkin",
+    "area_type": "city",
+    "bounds": [
+      [
+        -106.524,
+        38.6059
+      ],
+      [
+        -106.5059,
+        38.6145
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Red Cliff",
+    "display_name": "Red Cliff",
+    "area_type": "city",
+    "bounds": [
+      [
+        -106.3788,
+        39.5031
+      ],
+      [
+        -106.3632,
+        39.5177
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Silver Plume",
+    "display_name": "Silver Plume",
+    "area_type": "city",
+    "bounds": [
+      [
+        -105.7352,
+        39.694
+      ],
+      [
+        -105.7186,
+        39.6988
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Branson",
+    "display_name": "Branson",
+    "area_type": "city",
+    "bounds": [
+      [
+        -103.8901,
+        37.0097
+      ],
+      [
+        -103.8803,
+        37.0195
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Yampa",
+    "display_name": "Yampa",
+    "area_type": "city",
+    "bounds": [
+      [
+        -106.9136,
+        40.1487
+      ],
+      [
+        -106.902,
+        40.1577
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Ramah",
+    "display_name": "Ramah",
+    "area_type": "city",
+    "bounds": [
+      [
+        -104.1721,
+        39.1167
+      ],
+      [
+        -104.1627,
+        39.125
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Pritchett",
+    "display_name": "Pritchett",
+    "area_type": "city",
+    "bounds": [
+      [
+        -102.8627,
+        37.3655
+      ],
+      [
+        -102.8545,
+        37.3737
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Romeo",
+    "display_name": "Romeo",
+    "area_type": "city",
+    "bounds": [
+      [
+        -105.9897,
+        37.167
+      ],
+      [
+        -105.9823,
+        37.1774
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Two Buttes",
+    "display_name": "Two Buttes",
+    "area_type": "city",
+    "bounds": [
+      [
+        -102.4011,
+        37.557
+      ],
+      [
+        -102.3907,
+        37.5644
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Ophir",
+    "display_name": "Ophir",
+    "area_type": "city",
+    "bounds": [
+      [
+        -107.8452,
+        37.8547
+      ],
+      [
+        -107.8183,
+        37.858
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Crawford",
+    "display_name": "Crawford",
+    "area_type": "city",
+    "bounds": [
+      [
+        -107.6179,
+        38.7016
+      ],
+      [
+        -107.6006,
+        38.7087
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Olney Springs",
+    "display_name": "Olney Springs",
+    "area_type": "city",
+    "bounds": [
+      [
+        -103.9491,
+        38.1628
+      ],
+      [
+        -103.9399,
+        38.1698
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Norwood",
+    "display_name": "Norwood",
+    "area_type": "city",
+    "bounds": [
+      [
+        -108.2999,
+        38.1235
+      ],
+      [
+        -108.2845,
+        38.1307
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Wiley",
+    "display_name": "Wiley",
+    "area_type": "city",
+    "bounds": [
+      [
+        -102.7262,
+        38.1474
+      ],
+      [
+        -102.7146,
+        38.1595
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Walden",
+    "display_name": "Walden",
+    "area_type": "city",
+    "bounds": [
+      [
+        -106.2869,
+        40.7261
+      ],
+      [
+        -106.2741,
+        40.7333
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Seibert",
+    "display_name": "Seibert",
+    "area_type": "city",
+    "bounds": [
+      [
+        -102.8775,
+        39.2912
+      ],
+      [
+        -102.8643,
+        39.3033
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Genoa",
+    "display_name": "Genoa",
+    "area_type": "city",
+    "bounds": [
+      [
+        -103.5054,
+        39.273
+      ],
+      [
+        -103.489,
+        39.2815
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Sheridan Lake",
+    "display_name": "Sheridan Lake",
+    "area_type": "city",
+    "bounds": [
+      [
+        -102.3036,
+        38.4632
+      ],
+      [
+        -102.2853,
+        38.4677
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Paoli",
+    "display_name": "Paoli",
+    "area_type": "city",
+    "bounds": [
+      [
+        -102.4798,
+        40.6095
+      ],
+      [
+        -102.4655,
+        40.6164
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Saguache",
+    "display_name": "Saguache",
+    "area_type": "city",
+    "bounds": [
+      [
+        -106.1513,
+        38.0826
+      ],
+      [
+        -106.1323,
+        38.0887
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Otis",
+    "display_name": "Otis",
+    "area_type": "city",
+    "bounds": [
+      [
+        -102.9696,
+        40.1458
+      ],
+      [
+        -102.9554,
+        40.155
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "La Jara",
+    "display_name": "La Jara",
+    "area_type": "city",
+    "bounds": [
+      [
+        -105.9664,
+        37.269
+      ],
+      [
+        -105.9467,
+        37.2761
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Antonito",
+    "display_name": "Antonito",
+    "area_type": "city",
+    "bounds": [
+      [
+        -106.0158,
+        37.0667
+      ],
+      [
+        -106.0049,
+        37.0807
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Sedgwick",
+    "display_name": "Sedgwick",
+    "area_type": "city",
+    "bounds": [
+      [
+        -102.5332,
+        40.9308
+      ],
+      [
+        -102.5175,
+        40.9395
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Aguilar",
+    "display_name": "Aguilar",
+    "area_type": "city",
+    "bounds": [
+      [
+        -104.6626,
+        37.3997
+      ],
+      [
+        -104.6467,
+        37.4095
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Marble",
+    "display_name": "Marble",
+    "area_type": "city",
+    "bounds": [
+      [
+        -107.1996,
+        39.0686
+      ],
+      [
+        -107.1818,
+        39.0765
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Crestone",
+    "display_name": "Crestone",
+    "area_type": "city",
+    "bounds": [
+      [
+        -105.7024,
+        37.9877
+      ],
+      [
+        -105.6885,
+        37.9989
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Sugar",
+    "display_name": "Sugar",
+    "area_type": "city",
+    "bounds": [
+      [
+        -103.6742,
+        38.2294
+      ],
+      [
+        -103.6557,
+        38.2369
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Oak Creek",
+    "display_name": "Oak Creek",
+    "area_type": "city",
+    "bounds": [
+      [
+        -106.9673,
+        40.271
+      ],
+      [
+        -106.9504,
+        40.2802
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Kim",
+    "display_name": "Kim",
+    "area_type": "city",
+    "bounds": [
+      [
+        -103.3578,
+        37.2412
+      ],
+      [
+        -103.349,
+        37.2574
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Boone",
+    "display_name": "Boone",
+    "area_type": "city",
+    "bounds": [
+      [
+        -104.266,
+        38.2474
+      ],
+      [
+        -104.2508,
+        38.2552
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Eckley",
+    "display_name": "Eckley",
+    "area_type": "city",
+    "bounds": [
+      [
+        -102.4959,
+        40.1049
+      ],
+      [
+        -102.4799,
+        40.116
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Brookside",
+    "display_name": "Brookside",
+    "area_type": "city",
+    "bounds": [
+      [
+        -105.1994,
+        38.4067
+      ],
+      [
+        -105.1841,
+        38.4184
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Fleming",
+    "display_name": "Fleming",
+    "area_type": "city",
+    "bounds": [
+      [
+        -102.8493,
+        40.6758
+      ],
+      [
+        -102.8302,
+        40.6884
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Eads",
+    "display_name": "Eads",
+    "area_type": "city",
+    "bounds": [
+      [
+        -102.7865,
+        38.48
+      ],
+      [
+        -102.7724,
+        38.4891
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Bonanza",
+    "display_name": "Bonanza",
+    "area_type": "city",
+    "bounds": [
+      [
+        -106.1464,
+        38.288
+      ],
+      [
+        -106.1378,
+        38.3059
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Walsh",
+    "display_name": "Walsh",
+    "area_type": "city",
+    "bounds": [
+      [
+        -102.2935,
+        37.3818
+      ],
+      [
+        -102.2715,
+        37.3881
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Alma",
+    "display_name": "Alma",
+    "area_type": "city",
+    "bounds": [
+      [
+        -106.0838,
+        39.2788
+      ],
+      [
+        -106.0584,
+        39.2909
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Ward",
+    "display_name": "Ward",
+    "area_type": "city",
+    "bounds": [
+      [
+        -105.5236,
+        40.0681
+      ],
+      [
+        -105.5032,
+        40.0757
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Collbran",
+    "display_name": "Collbran",
+    "area_type": "city",
+    "bounds": [
+      [
+        -107.9976,
+        39.2337
+      ],
+      [
+        -107.9523,
+        39.2529
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Fowler",
+    "display_name": "Fowler",
+    "area_type": "city",
+    "bounds": [
+      [
+        -104.0366,
+        38.1254
+      ],
+      [
+        -104.0135,
+        38.1411
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Ignacio",
+    "display_name": "Ignacio",
+    "area_type": "city",
+    "bounds": [
+      [
+        -107.6456,
+        37.1078
+      ],
+      [
+        -107.6319,
+        37.125
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Arriba",
+    "display_name": "Arriba",
+    "area_type": "city",
+    "bounds": [
+      [
+        -103.2812,
+        39.2787
+      ],
+      [
+        -103.2675,
+        39.2893
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Stratton",
+    "display_name": "Stratton",
+    "area_type": "city",
+    "bounds": [
+      [
+        -102.6103,
+        39.2948
+      ],
+      [
+        -102.5893,
+        39.308
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Haxtun",
+    "display_name": "Haxtun",
+    "area_type": "city",
+    "bounds": [
+      [
+        -102.6384,
+        40.6379
+      ],
+      [
+        -102.6223,
+        40.6496
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Grover",
+    "display_name": "Grover",
+    "area_type": "city",
+    "bounds": [
+      [
+        -104.2317,
+        40.8623
+      ],
+      [
+        -104.2187,
+        40.8785
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Kit Carson",
+    "display_name": "Kit Carson",
+    "area_type": "city",
+    "bounds": [
+      [
+        -102.8056,
+        38.7603
+      ],
+      [
+        -102.7856,
+        38.7714
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "San Luis",
+    "display_name": "San Luis",
+    "area_type": "city",
+    "bounds": [
+      [
+        -105.4305,
+        37.1938
+      ],
+      [
+        -105.4137,
+        37.2112
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Dove Creek",
+    "display_name": "Dove Creek",
+    "area_type": "city",
+    "bounds": [
+      [
+        -108.9168,
+        37.7607
+      ],
+      [
+        -108.8995,
+        37.7727
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Glendale",
+    "display_name": "Glendale",
+    "area_type": "city",
+    "bounds": [
+      [
+        -104.9407,
+        39.6966
+      ],
+      [
+        -104.9282,
+        39.7111
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Jamestown",
+    "display_name": "Jamestown",
+    "area_type": "city",
+    "bounds": [
+      [
+        -105.4039,
+        40.109
+      ],
+      [
+        -105.3752,
+        40.1277
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Nucla",
+    "display_name": "Nucla",
+    "area_type": "city",
+    "bounds": [
+      [
+        -108.56,
+        38.2583
+      ],
+      [
+        -108.5366,
+        38.2739
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Granada",
+    "display_name": "Granada",
+    "area_type": "city",
+    "bounds": [
+      [
+        -102.3201,
+        38.0582
+      ],
+      [
+        -102.3018,
+        38.0712
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Edgewater",
+    "display_name": "Edgewater",
+    "area_type": "city",
+    "bounds": [
+      [
+        -105.0743,
+        39.7433
+      ],
+      [
+        -105.0532,
+        39.7557
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Rico",
+    "display_name": "Rico",
+    "area_type": "city",
+    "bounds": [
+      [
+        -108.0399,
+        37.682
+      ],
+      [
+        -108.0245,
+        37.6966
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Bow Mar",
+    "display_name": "Bow Mar",
+    "area_type": "city",
+    "bounds": [
+      [
+        -105.0595,
+        39.615
+      ],
+      [
+        -105.0441,
+        39.6354
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Simla",
+    "display_name": "Simla",
+    "area_type": "city",
+    "bounds": [
+      [
+        -104.0952,
+        39.1357
+      ],
+      [
+        -104.0684,
+        39.1448
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Naturita",
+    "display_name": "Naturita",
+    "area_type": "city",
+    "bounds": [
+      [
+        -108.5852,
+        38.2147
+      ],
+      [
+        -108.5507,
+        38.2218
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Mancos",
+    "display_name": "Mancos",
+    "area_type": "city",
+    "bounds": [
+      [
+        -108.3049,
+        37.3442
+      ],
+      [
+        -108.2823,
+        37.3525
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Dolores",
+    "display_name": "Dolores",
+    "area_type": "city",
+    "bounds": [
+      [
+        -108.518,
+        37.4705
+      ],
+      [
+        -108.4826,
+        37.4784
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Hot Sulphur Springs",
+    "display_name": "Hot Sulphur Springs",
+    "area_type": "city",
+    "bounds": [
+      [
+        -106.115,
+        40.0682
+      ],
+      [
+        -106.0915,
+        40.0834
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Ordway",
+    "display_name": "Ordway",
+    "area_type": "city",
+    "bounds": [
+      [
+        -103.7666,
+        38.2145
+      ],
+      [
+        -103.7481,
+        38.2302
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Holly",
+    "display_name": "Holly",
+    "area_type": "city",
+    "bounds": [
+      [
+        -102.1326,
+        38.0479
+      ],
+      [
+        -102.1185,
+        38.0642
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Gilcrest",
+    "display_name": "Gilcrest",
+    "area_type": "city",
+    "bounds": [
+      [
+        -104.7919,
+        40.2757
+      ],
+      [
+        -104.7682,
+        40.2899
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Lake",
+    "display_name": "Lake",
+    "area_type": "city",
+    "bounds": [
+      [
+        -107.3201,
+        38.0132
+      ],
+      [
+        -107.3014,
+        38.0422
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Silverton",
+    "display_name": "Silverton",
+    "area_type": "city",
+    "bounds": [
+      [
+        -107.6762,
+        37.8051
+      ],
+      [
+        -107.6506,
+        37.8198
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Paonia",
+    "display_name": "Paonia",
+    "area_type": "city",
+    "bounds": [
+      [
+        -107.6081,
+        38.8629
+      ],
+      [
+        -107.5773,
+        38.8714
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Haswell",
+    "display_name": "Haswell",
+    "area_type": "city",
+    "bounds": [
+      [
+        -103.1731,
+        38.4462
+      ],
+      [
+        -103.1544,
+        38.4606
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Raymer (New Raymer)",
+    "display_name": "Raymer (New Raymer)",
+    "area_type": "city",
+    "bounds": [
+      [
+        -103.859,
+        40.6037
+      ],
+      [
+        -103.8303,
+        40.6146
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Calhan",
+    "display_name": "Calhan",
+    "area_type": "city",
+    "bounds": [
+      [
+        -104.3143,
+        39.0267
+      ],
+      [
+        -104.2843,
+        39.0407
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Hugo",
+    "display_name": "Hugo",
+    "area_type": "city",
+    "bounds": [
+      [
+        -103.4893,
+        39.1298
+      ],
+      [
+        -103.4545,
+        39.1423
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Ouray",
+    "display_name": "Ouray",
+    "area_type": "city",
+    "bounds": [
+      [
+        -107.685,
+        38.0169
+      ],
+      [
+        -107.661,
+        38.0433
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Center",
+    "display_name": "Center",
+    "area_type": "city",
+    "bounds": [
+      [
+        -106.1252,
+        37.741
+      ],
+      [
+        -106.1005,
+        37.7592
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Kiowa",
+    "display_name": "Kiowa",
+    "area_type": "city",
+    "bounds": [
+      [
+        -104.4748,
+        39.3347
+      ],
+      [
+        -104.4313,
+        39.3466
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Crested Butte",
+    "display_name": "Crested Butte",
+    "area_type": "city",
+    "bounds": [
+      [
+        -106.9922,
+        38.8588
+      ],
+      [
+        -106.9628,
+        38.8759
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "La Salle",
+    "display_name": "La Salle",
+    "area_type": "city",
+    "bounds": [
+      [
+        -104.7201,
+        40.3416
+      ],
+      [
+        -104.6947,
+        40.3608
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Columbine Valley",
+    "display_name": "Columbine Valley",
+    "area_type": "city",
+    "bounds": [
+      [
+        -105.0472,
+        39.5898
+      ],
+      [
+        -105.0289,
+        39.6101
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Dinosaur",
+    "display_name": "Dinosaur",
+    "area_type": "city",
+    "bounds": [
+      [
+        -109.018,
+        40.2408
+      ],
+      [
+        -108.9938,
+        40.2502
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Manassa",
+    "display_name": "Manassa",
+    "area_type": "city",
+    "bounds": [
+      [
+        -105.946,
+        37.1669
+      ],
+      [
+        -105.9285,
+        37.1809
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "City of Creede",
+    "display_name": "City of Creede",
+    "area_type": "city",
+    "bounds": [
+      [
+        -106.9335,
+        37.8299
+      ],
+      [
+        -106.9144,
+        37.8691
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Hotchkiss",
+    "display_name": "Hotchkiss",
+    "area_type": "city",
+    "bounds": [
+      [
+        -107.7303,
+        38.7881
+      ],
+      [
+        -107.6878,
+        38.8135
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Grand Lake",
+    "display_name": "Grand Lake",
+    "area_type": "city",
+    "bounds": [
+      [
+        -105.8446,
+        40.2382
+      ],
+      [
+        -105.797,
+        40.2586
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Georgetown",
+    "display_name": "Georgetown",
+    "area_type": "city",
+    "bounds": [
+      [
+        -105.7044,
+        39.7012
+      ],
+      [
+        -105.6856,
+        39.7385
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Carbonate",
+    "display_name": "Carbonate",
+    "area_type": "city",
+    "bounds": [
+      [
+        -107.3506,
+        39.7354
+      ],
+      [
+        -107.3276,
+        39.7532
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Del Norte",
+    "display_name": "Del Norte",
+    "area_type": "city",
+    "bounds": [
+      [
+        -106.3679,
+        37.6691
+      ],
+      [
+        -106.3414,
+        37.6866
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Cheyenne Wells",
+    "display_name": "Cheyenne Wells",
+    "area_type": "city",
+    "bounds": [
+      [
+        -102.3681,
+        38.8129
+      ],
+      [
+        -102.3359,
+        38.8245
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Leadville",
+    "display_name": "Leadville",
+    "area_type": "city",
+    "bounds": [
+      [
+        -106.3077,
+        39.2371
+      ],
+      [
+        -106.2798,
+        39.2616
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Fairplay",
+    "display_name": "Fairplay",
+    "area_type": "city",
+    "bounds": [
+      [
+        -106.0126,
+        39.2183
+      ],
+      [
+        -105.9832,
+        39.2326
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Green Mountain Falls",
+    "display_name": "Green Mountain Falls",
+    "area_type": "city",
+    "bounds": [
+      [
+        -105.0412,
+        38.9271
+      ],
+      [
+        -105.0092,
+        38.9414
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Springfield",
+    "display_name": "Springfield",
+    "area_type": "city",
+    "bounds": [
+      [
+        -102.6377,
+        37.3836
+      ],
+      [
+        -102.6046,
+        37.4123
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Westcliffe",
+    "display_name": "Westcliffe",
+    "area_type": "city",
+    "bounds": [
+      [
+        -105.478,
+        38.1128
+      ],
+      [
+        -105.458,
+        38.1441
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Palisade",
+    "display_name": "Palisade",
+    "area_type": "city",
+    "bounds": [
+      [
+        -108.3802,
+        39.1003
+      ],
+      [
+        -108.3268,
+        39.1194
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Coal Creek",
+    "display_name": "Coal Creek",
+    "area_type": "city",
+    "bounds": [
+      [
+        -105.1532,
+        38.3523
+      ],
+      [
+        -105.1348,
+        38.377
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Kremmling",
+    "display_name": "Kremmling",
+    "area_type": "city",
+    "bounds": [
+      [
+        -106.402,
+        40.0494
+      ],
+      [
+        -106.3527,
+        40.0648
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Wiggins",
+    "display_name": "Wiggins",
+    "area_type": "city",
+    "bounds": [
+      [
+        -104.0842,
+        40.2111
+      ],
+      [
+        -104.0506,
+        40.2448
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Foxfield",
+    "display_name": "Foxfield",
+    "area_type": "city",
+    "bounds": [
+      [
+        -104.8021,
+        39.5804
+      ],
+      [
+        -104.7732,
+        39.595
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Deer Trail",
+    "display_name": "Deer Trail",
+    "area_type": "city",
+    "bounds": [
+      [
+        -104.0565,
+        39.595
+      ],
+      [
+        -104.0332,
+        39.6239
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Flagler",
+    "display_name": "Flagler",
+    "area_type": "city",
+    "bounds": [
+      [
+        -103.0991,
+        39.2809
+      ],
+      [
+        -103.0525,
+        39.302
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Lyons",
+    "display_name": "Lyons",
+    "area_type": "city",
+    "bounds": [
+      [
+        -105.2833,
+        40.2113
+      ],
+      [
+        -105.2444,
+        40.2376
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "La Veta",
+    "display_name": "La Veta",
+    "area_type": "city",
+    "bounds": [
+      [
+        -105.0199,
+        37.4938
+      ],
+      [
+        -104.9984,
+        37.5261
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Olathe",
+    "display_name": "Olathe",
+    "area_type": "city",
+    "bounds": [
+      [
+        -107.9995,
+        38.5893
+      ],
+      [
+        -107.9707,
+        38.6274
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Nederland",
+    "display_name": "Nederland",
+    "area_type": "city",
+    "bounds": [
+      [
+        -105.5235,
+        39.9551
+      ],
+      [
+        -105.4839,
+        39.9708
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Julesburg",
+    "display_name": "Julesburg",
+    "area_type": "city",
+    "bounds": [
+      [
+        -102.2872,
+        40.9663
+      ],
+      [
+        -102.2457,
+        40.994
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Dillon",
+    "display_name": "Dillon",
+    "area_type": "city",
+    "bounds": [
+      [
+        -106.0633,
+        39.6094
+      ],
+      [
+        -106.0159,
+        39.6368
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Sanford",
+    "display_name": "Sanford",
+    "area_type": "city",
+    "bounds": [
+      [
+        -105.9098,
+        37.2467
+      ],
+      [
+        -105.8917,
+        37.2681
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Larkspur",
+    "display_name": "Larkspur",
+    "area_type": "city",
+    "bounds": [
+      [
+        -104.9091,
+        39.2169
+      ],
+      [
+        -104.8779,
+        39.2675
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Cripple Creek",
+    "display_name": "Cripple Creek",
+    "area_type": "city",
+    "bounds": [
+      [
+        -105.2111,
+        38.7305
+      ],
+      [
+        -105.1671,
+        38.76
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Rocky Ford",
+    "display_name": "Rocky Ford",
+    "area_type": "city",
+    "bounds": [
+      [
+        -103.741,
+        38.0406
+      ],
+      [
+        -103.703,
+        38.0613
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Frisco",
+    "display_name": "Frisco",
+    "area_type": "city",
+    "bounds": [
+      [
+        -106.1115,
+        39.5692
+      ],
+      [
+        -106.064,
+        39.5986
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Silt",
+    "display_name": "Silt",
+    "area_type": "city",
+    "bounds": [
+      [
+        -107.6719,
+        39.5397
+      ],
+      [
+        -107.622,
+        39.5604
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Morrison",
+    "display_name": "Morrison",
+    "area_type": "city",
+    "bounds": [
+      [
+        -105.2223,
+        39.6208
+      ],
+      [
+        -105.1624,
+        39.6603
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Las Animas",
+    "display_name": "Las Animas",
+    "area_type": "city",
+    "bounds": [
+      [
+        -103.2453,
+        38.0594
+      ],
+      [
+        -103.2068,
+        38.0815
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Federal Heights",
+    "display_name": "Federal Heights",
+    "area_type": "city",
+    "bounds": [
+      [
+        -105.0251,
+        39.8491
+      ],
+      [
+        -104.9965,
+        39.8851
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Ault",
+    "display_name": "Ault",
+    "area_type": "city",
+    "bounds": [
+      [
+        -104.7681,
+        40.5718
+      ],
+      [
+        -104.7159,
+        40.6043
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Ridgway",
+    "display_name": "Ridgway",
+    "area_type": "city",
+    "bounds": [
+      [
+        -107.7688,
+        38.1444
+      ],
+      [
+        -107.7421,
+        38.1738
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Pierce",
+    "display_name": "Pierce",
+    "area_type": "city",
+    "bounds": [
+      [
+        -104.7919,
+        40.626
+      ],
+      [
+        -104.7445,
+        40.6548
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Blanca",
+    "display_name": "Blanca",
+    "area_type": "city",
+    "bounds": [
+      [
+        -105.5301,
+        37.4322
+      ],
+      [
+        -105.4966,
+        37.4466
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Cedaredge",
+    "display_name": "Cedaredge",
+    "area_type": "city",
+    "bounds": [
+      [
+        -107.9382,
+        38.8752
+      ],
+      [
+        -107.9146,
+        38.9117
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Rockvale",
+    "display_name": "Rockvale",
+    "area_type": "city",
+    "bounds": [
+      [
+        -105.181,
+        38.3461
+      ],
+      [
+        -105.1485,
+        38.3707
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Mount Crested Butte",
+    "display_name": "Mount Crested Butte",
+    "area_type": "city",
+    "bounds": [
+      [
+        -106.9746,
+        38.8843
+      ],
+      [
+        -106.9405,
+        38.9283
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Carbondale",
+    "display_name": "Carbondale",
+    "area_type": "city",
+    "bounds": [
+      [
+        -107.2283,
+        39.3744
+      ],
+      [
+        -107.203,
+        39.4185
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Bayfield",
+    "display_name": "Bayfield",
+    "area_type": "city",
+    "bounds": [
+      [
+        -107.61,
+        37.2214
+      ],
+      [
+        -107.5787,
+        37.2509
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Basalt",
+    "display_name": "Basalt",
+    "area_type": "city",
+    "bounds": [
+      [
+        -107.0897,
+        39.3462
+      ],
+      [
+        -107.0129,
+        39.3931
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Burlington",
+    "display_name": "Burlington",
+    "area_type": "city",
+    "bounds": [
+      [
+        -102.2975,
+        39.2892
+      ],
+      [
+        -102.2421,
+        39.3156
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Elizabeth",
+    "display_name": "Elizabeth",
+    "area_type": "city",
+    "bounds": [
+      [
+        -104.6539,
+        39.3461
+      ],
+      [
+        -104.5872,
+        39.3712
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Moffat",
+    "display_name": "Moffat",
+    "area_type": "city",
+    "bounds": [
+      [
+        -105.9319,
+        37.9902
+      ],
+      [
+        -105.8955,
+        38.0132
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Parachute",
+    "display_name": "Parachute",
+    "area_type": "city",
+    "bounds": [
+      [
+        -108.0729,
+        39.4289
+      ],
+      [
+        -108.0351,
+        39.4655
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Sheridan",
+    "display_name": "Sheridan",
+    "area_type": "city",
+    "bounds": [
+      [
+        -105.0347,
+        39.6323
+      ],
+      [
+        -105.0017,
+        39.6561
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Telluride",
+    "display_name": "Telluride",
+    "area_type": "city",
+    "bounds": [
+      [
+        -107.8715,
+        37.9065
+      ],
+      [
+        -107.8027,
+        37.9474
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Blue River",
+    "display_name": "Blue River",
+    "area_type": "city",
+    "bounds": [
+      [
+        -106.0525,
+        39.4055
+      ],
+      [
+        -106.0047,
+        39.4573
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Kersey",
+    "display_name": "Kersey",
+    "area_type": "city",
+    "bounds": [
+      [
+        -104.6373,
+        40.3757
+      ],
+      [
+        -104.5296,
+        40.4282
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Idaho Springs",
+    "display_name": "Idaho Springs",
+    "area_type": "city",
+    "bounds": [
+      [
+        -105.5779,
+        39.7141
+      ],
+      [
+        -105.4564,
+        39.7588
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "South Fork",
+    "display_name": "South Fork",
+    "area_type": "city",
+    "bounds": [
+      [
+        -106.6693,
+        37.642
+      ],
+      [
+        -106.5915,
+        37.6871
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Holyoke",
+    "display_name": "Holyoke",
+    "area_type": "city",
+    "bounds": [
+      [
+        -102.3214,
+        40.5613
+      ],
+      [
+        -102.2643,
+        40.5931
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "New Castle",
+    "display_name": "New Castle",
+    "area_type": "city",
+    "bounds": [
+      [
+        -107.548,
+        39.5622
+      ],
+      [
+        -107.5046,
+        39.5964
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Monte Vista",
+    "display_name": "Monte Vista",
+    "area_type": "city",
+    "bounds": [
+      [
+        -106.1769,
+        37.5726
+      ],
+      [
+        -106.1196,
+        37.5891
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Central",
+    "display_name": "Central",
+    "area_type": "city",
+    "bounds": [
+      [
+        -105.5563,
+        39.7465
+      ],
+      [
+        -105.4416,
+        39.818
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Brush",
+    "display_name": "Brush",
+    "area_type": "city",
+    "bounds": [
+      [
+        -103.6604,
+        40.2392
+      ],
+      [
+        -103.6077,
+        40.2837
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Salida",
+    "display_name": "Salida",
+    "area_type": "city",
+    "bounds": [
+      [
+        -106.0256,
+        38.5129
+      ],
+      [
+        -105.9709,
+        38.5429
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "De Beque",
+    "display_name": "De Beque",
+    "area_type": "city",
+    "bounds": [
+      [
+        -108.2282,
+        39.2767
+      ],
+      [
+        -108.182,
+        39.353
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Akron",
+    "display_name": "Akron",
+    "area_type": "city",
+    "bounds": [
+      [
+        -103.2463,
+        40.1396
+      ],
+      [
+        -103.1914,
+        40.1766
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Poncha Springs",
+    "display_name": "Poncha Springs",
+    "area_type": "city",
+    "bounds": [
+      [
+        -106.1344,
+        38.4992
+      ],
+      [
+        -106.051,
+        38.5285
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Walsenburg",
+    "display_name": "Walsenburg",
+    "area_type": "city",
+    "bounds": [
+      [
+        -104.8013,
+        37.616
+      ],
+      [
+        -104.7548,
+        37.6562
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Black Hawk",
+    "display_name": "Black Hawk",
+    "area_type": "city",
+    "bounds": [
+      [
+        -105.5192,
+        39.7848
+      ],
+      [
+        -105.474,
+        39.8148
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Manitou Springs",
+    "display_name": "Manitou Springs",
+    "area_type": "city",
+    "bounds": [
+      [
+        -104.9401,
+        38.8426
+      ],
+      [
+        -104.8869,
+        38.8643
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Palmer Lake",
+    "display_name": "Palmer Lake",
+    "area_type": "city",
+    "bounds": [
+      [
+        -104.9261,
+        39.0998
+      ],
+      [
+        -104.8736,
+        39.13
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Mountain",
+    "display_name": "Mountain",
+    "area_type": "city",
+    "bounds": [
+      [
+        -107.8818,
+        37.918
+      ],
+      [
+        -107.8315,
+        37.9471
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Yuma",
+    "display_name": "Yuma",
+    "area_type": "city",
+    "bounds": [
+      [
+        -102.7393,
+        40.0969
+      ],
+      [
+        -102.6809,
+        40.14
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Eaton",
+    "display_name": "Eaton",
+    "area_type": "city",
+    "bounds": [
+      [
+        -104.7366,
+        40.5097
+      ],
+      [
+        -104.6871,
+        40.5494
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Limon",
+    "display_name": "Limon",
+    "area_type": "city",
+    "bounds": [
+      [
+        -103.7149,
+        39.2295
+      ],
+      [
+        -103.6583,
+        39.2872
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "La Junta",
+    "display_name": "La Junta",
+    "area_type": "city",
+    "bounds": [
+      [
+        -103.5954,
+        37.9418
+      ],
+      [
+        -103.5095,
+        37.9963
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Wray",
+    "display_name": "Wray",
+    "area_type": "city",
+    "bounds": [
+      [
+        -102.2466,
+        40.0468
+      ],
+      [
+        -102.2103,
+        40.1111
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Fraser",
+    "display_name": "Fraser",
+    "area_type": "city",
+    "bounds": [
+      [
+        -105.822,
+        39.9083
+      ],
+      [
+        -105.7748,
+        39.9484
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Buena Vista",
+    "display_name": "Buena Vista",
+    "area_type": "city",
+    "bounds": [
+      [
+        -106.1655,
+        38.8176
+      ],
+      [
+        -106.1133,
+        38.854
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Hayden",
+    "display_name": "Hayden",
+    "area_type": "city",
+    "bounds": [
+      [
+        -107.2887,
+        40.4704
+      ],
+      [
+        -107.1913,
+        40.4992
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Platteville",
+    "display_name": "Platteville",
+    "area_type": "city",
+    "bounds": [
+      [
+        -104.9065,
+        40.1598
+      ],
+      [
+        -104.8013,
+        40.2681
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Lochbuie",
+    "display_name": "Lochbuie",
+    "area_type": "city",
+    "bounds": [
+      [
+        -104.7538,
+        39.9959
+      ],
+      [
+        -104.6759,
+        40.0389
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Williamsburg",
+    "display_name": "Williamsburg",
+    "area_type": "city",
+    "bounds": [
+      [
+        -105.1993,
+        38.3743
+      ],
+      [
+        -105.1396,
+        38.4067
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Meeker",
+    "display_name": "Meeker",
+    "area_type": "city",
+    "bounds": [
+      [
+        -107.9343,
+        40.0373
+      ],
+      [
+        -107.8623,
+        40.07
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Wellington",
+    "display_name": "Wellington",
+    "area_type": "city",
+    "bounds": [
+      [
+        -105.0289,
+        40.6753
+      ],
+      [
+        -104.9861,
+        40.7259
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Aspen",
+    "display_name": "Aspen",
+    "area_type": "city",
+    "bounds": [
+      [
+        -106.862,
+        39.177
+      ],
+      [
+        -106.802,
+        39.2184
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Silverthorne",
+    "display_name": "Silverthorne",
+    "area_type": "city",
+    "bounds": [
+      [
+        -106.1157,
+        39.6241
+      ],
+      [
+        -106.0626,
+        39.689
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Superior",
+    "display_name": "Superior",
+    "area_type": "city",
+    "bounds": [
+      [
+        -105.2144,
+        39.9138
+      ],
+      [
+        -105.1376,
+        39.9623
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Nunn",
+    "display_name": "Nunn",
+    "area_type": "city",
+    "bounds": [
+      [
+        -104.82,
+        40.6961
+      ],
+      [
+        -104.772,
+        40.7396
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Florence",
+    "display_name": "Florence",
+    "area_type": "city",
+    "bounds": [
+      [
+        -105.1444,
+        38.3632
+      ],
+      [
+        -105.069,
+        38.4388
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Rangely",
+    "display_name": "Rangely",
+    "area_type": "city",
+    "bounds": [
+      [
+        -108.8313,
+        40.0705
+      ],
+      [
+        -108.7352,
+        40.1035
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Vail",
+    "display_name": "Vail",
+    "area_type": "city",
+    "bounds": [
+      [
+        -106.4394,
+        39.6163
+      ],
+      [
+        -106.2751,
+        39.6522
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Craig",
+    "display_name": "Craig",
+    "area_type": "city",
+    "bounds": [
+      [
+        -107.6009,
+        40.503
+      ],
+      [
+        -107.5042,
+        40.5378
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Pagosa Springs",
+    "display_name": "Pagosa Springs",
+    "area_type": "city",
+    "bounds": [
+      [
+        -107.0823,
+        37.2472
+      ],
+      [
+        -106.9837,
+        37.2873
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Gunnison",
+    "display_name": "Gunnison",
+    "area_type": "city",
+    "bounds": [
+      [
+        -106.9514,
+        38.5298
+      ],
+      [
+        -106.8799,
+        38.5739
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Fort Morgan",
+    "display_name": "Fort Morgan",
+    "area_type": "city",
+    "bounds": [
+      [
+        -103.8205,
+        40.2328
+      ],
+      [
+        -103.754,
+        40.274
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Lamar",
+    "display_name": "Lamar",
+    "area_type": "city",
+    "bounds": [
+      [
+        -102.6337,
+        38.0272
+      ],
+      [
+        -102.5948,
+        38.1071
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Glenwood Springs",
+    "display_name": "Glenwood Springs",
+    "area_type": "city",
+    "bounds": [
+      [
+        -107.3809,
+        39.495
+      ],
+      [
+        -107.3063,
+        39.5656
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Eagle",
+    "display_name": "Eagle",
+    "area_type": "city",
+    "bounds": [
+      [
+        -106.8563,
+        39.6102
+      ],
+      [
+        -106.7836,
+        39.6742
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Cortez",
+    "display_name": "Cortez",
+    "area_type": "city",
+    "bounds": [
+      [
+        -108.6132,
+        37.3246
+      ],
+      [
+        -108.5452,
+        37.3785
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Cherry Hills",
+    "display_name": "Cherry Hills",
+    "area_type": "city",
+    "bounds": [
+      [
+        -104.9786,
+        39.6241
+      ],
+      [
+        -104.9132,
+        39.6531
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Hudson",
+    "display_name": "Hudson",
+    "area_type": "city",
+    "bounds": [
+      [
+        -104.6785,
+        40.0444
+      ],
+      [
+        -104.5842,
+        40.1203
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Breckenridge",
+    "display_name": "Breckenridge",
+    "area_type": "city",
+    "bounds": [
+      [
+        -106.0736,
+        39.4654
+      ],
+      [
+        -106.0146,
+        39.5368
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Woodland Park",
+    "display_name": "Woodland Park",
+    "area_type": "city",
+    "bounds": [
+      [
+        -105.0928,
+        38.9605
+      ],
+      [
+        -105.0272,
+        39.0357
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Estes Park",
+    "display_name": "Estes Park",
+    "area_type": "city",
+    "bounds": [
+      [
+        -105.5889,
+        40.3314
+      ],
+      [
+        -105.4811,
+        40.4046
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Englewood",
+    "display_name": "Englewood",
+    "area_type": "city",
+    "bounds": [
+      [
+        -105.0349,
+        39.6168
+      ],
+      [
+        -104.9594,
+        39.6787
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Timnath",
+    "display_name": "Timnath",
+    "area_type": "city",
+    "bounds": [
+      [
+        -104.9952,
+        40.4917
+      ],
+      [
+        -104.9266,
+        40.5892
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Northglenn",
+    "display_name": "Northglenn",
+    "area_type": "city",
+    "bounds": [
+      [
+        -105.0155,
+        39.8681
+      ],
+      [
+        -104.9422,
+        40.0149
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Monument",
+    "display_name": "Monument",
+    "area_type": "city",
+    "bounds": [
+      [
+        -104.8858,
+        39.0422
+      ],
+      [
+        -104.7942,
+        39.1122
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Bennett",
+    "display_name": "Bennett",
+    "area_type": "city",
+    "bounds": [
+      [
+        -104.489,
+        39.6982
+      ],
+      [
+        -104.3781,
+        39.7673
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Rifle",
+    "display_name": "Rifle",
+    "area_type": "city",
+    "bounds": [
+      [
+        -107.8526,
+        39.5048
+      ],
+      [
+        -107.7093,
+        39.5783
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Alamosa",
+    "display_name": "Alamosa",
+    "area_type": "city",
+    "bounds": [
+      [
+        -105.9136,
+        37.4411
+      ],
+      [
+        -105.8446,
+        37.5096
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Louisville",
+    "display_name": "Louisville",
+    "area_type": "city",
+    "bounds": [
+      [
+        -105.1893,
+        39.9397
+      ],
+      [
+        -105.1074,
+        39.9981
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Minturn",
+    "display_name": "Minturn",
+    "area_type": "city",
+    "bounds": [
+      [
+        -106.4479,
+        39.5134
+      ],
+      [
+        -106.3509,
+        39.6072
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Fruita",
+    "display_name": "Fruita",
+    "area_type": "city",
+    "bounds": [
+      [
+        -108.799,
+        39.1281
+      ],
+      [
+        -108.6824,
+        39.1824
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Sterling",
+    "display_name": "Sterling",
+    "area_type": "city",
+    "bounds": [
+      [
+        -103.2492,
+        40.598
+      ],
+      [
+        -103.1392,
+        40.6476
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Gypsum",
+    "display_name": "Gypsum",
+    "area_type": "city",
+    "bounds": [
+      [
+        -107.0569,
+        39.5797
+      ],
+      [
+        -106.8562,
+        39.6583
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Greenwood",
+    "display_name": "Greenwood",
+    "area_type": "city",
+    "bounds": [
+      [
+        -104.9806,
+        39.5878
+      ],
+      [
+        -104.8478,
+        39.6459
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Avon",
+    "display_name": "Avon",
+    "area_type": "city",
+    "bounds": [
+      [
+        -106.5558,
+        39.6232
+      ],
+      [
+        -106.4445,
+        39.6712
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Steamboat Springs",
+    "display_name": "Steamboat Springs",
+    "area_type": "city",
+    "bounds": [
+      [
+        -106.8883,
+        40.4398
+      ],
+      [
+        -106.7819,
+        40.5284
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Lone Tree",
+    "display_name": "Lone Tree",
+    "area_type": "city",
+    "bounds": [
+      [
+        -104.9092,
+        39.508
+      ],
+      [
+        -104.8299,
+        39.566
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Castle Pines",
+    "display_name": "Castle Pines",
+    "area_type": "city",
+    "bounds": [
+      [
+        -104.9236,
+        39.422
+      ],
+      [
+        -104.8303,
+        39.4927
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Golden",
+    "display_name": "Golden",
+    "area_type": "city",
+    "bounds": [
+      [
+        -105.2405,
+        39.7015
+      ],
+      [
+        -105.1618,
+        39.7866
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Keenesburg",
+    "display_name": "Keenesburg",
+    "area_type": "city",
+    "bounds": [
+      [
+        -104.6034,
+        40.0657
+      ],
+      [
+        -104.4612,
+        40.1855
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Wheat Ridge",
+    "display_name": "Wheat Ridge",
+    "area_type": "city",
+    "bounds": [
+      [
+        -105.1654,
+        39.7557
+      ],
+      [
+        -105.0532,
+        39.7938
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Trinidad",
+    "display_name": "Trinidad",
+    "area_type": "city",
+    "bounds": [
+      [
+        -104.532,
+        37.1316
+      ],
+      [
+        -104.4347,
+        37.2261
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Lafayette",
+    "display_name": "Lafayette",
+    "area_type": "city",
+    "bounds": [
+      [
+        -105.1572,
+        39.9579
+      ],
+      [
+        -105.0528,
+        40.0476
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Dacono",
+    "display_name": "Dacono",
+    "area_type": "city",
+    "bounds": [
+      [
+        -104.9819,
+        40.0331
+      ],
+      [
+        -104.8762,
+        40.0879
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Orchard",
+    "display_name": "Orchard",
+    "area_type": "city",
+    "bounds": [
+      [
+        -108.0041,
+        38.7724
+      ],
+      [
+        -107.9333,
+        38.8743
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Evans",
+    "display_name": "Evans",
+    "area_type": "city",
+    "bounds": [
+      [
+        -104.8035,
+        40.3192
+      ],
+      [
+        -104.6777,
+        40.3847
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Berthoud",
+    "display_name": "Berthoud",
+    "area_type": "city",
+    "bounds": [
+      [
+        -105.1314,
+        40.277
+      ],
+      [
+        -104.9512,
+        40.3495
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Fort Lupton",
+    "display_name": "Fort Lupton",
+    "area_type": "city",
+    "bounds": [
+      [
+        -104.8927,
+        40.0331
+      ],
+      [
+        -104.7348,
+        40.16
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Delta",
+    "display_name": "Delta",
+    "area_type": "city",
+    "bounds": [
+      [
+        -108.1574,
+        38.7141
+      ],
+      [
+        -108.0219,
+        38.8027
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Milliken",
+    "display_name": "Milliken",
+    "area_type": "city",
+    "bounds": [
+      [
+        -104.8882,
+        40.2468
+      ],
+      [
+        -104.7845,
+        40.3707
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Firestone",
+    "display_name": "Firestone",
+    "area_type": "city",
+    "bounds": [
+      [
+        -105.0367,
+        40.1093
+      ],
+      [
+        -104.8856,
+        40.2044
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Severance",
+    "display_name": "Severance",
+    "area_type": "city",
+    "bounds": [
+      [
+        -104.9442,
+        40.4801
+      ],
+      [
+        -104.8118,
+        40.6617
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Littleton",
+    "display_name": "Littleton",
+    "area_type": "city",
+    "bounds": [
+      [
+        -105.111,
+        39.5362
+      ],
+      [
+        -104.9733,
+        39.628
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Granby",
+    "display_name": "Granby",
+    "area_type": "city",
+    "bounds": [
+      [
+        -105.9722,
+        40.0091
+      ],
+      [
+        -105.8751,
+        40.1202
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Cañon",
+    "display_name": "Cañon",
+    "area_type": "city",
+    "bounds": [
+      [
+        -105.2735,
+        38.3877
+      ],
+      [
+        -105.149,
+        38.4757
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Winter Park",
+    "display_name": "Winter Park",
+    "area_type": "city",
+    "bounds": [
+      [
+        -105.812,
+        39.8322
+      ],
+      [
+        -105.7478,
+        39.9229
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Durango",
+    "display_name": "Durango",
+    "area_type": "city",
+    "bounds": [
+      [
+        -107.9513,
+        37.2151
+      ],
+      [
+        -107.8136,
+        37.3267
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Silver Cliff",
+    "display_name": "Silver Cliff",
+    "area_type": "city",
+    "bounds": [
+      [
+        -105.4591,
+        38.0851
+      ],
+      [
+        -105.3382,
+        38.152
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Mead",
+    "display_name": "Mead",
+    "area_type": "city",
+    "bounds": [
+      [
+        -105.0459,
+        40.173
+      ],
+      [
+        -104.9075,
+        40.2878
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Johnstown",
+    "display_name": "Johnstown",
+    "area_type": "city",
+    "bounds": [
+      [
+        -105.0025,
+        40.2785
+      ],
+      [
+        -104.8772,
+        40.4217
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Frederick",
+    "display_name": "Frederick",
+    "area_type": "city",
+    "bounds": [
+      [
+        -105.0423,
+        40.0803
+      ],
+      [
+        -104.8865,
+        40.1604
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Erie",
+    "display_name": "Erie",
+    "area_type": "city",
+    "bounds": [
+      [
+        -105.1047,
+        40.0004
+      ],
+      [
+        -104.9799,
+        40.1021
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Fountain",
+    "display_name": "Fountain",
+    "area_type": "city",
+    "bounds": [
+      [
+        -104.7868,
+        38.5634
+      ],
+      [
+        -104.5992,
+        38.7679
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Parker",
+    "display_name": "Parker",
+    "area_type": "city",
+    "bounds": [
+      [
+        -104.8301,
+        39.4531
+      ],
+      [
+        -104.7134,
+        39.566
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Brighton",
+    "display_name": "Brighton",
+    "area_type": "city",
+    "bounds": [
+      [
+        -104.865,
+        39.8997
+      ],
+      [
+        -104.7166,
+        40.0296
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Montrose",
+    "display_name": "Montrose",
+    "area_type": "city",
+    "bounds": [
+      [
+        -107.9248,
+        38.4216
+      ],
+      [
+        -107.7832,
+        38.5214
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Westminster",
+    "display_name": "Westminster",
+    "area_type": "city",
+    "bounds": [
+      [
+        -105.1656,
+        39.8181
+      ],
+      [
+        -104.9882,
+        39.9685
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Grand Junction",
+    "display_name": "Grand Junction",
+    "area_type": "city",
+    "bounds": [
+      [
+        -108.6759,
+        39.0195
+      ],
+      [
+        -108.4595,
+        39.1534
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Loveland",
+    "display_name": "Loveland",
+    "area_type": "city",
+    "bounds": [
+      [
+        -105.1596,
+        40.349
+      ],
+      [
+        -104.9634,
+        40.4657
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Arvada",
+    "display_name": "Arvada",
+    "area_type": "city",
+    "bounds": [
+      [
+        -105.3038,
+        39.784
+      ],
+      [
+        -105.0405,
+        39.8909
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Thornton",
+    "display_name": "Thornton",
+    "area_type": "city",
+    "bounds": [
+      [
+        -105.0155,
+        39.8357
+      ],
+      [
+        -104.878,
+        40.0003
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Commerce",
+    "display_name": "Commerce",
+    "area_type": "city",
+    "bounds": [
+      [
+        -104.9689,
+        39.7838
+      ],
+      [
+        -104.6592,
+        39.9288
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Broomfield",
+    "display_name": "Broomfield",
+    "area_type": "city",
+    "bounds": [
+      [
+        -105.1661,
+        39.8893
+      ],
+      [
+        -104.9611,
+        40.0441
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Castle Rock",
+    "display_name": "Castle Rock",
+    "area_type": "city",
+    "bounds": [
+      [
+        -104.9207,
+        39.3113
+      ],
+      [
+        -104.7613,
+        39.435
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Boulder",
+    "display_name": "Boulder",
+    "area_type": "city",
+    "bounds": [
+      [
+        -105.3014,
+        39.9569
+      ],
+      [
+        -105.1784,
+        40.0944
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Centennial",
+    "display_name": "Centennial",
+    "area_type": "city",
+    "bounds": [
+      [
+        -104.9884,
+        39.5659
+      ],
+      [
+        -104.7262,
+        39.6384
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Longmont",
+    "display_name": "Longmont",
+    "area_type": "city",
+    "bounds": [
+      [
+        -105.1784,
+        40.1271
+      ],
+      [
+        -104.9987,
+        40.2104
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Snowmass",
+    "display_name": "Snowmass",
+    "area_type": "city",
+    "bounds": [
+      [
+        -106.9872,
+        39.156
+      ],
+      [
+        -106.891,
+        39.2921
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Windsor",
+    "display_name": "Windsor",
+    "area_type": "city",
+    "bounds": [
+      [
+        -104.9916,
+        40.4071
+      ],
+      [
+        -104.8414,
+        40.5479
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Denver",
+    "display_name": "Denver",
+    "area_type": "city",
+    "bounds": [
+      [
+        -105.1099,
+        39.6143
+      ],
+      [
+        -104.5996,
+        39.9142
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Aurora",
+    "display_name": "Aurora",
+    "area_type": "city",
+    "bounds": [
+      [
+        -104.8865,
+        39.5509
+      ],
+      [
+        -104.4892,
+        39.8267
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Colorado Springs",
+    "display_name": "Colorado Springs",
+    "area_type": "city",
+    "bounds": [
+      [
+        -104.9231,
+        38.7158
+      ],
+      [
+        -104.581,
+        39.0353
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Greeley",
+    "display_name": "Greeley",
+    "area_type": "city",
+    "bounds": [
+      [
+        -104.9075,
+        40.3777
+      ],
+      [
+        -104.6194,
+        40.481
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Pueblo",
+    "display_name": "Pueblo",
+    "area_type": "city",
+    "bounds": [
+      [
+        -104.7222,
+        38.1589
+      ],
+      [
+        -104.46,
+        38.3459
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Lakewood",
+    "display_name": "Lakewood",
+    "area_type": "city",
+    "bounds": [
+      [
+        -105.1999,
+        39.6186
+      ],
+      [
+        -105.0533,
+        39.7619
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Fort Collins",
+    "display_name": "Fort Collins",
+    "area_type": "city",
+    "bounds": [
+      [
+        -105.1576,
+        40.4721
+      ],
+      [
+        -104.9912,
+        40.639
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
     "state_id": "md",
     "jurisdiction": "Brookview",
     "display_name": "Brookview",
@@ -88863,6 +93759,1158 @@
       ]
     ],
     "region_hint": "ca",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Bent County",
+    "display_name": "Bent County",
+    "area_type": "county",
+    "bounds": [
+      [
+        -103.4043,
+        37.6436
+      ],
+      [
+        -102.7417,
+        38.267
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Boulder County",
+    "display_name": "Boulder County",
+    "area_type": "county",
+    "bounds": [
+      [
+        -105.6898,
+        39.9129
+      ],
+      [
+        -105.0528,
+        40.2618
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Denver County",
+    "display_name": "Denver County",
+    "area_type": "county",
+    "bounds": [
+      [
+        -105.1099,
+        39.6143
+      ],
+      [
+        -104.5996,
+        39.9142
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Elbert County",
+    "display_name": "Elbert County",
+    "area_type": "county",
+    "bounds": [
+      [
+        -104.6629,
+        38.8668
+      ],
+      [
+        -103.7144,
+        39.5663
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Grand County",
+    "display_name": "Grand County",
+    "area_type": "county",
+    "bounds": [
+      [
+        -106.6528,
+        39.6863
+      ],
+      [
+        -105.6266,
+        40.4863
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Gunnison County",
+    "display_name": "Gunnison County",
+    "area_type": "county",
+    "bounds": [
+      [
+        -107.635,
+        38.1471
+      ],
+      [
+        -106.2454,
+        39.2577
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Las Animas County",
+    "display_name": "Las Animas County",
+    "area_type": "county",
+    "bounds": [
+      [
+        -105.155,
+        36.9953
+      ],
+      [
+        -103.0759,
+        37.8175
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Gilpin County",
+    "display_name": "Gilpin County",
+    "area_type": "county",
+    "bounds": [
+      [
+        -105.7008,
+        39.746
+      ],
+      [
+        -105.3979,
+        39.9349
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Jefferson County",
+    "display_name": "Jefferson County",
+    "area_type": "county",
+    "bounds": [
+      [
+        -105.3983,
+        39.1295
+      ],
+      [
+        -105.0486,
+        39.9142
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Summit County",
+    "display_name": "Summit County",
+    "area_type": "county",
+    "bounds": [
+      [
+        -106.4403,
+        39.3617
+      ],
+      [
+        -105.7757,
+        39.9183
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "San Juan County",
+    "display_name": "San Juan County",
+    "area_type": "county",
+    "bounds": [
+      [
+        -107.9751,
+        37.6395
+      ],
+      [
+        -107.4592,
+        37.965
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Rio Blanco County",
+    "display_name": "Rio Blanco County",
+    "area_type": "county",
+    "bounds": [
+      [
+        -109.0512,
+        39.6502
+      ],
+      [
+        -107.0374,
+        40.2254
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Morgan County",
+    "display_name": "Morgan County",
+    "area_type": "county",
+    "bounds": [
+      [
+        -104.1503,
+        40.0009
+      ],
+      [
+        -103.4672,
+        40.5244
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Montrose County",
+    "display_name": "Montrose County",
+    "area_type": "county",
+    "bounds": [
+      [
+        -109.0602,
+        38.1525
+      ],
+      [
+        -107.5,
+        38.6686
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Eagle County",
+    "display_name": "Eagle County",
+    "area_type": "county",
+    "bounds": [
+      [
+        -107.1139,
+        39.3495
+      ],
+      [
+        -106.1761,
+        39.9249
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "San Miguel County",
+    "display_name": "San Miguel County",
+    "area_type": "county",
+    "bounds": [
+      [
+        -109.0429,
+        37.7736
+      ],
+      [
+        -107.7332,
+        38.153
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Ouray County",
+    "display_name": "Ouray County",
+    "area_type": "county",
+    "bounds": [
+      [
+        -108.1324,
+        37.8924
+      ],
+      [
+        -107.511,
+        38.3321
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Rio Grande County",
+    "display_name": "Rio Grande County",
+    "area_type": "county",
+    "bounds": [
+      [
+        -106.7116,
+        37.4009
+      ],
+      [
+        -106.0384,
+        37.8352
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Delta County",
+    "display_name": "Delta County",
+    "area_type": "county",
+    "bounds": [
+      [
+        -108.379,
+        38.6681
+      ],
+      [
+        -107.5006,
+        39.2179
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Otero County",
+    "display_name": "Otero County",
+    "area_type": "county",
+    "bounds": [
+      [
+        -104.0582,
+        37.6436
+      ],
+      [
+        -103.3999,
+        38.2654
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "La Plata County",
+    "display_name": "La Plata County",
+    "area_type": "county",
+    "bounds": [
+      [
+        -108.3811,
+        37.0
+      ],
+      [
+        -107.4817,
+        37.6396
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Routt County",
+    "display_name": "Routt County",
+    "area_type": "county",
+    "bounds": [
+      [
+        -107.4394,
+        39.9187
+      ],
+      [
+        -106.6266,
+        41.0029
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Hinsdale County",
+    "display_name": "Hinsdale County",
+    "area_type": "county",
+    "bounds": [
+      [
+        -107.5914,
+        37.4227
+      ],
+      [
+        -107.0006,
+        38.1473
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Archuleta County",
+    "display_name": "Archuleta County",
+    "area_type": "county",
+    "bounds": [
+      [
+        -107.4824,
+        36.9935
+      ],
+      [
+        -106.4761,
+        37.4229
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Weld County",
+    "display_name": "Weld County",
+    "area_type": "county",
+    "bounds": [
+      [
+        -105.0567,
+        40.0003
+      ],
+      [
+        -103.5738,
+        41.0017
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Custer County",
+    "display_name": "Custer County",
+    "area_type": "county",
+    "bounds": [
+      [
+        -105.7969,
+        37.8905
+      ],
+      [
+        -105.0492,
+        38.265
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Pueblo County",
+    "display_name": "Pueblo County",
+    "area_type": "county",
+    "bounds": [
+      [
+        -105.0499,
+        37.7347
+      ],
+      [
+        -104.0539,
+        38.5224
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "El Paso County",
+    "display_name": "El Paso County",
+    "area_type": "county",
+    "bounds": [
+      [
+        -105.0722,
+        38.5196
+      ],
+      [
+        -104.0516,
+        39.1298
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Kiowa County",
+    "display_name": "Kiowa County",
+    "area_type": "county",
+    "bounds": [
+      [
+        -103.5047,
+        38.265
+      ],
+      [
+        -102.0445,
+        38.6152
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Teller County",
+    "display_name": "Teller County",
+    "area_type": "county",
+    "bounds": [
+      [
+        -105.3304,
+        38.6475
+      ],
+      [
+        -104.9399,
+        39.1297
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Lincoln County",
+    "display_name": "Lincoln County",
+    "area_type": "county",
+    "bounds": [
+      [
+        -104.0555,
+        38.5224
+      ],
+      [
+        -103.1544,
+        39.5663
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Douglas County",
+    "display_name": "Douglas County",
+    "area_type": "county",
+    "bounds": [
+      [
+        -105.3294,
+        39.1295
+      ],
+      [
+        -104.6606,
+        39.5661
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Costilla County",
+    "display_name": "Costilla County",
+    "area_type": "county",
+    "bounds": [
+      [
+        -105.7714,
+        36.9953
+      ],
+      [
+        -105.1297,
+        37.6583
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Conejos County",
+    "display_name": "Conejos County",
+    "area_type": "county",
+    "bounds": [
+      [
+        -106.6784,
+        36.9935
+      ],
+      [
+        -105.7185,
+        37.4037
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Broomfield County",
+    "display_name": "Broomfield County",
+    "area_type": "county",
+    "bounds": [
+      [
+        -105.1661,
+        39.8893
+      ],
+      [
+        -104.9611,
+        40.0441
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Mineral County",
+    "display_name": "Mineral County",
+    "area_type": "county",
+    "bounds": [
+      [
+        -107.1447,
+        37.3924
+      ],
+      [
+        -106.6953,
+        37.975
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Sedgwick County",
+    "display_name": "Sedgwick County",
+    "area_type": "county",
+    "bounds": [
+      [
+        -102.6535,
+        40.7494
+      ],
+      [
+        -102.0514,
+        41.0024
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Pitkin County",
+    "display_name": "Pitkin County",
+    "area_type": "county",
+    "bounds": [
+      [
+        -107.4658,
+        38.9781
+      ],
+      [
+        -106.4265,
+        39.3662
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Cheyenne County",
+    "display_name": "Cheyenne County",
+    "area_type": "county",
+    "bounds": [
+      [
+        -103.1729,
+        38.6125
+      ],
+      [
+        -102.0448,
+        39.047
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Dolores County",
+    "display_name": "Dolores County",
+    "area_type": "county",
+    "bounds": [
+      [
+        -109.0434,
+        37.4848
+      ],
+      [
+        -107.8608,
+        37.8955
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Moffat County",
+    "display_name": "Moffat County",
+    "area_type": "county",
+    "bounds": [
+      [
+        -109.0509,
+        40.2205
+      ],
+      [
+        -107.3142,
+        41.0029
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Garfield County",
+    "display_name": "Garfield County",
+    "area_type": "county",
+    "bounds": [
+      [
+        -109.0512,
+        39.3661
+      ],
+      [
+        -107.034,
+        40.0915
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Adams County",
+    "display_name": "Adams County",
+    "area_type": "county",
+    "bounds": [
+      [
+        -105.0532,
+        39.7399
+      ],
+      [
+        -103.7057,
+        40.0014
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Clear Creek County",
+    "display_name": "Clear Creek County",
+    "area_type": "county",
+    "bounds": [
+      [
+        -105.9267,
+        39.5661
+      ],
+      [
+        -105.3987,
+        39.852
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Logan County",
+    "display_name": "Logan County",
+    "area_type": "county",
+    "bounds": [
+      [
+        -103.5818,
+        40.4361
+      ],
+      [
+        -102.6535,
+        41.0023
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Mesa County",
+    "display_name": "Mesa County",
+    "area_type": "county",
+    "bounds": [
+      [
+        -109.0601,
+        38.5
+      ],
+      [
+        -107.3784,
+        39.3667
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Park County",
+    "display_name": "Park County",
+    "area_type": "county",
+    "bounds": [
+      [
+        -106.2102,
+        38.6936
+      ],
+      [
+        -105.329,
+        39.5661
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Alamosa County",
+    "display_name": "Alamosa County",
+    "area_type": "county",
+    "bounds": [
+      [
+        -106.0393,
+        37.3568
+      ],
+      [
+        -105.4527,
+        37.7515
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Jackson County",
+    "display_name": "Jackson County",
+    "area_type": "county",
+    "bounds": [
+      [
+        -106.8732,
+        40.3234
+      ],
+      [
+        -105.8523,
+        41.0027
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Kit Carson County",
+    "display_name": "Kit Carson County",
+    "area_type": "county",
+    "bounds": [
+      [
+        -103.163,
+        39.0376
+      ],
+      [
+        -102.0466,
+        39.5741
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Lake County",
+    "display_name": "Lake County",
+    "area_type": "county",
+    "bounds": [
+      [
+        -106.5862,
+        39.0561
+      ],
+      [
+        -106.1355,
+        39.381
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Washington County",
+    "display_name": "Washington County",
+    "area_type": "county",
+    "bounds": [
+      [
+        -103.7071,
+        39.5663
+      ],
+      [
+        -102.78,
+        40.4384
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Baca County",
+    "display_name": "Baca County",
+    "area_type": "county",
+    "bounds": [
+      [
+        -103.0861,
+        36.993
+      ],
+      [
+        -102.0416,
+        37.6443
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Phillips County",
+    "display_name": "Phillips County",
+    "area_type": "county",
+    "bounds": [
+      [
+        -102.6648,
+        40.4385
+      ],
+      [
+        -102.0514,
+        40.7496
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Saguache County",
+    "display_name": "Saguache County",
+    "area_type": "county",
+    "bounds": [
+      [
+        -107.0019,
+        37.7478
+      ],
+      [
+        -105.4289,
+        38.4569
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Arapahoe County",
+    "display_name": "Arapahoe County",
+    "area_type": "county",
+    "bounds": [
+      [
+        -105.0542,
+        39.5663
+      ],
+      [
+        -103.7065,
+        39.7402
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Larimer County",
+    "display_name": "Larimer County",
+    "area_type": "county",
+    "bounds": [
+      [
+        -106.1916,
+        40.2618
+      ],
+      [
+        -104.9434,
+        40.9982
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Prowers County",
+    "display_name": "Prowers County",
+    "area_type": "county",
+    "bounds": [
+      [
+        -102.7476,
+        37.6436
+      ],
+      [
+        -102.0416,
+        38.2687
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Yuma County",
+    "display_name": "Yuma County",
+    "area_type": "county",
+    "bounds": [
+      [
+        -102.8038,
+        39.5678
+      ],
+      [
+        -102.0498,
+        40.44
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Huerfano County",
+    "display_name": "Huerfano County",
+    "area_type": "county",
+    "bounds": [
+      [
+        -105.5017,
+        37.2912
+      ],
+      [
+        -104.3511,
+        38.0189
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Montezuma County",
+    "display_name": "Montezuma County",
+    "area_type": "county",
+    "bounds": [
+      [
+        -109.0458,
+        36.999
+      ],
+      [
+        -107.9701,
+        37.6396
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Chaffee County",
+    "display_name": "Chaffee County",
+    "area_type": "county",
+    "bounds": [
+      [
+        -106.599,
+        38.4228
+      ],
+      [
+        -105.8788,
+        39.0579
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Crowley County",
+    "display_name": "Crowley County",
+    "area_type": "county",
+    "bounds": [
+      [
+        -104.0582,
+        38.1131
+      ],
+      [
+        -103.5047,
+        38.5224
+      ]
+    ],
+    "region_hint": "co",
+    "coverage_status": "untracked"
+  },
+  {
+    "state_id": "co",
+    "jurisdiction": "Fremont County",
+    "display_name": "Fremont County",
+    "area_type": "county",
+    "bounds": [
+      [
+        -106.0128,
+        38.2583
+      ],
+      [
+        -104.9404,
+        38.6973
+      ]
+    ],
+    "region_hint": "co",
     "coverage_status": "untracked"
   },
   {
