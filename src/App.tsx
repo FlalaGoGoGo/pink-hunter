@@ -67,6 +67,7 @@ const ABOUT_SOURCES_PAGE_SIZE = 6;
 const ABOUT_REGION_SUMMARY_PAGE_SIZE = 3;
 const ABOUT_AREA_SUMMARY_PAGE_SIZE = 3;
 const BRAND_LOGO_PATH = "/assets/brand/pink-hunter-logo.png";
+const BRAND_MARK_PATH = "/assets/brand/pink-hunter-mark-512.png";
 const SORT_COLLATOR = new Intl.Collator("en", { sensitivity: "base" });
 const EMPTY_SPECIES_COUNTS: SpeciesCounts = {
   cherry: 0,
@@ -100,6 +101,36 @@ const REGION_CITY_OVERRIDES: Partial<Record<string, CoverageRegion>> = {
   "Montgomery County": "md",
   Baltimore: "md",
   "Jersey City": "nj",
+  Newark: "nj",
+  Millburn: "nj",
+  Princeton: "nj",
+  "Ho-Ho-Kus": "nj",
+  Oradell: "nj",
+  Rutherford: "nj",
+  "River Edge": "nj",
+  Dumont: "nj",
+  Westwood: "nj",
+  Tenafly: "nj",
+  Teaneck: "nj",
+  Ridgewood: "nj",
+  Bergenfield: "nj",
+  Montvale: "nj",
+  "Glen Rock": "nj",
+  Englewood: "nj",
+  "Franklin Lakes": "nj",
+  Demarest: "nj",
+  Haworth: "nj",
+  "New Milford": "nj",
+  Ramsey: "nj",
+  Wyckoff: "nj",
+  "Fair Lawn": "nj",
+  Allendale: "nj",
+  Mahwah: "nj",
+  "Fort Lee": "nj",
+  Hoboken: "nj",
+  Morristown: "nj",
+  Linden: "nj",
+  Montclair: "nj",
   Boston: "ma",
   "New York City": "ny",
   Pittsburgh: "pa",
@@ -695,8 +726,8 @@ const FIND_PANEL_COPY: Record<
     showBody:
       "Reload all covered tree data for the current visible map area. If the map does not refresh automatically after moving or jumping, try pressing the refresh button once.",
     showButton: "Refresh visible trees",
-    jumpTitle: "Jump to a specific area",
-    jumpBody: "Choose a country and a state or province, then jump to that area.",
+    jumpTitle: "Jump to an area",
+    jumpBody: "Choose an area, then press the Jump button below and the map will move there.",
     jumpCountry: "Country",
     jumpState: "State",
     jumpProvince: "Province",
@@ -714,7 +745,7 @@ const FIND_PANEL_COPY: Record<
     showBody: "会刷新重新加载当前屏幕地图区域的所有已覆盖树木的数据。如果地图在变换过程中没有自动刷新，请尝试点击旁边的刷新按钮。",
     showButton: "刷新当前画面树木",
     jumpTitle: "跳转至指定区域",
-    jumpBody: "选择国家和州/省后，点击 Jump 按钮即可跳转到对应区域。",
+    jumpBody: "选择一个区域，并点击下方「跳转」按钮，地图会跳转过去。",
     jumpCountry: "国家",
     jumpState: "州",
     jumpProvince: "省",
@@ -732,7 +763,7 @@ const FIND_PANEL_COPY: Record<
     showBody: "會重新整理並載入目前畫面地圖區域中的所有已覆蓋樹木資料。如果地圖在變換過程中沒有自動更新，請嘗試點擊旁邊的重新整理按鈕。",
     showButton: "重新整理目前畫面樹木",
     jumpTitle: "跳轉至指定區域",
-    jumpBody: "選擇國家和州／省後，點擊 Jump 按鈕即可跳轉到對應區域。",
+    jumpBody: "選擇一個區域，並點擊下方「跳轉」按鈕，地圖會跳轉過去。",
     jumpCountry: "國家",
     jumpState: "州",
     jumpProvince: "省",
@@ -750,8 +781,8 @@ const FIND_PANEL_COPY: Record<
     showBody:
       "Vuelve a cargar todos los datos de árboles cubiertos dentro del área visible del mapa. Si el mapa no se actualiza automáticamente después de moverlo o saltar a otra zona, prueba con el botón de recarga.",
     showButton: "Recargar árboles visibles",
-    jumpTitle: "Saltar a una zona específica",
-    jumpBody: "Elige un país y un estado o provincia, y luego pulsa Jump para ir a esa zona.",
+    jumpTitle: "Ir a una zona",
+    jumpBody: "Elige una zona y luego pulsa el botón de salto de abajo para mover el mapa hasta allí.",
     jumpCountry: "País",
     jumpState: "Estado",
     jumpProvince: "Provincia",
@@ -770,7 +801,7 @@ const FIND_PANEL_COPY: Record<
       "현재 화면에 보이는 지도 영역 안의 모든 커버된 나무 데이터를 다시 불러옵니다. 지도를 이동하거나 점프한 뒤 자동으로 새로고침되지 않으면 옆의 새로고침 버튼을 눌러 보세요.",
     showButton: "현재 화면 나무 새로고침",
     jumpTitle: "지정한 지역으로 이동",
-    jumpBody: "국가와 주 또는 도를 선택한 뒤 Jump 버튼을 누르면 해당 지역으로 이동합니다.",
+    jumpBody: "지역을 선택한 뒤 아래의 이동 버튼을 누르면 지도가 그곳으로 이동합니다.",
     jumpCountry: "국가",
     jumpState: "주",
     jumpProvince: "도",
@@ -789,7 +820,7 @@ const FIND_PANEL_COPY: Record<
       "現在画面に表示されている地図範囲の、すべての対象樹木データを再読み込みします。地図を移動したりジャンプしたあと自動更新されない場合は、横の更新ボタンを押してください。",
     showButton: "表示中の木を更新",
     jumpTitle: "指定した地域へ移動",
-    jumpBody: "国と州または県を選んでから Jump ボタンを押すと、その地域へ移動します。",
+    jumpBody: "地域を選び、下の移動ボタンを押すと地図がその場所へ移動します。",
     jumpCountry: "国",
     jumpState: "州",
     jumpProvince: "県",
@@ -807,8 +838,8 @@ const FIND_PANEL_COPY: Record<
     showBody:
       "Recharge toutes les données d’arbres couvertes dans la zone actuellement visible sur la carte. Si la carte ne se met pas à jour automatiquement après un déplacement ou un saut, utilisez le bouton d’actualisation.",
     showButton: "Actualiser les arbres visibles",
-    jumpTitle: "Aller vers une zone précise",
-    jumpBody: "Choisissez un pays puis un état ou une province, puis appuyez sur Jump pour aller vers cette zone.",
+    jumpTitle: "Aller à une zone",
+    jumpBody: "Choisissez une zone puis appuyez sur le bouton ci-dessous pour déplacer la carte vers cet endroit.",
     jumpCountry: "Pays",
     jumpState: "État",
     jumpProvince: "Province",
@@ -827,7 +858,7 @@ const FIND_PANEL_COPY: Record<
       "Tải lại toàn bộ dữ liệu cây đã được bao phủ trong vùng bản đồ hiện đang nhìn thấy. Nếu bản đồ không tự làm mới sau khi di chuyển hoặc nhảy tới vùng khác, hãy thử bấm nút làm mới bên cạnh.",
     showButton: "Làm mới cây đang nhìn thấy",
     jumpTitle: "Nhảy tới khu vực cụ thể",
-    jumpBody: "Chọn quốc gia rồi chọn tiểu bang hoặc tỉnh, sau đó bấm Jump để chuyển tới khu vực đó.",
+    jumpBody: "Chọn một khu vực rồi bấm nút nhảy bên dưới để đưa bản đồ tới đó.",
     jumpCountry: "Quốc gia",
     jumpState: "Tiểu bang",
     jumpProvince: "Tỉnh",
@@ -916,6 +947,140 @@ const COUNTRY_LABELS: Record<Language, Record<CountryKey, string>> = {
   "ja-JP": { us: "アメリカ", ca: "カナダ" },
   "fr-FR": { us: "États-Unis", ca: "Canada" },
   "vi-VN": { us: "Hoa Kỳ", ca: "Canada" }
+};
+const SUBNATIONAL_LABELS: Partial<Record<Language, Record<string, string>>> = {
+  "zh-CN": {
+    AL: "阿拉巴马州",
+    AK: "阿拉斯加州",
+    AZ: "亚利桑那州",
+    AR: "阿肯色州",
+    CA: "加利福尼亚州",
+    CO: "科罗拉多州",
+    CT: "康涅狄格州",
+    DE: "特拉华州",
+    FL: "佛罗里达州",
+    GA: "佐治亚州",
+    HI: "夏威夷州",
+    ID: "爱达荷州",
+    IL: "伊利诺伊州",
+    IN: "印第安纳州",
+    IA: "艾奥瓦州",
+    KS: "堪萨斯州",
+    KY: "肯塔基州",
+    LA: "路易斯安那州",
+    ME: "缅因州",
+    MD: "马里兰州",
+    MA: "马萨诸塞州",
+    MI: "密歇根州",
+    MN: "明尼苏达州",
+    MS: "密西西比州",
+    MO: "密苏里州",
+    MT: "蒙大拿州",
+    NE: "内布拉斯加州",
+    NV: "内华达州",
+    NH: "新罕布什尔州",
+    NJ: "新泽西州",
+    NM: "新墨西哥州",
+    NY: "纽约州",
+    NC: "北卡罗来纳州",
+    ND: "北达科他州",
+    OH: "俄亥俄州",
+    OK: "俄克拉何马州",
+    OR: "俄勒冈州",
+    PA: "宾夕法尼亚州",
+    RI: "罗得岛州",
+    SC: "南卡罗来纳州",
+    SD: "南达科他州",
+    TN: "田纳西州",
+    TX: "得克萨斯州",
+    UT: "犹他州",
+    VT: "佛蒙特州",
+    VA: "弗吉尼亚州",
+    WA: "华盛顿州",
+    WV: "西弗吉尼亚州",
+    WI: "威斯康星州",
+    WY: "怀俄明州",
+    DC: "哥伦比亚特区",
+    AB: "艾伯塔省",
+    BC: "不列颠哥伦比亚省",
+    MB: "马尼托巴省",
+    NB: "新不伦瑞克省",
+    NL: "纽芬兰与拉布拉多省",
+    NS: "新斯科舍省",
+    NT: "西北地区",
+    NU: "努纳武特地区",
+    ON: "安大略省",
+    PE: "爱德华王子岛省",
+    QC: "魁北克省",
+    SK: "萨斯喀彻温省",
+    YT: "育空地区"
+  },
+  "zh-TW": {
+    AL: "阿拉巴馬州",
+    AK: "阿拉斯加州",
+    AZ: "亞利桑那州",
+    AR: "阿肯色州",
+    CA: "加利福尼亞州",
+    CO: "科羅拉多州",
+    CT: "康乃狄克州",
+    DE: "德拉瓦州",
+    FL: "佛羅里達州",
+    GA: "喬治亞州",
+    HI: "夏威夷州",
+    ID: "愛達荷州",
+    IL: "伊利諾州",
+    IN: "印第安納州",
+    IA: "愛荷華州",
+    KS: "堪薩斯州",
+    KY: "肯塔基州",
+    LA: "路易斯安那州",
+    ME: "緬因州",
+    MD: "馬里蘭州",
+    MA: "麻薩諸塞州",
+    MI: "密西根州",
+    MN: "明尼蘇達州",
+    MS: "密西西比州",
+    MO: "密蘇里州",
+    MT: "蒙大拿州",
+    NE: "內布拉斯加州",
+    NV: "內華達州",
+    NH: "新罕布夏州",
+    NJ: "新澤西州",
+    NM: "新墨西哥州",
+    NY: "紐約州",
+    NC: "北卡羅來納州",
+    ND: "北達科他州",
+    OH: "俄亥俄州",
+    OK: "奧克拉荷馬州",
+    OR: "奧勒岡州",
+    PA: "賓夕法尼亞州",
+    RI: "羅德島州",
+    SC: "南卡羅來納州",
+    SD: "南達科他州",
+    TN: "田納西州",
+    TX: "德州",
+    UT: "猶他州",
+    VT: "佛蒙特州",
+    VA: "維吉尼亞州",
+    WA: "華盛頓州",
+    WV: "西維吉尼亞州",
+    WI: "威斯康辛州",
+    WY: "懷俄明州",
+    DC: "哥倫比亞特區",
+    AB: "亞伯達省",
+    BC: "卑詩省",
+    MB: "曼尼托巴省",
+    NB: "新不倫瑞克省",
+    NL: "紐芬蘭與拉布拉多省",
+    NS: "新斯科細亞省",
+    NT: "西北地區",
+    NU: "努納武特地區",
+    ON: "安大略省",
+    PE: "愛德華王子島省",
+    QC: "魁北克省",
+    SK: "薩斯喀徹溫省",
+    YT: "育空地區"
+  }
 };
 const CROSS_REGION_POPUP_COPY: Record<
   Language,
@@ -1416,6 +1581,13 @@ function areaTypeClassName(city: string): string {
   return jurisdictionTypeForCity(city) === "county" ? "county" : "city";
 }
 
+function jumpStateDisplayLabel(language: Language, state: JumpState): string {
+  if (language === "zh-CN" || language === "zh-TW") {
+    return SUBNATIONAL_LABELS[language]?.[state.code.toUpperCase()] ?? state.label;
+  }
+  return state.label;
+}
+
 function formatAreaLabel(city: string): string {
   const displayName = jurisdictionDisplayName(city).trim();
   const stateCode = stateCodeForCity(city);
@@ -1600,7 +1772,6 @@ export default function App(): JSX.Element {
   const [selectedOwnership, setSelectedOwnership] = useState<OwnershipGroup[]>(initialUrlState.ownership);
   const [jumpCountry, setJumpCountry] = useState<JumpCountry["id"]>("us");
   const [jumpState, setJumpState] = useState<string>("");
-  const [jumpStateSearch, setJumpStateSearch] = useState("");
   const [jumpNotice, setJumpNotice] = useState<JumpNotice | null>(null);
   const [languageMenuOpen, setLanguageMenuOpen] = useState(false);
   const [sheetHeight, setSheetHeight] = useState<number>(0.4);
@@ -1949,27 +2120,23 @@ export default function App(): JSX.Element {
     if (!data) {
       return [] as JumpCountry[];
     }
-    return [...data.jumpIndex.countries].sort((left, right) => SORT_COLLATOR.compare(left.label, right.label));
-  }, [data]);
+    const collator = new Intl.Collator(language, { sensitivity: "base" });
+    return [...data.jumpIndex.countries].sort((left, right) =>
+      collator.compare(COUNTRY_LABELS[language][left.id], COUNTRY_LABELS[language][right.id])
+    );
+  }, [data, language]);
 
-  const allJumpStates = useMemo(() => {
+  const jumpStates = useMemo(() => {
     if (!data) {
       return [] as JumpState[];
     }
+    const collator = new Intl.Collator(language, { sensitivity: "base" });
     return [...data.jumpIndex.states]
       .filter((item) => item.country_id === jumpCountry)
-      .sort((left, right) => SORT_COLLATOR.compare(left.label, right.label));
-  }, [data, jumpCountry]);
-
-  const jumpStates = useMemo(() => {
-    const query = jumpStateSearch.trim().toLowerCase();
-    if (!query) {
-      return allJumpStates;
-    }
-    return allJumpStates.filter((item) => {
-      return item.label.toLowerCase().includes(query) || item.code.toLowerCase().includes(query);
-    });
-  }, [allJumpStates, jumpStateSearch]);
+      .sort((left, right) =>
+        collator.compare(jumpStateDisplayLabel(language, left), jumpStateDisplayLabel(language, right))
+      );
+  }, [data, jumpCountry, language]);
 
   useEffect(() => {
     if (!data) {
@@ -1988,10 +2155,10 @@ export default function App(): JSX.Element {
     if (!jumpState) {
       return;
     }
-    if (!allJumpStates.some((item) => item.id === jumpState)) {
+    if (!jumpStates.some((item) => item.id === jumpState)) {
       setJumpState("");
     }
-  }, [allJumpStates, jumpState]);
+  }, [jumpState, jumpStates]);
 
   const displayCoverage = useMemo(() => {
     if (!data) {
@@ -2069,7 +2236,6 @@ export default function App(): JSX.Element {
   const findPanelCopy = FIND_PANEL_COPY[language];
   const jumpSubnationalLabel = jumpCountry === "us" ? findPanelCopy.jumpState : findPanelCopy.jumpProvince;
   const jumpAnySubnationalLabel = jumpCountry === "us" ? findPanelCopy.jumpAnyState : findPanelCopy.jumpAnyProvince;
-  const jumpSubnationalSearchPlaceholder = jumpCountry === "us" ? findPanelCopy.searchState : findPanelCopy.searchProvince;
 
   useEffect(() => {
     document.title = t(language, "browserTitle");
@@ -3082,8 +3248,12 @@ export default function App(): JSX.Element {
   if (loading) {
     return (
       <div className="loading-screen">
-        <div className="loading-shell" />
-        <p>{t(language, "loading")}</p>
+        <img alt="Pink Hunter" className="loading-brand-logo" src={BRAND_LOGO_PATH} />
+        <div className="loading-progress-track" aria-hidden="true">
+          <div className="loading-progress-fill" />
+          <img alt="" className="loading-progress-flower" src={BRAND_MARK_PATH} />
+        </div>
+        <p className="loading-copy">{t(language, "loading")}</p>
       </div>
     );
   }
@@ -3260,7 +3430,6 @@ export default function App(): JSX.Element {
                           const nextCountry = event.target.value as JumpCountry["id"];
                           setJumpCountry(nextCountry);
                           setJumpState("");
-                          setJumpStateSearch("");
                         }}
                         value={jumpCountry}
                       >
@@ -3274,13 +3443,6 @@ export default function App(): JSX.Element {
 
                     <label className="jump-field">
                       <span>{jumpSubnationalLabel}</span>
-                      <input
-                        className="filter-search-input jump-search-input"
-                        onChange={(event) => setJumpStateSearch(event.target.value)}
-                        placeholder={jumpSubnationalSearchPlaceholder}
-                        type="search"
-                        value={jumpStateSearch}
-                      />
                       <select
                         className="jump-select"
                         onChange={(event) => {
@@ -3292,7 +3454,7 @@ export default function App(): JSX.Element {
                         <option value="">{jumpAnySubnationalLabel}</option>
                         {jumpStates.map((state) => (
                           <option key={state.id} value={state.id}>
-                            {state.label}
+                            {jumpStateDisplayLabel(language, state)}
                           </option>
                         ))}
                       </select>
@@ -3313,7 +3475,7 @@ export default function App(): JSX.Element {
 
                 <section className="show-block">
                   <div className="filters-heading">
-                    <h3>{findPanelCopy.filtersTitle}</h3>
+                    <h3>{t(language, "filtersSectionTitle")}</h3>
                     <div className="filter-actions">
                       <button className="clear-btn" onClick={selectAllFilters} type="button">
                         {t(language, "selectAll")}

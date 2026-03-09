@@ -57,18 +57,56 @@ body {
   min-height: 100%;
   display: grid;
   place-content: center;
-  gap: 1rem;
+  gap: 0.85rem;
   text-align: center;
+  padding: 1.5rem;
 }
 
-.loading-shell {
-  width: min(76vw, 320px);
-  height: 120px;
-  border-radius: 24px;
-  background: linear-gradient(100deg, #fff6f8 20%, #ffdfe9 45%, #fff6f8 80%);
-  background-size: 260% 100%;
-  animation: shimmer 1.4s infinite;
-  box-shadow: var(--shadow);
+.loading-brand-logo {
+  width: min(72vw, 16rem);
+  max-width: 16rem;
+  height: auto;
+  margin: 0 auto;
+  object-fit: contain;
+}
+
+.loading-progress-track {
+  position: relative;
+  width: min(72vw, 18rem);
+  height: 0.56rem;
+  margin: 0 auto;
+  border-radius: 999px;
+  overflow: visible;
+  background: rgba(232, 184, 205, 0.42);
+  box-shadow: inset 0 0 0 1px rgba(180, 103, 136, 0.12);
+}
+
+.loading-progress-fill {
+  width: 100%;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, #f6bfd7 0%, #ef8ab3 52%, #f6bfd7 100%);
+  background-size: 220% 100%;
+  animation: shimmer 1.4s linear infinite;
+}
+
+.loading-progress-flower {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 1.55rem;
+  height: 1.55rem;
+  transform: translate(-50%, -50%);
+  object-fit: contain;
+  animation: loadingFlowerTravel 2.35s ease-in-out infinite;
+}
+
+.loading-copy {
+  margin: 0;
+  color: #6a4b5b;
+  font-size: 0.86rem;
+  font-weight: 700;
+  line-height: 1.5;
 }
 
 @keyframes shimmer {
@@ -77,6 +115,18 @@ body {
   }
   to {
     background-position: -100% 0;
+  }
+}
+
+@keyframes loadingFlowerTravel {
+  0% {
+    left: 0;
+  }
+  50% {
+    left: 100%;
+  }
+  100% {
+    left: 0;
   }
 }
 
@@ -374,6 +424,7 @@ body {
   border: 1px solid rgba(139, 78, 103, 0.3);
   background: #fff;
   color: #5d3e4d;
+  -webkit-text-fill-color: #5d3e4d;
   font-weight: 700;
   font-size: 0.78rem;
 }
@@ -382,6 +433,7 @@ body {
   background: var(--rose-100);
   border-color: rgba(161, 70, 109, 0.52);
   color: #5d3e4d;
+  -webkit-text-fill-color: #5d3e4d;
 }
 
 .record-count {
@@ -426,6 +478,7 @@ body {
   border: 1px solid rgba(139, 78, 103, 0.34);
   background: #fff;
   color: #5d3e4d;
+  -webkit-text-fill-color: #5d3e4d;
   font-size: 0.74rem;
   font-weight: 700;
 }
@@ -503,6 +556,7 @@ body {
   border: 1px solid rgba(139, 78, 103, 0.3);
   background: #fff;
   color: #4e3341;
+  -webkit-text-fill-color: #4e3341;
   padding: 0.55rem 0.72rem;
   font: inherit;
   font-size: 0.78rem;
@@ -572,6 +626,7 @@ body {
   border: 1px solid rgba(139, 78, 103, 0.3);
   background: #fff;
   color: #5d3e4d;
+  -webkit-text-fill-color: #5d3e4d;
   font-size: 0.76rem;
   font-weight: 700;
 }
@@ -580,69 +635,76 @@ body {
   background: linear-gradient(180deg, #ffe5ef, #ffd7e7);
   border-color: rgba(163, 70, 112, 0.54);
   color: #5d3e4d;
+  -webkit-text-fill-color: #5d3e4d;
 }
 
 .species-chip {
-  color: #5b3d4b;
+  color: #5d3e4d;
+  -webkit-text-fill-color: #5d3e4d;
 }
 
 .species-chip.species-chip-cherry {
   background: #fff;
   border-color: rgba(239, 121, 173, 0.4);
-  color: #cf5f92;
 }
 
 .species-chip.species-chip-cherry.active {
   background: linear-gradient(180deg, rgba(239, 121, 173, 0.28), rgba(239, 121, 173, 0.18));
   border-color: rgba(239, 121, 173, 0.68);
+  color: #b24c7c;
+  -webkit-text-fill-color: #b24c7c;
   box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.36);
 }
 
 .species-chip.species-chip-plum {
   background: #fff;
   border-color: rgba(217, 118, 180, 0.4);
-  color: #b85a99;
 }
 
 .species-chip.species-chip-plum.active {
   background: linear-gradient(180deg, rgba(217, 118, 180, 0.28), rgba(217, 118, 180, 0.18));
   border-color: rgba(217, 118, 180, 0.68);
+  color: #99507f;
+  -webkit-text-fill-color: #99507f;
   box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.36);
 }
 
 .species-chip.species-chip-peach {
   background: #fff;
   border-color: rgba(243, 154, 136, 0.42);
-  color: #d8846e;
 }
 
 .species-chip.species-chip-peach.active {
   background: linear-gradient(180deg, rgba(243, 154, 136, 0.3), rgba(243, 154, 136, 0.2));
   border-color: rgba(243, 154, 136, 0.7);
+  color: #ba6c59;
+  -webkit-text-fill-color: #ba6c59;
   box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.36);
 }
 
 .species-chip.species-chip-magnolia {
   background: #fff;
   border-color: rgba(184, 134, 234, 0.42);
-  color: #8d63ca;
 }
 
 .species-chip.species-chip-magnolia.active {
   background: linear-gradient(180deg, rgba(184, 134, 234, 0.28), rgba(184, 134, 234, 0.18));
   border-color: rgba(184, 134, 234, 0.68);
+  color: #7451a6;
+  -webkit-text-fill-color: #7451a6;
   box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.36);
 }
 
 .species-chip.species-chip-crabapple {
   background: #fff;
   border-color: rgba(255, 111, 159, 0.4);
-  color: #da5b8a;
 }
 
 .species-chip.species-chip-crabapple.active {
   background: linear-gradient(180deg, rgba(255, 111, 159, 0.28), rgba(255, 111, 159, 0.18));
   border-color: rgba(255, 111, 159, 0.68);
+  color: #b34a72;
+  -webkit-text-fill-color: #b34a72;
   box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.36);
 }
 
