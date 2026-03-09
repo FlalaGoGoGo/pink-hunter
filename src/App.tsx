@@ -1,4 +1,5 @@
 import {
+  useCallback,
   useEffect,
   useMemo,
   useRef,
@@ -1081,51 +1082,6 @@ const SUBNATIONAL_LABELS: Partial<Record<Language, Record<string, string>>> = {
     YT: "育空地區"
   }
 };
-const CROSS_REGION_POPUP_COPY: Record<
-  Language,
-  { title: string; body: string; button: string }
-> = {
-  "en-US": {
-    title: "Covered in another state or province",
-    body: "This area is covered, but its tree data belongs to {region}.",
-    button: "Show {region} data"
-  },
-  "zh-CN": {
-    title: "这个区域属于其他州/省",
-    body: "这个区域已经覆盖，但它的树木数据属于 {region}。",
-    button: "显示 {region} 的数据"
-  },
-  "zh-TW": {
-    title: "這個區域屬於其他州／省",
-    body: "這個區域已經覆蓋，但它的樹木資料屬於 {region}。",
-    button: "顯示 {region} 的資料"
-  },
-  "es-ES": {
-    title: "Cubierto en otro estado o provincia",
-    body: "Esta zona está cubierta, pero sus datos de árboles pertenecen a {region}.",
-    button: "Mostrar datos de {region}"
-  },
-  "ko-KR": {
-    title: "다른 주 / 주(省)에 속한 지역입니다",
-    body: "이 지역은 이미 커버되어 있지만, 나무 데이터는 {region}에 속합니다.",
-    button: "{region} 데이터 보기"
-  },
-  "ja-JP": {
-    title: "別の州・省に属するエリアです",
-    body: "このエリアはカバー済みですが、樹木データは {region} に属しています。",
-    button: "{region} のデータを見る"
-  },
-  "fr-FR": {
-    title: "Zone couverte dans un autre État / province",
-    body: "Cette zone est couverte, mais ses données d'arbres appartiennent à {region}.",
-    button: "Afficher les données de {region}"
-  },
-  "vi-VN": {
-    title: "Khu vực này thuộc bang / tỉnh bang khác",
-    body: "Khu vực này đã được phủ, nhưng dữ liệu cây của nó thuộc về {region}.",
-    button: "Hiện dữ liệu của {region}"
-  }
-};
 const LANGUAGE_LIST_CONJUNCTION: Record<Language, string> = {
   "en-US": "and",
   "zh-CN": "和",
@@ -1350,11 +1306,6 @@ function boundsIntersect(left: BoundsTuple, right: BoundsTuple): boolean {
   const [[leftMinX, leftMinY], [leftMaxX, leftMaxY]] = normalizeBounds(left);
   const [[rightMinX, rightMinY], [rightMaxX, rightMaxY]] = normalizeBounds(right);
   return !(leftMaxX < rightMinX || rightMaxX < leftMinX || leftMaxY < rightMinY || rightMaxY < leftMinY);
-}
-
-function boundsContainPoint(bounds: BoundsTuple, lon: number, lat: number): boolean {
-  const [[minX, minY], [maxX, maxY]] = normalizeBounds(bounds);
-  return lon >= minX && lon <= maxX && lat >= minY && lat <= maxY;
 }
 
 function mergeTreeCollections(collections: TreeCollection[]): TreeCollection {
@@ -1600,18 +1551,6 @@ function jumpStateDisplayLabel(language: Language, state: JumpState): string {
   return state.label;
 }
 
-function formatAreaLabel(city: string): string {
-  const displayName = jurisdictionDisplayName(city).trim();
-  const stateCode = stateCodeForCity(city);
-  if (!stateCode) {
-    return displayName;
-  }
-  if (new RegExp(`(?:,\\s*|\\s+)${stateCode}$`, "i").test(displayName)) {
-    return displayName;
-  }
-  return `${displayName}, ${stateCode}`;
-}
-
 function treeDirectionsHref(coordinates: [number, number]): string {
   const [lon, lat] = coordinates;
   const destination = `${lat.toFixed(6)},${lon.toFixed(6)}`;
@@ -1662,16 +1601,6 @@ function formatCoverageScope(language: Language, regions: CoverageRegion[]): str
       return `${COUNTRY_LABELS[language][country]} (${formatLanguageList(language, labels)})`;
     })
     .join("; ");
-}
-
-function formatCrossRegionPopup(language: Language, region: CoverageRegion): { title: string; body: string; button: string } {
-  const regionName = regionLabel(language, region);
-  const copy = CROSS_REGION_POPUP_COPY[language];
-  return {
-    title: copy.title,
-    body: copy.body.split("{region}").join(regionName),
-    button: copy.button.split("{region}").join(regionName)
-  };
 }
 
 function createSelectedBloomImageData(): ImageData {
@@ -1824,8 +1753,6 @@ export default function App(): JSX.Element {
   const popupRef = useRef<MapLibrePopup | null>(null);
   const filteredFeaturesRef = useRef<TreeCollection["features"]>([]);
   const isDesktopRef = useRef(layoutMode === "desktop_split");
-  const activeRegionRef = useRef(activeRegion);
-  const pendingRegionFitRef = useRef<CoverageRegion | null>(null);
   const dragStateRef = useRef<{ startY: number; startHeight: number; dragging: boolean }>({
     startY: 0,
     startHeight: 0.4,
@@ -1897,10 +1824,6 @@ export default function App(): JSX.Element {
     mapRef.current?.resize();
   }, [isDesktop]);
 
-  useEffect(() => {
-    activeRegionRef.current = activeRegion;
-  }, [activeRegion]);
-
   const regionMetaById = useMemo(() => {
     const entries = (data?.meta.regions ?? []).map((regionMeta) => [regionMeta.id, regionMeta]);
     return new Map(entries as Array<[CoverageRegion, RegionMeta]>);
@@ -1908,24 +1831,6 @@ export default function App(): JSX.Element {
 
   const activeRegionMeta = regionMetaById.get(activeRegion) ?? null;
   const activeLanguageOption = LANGUAGE_OPTIONS.find((option) => option.id === language) ?? LANGUAGE_OPTIONS[0];
-
-  useEffect(() => {
-    const map = mapRef.current;
-    if (!mapReady || !map || pendingRegionFitRef.current !== activeRegion) {
-      return;
-    }
-
-    const bounds = preferredBoundsForRegion(activeRegion, activeRegionMeta);
-    if (!bounds) {
-      return;
-    }
-
-    map.fitBounds(bounds, {
-      padding: isDesktop ? 80 : 48,
-      duration: 700
-    });
-    pendingRegionFitRef.current = null;
-  }, [activeRegion, activeRegionMeta, isDesktop, mapReady]);
 
   useEffect(() => {
     if (!data) {
@@ -3132,41 +3037,6 @@ export default function App(): JSX.Element {
       padding: isDesktop ? 80 : 48,
       duration: 700
     });
-  }
-
-  function switchRegion(region: CoverageRegion): void {
-    const regionMeta = regionMetaById.get(region) ?? null;
-    if (!regionMeta?.available) {
-      return;
-    }
-
-    const bounds = preferredBoundsForRegion(region, regionMeta);
-
-    setSelectedTree(null);
-    setSelectedCoverage(null);
-    setJumpNotice(null);
-    setSelectedSpecies([...ALL_SPECIES]);
-    setSelectedOwnership(
-      regionMeta.ownership_groups && regionMeta.ownership_groups.length > 0
-        ? [...regionMeta.ownership_groups]
-        : [...ALL_OWNERSHIP]
-    );
-    setActiveRegion(region);
-    if (bounds) {
-      setViewportBounds(bounds);
-    }
-
-    const map = mapRef.current;
-    if (map && mapReady && bounds) {
-      map.fitBounds(bounds, {
-        padding: isDesktop ? 80 : 48,
-        duration: 700
-      });
-      pendingRegionFitRef.current = null;
-      return;
-    }
-
-    pendingRegionFitRef.current = region;
   }
 
   function handleJump(): void {
