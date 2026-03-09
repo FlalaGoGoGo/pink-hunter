@@ -4272,16 +4272,16 @@
       "area_type": "city",
       "bounds": [
         [
-          -117.3127,
-          32.9993
+          -117.30560248499995,
+          33.01848076700003
         ],
         [
-          -117.1957,
-          33.0874
+          -117.21060141899994,
+          33.081758887000035
         ]
       ],
       "region_hint": "ca",
-      "coverage_status": "untracked"
+      "coverage_status": "covered"
     },
     {
       "id": "ca:escalon",
@@ -6072,16 +6072,16 @@
       "area_type": "city",
       "bounds": [
         [
-          -117.8201,
-          33.4832
+          -117.79391042177072,
+          33.534506718009176
         ],
         [
-          -117.7319,
-          33.6066
+          -117.77002005467466,
+          33.54821966284249
         ]
       ],
       "region_hint": "ca",
-      "coverage_status": "untracked"
+      "coverage_status": "covered"
     },
     {
       "id": "ca:laguna-hills",
@@ -10112,16 +10112,16 @@
       "area_type": "city",
       "bounds": [
         [
-          -119.8598,
-          34.3521
+          -119.76306285599864,
+          34.397109457778775
         ],
         [
-          -119.6399,
-          34.4638
+          -119.64095479541423,
+          34.45370497406212
         ]
       ],
       "region_hint": "ca",
-      "coverage_status": "untracked"
+      "coverage_status": "covered"
     },
     {
       "id": "ca:santa-barbara-county",
@@ -10672,16 +10672,16 @@
       "area_type": "city",
       "bounds": [
         [
-          -117.2792,
-          32.9805
+          -117.27123635999999,
+          32.98225244100007
         ],
         [
-          -117.2387,
-          33.0075
+          -117.25679475799994,
+          33.00365310600006
         ]
       ],
       "region_hint": "ca",
-      "coverage_status": "untracked"
+      "coverage_status": "covered"
     },
     {
       "id": "ca:solano-county",
@@ -11582,6 +11582,26 @@
       ],
       "region_hint": "ca",
       "coverage_status": "untracked"
+    },
+    {
+      "id": "ca:ventura",
+      "country_id": "us",
+      "state_id": "ca",
+      "jurisdiction": "Ventura",
+      "display_name": "Ventura",
+      "area_type": "city",
+      "bounds": [
+        [
+          -119.35064334579569,
+          34.22341167871585
+        ],
+        [
+          -119.14868891319391,
+          34.311724245736485
+        ]
+      ],
+      "region_hint": "ca",
+      "coverage_status": "covered"
     },
     {
       "id": "ca:ventura-county",

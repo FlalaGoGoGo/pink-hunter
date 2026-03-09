@@ -1,6 +1,6 @@
 {
   "version": "v2",
-  "generated_at": "2026-03-09T18:44:46.480593Z",
+  "generated_at": "2026-03-09T20:31:46.270542+00:00",
   "default_region": "wa",
   "coverage_rule": "official_jurisdiction_boundary_only",
   "coverage_skipped_cities": [],
@@ -103,10 +103,10 @@
   "coverage_official_unavailable_skipped_cities": [
     "Vancouver WA"
   ],
-  "source_count": 93,
-  "total_records": 1746034,
-  "included_records": 517360,
-  "unknown_records": 677384,
+  "source_count": 98,
+  "total_records": 1862769,
+  "included_records": 520398,
+  "unknown_records": 745072,
   "regions": [
     {
       "id": "bc",
@@ -174,8 +174,8 @@
         ]
       ],
       "data_path": null,
-      "tree_count": 186489,
-      "city_count": 48,
+      "tree_count": 189527,
+      "city_count": 53,
       "cities": [
         "Anaheim",
         "Azusa",
@@ -187,12 +187,14 @@
         "Costa Mesa",
         "Cupertino",
         "El Segundo",
+        "Encinitas",
         "Fontana",
         "Fremont",
         "Fullerton",
         "Gilroy",
         "Irvine",
         "La Canada Flintridge",
+        "Laguna Beach",
         "Los Angeles",
         "Los Gatos",
         "Maywood",
@@ -218,31 +220,34 @@
         "San Jose",
         "San Mateo",
         "San Rafael",
+        "Santa Barbara",
         "Santa Clarita",
         "Santa Monica",
         "Saratoga",
+        "Solana Beach",
         "South San Francisco",
         "Sunnyvale",
+        "Ventura",
         "West Hollywood",
         "West Sacramento"
       ],
-      "raw_bytes": 96814804,
-      "gzip_bytes": 3973424,
+      "raw_bytes": 98391982,
+      "gzip_bytes": 4048669,
       "warning_level": "none",
       "city_split": null,
       "species_counts": {
-        "cherry": 16269,
-        "plum": 43238,
-        "peach": 4562,
-        "magnolia": 117925,
-        "crabapple": 4495
+        "cherry": 16551,
+        "plum": 43845,
+        "peach": 4600,
+        "magnolia": 120013,
+        "crabapple": 4518
       },
       "ownership_groups": [
         "public",
         "private"
       ],
-      "aggregate_raw_bytes": 96814804,
-      "aggregate_gzip_bytes": 3973424,
+      "aggregate_raw_bytes": 98391982,
+      "aggregate_gzip_bytes": 4048669,
       "aggregate_warning_level": "very_large",
       "largest_shard_raw_bytes": 20242132,
       "largest_shard_gzip_bytes": 770544,
@@ -250,8 +255,8 @@
       "area_split": {
         "strategy": "area_shard",
         "index_path": "/data/trees.ca.area-index.v2.json",
-        "area_count": 48,
-        "shard_count": 48,
+        "area_count": 53,
+        "shard_count": 53,
         "ready": true
       },
       "largest_shard_warning_level": "none"
@@ -1177,6 +1182,15 @@
       "note": "Integrated from the City of El Segundo public tree inventory feature layer and official jurisdiction boundary."
     },
     {
+      "name": "Trees in Encinitas",
+      "city": "Encinitas",
+      "endpoint": "https://www.encinitasca.gov/residents/parks-beaches-and-trails/trees-in-encinitas",
+      "last_edit_at": "2026-02-27T14:39:21.960000+00:00",
+      "records_fetched": 27484,
+      "records_included": 447,
+      "note": "Integrated from the official City of Encinitas public street and parks tree inventory layers and official jurisdiction boundary."
+    },
+    {
       "name": "Everett TreeKeeper Park Sites",
       "city": "Everett",
       "endpoint": "https://everettwa.treekeepersoftware.com/cffiles/grids.cfc",
@@ -1288,6 +1302,15 @@
       "records_fetched": 468,
       "records_included": 314,
       "note": "Integrated from the official City of La Canada Flintridge public tree inventory layer and official jurisdiction boundary."
+    },
+    {
+      "name": "City Maintained Tree Inventory",
+      "city": "Laguna Beach",
+      "endpoint": "https://www.lagunabeachcity.net/live-here/trees",
+      "last_edit_at": "",
+      "records_fetched": 2807,
+      "records_included": 9,
+      "note": "Integrated from the official City of Laguna Beach maintained tree inventory layer and official jurisdiction boundary."
     },
     {
       "name": "CLV Tree Sites",
@@ -1665,6 +1688,15 @@
       "records_included": 422
     },
     {
+      "name": "Tree Inventory (April 2017)",
+      "city": "Santa Barbara",
+      "endpoint": "https://www.santabarbaraca.gov/gov/depts/pw/urban_forest/default.asp",
+      "last_edit_at": "",
+      "records_fetched": 39101,
+      "records_included": 1249,
+      "note": "Integrated from the official City of Santa Barbara public tree inventory layer and official jurisdiction boundary."
+    },
+    {
       "name": "City of Santa Clarita i-Tree Benefits Canopy Cover",
       "city": "Santa Clarita",
       "endpoint": "https://services2.arcgis.com/yrktbS5Xw87hJQvs/arcgis/rest/services/CityofSantaClarita_iTreeBenefits_CanopyCover_WFL1/FeatureServer",
@@ -1732,6 +1764,15 @@
       "records_included": 856
     },
     {
+      "name": "City Maintained Tree Benefits July 2025",
+      "city": "Solana Beach",
+      "endpoint": "https://www.cityofsolanabeach.org/en/government/public-works/departments/tree-inventory",
+      "last_edit_at": "2025-07-25T18:51:44.108000+00:00",
+      "records_fetched": 12,
+      "records_included": 11,
+      "note": "Integrated from the official City of Solana Beach tree inventory application layer and official jurisdiction boundary."
+    },
+    {
       "name": "TreeKeeper Inventory",
       "city": "South San Francisco",
       "endpoint": "https://www.ssfca.gov/Departments/Parks-Recreation/Divisions/Parks-Division/Trees",
@@ -1773,6 +1814,15 @@
       "last_edit_at": "2026-03-03T14:49:54+00:00",
       "records_fetched": 34815,
       "records_included": 34369
+    },
+    {
+      "name": "ARBOR ACCESS - City Tree Inventory",
+      "city": "Ventura",
+      "endpoint": "https://www.cityofventura.ca.gov/1574/Street-Trees",
+      "last_edit_at": "",
+      "records_fetched": 47331,
+      "records_included": 1322,
+      "note": "Integrated from the official City of Ventura public tree inventory layer and official jurisdiction boundary."
     },
     {
       "name": "Tree Species (Parks trees database)",
@@ -1826,11 +1876,11 @@
     }
   ],
   "species_counts": {
-    "cherry": 173495,
-    "plum": 102519,
-    "peach": 7301,
-    "magnolia": 150175,
-    "crabapple": 83870
+    "cherry": 173777,
+    "plum": 103126,
+    "peach": 7339,
+    "magnolia": 152263,
+    "crabapple": 83893
   },
   "areas": [
     {
@@ -2016,6 +2066,20 @@
       "state_province": "CA"
     },
     {
+      "jurisdiction": "Encinitas",
+      "region": "ca",
+      "tree_count": 447,
+      "species_counts": {
+        "cherry": 5,
+        "plum": 116,
+        "peach": 9,
+        "magnolia": 304,
+        "crabapple": 13
+      },
+      "jurisdiction_type": "city",
+      "state_province": "CA"
+    },
+    {
       "jurisdiction": "Fontana",
       "region": "ca",
       "tree_count": 3732,
@@ -2095,6 +2159,20 @@
         "peach": 16,
         "magnolia": 160,
         "crabapple": 14
+      },
+      "jurisdiction_type": "city",
+      "state_province": "CA"
+    },
+    {
+      "jurisdiction": "Laguna Beach",
+      "region": "ca",
+      "tree_count": 9,
+      "species_counts": {
+        "cherry": 0,
+        "plum": 2,
+        "peach": 0,
+        "magnolia": 7,
+        "crabapple": 0
       },
       "jurisdiction_type": "city",
       "state_province": "CA"
@@ -2450,6 +2528,20 @@
       "state_province": "CA"
     },
     {
+      "jurisdiction": "Santa Barbara",
+      "region": "ca",
+      "tree_count": 1249,
+      "species_counts": {
+        "cherry": 12,
+        "plum": 240,
+        "peach": 13,
+        "magnolia": 974,
+        "crabapple": 10
+      },
+      "jurisdiction_type": "city",
+      "state_province": "CA"
+    },
+    {
       "jurisdiction": "Santa Clarita",
       "region": "ca",
       "tree_count": 1927,
@@ -2492,6 +2584,20 @@
       "state_province": "CA"
     },
     {
+      "jurisdiction": "Solana Beach",
+      "region": "ca",
+      "tree_count": 11,
+      "species_counts": {
+        "cherry": 0,
+        "plum": 5,
+        "peach": 1,
+        "magnolia": 5,
+        "crabapple": 0
+      },
+      "jurisdiction_type": "city",
+      "state_province": "CA"
+    },
+    {
       "jurisdiction": "South San Francisco",
       "region": "ca",
       "tree_count": 784,
@@ -2514,6 +2620,20 @@
         "plum": 0,
         "peach": 0,
         "magnolia": 8,
+        "crabapple": 0
+      },
+      "jurisdiction_type": "city",
+      "state_province": "CA"
+    },
+    {
+      "jurisdiction": "Ventura",
+      "region": "ca",
+      "tree_count": 1322,
+      "species_counts": {
+        "cherry": 265,
+        "plum": 244,
+        "peach": 15,
+        "magnolia": 798,
         "crabapple": 0
       },
       "jurisdiction_type": "city",

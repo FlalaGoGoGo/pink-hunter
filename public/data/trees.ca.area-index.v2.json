@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-03-09T18:27:37.695898+00:00",
+  "generated_at": "2026-03-09T20:31:21.055341+00:00",
   "region": "ca",
   "strategy": "area_shard",
   "items": [
@@ -548,6 +548,57 @@
       ]
     },
     {
+      "jurisdiction": "Encinitas",
+      "slug": "encinitas",
+      "display_name": "Encinitas",
+      "jurisdiction_type": "city",
+      "state_province": "CA",
+      "country": "United States",
+      "bounds": [
+        [
+          -117.30560248499995,
+          33.01848076700003
+        ],
+        [
+          -117.21060141899994,
+          33.081758887000035
+        ]
+      ],
+      "tree_count": 447,
+      "zip_codes": [
+        "None"
+      ],
+      "species_counts": {
+        "cherry": 5,
+        "plum": 116,
+        "peach": 9,
+        "magnolia": 304,
+        "crabapple": 13
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "encinitas-001",
+          "bounds": [
+            [
+              -117.30560248499995,
+              33.01848076700003
+            ],
+            [
+              -117.21060141899994,
+              33.081758887000035
+            ]
+          ],
+          "data_path": "/data/trees.ca.area.encinitas.v2.geojson",
+          "tree_count": 447,
+          "raw_bytes": 240962,
+          "gzip_bytes": 9989
+        }
+      ]
+    },
+    {
       "jurisdiction": "Fontana",
       "slug": "fontana",
       "display_name": "Fontana",
@@ -870,6 +921,57 @@
           "tree_count": 314,
           "raw_bytes": 187420,
           "gzip_bytes": 7564
+        }
+      ]
+    },
+    {
+      "jurisdiction": "Laguna Beach",
+      "slug": "laguna-beach",
+      "display_name": "Laguna Beach",
+      "jurisdiction_type": "city",
+      "state_province": "CA",
+      "country": "United States",
+      "bounds": [
+        [
+          -117.79391042177072,
+          33.534506718009176
+        ],
+        [
+          -117.77002005467466,
+          33.54821966284249
+        ]
+      ],
+      "tree_count": 9,
+      "zip_codes": [
+        "None"
+      ],
+      "species_counts": {
+        "cherry": 0,
+        "plum": 2,
+        "peach": 0,
+        "magnolia": 7,
+        "crabapple": 0
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "laguna-beach-001",
+          "bounds": [
+            [
+              -117.79391042177072,
+              33.534506718009176
+            ],
+            [
+              -117.77002005467466,
+              33.54821966284249
+            ]
+          ],
+          "data_path": "/data/trees.ca.area.laguna-beach.v2.geojson",
+          "tree_count": 9,
+          "raw_bytes": 4763,
+          "gzip_bytes": 602
         }
       ]
     },
@@ -2417,6 +2519,57 @@
       ]
     },
     {
+      "jurisdiction": "Santa Barbara",
+      "slug": "santa-barbara",
+      "display_name": "Santa Barbara",
+      "jurisdiction_type": "city",
+      "state_province": "CA",
+      "country": "United States",
+      "bounds": [
+        [
+          -119.76306285599864,
+          34.397109457778775
+        ],
+        [
+          -119.64095479541423,
+          34.45370497406212
+        ]
+      ],
+      "tree_count": 1249,
+      "zip_codes": [
+        "None"
+      ],
+      "species_counts": {
+        "cherry": 12,
+        "plum": 240,
+        "peach": 13,
+        "magnolia": 974,
+        "crabapple": 10
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "santa-barbara-001",
+          "bounds": [
+            [
+              -119.76306285599864,
+              34.397109457778775
+            ],
+            [
+              -119.64095479541423,
+              34.45370497406212
+            ]
+          ],
+          "data_path": "/data/trees.ca.area.santa-barbara.v2.geojson",
+          "tree_count": 1249,
+          "raw_bytes": 657852,
+          "gzip_bytes": 30796
+        }
+      ]
+    },
+    {
       "jurisdiction": "Santa Clarita",
       "slug": "santa-clarita",
       "display_name": "Santa Clarita",
@@ -2576,6 +2729,57 @@
       ]
     },
     {
+      "jurisdiction": "Solana Beach",
+      "slug": "solana-beach",
+      "display_name": "Solana Beach",
+      "jurisdiction_type": "city",
+      "state_province": "CA",
+      "country": "United States",
+      "bounds": [
+        [
+          -117.27123635999999,
+          32.98225244100007
+        ],
+        [
+          -117.25679475799994,
+          33.00365310600006
+        ]
+      ],
+      "tree_count": 11,
+      "zip_codes": [
+        "None"
+      ],
+      "species_counts": {
+        "cherry": 0,
+        "plum": 5,
+        "peach": 1,
+        "magnolia": 5,
+        "crabapple": 0
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "solana-beach-001",
+          "bounds": [
+            [
+              -117.27123635999999,
+              32.98225244100007
+            ],
+            [
+              -117.25679475799994,
+              33.00365310600006
+            ]
+          ],
+          "data_path": "/data/trees.ca.area.solana-beach.v2.geojson",
+          "tree_count": 11,
+          "raw_bytes": 6035,
+          "gzip_bytes": 646
+        }
+      ]
+    },
+    {
       "jurisdiction": "South San Francisco",
       "slug": "south-san-francisco",
       "display_name": "South San Francisco",
@@ -2675,6 +2879,57 @@
           "tree_count": 8,
           "raw_bytes": 5101,
           "gzip_bytes": 600
+        }
+      ]
+    },
+    {
+      "jurisdiction": "Ventura",
+      "slug": "ventura",
+      "display_name": "Ventura",
+      "jurisdiction_type": "city",
+      "state_province": "CA",
+      "country": "United States",
+      "bounds": [
+        [
+          -119.35064334579569,
+          34.22341167871585
+        ],
+        [
+          -119.14868891319391,
+          34.311724245736485
+        ]
+      ],
+      "tree_count": 1322,
+      "zip_codes": [
+        "None"
+      ],
+      "species_counts": {
+        "cherry": 265,
+        "plum": 244,
+        "peach": 15,
+        "magnolia": 798,
+        "crabapple": 0
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "ventura-001",
+          "bounds": [
+            [
+              -119.35064334579569,
+              34.22341167871585
+            ],
+            [
+              -119.14868891319391,
+              34.311724245736485
+            ]
+          ],
+          "data_path": "/data/trees.ca.area.ventura.v2.geojson",
+          "tree_count": 1322,
+          "raw_bytes": 667566,
+          "gzip_bytes": 33212
         }
       ]
     },

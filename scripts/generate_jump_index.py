@@ -29,6 +29,10 @@ US_PLACE_LAYER_URL = "https://tigerweb.geo.census.gov/arcgis/rest/services/TIGER
 US_COUNTY_LAYER_URL = "https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/State_County/MapServer/55/query"
 
 REGION_COUNTRY: dict[str, str] = {
+    "az": "us",
+    "ga": "us",
+    "il": "us",
+    "mi": "us",
     "wa": "us",
     "ca": "us",
     "co": "us",
@@ -49,6 +53,10 @@ REGION_COUNTRY: dict[str, str] = {
 }
 
 REGION_FULL_NAMES: dict[str, str] = {
+    "az": "Arizona",
+    "ga": "Georgia",
+    "il": "Illinois",
+    "mi": "Michigan",
     "wa": "Washington",
     "ca": "California",
     "co": "Colorado",
@@ -571,7 +579,12 @@ def build_jump_index(data_dir: Path) -> dict[str, Any]:
     for state_meta in US_STATE_META_BY_FIPS.values():
         state_id = state_meta["code"]
         state_fips = next((fips for fips, meta_item in US_STATE_META_BY_FIPS.items() if meta_item["code"] == state_id), None)
-        state_bounds = fetch_us_state_extent(state_fips) if state_fips else None
+        state_bounds = None
+        if state_fips:
+            try:
+                state_bounds = fetch_us_state_extent(state_fips)
+            except requests.RequestException:
+                state_bounds = None
         if not state_bounds:
             state_bounds = union_bounds(
                 [
