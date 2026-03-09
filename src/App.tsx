@@ -183,7 +183,6 @@ const REGION_CITY_OVERRIDES: Partial<Record<string, CoverageRegion>> = {
   Concord: "ca",
   Fremont: "ca",
   Milpitas: "ca",
-  Newark: "nj",
   "Palo Alto": "ca",
   Berkeley: "ca",
   Cupertino: "ca",
@@ -1512,6 +1511,15 @@ function regionForCity(city: string): CoverageRegion {
   if (city.endsWith(" CO") || city.endsWith(", CO")) {
     return "co";
   }
+  if (city.endsWith(" NV") || city.endsWith(", NV")) {
+    return "nv";
+  }
+  if (city.endsWith(" TX") || city.endsWith(", TX")) {
+    return "tx";
+  }
+  if (city.endsWith(" UT") || city.endsWith(", UT")) {
+    return "ut";
+  }
   if (city.endsWith(" CA") || city.endsWith(", CA")) {
     return "ca";
   }
@@ -1522,6 +1530,10 @@ function regionForCity(city: string): CoverageRegion {
 }
 
 function stateCodeForCity(city: string): string {
+  const directMatch = city.match(/(?:,\s*|\s+)(DC|BC|VA|MD|NJ|NY|PA|MA|ON|QC|OR|CO|CA|WA)$/i);
+  if (directMatch) {
+    return directMatch[1].toUpperCase();
+  }
   const region = regionForCity(city);
   if (region === "dc") {
     return "DC";
@@ -1562,7 +1574,7 @@ function stateCodeForCity(city: string): string {
   if (region === "ca") {
     return "CA";
   }
-  return "WA";
+  return "";
 }
 
 function jurisdictionDisplayName(city: string): string {
@@ -1591,10 +1603,22 @@ function jumpStateDisplayLabel(language: Language, state: JumpState): string {
 function formatAreaLabel(city: string): string {
   const displayName = jurisdictionDisplayName(city).trim();
   const stateCode = stateCodeForCity(city);
+  if (!stateCode) {
+    return displayName;
+  }
   if (new RegExp(`(?:,\\s*|\\s+)${stateCode}$`, "i").test(displayName)) {
     return displayName;
   }
   return `${displayName}, ${stateCode}`;
+}
+
+function treeDirectionsHref(coordinates: [number, number]): string {
+  const [lon, lat] = coordinates;
+  const destination = `${lat.toFixed(6)},${lon.toFixed(6)}`;
+  if (typeof navigator !== "undefined" && /iPad|iPhone|iPod|Macintosh/i.test(navigator.userAgent)) {
+    return `https://maps.apple.com/?daddr=${destination}&dirflg=d`;
+  }
+  return `https://www.google.com/maps/dir/?api=1&destination=${destination}`;
 }
 
 function hasKnownZipCode(zipCode: string | null): zipCode is string {
@@ -1775,7 +1799,7 @@ export default function App(): JSX.Element {
   const [jumpNotice, setJumpNotice] = useState<JumpNotice | null>(null);
   const [languageMenuOpen, setLanguageMenuOpen] = useState(false);
   const [sheetHeight, setSheetHeight] = useState<number>(0.4);
-  const [activePanel, setActivePanel] = useState<"filters" | "guide" | "about">("filters");
+  const [activePanel, setActivePanel] = useState<"details" | "filters" | "guide" | "about">("filters");
   const [aboutSourcesPage, setAboutSourcesPage] = useState(0);
   const [aboutSourcesSearchQuery, setAboutSourcesSearchQuery] = useState("");
   const [aboutRegionSummaryPage, setAboutRegionSummaryPage] = useState(0);
@@ -2138,18 +2162,81 @@ export default function App(): JSX.Element {
       );
   }, [data, jumpCountry, language]);
 
+  const jumpStateById = useMemo(() => {
+    if (!data) {
+      return new Map<string, JumpState>();
+    }
+    return new Map(data.jumpIndex.states.map((state) => [state.id, state]));
+  }, [data]);
+
+  const areaStateCodeByName = useMemo(() => {
+    const next = new Map<string, string>();
+
+    data?.jumpIndex.areas.forEach((area) => {
+      const state = jumpStateById.get(area.state_id);
+      if (!state) {
+        return;
+      }
+      next.set(area.jurisdiction, state.code.toUpperCase());
+      next.set(area.display_name, state.code.toUpperCase());
+    });
+
+    (data?.meta.areas ?? []).forEach((area) => {
+      if (!area.state_province) {
+        return;
+      }
+      next.set(area.jurisdiction, area.state_province.toUpperCase());
+      const displayName = jurisdictionDisplayName(area.jurisdiction);
+      next.set(displayName, area.state_province.toUpperCase());
+    });
+
+    Object.values(regionAreaIndexCache).forEach((index) => {
+      index?.items.forEach((item) => {
+        next.set(item.jurisdiction, item.state_province.toUpperCase());
+        next.set(item.display_name, item.state_province.toUpperCase());
+      });
+    });
+
+    return next;
+  }, [data, jumpStateById, regionAreaIndexCache]);
+
+  const resolvedStateCodeForArea = useCallback(
+    (city: string) => {
+      const directMatch = city.match(/(?:,\s*|\s+)(DC|BC|VA|MD|NJ|NY|PA|MA|ON|QC|OR|CO|CA|WA|TX|NV|UT)$/i);
+      if (directMatch) {
+        return directMatch[1].toUpperCase();
+      }
+      const displayName = jurisdictionDisplayName(city).trim();
+      return areaStateCodeByName.get(city) ?? areaStateCodeByName.get(displayName) ?? stateCodeForCity(city);
+    },
+    [areaStateCodeByName]
+  );
+
+  const formatAreaLabelResolved = useCallback(
+    (city: string) => {
+      const displayName = jurisdictionDisplayName(city).trim();
+      const stateCode = resolvedStateCodeForArea(city);
+      if (!stateCode) {
+        return displayName;
+      }
+      if (new RegExp(`(?:,\\s*|\\s+)${stateCode}$`, "i").test(displayName)) {
+        return displayName;
+      }
+      return `${displayName}, ${stateCode}`;
+    },
+    [resolvedStateCodeForArea]
+  );
+
   useEffect(() => {
     if (!data) {
       return;
     }
-    const fallbackCountry = REGION_COUNTRY_KEYS[activeRegion];
+    const fallbackCountry = REGION_COUNTRY_KEYS[initialUrlState.region];
     setJumpCountry((current) =>
       current && data.jumpIndex.countries.some((item) => item.id === current) ? current : fallbackCountry
     );
-    setJumpState((current) =>
-      current && data.jumpIndex.states.some((item) => item.id === current) ? current : activeRegion
-    );
-  }, [activeRegion, data]);
+    setJumpState((current) => (current && data.jumpIndex.states.some((item) => item.id === current) ? current : ""));
+  }, [data, initialUrlState.region]);
 
   useEffect(() => {
     if (!jumpState) {
@@ -2200,7 +2287,13 @@ export default function App(): JSX.Element {
   }, [allOwnershipOptions, currentTrees]);
 
   const filteredCollection = useMemo(() => toTreeCollection(filteredFeatures), [filteredFeatures]);
-  const showMapLoadingOverlay = activeRegionPending && filteredFeatures.length === 0;
+  const showMapLoadingOverlay = false;
+
+  useEffect(() => {
+    if (!selectedTree && activePanel === "details") {
+      setActivePanel("filters");
+    }
+  }, [activePanel, selectedTree]);
 
   useEffect(() => {
     filteredFeaturesRef.current = filteredFeatures;
@@ -2252,10 +2345,10 @@ export default function App(): JSX.Element {
     }
     return [...data.meta.sources].sort(
       (left, right) =>
-        SORT_COLLATOR.compare(formatAreaLabel(left.city), formatAreaLabel(right.city)) ||
+        SORT_COLLATOR.compare(formatAreaLabelResolved(left.city), formatAreaLabelResolved(right.city)) ||
         SORT_COLLATOR.compare(left.name, right.name)
     );
-  }, [data]);
+  }, [data, formatAreaLabelResolved]);
 
   const normalizedAboutSourceSearchQuery = aboutSourcesSearchQuery.trim().toLowerCase();
 
@@ -2267,7 +2360,7 @@ export default function App(): JSX.Element {
     return aboutSources.filter((source) => {
       const searchHaystack = [
         source.city,
-        formatAreaLabel(source.city),
+        formatAreaLabelResolved(source.city),
         source.name,
         source.endpoint,
         sourceEndpointSearchText(source.endpoint)
@@ -2277,7 +2370,7 @@ export default function App(): JSX.Element {
 
       return searchHaystack.includes(normalizedAboutSourceSearchQuery);
     });
-  }, [aboutSources, normalizedAboutSourceSearchQuery]);
+  }, [aboutSources, formatAreaLabelResolved, normalizedAboutSourceSearchQuery]);
 
   const aboutSourcePageCount = Math.max(1, Math.ceil(filteredAboutSources.length / ABOUT_SOURCES_PAGE_SIZE));
 
@@ -2390,7 +2483,7 @@ export default function App(): JSX.Element {
     return (data.meta.areas ?? [])
       .filter((area) => area.tree_count > 0)
       .map((area) => {
-        const label = formatAreaLabel(area.jurisdiction);
+        const label = formatAreaLabelResolved(area.jurisdiction);
         return {
           jurisdiction: area.jurisdiction,
           label,
@@ -2402,7 +2495,7 @@ export default function App(): JSX.Element {
         };
       })
       .sort((left, right) => SORT_COLLATOR.compare(left.sortLabel, right.sortLabel));
-  }, [data, language]);
+  }, [data, formatAreaLabelResolved, language]);
 
   const normalizedAboutAreaSummarySearchQuery = aboutAreaSummarySearchQuery.trim().toLowerCase();
 
@@ -2687,21 +2780,8 @@ export default function App(): JSX.Element {
 
             const coverageStatus = String(coverageProperties.status ?? "official_unavailable");
             if (coverageStatus === "covered") {
-              const targetRegion = regionForCity(String(jurisdiction));
-              if (targetRegion === activeRegionRef.current) {
-                return;
-              }
-
               setSelectedTree(null);
-              setSelectedCoverage({
-                coordinates: [event.lngLat.lng, event.lngLat.lat],
-                properties: {
-                  id: String(coverageProperties.id ?? `coverage-${jurisdiction}`),
-                  status: "covered",
-                  jurisdiction: String(jurisdiction),
-                  note: targetRegion
-                }
-              });
+              setSelectedCoverage(null);
               return;
             }
 
@@ -2733,9 +2813,13 @@ export default function App(): JSX.Element {
             properties: matched.properties
           });
           setSelectedCoverage(null);
+          setJumpNotice(null);
           if (!isDesktopRef.current) {
             setSheetHeight(0.72);
-            setActivePanel("filters");
+            setActivePanel("details");
+          }
+          if (isDesktopRef.current) {
+            setActivePanel("details");
           }
         });
 
@@ -2769,10 +2853,6 @@ export default function App(): JSX.Element {
         map.on("moveend", () => {
           const center = map.getCenter();
           const bounds = map.getBounds();
-          const availableRegions = (data?.meta.regions ?? []).filter((region) => region.available);
-          const centerRegion = availableRegions.find((region) =>
-            boundsContainPoint(region.bounds, center.lng, center.lat)
-          );
 
           setViewportBounds([
             [bounds.getWest(), bounds.getSouth()],
@@ -2783,10 +2863,6 @@ export default function App(): JSX.Element {
             lat: Number(center.lat.toFixed(5)),
             lon: Number(center.lng.toFixed(5))
           });
-
-          if (centerRegion && activeRegionRef.current !== centerRegion.id) {
-            setActiveRegion(centerRegion.id);
-          }
         });
 
         if (!initialUrlState.hasViewportParam) {
@@ -2900,10 +2976,7 @@ export default function App(): JSX.Element {
 
     if (selectedTree) {
       const [lon, lat] = selectedTree.coordinates;
-      const areaDisplayName = formatAreaLabel(selectedTree.properties.city);
-      const areaBadge = `<span class="tree-area-type-badge ${areaTypeClassName(selectedTree.properties.city)}">${escapeHtml(
-        areaTypeLabel(language, selectedTree.properties.city)
-      )}</span>`;
+      const areaDisplayName = formatAreaLabelResolved(selectedTree.properties.city);
       const zipCodeLine = hasKnownZipCode(selectedTree.properties.zip_code)
         ? `<p><strong>${escapeHtml(t(language, "zipCode"))}:</strong> ${escapeHtml(selectedTree.properties.zip_code)}</p>`
         : "";
@@ -2915,7 +2988,7 @@ export default function App(): JSX.Element {
           <h4>${escapeHtml(speciesLabel(language, selectedTree.properties.species_group))}</h4>
           ${subtypeLine}
           <p>${escapeHtml(selectedTree.properties.scientific_name)}</p>
-          <p><strong>${escapeHtml(t(language, "city"))}:</strong> <span class="area-value-inline">${escapeHtml(areaDisplayName)}${areaBadge}</span></p>
+          <p><strong>${escapeHtml(t(language, "city"))}:</strong> ${escapeHtml(areaDisplayName)}</p>
           ${zipCodeLine}
           <p><strong>${escapeHtml(t(language, "coordinates"))}:</strong> ${lon.toFixed(5)}, ${lat.toFixed(5)}</p>
         </div>
@@ -2933,9 +3006,13 @@ export default function App(): JSX.Element {
         .addTo(map);
 
       popup.on("close", () => {
-        setSelectedTree((current) =>
-          current && current.properties.id === selectedTree.properties.id ? null : current
-        );
+        setSelectedTree((current) => {
+          const next = current && current.properties.id === selectedTree.properties.id ? null : current;
+          if (!next) {
+            setActivePanel("filters");
+          }
+          return next;
+        });
       });
 
       popupRef.current = popup;
@@ -2946,40 +3023,20 @@ export default function App(): JSX.Element {
       return;
     }
 
-    const coverageAreaDisplayName = formatAreaLabel(selectedCoverage.properties.jurisdiction);
+    const coverageAreaDisplayName = formatAreaLabelResolved(selectedCoverage.properties.jurisdiction);
     const coverageAreaBadge = `<span class="coverage-area-type-badge ${areaTypeClassName(
       selectedCoverage.properties.jurisdiction
     )}">${escapeHtml(areaTypeLabel(language, selectedCoverage.properties.jurisdiction))}</span>`;
-    const crossRegionTarget =
-      selectedCoverage.properties.status === "covered"
-        ? regionForCity(selectedCoverage.properties.jurisdiction)
-        : null;
-    const popupHtml =
-      selectedCoverage.properties.status === "covered" && crossRegionTarget
-        ? (() => {
-            const crossRegionCopy = formatCrossRegionPopup(language, crossRegionTarget);
-            return `
-              <div class="coverage-popup-card coverage-popup-card-covered">
-                <h4>${escapeHtml(coverageAreaDisplayName)}</h4>
-                <div class="coverage-popup-meta">${coverageAreaBadge}</div>
-                <p class="coverage-popup-eyebrow">${escapeHtml(crossRegionCopy.title)}</p>
-                <p>${escapeHtml(crossRegionCopy.body)}</p>
-                <button class="coverage-popup-action" data-region-switch="${escapeHtml(crossRegionTarget)}" type="button">
-                  ${escapeHtml(crossRegionCopy.button)}
-                </button>
-              </div>
-            `;
-          })()
-        : `
-            <div class="coverage-popup-card">
-              <h4>${escapeHtml(coverageAreaDisplayName)}</h4>
-              <div class="coverage-popup-meta">${coverageAreaBadge}</div>
-              <p class="coverage-popup-eyebrow">${escapeHtml(t(language, "officialUnavailablePopupTitle"))}</p>
-              <p>${escapeHtml(t(language, "officialUnavailablePopupBody"))}</p>
-              <p>${escapeHtml(t(language, "officialUnavailablePopupFoot"))}</p>
-              <p>${escapeHtml(t(language, "officialUnavailablePopupContact"))}</p>
-            </div>
-          `;
+    const popupHtml = `
+      <div class="coverage-popup-card">
+        <h4>${escapeHtml(coverageAreaDisplayName)}</h4>
+        <div class="coverage-popup-meta">${coverageAreaBadge}</div>
+        <p class="coverage-popup-eyebrow">${escapeHtml(t(language, "officialUnavailablePopupTitle"))}</p>
+        <p>${escapeHtml(t(language, "officialUnavailablePopupBody"))}</p>
+        <p>${escapeHtml(t(language, "officialUnavailablePopupFoot"))}</p>
+        <p>${escapeHtml(t(language, "officialUnavailablePopupContact"))}</p>
+      </div>
+    `;
 
     const popup = new runtime.maplibre.Popup({
       closeButton: true,
@@ -2998,20 +3055,8 @@ export default function App(): JSX.Element {
       );
     });
 
-    if (selectedCoverage.properties.status === "covered" && crossRegionTarget) {
-      const switchButton = popup.getElement().querySelector<HTMLButtonElement>("[data-region-switch]");
-      switchButton?.addEventListener("click", () => {
-        setSelectedCoverage(null);
-        if (!isDesktopRef.current) {
-          setSheetHeight(0.72);
-          setActivePanel("filters");
-        }
-        switchRegion(crossRegionTarget);
-      });
-    }
-
     popupRef.current = popup;
-  }, [activeRegion, language, mapRuntime, selectedCoverage, selectedTree]);
+  }, [language, mapRuntime, selectedCoverage, selectedTree]);
 
   useEffect(() => {
     if (!data) {
@@ -3132,15 +3177,11 @@ export default function App(): JSX.Element {
     const selectedJumpState = jumpState ? jumpStates.find((item) => item.id === jumpState) ?? null : null;
     const selectedJumpCountry = jumpCountries.find((item) => item.id === jumpCountry) ?? null;
     const targetBounds = selectedJumpState?.bounds ?? selectedJumpCountry?.bounds ?? null;
-    const targetRegion = selectedJumpState?.region_hint ?? null;
 
     setSelectedTree(null);
     setJumpNotice(null);
     setSelectedCoverage(null);
 
-    if (targetRegion) {
-      setActiveRegion(targetRegion);
-    }
     fitMapToBounds(targetBounds);
 
     if (selectedJumpState && !selectedJumpState.region_hint) {
@@ -3354,6 +3395,15 @@ export default function App(): JSX.Element {
           </section>
 
           <div className="sheet-toolbar">
+            {selectedTree && (
+              <button
+                className={activePanel === "details" ? "tab-btn active" : "tab-btn"}
+                onClick={() => setActivePanel("details")}
+                type="button"
+              >
+                {t(language, "showDetails")}
+              </button>
+            )}
             <button
               className={activePanel === "filters" ? "tab-btn active" : "tab-btn"}
               onClick={() => setActivePanel("filters")}
@@ -3380,7 +3430,63 @@ export default function App(): JSX.Element {
             </div>
           </div>
 
-          {activePanel === "filters" ? (
+          {activePanel === "details" && selectedTree ? (
+            <article className="tree-card selected details-card">
+              <header className="selected-tree-header">
+                <h4>{speciesLabel(language, selectedTree.properties.species_group)}</h4>
+                <img
+                  alt={`${speciesLabel(language, selectedTree.properties.species_group)} icon`}
+                  className="selected-tree-species-icon"
+                  loading="lazy"
+                  src={SPECIES_ICON_ART[selectedTree.properties.species_group]}
+                />
+              </header>
+              {selectedTree.properties.subtype_name && (
+                <p>
+                  <strong>{t(language, "subtype")}: </strong>
+                  {selectedTree.properties.subtype_name}
+                </p>
+              )}
+              <p>
+                <strong>{t(language, "scientific")}: </strong>
+                {selectedTree.properties.scientific_name}
+              </p>
+              <p>
+                <strong>{t(language, "common")}: </strong>
+                {selectedTree.properties.common_name ?? t(language, "unknown")}
+              </p>
+              <p>
+                <strong>{t(language, "city")}: </strong>
+                {formatAreaLabelResolved(selectedTree.properties.city)}
+              </p>
+              {hasKnownZipCode(selectedTree.properties.zip_code) && (
+                <p>
+                  <strong>{t(language, "zipCode")}: </strong>
+                  {selectedTree.properties.zip_code}
+                </p>
+              )}
+              <p>
+                <strong>{t(language, "ownership")}: </strong>
+                {ownershipLabel(language, selectedTree.properties.ownership)} ({selectedTree.properties.ownership_raw})
+              </p>
+              <p>
+                <strong>{t(language, "coordinates")}: </strong>
+                {selectedTree.coordinates[0].toFixed(5)}, {selectedTree.coordinates[1].toFixed(5)}
+              </p>
+              <p>
+                <strong>{t(language, "source")}: </strong>
+                {selectedTree.properties.source_department}
+              </p>
+              <a
+                className="detail-route-btn"
+                href={treeDirectionsHref(selectedTree.coordinates)}
+                rel="noreferrer"
+                target="_blank"
+              >
+                {t(language, "navigateToTree")}
+              </a>
+            </article>
+          ) : activePanel === "filters" ? (
             <>
               <section className="filters show-panel">
                 <section className="show-block">
@@ -3535,62 +3641,6 @@ export default function App(): JSX.Element {
                 </div>
               ) : (
                 <p className="selection-hint">{t(language, "tapTreeHint")}</p>
-              )}
-
-              {selectedTree && (
-                <article className="tree-card selected">
-                  <header className="selected-tree-header">
-                    <h4>{speciesLabel(language, selectedTree.properties.species_group)}</h4>
-                    <img
-                      alt={`${speciesLabel(language, selectedTree.properties.species_group)} icon`}
-                      className="selected-tree-species-icon"
-                      loading="lazy"
-                      src={SPECIES_ICON_ART[selectedTree.properties.species_group]}
-                    />
-                  </header>
-                  {selectedTree.properties.subtype_name && (
-                    <p>
-                      <strong>{t(language, "subtype")}: </strong>
-                      {selectedTree.properties.subtype_name}
-                    </p>
-                  )}
-                  <p>
-                    <strong>{t(language, "scientific")}: </strong>
-                    {selectedTree.properties.scientific_name}
-                  </p>
-                  <p>
-                    <strong>{t(language, "common")}: </strong>
-                    {selectedTree.properties.common_name ?? t(language, "unknown")}
-                  </p>
-                  <p>
-                    <strong>{t(language, "city")}: </strong>
-                    <span className="area-value-inline">
-                      <span>{formatAreaLabel(selectedTree.properties.city)}</span>
-                      <span className={`tree-area-type-badge ${areaTypeClassName(selectedTree.properties.city)}`}>
-                        {areaTypeLabel(language, selectedTree.properties.city)}
-                      </span>
-                    </span>
-                  </p>
-                  {hasKnownZipCode(selectedTree.properties.zip_code) && (
-                    <p>
-                      <strong>{t(language, "zipCode")}: </strong>
-                      {selectedTree.properties.zip_code}
-                    </p>
-                  )}
-                  <p>
-                    <strong>{t(language, "ownership")}: </strong>
-                    {ownershipLabel(language, selectedTree.properties.ownership)} (
-                    {selectedTree.properties.ownership_raw})
-                  </p>
-                  <p>
-                    <strong>{t(language, "coordinates")}: </strong>
-                    {selectedTree.coordinates[0].toFixed(5)}, {selectedTree.coordinates[1].toFixed(5)}
-                  </p>
-                  <p>
-                    <strong>{t(language, "source")}: </strong>
-                    {selectedTree.properties.source_department}
-                  </p>
-                </article>
               )}
             </>
           ) : activePanel === "guide" ? (
@@ -3828,7 +3878,7 @@ export default function App(): JSX.Element {
                           <div className="about-source-head">
                             <div className="about-source-title-row">
                               <strong>
-                                {formatAreaLabel(source.city)}: {source.name}
+                                {formatAreaLabelResolved(source.city)}: {source.name}
                               </strong>
                               {isHttpUrl(source.endpoint) ? (
                                 <a

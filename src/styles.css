@@ -876,6 +876,33 @@ body {
   background: linear-gradient(180deg, #fff9fc, #fff2f7);
 }
 
+.details-card {
+  display: grid;
+  gap: 0.18rem;
+}
+
+.detail-route-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2.5rem;
+  margin-top: 0.55rem;
+  padding: 0.5rem 0.9rem;
+  border-radius: 999px;
+  border: 1px solid rgba(161, 70, 109, 0.24);
+  background: linear-gradient(180deg, #ffe7f0, #ffd7e7);
+  color: #6e304c;
+  -webkit-text-fill-color: #6e304c;
+  font-size: 0.8rem;
+  font-weight: 800;
+  text-decoration: none;
+  text-align: center;
+}
+
+.detail-route-btn:hover {
+  background: linear-gradient(180deg, #ffdce9, #ffcfdf);
+}
+
 .badge {
   display: inline-block;
   min-height: 24px;
