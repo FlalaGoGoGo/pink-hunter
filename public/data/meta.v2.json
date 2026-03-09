@@ -1,6 +1,6 @@
 {
   "version": "v2",
-  "generated_at": "2026-03-08T21:27:38.921978+00:00",
+  "generated_at": "2026-03-09T00:17:50.597919+00:00",
   "default_region": "wa",
   "coverage_rule": "official_jurisdiction_boundary_only",
   "coverage_skipped_cities": [],
@@ -104,10 +104,10 @@
   "coverage_official_unavailable_skipped_cities": [
     "Vancouver WA"
   ],
-  "source_count": 65,
-  "total_records": 1633193,
-  "included_records": 468423,
-  "unknown_records": 657345,
+  "source_count": 73,
+  "total_records": 1674988,
+  "included_records": 486043,
+  "unknown_records": 661570,
   "regions": [
     {
       "id": "bc",
@@ -167,7 +167,7 @@
       "bounds": [
         [
           -122.57296798402149,
-          2.080308854912202e-06
+          5.088887490341627e-14
         ],
         [
           2.0301611073187027e-05,
@@ -175,14 +175,20 @@
         ]
       ],
       "data_path": null,
-      "tree_count": 140064,
-      "city_count": 25,
+      "tree_count": 157684,
+      "city_count": 33,
       "cities": [
+        "Anaheim",
+        "Azusa",
+        "Bell",
         "Berkeley",
+        "Beverly Hills",
         "Burlingame",
         "Concord",
         "Cupertino",
+        "El Segundo",
         "Fremont",
+        "Fullerton",
         "Gilroy",
         "Irvine",
         "Los Angeles",
@@ -192,9 +198,11 @@
         "Mountain View",
         "Oakland",
         "Palo Alto",
+        "Pasadena",
         "Sacramento",
         "Salinas",
         "San Diego",
+        "San Fernando",
         "San Francisco",
         "San Jose",
         "San Mateo",
@@ -204,23 +212,23 @@
         "Sunnyvale",
         "West Sacramento"
       ],
-      "raw_bytes": 71771493,
-      "gzip_bytes": 3027438,
+      "raw_bytes": 81357888,
+      "gzip_bytes": 3381377,
       "warning_level": "none",
       "city_split": null,
       "species_counts": {
-        "cherry": 16070,
-        "plum": 39426,
-        "peach": 4142,
-        "magnolia": 76101,
-        "crabapple": 4325
+        "cherry": 16160,
+        "plum": 39885,
+        "peach": 4214,
+        "magnolia": 93089,
+        "crabapple": 4336
       },
       "ownership_groups": [
         "public",
         "private"
       ],
-      "aggregate_raw_bytes": 71771493,
-      "aggregate_gzip_bytes": 3027438,
+      "aggregate_raw_bytes": 81357888,
+      "aggregate_gzip_bytes": 3381377,
       "aggregate_warning_level": "very_large",
       "largest_shard_raw_bytes": 20242132,
       "largest_shard_gzip_bytes": 770544,
@@ -228,8 +236,8 @@
       "area_split": {
         "strategy": "area_shard",
         "index_path": "/data/trees.ca.area-index.v2.json",
-        "area_count": 25,
-        "shard_count": 25,
+        "area_count": 33,
+        "shard_count": 33,
         "ready": true
       },
       "largest_shard_warning_level": "none"
@@ -993,6 +1001,15 @@
   ],
   "sources": [
     {
+      "name": "City of Anaheim Public Works Tree Sites",
+      "city": "Anaheim",
+      "endpoint": "https://services2.arcgis.com/yrktbS5Xw87hJQvs/arcgis/rest/services/WebMap_Anaheim_AllLayers_WFL1/FeatureServer",
+      "last_edit_at": "2025-01-28T15:27:20.467000+00:00",
+      "records_fetched": 4828,
+      "records_included": 4778,
+      "note": "Integrated from the City of Anaheim public works tree sites layer and official jurisdiction boundary."
+    },
+    {
       "name": "DPR Trees",
       "city": "Arlington",
       "endpoint": "https://www.arlingtonva.us/About-Arlington/Data-and-Research/Open-Data-Portal",
@@ -1011,6 +1028,15 @@
       "note": "Integrated from the official City of Austin Tree Inventory dataset using blossom-side Socrata filtering."
     },
     {
+      "name": "City of Azusa Tree Inventory Benefits",
+      "city": "Azusa",
+      "endpoint": "https://services2.arcgis.com/yrktbS5Xw87hJQvs/arcgis/rest/services/City_of_Azusa_Tree_Inventory_Benefits_WFL1/FeatureServer",
+      "last_edit_at": "2025-04-01T14:18:13.561000+00:00",
+      "records_fetched": 777,
+      "records_included": 757,
+      "note": "Integrated from the City of Azusa public tree inventory benefits layer and official jurisdiction boundary."
+    },
+    {
       "name": "Trees",
       "city": "Baltimore",
       "endpoint": "https://data.baltimorecity.gov/",
@@ -1018,6 +1044,15 @@
       "records_fetched": 193003,
       "records_included": 1920,
       "note": "Integrated from the official Baltimore city forestry ArcGIS tree layer on gis.baltimorecity.gov."
+    },
+    {
+      "name": "City of Bell Tree Inventory Benefits",
+      "city": "Bell",
+      "endpoint": "https://services2.arcgis.com/yrktbS5Xw87hJQvs/arcgis/rest/services/City_of_Bell_Tree_Inventory_Benefits_WFL1/FeatureServer",
+      "last_edit_at": "2026-02-24T16:15:50.779000+00:00",
+      "records_fetched": 101,
+      "records_included": 93,
+      "note": "Integrated from the City of Bell public tree inventory benefits layer and official jurisdiction boundary."
     },
     {
       "name": "City Trees",
@@ -1042,6 +1077,15 @@
       "last_edit_at": "2019-11-07T19:08:30+00:00",
       "records_fetched": 46037,
       "records_included": 3973
+    },
+    {
+      "name": "Trees of Beverly Hills",
+      "city": "Beverly Hills",
+      "endpoint": "https://services5.arcgis.com/7CXE3aevo18HlHBC/arcgis/rest/services/Trees_of_Beverly_Hills/FeatureServer",
+      "last_edit_at": "2025-09-17T20:59:07.578000+00:00",
+      "records_fetched": 1523,
+      "records_included": 1464,
+      "note": "Integrated from the official City of Beverly Hills public tree inventory and official jurisdiction boundary."
     },
     {
       "name": "BPRD Trees",
@@ -1096,6 +1140,15 @@
       "note": "Integrated from the official Dallas Public Tree Inventory TreeKeeper page linked by the city forestry page."
     },
     {
+      "name": "Tree Inventory Public",
+      "city": "El Segundo",
+      "endpoint": "https://services2.arcgis.com/yrktbS5Xw87hJQvs/arcgis/rest/services/TreeInvElSegundo_Public/FeatureServer",
+      "last_edit_at": "2026-02-27T14:09:11.052000+00:00",
+      "records_fetched": 352,
+      "records_included": 348,
+      "note": "Integrated from the City of El Segundo public tree inventory feature layer and official jurisdiction boundary."
+    },
+    {
       "name": "Everett TreeKeeper Park Sites",
       "city": "Everett",
       "endpoint": "https://everettwa.treekeepersoftware.com/cffiles/grids.cfc",
@@ -1111,6 +1164,15 @@
       "records_fetched": 80001,
       "records_included": 5555,
       "note": "Integrated via public TreePlotter session + official species lookup table."
+    },
+    {
+      "name": "Fullerton Tree Benefits",
+      "city": "Fullerton",
+      "endpoint": "https://services2.arcgis.com/yrktbS5Xw87hJQvs/arcgis/rest/services/Fullerton_Tree_Benefits_WFL1/FeatureServer",
+      "last_edit_at": "2025-09-25T22:48:59.891000+00:00",
+      "records_fetched": 4536,
+      "records_included": 4399,
+      "note": "Integrated from the City of Fullerton public tree inventory layer and official jurisdiction boundary."
     },
     {
       "name": "PW Trees Public Viewer",
@@ -1278,6 +1340,15 @@
       "records_included": 4996
     },
     {
+      "name": "Street ROW Trees",
+      "city": "Pasadena",
+      "endpoint": "https://services2.arcgis.com/zNjnZafDYCAJAbN0/arcgis/rest/services/Street_ROW_Trees/FeatureServer",
+      "last_edit_at": "2023-03-14T18:24:36.900000+00:00",
+      "records_fetched": 6368,
+      "records_included": 5770,
+      "note": "Integrated from the official City of Pasadena Street ROW Trees layer and official jurisdiction boundary."
+    },
+    {
       "name": "PPR Tree Inventory 2025",
       "city": "Philadelphia",
       "endpoint": "https://metadata.phila.gov/#home/datasetdetails/57a0e1d5aa8882104134830e/representationdetails/690a4183ef9cba032bd11d00/",
@@ -1379,6 +1450,15 @@
       "records_fetched": 13569,
       "records_included": 13310,
       "note": "Integrated from the official City of San Diego street-trees ArcGIS layer with server-side blossom filtering."
+    },
+    {
+      "name": "San Fernando Public Trees",
+      "city": "San Fernando",
+      "endpoint": "https://services5.arcgis.com/t4zDNzBF9Dot8HEQ/arcgis/rest/services/San_Fernando_CAL_FIRE_Tree_Layer_view/FeatureServer",
+      "last_edit_at": "2026-01-21T20:37:58.937000+00:00",
+      "records_fetched": 13,
+      "records_included": 11,
+      "note": "Integrated from the City of San Fernando public tree inventory layer and official jurisdiction boundary."
     },
     {
       "name": "Street Tree List",
@@ -1547,11 +1627,11 @@
     }
   ],
   "species_counts": {
-    "cherry": 172152,
-    "plum": 98017,
-    "peach": 6880,
-    "magnolia": 108009,
-    "crabapple": 83365
+    "cherry": 172242,
+    "plum": 98476,
+    "peach": 6952,
+    "magnolia": 124997,
+    "crabapple": 83376
   },
   "areas": [
     {
@@ -1597,6 +1677,48 @@
       "state_province": "BC"
     },
     {
+      "jurisdiction": "Anaheim",
+      "region": "ca",
+      "tree_count": 4778,
+      "species_counts": {
+        "cherry": 0,
+        "plum": 45,
+        "peach": 8,
+        "magnolia": 4724,
+        "crabapple": 1
+      },
+      "jurisdiction_type": "city",
+      "state_province": "CA"
+    },
+    {
+      "jurisdiction": "Azusa",
+      "region": "ca",
+      "tree_count": 757,
+      "species_counts": {
+        "cherry": 0,
+        "plum": 20,
+        "peach": 5,
+        "magnolia": 729,
+        "crabapple": 3
+      },
+      "jurisdiction_type": "city",
+      "state_province": "CA"
+    },
+    {
+      "jurisdiction": "Bell",
+      "region": "ca",
+      "tree_count": 93,
+      "species_counts": {
+        "cherry": 2,
+        "plum": 4,
+        "peach": 0,
+        "magnolia": 87,
+        "crabapple": 0
+      },
+      "jurisdiction_type": "city",
+      "state_province": "CA"
+    },
+    {
       "jurisdiction": "Berkeley",
       "region": "ca",
       "tree_count": 3973,
@@ -1606,6 +1728,20 @@
         "peach": 18,
         "magnolia": 817,
         "crabapple": 257
+      },
+      "jurisdiction_type": "city",
+      "state_province": "CA"
+    },
+    {
+      "jurisdiction": "Beverly Hills",
+      "region": "ca",
+      "tree_count": 1464,
+      "species_counts": {
+        "cherry": 1,
+        "plum": 58,
+        "peach": 23,
+        "magnolia": 1382,
+        "crabapple": 0
       },
       "jurisdiction_type": "city",
       "state_province": "CA"
@@ -1653,6 +1789,20 @@
       "state_province": "CA"
     },
     {
+      "jurisdiction": "El Segundo",
+      "region": "ca",
+      "tree_count": 348,
+      "species_counts": {
+        "cherry": 3,
+        "plum": 11,
+        "peach": 2,
+        "magnolia": 329,
+        "crabapple": 3
+      },
+      "jurisdiction_type": "city",
+      "state_province": "CA"
+    },
+    {
       "jurisdiction": "Fremont",
       "region": "ca",
       "tree_count": 5555,
@@ -1662,6 +1812,20 @@
         "peach": 199,
         "magnolia": 2270,
         "crabapple": 263
+      },
+      "jurisdiction_type": "city",
+      "state_province": "CA"
+    },
+    {
+      "jurisdiction": "Fullerton",
+      "region": "ca",
+      "tree_count": 4399,
+      "species_counts": {
+        "cherry": 0,
+        "plum": 3,
+        "peach": 5,
+        "magnolia": 4391,
+        "crabapple": 0
       },
       "jurisdiction_type": "city",
       "state_province": "CA"
@@ -1793,6 +1957,20 @@
       "state_province": "CA"
     },
     {
+      "jurisdiction": "Pasadena",
+      "region": "ca",
+      "tree_count": 5770,
+      "species_counts": {
+        "cherry": 84,
+        "plum": 318,
+        "peach": 29,
+        "magnolia": 5335,
+        "crabapple": 4
+      },
+      "jurisdiction_type": "city",
+      "state_province": "CA"
+    },
+    {
       "jurisdiction": "Sacramento",
       "region": "ca",
       "tree_count": 3442,
@@ -1830,6 +2008,20 @@
         "peach": 230,
         "magnolia": 6075,
         "crabapple": 19
+      },
+      "jurisdiction_type": "city",
+      "state_province": "CA"
+    },
+    {
+      "jurisdiction": "San Fernando",
+      "region": "ca",
+      "tree_count": 11,
+      "species_counts": {
+        "cherry": 0,
+        "plum": 0,
+        "peach": 0,
+        "magnolia": 11,
+        "crabapple": 0
       },
       "jurisdiction_type": "city",
       "state_province": "CA"

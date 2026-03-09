@@ -147,6 +147,22 @@ WEST_SACRAMENTO_DATASET_PAGE = "https://gis.cityofwestsacramento.org/server/rest
 SUNNYVALE_TREES_LAYER = "https://services.arcgis.com/NkcnS0qk4w2wasOJ/arcgis/rest/services/Tree_Inventories_in_Santa_Clara_County_WFL1/FeatureServer/0"
 SUNNYVALE_DATASET_PAGE = "https://www.arcgis.com/home/item.html?id=58f9d735c5b94915ba5374c82415a26f"
 SANTA_CLARA_COUNTY_TREES_DATASET_PAGE = SUNNYVALE_DATASET_PAGE
+PASADENA_TREES_LAYER = "https://services2.arcgis.com/zNjnZafDYCAJAbN0/arcgis/rest/services/Street_ROW_Trees/FeatureServer/0"
+PASADENA_DATASET_PAGE = "https://services2.arcgis.com/zNjnZafDYCAJAbN0/arcgis/rest/services/Street_ROW_Trees/FeatureServer"
+BEVERLY_HILLS_TREES_LAYER = "https://services5.arcgis.com/7CXE3aevo18HlHBC/arcgis/rest/services/Trees_of_Beverly_Hills/FeatureServer/0"
+BEVERLY_HILLS_DATASET_PAGE = "https://services5.arcgis.com/7CXE3aevo18HlHBC/arcgis/rest/services/Trees_of_Beverly_Hills/FeatureServer"
+EL_SEGUNDO_TREES_LAYER = "https://services2.arcgis.com/yrktbS5Xw87hJQvs/arcgis/rest/services/TreeInvElSegundo_Public/FeatureServer/0"
+EL_SEGUNDO_DATASET_PAGE = "https://services2.arcgis.com/yrktbS5Xw87hJQvs/arcgis/rest/services/TreeInvElSegundo_Public/FeatureServer"
+BELL_TREES_LAYER = "https://services2.arcgis.com/yrktbS5Xw87hJQvs/arcgis/rest/services/City_of_Bell_Tree_Inventory_Benefits_WFL1/FeatureServer/0"
+BELL_DATASET_PAGE = "https://services2.arcgis.com/yrktbS5Xw87hJQvs/arcgis/rest/services/City_of_Bell_Tree_Inventory_Benefits_WFL1/FeatureServer"
+SAN_FERNANDO_TREES_LAYER = "https://services5.arcgis.com/t4zDNzBF9Dot8HEQ/arcgis/rest/services/San_Fernando_CAL_FIRE_Tree_Layer_view/FeatureServer/0"
+SAN_FERNANDO_DATASET_PAGE = "https://services5.arcgis.com/t4zDNzBF9Dot8HEQ/arcgis/rest/services/San_Fernando_CAL_FIRE_Tree_Layer_view/FeatureServer"
+AZUSA_TREES_LAYER = "https://services2.arcgis.com/yrktbS5Xw87hJQvs/arcgis/rest/services/City_of_Azusa_Tree_Inventory_Benefits_WFL1/FeatureServer/0"
+AZUSA_DATASET_PAGE = "https://services2.arcgis.com/yrktbS5Xw87hJQvs/arcgis/rest/services/City_of_Azusa_Tree_Inventory_Benefits_WFL1/FeatureServer"
+FULLERTON_TREES_LAYER = "https://services2.arcgis.com/yrktbS5Xw87hJQvs/arcgis/rest/services/Fullerton_Tree_Benefits_WFL1/FeatureServer/0"
+FULLERTON_DATASET_PAGE = "https://services2.arcgis.com/yrktbS5Xw87hJQvs/arcgis/rest/services/Fullerton_Tree_Benefits_WFL1/FeatureServer"
+ANAHEIM_TREES_LAYER = "https://services2.arcgis.com/yrktbS5Xw87hJQvs/arcgis/rest/services/WebMap_Anaheim_AllLayers_WFL1/FeatureServer/0"
+ANAHEIM_DATASET_PAGE = "https://services2.arcgis.com/yrktbS5Xw87hJQvs/arcgis/rest/services/WebMap_Anaheim_AllLayers_WFL1/FeatureServer"
 SAN_DIEGO_BLOSSOM_WHERE = (
     "UPPER(COMMON_NAME) LIKE '%CHERRY%' OR "
     "UPPER(COMMON_NAME) LIKE '%PLUM%' OR "
@@ -243,6 +259,36 @@ DENVER_BLOSSOM_WHERE = (
     "UPPER(SPECIES_BOTANIC) LIKE 'MALUS%' OR "
     "UPPER(SPECIES_BOTANIC) LIKE 'MAGNOLIA%'"
 )
+PASADENA_BLOSSOM_WHERE = (
+    "Status_Text = 'Active' AND ("
+    "UPPER(Genus) LIKE 'PRUNUS%' OR "
+    "UPPER(Genus) LIKE 'MALUS%' OR "
+    "UPPER(Genus) LIKE 'MAGNOLIA%'"
+    ")"
+)
+BOTANICAL_BLOSSOM_WHERE = (
+    "UPPER(BotanicalName) LIKE 'PRUNUS%' OR "
+    "UPPER(BotanicalName) LIKE 'MALUS%' OR "
+    "UPPER(BotanicalName) LIKE 'MAGNOLIA%'"
+)
+SPECIES_NAME_BLOSSOM_WHERE = (
+    "UPPER(Species_Name) LIKE 'PRUNUS%' OR "
+    "UPPER(Species_Name) LIKE 'MALUS%' OR "
+    "UPPER(Species_Name) LIKE 'MAGNOLIA%'"
+)
+ANAHEIM_BLOSSOM_WHERE = (
+    "UPPER(Species_Name) LIKE 'PRUNUS%' OR "
+    "UPPER(Species_Name) LIKE 'MALUS%' OR "
+    "UPPER(Species_Name) LIKE 'MAGNOLIA%' OR "
+    "UPPER(BOTANICALN) LIKE 'PRUNUS%' OR "
+    "UPPER(BOTANICALN) LIKE 'MALUS%' OR "
+    "UPPER(BOTANICALN) LIKE 'MAGNOLIA%'"
+)
+SAN_FERNANDO_BLOSSOM_WHERE = (
+    "UPPER(NAME) LIKE 'PRUNUS%' OR "
+    "UPPER(NAME) LIKE 'MALUS%' OR "
+    "UPPER(NAME) LIKE 'MAGNOLIA%'"
+)
 SUNNYVALE_BLOSSOM_WHERE = (
     "City = 'Sunnyvale' AND ("
     "UPPER(Scientific) LIKE 'PRUNUS%' OR "
@@ -272,12 +318,18 @@ DISPLAY_NAME_REPLACEMENTS = {
 }
 
 SUPPORTED_CITIES = (
+    "Anaheim",
     "Arlington",
     "Austin",
+    "Azusa",
     "Baltimore",
+    "Bell",
+    "Beverly Hills",
     "Boston",
     "Dallas",
     "Denver",
+    "El Segundo",
+    "Fullerton",
     "Houston",
     "Irvine",
     "Jersey City",
@@ -302,6 +354,8 @@ SUPPORTED_CITIES = (
     "Philadelphia",
     "Cambridge",
     "Pittsburgh",
+    "Pasadena",
+    "San Fernando",
     "Ottawa",
     "Salt Lake City",
     "Toronto",
@@ -391,6 +445,150 @@ def parse_dash_species(raw_value: str | None) -> tuple[str, str | None]:
     common_name = clean_common_name(common_part)
     scientific_raw = format_scientific_display_name(scientific_part, common_name)
     return scientific_raw, common_name
+
+
+def classify_scientific_first(
+    scientific_raw: str,
+    common_name: str | None,
+    mapping_rows: list[dict[str, str]],
+    subtype_rows: list[dict[str, str]],
+) -> tuple[str | None, str | None]:
+    normalized = normalize_scientific_name(scientific_raw).lower()
+    if normalized.startswith("prunus") or normalized.startswith("malus") or normalized.startswith("magnolia"):
+        return classify_tree_record(scientific_raw, common_name, mapping_rows, subtype_rows)
+    if not scientific_raw:
+        return classify_tree_record("", common_name, mapping_rows, subtype_rows)
+    return None, None
+
+
+def fetch_arcgis_inventory_city(
+    *,
+    city: str,
+    region: str,
+    layer_url: str,
+    dataset_page: str,
+    where: str,
+    out_fields: list[str],
+    object_id_field: str,
+    source_name: str,
+    source_department: str,
+    ownership_raw: str,
+    note: str,
+    common_field: str | None = None,
+    botanical_field: str | None = None,
+    scientific_field: str | None = None,
+    genus_field: str | None = None,
+    species_field: str | None = None,
+    lon_field: str | None = None,
+    lat_field: str | None = None,
+    zip_field: str | None = None,
+) -> dict[str, Any]:
+    layer_info = fetch_json(layer_url, {"f": "pjson"})
+    total_payload = fetch_json(
+        f"{layer_url}/query",
+        {"where": where, "returnCountOnly": "true", "f": "json"},
+    )
+    features = fetch_all_features(layer_url, where, out_fields, object_id_field)
+    zip_index = fetch_us_city_zip_index(city)
+    mapping_rows = load_mapping(MAPPING_PATH)
+    subtype_rows = load_subtype_mapping(SUBTYPE_MAPPING_PATH)
+    last_edit_at = iso_from_epoch((layer_info.get("editingInfo") or {}).get("lastEditDate"))
+
+    output_features: list[dict[str, Any]] = []
+    normalized_rows: list[dict[str, Any]] = []
+    city_slug = slugify_token(city)
+    for feature in features:
+        attrs = feature.get("attributes", {})
+        geom = feature.get("geometry", {})
+        lon_raw = geom.get("x")
+        lat_raw = geom.get("y")
+        if (lon_raw is None or lat_raw is None) and lon_field and lat_field:
+            lon_raw = attrs.get(lon_field)
+            lat_raw = attrs.get(lat_field)
+        try:
+            lon = float(lon_raw) if lon_raw is not None else None
+            lat = float(lat_raw) if lat_raw is not None else None
+        except (TypeError, ValueError):
+            lon = None
+            lat = None
+        if lon is None or lat is None:
+            continue
+
+        common_name = clean_common_name(attrs.get(common_field)) if common_field else None
+        if botanical_field and attrs.get(botanical_field):
+            scientific_raw = format_scientific_display_name(attrs.get(botanical_field), common_name)
+        elif scientific_field and attrs.get(scientific_field):
+            scientific_raw = format_scientific_display_name(attrs.get(scientific_field), common_name)
+        elif genus_field and attrs.get(genus_field):
+            scientific_raw = format_scientific_display_name(
+                f"{attrs.get(genus_field) or ''} {attrs.get(species_field) or ''}",
+                common_name,
+            )
+        else:
+            scientific_raw = generic_scientific_name_for_common_hint(common_name)
+        scientific_normalized = normalize_scientific_name(scientific_raw)
+        species_group, subtype_name = classify_scientific_first(scientific_raw, common_name, mapping_rows, subtype_rows)
+        zip_code = clean_display_name(attrs.get(zip_field)) if zip_field else None
+        if not zip_code:
+            zip_code = assign_zip_code(lon, lat, zip_index)
+        row_id = f"{city_slug}-{attrs.get(object_id_field)}"
+
+        normalized_rows.append(
+            {
+                "id": row_id,
+                "city": city,
+                "source_dataset": source_name,
+                "scientific_raw": scientific_raw,
+                "scientific_normalized": scientific_normalized,
+                "common_name": common_name or "",
+                "subtype_name": subtype_name or "",
+                "zip_code": zip_code or "",
+                "species_group": species_group or "",
+                "ownership": canonical_ownership(ownership_raw),
+                "ownership_raw": ownership_raw,
+                "lat": lat,
+                "lon": lon,
+                "included": "1" if species_group else "0",
+            }
+        )
+        if not species_group:
+            continue
+        output_features.append(
+            {
+                "type": "Feature",
+                "geometry": {"type": "Point", "coordinates": [lon, lat]},
+                "properties": {
+                    "id": row_id,
+                    "species_group": species_group,
+                    "scientific_name": scientific_raw,
+                    "common_name": common_name,
+                    "subtype_name": subtype_name,
+                    "zip_code": zip_code,
+                    "ownership": canonical_ownership(ownership_raw),
+                    "ownership_raw": ownership_raw,
+                    "city": city,
+                    "source_dataset": source_name,
+                    "source_department": source_department,
+                    "source_last_edit_at": last_edit_at,
+                },
+            }
+        )
+
+    return {
+        "city": city,
+        "region": region,
+        "features": output_features,
+        "normalized_rows": normalized_rows,
+        "source": {
+            "name": source_name,
+            "city": city,
+            "endpoint": dataset_page,
+            "last_edit_at": last_edit_at,
+            "records_fetched": int(total_payload.get("count") or len(features)),
+            "records_included": len(output_features),
+            "note": note,
+        },
+    }
 
 
 def domain_lookup(layer_info: dict[str, Any], field_name: str) -> dict[Any, str]:
@@ -3749,6 +3947,163 @@ def fetch_saratoga() -> dict[str, Any]:
     return fetch_santa_clara_county_city("Saratoga")
 
 
+def fetch_pasadena() -> dict[str, Any]:
+    return fetch_arcgis_inventory_city(
+        city="Pasadena",
+        region="ca",
+        layer_url=PASADENA_TREES_LAYER,
+        dataset_page=PASADENA_DATASET_PAGE,
+        where=PASADENA_BLOSSOM_WHERE,
+        out_fields=["OBJECTID", "Common_Name", "Genus", "Species", "Status_Text"],
+        object_id_field="OBJECTID",
+        source_name="Street ROW Trees",
+        source_department="City of Pasadena",
+        ownership_raw="City of Pasadena",
+        note="Integrated from the official City of Pasadena Street ROW Trees layer and official jurisdiction boundary.",
+        common_field="Common_Name",
+        genus_field="Genus",
+        species_field="Species",
+    )
+
+
+def fetch_beverly_hills() -> dict[str, Any]:
+    return fetch_arcgis_inventory_city(
+        city="Beverly Hills",
+        region="ca",
+        layer_url=BEVERLY_HILLS_TREES_LAYER,
+        dataset_page=BEVERLY_HILLS_DATASET_PAGE,
+        where=BOTANICAL_BLOSSOM_WHERE,
+        out_fields=["OBJECTID", "CommonName", "BotanicalName", "Latitude", "Longitude"],
+        object_id_field="OBJECTID",
+        source_name="Trees of Beverly Hills",
+        source_department="City of Beverly Hills",
+        ownership_raw="City of Beverly Hills",
+        note="Integrated from the official City of Beverly Hills public tree inventory and official jurisdiction boundary.",
+        common_field="CommonName",
+        botanical_field="BotanicalName",
+        lon_field="Longitude",
+        lat_field="Latitude",
+    )
+
+
+def fetch_el_segundo() -> dict[str, Any]:
+    return fetch_arcgis_inventory_city(
+        city="El Segundo",
+        region="ca",
+        layer_url=EL_SEGUNDO_TREES_LAYER,
+        dataset_page=EL_SEGUNDO_DATASET_PAGE,
+        where=BOTANICAL_BLOSSOM_WHERE,
+        out_fields=["OBJECTID", "CommonName", "BotanicalName", "Latitude", "Longitude"],
+        object_id_field="OBJECTID",
+        source_name="Tree Inventory Public",
+        source_department="City of El Segundo",
+        ownership_raw="City of El Segundo",
+        note="Integrated from the City of El Segundo public tree inventory feature layer and official jurisdiction boundary.",
+        common_field="CommonName",
+        botanical_field="BotanicalName",
+        lon_field="Longitude",
+        lat_field="Latitude",
+    )
+
+
+def fetch_bell() -> dict[str, Any]:
+    return fetch_arcgis_inventory_city(
+        city="Bell",
+        region="ca",
+        layer_url=BELL_TREES_LAYER,
+        dataset_page=BELL_DATASET_PAGE,
+        where=SPECIES_NAME_BLOSSOM_WHERE,
+        out_fields=["OBJECTID", "Species_Name", "CommonName", "BotanicalName", "Latitude", "Longitude"],
+        object_id_field="OBJECTID",
+        source_name="City of Bell Tree Inventory Benefits",
+        source_department="City of Bell",
+        ownership_raw="City of Bell",
+        note="Integrated from the City of Bell public tree inventory benefits layer and official jurisdiction boundary.",
+        common_field="CommonName",
+        botanical_field="BotanicalName",
+        scientific_field="Species_Name",
+        lon_field="Longitude",
+        lat_field="Latitude",
+    )
+
+
+def fetch_san_fernando() -> dict[str, Any]:
+    return fetch_arcgis_inventory_city(
+        city="San Fernando",
+        region="ca",
+        layer_url=SAN_FERNANDO_TREES_LAYER,
+        dataset_page=SAN_FERNANDO_DATASET_PAGE,
+        where=SAN_FERNANDO_BLOSSOM_WHERE,
+        out_fields=["OBJECTID", "NAME", "Address", "Zipcode"],
+        object_id_field="OBJECTID",
+        source_name="San Fernando Public Trees",
+        source_department="City of San Fernando",
+        ownership_raw="City of San Fernando",
+        note="Integrated from the City of San Fernando public tree inventory layer and official jurisdiction boundary.",
+        scientific_field="NAME",
+        zip_field="Zipcode",
+    )
+
+
+def fetch_azusa() -> dict[str, Any]:
+    return fetch_arcgis_inventory_city(
+        city="Azusa",
+        region="ca",
+        layer_url=AZUSA_TREES_LAYER,
+        dataset_page=AZUSA_DATASET_PAGE,
+        where=SPECIES_NAME_BLOSSOM_WHERE,
+        out_fields=["OBJECTID", "Species_Name", "CommonName", "BotanicalName", "Latitude", "Longitude"],
+        object_id_field="OBJECTID",
+        source_name="City of Azusa Tree Inventory Benefits",
+        source_department="City of Azusa",
+        ownership_raw="City of Azusa",
+        note="Integrated from the City of Azusa public tree inventory benefits layer and official jurisdiction boundary.",
+        common_field="CommonName",
+        botanical_field="BotanicalName",
+        scientific_field="Species_Name",
+        lon_field="Longitude",
+        lat_field="Latitude",
+    )
+
+
+def fetch_fullerton() -> dict[str, Any]:
+    return fetch_arcgis_inventory_city(
+        city="Fullerton",
+        region="ca",
+        layer_url=FULLERTON_TREES_LAYER,
+        dataset_page=FULLERTON_DATASET_PAGE,
+        where=SPECIES_NAME_BLOSSOM_WHERE,
+        out_fields=["OBJECTID", "Species_Name", "CommonName", "BotanicalName"],
+        object_id_field="OBJECTID",
+        source_name="Fullerton Tree Benefits",
+        source_department="City of Fullerton",
+        ownership_raw="City of Fullerton",
+        note="Integrated from the City of Fullerton public tree inventory layer and official jurisdiction boundary.",
+        common_field="CommonName",
+        botanical_field="BotanicalName",
+        scientific_field="Species_Name",
+    )
+
+
+def fetch_anaheim() -> dict[str, Any]:
+    return fetch_arcgis_inventory_city(
+        city="Anaheim",
+        region="ca",
+        layer_url=ANAHEIM_TREES_LAYER,
+        dataset_page=ANAHEIM_DATASET_PAGE,
+        where=ANAHEIM_BLOSSOM_WHERE,
+        out_fields=["OBJECTID", "Species_Name", "COMMONNAME", "BOTANICALN"],
+        object_id_field="OBJECTID",
+        source_name="City of Anaheim Public Works Tree Sites",
+        source_department="City of Anaheim",
+        ownership_raw="City of Anaheim",
+        note="Integrated from the City of Anaheim public works tree sites layer and official jurisdiction boundary.",
+        common_field="COMMONNAME",
+        botanical_field="BOTANICALN",
+        scientific_field="Species_Name",
+    )
+
+
 def fetch_houston() -> dict[str, Any]:
     layer_info = fetch_json(HOUSTON_TREES_LAYER, {"f": "pjson"})
     total_payload = fetch_json(
@@ -3943,12 +4298,18 @@ def fetch_denver() -> dict[str, Any]:
 
 
 CITY_FETCHERS = {
+    "Anaheim": fetch_anaheim,
     "Arlington": fetch_arlington,
     "Austin": fetch_austin,
+    "Azusa": fetch_azusa,
     "Baltimore": fetch_baltimore,
+    "Bell": fetch_bell,
+    "Beverly Hills": fetch_beverly_hills,
     "Boston": fetch_boston,
     "Dallas": fetch_dallas,
     "Denver": fetch_denver,
+    "El Segundo": fetch_el_segundo,
+    "Fullerton": fetch_fullerton,
     "Houston": fetch_houston,
     "Irvine": fetch_irvine,
     "Jersey City": fetch_jersey_city,
@@ -3973,6 +4334,8 @@ CITY_FETCHERS = {
     "New York City": fetch_new_york_city,
     "Philadelphia": fetch_philadelphia,
     "Cambridge": fetch_cambridge,
+    "Pasadena": fetch_pasadena,
+    "San Fernando": fetch_san_fernando,
     "Ottawa": fetch_ottawa,
     "Salt Lake City": fetch_salt_lake_city,
     "Toronto": fetch_toronto,

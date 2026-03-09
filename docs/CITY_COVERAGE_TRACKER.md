@@ -26,9 +26,14 @@ Last updated: 2026-03-08 (America/Los_Angeles)
 | ✅ | San Francisco | 24,099 | Official jurisdiction boundary | Official San Francisco Public Works `Street Tree List` integrated from the city open-data portal |
 | ✅ | San Jose | 18,021 | Official jurisdiction boundary | Official City of San Jose `Street Tree` layer integrated from the city open-data ArcGIS service |
 | ✅ | Los Angeles | 40,459 | Official jurisdiction boundary | Official StreetsLA public TreeKeeper `Street Sites` inventory integrated using server-side blossom filtering against `SITE_ATTR1` |
+| ✅ | Pasadena | 5,770 | Official jurisdiction boundary | Official City of Pasadena `Street ROW Trees` ArcGIS layer integrated from the city's open GIS services and official jurisdiction boundary |
+| ✅ | Anaheim | 4,778 | Official jurisdiction boundary | Official City of Anaheim public street-tree inventory integrated from the city's ArcGIS service and official jurisdiction boundary |
+| ✅ | Fullerton | 4,399 | Official jurisdiction boundary | Official City of Fullerton public tree-benefits inventory integrated from the city's ArcGIS service and official jurisdiction boundary |
 | ✅ | Mountain View | 2,907 | Official jurisdiction boundary | Official City of Mountain View `Trees` ArcGIS layer integrated from the city Heritage Trees service and official jurisdiction boundary |
+| ✅ | Beverly Hills | 1,464 | Official jurisdiction boundary | Official City of Beverly Hills `Trees of Beverly Hills` ArcGIS layer integrated from the city's public GIS services and official jurisdiction boundary |
 | ✅ | San Diego | 13,310 | Official jurisdiction boundary | Official City of San Diego `Trees (Street Trees)` ArcGIS layer integrated with server-side blossom filtering |
 | ✅ | Irvine | 986 | Official jurisdiction boundary | Official City of Irvine `City Trees` layer integrated from the city ArcGIS landscape service and official city boundary |
+| ✅ | Azusa | 757 | Official jurisdiction boundary | Official City of Azusa public tree-benefits inventory integrated from the city's ArcGIS service and official jurisdiction boundary |
 | ✅ | Palo Alto | 4,996 | Official jurisdiction boundary | Official City of Palo Alto `Tree Data` layer integrated from the city open GIS portal; official boundary comes from the city-published boundary shapefile |
 | ✅ | Oakland | 3,977 | Official jurisdiction boundary | Official City of Oakland `Oakland Street Trees` Socrata dataset integrated from the city open-data portal |
 | ✅ | Berkeley | 3,973 | Official jurisdiction boundary | Official City of Berkeley public shapefile inventory integrated from the city ArcGIS item download |
@@ -36,6 +41,7 @@ Last updated: 2026-03-08 (America/Los_Angeles)
 | ✅ | Fremont | 5,555 | Official jurisdiction boundary | Official City of Fremont public TreePlotter inventory integrated from the city urban-forestry portal plus public species lookup table |
 | ✅ | Concord | 4,103 | Official jurisdiction boundary | Official City of Concord public TreePlotter inventory integrated from the city tree-inventory portal plus official GIS boundary |
 | ✅ | Gilroy | 43 | Official jurisdiction boundary | Official Santa Clara County public `Tree Inventories in Santa Clara County` service integrated using the `City = Gilroy` subset and official jurisdiction boundary |
+| ✅ | El Segundo | 348 | Official jurisdiction boundary | Official City of El Segundo public tree inventory integrated from the city's ArcGIS service and official jurisdiction boundary |
 | ✅ | Los Gatos | 15 | Official jurisdiction boundary | Official Santa Clara County public `Tree Inventories in Santa Clara County` service integrated using the `City = Los Gatos` subset and official jurisdiction boundary |
 | ✅ | Morgan Hill | 83 | Official jurisdiction boundary | Official Santa Clara County public `Tree Inventories in Santa Clara County` service integrated using the `City = Morgan Hill` subset and official jurisdiction boundary |
 | ✅ | Sacramento | 3,442 | Official jurisdiction boundary | Official City of Sacramento `City Maintained Trees` ArcGIS layer integrated from the city open-data portal and official jurisdiction boundary |
@@ -44,6 +50,8 @@ Last updated: 2026-03-08 (America/Los_Angeles)
 | ✅ | South San Francisco | 784 | Official jurisdiction boundary | Official City of South San Francisco public TreeKeeper inventory integrated from the city trees page plus official GIS boundary |
 | ✅ | Sunnyvale | 8 | Official jurisdiction boundary | Official Santa Clara County public `Tree Inventories in Santa Clara County` service integrated using the `City = Sunnyvale` subset and official jurisdiction boundary |
 | ✅ | West Sacramento | 1,480 | Official jurisdiction boundary | Official City of West Sacramento `Tree Inventory` ArcGIS layer integrated from the city's GIS service and official jurisdiction boundary |
+| ✅ | Bell | 93 | Official jurisdiction boundary | Official City of Bell public tree-benefits inventory integrated from the city's ArcGIS service and official jurisdiction boundary |
+| ✅ | San Fernando | 11 | Official jurisdiction boundary | Official City of San Fernando CAL FIRE public tree layer integrated from the city's ArcGIS service and official jurisdiction boundary |
 | ✅ | Washington DC | 16,533 | Official jurisdiction boundary | Urban Tree Canopy (DDOT); ornamental cherry cultivar mapping expanded |
 | ✅ | Vancouver BC | 34,369 | Official jurisdiction boundary | Official City of Vancouver `public-trees` ODS dataset integrated; boundary polygon derived from official city-boundary line dataset |
 | ✅ | New Westminster | 1,786 | Official jurisdiction boundary | Official ArcGIS `Tree Inventory (Active Trees)` integrated with the official Metro Vancouver administrative boundary for the City of New Westminster |
@@ -218,6 +226,7 @@ Last updated: 2026-03-08 (America/Los_Angeles)
 - Integrated `Burlingame` from the public city-linked `City Street Tree Inventory`; the source is contractor-hosted but explicitly published on the official City of Burlingame trees page and exposes a public queryable feature service.
 - Integrated `Palo Alto` from the official City of Palo Alto Open GIS `Tree Data` layer and city-published boundary shapefile.
 - Integrated `Berkeley` from the official public inventory shapefile published through the City of Berkeley ArcGIS item.
+- Integrated the Los Angeles ring cities `Pasadena`, `Anaheim`, `Fullerton`, `Beverly Hills`, `Azusa`, `El Segundo`, `Bell`, and `San Fernando` from official ArcGIS public tree inventories, bringing the LA-area covered-city count to at least ten (`Los Angeles`, `Irvine`, plus those eight new cities).
 - Integrated `Cupertino` from the official City of Cupertino GIS `Trees` layer.
 - Integrated `Oakland` from the official City of Oakland `Oakland Street Trees` open-data dataset.
 - Integrated `Mountain View` from the official City of Mountain View `Trees` ArcGIS layer published through the city Heritage Trees service.

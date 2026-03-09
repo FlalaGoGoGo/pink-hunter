@@ -1721,7 +1721,7 @@
         ]
       ],
       "region_hint": "ca",
-      "coverage_status": "untracked"
+      "coverage_status": "covered"
     },
     {
       "id": "ca:anderson",
@@ -2041,7 +2041,7 @@
         ]
       ],
       "region_hint": "ca",
-      "coverage_status": "untracked"
+      "coverage_status": "covered"
     },
     {
       "id": "ca:bakersfield",
@@ -2161,7 +2161,7 @@
         ]
       ],
       "region_hint": "ca",
-      "coverage_status": "untracked"
+      "coverage_status": "covered"
     },
     {
       "id": "ca:bell-gardens",
@@ -2301,7 +2301,7 @@
         ]
       ],
       "region_hint": "ca",
-      "coverage_status": "untracked"
+      "coverage_status": "covered"
     },
     {
       "id": "ca:big-bear-lake",
@@ -4221,7 +4221,7 @@
         ]
       ],
       "region_hint": "ca",
-      "coverage_status": "untracked"
+      "coverage_status": "covered"
     },
     {
       "id": "ca:elk-grove",
@@ -4741,7 +4741,7 @@
         ]
       ],
       "region_hint": "ca",
-      "coverage_status": "untracked"
+      "coverage_status": "covered"
     },
     {
       "id": "ca:galt",
@@ -8341,7 +8341,7 @@
         ]
       ],
       "region_hint": "ca",
-      "coverage_status": "untracked"
+      "coverage_status": "covered"
     },
     {
       "id": "ca:patterson",
@@ -9641,7 +9641,7 @@
         ]
       ],
       "region_hint": "ca",
-      "coverage_status": "untracked"
+      "coverage_status": "covered"
     },
     {
       "id": "ca:san-francisco",
