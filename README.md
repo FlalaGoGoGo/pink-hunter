@@ -165,15 +165,20 @@ Live domain:
 - Milpitas
 - Monterey Park
 - Morgan Hill
+- Newport Beach
 - Oakland
+- Oxnard
 - Palo Alto
 - Pasadena
 - Pomona
 - Rancho Cucamonga
+- Rancho Palos Verdes
 - Riverside
 - Sacramento
 - Salinas
+- San Dimas
 - Santa Clarita
+- Santa Monica
 - San Diego
 - San Fernando
 - San Francisco
@@ -356,14 +361,19 @@ Live domain:
 - Milpitas: [Trees RO](https://services8.arcgis.com/OPmRdssd8jj0bT5H/arcgis/rest/services/Trees_RO/FeatureServer/0)
 - Monterey Park: [i-Tree Benefits Summary](https://services2.arcgis.com/yrktbS5Xw87hJQvs/arcgis/rest/services/Monterey_Park_iTree_Benefits_Summary_WFL1/FeatureServer/0)
 - Morgan Hill: [Tree Inventories in Santa Clara County](https://www.arcgis.com/home/item.html?id=58f9d735c5b94915ba5374c82415a26f)
+- Newport Beach: [Tree Inventory Dashboard](https://nbgis.newportbeachca.gov/gispub/Dashboards/TreeInventoryDash.htm)
 - Oakland: [Oakland Street Trees](https://data.oaklandca.gov/Environmental/Oakland-Street-Trees/4jcx-enxf)
+- Oxnard: [Trees](https://maps.oxnard.org/arcgis/rest/services/ParksLayers/MapServer/1)
 - Pasadena: [Street ROW Trees](https://services2.arcgis.com/zNjnZafDYCAJAbN0/arcgis/rest/services/Street_ROW_Trees/FeatureServer/0)
 - Pomona: [CityOfPomona i-Tree Benefits Canopy Cover](https://services2.arcgis.com/yrktbS5Xw87hJQvs/arcgis/rest/services/CityOfPomona_iTreeBenefits_CanopyCover_WFL1/FeatureServer/0)
 - Rancho Cucamonga: [Rancho Cucamonga Tree Benefits](https://services2.arcgis.com/yrktbS5Xw87hJQvs/arcgis/rest/services/RanchoCucamonga_TreeBenefits_WFL1/FeatureServer/0)
+- Rancho Palos Verdes: [GIS Services](https://www.rpvca.gov/869/GIS-Services)
 - Riverside: [CityOfRiverside i-Tree Benefits](https://services2.arcgis.com/yrktbS5Xw87hJQvs/arcgis/rest/services/CityOfRiverside_iTreeBenefits_WFL1/FeatureServer/0)
 - Salinas: [Tree Inventory](https://cityofsalinas.opendatasoft.com/explore/dataset/tree-inventory/)
 - Sacramento: [City Maintained Trees](https://data.cityofsacramento.org/datasets/b9b716e09b5048179ab648bb4518452b_0/explore)
+- San Dimas: [City Owned Trees](https://files.sandimasca.gov/departments/parks_and_recreation/trees/index.php)
 - Santa Clarita: [City of Santa Clarita i-Tree Benefits Canopy Cover](https://services2.arcgis.com/yrktbS5Xw87hJQvs/arcgis/rest/services/City_of_Santa_Clarita_iTreeBenefits_CanopyCover_WFL1/FeatureServer/0)
+- Santa Monica: [Trees](https://gis.santamonica.gov/server/rest/services/Trees/FeatureServer/0)
 - San Diego: [Trees (Street Trees)](https://webmaps.sandiego.gov/arcgis/rest/services/DSD/Environment/MapServer/20)
 - San Fernando: [San Fernando CAL FIRE Tree Layer](https://services5.arcgis.com/t4zDNzBF9Dot8HEQ/arcgis/rest/services/San_Fernando_CAL_FIRE_Tree_Layer_view/FeatureServer/0)
 - San Francisco: [Street Tree List](https://data.sfgov.org/City-Infrastructure/Street-Tree-List/tkzw-k3nq)

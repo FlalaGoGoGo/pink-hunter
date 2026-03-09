@@ -353,6 +353,11 @@ REGION_CITY_OVERRIDES: dict[str, str] = {
     "San Fernando": "ca",
     "Santa Clarita": "ca",
     "West Hollywood": "ca",
+    "Newport Beach": "ca",
+    "San Dimas": "ca",
+    "Rancho Palos Verdes": "ca",
+    "Santa Monica": "ca",
+    "Oxnard": "ca",
 }
 
 CITY_BOUNDARY_HINTS: dict[str, dict[str, str]] = {
@@ -364,6 +369,11 @@ CITY_BOUNDARY_HINTS: dict[str, dict[str, str]] = {
     "Austin": {"state": "48"},
     "Dallas": {"state": "48"},
     "Houston": {"state": "48"},
+    "Newport Beach": {"state": "06"},
+    "San Dimas": {"state": "06"},
+    "Rancho Palos Verdes": {"state": "06"},
+    "Santa Monica": {"state": "06"},
+    "Oxnard": {"state": "06"},
     "Arlington": {"state": "51", "basename": "Arlington", "boundary_source": "arlington_county_arcgis"},
     "Alexandria": {"state": "51"},
     "Montgomery County": {"boundary_source": "montgomery_county_arcgis"},

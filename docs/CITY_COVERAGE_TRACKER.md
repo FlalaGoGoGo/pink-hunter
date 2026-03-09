@@ -327,3 +327,10 @@ Last updated: 2026-03-08 (America/Los_Angeles)
 - Rechecked `Phoenix`; official city tree-map style materials were found, but this round did not confirm a public citywide single-tree species inventory.
 - Rechecked `Boise`; a public ArcGIS result labeled `City Maintained Tree Inventory` was found, but its published geometry resolves outside Boise and is treated as a false positive rather than a safe official Boise source.
 - Rechecked `Detroit`; official Detroit open-data entry points reviewed in this round did not confirm a public citywide single-tree species inventory.
+
+## March 2026 Southern California Coastal Corridor
+- Integrated `Newport Beach` from the official Newport Beach tree inventory dashboard / ArcGIS layer.
+- Integrated `San Dimas` from the official City Owned Trees ArcGIS layer published by the City of San Dimas.
+- Integrated `Rancho Palos Verdes` from the official public tree inventory layer linked from the city's GIS services.
+- Integrated `Santa Monica` from the official City of Santa Monica `Trees` FeatureServer.
+- Integrated `Oxnard` from the official City of Oxnard `Trees` ArcGIS layer.

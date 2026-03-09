@@ -1,6 +1,6 @@
 {
   "version": "v2",
-  "generated_at": "2026-03-09T06:04:24.283108+00:00",
+  "generated_at": "2026-03-09T18:44:46.480593Z",
   "default_region": "wa",
   "coverage_rule": "official_jurisdiction_boundary_only",
   "coverage_skipped_cities": [],
@@ -103,10 +103,10 @@
   "coverage_official_unavailable_skipped_cities": [
     "Vancouver WA"
   ],
-  "source_count": 88,
-  "total_records": 1734860,
-  "included_records": 506844,
-  "unknown_records": 676726,
+  "source_count": 93,
+  "total_records": 1746034,
+  "included_records": 517360,
+  "unknown_records": 677384,
   "regions": [
     {
       "id": "bc",
@@ -174,8 +174,8 @@
         ]
       ],
       "data_path": null,
-      "tree_count": 175973,
-      "city_count": 43,
+      "tree_count": 186489,
+      "city_count": 48,
       "cities": [
         "Anaheim",
         "Azusa",
@@ -200,44 +200,49 @@
         "Monterey Park",
         "Morgan Hill",
         "Mountain View",
+        "Newport Beach",
         "Oakland",
+        "Oxnard",
         "Palo Alto",
         "Pasadena",
         "Pomona",
         "Rancho Cucamonga",
+        "Rancho Palos Verdes",
         "Riverside",
         "Sacramento",
         "Salinas",
         "San Diego",
+        "San Dimas",
         "San Fernando",
         "San Francisco",
         "San Jose",
         "San Mateo",
         "San Rafael",
         "Santa Clarita",
+        "Santa Monica",
         "Saratoga",
         "South San Francisco",
         "Sunnyvale",
         "West Hollywood",
         "West Sacramento"
       ],
-      "raw_bytes": 91576844,
-      "gzip_bytes": 3746210,
+      "raw_bytes": 96814804,
+      "gzip_bytes": 3973424,
       "warning_level": "none",
       "city_split": null,
       "species_counts": {
-        "cherry": 16235,
-        "plum": 41797,
-        "peach": 4509,
-        "magnolia": 108959,
-        "crabapple": 4473
+        "cherry": 16269,
+        "plum": 43238,
+        "peach": 4562,
+        "magnolia": 117925,
+        "crabapple": 4495
       },
       "ownership_groups": [
         "public",
         "private"
       ],
-      "aggregate_raw_bytes": 91576844,
-      "aggregate_gzip_bytes": 3746210,
+      "aggregate_raw_bytes": 96814804,
+      "aggregate_gzip_bytes": 3973424,
       "aggregate_warning_level": "very_large",
       "largest_shard_raw_bytes": 20242132,
       "largest_shard_gzip_bytes": 770544,
@@ -245,8 +250,8 @@
       "area_split": {
         "strategy": "area_shard",
         "index_path": "/data/trees.ca.area-index.v2.json",
-        "area_count": 43,
-        "shard_count": 43,
+        "area_count": 48,
+        "shard_count": 48,
         "ready": true
       },
       "largest_shard_warning_level": "none"
@@ -1401,6 +1406,15 @@
       "note": "Integrated from the official Newark public TreeKeeper inventory and jurisdiction boundary."
     },
     {
+      "name": "Tree Inventory",
+      "city": "Newport Beach",
+      "endpoint": "https://nbgis.newportbeachca.gov/gispub/Dashboards/TreeInventoryDash.htm",
+      "last_edit_at": "",
+      "records_fetched": 2365,
+      "records_included": 2286,
+      "note": "Integrated from the official City of Newport Beach public tree inventory dashboard layer and official jurisdiction boundary."
+    },
+    {
       "name": "Oakland Street Trees",
       "city": "Oakland",
       "endpoint": "https://data.oaklandca.gov/Environmental/Oakland-Street-Trees/4jcx-enxf",
@@ -1425,6 +1439,15 @@
       "records_fetched": 14289,
       "records_included": 12913,
       "note": "Integrated from the official City of Ottawa Tree Inventory ArcGIS layer and official city boundary."
+    },
+    {
+      "name": "Trees",
+      "city": "Oxnard",
+      "endpoint": "https://maps.oxnard.org/portal/apps/webappviewer/index.html?id=2b5e4c2ecf4a49fa82d3ecf924ff8ad7",
+      "last_edit_at": "",
+      "records_fetched": 5373,
+      "records_included": 5054,
+      "note": "Integrated from the official City of Oxnard public trees layer and official jurisdiction boundary."
     },
     {
       "name": "Tree Data",
@@ -1505,6 +1528,15 @@
       "note": "Integrated from the official City of Rancho Cucamonga public tree benefits inventory layer and official jurisdiction boundary."
     },
     {
+      "name": "Tree Inventory and Trimming Schedule",
+      "city": "Rancho Palos Verdes",
+      "endpoint": "https://www.rpvca.gov/869/GIS-Services",
+      "last_edit_at": "",
+      "records_fetched": 771,
+      "records_included": 657,
+      "note": "Integrated from the official City of Rancho Palos Verdes public tree inventory layer and official jurisdiction boundary."
+    },
+    {
       "name": "TreeSite",
       "city": "Redmond",
       "endpoint": "https://services7.arcgis.com/9u5SMK7jcrQbBJIC/arcgis/rest/services/TreeSite/FeatureServer/0",
@@ -1583,6 +1615,15 @@
       "note": "Integrated from the official City of San Diego street-trees ArcGIS layer with server-side blossom filtering."
     },
     {
+      "name": "City Owned Tree",
+      "city": "San Dimas",
+      "endpoint": "https://files.sandimasca.gov/departments/parks_and_recreation/trees/index.php",
+      "last_edit_at": "",
+      "records_fetched": 326,
+      "records_included": 266,
+      "note": "Integrated from the official City of San Dimas public tree inventory layer and official jurisdiction boundary."
+    },
+    {
       "name": "San Fernando Public Trees",
       "city": "San Fernando",
       "endpoint": "https://services5.arcgis.com/t4zDNzBF9Dot8HEQ/arcgis/rest/services/San_Fernando_CAL_FIRE_Tree_Layer_view/FeatureServer",
@@ -1631,6 +1672,15 @@
       "records_fetched": 2234,
       "records_included": 1927,
       "note": "Integrated from the official City of Santa Clarita public i-Tree inventory layer and official jurisdiction boundary."
+    },
+    {
+      "name": "Trees",
+      "city": "Santa Monica",
+      "endpoint": "https://data.sustainablesm.org/datasets/e82j-fp4t",
+      "last_edit_at": "",
+      "records_fetched": 2339,
+      "records_included": 2253,
+      "note": "Integrated from the official City of Santa Monica public trees feature service and official jurisdiction boundary."
     },
     {
       "name": "Tree Inventories in Santa Clara County",
@@ -1776,11 +1826,11 @@
     }
   ],
   "species_counts": {
-    "cherry": 173461,
-    "plum": 101078,
-    "peach": 7248,
-    "magnolia": 141209,
-    "crabapple": 83848
+    "cherry": 173495,
+    "plum": 102519,
+    "peach": 7301,
+    "magnolia": 150175,
+    "crabapple": 83870
   },
   "areas": [
     {
@@ -2148,6 +2198,20 @@
       "state_province": "CA"
     },
     {
+      "jurisdiction": "Newport Beach",
+      "region": "ca",
+      "tree_count": 2286,
+      "species_counts": {
+        "cherry": 3,
+        "plum": 146,
+        "peach": 9,
+        "magnolia": 2123,
+        "crabapple": 5
+      },
+      "jurisdiction_type": "city",
+      "state_province": "CA"
+    },
+    {
       "jurisdiction": "Oakland",
       "region": "ca",
       "tree_count": 3977,
@@ -2157,6 +2221,20 @@
         "peach": 0,
         "magnolia": 1400,
         "crabapple": 255
+      },
+      "jurisdiction_type": "city",
+      "state_province": "CA"
+    },
+    {
+      "jurisdiction": "Oxnard",
+      "region": "ca",
+      "tree_count": 5054,
+      "species_counts": {
+        "cherry": 14,
+        "plum": 893,
+        "peach": 20,
+        "magnolia": 4120,
+        "crabapple": 7
       },
       "jurisdiction_type": "city",
       "state_province": "CA"
@@ -2218,6 +2296,20 @@
       "state_province": "CA"
     },
     {
+      "jurisdiction": "Rancho Palos Verdes",
+      "region": "ca",
+      "tree_count": 657,
+      "species_counts": {
+        "cherry": 6,
+        "plum": 138,
+        "peach": 20,
+        "magnolia": 489,
+        "crabapple": 4
+      },
+      "jurisdiction_type": "city",
+      "state_province": "CA"
+    },
+    {
       "jurisdiction": "Riverside",
       "region": "ca",
       "tree_count": 5479,
@@ -2269,6 +2361,20 @@
         "peach": 230,
         "magnolia": 6075,
         "crabapple": 19
+      },
+      "jurisdiction_type": "city",
+      "state_province": "CA"
+    },
+    {
+      "jurisdiction": "San Dimas",
+      "region": "ca",
+      "tree_count": 266,
+      "species_counts": {
+        "cherry": 11,
+        "plum": 8,
+        "peach": 1,
+        "magnolia": 245,
+        "crabapple": 1
       },
       "jurisdiction_type": "city",
       "state_province": "CA"
@@ -2353,6 +2459,20 @@
         "peach": 42,
         "magnolia": 946,
         "crabapple": 23
+      },
+      "jurisdiction_type": "city",
+      "state_province": "CA"
+    },
+    {
+      "jurisdiction": "Santa Monica",
+      "region": "ca",
+      "tree_count": 2253,
+      "species_counts": {
+        "cherry": 0,
+        "plum": 256,
+        "peach": 3,
+        "magnolia": 1989,
+        "crabapple": 5
       },
       "jurisdiction_type": "city",
       "state_province": "CA"
