@@ -149,22 +149,31 @@ Live domain:
 - Berkeley
 - Burlingame
 - Concord
+- Costa Mesa
 - Cupertino
 - El Segundo
+- Fontana
 - Fremont
 - Fullerton
 - Gilroy
 - Irvine
+- La Canada Flintridge
 - Los Angeles
 - Los Gatos
+- Maywood
 - Mountain View
 - Milpitas
+- Monterey Park
 - Morgan Hill
 - Oakland
 - Palo Alto
 - Pasadena
+- Pomona
+- Rancho Cucamonga
+- Riverside
 - Sacramento
 - Salinas
+- Santa Clarita
 - San Diego
 - San Fernando
 - San Francisco
@@ -175,6 +184,7 @@ Live domain:
 - South San Francisco
 - Sunnyvale
 - West Sacramento
+- West Hollywood
 
 </details>
 
@@ -328,23 +338,32 @@ Live domain:
 - Bell: [City of Bell Tree Inventory Benefits](https://services2.arcgis.com/yrktbS5Xw87hJQvs/arcgis/rest/services/City_of_Bell_Tree_Inventory_Benefits_WFL1/FeatureServer/0)
 - Beverly Hills: [Trees of Beverly Hills](https://services5.arcgis.com/7CXE3aevo18HlHBC/arcgis/rest/services/Trees_of_Beverly_Hills/FeatureServer/0)
 - Concord: [Tree Inventory](https://www.cityofconcord.org/1249/Tree-Inventory)
+- Costa Mesa: [Costa Mesa Tree Benefits](https://services2.arcgis.com/yrktbS5Xw87hJQvs/arcgis/rest/services/Costa_Mesa_TreeBenefits_WFL1/FeatureServer/0)
 - Palo Alto: [City of Palo Alto Open GIS](https://opengis.cityofpaloalto.org/)
 - Berkeley: [Tree_Berkeley20191107](https://www.arcgis.com/home/item.html?id=88829f4ae7254b5280732e88e65e6df5)
 - Cupertino: [Cupertino Open Data GIS](https://gis-cupertino.opendata.arcgis.com/)
 - El Segundo: [El Segundo Tree Inventory](https://services2.arcgis.com/yrktbS5Xw87hJQvs/arcgis/rest/services/TreeInvElSegundo_Public/FeatureServer/0)
+- Fontana: [Fontana i-Tree Inventory](https://services2.arcgis.com/yrktbS5Xw87hJQvs/arcgis/rest/services/Fontana_iTree_Inv/FeatureServer/0)
 - Fremont: [Tree Inventory / Tree Value](https://www.fremont.gov/government/departments/maintenance-operations/urban-forestry/tree-inventory-tree-value)
 - Fullerton: [Fullerton Tree Benefits](https://services2.arcgis.com/yrktbS5Xw87hJQvs/arcgis/rest/services/Fullerton_Tree_Benefits_WFL1/FeatureServer/0)
 - Gilroy: [Tree Inventories in Santa Clara County](https://www.arcgis.com/home/item.html?id=58f9d735c5b94915ba5374c82415a26f)
 - Irvine: [City Trees](https://gis.cityofirvine.org/arcgis/rest/services/City_Landscape/MapServer/0)
+- La Canada Flintridge: [Homepage Inventory](https://services2.arcgis.com/yrktbS5Xw87hJQvs/arcgis/rest/services/LACanadaFlintridge_HomepageInventory_WFL1/FeatureServer/0)
 - Los Angeles: [Tree Inventory and Maintenance](https://streetsla.lacity.org/tree-inventory-and-maintenance)
 - Los Gatos: [Tree Inventories in Santa Clara County](https://www.arcgis.com/home/item.html?id=58f9d735c5b94915ba5374c82415a26f)
+- Maywood: [Maywood i-Tree Inventory](https://services2.arcgis.com/yrktbS5Xw87hJQvs/arcgis/rest/services/Maywood_iTree_Inventory_WFL1/FeatureServer/0)
 - Mountain View: [Trees](https://services8.arcgis.com/A76GjgcBUTTcwFGS/arcgis/rest/services/Heritage_Trees_JM/FeatureServer/10)
 - Milpitas: [Trees RO](https://services8.arcgis.com/OPmRdssd8jj0bT5H/arcgis/rest/services/Trees_RO/FeatureServer/0)
+- Monterey Park: [i-Tree Benefits Summary](https://services2.arcgis.com/yrktbS5Xw87hJQvs/arcgis/rest/services/Monterey_Park_iTree_Benefits_Summary_WFL1/FeatureServer/0)
 - Morgan Hill: [Tree Inventories in Santa Clara County](https://www.arcgis.com/home/item.html?id=58f9d735c5b94915ba5374c82415a26f)
 - Oakland: [Oakland Street Trees](https://data.oaklandca.gov/Environmental/Oakland-Street-Trees/4jcx-enxf)
 - Pasadena: [Street ROW Trees](https://services2.arcgis.com/zNjnZafDYCAJAbN0/arcgis/rest/services/Street_ROW_Trees/FeatureServer/0)
+- Pomona: [CityOfPomona i-Tree Benefits Canopy Cover](https://services2.arcgis.com/yrktbS5Xw87hJQvs/arcgis/rest/services/CityOfPomona_iTreeBenefits_CanopyCover_WFL1/FeatureServer/0)
+- Rancho Cucamonga: [Rancho Cucamonga Tree Benefits](https://services2.arcgis.com/yrktbS5Xw87hJQvs/arcgis/rest/services/RanchoCucamonga_TreeBenefits_WFL1/FeatureServer/0)
+- Riverside: [CityOfRiverside i-Tree Benefits](https://services2.arcgis.com/yrktbS5Xw87hJQvs/arcgis/rest/services/CityOfRiverside_iTreeBenefits_WFL1/FeatureServer/0)
 - Salinas: [Tree Inventory](https://cityofsalinas.opendatasoft.com/explore/dataset/tree-inventory/)
 - Sacramento: [City Maintained Trees](https://data.cityofsacramento.org/datasets/b9b716e09b5048179ab648bb4518452b_0/explore)
+- Santa Clarita: [City of Santa Clarita i-Tree Benefits Canopy Cover](https://services2.arcgis.com/yrktbS5Xw87hJQvs/arcgis/rest/services/City_of_Santa_Clarita_iTreeBenefits_CanopyCover_WFL1/FeatureServer/0)
 - San Diego: [Trees (Street Trees)](https://webmaps.sandiego.gov/arcgis/rest/services/DSD/Environment/MapServer/20)
 - San Fernando: [San Fernando CAL FIRE Tree Layer](https://services5.arcgis.com/t4zDNzBF9Dot8HEQ/arcgis/rest/services/San_Fernando_CAL_FIRE_Tree_Layer_view/FeatureServer/0)
 - San Francisco: [Street Tree List](https://data.sfgov.org/City-Infrastructure/Street-Tree-List/tkzw-k3nq)
@@ -355,6 +374,7 @@ Live domain:
 - South San Francisco: [City Trees](https://www.ssfca.gov/Departments/Parks-Recreation/Divisions/Parks-Division/Trees)
 - Sunnyvale: [Tree Inventories in Santa Clara County](https://www.arcgis.com/home/item.html?id=58f9d735c5b94915ba5374c82415a26f)
 - West Sacramento: [Tree Inventory](https://gis.cityofwestsacramento.org/server/rest/services/Tree_Inventory_MIL1/MapServer/0)
+- West Hollywood: [West Hollywood Public Tree Inventory](https://services6.arcgis.com/hAiivxtZsKcvN4Sa/arcgis/rest/services/Public_Tree_Inventory_WFL1/FeatureServer/0)
 
 </details>
 
