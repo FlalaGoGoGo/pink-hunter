@@ -1,6 +1,6 @@
 {
   "version": "v2",
-  "generated_at": "2026-03-09T00:17:50.597919+00:00",
+  "generated_at": "2026-03-09T06:04:24.283108+00:00",
   "default_region": "wa",
   "coverage_rule": "official_jurisdiction_boundary_only",
   "coverage_skipped_cities": [],
@@ -63,7 +63,6 @@
     "Mountlake Terrace",
     "Mukilteo",
     "Napa",
-    "Newark",
     "Newcastle",
     "Normandy Park",
     "North Bend",
@@ -104,10 +103,10 @@
   "coverage_official_unavailable_skipped_cities": [
     "Vancouver WA"
   ],
-  "source_count": 73,
-  "total_records": 1674988,
-  "included_records": 486043,
-  "unknown_records": 661570,
+  "source_count": 88,
+  "total_records": 1734860,
+  "included_records": 506844,
+  "unknown_records": 676726,
   "regions": [
     {
       "id": "bc",
@@ -175,8 +174,8 @@
         ]
       ],
       "data_path": null,
-      "tree_count": 157684,
-      "city_count": 33,
+      "tree_count": 175973,
+      "city_count": 43,
       "cities": [
         "Anaheim",
         "Azusa",
@@ -185,20 +184,28 @@
         "Beverly Hills",
         "Burlingame",
         "Concord",
+        "Costa Mesa",
         "Cupertino",
         "El Segundo",
+        "Fontana",
         "Fremont",
         "Fullerton",
         "Gilroy",
         "Irvine",
+        "La Canada Flintridge",
         "Los Angeles",
         "Los Gatos",
+        "Maywood",
         "Milpitas",
+        "Monterey Park",
         "Morgan Hill",
         "Mountain View",
         "Oakland",
         "Palo Alto",
         "Pasadena",
+        "Pomona",
+        "Rancho Cucamonga",
+        "Riverside",
         "Sacramento",
         "Salinas",
         "San Diego",
@@ -207,28 +214,30 @@
         "San Jose",
         "San Mateo",
         "San Rafael",
+        "Santa Clarita",
         "Saratoga",
         "South San Francisco",
         "Sunnyvale",
+        "West Hollywood",
         "West Sacramento"
       ],
-      "raw_bytes": 81357888,
-      "gzip_bytes": 3381377,
+      "raw_bytes": 91576844,
+      "gzip_bytes": 3746210,
       "warning_level": "none",
       "city_split": null,
       "species_counts": {
-        "cherry": 16160,
-        "plum": 39885,
-        "peach": 4214,
-        "magnolia": 93089,
-        "crabapple": 4336
+        "cherry": 16235,
+        "plum": 41797,
+        "peach": 4509,
+        "magnolia": 108959,
+        "crabapple": 4473
       },
       "ownership_groups": [
         "public",
         "private"
       ],
-      "aggregate_raw_bytes": 81357888,
-      "aggregate_gzip_bytes": 3381377,
+      "aggregate_raw_bytes": 91576844,
+      "aggregate_gzip_bytes": 3746210,
       "aggregate_warning_level": "very_large",
       "largest_shard_raw_bytes": 20242132,
       "largest_shard_gzip_bytes": 770544,
@@ -236,8 +245,8 @@
       "area_split": {
         "strategy": "area_shard",
         "index_path": "/data/trees.ca.area-index.v2.json",
-        "area_count": 33,
-        "shard_count": 33,
+        "area_count": 43,
+        "shard_count": 43,
         "ready": true
       },
       "largest_shard_warning_level": "none"
@@ -446,36 +455,41 @@
       "available": true,
       "bounds": [
         [
-          -74.10476052098124,
-          40.688807439511784
+          -74.7155625868,
+          40.3168228536
         ],
         [
-          -74.03213147488759,
-          40.758711906729154
+          -74.014276568548,
+          41.00509845986
         ]
       ],
       "data_path": null,
-      "tree_count": 2148,
-      "city_count": 1,
+      "tree_count": 4660,
+      "city_count": 6,
       "cities": [
-        "Jersey City"
+        "Ho-Ho-Kus",
+        "Jersey City",
+        "Millburn",
+        "Newark",
+        "Oradell",
+        "Princeton"
       ],
-      "raw_bytes": 1153133,
-      "gzip_bytes": 50297,
+      "raw_bytes": 2377219,
+      "gzip_bytes": 101372,
       "warning_level": "none",
       "city_split": null,
       "species_counts": {
-        "cherry": 2004,
-        "plum": 1,
-        "peach": 0,
-        "magnolia": 21,
-        "crabapple": 122
+        "cherry": 3148,
+        "plum": 691,
+        "peach": 1,
+        "magnolia": 363,
+        "crabapple": 457
       },
       "ownership_groups": [
         "public"
       ],
-      "aggregate_raw_bytes": 1153133,
-      "aggregate_gzip_bytes": 50297,
+      "aggregate_raw_bytes": 2377219,
+      "aggregate_gzip_bytes": 101372,
       "aggregate_warning_level": "none",
       "largest_shard_raw_bytes": 1153133,
       "largest_shard_gzip_bytes": 50297,
@@ -483,8 +497,8 @@
       "area_split": {
         "strategy": "area_shard",
         "index_path": "/data/trees.nj.area-index.v2.json",
-        "area_count": 1,
-        "shard_count": 1,
+        "area_count": 6,
+        "shard_count": 6,
         "ready": true
       },
       "largest_shard_warning_level": "none"
@@ -1123,6 +1137,15 @@
       "note": "Integrated via the official Concord TreePlotter page and city GIS boundary."
     },
     {
+      "name": "Costa Mesa Tree Benefits",
+      "city": "Costa Mesa",
+      "endpoint": "https://services2.arcgis.com/yrktbS5Xw87hJQvs/arcgis/rest/services/Costa_Mesa_Tree_benefits/FeatureServer",
+      "last_edit_at": "2025-12-09T16:58:27.638000+00:00",
+      "records_fetched": 950,
+      "records_included": 887,
+      "note": "Integrated from the official City of Costa Mesa public tree benefits inventory layer and official jurisdiction boundary."
+    },
+    {
       "name": "Trees",
       "city": "Cupertino",
       "endpoint": "https://gis-cupertino.opendata.arcgis.com/",
@@ -1155,6 +1178,15 @@
       "last_edit_at": "",
       "records_fetched": 15162,
       "records_included": 464
+    },
+    {
+      "name": "Fontana i-Tree Inventory",
+      "city": "Fontana",
+      "endpoint": "https://services2.arcgis.com/yrktbS5Xw87hJQvs/arcgis/rest/services/Fontana_iTree_Inv/FeatureServer",
+      "last_edit_at": "2024-09-12T16:11:39.322000+00:00",
+      "records_fetched": 3791,
+      "records_included": 3732,
+      "note": "Integrated from the official City of Fontana public tree inventory layer and official jurisdiction boundary."
     },
     {
       "name": "Tree Inventory",
@@ -1190,6 +1222,15 @@
       "records_fetched": 51,
       "records_included": 43,
       "note": "Integrated from the official Santa Clara County public tree inventory service using the City = Gilroy subset and official jurisdiction boundary."
+    },
+    {
+      "name": "TreeKeeper Inventory",
+      "city": "Ho-Ho-Kus",
+      "endpoint": "https://hohokusnj.treekeepersoftware.com",
+      "last_edit_at": "",
+      "records_fetched": 3271,
+      "records_included": 18,
+      "note": "Integrated from the official Ho-Ho-Kus public TreeKeeper inventory and jurisdiction boundary."
     },
     {
       "name": "COH Urban Forestry Trees",
@@ -1235,6 +1276,15 @@
       "records_included": 3122
     },
     {
+      "name": "La Canada Flintridge Homepage Inventory",
+      "city": "La Canada Flintridge",
+      "endpoint": "https://services2.arcgis.com/yrktbS5Xw87hJQvs/arcgis/rest/services/LaCanadaFlintrid_Homepage_Inventory/FeatureServer",
+      "last_edit_at": "2024-09-12T22:42:30.857000+00:00",
+      "records_fetched": 468,
+      "records_included": 314,
+      "note": "Integrated from the official City of La Canada Flintridge public tree inventory layer and official jurisdiction boundary."
+    },
+    {
       "name": "CLV Tree Sites",
       "city": "Las Vegas",
       "endpoint": "https://services1.arcgis.com/F1v0ufATbBQScMtY/ArcGIS/rest/services/CLV_Tree_Sites/FeatureServer",
@@ -1262,12 +1312,39 @@
       "note": "Integrated from the official Santa Clara County public tree inventory service using the City = Los Gatos subset and official jurisdiction boundary."
     },
     {
+      "name": "Maywood i-Tree Inventory",
+      "city": "Maywood",
+      "endpoint": "https://services2.arcgis.com/yrktbS5Xw87hJQvs/arcgis/rest/services/Maywood_iTree_Inventory_WFL1/FeatureServer",
+      "last_edit_at": "2025-02-20T21:52:49.241000+00:00",
+      "records_fetched": 83,
+      "records_included": 71,
+      "note": "Integrated from the official City of Maywood public i-Tree inventory layer and official jurisdiction boundary."
+    },
+    {
+      "name": "TreeKeeper Inventory",
+      "city": "Millburn",
+      "endpoint": "https://millburnnj.treekeepersoftware.com",
+      "last_edit_at": "",
+      "records_fetched": 10844,
+      "records_included": 1133,
+      "note": "Integrated from the official Millburn public TreeKeeper inventory and jurisdiction boundary."
+    },
+    {
       "name": "Trees RO",
       "city": "Milpitas",
       "endpoint": "https://services8.arcgis.com/OPmRdssd8jj0bT5H/arcgis/rest/services/Trees_RO/FeatureServer/0",
       "last_edit_at": "2021-01-04T19:17:35.381000+00:00",
       "records_fetched": 17904,
       "records_included": 1696
+    },
+    {
+      "name": "Monterey Park i-Tree Benefits Summary",
+      "city": "Monterey Park",
+      "endpoint": "https://services2.arcgis.com/yrktbS5Xw87hJQvs/arcgis/rest/services/MontereyParkiTreebenefitsSummary_XYTableToPoint/FeatureServer",
+      "last_edit_at": "2025-07-18T22:15:45.059000+00:00",
+      "records_fetched": 520,
+      "records_included": 480,
+      "note": "Integrated from the official City of Monterey Park public i-Tree inventory layer and official jurisdiction boundary."
     },
     {
       "name": "Arbres publics sur le territoire de la Ville",
@@ -1315,12 +1392,30 @@
       "note": "Integrated from the official NYC Open Data street tree census dataset published by NYC Parks."
     },
     {
+      "name": "TreeKeeper Inventory",
+      "city": "Newark",
+      "endpoint": "https://newarknj.treekeepersoftware.com",
+      "last_edit_at": "",
+      "records_fetched": 1457,
+      "records_included": 28,
+      "note": "Integrated from the official Newark public TreeKeeper inventory and jurisdiction boundary."
+    },
+    {
       "name": "Oakland Street Trees",
       "city": "Oakland",
       "endpoint": "https://data.oaklandca.gov/Environmental/Oakland-Street-Trees/4jcx-enxf",
       "last_edit_at": "2013-01-22T20:50:21+00:00",
       "records_fetched": 38613,
       "records_included": 3977
+    },
+    {
+      "name": "TreeKeeper Inventory",
+      "city": "Oradell",
+      "endpoint": "https://oradellnj.treekeepersoftware.com",
+      "last_edit_at": "",
+      "records_fetched": 5298,
+      "records_included": 23,
+      "note": "Integrated from the official Oradell public TreeKeeper inventory and jurisdiction boundary."
     },
     {
       "name": "Tree Inventory / Inventaire des arbres",
@@ -1367,6 +1462,15 @@
       "note": "Integrated from the official public Pittsburgh TreeKeeper inventory domain."
     },
     {
+      "name": "CityOfPomona i-Tree Benefits Canopy Cover",
+      "city": "Pomona",
+      "endpoint": "https://services2.arcgis.com/yrktbS5Xw87hJQvs/arcgis/rest/services/CityOfPomona_iTreeBenefits_CanopyCover_WFL1/FeatureServer",
+      "last_edit_at": "2026-03-03T16:10:30.887000+00:00",
+      "records_fetched": 583,
+      "records_included": 475,
+      "note": "Integrated from the official City of Pomona public i-Tree tree inventory layer and official jurisdiction boundary."
+    },
+    {
       "name": "Street Tree Inventory - Active Records",
       "city": "Portland",
       "endpoint": "https://www.portlandmaps.com/od/rest/services/COP_OpenData_Environment/MapServer/1415",
@@ -1375,12 +1479,30 @@
       "records_included": 24775
     },
     {
+      "name": "TreeKeeper Inventory",
+      "city": "Princeton",
+      "endpoint": "https://princetonnj.treekeepersoftware.com",
+      "last_edit_at": "",
+      "records_fetched": 19256,
+      "records_included": 1310,
+      "note": "Integrated from the official Princeton public TreeKeeper inventory and jurisdiction boundary."
+    },
+    {
       "name": "City Maintained Street Trees",
       "city": "Puyallup",
       "endpoint": "https://services8.arcgis.com/5K6vnOH0GkPyJs6A/arcgis/rest/services/City_Maintained_Street_Trees/FeatureServer/0",
       "last_edit_at": "2026-01-06T23:31:01.859000+00:00",
       "records_fetched": 76,
       "records_included": 76
+    },
+    {
+      "name": "Rancho Cucamonga Tree Benefits",
+      "city": "Rancho Cucamonga",
+      "endpoint": "https://services2.arcgis.com/yrktbS5Xw87hJQvs/arcgis/rest/services/Rancho_Cucamonga_Tree_Benefits_WFL1/FeatureServer",
+      "last_edit_at": "2026-01-13T22:17:04.532000+00:00",
+      "records_fetched": 4623,
+      "records_included": 4486,
+      "note": "Integrated from the official City of Rancho Cucamonga public tree benefits inventory layer and official jurisdiction boundary."
     },
     {
       "name": "TreeSite",
@@ -1398,6 +1520,15 @@
       "records_fetched": 2218,
       "records_included": 1879,
       "note": ""
+    },
+    {
+      "name": "CityOfRiverside i-Tree Benefits",
+      "city": "Riverside",
+      "endpoint": "https://services2.arcgis.com/yrktbS5Xw87hJQvs/arcgis/rest/services/CityOfRiverside_iTreeBenefits_WFL1/FeatureServer",
+      "last_edit_at": "2026-03-03T16:17:53.592000+00:00",
+      "records_fetched": 6009,
+      "records_included": 5479,
+      "note": "Integrated from the official City of Riverside public i-Tree inventory layer and official jurisdiction boundary."
     },
     {
       "name": "City Maintained Trees",
@@ -1491,6 +1622,15 @@
       "last_edit_at": "2025-03-21T00:16:04.047000+00:00",
       "records_fetched": 22282,
       "records_included": 422
+    },
+    {
+      "name": "City of Santa Clarita i-Tree Benefits Canopy Cover",
+      "city": "Santa Clarita",
+      "endpoint": "https://services2.arcgis.com/yrktbS5Xw87hJQvs/arcgis/rest/services/CityofSantaClarita_iTreeBenefits_CanopyCover_WFL1/FeatureServer",
+      "last_edit_at": "2026-03-03T16:12:18.090000+00:00",
+      "records_fetched": 2234,
+      "records_included": 1927,
+      "note": "Integrated from the official City of Santa Clarita public i-Tree inventory layer and official jurisdiction boundary."
     },
     {
       "name": "Tree Inventories in Santa Clara County",
@@ -1609,6 +1749,15 @@
       "records_included": 16533
     },
     {
+      "name": "City Tree Inventory",
+      "city": "West Hollywood",
+      "endpoint": "https://data.weho.org/Infrastructure/City-Tree-Inventory/qqwt-wx9z",
+      "last_edit_at": "",
+      "records_fetched": 505,
+      "records_included": 438,
+      "note": "Integrated from the official City of West Hollywood public tree inventory dataset and official jurisdiction boundary."
+    },
+    {
       "name": "Tree Inventory",
       "city": "West Sacramento",
       "endpoint": "https://gis.cityofwestsacramento.org/server/rest/services/Tree_Inventory_MIL1/MapServer/0",
@@ -1627,11 +1776,11 @@
     }
   ],
   "species_counts": {
-    "cherry": 172242,
-    "plum": 98476,
-    "peach": 6952,
-    "magnolia": 124997,
-    "crabapple": 83376
+    "cherry": 173461,
+    "plum": 101078,
+    "peach": 7248,
+    "magnolia": 141209,
+    "crabapple": 83848
   },
   "areas": [
     {
@@ -1775,6 +1924,20 @@
       "state_province": "CA"
     },
     {
+      "jurisdiction": "Costa Mesa",
+      "region": "ca",
+      "tree_count": 887,
+      "species_counts": {
+        "cherry": 0,
+        "plum": 106,
+        "peach": 22,
+        "magnolia": 755,
+        "crabapple": 4
+      },
+      "jurisdiction_type": "city",
+      "state_province": "CA"
+    },
+    {
       "jurisdiction": "Cupertino",
       "region": "ca",
       "tree_count": 1299,
@@ -1798,6 +1961,20 @@
         "peach": 2,
         "magnolia": 329,
         "crabapple": 3
+      },
+      "jurisdiction_type": "city",
+      "state_province": "CA"
+    },
+    {
+      "jurisdiction": "Fontana",
+      "region": "ca",
+      "tree_count": 3732,
+      "species_counts": {
+        "cherry": 11,
+        "plum": 245,
+        "peach": 10,
+        "magnolia": 3462,
+        "crabapple": 4
       },
       "jurisdiction_type": "city",
       "state_province": "CA"
@@ -1859,6 +2036,20 @@
       "state_province": "CA"
     },
     {
+      "jurisdiction": "La Canada Flintridge",
+      "region": "ca",
+      "tree_count": 314,
+      "species_counts": {
+        "cherry": 3,
+        "plum": 121,
+        "peach": 16,
+        "magnolia": 160,
+        "crabapple": 14
+      },
+      "jurisdiction_type": "city",
+      "state_province": "CA"
+    },
+    {
       "jurisdiction": "Los Angeles",
       "region": "ca",
       "tree_count": 40459,
@@ -1887,6 +2078,20 @@
       "state_province": "CA"
     },
     {
+      "jurisdiction": "Maywood",
+      "region": "ca",
+      "tree_count": 71,
+      "species_counts": {
+        "cherry": 1,
+        "plum": 18,
+        "peach": 1,
+        "magnolia": 50,
+        "crabapple": 1
+      },
+      "jurisdiction_type": "city",
+      "state_province": "CA"
+    },
+    {
       "jurisdiction": "Milpitas",
       "region": "ca",
       "tree_count": 1696,
@@ -1896,6 +2101,20 @@
         "peach": 143,
         "magnolia": 977,
         "crabapple": 146
+      },
+      "jurisdiction_type": "city",
+      "state_province": "CA"
+    },
+    {
+      "jurisdiction": "Monterey Park",
+      "region": "ca",
+      "tree_count": 480,
+      "species_counts": {
+        "cherry": 36,
+        "plum": 16,
+        "peach": 7,
+        "magnolia": 420,
+        "crabapple": 1
       },
       "jurisdiction_type": "city",
       "state_province": "CA"
@@ -1966,6 +2185,48 @@
         "peach": 29,
         "magnolia": 5335,
         "crabapple": 4
+      },
+      "jurisdiction_type": "city",
+      "state_province": "CA"
+    },
+    {
+      "jurisdiction": "Pomona",
+      "region": "ca",
+      "tree_count": 475,
+      "species_counts": {
+        "cherry": 1,
+        "plum": 97,
+        "peach": 37,
+        "magnolia": 331,
+        "crabapple": 9
+      },
+      "jurisdiction_type": "city",
+      "state_province": "CA"
+    },
+    {
+      "jurisdiction": "Rancho Cucamonga",
+      "region": "ca",
+      "tree_count": 4486,
+      "species_counts": {
+        "cherry": 4,
+        "plum": 309,
+        "peach": 56,
+        "magnolia": 4108,
+        "crabapple": 9
+      },
+      "jurisdiction_type": "city",
+      "state_province": "CA"
+    },
+    {
+      "jurisdiction": "Riverside",
+      "region": "ca",
+      "tree_count": 5479,
+      "species_counts": {
+        "cherry": 7,
+        "plum": 67,
+        "peach": 103,
+        "magnolia": 5232,
+        "crabapple": 70
       },
       "jurisdiction_type": "city",
       "state_province": "CA"
@@ -2083,6 +2344,20 @@
       "state_province": "CA"
     },
     {
+      "jurisdiction": "Santa Clarita",
+      "region": "ca",
+      "tree_count": 1927,
+      "species_counts": {
+        "cherry": 10,
+        "plum": 906,
+        "peach": 42,
+        "magnolia": 946,
+        "crabapple": 23
+      },
+      "jurisdiction_type": "city",
+      "state_province": "CA"
+    },
+    {
       "jurisdiction": "Saratoga",
       "region": "ca",
       "tree_count": 6,
@@ -2120,6 +2395,20 @@
         "peach": 0,
         "magnolia": 8,
         "crabapple": 0
+      },
+      "jurisdiction_type": "city",
+      "state_province": "CA"
+    },
+    {
+      "jurisdiction": "West Hollywood",
+      "region": "ca",
+      "tree_count": 438,
+      "species_counts": {
+        "cherry": 2,
+        "plum": 27,
+        "peach": 1,
+        "magnolia": 406,
+        "crabapple": 2
       },
       "jurisdiction_type": "city",
       "state_province": "CA"
@@ -2209,6 +2498,20 @@
       "state_province": "MD"
     },
     {
+      "jurisdiction": "Ho-Ho-Kus",
+      "region": "nj",
+      "tree_count": 18,
+      "species_counts": {
+        "cherry": 8,
+        "plum": 3,
+        "peach": 0,
+        "magnolia": 5,
+        "crabapple": 2
+      },
+      "jurisdiction_type": "city",
+      "state_province": "NJ"
+    },
+    {
       "jurisdiction": "Jersey City",
       "region": "nj",
       "tree_count": 2148,
@@ -2218,6 +2521,62 @@
         "peach": 0,
         "magnolia": 21,
         "crabapple": 122
+      },
+      "jurisdiction_type": "city",
+      "state_province": "NJ"
+    },
+    {
+      "jurisdiction": "Millburn",
+      "region": "nj",
+      "tree_count": 1133,
+      "species_counts": {
+        "cherry": 204,
+        "plum": 670,
+        "peach": 0,
+        "magnolia": 134,
+        "crabapple": 125
+      },
+      "jurisdiction_type": "city",
+      "state_province": "NJ"
+    },
+    {
+      "jurisdiction": "Newark",
+      "region": "nj",
+      "tree_count": 28,
+      "species_counts": {
+        "cherry": 22,
+        "plum": 5,
+        "peach": 0,
+        "magnolia": 1,
+        "crabapple": 0
+      },
+      "jurisdiction_type": "city",
+      "state_province": "NJ"
+    },
+    {
+      "jurisdiction": "Oradell",
+      "region": "nj",
+      "tree_count": 23,
+      "species_counts": {
+        "cherry": 8,
+        "plum": 12,
+        "peach": 0,
+        "magnolia": 1,
+        "crabapple": 2
+      },
+      "jurisdiction_type": "city",
+      "state_province": "NJ"
+    },
+    {
+      "jurisdiction": "Princeton",
+      "region": "nj",
+      "tree_count": 1310,
+      "species_counts": {
+        "cherry": 902,
+        "plum": 0,
+        "peach": 1,
+        "magnolia": 201,
+        "crabapple": 206
       },
       "jurisdiction_type": "city",
       "state_province": "NJ"
