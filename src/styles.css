@@ -737,6 +737,11 @@ body {
   color: #8a5567;
 }
 
+.jump-area-status-badge.city_level_coverage {
+  background: rgba(199, 232, 214, 0.9);
+  color: #476c5d;
+}
+
 .jump-area-status-badge.official_unavailable {
   background: rgba(215, 219, 225, 0.62);
   color: #68717d;
@@ -836,6 +841,11 @@ body {
 .status-card.official_unavailable {
   background: linear-gradient(180deg, rgba(248, 245, 249, 0.98), rgba(255, 253, 253, 0.98));
   border-color: rgba(149, 120, 166, 0.26);
+}
+
+.status-card.city_level_coverage {
+  background: linear-gradient(180deg, rgba(246, 252, 248, 0.98), rgba(255, 253, 253, 0.98));
+  border-color: rgba(92, 139, 115, 0.24);
 }
 
 .status-card.untracked {

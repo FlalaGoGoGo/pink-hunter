@@ -881,6 +881,7 @@ const DISCOVERY_COPY: Record<
     areaSearchHide: string;
     areaSearchEmpty: string;
     areaStatusCovered: string;
+    areaStatusCityLevelCoverage: string;
     areaStatusOfficialUnavailable: string;
     areaStatusUntracked: string;
     locationLoading: string;
@@ -896,6 +897,9 @@ const DISCOVERY_COPY: Record<
     officialUnavailableTitle: string;
     officialUnavailableBody: string;
     officialUnavailableCta: string;
+    cityLevelCoverageTitle: string;
+    cityLevelCoverageBody: string;
+    cityLevelCoverageCta: string;
     untrackedTitle: string;
     untrackedBody: string;
     untrackedCta: string;
@@ -908,6 +912,7 @@ const DISCOVERY_COPY: Record<
     areaSearchHide: "Hide city / county search",
     areaSearchEmpty: "No city or county matched that search.",
     areaStatusCovered: "Covered",
+    areaStatusCityLevelCoverage: "Covered cities inside",
     areaStatusOfficialUnavailable: "Official data unavailable",
     areaStatusUntracked: "Not added yet",
     locationLoading: "Locating your position...",
@@ -924,6 +929,10 @@ const DISCOVERY_COPY: Record<
     officialUnavailableBody:
       "Pink Hunter knows this area and can draw its official boundary, but there is still no official public single-tree dataset to load here.",
     officialUnavailableCta: "Share a data lead",
+    cityLevelCoverageTitle: "Covered cities are already inside this county",
+    cityLevelCoverageBody:
+      "Pink Hunter does not have a single county-wide dataset for this area, but it already includes covered cities within these county bounds.",
+    cityLevelCoverageCta: "Show covered trees here",
     untrackedTitle: "Pink Hunter has not added this area yet",
     untrackedBody:
       "This area is not integrated into Pink Hunter yet. If you know a public official dataset, please send it over.",
@@ -937,6 +946,7 @@ const DISCOVERY_COPY: Record<
     areaSearchHide: "收起城市 / 县搜索",
     areaSearchEmpty: "没有匹配的城市或县。",
     areaStatusCovered: "已覆盖",
+    areaStatusCityLevelCoverage: "县内已有覆盖城市",
     areaStatusOfficialUnavailable: "官方暂无公开数据",
     areaStatusUntracked: "尚未加入",
     locationLoading: "正在定位你的位置...",
@@ -953,6 +963,10 @@ const DISCOVERY_COPY: Record<
     officialUnavailableBody:
       "Pink Hunter 已经知道这个地区，也能绘制它的官方边界，但目前还没有可公开接入的官方单株树木数据。",
     officialUnavailableCta: "提供数据线索",
+    cityLevelCoverageTitle: "这个县范围内已经有已覆盖城市",
+    cityLevelCoverageBody:
+      "Pink Hunter 目前没有这个县统一的 county 级数据集，但这个县范围内已经包含多个已覆盖城市。",
+    cityLevelCoverageCta: "显示这里的已覆盖树木",
     untrackedTitle: "Pink Hunter 还没有接入这个地区",
     untrackedBody: "这个地区目前还没有被 Pink Hunter 收录。如果你知道官方公开数据源，欢迎发给我们。",
     untrackedCta: "请求添加该地区",
@@ -964,6 +978,7 @@ const DISCOVERY_COPY: Record<
     areaSearchHide: "收起城市 / 縣搜尋",
     areaSearchEmpty: "沒有符合的城市或縣。",
     areaStatusCovered: "已覆蓋",
+    areaStatusCityLevelCoverage: "縣內已有覆蓋城市",
     areaStatusOfficialUnavailable: "官方暫無公開資料",
     areaStatusUntracked: "尚未加入",
     locationLoading: "正在定位你的位置...",
@@ -980,6 +995,10 @@ const DISCOVERY_COPY: Record<
     officialUnavailableBody:
       "Pink Hunter 已知道這個地區，也能繪製它的官方邊界，但目前還沒有可公開接入的官方單株樹木資料。",
     officialUnavailableCta: "提供資料線索",
+    cityLevelCoverageTitle: "這個縣範圍內已經有已覆蓋城市",
+    cityLevelCoverageBody:
+      "Pink Hunter 目前沒有這個縣統一的 county 級資料集，但這個縣範圍內已經包含多個已覆蓋城市。",
+    cityLevelCoverageCta: "顯示這裡的已覆蓋樹木",
     untrackedTitle: "Pink Hunter 尚未接入這個地區",
     untrackedBody: "這個地區目前尚未被 Pink Hunter 收錄。如果你知道官方公開資料來源，歡迎提供給我們。",
     untrackedCta: "請求加入這個地區",
@@ -991,6 +1010,7 @@ const DISCOVERY_COPY: Record<
     areaSearchHide: "Ocultar búsqueda de ciudad / condado",
     areaSearchEmpty: "Ninguna ciudad o condado coincide con la búsqueda.",
     areaStatusCovered: "Cubierto",
+    areaStatusCityLevelCoverage: "Ciudades cubiertas dentro",
     areaStatusOfficialUnavailable: "Sin datos oficiales",
     areaStatusUntracked: "Aún no añadido",
     locationLoading: "Buscando tu ubicación...",
@@ -1007,6 +1027,10 @@ const DISCOVERY_COPY: Record<
     officialUnavailableBody:
       "Pink Hunter conoce esta zona y puede dibujar su límite oficial, pero todavía no existe un conjunto público oficial árbol por árbol para cargar aquí.",
     officialUnavailableCta: "Compartir una pista de datos",
+    cityLevelCoverageTitle: "Ya hay ciudades cubiertas dentro de este condado",
+    cityLevelCoverageBody:
+      "Pink Hunter no tiene un único conjunto de datos a nivel de condado para esta zona, pero ya incluye ciudades cubiertas dentro de estos límites del condado.",
+    cityLevelCoverageCta: "Mostrar árboles aquí",
     untrackedTitle: "Pink Hunter aún no ha añadido esta zona",
     untrackedBody: "Esta zona todavía no está integrada en Pink Hunter. Si conoces un conjunto oficial público, envíalo.",
     untrackedCta: "Solicitar esta zona",
@@ -1019,6 +1043,7 @@ const DISCOVERY_COPY: Record<
     areaSearchHide: "시 / 카운티 검색 닫기",
     areaSearchEmpty: "검색과 일치하는 시 또는 카운티가 없습니다.",
     areaStatusCovered: "커버됨",
+    areaStatusCityLevelCoverage: "안에 커버된 도시 있음",
     areaStatusOfficialUnavailable: "공식 공개 데이터 없음",
     areaStatusUntracked: "아직 미추가",
     locationLoading: "현재 위치를 찾는 중...",
@@ -1035,6 +1060,10 @@ const DISCOVERY_COPY: Record<
     officialUnavailableBody:
       "Pink Hunter는 이 지역과 공식 경계를 알고 있지만, 현재는 불러올 수 있는 공식 공개 단일 수목 데이터셋이 없습니다.",
     officialUnavailableCta: "데이터 제보하기",
+    cityLevelCoverageTitle: "이 카운티 안에는 이미 커버된 도시가 있습니다",
+    cityLevelCoverageBody:
+      "Pink Hunter에는 이 지역 전체를 하나로 다루는 county 단위 데이터셋은 없지만, 이 카운티 경계 안에는 이미 커버된 도시들이 포함되어 있습니다.",
+    cityLevelCoverageCta: "여기 나무 보기",
     untrackedTitle: "Pink Hunter에 아직 이 지역이 추가되지 않았습니다",
     untrackedBody: "이 지역은 아직 Pink Hunter에 통합되지 않았습니다. 공식 공개 데이터셋을 알고 있다면 보내 주세요.",
     untrackedCta: "이 지역 요청하기",
@@ -1046,6 +1075,7 @@ const DISCOVERY_COPY: Record<
     areaSearchHide: "市 / 郡の検索を閉じる",
     areaSearchEmpty: "一致する市または郡はありません。",
     areaStatusCovered: "カバー済み",
+    areaStatusCityLevelCoverage: "中にカバー済みの市あり",
     areaStatusOfficialUnavailable: "公式データ未公開",
     areaStatusUntracked: "未追加",
     locationLoading: "現在地を取得しています...",
@@ -1062,6 +1092,10 @@ const DISCOVERY_COPY: Record<
     officialUnavailableBody:
       "Pink Hunter はこの地域と公式境界を把握していますが、ここで読み込める公式公開の単木データセットはまだありません。",
     officialUnavailableCta: "データの手がかりを送る",
+    cityLevelCoverageTitle: "この郡の中にはすでにカバー済みの市があります",
+    cityLevelCoverageBody:
+      "Pink Hunter にはこの地域全体を 1 つの county データセットとして扱う情報はまだありませんが、この郡の範囲内にはすでにカバー済みの市が含まれています。",
+    cityLevelCoverageCta: "この範囲の木を表示",
     untrackedTitle: "Pink Hunter にはまだこの地域が追加されていません",
     untrackedBody: "この地域はまだ Pink Hunter に統合されていません。公開された公式データをご存じなら共有してください。",
     untrackedCta: "この地域を依頼する",
@@ -1073,6 +1107,7 @@ const DISCOVERY_COPY: Record<
     areaSearchHide: "Masquer la recherche ville / comté",
     areaSearchEmpty: "Aucune ville ou aucun comté ne correspond à cette recherche.",
     areaStatusCovered: "Couvert",
+    areaStatusCityLevelCoverage: "Villes couvertes dedans",
     areaStatusOfficialUnavailable: "Pas de données officielles",
     areaStatusUntracked: "Pas encore ajouté",
     locationLoading: "Localisation en cours...",
@@ -1089,6 +1124,10 @@ const DISCOVERY_COPY: Record<
     officialUnavailableBody:
       "Pink Hunter connaît cette zone et peut dessiner sa limite officielle, mais aucun jeu de données public officiel arbre par arbre n'est encore disponible ici.",
     officialUnavailableCta: "Partager une piste de données",
+    cityLevelCoverageTitle: "Des villes couvertes existent déjà dans ce comté",
+    cityLevelCoverageBody:
+      "Pink Hunter ne dispose pas encore d'un jeu de données unique à l'échelle du comté pour cette zone, mais il inclut déjà des villes couvertes à l'intérieur des limites de ce comté.",
+    cityLevelCoverageCta: "Afficher les arbres ici",
     untrackedTitle: "Pink Hunter n'a pas encore ajouté cette zone",
     untrackedBody: "Cette zone n'est pas encore intégrée à Pink Hunter. Si vous connaissez un jeu de données public officiel, envoyez-le.",
     untrackedCta: "Demander cette zone",
@@ -1101,6 +1140,7 @@ const DISCOVERY_COPY: Record<
     areaSearchHide: "Ẩn tìm kiếm thành phố / quận hạt",
     areaSearchEmpty: "Không có thành phố hoặc quận hạt nào khớp.",
     areaStatusCovered: "Đã phủ",
+    areaStatusCityLevelCoverage: "Bên trong có thành phố đã phủ",
     areaStatusOfficialUnavailable: "Chưa có dữ liệu chính thức",
     areaStatusUntracked: "Chưa thêm",
     locationLoading: "Đang xác định vị trí của bạn...",
@@ -1117,6 +1157,10 @@ const DISCOVERY_COPY: Record<
     officialUnavailableBody:
       "Pink Hunter biết khu vực này và có thể vẽ ranh giới chính thức của nó, nhưng hiện chưa có bộ dữ liệu công khai chính thức cho từng cây để tải ở đây.",
     officialUnavailableCta: "Gửi manh mối dữ liệu",
+    cityLevelCoverageTitle: "Bên trong quận hạt này đã có các thành phố được phủ",
+    cityLevelCoverageBody:
+      "Pink Hunter hiện chưa có một bộ dữ liệu duy nhất ở cấp county cho khu vực này, nhưng bên trong ranh giới quận hạt này đã có các thành phố được phủ.",
+    cityLevelCoverageCta: "Hiển thị cây ở đây",
     untrackedTitle: "Pink Hunter chưa thêm khu vực này",
     untrackedBody: "Khu vực này vẫn chưa được tích hợp vào Pink Hunter. Nếu bạn biết bộ dữ liệu công khai chính thức, hãy gửi cho chúng tôi.",
     untrackedCta: "Yêu cầu thêm khu vực này",
@@ -1356,6 +1400,7 @@ interface SelectedCoverage {
 }
 
 type StatusNoticeKind =
+  | "city_level_coverage"
   | "official_unavailable"
   | "untracked"
   | "location_unsupported"
@@ -1366,6 +1411,13 @@ type StatusNoticeKind =
 interface StatusNotice {
   kind: StatusNoticeKind;
   areaName?: string;
+}
+
+type JumpAreaDisplayStatus = "covered" | "city_level_coverage" | "official_unavailable" | "untracked";
+
+interface JumpAreaDisplayStatusInfo {
+  kind: JumpAreaDisplayStatus;
+  coveredCityCount: number;
 }
 
 type AboutSummaryMode = "region" | "area";
@@ -1573,6 +1625,11 @@ function boundsIntersect(left: BoundsTuple, right: BoundsTuple): boolean {
 function boundsContainCoordinate(bounds: BoundsTuple, coordinate: [number, number]): boolean {
   const [[minX, minY], [maxX, maxY]] = normalizeBounds(bounds);
   return coordinate[0] >= minX && coordinate[0] <= maxX && coordinate[1] >= minY && coordinate[1] <= maxY;
+}
+
+function boundsCenter(bounds: BoundsTuple): [number, number] {
+  const [[minX, minY], [maxX, maxY]] = normalizeBounds(bounds);
+  return [(minX + maxX) / 2, (minY + maxY) / 2];
 }
 
 function mergeTreeCollections(collections: TreeCollection[]): TreeCollection {
@@ -1821,12 +1878,20 @@ function jurisdictionTypeForCity(city: string): JurisdictionType {
   return JURISDICTION_OVERRIDES[city]?.type ?? "city";
 }
 
-function areaTypeLabel(language: Language, city: string): string {
-  return t(language, jurisdictionTypeForCity(city) === "county" ? "countyBadge" : "cityBadge");
+function jurisdictionTypeLabel(language: Language, areaType: JurisdictionType): string {
+  return t(language, areaType === "county" ? "countyBadge" : "cityBadge");
 }
 
-function areaTypeClassName(city: string): string {
-  return jurisdictionTypeForCity(city) === "county" ? "county" : "city";
+function areaTypeLabel(language: Language, city: string, explicitType?: JurisdictionType): string {
+  return jurisdictionTypeLabel(language, explicitType ?? jurisdictionTypeForCity(city));
+}
+
+function jurisdictionTypeClassName(areaType: JurisdictionType): string {
+  return areaType === "county" ? "county" : "city";
+}
+
+function areaTypeClassName(city: string, explicitType?: JurisdictionType): string {
+  return jurisdictionTypeClassName(explicitType ?? jurisdictionTypeForCity(city));
 }
 
 function jumpStateDisplayLabel(language: Language, state: JumpState): string {
@@ -2446,6 +2511,57 @@ export default function App(): JSX.Element {
     return new Map(data.jumpIndex.areas.map((area) => [area.id, area]));
   }, [data]);
 
+  const jumpAreaDisplayStatusById = useMemo(() => {
+    const next = new Map<string, JumpAreaDisplayStatusInfo>();
+    if (!data) {
+      return next;
+    }
+
+    const cityCenters = new Map(
+      data.jumpIndex.areas
+        .filter((area) => area.area_type === "city")
+        .map((area) => [area.id, boundsCenter(area.bounds)])
+    );
+
+    data.jumpIndex.areas.forEach((area) => {
+      if (area.coverage_status === "covered") {
+        next.set(area.id, { kind: "covered", coveredCityCount: 0 });
+        return;
+      }
+
+      if (area.coverage_status === "official_unavailable") {
+        next.set(area.id, { kind: "official_unavailable", coveredCityCount: 0 });
+        return;
+      }
+
+      if (area.area_type === "county") {
+        const coveredCityCount = data.jumpIndex.areas.reduce((count, candidate) => {
+          if (
+            candidate.id === area.id ||
+            candidate.country_id !== area.country_id ||
+            candidate.state_id !== area.state_id ||
+            candidate.area_type !== "city" ||
+            candidate.coverage_status !== "covered"
+          ) {
+            return count;
+          }
+
+          const candidateCenter = cityCenters.get(candidate.id) ?? boundsCenter(candidate.bounds);
+          return boundsContainCoordinate(area.bounds, candidateCenter) ? count + 1 : count;
+        }, 0);
+
+        if (coveredCityCount > 0) {
+          next.set(area.id, { kind: "city_level_coverage", coveredCityCount });
+          return;
+        }
+      }
+
+      next.set(area.id, { kind: "untracked", coveredCityCount: 0 });
+    });
+
+    return next;
+  }, [data]);
+
   const selectedJumpArea = useMemo(
     () => (selectedJumpAreaId ? jumpAreaById.get(selectedJumpAreaId) ?? null : null),
     [jumpAreaById, selectedJumpAreaId]
@@ -2468,6 +2584,7 @@ export default function App(): JSX.Element {
     return data.jumpIndex.areas
       .map((area) => {
         const state = jumpStateById.get(area.state_id);
+        const displayStatus = jumpAreaDisplayStatusById.get(area.id);
         const formattedLabel = formatAreaLabelResolved(area.jurisdiction);
         const stateLabel = state ? jumpStateDisplayLabel(language, state) : "";
         const stateCode = state?.code.toUpperCase() ?? "";
@@ -2499,8 +2616,10 @@ export default function App(): JSX.Element {
         if (jumpState && area.state_id === jumpState) {
           score += 8;
         }
-        if (area.coverage_status === "covered") {
+        if (displayStatus?.kind === "covered") {
           score += 4;
+        } else if (displayStatus?.kind === "city_level_coverage") {
+          score += 2;
         }
 
         return {
@@ -2517,6 +2636,7 @@ export default function App(): JSX.Element {
     data,
     formatAreaLabelResolved,
     jumpCountry,
+    jumpAreaDisplayStatusById,
     jumpState,
     jumpStateById,
     language,
@@ -2639,6 +2759,36 @@ export default function App(): JSX.Element {
   const discoveryCopy = DISCOVERY_COPY[language];
   const jumpSubnationalLabel = jumpCountry === "us" ? findPanelCopy.jumpState : findPanelCopy.jumpProvince;
   const jumpAnySubnationalLabel = jumpCountry === "us" ? findPanelCopy.jumpAnyState : findPanelCopy.jumpAnyProvince;
+
+  const getJumpAreaDisplayStatus = useCallback(
+    (area: JumpArea): JumpAreaDisplayStatusInfo =>
+      jumpAreaDisplayStatusById.get(area.id) ?? {
+        kind:
+          area.coverage_status === "covered"
+            ? "covered"
+            : area.coverage_status === "official_unavailable"
+              ? "official_unavailable"
+              : "untracked",
+        coveredCityCount: 0
+      },
+    [jumpAreaDisplayStatusById]
+  );
+
+  const jumpAreaStatusLabel = useCallback(
+    (status: JumpAreaDisplayStatus): string => {
+      if (status === "covered") {
+        return discoveryCopy.areaStatusCovered;
+      }
+      if (status === "city_level_coverage") {
+        return discoveryCopy.areaStatusCityLevelCoverage;
+      }
+      if (status === "official_unavailable") {
+        return discoveryCopy.areaStatusOfficialUnavailable;
+      }
+      return discoveryCopy.areaStatusUntracked;
+    },
+    [discoveryCopy]
+  );
 
   useEffect(() => {
     document.title = t(language, "browserTitle");
@@ -3554,12 +3704,18 @@ export default function App(): JSX.Element {
 
     if (selectedArea) {
       const areaName = formatAreaLabelResolved(selectedArea.jurisdiction);
-      if (selectedArea.coverage_status === "official_unavailable") {
+      const displayStatus = getJumpAreaDisplayStatus(selectedArea);
+      if (displayStatus.kind === "official_unavailable") {
         setStatusNotice({
           kind: "official_unavailable",
           areaName
         });
-      } else if (selectedArea.coverage_status === "untracked") {
+      } else if (displayStatus.kind === "city_level_coverage") {
+        setStatusNotice({
+          kind: "city_level_coverage",
+          areaName
+        });
+      } else if (displayStatus.kind === "untracked") {
         setStatusNotice({
           kind: "untracked",
           areaName
@@ -3620,12 +3776,17 @@ export default function App(): JSX.Element {
           setActiveRegion(matchedRegion.id);
         }
 
-        if (matchedArea?.coverage_status === "official_unavailable") {
+        if (matchedArea && getJumpAreaDisplayStatus(matchedArea).kind === "official_unavailable") {
           setStatusNotice({
             kind: "official_unavailable",
             areaName: formatAreaLabelResolved(matchedArea.jurisdiction)
           });
-        } else if (matchedArea?.coverage_status === "untracked") {
+        } else if (matchedArea && getJumpAreaDisplayStatus(matchedArea).kind === "city_level_coverage") {
+          setStatusNotice({
+            kind: "city_level_coverage",
+            areaName: formatAreaLabelResolved(matchedArea.jurisdiction)
+          });
+        } else if (matchedArea && getJumpAreaDisplayStatus(matchedArea).kind === "untracked") {
           setStatusNotice({
             kind: "untracked",
             areaName: formatAreaLabelResolved(matchedArea.jurisdiction)
@@ -3762,6 +3923,14 @@ export default function App(): JSX.Element {
           >
             {discoveryCopy.officialUnavailableCta}
           </a>
+        );
+      } else if (statusNotice.kind === "city_level_coverage") {
+        title = discoveryCopy.cityLevelCoverageTitle;
+        body = discoveryCopy.cityLevelCoverageBody;
+        action = (
+          <button className="clear-btn" onClick={refreshViewportTrees} type="button">
+            {discoveryCopy.cityLevelCoverageCta}
+          </button>
         );
       } else if (statusNotice.kind === "untracked") {
         title = discoveryCopy.untrackedTitle;
@@ -4209,13 +4378,7 @@ export default function App(): JSX.Element {
                         jumpAreaMatches.length > 0 ? (
                           <div className="jump-area-results">
                             {jumpAreaMatches.map((area) => {
-                              const state = jumpStateById.get(area.state_id);
-                              const areaStatusLabel =
-                                area.coverage_status === "covered"
-                                  ? discoveryCopy.areaStatusCovered
-                                  : area.coverage_status === "official_unavailable"
-                                    ? discoveryCopy.areaStatusOfficialUnavailable
-                                    : discoveryCopy.areaStatusUntracked;
+                              const areaDisplayStatus = getJumpAreaDisplayStatus(area);
                               return (
                                 <button
                                   className={
@@ -4229,15 +4392,18 @@ export default function App(): JSX.Element {
                                 >
                                   <div className="jump-area-result-head">
                                     <strong>{formatAreaLabelResolved(area.jurisdiction)}</strong>
-                                    <span className={`jump-area-status-badge ${area.coverage_status}`}>
-                                      {areaStatusLabel}
-                                    </span>
                                   </div>
                                   <div className="jump-area-result-meta">
-                                    <span className={`coverage-area-type-badge ${areaTypeClassName(area.jurisdiction)}`}>
-                                      {areaTypeLabel(language, area.jurisdiction)}
+                                    <span
+                                      className={`coverage-area-type-badge ${jurisdictionTypeClassName(
+                                        area.area_type
+                                      )}`}
+                                    >
+                                      {jurisdictionTypeLabel(language, area.area_type)}
                                     </span>
-                                    <span>{state ? jumpStateDisplayLabel(language, state) : area.state_id.toUpperCase()}</span>
+                                    <span className={`jump-area-status-badge ${areaDisplayStatus.kind}`}>
+                                      {jumpAreaStatusLabel(areaDisplayStatus.kind)}
+                                    </span>
                                   </div>
                                 </button>
                               );
@@ -4446,8 +4612,10 @@ export default function App(): JSX.Element {
                                 <div className="about-area-summary-title-stack">
                                   <div className="about-area-summary-title-row">
                                     <strong>{area.label}</strong>
-                                    <span className={`coverage-area-type-badge ${areaTypeClassName(area.jurisdiction)}`}>
-                                      {areaTypeLabel(language, area.jurisdiction)}
+                                    <span
+                                      className={`coverage-area-type-badge ${jurisdictionTypeClassName(area.areaType)}`}
+                                    >
+                                      {jurisdictionTypeLabel(language, area.areaType)}
                                     </span>
                                   </div>
                                 </div>
