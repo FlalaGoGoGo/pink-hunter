@@ -1704,6 +1704,99 @@ body {
   fill: currentColor;
 }
 
+.about-legal-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+  margin-top: 0.7rem;
+}
+
+.about-legal-btn {
+  border: none;
+  cursor: pointer;
+  min-height: 40px;
+}
+
+.legal-panel {
+  gap: 0.85rem;
+}
+
+.legal-back-btn {
+  margin-bottom: 0.7rem;
+}
+
+.legal-doc-card {
+  display: grid;
+  gap: 0.9rem;
+}
+
+.legal-doc-kicker {
+  margin: 0;
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #945771;
+}
+
+.legal-doc-title {
+  margin: 0.14rem 0 0;
+}
+
+.legal-doc-summary,
+.legal-doc-meta,
+.legal-doc-fallback {
+  margin: 0.36rem 0 0;
+  color: #654757;
+}
+
+.legal-doc-summary {
+  font-size: 0.82rem;
+  line-height: 1.46;
+}
+
+.legal-doc-meta,
+.legal-doc-fallback {
+  font-size: 0.74rem;
+  line-height: 1.45;
+}
+
+.legal-doc-body {
+  display: grid;
+  gap: 0.8rem;
+}
+
+.legal-doc-section {
+  padding: 0.82rem 0.88rem;
+  border-radius: 14px;
+  border: 1px solid rgba(153, 83, 116, 0.16);
+  background: linear-gradient(180deg, rgba(255, 252, 253, 0.98), rgba(255, 246, 249, 0.92));
+}
+
+.legal-doc-section h4 {
+  margin: 0;
+  font-size: 0.92rem;
+  font-weight: 800;
+  color: #4f3040;
+}
+
+.legal-doc-section p {
+  margin: 0.44rem 0 0;
+  font-size: 0.79rem;
+  line-height: 1.56;
+  color: #503f49;
+}
+
+.legal-doc-section ul {
+  margin: 0.52rem 0 0;
+  padding-left: 1.1rem;
+  display: grid;
+  gap: 0.34rem;
+  color: #503f49;
+  font-size: 0.79rem;
+  line-height: 1.5;
+}
+
 .about-summary-mode-switch {
   display: inline-flex;
   flex-wrap: wrap;
@@ -1835,9 +1928,41 @@ body {
 .meta-row {
   margin-top: 0.9rem;
   padding: 0.7rem 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.65rem;
   font-size: 0.74rem;
   color: #6d4f5d;
   border-top: 1px dashed rgba(144, 95, 116, 0.33);
+}
+
+.meta-row-info {
+  min-width: 0;
+}
+
+.meta-row-links {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.7rem;
+}
+
+.meta-link-button {
+  padding: 0;
+  border: none;
+  background: none;
+  color: #7a3b58;
+  font: inherit;
+  font-weight: 800;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.meta-link-button:hover,
+.meta-link-button.active {
+  color: #54283c;
 }
 
 .list-progress {

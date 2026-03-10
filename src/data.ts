@@ -61,6 +61,28 @@ function readBrowserHostname(): string {
   return typeof window !== "undefined" ? window.location.hostname.toLowerCase() : "";
 }
 
+function shouldRespectBrowserPrivacySignals(): boolean {
+  if (typeof navigator === "undefined" || typeof window === "undefined") {
+    return false;
+  }
+
+  const browserNavigator = navigator as Navigator & {
+    globalPrivacyControl?: boolean;
+    msDoNotTrack?: string | null;
+  };
+  const browserWindow = window as Window & {
+    doNotTrack?: string | null;
+  };
+
+  return (
+    browserNavigator.globalPrivacyControl === true ||
+    browserNavigator.doNotTrack === "1" ||
+    browserNavigator.doNotTrack === "yes" ||
+    browserNavigator.msDoNotTrack === "1" ||
+    browserWindow.doNotTrack === "1"
+  );
+}
+
 function getOrCreateVisitorId(): string {
   if (typeof window === "undefined") {
     return "server-render";
@@ -76,7 +98,11 @@ function getOrCreateVisitorId(): string {
   return visitorId;
 }
 
-async function loadCounterApiVisitorCount(): Promise<number> {
+async function loadCounterApiVisitorCount(): Promise<number | null> {
+  if (shouldRespectBrowserPrivacySignals()) {
+    return null;
+  }
+
   const hostname = readBrowserHostname();
   const shouldIncrement = shouldCountVisitor(hostname);
   const alreadyCounted =
@@ -96,7 +122,11 @@ async function loadCounterApiVisitorCount(): Promise<number> {
   return payload.count;
 }
 
-async function loadAwsVisitorCount(): Promise<number> {
+async function loadAwsVisitorCount(): Promise<number | null> {
+  if (shouldRespectBrowserPrivacySignals()) {
+    return null;
+  }
+
   if (!runtimeConfig.visitorApiBaseUrl) {
     throw new Error("Missing VITE_VISITOR_API_BASE_URL for AWS visitor counter.");
   }
@@ -134,7 +164,7 @@ async function loadAwsVisitorCount(): Promise<number> {
   return payload.count;
 }
 
-export async function loadVisitorCount(): Promise<number> {
+export async function loadVisitorCount(): Promise<number | null> {
   return runtimeConfig.visitorCounterMode === "aws_api"
     ? loadAwsVisitorCount()
     : loadCounterApiVisitorCount();

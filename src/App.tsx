@@ -17,6 +17,7 @@ import {
   speciesLabel,
   t
 } from "./i18n";
+import { getLegalDocument, getLegalUiCopy, type LegalDocumentId } from "./legalContent";
 import {
   BLANK_MAP_STYLE,
   buildMapboxStyleProbeUrl,
@@ -190,15 +191,27 @@ const REGION_CITY_OVERRIDES: Partial<Record<string, CoverageRegion>> = {
   Burbank: "ca",
   Camarillo: "ca",
   Chino: "ca",
+  Commerce: "ca",
+  Cudahy: "ca",
+  Downey: "ca",
   Encinitas: "ca",
   Escondido: "ca",
+  Glendale: "ca",
   Glendora: "ca",
+  "Huntington Park": "ca",
+  Inglewood: "ca",
   "La Mesa": "ca",
+  "La Mirada": "ca",
   "Laguna Beach": "ca",
+  Lynwood: "ca",
+  Norwalk: "ca",
+  Paramount: "ca",
   Redlands: "ca",
   Santee: "ca",
+  "Santa Fe Springs": "ca",
   "Santa Barbara": "ca",
   "Solana Beach": "ca",
+  "South Gate": "ca",
   Ventura: "ca",
   Vista: "ca",
   "West Covina": "ca",
@@ -1451,6 +1464,7 @@ interface JumpAreaDisplayStatusInfo {
 }
 
 type AboutSummaryMode = "region" | "area";
+type PanelView = "details" | "filters" | "guide" | "about";
 
 function ContactIconLink({
   href,
@@ -1517,6 +1531,7 @@ interface UrlState {
   language: Language;
   species: SpeciesGroup[];
   ownership: OwnershipGroup[];
+  legalDocument: LegalDocumentId | null;
   areaId: string | null;
   cities: string[];
   zipCodes: string[];
@@ -1565,11 +1580,16 @@ function parseStringList(raw: string | null): string[] {
     .filter(Boolean);
 }
 
+function parseLegalDocument(raw: string | null): LegalDocumentId | null {
+  return raw === "privacy" || raw === "terms" ? raw : null;
+}
+
 function parseUrlState(): UrlState {
   const params = new URLSearchParams(window.location.search);
   const cities = parseStringList(params.get("city"));
   const region = parseRegion(params.get("region"), cities);
   const language = parseLanguage(params.get("lang"));
+  const legalDocument = parseLegalDocument(params.get("legal"));
   const areaId = params.get("area");
   const hasSpeciesParam = params.has("species");
   const hasOwnershipParam = params.has("ownership");
@@ -1589,6 +1609,7 @@ function parseUrlState(): UrlState {
     language,
     species,
     ownership,
+    legalDocument,
     areaId,
     cities,
     zipCodes,
@@ -2148,6 +2169,7 @@ export default function App(): JSX.Element {
   const initialUrlState = useMemo(parseUrlState, []);
   const initialLayoutMode: LayoutMode =
     typeof window !== "undefined" && window.innerWidth >= 1024 ? "desktop_split" : "mobile_sheet";
+  const initialPanel: PanelView = initialUrlState.legalDocument ? "about" : "filters";
 
   const [data, setData] = useState<StaticAppData | null>(null);
   const [mapRuntime, setMapRuntime] = useState<MapRuntimeDeps | null>(null);
@@ -2177,7 +2199,8 @@ export default function App(): JSX.Element {
   const [userLocation, setUserLocation] = useState<[number, number] | null>(null);
   const [languageMenuOpen, setLanguageMenuOpen] = useState(false);
   const [sheetHeight, setSheetHeight] = useState<number>(0.4);
-  const [activePanel, setActivePanel] = useState<"details" | "filters" | "guide" | "about">("filters");
+  const [activePanel, setActivePanel] = useState<PanelView>(initialPanel);
+  const [activeLegalDocument, setActiveLegalDocument] = useState<LegalDocumentId | null>(initialUrlState.legalDocument);
   const [aboutSourcesPage, setAboutSourcesPage] = useState(0);
   const [aboutSourcesSearchQuery, setAboutSourcesSearchQuery] = useState("");
   const [aboutRegionSummaryPage, setAboutRegionSummaryPage] = useState(0);
@@ -2209,6 +2232,26 @@ export default function App(): JSX.Element {
   });
 
   const isDesktop = layoutMode === "desktop_split";
+  const legalUiCopy = getLegalUiCopy(language);
+  const activeLegalDocumentResult =
+    activeLegalDocument !== null ? getLegalDocument(language, activeLegalDocument) : null;
+  const activeLegalContent = activeLegalDocumentResult?.content ?? null;
+  const browserPageTitle =
+    activePanel === "about" && activeLegalDocumentResult
+      ? `Pink Hunter - ${activeLegalDocumentResult.content.title}`
+      : t(language, "browserTitle");
+  const browserPageDescription =
+    activePanel === "about" && activeLegalDocumentResult
+      ? activeLegalDocumentResult.content.summary
+      : t(language, "browserDescription");
+  const openAboutOverview = useCallback(() => {
+    setActiveLegalDocument(null);
+    setActivePanel("about");
+  }, []);
+  const openLegalDocument = useCallback((documentId: LegalDocumentId) => {
+    setActiveLegalDocument(documentId);
+    setActivePanel("about");
+  }, []);
 
   useEffect(() => {
     let cancelled = false;
@@ -2242,7 +2285,7 @@ export default function App(): JSX.Element {
     void (async () => {
       try {
         const count = await loadVisitorCount();
-        if (!cancelled) {
+        if (!cancelled && count !== null) {
           setVisitorCount(count);
         }
       } catch (loadError) {
@@ -2272,6 +2315,12 @@ export default function App(): JSX.Element {
     isDesktopRef.current = isDesktop;
     mapRef.current?.resize();
   }, [isDesktop]);
+
+  useEffect(() => {
+    if (activePanel !== "about" && activeLegalDocument !== null) {
+      setActiveLegalDocument(null);
+    }
+  }, [activeLegalDocument, activePanel]);
 
   const regionMetaById = useMemo(() => {
     const entries = (data?.meta.regions ?? []).map((regionMeta) => [regionMeta.id, regionMeta]);
@@ -2956,13 +3005,13 @@ export default function App(): JSX.Element {
   );
 
   useEffect(() => {
-    document.title = t(language, "browserTitle");
-    setDocumentMeta('meta[name="description"]', t(language, "browserDescription"));
-    setDocumentMeta('meta[property="og:title"]', t(language, "browserTitle"));
-    setDocumentMeta('meta[property="og:description"]', t(language, "browserDescription"));
-    setDocumentMeta('meta[name="twitter:title"]', t(language, "browserTitle"));
-    setDocumentMeta('meta[name="twitter:description"]', t(language, "browserDescription"));
-  }, [language]);
+    document.title = browserPageTitle;
+    setDocumentMeta('meta[name="description"]', browserPageDescription);
+    setDocumentMeta('meta[property="og:title"]', browserPageTitle);
+    setDocumentMeta('meta[property="og:description"]', browserPageDescription);
+    setDocumentMeta('meta[name="twitter:title"]', browserPageTitle);
+    setDocumentMeta('meta[name="twitter:description"]', browserPageDescription);
+  }, [browserPageDescription, browserPageTitle]);
 
   const aboutSources = useMemo(() => {
     if (!data) {
@@ -3763,6 +3812,9 @@ export default function App(): JSX.Element {
     if (selectedJumpAreaId) {
       params.set("area", selectedJumpAreaId);
     }
+    if (activePanel === "about" && activeLegalDocument) {
+      params.set("legal", activeLegalDocument);
+    }
 
     if (selectedSpecies.length === 0) {
       params.set("species", "none");
@@ -3783,6 +3835,8 @@ export default function App(): JSX.Element {
     const nextUrl = `${window.location.pathname}?${params.toString()}`;
     window.history.replaceState(null, "", nextUrl);
   }, [
+    activeLegalDocument,
+    activePanel,
     activeRegion,
     allOwnershipOptions.length,
     data,
@@ -4361,7 +4415,7 @@ export default function App(): JSX.Element {
             </button>
             <button
               className={activePanel === "about" ? "tab-btn active" : "tab-btn"}
-              onClick={() => setActivePanel("about")}
+              onClick={openAboutOverview}
               type="button"
             >
               {t(language, "showAbout")}
@@ -4702,275 +4756,358 @@ export default function App(): JSX.Element {
               </section>
             </section>
           ) : (
-            <section className="about-panel">
-              <div className="about-section">
-                <h3 className="about-section-title">{aboutCopy.title}</h3>
-                <div className="about-copy-block">
-                  {aboutCopy.intro.map((paragraph) => (
-                    <p key={paragraph}>{paragraph}</p>
-                  ))}
-                </div>
-              </div>
-
-              <div className="about-section">
-                <h3 className="about-section-title">{aboutCopy.summaryTitle}</h3>
-                <p className="about-summary-note">{aboutCopy.summaryNote}</p>
-                <p className="about-summary-note about-summary-coverage-note">
-                  {aboutCopy.summaryCoverageLead}: {aboutCoverageScope}
-                </p>
-                <div className="about-summary-stack">
-                  <article className="about-card about-summary-card about-summary-total-card">
-                    <div className="about-summary-head">
-                      <div>
-                        <h4>{aboutCopy.summaryAllTitle}</h4>
-                      </div>
-                      <strong className="about-summary-total-number">{formatCount(data.meta.included_records)}</strong>
+            <section className={activeLegalContent ? "about-panel legal-panel" : "about-panel"}>
+              {activeLegalContent ? (
+                <div className="about-section">
+                  <button className="clear-btn legal-back-btn" onClick={openAboutOverview} type="button">
+                    {legalUiCopy.backToAbout}
+                  </button>
+                  <article className="about-card legal-doc-card">
+                    <div className="legal-doc-header">
+                      <p className="legal-doc-kicker">{legalUiCopy.sectionTitle}</p>
+                      <h3 className="about-section-title legal-doc-title">{activeLegalContent.title}</h3>
+                      <p className="legal-doc-summary">{activeLegalContent.summary}</p>
+                      <p className="legal-doc-meta">
+                        {legalUiCopy.lastUpdatedLabel}: {activeLegalContent.lastUpdated}
+                      </p>
+                      {activeLegalDocumentResult?.fallbackLanguage ? (
+                        <p className="legal-doc-fallback">{legalUiCopy.fallbackNotice}</p>
+                      ) : null}
                     </div>
-                    <div className="about-summary-divider" />
-                    {renderSpeciesCountRows(data.meta.species_counts ?? EMPTY_SPECIES_COUNTS)}
-                  </article>
-
-                  <article className="about-card about-summary-card about-summary-browse-card">
-                    <div className="about-summary-section-head">
-                      <h4>{activeAboutSummaryTitle}</h4>
-                      <div className="about-summary-mode-switch" role="tablist" aria-label={aboutCopy.summaryTitle}>
-                        <button
-                          aria-selected={aboutSummaryMode === "region"}
-                          className={aboutSummaryMode === "region" ? "tab-btn active" : "tab-btn"}
-                          onClick={() => setAboutSummaryMode("region")}
-                          role="tab"
-                          type="button"
-                        >
-                          {aboutCopy.summaryByRegionTitle}
-                        </button>
-                        <button
-                          aria-selected={aboutSummaryMode === "area"}
-                          className={aboutSummaryMode === "area" ? "tab-btn active" : "tab-btn"}
-                          onClick={() => setAboutSummaryMode("area")}
-                          role="tab"
-                          type="button"
-                        >
-                          {aboutCopy.summaryByAreaTitle}
-                        </button>
-                      </div>
-                    </div>
-                    <input
-                      className="filter-search-input about-summary-search-input"
-                      onChange={(event) =>
-                        aboutSummaryMode === "region"
-                          ? setAboutRegionSummarySearchQuery(event.target.value)
-                          : setAboutAreaSummarySearchQuery(event.target.value)
-                      }
-                      placeholder={activeAboutSummarySearchPlaceholder}
-                      type="search"
-                      value={aboutSummaryMode === "region" ? aboutRegionSummarySearchQuery : aboutAreaSummarySearchQuery}
-                    />
-                    <div className="about-summary-browser-list">
-                      {aboutSummaryMode === "region"
-                        ? pagedAboutRegionSummaries.map((region) => (
-                            <div className="about-region-summary-item" key={region.id}>
-                              <div className="about-region-summary-head">
-                                <strong>{region.label}</strong>
-                                <span className="about-region-summary-total">{formatCount(region.totalTrees)}</span>
-                              </div>
-                              <div className="about-summary-divider compact" />
-                              {renderSpeciesCountRows(region.speciesCounts, true)}
-                            </div>
-                          ))
-                        : pagedAboutAreaSummaries.map((area) => (
-                            <div className="about-area-summary-item" key={`${area.label}-${area.areaType}`}>
-                              <div className="about-area-summary-head">
-                                <div className="about-area-summary-title-stack">
-                                  <div className="about-area-summary-title-row">
-                                    <strong>{area.label}</strong>
-                                    <span
-                                      className={`coverage-area-type-badge ${jurisdictionTypeClassName(area.areaType)}`}
-                                    >
-                                      {jurisdictionTypeLabel(language, area.areaType)}
-                                    </span>
-                                  </div>
-                                </div>
-                                <span className="about-region-summary-total">{formatCount(area.totalTrees)}</span>
-                              </div>
-                              <div className="about-summary-divider compact" />
-                              {renderSpeciesCountRows(area.speciesCounts, true)}
-                            </div>
+                    <div className="legal-doc-body">
+                      {activeLegalContent.sections.map((section) => (
+                        <section className="legal-doc-section" key={section.id}>
+                          <h4>{section.title}</h4>
+                          {section.paragraphs.map((paragraph) => (
+                            <p key={paragraph}>{paragraph}</p>
                           ))}
-                      {(aboutSummaryMode === "region"
-                        ? filteredAboutRegionSummaries.length === 0
-                        : filteredAboutAreaSummaries.length === 0) && (
-                        <p className="filter-empty">{activeAboutSummaryEmpty}</p>
-                      )}
-                    </div>
-                    <div className="about-source-pagination">
-                      <button
-                        className="clear-btn"
-                        disabled={
-                          activeAboutSummaryPage === 0 ||
-                          (aboutSummaryMode === "region"
-                            ? filteredAboutRegionSummaries.length === 0
-                            : filteredAboutAreaSummaries.length === 0)
-                        }
-                        onClick={() =>
-                          aboutSummaryMode === "region"
-                            ? setAboutRegionSummaryPage((current) => Math.max(0, current - 1))
-                            : setAboutAreaSummaryPage((current) => Math.max(0, current - 1))
-                        }
-                        type="button"
-                      >
-                        {aboutCopy.previousPage}
-                      </button>
-                      <span>
-                        {aboutCopy.pageLabel} {activeAboutSummaryPage + 1} / {activeAboutSummaryPageCount}
-                      </span>
-                      <button
-                        className="clear-btn"
-                        disabled={
-                          activeAboutSummaryPage >= activeAboutSummaryPageCount - 1 ||
-                          (aboutSummaryMode === "region"
-                            ? filteredAboutRegionSummaries.length === 0
-                            : filteredAboutAreaSummaries.length === 0)
-                        }
-                        onClick={() =>
-                          aboutSummaryMode === "region"
-                            ? setAboutRegionSummaryPage((current) =>
-                                Math.min(aboutRegionSummaryPageCount - 1, current + 1)
-                              )
-                            : setAboutAreaSummaryPage((current) =>
-                                Math.min(aboutAreaSummaryPageCount - 1, current + 1)
-                              )
-                        }
-                        type="button"
-                      >
-                        {aboutCopy.nextPage}
-                      </button>
+                          {section.bullets ? (
+                            <ul>
+                              {section.bullets.map((bullet) => (
+                                <li key={bullet}>{bullet}</li>
+                              ))}
+                            </ul>
+                          ) : null}
+                        </section>
+                      ))}
                     </div>
                   </article>
                 </div>
-              </div>
-
-              <div className="about-section">
-                <h3 className="about-section-title">{aboutCopy.sourcesTitle}</h3>
-                <div className="about-copy-block">
-                  {aboutCopy.disclaimer.map((paragraph) => (
-                    <p key={paragraph}>{paragraph}</p>
-                  ))}
-                </div>
-                <article className="about-card about-sources-shell">
-                  <input
-                    className="filter-search-input about-source-search-input"
-                    onChange={(event) => setAboutSourcesSearchQuery(event.target.value)}
-                    placeholder={aboutCopy.sourcesSearchPlaceholder}
-                    type="search"
-                    value={aboutSourcesSearchQuery}
-                  />
-                  <div className="about-source-legend" role="presentation">
-                    <span className="about-source-legend-item">
-                      <span className="about-source-legend-dot official" />
-                      <span>{aboutCopy.officialBadge}</span>
-                    </span>
-                    <span className="about-source-legend-item">
-                      <span className="about-source-legend-dot supplemental" />
-                      <span>{aboutCopy.supplementalBadge}</span>
-                    </span>
-                  </div>
-                  <div className="about-source-list">
-                    {pagedAboutSources.map((source) => {
-                      const supplemental = source.name === "UW OSM Supplemental" || !isHttpUrl(source.endpoint);
-                      return (
-                        <div
-                          className={`about-source-item ${supplemental ? "supplemental" : "official"}`}
-                          key={`${source.city}-${source.name}`}
-                        >
-                          <div className="about-source-head">
-                            <div className="about-source-title-row">
-                              <strong>
-                                {formatAreaLabelResolved(source.city)}: {source.name}
-                              </strong>
-                              {isHttpUrl(source.endpoint) ? (
-                                <a
-                                  aria-label={aboutCopy.openLink}
-                                  className="source-link-icon"
-                                  href={source.endpoint}
-                                  rel="noreferrer"
-                                  target="_blank"
-                                >
-                                  <svg aria-hidden="true" viewBox="0 0 24 24">
-                                    <path
-                                      d="M9.35 14.65 14.65 9.35"
-                                      fill="none"
-                                      stroke="currentColor"
-                                      strokeLinecap="round"
-                                      strokeLinejoin="round"
-                                      strokeWidth="2"
-                                    />
-                                    <path
-                                      d="M7.25 14.4 5.6 16.05a3.15 3.15 0 1 0 4.45 4.45l1.65-1.65"
-                                      fill="none"
-                                      stroke="currentColor"
-                                      strokeLinecap="round"
-                                      strokeLinejoin="round"
-                                      strokeWidth="2"
-                                    />
-                                    <path
-                                      d="M16.75 9.6l1.65-1.65a3.15 3.15 0 1 0-4.45-4.45L12.3 5.15"
-                                      fill="none"
-                                      stroke="currentColor"
-                                      strokeLinecap="round"
-                                      strokeLinejoin="round"
-                                      strokeWidth="2"
-                                    />
-                                  </svg>
-                                </a>
-                              ) : null}
-                            </div>
-                          </div>
-                          {!isHttpUrl(source.endpoint) && <p>{source.endpoint}</p>}
-                        </div>
-                      );
-                    })}
-                    {filteredAboutSources.length === 0 && <p className="filter-empty">{aboutCopy.sourcesEmpty}</p>}
-                  </div>
-                  {aboutSources.length > 0 && (
-                    <div className="about-source-pagination">
-                      <button
-                        className="clear-btn"
-                        disabled={aboutSourcesPage === 0 || filteredAboutSources.length === 0}
-                        onClick={() => setAboutSourcesPage((current) => Math.max(0, current - 1))}
-                        type="button"
-                      >
-                        {aboutCopy.previousPage}
-                      </button>
-                      <span>
-                        {aboutCopy.pageLabel} {aboutSourcesPage + 1} / {aboutSourcePageCount}
-                      </span>
-                      <button
-                        className="clear-btn"
-                        disabled={aboutSourcesPage >= aboutSourcePageCount - 1 || filteredAboutSources.length === 0}
-                        onClick={() =>
-                          setAboutSourcesPage((current) => Math.min(aboutSourcePageCount - 1, current + 1))
-                        }
-                        type="button"
-                      >
-                        {aboutCopy.nextPage}
-                      </button>
+              ) : (
+                <>
+                  <div className="about-section">
+                    <h3 className="about-section-title">{aboutCopy.title}</h3>
+                    <div className="about-copy-block">
+                      {aboutCopy.intro.map((paragraph) => (
+                        <p key={paragraph}>{paragraph}</p>
+                      ))}
                     </div>
-                  )}
-                </article>
-              </div>
+                  </div>
 
-              <div className="about-section">
-                <h3 className="about-section-title">{aboutCopy.contactTitle}</h3>
-                <div className="about-copy-block about-contact-block">
-                  <p>{renderBoldName(aboutCopy.contactLead, "Flala Zhang")}</p>
-                  <ContactIcons />
-                </div>
-              </div>
+                  <div className="about-section">
+                    <h3 className="about-section-title">{aboutCopy.summaryTitle}</h3>
+                    <p className="about-summary-note">{aboutCopy.summaryNote}</p>
+                    <p className="about-summary-note about-summary-coverage-note">
+                      {aboutCopy.summaryCoverageLead}: {aboutCoverageScope}
+                    </p>
+                    <div className="about-summary-stack">
+                      <article className="about-card about-summary-card about-summary-total-card">
+                        <div className="about-summary-head">
+                          <div>
+                            <h4>{aboutCopy.summaryAllTitle}</h4>
+                          </div>
+                          <strong className="about-summary-total-number">{formatCount(data.meta.included_records)}</strong>
+                        </div>
+                        <div className="about-summary-divider" />
+                        {renderSpeciesCountRows(data.meta.species_counts ?? EMPTY_SPECIES_COUNTS)}
+                      </article>
+
+                      <article className="about-card about-summary-card about-summary-browse-card">
+                        <div className="about-summary-section-head">
+                          <h4>{activeAboutSummaryTitle}</h4>
+                          <div className="about-summary-mode-switch" role="tablist" aria-label={aboutCopy.summaryTitle}>
+                            <button
+                              aria-selected={aboutSummaryMode === "region"}
+                              className={aboutSummaryMode === "region" ? "tab-btn active" : "tab-btn"}
+                              onClick={() => setAboutSummaryMode("region")}
+                              role="tab"
+                              type="button"
+                            >
+                              {aboutCopy.summaryByRegionTitle}
+                            </button>
+                            <button
+                              aria-selected={aboutSummaryMode === "area"}
+                              className={aboutSummaryMode === "area" ? "tab-btn active" : "tab-btn"}
+                              onClick={() => setAboutSummaryMode("area")}
+                              role="tab"
+                              type="button"
+                            >
+                              {aboutCopy.summaryByAreaTitle}
+                            </button>
+                          </div>
+                        </div>
+                        <input
+                          className="filter-search-input about-summary-search-input"
+                          onChange={(event) =>
+                            aboutSummaryMode === "region"
+                              ? setAboutRegionSummarySearchQuery(event.target.value)
+                              : setAboutAreaSummarySearchQuery(event.target.value)
+                          }
+                          placeholder={activeAboutSummarySearchPlaceholder}
+                          type="search"
+                          value={
+                            aboutSummaryMode === "region" ? aboutRegionSummarySearchQuery : aboutAreaSummarySearchQuery
+                          }
+                        />
+                        <div className="about-summary-browser-list">
+                          {aboutSummaryMode === "region"
+                            ? pagedAboutRegionSummaries.map((region) => (
+                                <div className="about-region-summary-item" key={region.id}>
+                                  <div className="about-region-summary-head">
+                                    <strong>{region.label}</strong>
+                                    <span className="about-region-summary-total">{formatCount(region.totalTrees)}</span>
+                                  </div>
+                                  <div className="about-summary-divider compact" />
+                                  {renderSpeciesCountRows(region.speciesCounts, true)}
+                                </div>
+                              ))
+                            : pagedAboutAreaSummaries.map((area) => (
+                                <div className="about-area-summary-item" key={`${area.label}-${area.areaType}`}>
+                                  <div className="about-area-summary-head">
+                                    <div className="about-area-summary-title-stack">
+                                      <div className="about-area-summary-title-row">
+                                        <strong>{area.label}</strong>
+                                        <span
+                                          className={`coverage-area-type-badge ${jurisdictionTypeClassName(area.areaType)}`}
+                                        >
+                                          {jurisdictionTypeLabel(language, area.areaType)}
+                                        </span>
+                                      </div>
+                                    </div>
+                                    <span className="about-region-summary-total">{formatCount(area.totalTrees)}</span>
+                                  </div>
+                                  <div className="about-summary-divider compact" />
+                                  {renderSpeciesCountRows(area.speciesCounts, true)}
+                                </div>
+                              ))}
+                          {(aboutSummaryMode === "region"
+                            ? filteredAboutRegionSummaries.length === 0
+                            : filteredAboutAreaSummaries.length === 0) && (
+                            <p className="filter-empty">{activeAboutSummaryEmpty}</p>
+                          )}
+                        </div>
+                        <div className="about-source-pagination">
+                          <button
+                            className="clear-btn"
+                            disabled={
+                              activeAboutSummaryPage === 0 ||
+                              (aboutSummaryMode === "region"
+                                ? filteredAboutRegionSummaries.length === 0
+                                : filteredAboutAreaSummaries.length === 0)
+                            }
+                            onClick={() =>
+                              aboutSummaryMode === "region"
+                                ? setAboutRegionSummaryPage((current) => Math.max(0, current - 1))
+                                : setAboutAreaSummaryPage((current) => Math.max(0, current - 1))
+                            }
+                            type="button"
+                          >
+                            {aboutCopy.previousPage}
+                          </button>
+                          <span>
+                            {aboutCopy.pageLabel} {activeAboutSummaryPage + 1} / {activeAboutSummaryPageCount}
+                          </span>
+                          <button
+                            className="clear-btn"
+                            disabled={
+                              activeAboutSummaryPage >= activeAboutSummaryPageCount - 1 ||
+                              (aboutSummaryMode === "region"
+                                ? filteredAboutRegionSummaries.length === 0
+                                : filteredAboutAreaSummaries.length === 0)
+                            }
+                            onClick={() =>
+                              aboutSummaryMode === "region"
+                                ? setAboutRegionSummaryPage((current) =>
+                                    Math.min(aboutRegionSummaryPageCount - 1, current + 1)
+                                  )
+                                : setAboutAreaSummaryPage((current) =>
+                                    Math.min(aboutAreaSummaryPageCount - 1, current + 1)
+                                  )
+                            }
+                            type="button"
+                          >
+                            {aboutCopy.nextPage}
+                          </button>
+                        </div>
+                      </article>
+                    </div>
+                  </div>
+
+                  <div className="about-section">
+                    <h3 className="about-section-title">{aboutCopy.sourcesTitle}</h3>
+                    <div className="about-copy-block">
+                      {aboutCopy.disclaimer.map((paragraph) => (
+                        <p key={paragraph}>{paragraph}</p>
+                      ))}
+                    </div>
+                    <article className="about-card about-sources-shell">
+                      <input
+                        className="filter-search-input about-source-search-input"
+                        onChange={(event) => setAboutSourcesSearchQuery(event.target.value)}
+                        placeholder={aboutCopy.sourcesSearchPlaceholder}
+                        type="search"
+                        value={aboutSourcesSearchQuery}
+                      />
+                      <div className="about-source-legend" role="presentation">
+                        <span className="about-source-legend-item">
+                          <span className="about-source-legend-dot official" />
+                          <span>{aboutCopy.officialBadge}</span>
+                        </span>
+                        <span className="about-source-legend-item">
+                          <span className="about-source-legend-dot supplemental" />
+                          <span>{aboutCopy.supplementalBadge}</span>
+                        </span>
+                      </div>
+                      <div className="about-source-list">
+                        {pagedAboutSources.map((source) => {
+                          const supplemental = source.name === "UW OSM Supplemental" || !isHttpUrl(source.endpoint);
+                          return (
+                            <div
+                              className={`about-source-item ${supplemental ? "supplemental" : "official"}`}
+                              key={`${source.city}-${source.name}`}
+                            >
+                              <div className="about-source-head">
+                                <div className="about-source-title-row">
+                                  <strong>
+                                    {formatAreaLabelResolved(source.city)}: {source.name}
+                                  </strong>
+                                  {isHttpUrl(source.endpoint) ? (
+                                    <a
+                                      aria-label={aboutCopy.openLink}
+                                      className="source-link-icon"
+                                      href={source.endpoint}
+                                      rel="noreferrer"
+                                      target="_blank"
+                                    >
+                                      <svg aria-hidden="true" viewBox="0 0 24 24">
+                                        <path
+                                          d="M9.35 14.65 14.65 9.35"
+                                          fill="none"
+                                          stroke="currentColor"
+                                          strokeLinecap="round"
+                                          strokeLinejoin="round"
+                                          strokeWidth="2"
+                                        />
+                                        <path
+                                          d="M7.25 14.4 5.6 16.05a3.15 3.15 0 1 0 4.45 4.45l1.65-1.65"
+                                          fill="none"
+                                          stroke="currentColor"
+                                          strokeLinecap="round"
+                                          strokeLinejoin="round"
+                                          strokeWidth="2"
+                                        />
+                                        <path
+                                          d="M16.75 9.6l1.65-1.65a3.15 3.15 0 1 0-4.45-4.45L12.3 5.15"
+                                          fill="none"
+                                          stroke="currentColor"
+                                          strokeLinecap="round"
+                                          strokeLinejoin="round"
+                                          strokeWidth="2"
+                                        />
+                                      </svg>
+                                    </a>
+                                  ) : null}
+                                </div>
+                              </div>
+                              {!isHttpUrl(source.endpoint) && <p>{source.endpoint}</p>}
+                            </div>
+                          );
+                        })}
+                        {filteredAboutSources.length === 0 && <p className="filter-empty">{aboutCopy.sourcesEmpty}</p>}
+                      </div>
+                      {aboutSources.length > 0 && (
+                        <div className="about-source-pagination">
+                          <button
+                            className="clear-btn"
+                            disabled={aboutSourcesPage === 0 || filteredAboutSources.length === 0}
+                            onClick={() => setAboutSourcesPage((current) => Math.max(0, current - 1))}
+                            type="button"
+                          >
+                            {aboutCopy.previousPage}
+                          </button>
+                          <span>
+                            {aboutCopy.pageLabel} {aboutSourcesPage + 1} / {aboutSourcePageCount}
+                          </span>
+                          <button
+                            className="clear-btn"
+                            disabled={aboutSourcesPage >= aboutSourcePageCount - 1 || filteredAboutSources.length === 0}
+                            onClick={() =>
+                              setAboutSourcesPage((current) => Math.min(aboutSourcePageCount - 1, current + 1))
+                            }
+                            type="button"
+                          >
+                            {aboutCopy.nextPage}
+                          </button>
+                        </div>
+                      )}
+                    </article>
+                  </div>
+
+                  <div className="about-section">
+                    <h3 className="about-section-title">{legalUiCopy.sectionTitle}</h3>
+                    <div className="about-copy-block">
+                      <p>{legalUiCopy.lead}</p>
+                      <div className="about-legal-actions">
+                        <button
+                          className="detail-route-btn about-legal-btn"
+                          onClick={() => openLegalDocument("privacy")}
+                          type="button"
+                        >
+                          {legalUiCopy.privacyLinkLabel}
+                        </button>
+                        <button
+                          className="detail-route-btn about-legal-btn"
+                          onClick={() => openLegalDocument("terms")}
+                          type="button"
+                        >
+                          {legalUiCopy.termsLinkLabel}
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="about-section">
+                    <h3 className="about-section-title">{aboutCopy.contactTitle}</h3>
+                    <div className="about-copy-block about-contact-block">
+                      <p>{renderBoldName(aboutCopy.contactLead, "Flala Zhang")}</p>
+                      <ContactIcons />
+                    </div>
+                  </div>
+                </>
+              )}
             </section>
           )}
 
           <footer className="meta-row">
-            {t(language, "dataUpdated")}: {new Date(data.meta.generated_at).toLocaleString(language)}
+            <span className="meta-row-info">
+              {t(language, "dataUpdated")}: {new Date(data.meta.generated_at).toLocaleString(language)}
+            </span>
+            <div className="meta-row-links">
+              <button
+                className={activePanel === "about" && activeLegalDocument === "privacy" ? "meta-link-button active" : "meta-link-button"}
+                onClick={() => openLegalDocument("privacy")}
+                type="button"
+              >
+                {legalUiCopy.footerPrivacy}
+              </button>
+              <button
+                className={activePanel === "about" && activeLegalDocument === "terms" ? "meta-link-button active" : "meta-link-button"}
+                onClick={() => openLegalDocument("terms")}
+                type="button"
+              >
+                {legalUiCopy.footerTerms}
+              </button>
+            </div>
           </footer>
         </div>
       </section>
