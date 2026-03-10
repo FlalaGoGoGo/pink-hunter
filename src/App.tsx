@@ -7,7 +7,7 @@ import {
   type PointerEvent as ReactPointerEvent,
   type ReactNode
 } from "react";
-import { loadAreaIndex, loadStaticAppData, loadTreeCollection, loadVisitorCount } from "./data";
+import { loadAreaIndex, loadCoverageRegion, loadStaticAppData, loadTreeCollection, loadVisitorCount } from "./data";
 import {
   DEFAULT_LANGUAGE,
   LANGUAGE_OPTIONS,
@@ -18,12 +18,18 @@ import {
   t
 } from "./i18n";
 import {
+  BLANK_MAP_STYLE,
+  buildMapboxStyleProbeUrl,
+  buildMapboxStyleUrl,
+  runtimeConfig
+} from "./runtimeConfig";
+import {
   loadMapRuntimeDeps,
   type ClipMultiPolygon,
   type GeoJSONSource,
   type MapLayerMouseEvent,
-  type MapLibreMap,
-  type MapLibrePopup,
+  type MapEngineMap,
+  type MapEnginePopup,
   type MapRuntimeDeps
 } from "./mapRuntime";
 import type {
@@ -1171,8 +1177,8 @@ const DISCOVERY_COPY: Record<
 
 const REGION_SWITCH_BOUNDS: Partial<Record<CoverageRegion, [[number, number], [number, number]]>> = {
   wa: [
-    [-122.62, 47.23],
-    [-121.86, 47.83]
+    [-122.46, 47.49],
+    [-122.2, 47.74]
   ]
 };
 
@@ -1632,6 +1638,10 @@ function boundsCenter(bounds: BoundsTuple): [number, number] {
   return [(minX + maxX) / 2, (minY + maxY) / 2];
 }
 
+function normalizeSearchText(value: string): string {
+  return value.toLowerCase().replace(/[^\p{L}\p{N}]+/gu, " ").trim();
+}
+
 function mergeTreeCollections(collections: TreeCollection[]): TreeCollection {
   return toTreeCollection(collections.flatMap((collection) => collection.features));
 }
@@ -2055,17 +2065,55 @@ function buildContactMailtoHref(kind: "official_unavailable" | "untracked", area
   return `mailto:flalaz@uw.edu?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(lines.join("\n"))}`;
 }
 
-async function resolveMapStyle(): Promise<{ styleUrl: string; preset: MapStylePreset }> {
+interface ResolvedMapStyle {
+  style: string | typeof BLANK_MAP_STYLE;
+  preset: MapStylePreset;
+  supportsClusterText: boolean;
+}
+
+async function resolveMapStyle(): Promise<ResolvedMapStyle> {
+  if (runtimeConfig.mapStack === "mapbox") {
+    const probeUrl = buildMapboxStyleProbeUrl(runtimeConfig);
+    if (probeUrl && runtimeConfig.mapboxPublicToken) {
+      try {
+        const response = await fetch(probeUrl, { method: "GET" });
+        if (response.ok) {
+          return {
+            style: buildMapboxStyleUrl(runtimeConfig),
+            preset: "mapbox",
+            supportsClusterText: true
+          };
+        }
+      } catch {
+        // Fall through to blank fallback.
+      }
+    }
+
+    return {
+      style: BLANK_MAP_STYLE,
+      preset: "blank_fallback",
+      supportsClusterText: false
+    };
+  }
+
   try {
     const response = await fetch(POSITRON_STYLE_URL, { method: "GET" });
     if (response.ok) {
-      return { styleUrl: POSITRON_STYLE_URL, preset: "positron" };
+      return {
+        style: POSITRON_STYLE_URL,
+        preset: "positron",
+        supportsClusterText: true
+      };
     }
   } catch {
     // Fall through to default style.
   }
 
-  return { styleUrl: FALLBACK_STYLE_URL, preset: "demotiles" };
+  return {
+    style: FALLBACK_STYLE_URL,
+    preset: "demotiles",
+    supportsClusterText: true
+  };
 }
 
 export default function App(): JSX.Element {
@@ -2076,6 +2124,7 @@ export default function App(): JSX.Element {
   const [data, setData] = useState<StaticAppData | null>(null);
   const [mapRuntime, setMapRuntime] = useState<MapRuntimeDeps | null>(null);
   const [regionAreaIndexCache, setRegionAreaIndexCache] = useState<Partial<Record<CoverageRegion, AreaIndex>>>({});
+  const [regionCoverageCache, setRegionCoverageCache] = useState<Partial<Record<CoverageRegion, CoverageCollection>>>({});
   const [regionShardCache, setRegionShardCache] = useState<
     Partial<Record<CoverageRegion, Record<string, TreeCollection>>>
   >({});
@@ -2121,8 +2170,8 @@ export default function App(): JSX.Element {
 
   const mapContainerRef = useRef<HTMLDivElement | null>(null);
   const languageMenuRef = useRef<HTMLDivElement | null>(null);
-  const mapRef = useRef<MapLibreMap | null>(null);
-  const popupRef = useRef<MapLibrePopup | null>(null);
+  const mapRef = useRef<MapEngineMap | null>(null);
+  const popupRef = useRef<MapEnginePopup | null>(null);
   const filteredFeaturesRef = useRef<TreeCollection["features"]>([]);
   const isDesktopRef = useRef(layoutMode === "desktop_split");
   const dragStateRef = useRef<{ startY: number; startHeight: number; dragging: boolean }>({
@@ -2137,7 +2186,7 @@ export default function App(): JSX.Element {
     let cancelled = false;
     void (async () => {
       try {
-        const [loadedData, runtimeDeps] = await Promise.all([loadStaticAppData(), loadMapRuntimeDeps()]);
+        const [loadedData, runtimeDeps] = await Promise.all([loadStaticAppData(), loadMapRuntimeDeps(runtimeConfig)]);
         if (cancelled) {
           return;
         }
@@ -2237,6 +2286,15 @@ export default function App(): JSX.Element {
     [regionAreaIndexCache, visibleRegions]
   );
 
+  const pendingCoverageRegions = useMemo(() => {
+    if (runtimeConfig.coverageLoadMode !== "lazy_by_region") {
+      return [] as CoverageRegion[];
+    }
+    return visibleRegions
+      .filter((region) => region.coverage_path && !regionCoverageCache[region.id])
+      .map((region) => region.id);
+  }, [regionCoverageCache, visibleRegions]);
+
   useEffect(() => {
     if (pendingAreaIndexRegions.length === 0) {
       return;
@@ -2280,6 +2338,46 @@ export default function App(): JSX.Element {
       cancelled = true;
     };
   }, [pendingAreaIndexRegions, regionMetaById]);
+
+  useEffect(() => {
+    if (pendingCoverageRegions.length === 0) {
+      return;
+    }
+
+    let cancelled = false;
+    setError(null);
+
+    void (async () => {
+      try {
+        const loaded = await Promise.all(
+          pendingCoverageRegions.map(async (regionId) => {
+            const regionMeta = regionMetaById.get(regionId);
+            if (!regionMeta?.coverage_path) {
+              throw new Error(`Missing coverage path for region ${regionId}`);
+            }
+            return [regionId, await loadCoverageRegion(regionMeta)] as const;
+          })
+        );
+
+        if (cancelled) {
+          return;
+        }
+
+        setRegionCoverageCache((current) => ({
+          ...current,
+          ...Object.fromEntries(loaded)
+        }));
+      } catch (loadError) {
+        if (!cancelled) {
+          setError(loadError instanceof Error ? loadError.message : "Unknown coverage loading error");
+        }
+      }
+    })();
+
+    return () => {
+      cancelled = true;
+    };
+  }, [pendingCoverageRegions, regionMetaById]);
 
   const visibleAreaEntries = useMemo(
     () =>
@@ -2572,7 +2670,22 @@ export default function App(): JSX.Element {
     [initialUrlState.areaId, jumpAreaById]
   );
 
-  const normalizedJumpAreaQuery = jumpAreaQuery.trim().toLowerCase();
+  const formatJumpAreaLabel = useCallback(
+    (area: JumpArea) => {
+      const displayName = jurisdictionDisplayName(area.jurisdiction).trim();
+      const stateCode = jumpStateById.get(area.state_id)?.code.toUpperCase() ?? "";
+      if (!stateCode) {
+        return displayName;
+      }
+      if (new RegExp(`(?:,\\s*|\\s+)${stateCode}$`, "i").test(displayName)) {
+        return displayName;
+      }
+      return `${displayName}, ${stateCode}`;
+    },
+    [jumpStateById]
+  );
+
+  const normalizedJumpAreaQuery = normalizeSearchText(jumpAreaQuery);
 
   const jumpAreaMatches = useMemo(() => {
     if (!data || !normalizedJumpAreaQuery) {
@@ -2580,36 +2693,46 @@ export default function App(): JSX.Element {
     }
 
     const collator = new Intl.Collator(language, { sensitivity: "base" });
+    const queryTokens = normalizedJumpAreaQuery.split(/\s+/).filter(Boolean);
 
     return data.jumpIndex.areas
       .map((area) => {
         const state = jumpStateById.get(area.state_id);
         const displayStatus = jumpAreaDisplayStatusById.get(area.id);
-        const formattedLabel = formatAreaLabelResolved(area.jurisdiction);
+        const formattedLabel = formatJumpAreaLabel(area);
         const stateLabel = state ? jumpStateDisplayLabel(language, state) : "";
         const stateCode = state?.code.toUpperCase() ?? "";
         const countryLabel = COUNTRY_LABELS[language][area.country_id];
-        const searchHaystack = [
-          area.display_name,
-          area.jurisdiction,
-          formattedLabel,
-          stateLabel,
-          stateCode,
-          countryLabel
-        ]
-          .join(" ")
-          .toLowerCase();
+        const searchHaystack = normalizeSearchText(
+          [area.display_name, area.jurisdiction, formattedLabel, stateLabel, stateCode, countryLabel].join(" ")
+        );
+        const normalizedDisplayName = normalizeSearchText(area.display_name);
+        const normalizedJurisdiction = normalizeSearchText(area.jurisdiction);
+        const normalizedLabel = normalizeSearchText(formattedLabel);
 
-        if (!searchHaystack.includes(normalizedJumpAreaQuery)) {
+        if (!queryTokens.every((token) => searchHaystack.includes(token))) {
           return null;
         }
 
         const startsWithMatch =
-          formattedLabel.toLowerCase().startsWith(normalizedJumpAreaQuery) ||
-          area.display_name.toLowerCase().startsWith(normalizedJumpAreaQuery) ||
-          area.jurisdiction.toLowerCase().startsWith(normalizedJumpAreaQuery);
+          normalizedLabel.startsWith(normalizedJumpAreaQuery) ||
+          normalizedDisplayName.startsWith(normalizedJumpAreaQuery) ||
+          normalizedJurisdiction.startsWith(normalizedJumpAreaQuery);
 
         let score = startsWithMatch ? 20 : 0;
+        if (queryTokens.includes(stateCode.toLowerCase())) {
+          score += 6;
+        }
+        if (queryTokens.some((token) => normalizeSearchText(stateLabel).includes(token))) {
+          score += 4;
+        }
+        if (
+          normalizedDisplayName === normalizedJumpAreaQuery ||
+          normalizedJurisdiction === normalizedJumpAreaQuery ||
+          normalizedLabel === normalizedJumpAreaQuery
+        ) {
+          score += 10;
+        }
         if (area.country_id === jumpCountry) {
           score += 12;
         }
@@ -2634,7 +2757,7 @@ export default function App(): JSX.Element {
       .map((item) => item.area);
   }, [
     data,
-    formatAreaLabelResolved,
+    formatJumpAreaLabel,
     jumpCountry,
     jumpAreaDisplayStatusById,
     jumpState,
@@ -2676,15 +2799,27 @@ export default function App(): JSX.Element {
     }
   }, [jumpState, jumpStates]);
 
-  const displayCoverage = useMemo(() => {
+  const rawCoverageFeatures = useMemo(() => {
     if (!data) {
-      return { type: "FeatureCollection", features: [] } as CoverageCollection;
+      return [] as CoverageCollection["features"];
     }
+
+    if (runtimeConfig.coverageLoadMode === "eager_all") {
+      return data.coverage?.features ?? [];
+    }
+
+    return visibleRegionIds.flatMap((regionId) => regionCoverageCache[regionId]?.features ?? []);
+  }, [data, regionCoverageCache, visibleRegionIds]);
+
+  const displayCoverage = useMemo(() => {
     if (!mapRuntime) {
-      return data.coverage;
+      return {
+        type: "FeatureCollection",
+        features: rawCoverageFeatures
+      } as CoverageCollection;
     }
-    return buildCoverageCollection(data.coverage.features, mapRuntime.polygonClipping);
-  }, [data, mapRuntime]);
+    return buildCoverageCollection(rawCoverageFeatures, mapRuntime.polygonClipping);
+  }, [mapRuntime, rawCoverageFeatures]);
 
   const filteredFeatures = useMemo(() => {
     if (selectedSpecies.length === 0 || selectedOwnership.length === 0) {
@@ -3012,21 +3147,21 @@ export default function App(): JSX.Element {
     }
 
     let isCancelled = false;
-    let mapInstance: MapLibreMap | null = null;
+    let mapInstance: MapEngineMap | null = null;
     setMapReady(false);
 
     void (async () => {
       try {
-        const { styleUrl, preset } = await resolveMapStyle();
+        const { style, preset, supportsClusterText } = await resolveMapStyle();
         if (isCancelled || !mapContainerRef.current) {
           return;
         }
 
         setMapStylePreset(preset);
 
-        const map = new mapRuntime.maplibre.Map({
+        const map = new mapRuntime.map.Map({
           container: mapContainerRef.current,
-          style: styleUrl,
+          style: style as unknown,
           center: [initialUrlState.lon, initialUrlState.lat],
           zoom: initialUrlState.zoom,
           minZoom: 5,
@@ -3043,7 +3178,7 @@ export default function App(): JSX.Element {
 
         map.on("load", () => {
           setMapReady(true);
-          map.addControl(new mapRuntime.maplibre.ScaleControl({ maxWidth: 110, unit: "metric" }), "bottom-right");
+          map.addControl(new mapRuntime.map.ScaleControl({ maxWidth: 110, unit: "metric" }), "bottom-right");
 
         map.addSource("coverage", {
           type: "geojson",
@@ -3118,20 +3253,22 @@ export default function App(): JSX.Element {
           }
         });
 
-        map.addLayer({
-          id: "tree-cluster-count",
-          type: "symbol",
-          source: "trees",
-          filter: ["has", "point_count"],
-          layout: {
-            "text-field": ["get", "point_count_abbreviated"],
-            "text-size": 12,
-            "text-font": ["Open Sans Bold"]
-          },
-          paint: {
-            "text-color": "#4f2d3d"
-          }
-        });
+        if (supportsClusterText) {
+          map.addLayer({
+            id: "tree-cluster-count",
+            type: "symbol",
+            source: "trees",
+            filter: ["has", "point_count"],
+            layout: {
+              "text-field": ["get", "point_count_abbreviated"],
+              "text-size": 12,
+              "text-font": ["Open Sans Bold"]
+            },
+            paint: {
+              "text-color": "#4f2d3d"
+            }
+          });
+        }
 
         ALL_SPECIES.forEach((species) => {
           map.addLayer({
@@ -3519,7 +3656,7 @@ export default function App(): JSX.Element {
         </div>
       `;
 
-      const popup = new runtime.maplibre.Popup({
+      const popup = new runtime.map.Popup({
         closeButton: true,
         closeOnClick: false,
         offset: 14,
@@ -3563,7 +3700,7 @@ export default function App(): JSX.Element {
       </div>
     `;
 
-    const popup = new runtime.maplibre.Popup({
+    const popup = new runtime.map.Popup({
       closeButton: true,
       closeOnClick: false,
       offset: 12,
@@ -3703,7 +3840,7 @@ export default function App(): JSX.Element {
     fitMapToBounds(targetBounds);
 
     if (selectedArea) {
-      const areaName = formatAreaLabelResolved(selectedArea.jurisdiction);
+      const areaName = formatJumpAreaLabel(selectedArea);
       const displayStatus = getJumpAreaDisplayStatus(selectedArea);
       if (displayStatus.kind === "official_unavailable") {
         setStatusNotice({
@@ -3779,17 +3916,17 @@ export default function App(): JSX.Element {
         if (matchedArea && getJumpAreaDisplayStatus(matchedArea).kind === "official_unavailable") {
           setStatusNotice({
             kind: "official_unavailable",
-            areaName: formatAreaLabelResolved(matchedArea.jurisdiction)
+            areaName: formatJumpAreaLabel(matchedArea)
           });
         } else if (matchedArea && getJumpAreaDisplayStatus(matchedArea).kind === "city_level_coverage") {
           setStatusNotice({
             kind: "city_level_coverage",
-            areaName: formatAreaLabelResolved(matchedArea.jurisdiction)
+            areaName: formatJumpAreaLabel(matchedArea)
           });
         } else if (matchedArea && getJumpAreaDisplayStatus(matchedArea).kind === "untracked") {
           setStatusNotice({
             kind: "untracked",
-            areaName: formatAreaLabelResolved(matchedArea.jurisdiction)
+            areaName: formatJumpAreaLabel(matchedArea)
           });
         }
 
@@ -3891,7 +4028,7 @@ export default function App(): JSX.Element {
     return value.toLocaleString(language);
   }
 
-  const selectedJumpAreaLabel = selectedJumpArea ? formatAreaLabelResolved(selectedJumpArea.jurisdiction) : null;
+  const selectedJumpAreaLabel = selectedJumpArea ? formatJumpAreaLabel(selectedJumpArea) : null;
   const locateButtonStyle = isDesktop
     ? { right: "446px", bottom: "4.9rem" }
     : { right: "0.88rem", bottom: `calc(${sheetHeight * 100}vh + 1rem)` };
@@ -4066,7 +4203,9 @@ export default function App(): JSX.Element {
           <span className="legend-dot official-unavailable" />
           <span>{t(language, "officialUnavailableLegend")}</span>
         </div>
-        {mapStylePreset === "demotiles" && <p>{t(language, "fallbackBasemap")}</p>}
+        {(mapStylePreset === "demotiles" || mapStylePreset === "blank_fallback") && (
+          <p>{t(language, "fallbackBasemap")}</p>
+        )}
       </section>
       <button
         aria-label={t(language, "locateNearby")}
@@ -4391,7 +4530,7 @@ export default function App(): JSX.Element {
                                   type="button"
                                 >
                                   <div className="jump-area-result-head">
-                                    <strong>{formatAreaLabelResolved(area.jurisdiction)}</strong>
+                                    <strong>{formatJumpAreaLabel(area)}</strong>
                                   </div>
                                   <div className="jump-area-result-meta">
                                     <span
