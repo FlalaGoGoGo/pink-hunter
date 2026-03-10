@@ -12,17 +12,24 @@ Last updated: 2026-03-06 (America/Los_Angeles)
 ## Required Workflow
 1. Make and verify the local change first.
 2. Rebuild or refresh any published data artifacts that changed.
-3. Run the size check and ensure every published shard file stays below the hard-fail threshold.
-4. Sync the project into the GitHub export repo.
-5. Commit the GitHub export repo.
-6. Push the GitHub export repo to GitHub.
-7. Confirm the production domain `https://pinkhunter.flalaz.com/` reflects the new build.
+3. Run the shard consistency gate and ensure every published shard file referenced by metadata actually exists.
+4. Run a clean dependency install in the export repo and pass the TypeScript + production build gates.
+5. Sync the project into the GitHub export repo.
+6. Commit the GitHub export repo.
+7. Push the GitHub export repo to GitHub.
+8. Confirm the production domain `https://pinkhunter.flalaz.com/` reflects the new build.
 
 ## Canonical Helper
 - Preferred sync helper: `scripts/sync_github_export.sh`
 - Example:
   - `./scripts/sync_github_export.sh "Sync latest product changes"`
 - The helper must sync through a fresh temporary clone on every run, then replace the local export repo only after a successful push.
+- The helper now blocks `push main` unless all of the following pass inside the fresh temp clone:
+  - `python3 scripts/check_region_data_sizes.py --data-dir public/data`
+  - `npm ci`
+  - `tsc -b`
+  - `vite build`
+- On this machine, the helper forces the TypeScript and Vite build gates through `Node 20` when the default local `node` version is not `20`, because the current Vite toolchain is not stable under `Node 25`.
 - Do not rely on a long-lived `.git/index` inside `/Users/zhangziling/Documents/Project-Pink-Hunter/GitHub/pink-hunter`; that was the source of repeated hangs and index corruption.
 
 ## Notes
@@ -32,7 +39,7 @@ Last updated: 2026-03-06 (America/Los_Angeles)
   - `public/data/trees.<region>.area-index.v2.json`
   - `public/data/trees.<region>.area.<slug>.v2.geojson`
   - `public/data/trees.<region>.area.<slug>.shard-###.v2.geojson`
-- Every publish flow must pass `scripts/check_region_data_sizes.py`.
+- Every publish flow must pass `scripts/check_region_data_sizes.py`, `tsc -b`, and `vite build`.
 - If a full ETL rebuild is blocked but local region files are still current, refresh area-shard artifacts with `scripts/refresh_region_area_shards.py --data-dir public/data --region all` before sync/push.
 - If coverage status lists or official-boundary hints changed without a full ETL rebuild, run `scripts/refresh_coverage_metadata.py --data-dir public/data` before sync/push.
 - Size thresholds are hard rules for published shard files:

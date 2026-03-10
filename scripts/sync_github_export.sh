@@ -7,12 +7,60 @@ COMMIT_MESSAGE="${1:-Sync latest local changes}"
 REMOTE_URL="https://github.com/FlalaGoGoGo/pink-hunter.git"
 TMP_DIR="$(mktemp -d "${TMPDIR:-/tmp}/pink-hunter-sync.XXXXXX")"
 TMP_REPO="$TMP_DIR/repo"
+NPM_INSTALL_FLAGS=("--no-fund" "--no-audit")
 
 cleanup() {
   rm -rf "$TMP_DIR"
 }
 
 trap cleanup EXIT
+
+require_command() {
+  local command_name="$1"
+  if ! command -v "$command_name" >/dev/null 2>&1; then
+    echo "$command_name is required." >&2
+    exit 1
+  fi
+}
+
+resolve_node20_runner() {
+  require_command node
+
+  local node_major
+  node_major="$(node -p 'process.versions.node.split(".")[0]' 2>/dev/null || true)"
+  if [ "$node_major" = "20" ]; then
+    NODE20_RUNNER=(node)
+    return
+  fi
+
+  require_command npx
+  NODE20_RUNNER=(npx -y node@20)
+}
+
+run_preflight_checks() {
+  echo "Running shard consistency check..." >&2
+  python3 "$ROOT_DIR/scripts/check_region_data_sizes.py" --data-dir "$TMP_REPO/public/data"
+
+  echo "Installing dependencies in temp export repo..." >&2
+  npm --prefix "$TMP_REPO" ci "${NPM_INSTALL_FLAGS[@]}"
+
+  echo "Running TypeScript build gate with Node 20..." >&2
+  (
+    cd "$TMP_REPO"
+    "${NODE20_RUNNER[@]}" node_modules/typescript/bin/tsc -b
+  )
+
+  echo "Running Vite production build gate with Node 20..." >&2
+  (
+    cd "$TMP_REPO"
+    "${NODE20_RUNNER[@]}" node_modules/vite/bin/vite.js build
+  )
+}
+
+require_command git
+require_command npm
+require_command python3
+resolve_node20_runner
 
 if [ -d "$EXPORT_DIR/.git" ]; then
   EXISTING_REMOTE="$(git -C "$EXPORT_DIR" remote get-url origin 2>/dev/null || true)"
@@ -41,8 +89,6 @@ tar -C "$ROOT_DIR" \
   --exclude='*.tsbuildinfo' \
   -cf - . | tar -C "$TMP_REPO" -xf -
 
-python3 "$ROOT_DIR/scripts/check_region_data_sizes.py" --data-dir "$TMP_REPO/public/data"
-
 git -C "$TMP_REPO" add -A
 
 if git -C "$TMP_REPO" diff --cached --quiet; then
@@ -52,6 +98,8 @@ if git -C "$TMP_REPO" diff --cached --quiet; then
   mv "$TMP_REPO" "$EXPORT_DIR"
   exit 0
 fi
+
+run_preflight_checks
 
 git -C "$TMP_REPO" commit -m "$COMMIT_MESSAGE"
 git -C "$TMP_REPO" -c pack.windowMemory=100m -c pack.packSizeLimit=100m -c pack.threads=1 push origin main
