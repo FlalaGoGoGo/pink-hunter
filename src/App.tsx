@@ -3172,7 +3172,7 @@ export default function App(): JSX.Element {
         mapInstance = map;
         mapRef.current = map;
 
-        map.on("error", (event) => {
+        map.on("error", (event: { error?: unknown }) => {
           console.error("map-runtime-error", event?.error ?? event);
         });
 
@@ -3356,20 +3356,22 @@ export default function App(): JSX.Element {
 
           const clusterId = features[0].properties?.cluster_id;
           const source = map.getSource("trees") as GeoJSONSource;
-          if (clusterId == null || !source) {
+          if (clusterId == null || !source?.getClusterExpansionZoom) {
             return;
           }
 
           void source
             .getClusterExpansionZoom(Number(clusterId))
             .then((zoom) => {
-              const geometry = features[0].geometry;
-              if (!geometry || geometry.type !== "Point") {
+              const geometry = features[0].geometry as
+                | { type?: string; coordinates?: [number, number] }
+                | undefined;
+              if (!geometry || geometry.type !== "Point" || !geometry.coordinates) {
                 return;
               }
 
               map.easeTo({
-                center: geometry.coordinates as [number, number],
+                center: geometry.coordinates,
                 zoom
               });
             })

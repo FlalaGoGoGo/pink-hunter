@@ -20,7 +20,11 @@ export type RegionAggregateAdvisoryLevel = "none" | "watch" | "large" | "very_la
 export type SpeciesCounts = Record<SpeciesGroup, number>;
 
 export type LayoutMode = "mobile_sheet" | "desktop_split";
-export type MapStylePreset = "positron" | "demotiles";
+export type MapStylePreset = "positron" | "demotiles" | "mapbox" | "blank_fallback";
+export type MapStack = "maplibre" | "mapbox";
+export type VisitorCounterMode = "counterapi" | "aws_api";
+export type RuntimeEnv = "stable" | "staging" | "production";
+export type CoverageLoadMode = "eager_all" | "lazy_by_region";
 
 export interface TreeFeatureProps {
   id: string;
@@ -50,6 +54,7 @@ export interface RegionMeta {
   available: boolean;
   bounds: [[number, number], [number, number]];
   data_path?: string | null;
+  coverage_path?: string | null;
   tree_count: number;
   city_count: number;
   cities: string[];
@@ -171,6 +176,17 @@ export interface AppMeta {
   }>;
 }
 
+export interface VisitorCountHitResponse {
+  count: number;
+  incremented: boolean;
+  updatedAt: string;
+}
+
+export interface VisitorCountReadResponse {
+  count: number;
+  updatedAt: string;
+}
+
 export interface SpeciesGuideEntry {
   id: SpeciesGroup;
   title: Record<Language, string>;
@@ -193,7 +209,7 @@ export type CoverageFeature = GeoJsonFeature<CoverageFeatureProps, Polygon | Mul
 export type CoverageCollection = GeoJsonCollection<CoverageFeatureProps, Polygon | MultiPolygon>;
 
 export interface StaticAppData {
-  coverage: CoverageCollection;
+  coverage: CoverageCollection | null;
   guide: SpeciesGuide;
   meta: AppMeta;
   jumpIndex: JumpIndex;

@@ -49,7 +49,8 @@ body {
     linear-gradient(180deg, #fff7fa 0%, #fff1f6 45%, #ffeff3 100%);
 }
 
-.maplibregl-map {
+.maplibregl-map,
+.mapboxgl-map {
   font-family: "Manrope", "Noto Sans SC", "Segoe UI", sans-serif;
 }
 
@@ -1855,14 +1856,16 @@ body {
   color: #6a4b59;
 }
 
-.tree-popup .maplibregl-popup-content {
+.tree-popup .maplibregl-popup-content,
+.tree-popup .mapboxgl-popup-content {
   border-radius: 12px;
   border: 1px solid rgba(153, 83, 116, 0.25);
   padding: 0.6rem 0.7rem;
   box-shadow: 0 10px 28px rgba(97, 54, 73, 0.16);
 }
 
-.coverage-popup .maplibregl-popup-content {
+.coverage-popup .maplibregl-popup-content,
+.coverage-popup .mapboxgl-popup-content {
   border-radius: 12px;
   border: 1px solid rgba(142, 149, 162, 0.34);
   padding: 0.65rem 0.72rem;
@@ -1901,7 +1904,9 @@ body {
 }
 
 .tree-popup .maplibregl-popup-close-button,
-.coverage-popup .maplibregl-popup-close-button {
+.coverage-popup .maplibregl-popup-close-button,
+.tree-popup .mapboxgl-popup-close-button,
+.coverage-popup .mapboxgl-popup-close-button {
   top: 10px;
   right: 10px;
   width: 28px;
@@ -1917,7 +1922,9 @@ body {
 }
 
 .tree-popup .maplibregl-popup-close-button:hover,
-.coverage-popup .maplibregl-popup-close-button:hover {
+.coverage-popup .maplibregl-popup-close-button:hover,
+.tree-popup .mapboxgl-popup-close-button:hover,
+.coverage-popup .mapboxgl-popup-close-button:hover {
   background: linear-gradient(180deg, #ffdbe9, #ffcfe2);
   color: #6e304c;
 }
