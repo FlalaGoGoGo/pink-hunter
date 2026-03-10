@@ -354,10 +354,32 @@ REGION_CITY_OVERRIDES: dict[str, str] = {
     "Santa Clarita": "ca",
     "West Hollywood": "ca",
     "Newport Beach": "ca",
+    "Buena Park": "ca",
+    "Corona": "ca",
+    "La Verne": "ca",
     "San Dimas": "ca",
     "Rancho Palos Verdes": "ca",
     "Santa Monica": "ca",
+    "Thousand Oaks": "ca",
     "Oxnard": "ca",
+    "Yorba Linda": "ca",
+    "Burbank": "ca",
+    "Camarillo": "ca",
+    "Carlsbad": "ca",
+    "Carpinteria": "ca",
+    "Chino": "ca",
+    "Chula Vista": "ca",
+    "Escondido": "ca",
+    "Glendora": "ca",
+    "Glendale": "ca",
+    "La Mesa": "ca",
+    "National City": "ca",
+    "Oceanside": "ca",
+    "Redlands": "ca",
+    "Santee": "ca",
+    "Torrance": "ca",
+    "Vista": "ca",
+    "West Covina": "ca",
 }
 
 CITY_BOUNDARY_HINTS: dict[str, dict[str, str]] = {
@@ -369,16 +391,38 @@ CITY_BOUNDARY_HINTS: dict[str, dict[str, str]] = {
     "Austin": {"state": "48"},
     "Dallas": {"state": "48"},
     "Houston": {"state": "48"},
+    "Buena Park": {"state": "06"},
+    "Corona": {"state": "06"},
     "Encinitas": {"state": "06"},
     "Laguna Beach": {"state": "06"},
+    "La Verne": {"state": "06"},
     "Newport Beach": {"state": "06"},
     "San Dimas": {"state": "06"},
     "Rancho Palos Verdes": {"state": "06"},
     "Santa Barbara": {"state": "06"},
     "Santa Monica": {"state": "06"},
     "Solana Beach": {"state": "06"},
+    "Thousand Oaks": {"state": "06"},
     "Oxnard": {"state": "06"},
     "Ventura": {"state": "06"},
+    "Yorba Linda": {"state": "06"},
+    "Burbank": {"state": "06"},
+    "Camarillo": {"state": "06"},
+    "Carlsbad": {"state": "06"},
+    "Carpinteria": {"state": "06"},
+    "Chino": {"state": "06"},
+    "Chula Vista": {"state": "06"},
+    "Escondido": {"state": "06"},
+    "Glendora": {"state": "06"},
+    "Glendale": {"state": "06"},
+    "La Mesa": {"state": "06"},
+    "National City": {"state": "06"},
+    "Oceanside": {"state": "06"},
+    "Redlands": {"state": "06"},
+    "Santee": {"state": "06"},
+    "Torrance": {"state": "06"},
+    "Vista": {"state": "06"},
+    "West Covina": {"state": "06"},
     "Arlington": {"state": "51", "basename": "Arlington", "boundary_source": "arlington_county_arcgis"},
     "Alexandria": {"state": "51"},
     "Montgomery County": {"boundary_source": "montgomery_county_arcgis"},
@@ -4974,6 +5018,11 @@ def main() -> int:
     coverage_geojson = {"type": "FeatureCollection", "features": coverage_features}
     species_guide = build_species_guide()
     region_bounds = build_region_bounds(coverage_features)
+    coverage_region_feature_map: dict[str, list[dict[str, Any]]] = {region: [] for region in REGION_LABELS}
+    for feature in coverage_features:
+        region_id = region_for_city(str(feature["properties"]["jurisdiction"]))
+        if region_id in coverage_region_feature_map:
+            coverage_region_feature_map[region_id].append(feature)
 
     region_feature_map: dict[str, list[dict[str, Any]]] = {region: [] for region in REGION_LABELS}
     for feature in output_features:
@@ -5335,6 +5384,7 @@ def main() -> int:
             "available": bool(features),
             "bounds": region_bounds.get(region_id, WA_METRO_OVERVIEW_BOUNDS),
             "data_path": None,
+            "coverage_path": None,
             "tree_count": len(features),
             "city_count": len(region_cities),
             "cities": region_cities,
@@ -5353,6 +5403,16 @@ def main() -> int:
             "city_split": None,
             "area_split": None,
         }
+
+        region_coverage_features = coverage_region_feature_map.get(region_id, [])
+        if region_coverage_features:
+            coverage_file_name = f"coverage.{region_id}.v1.geojson"
+            (next_dir / coverage_file_name).write_text(
+                json.dumps({"type": "FeatureCollection", "features": region_coverage_features}, ensure_ascii=False),
+                encoding="utf-8",
+            )
+            extra_output_names.append(coverage_file_name)
+            region_entry["coverage_path"] = f"/data/{coverage_file_name}"
 
         if features:
             area_entries: list[dict[str, Any]] = []
@@ -5499,6 +5559,8 @@ def main() -> int:
     for stale_path in PUBLIC_DATA_DIR.glob("trees.*.v2.geojson"):
         stale_path.unlink()
     for stale_path in PUBLIC_DATA_DIR.glob("trees.*.city*.v1.geojson"):
+        stale_path.unlink()
+    for stale_path in PUBLIC_DATA_DIR.glob("coverage.*.v1.geojson"):
         stale_path.unlink()
     for city_index_path in PUBLIC_DATA_DIR.glob("trees.*.city-index.v1.json"):
         city_index_path.unlink()

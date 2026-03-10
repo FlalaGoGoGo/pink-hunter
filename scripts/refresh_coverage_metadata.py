@@ -12,7 +12,7 @@ PROJECT_ROOT = Path(__file__).resolve().parents[1]
 if str(PROJECT_ROOT) not in sys.path:
     sys.path.insert(0, str(PROJECT_ROOT))
 
-from etl.build_data import OFFICIAL_DATA_UNAVAILABLE_CITIES
+from etl.build_data import OFFICIAL_DATA_UNAVAILABLE_CITIES, REGION_LABELS, region_for_city
 
 STRICT_OFFICIAL_JURISDICTION_BOUNDARY_ONLY = True
 SPECIAL_BOUNDARY_SLUGS = {
@@ -121,11 +121,31 @@ def main() -> int:
         coverage_features.append(make_coverage_feature(city, geometry, "official_unavailable", existing_note))
 
     coverage_geojson = {"type": "FeatureCollection", "features": coverage_features}
+    coverage_by_region: dict[str, list[dict[str, Any]]] = {region: [] for region in REGION_LABELS}
+    for feature in coverage_features:
+        region_id = region_for_city(str(feature["properties"]["jurisdiction"]))
+        if region_id in coverage_by_region:
+            coverage_by_region[region_id].append(feature)
 
     meta["coverage_rule"] = "official_jurisdiction_boundary_only"
     meta["coverage_skipped_cities"] = skipped_coverage_cities
     meta["coverage_official_unavailable_cities"] = official_unavailable_cities
     meta["coverage_official_unavailable_skipped_cities"] = skipped_official_unavailable_cities
+    for region in meta.get("regions", []):
+        region_id = str(region.get("id", "")).strip()
+        region_features = coverage_by_region.get(region_id, [])
+        coverage_file_name = f"coverage.{region_id}.v1.geojson"
+        coverage_file_path = data_dir / coverage_file_name
+        if region_features:
+            coverage_file_path.write_text(
+                json.dumps({"type": "FeatureCollection", "features": region_features}, ensure_ascii=False),
+                encoding="utf-8",
+            )
+            region["coverage_path"] = f"/data/{coverage_file_name}"
+        else:
+            region["coverage_path"] = None
+            if coverage_file_path.exists():
+                coverage_file_path.unlink()
 
     (data_dir / "coverage.v1.geojson").write_text(
         json.dumps(coverage_geojson, ensure_ascii=False),

@@ -65,6 +65,9 @@ GeoJSON `FeatureCollection` for one shard of a larger area.
 ## `GET /data/coverage.v1.geojson`
 GeoJSON `FeatureCollection` for coverage overlays.
 
+## `GET /data/coverage.<region>.v1.geojson`
+Region-scoped GeoJSON `FeatureCollection` for coverage overlays used by staging / production lazy loading.
+
 ### `feature.properties`
 - `id: string`
 - `status: "covered" | "official_unavailable"`
@@ -130,6 +133,7 @@ Dataset metadata and source refresh details.
 - `available`
 - `bounds`
 - `data_path?`
+- `coverage_path?`
 - `tree_count`
 - `city_count`
 - `cities`
@@ -155,6 +159,25 @@ Dataset metadata and source refresh details.
   - `area_count`
   - `shard_count`
   - `ready`
+
+## `GET /api/v1/visitor-count`
+Public visitor counter read endpoint served by API Gateway + Lambda.
+
+### Response
+- `count`
+- `updatedAt`
+
+## `POST /api/v1/visitor-count/hit`
+Idempotent visitor-count update endpoint. The browser should send one stable `visitorId` per browser profile.
+
+### Request body
+- `visitorId`
+- `pathname`
+
+### Response
+- `count`
+- `incremented`
+- `updatedAt`
 
 ## `GET /assets/ui/manifest.v1.json`
 Asset manifest with expected dimensions and target formats.

@@ -25,19 +25,21 @@ git clone --depth 1 "$REMOTE_URL" "$TMP_REPO" >&2
 
 rm -rf "$TMP_REPO/data/tmp" "$TMP_REPO/data/normalized"
 
-rsync -av --delete \
-  --exclude '.git' \
-  --exclude 'GitHub' \
-  --exclude 'node_modules' \
-  --exclude 'dist' \
-  --exclude 'data/tmp' \
-  --exclude 'data/normalized' \
-  --exclude '.DS_Store' \
-  --exclude '~$*' \
-  --exclude '__pycache__' \
-  --exclude '*.pyc' \
-  --exclude '*.tsbuildinfo' \
-  "$ROOT_DIR"/ "$TMP_REPO"/
+find "$TMP_REPO" -mindepth 1 -maxdepth 1 ! -name '.git' -exec rm -rf {} +
+
+tar -C "$ROOT_DIR" \
+  --exclude='.git' \
+  --exclude='GitHub' \
+  --exclude='node_modules' \
+  --exclude='dist' \
+  --exclude='data/tmp' \
+  --exclude='data/normalized' \
+  --exclude='.DS_Store' \
+  --exclude='~$*' \
+  --exclude='__pycache__' \
+  --exclude='*.pyc' \
+  --exclude='*.tsbuildinfo' \
+  -cf - . | tar -C "$TMP_REPO" -xf -
 
 python3 "$ROOT_DIR/scripts/check_region_data_sizes.py" --data-dir "$TMP_REPO/public/data"
 

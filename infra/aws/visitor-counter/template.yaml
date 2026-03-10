@@ -1,0 +1,117 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Transform: AWS::Serverless-2016-10-31
+Description: Pink Hunter visitor counter on API Gateway + Lambda + DynamoDB.
+
+Parameters:
+  ProjectName:
+    Type: String
+    Default: pink-hunter
+  EnvironmentName:
+    Type: String
+    AllowedValues:
+      - staging
+      - production
+    Default: staging
+  AllowedOrigins:
+    Type: String
+    Default: "https://next.pinkhunter.flalaz.com,https://pinkhunter.flalaz.com"
+  SiteCounterKey:
+    Type: String
+    Default: pinkhunter
+  LogRetentionDays:
+    Type: Number
+    Default: 14
+
+Globals:
+  Function:
+    Runtime: nodejs20.x
+    Timeout: 10
+    MemorySize: 256
+    Architectures:
+      - arm64
+    Handler: index.handler
+    Environment:
+      Variables:
+        VISITORS_TABLE: !Ref VisitorsTable
+        COUNTERS_TABLE: !Ref CountersTable
+        SITE_COUNTER_KEY: !Ref SiteCounterKey
+        ALLOWED_ORIGINS: !Ref AllowedOrigins
+
+Resources:
+  VisitorsTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      BillingMode: PAY_PER_REQUEST
+      TableName: !Sub "${ProjectName}-${EnvironmentName}-visitors"
+      AttributeDefinitions:
+        - AttributeName: visitor_id
+          AttributeType: S
+      KeySchema:
+        - AttributeName: visitor_id
+          KeyType: HASH
+
+  CountersTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      BillingMode: PAY_PER_REQUEST
+      TableName: !Sub "${ProjectName}-${EnvironmentName}-counters"
+      AttributeDefinitions:
+        - AttributeName: site
+          AttributeType: S
+      KeySchema:
+        - AttributeName: site
+          KeyType: HASH
+
+  VisitorHttpApi:
+    Type: AWS::Serverless::HttpApi
+    Properties:
+      StageName: $default
+      CorsConfiguration:
+        AllowHeaders:
+          - content-type
+        AllowMethods:
+          - GET
+          - POST
+          - OPTIONS
+        AllowOrigins: !Split [",", !Ref AllowedOrigins]
+
+  VisitorCounterFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: !Sub "${ProjectName}-${EnvironmentName}-visitor-counter"
+      CodeUri: src/
+      Description: Public visitor counter for Pink Hunter.
+      Policies:
+        - DynamoDBCrudPolicy:
+            TableName: !Ref VisitorsTable
+        - DynamoDBCrudPolicy:
+            TableName: !Ref CountersTable
+      Events:
+        ReadVisitorCount:
+          Type: HttpApi
+          Properties:
+            ApiId: !Ref VisitorHttpApi
+            Path: /api/v1/visitor-count
+            Method: GET
+        HitVisitorCount:
+          Type: HttpApi
+          Properties:
+            ApiId: !Ref VisitorHttpApi
+            Path: /api/v1/visitor-count/hit
+            Method: POST
+
+  VisitorCounterLogGroup:
+    Type: AWS::Logs::LogGroup
+    Properties:
+      LogGroupName: !Sub "/aws/lambda/${VisitorCounterFunction}"
+      RetentionInDays: !Ref LogRetentionDays
+
+Outputs:
+  VisitorApiUrl:
+    Value: !GetAtt VisitorHttpApi.ApiEndpoint
+  VisitorsTableName:
+    Value: !Ref VisitorsTable
+  CountersTableName:
+    Value: !Ref CountersTable
+  FunctionName:
+    Value: !Ref VisitorCounterFunction
