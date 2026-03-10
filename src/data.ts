@@ -1,12 +1,15 @@
 import type {
   AreaIndex,
   CoverageCollection,
+  FeaturedAreaDetail,
+  FeaturedAreaIndex,
   RegionMeta,
   JumpIndex,
   SpeciesGuide,
   AppMeta,
   StaticAppData,
   TreeCollection,
+  WeatherSnapshot,
   VisitorCountHitResponse,
   VisitorCountReadResponse
 } from "./types";
@@ -20,8 +23,21 @@ async function loadJson<T>(path: string): Promise<T> {
   return (await response.json()) as T;
 }
 
+async function fetchJson<T>(url: string): Promise<T> {
+  const response = await fetch(url);
+  if (!response.ok) {
+    throw new Error(`Failed to fetch ${url}: ${response.status}`);
+  }
+  return (await response.json()) as T;
+}
+
+const OPEN_METEO_FORECAST_URL = "https://api.open-meteo.com/v1/forecast";
+const WEATHER_SESSION_PREFIX = "pink-hunter-featured-weather:";
+const WEATHER_CACHE_TTL_MS = 30 * 60 * 1000;
+
 export async function loadStaticAppData(): Promise<StaticAppData> {
-  const [guide, meta, jumpIndex] = await Promise.all([
+  const [featuredAreas, guide, meta, jumpIndex] = await Promise.all([
+    loadJson<FeaturedAreaIndex>("/data/featured-areas.v1.json"),
     loadJson<SpeciesGuide>("/data/species-guide.v1.json"),
     loadJson<AppMeta>("/data/meta.v2.json"),
     loadJson<JumpIndex>("/data/jump-index.v1.json")
@@ -32,7 +48,7 @@ export async function loadStaticAppData(): Promise<StaticAppData> {
       ? await loadJson<CoverageCollection>("/data/coverage.v1.geojson")
       : null;
 
-  return { coverage, guide, meta, jumpIndex };
+  return { coverage, featuredAreas, guide, meta, jumpIndex };
 }
 
 export async function loadTreeCollection(path: string): Promise<TreeCollection> {
@@ -41,6 +57,10 @@ export async function loadTreeCollection(path: string): Promise<TreeCollection> 
 
 export async function loadAreaIndex(path: string): Promise<AreaIndex> {
   return loadJson<AreaIndex>(path);
+}
+
+export async function loadFeaturedAreaDetail(path: string): Promise<FeaturedAreaDetail> {
+  return loadJson<FeaturedAreaDetail>(path);
 }
 
 export async function loadCoverageRegion(regionMeta: RegionMeta): Promise<CoverageCollection> {
@@ -56,6 +76,41 @@ export async function loadCoverageRegion(regionMeta: RegionMeta): Promise<Covera
 
 const VISITOR_COUNTER_SESSION_KEY = "pink-hunter-visitor-counted";
 const VISITOR_ID_STORAGE_KEY = "pink-hunter-visitor-id";
+
+function buildWeatherCacheKey(areaId: string): string {
+  return `${WEATHER_SESSION_PREFIX}${areaId}`;
+}
+
+function readCachedWeather(areaId: string): WeatherSnapshot | null {
+  if (typeof window === "undefined") {
+    return null;
+  }
+
+  const raw = window.sessionStorage.getItem(buildWeatherCacheKey(areaId));
+  if (!raw) {
+    return null;
+  }
+
+  try {
+    const parsed = JSON.parse(raw) as WeatherSnapshot;
+    const fetchedAtMs = Date.parse(parsed.fetched_at);
+    if (!Number.isFinite(fetchedAtMs) || Date.now() - fetchedAtMs > WEATHER_CACHE_TTL_MS) {
+      window.sessionStorage.removeItem(buildWeatherCacheKey(areaId));
+      return null;
+    }
+    return parsed;
+  } catch {
+    window.sessionStorage.removeItem(buildWeatherCacheKey(areaId));
+    return null;
+  }
+}
+
+function writeCachedWeather(snapshot: WeatherSnapshot): void {
+  if (typeof window === "undefined") {
+    return;
+  }
+  window.sessionStorage.setItem(buildWeatherCacheKey(snapshot.area_id), JSON.stringify(snapshot));
+}
 
 function readBrowserHostname(): string {
   return typeof window !== "undefined" ? window.location.hostname.toLowerCase() : "";
@@ -168,4 +223,64 @@ export async function loadVisitorCount(): Promise<number | null> {
   return runtimeConfig.visitorCounterMode === "aws_api"
     ? loadAwsVisitorCount()
     : loadCounterApiVisitorCount();
+}
+
+export async function loadFeaturedAreaWeather(
+  areaId: string,
+  latitude: number,
+  longitude: number
+): Promise<WeatherSnapshot> {
+  const cached = readCachedWeather(areaId);
+  if (cached) {
+    return cached;
+  }
+
+  const url = new URL(OPEN_METEO_FORECAST_URL);
+  url.searchParams.set("latitude", latitude.toFixed(5));
+  url.searchParams.set("longitude", longitude.toFixed(5));
+  url.searchParams.set(
+    "daily",
+    ["weather_code", "temperature_2m_max", "temperature_2m_min", "precipitation_probability_max"].join(",")
+  );
+  url.searchParams.set("forecast_days", "10");
+  url.searchParams.set("past_days", "3");
+  url.searchParams.set("timezone", "auto");
+
+  const payload = await fetchJson<{
+    timezone?: string;
+    daily?: {
+      time?: string[];
+      weather_code?: number[];
+      temperature_2m_max?: number[];
+      temperature_2m_min?: number[];
+      precipitation_probability_max?: Array<number | null>;
+    };
+  }>(url.toString());
+
+  const times = payload.daily?.time ?? [];
+  const weatherCodes = payload.daily?.weather_code ?? [];
+  const maxTemps = payload.daily?.temperature_2m_max ?? [];
+  const minTemps = payload.daily?.temperature_2m_min ?? [];
+  const precipitation = payload.daily?.precipitation_probability_max ?? [];
+
+  const snapshot: WeatherSnapshot = {
+    area_id: areaId,
+    fetched_at: new Date().toISOString(),
+    latitude,
+    longitude,
+    timezone: payload.timezone ?? "auto",
+    days: times.map((date, index) => ({
+      date,
+      weather_code: Number(weatherCodes[index] ?? 0),
+      temperature_max_c: Number(maxTemps[index] ?? 0),
+      temperature_min_c: Number(minTemps[index] ?? 0),
+      precipitation_probability_max:
+        precipitation[index] === null || precipitation[index] === undefined
+          ? null
+          : Number(precipitation[index])
+    }))
+  };
+
+  writeCachedWeather(snapshot);
+  return snapshot;
 }

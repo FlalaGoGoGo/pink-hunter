@@ -20,6 +20,7 @@ import io
 import json
 import math
 import re
+import statistics
 import shutil
 import struct
 import subprocess
@@ -28,6 +29,7 @@ import tempfile
 import time
 import urllib.parse
 import urllib.request
+import xml.etree.ElementTree as ET
 import zipfile
 from collections import Counter
 from pathlib import Path
@@ -299,16 +301,27 @@ REGION_CITY_OVERRIDES: dict[str, str] = {
     "Gilroy": "ca",
     "Burlingame": "ca",
     "Daly City": "ca",
+    "Downey": "ca",
     "Concord": "ca",
+    "Cudahy": "ca",
+    "Dana Point": "ca",
     "Fremont": "ca",
+    "Glendale": "ca",
+    "Goleta": "ca",
+    "Huntington Park": "ca",
+    "Inglewood": "ca",
     "Irvine": "ca",
+    "La Mirada": "ca",
     "Long Beach": "ca",
     "Los Angeles": "ca",
     "Los Gatos": "ca",
+    "Lynwood": "ca",
     "Morgan Hill": "ca",
     "Newark": "nj",
+    "Norwalk": "ca",
     "Hayward": "ca",
     "Alameda": "ca",
+    "Arcadia": "ca",
     "Ontario": "ca",
     "Palo Alto": "ca",
     "Berkeley": "ca",
@@ -319,7 +332,9 @@ REGION_CITY_OVERRIDES: dict[str, str] = {
     "San Diego": "ca",
     "San Francisco": "ca",
     "San Jose": "ca",
+    "Santa Fe Springs": "ca",
     "South San Francisco": "ca",
+    "South Gate": "ca",
     "Santa Ana": "ca",
     "Salt Lake City": "ut",
     "Beaverton": "or",
@@ -392,15 +407,29 @@ CITY_BOUNDARY_HINTS: dict[str, dict[str, str]] = {
     "Dallas": {"state": "48"},
     "Houston": {"state": "48"},
     "Buena Park": {"state": "06"},
+    "Arcadia": {"state": "06"},
+    "Cudahy": {"state": "06"},
+    "Dana Point": {"state": "06"},
     "Corona": {"state": "06"},
+    "Downey": {"state": "06"},
     "Encinitas": {"state": "06"},
+    "Glendale": {"state": "06"},
+    "Goleta": {"state": "06"},
+    "Huntington Park": {"state": "06"},
+    "Inglewood": {"state": "06"},
     "Laguna Beach": {"state": "06"},
+    "La Mirada": {"state": "06"},
     "La Verne": {"state": "06"},
+    "Lynwood": {"state": "06"},
     "Newport Beach": {"state": "06"},
+    "Norwalk": {"state": "06"},
+    "Paramount": {"state": "06"},
     "San Dimas": {"state": "06"},
     "Rancho Palos Verdes": {"state": "06"},
+    "Santa Fe Springs": {"state": "06"},
     "Santa Barbara": {"state": "06"},
     "Santa Monica": {"state": "06"},
+    "South Gate": {"state": "06"},
     "Solana Beach": {"state": "06"},
     "Thousand Oaks": {"state": "06"},
     "Oxnard": {"state": "06"},
@@ -658,6 +687,26 @@ OFFICIAL_DATA_UNAVAILABLE_CITIES: dict[str, str] = {
 }
 
 UW_SUPPLEMENTAL_PATH = SUPPLEMENTAL_DIR / "uw_prunus_overpass.json"
+UW_FEATURED_AREA_REFERENCE_PATH = REFERENCE_DIR / "uw_featured_area_reference.v1.json"
+UW_BLOOM_HISTORY_XLSX_URL = (
+    "https://digital.lib.washington.edu/researchworks/bitstreams/f088c5a0-1e96-4437-8cfa-cfb656a07846/download"
+)
+UW_BLOOM_HISTORY_ITEM_URL = "https://digital.lib.washington.edu/researchworks/items/75f5324f-1892-4e8c-ad26-7e74f4f535f1"
+OPEN_METEO_FORECAST_ENDPOINT = "https://api.open-meteo.com/v1/forecast"
+OPEN_METEO_ARCHIVE_ENDPOINT = "https://archive-api.open-meteo.com/v1/archive"
+UW_BLOOM_TARGET_PLANT = "Somei-yoshino (Prunus x yedoensis), Liberal Arts Quadrangle, University of Washington"
+UW_BLOOM_START_TRANSITION = "Puffy White-Bloom"
+UW_PRIMARY_WEATHER_STATION = "USW00024281"
+UW_SECONDARY_WEATHER_STATION = "USW00094290"
+UW_GDD_BASE_TEMP_C = 5.0
+UW_GDD_CUTOFF_MONTH = 3
+UW_GDD_CUTOFF_DAY = 15
+UW_MIN_FORECAST_SAMPLE_YEARS = 10
+UW_MAX_FORECAST_MAE_DAYS = 7.0
+UW_WEATHER_SHIFT_LIMIT_DAYS = 4
+UW_DEFAULT_START_OFFSET_DAYS = 10
+UW_DEFAULT_END_OFFSET_DAYS = 10
+UW_CURVE_PADDING_DAYS = 10
 
 GENERIC_SCIENTIFIC_NAMES = {
     "prunus species",
@@ -874,6 +923,605 @@ def fetch_binary(url: str) -> bytes:
         time.sleep(0.35 * attempt)
 
     raise RuntimeError(f"Failed to fetch binary payload for {url}: {last_error}")
+
+
+def parse_intish(value: Any) -> int | None:
+    if value in (None, ""):
+        return None
+    text = str(value).strip()
+    if not text:
+        return None
+    try:
+        return int(float(text))
+    except ValueError:
+        return None
+
+
+def parse_floatish(value: Any) -> float | None:
+    if value in (None, ""):
+        return None
+    text = str(value).strip()
+    if not text:
+        return None
+    try:
+        return float(text)
+    except ValueError:
+        return None
+
+
+def clamp_number(value: float, lower: float, upper: float) -> float:
+    return max(lower, min(upper, value))
+
+
+def point_distance_meters(left: tuple[float, float], right: tuple[float, float]) -> float:
+    lon1, lat1 = left
+    lon2, lat2 = right
+    mean_lat = math.radians((lat1 + lat2) / 2)
+    dx = math.radians(lon2 - lon1) * math.cos(mean_lat)
+    dy = math.radians(lat2 - lat1)
+    earth_radius_m = 6_371_000
+    return math.hypot(dx, dy) * earth_radius_m
+
+
+def bounds_contain_coordinate(bounds: list[list[float]], coordinate: tuple[float, float]) -> bool:
+    min_lon = min(bounds[0][0], bounds[1][0])
+    max_lon = max(bounds[0][0], bounds[1][0])
+    min_lat = min(bounds[0][1], bounds[1][1])
+    max_lat = max(bounds[0][1], bounds[1][1])
+    return min_lon <= coordinate[0] <= max_lon and min_lat <= coordinate[1] <= max_lat
+
+
+def a1_column_index(cell_ref: str) -> int:
+    letters = "".join(char for char in cell_ref if char.isalpha())
+    if not letters:
+        return 0
+    index = 0
+    for char in letters:
+        index = index * 26 + (ord(char.upper()) - 64)
+    return index - 1
+
+
+def read_xlsx_shared_strings(workbook: zipfile.ZipFile) -> list[str]:
+    shared_strings_path = "xl/sharedStrings.xml"
+    if shared_strings_path not in workbook.namelist():
+        return []
+
+    namespace = {"m": "http://schemas.openxmlformats.org/spreadsheetml/2006/main"}
+    root = ET.fromstring(workbook.read(shared_strings_path))
+    values: list[str] = []
+    for item in root.findall("m:si", namespace):
+        values.append("".join(text_node.text or "" for text_node in item.findall(".//m:t", namespace)))
+    return values
+
+
+def read_xlsx_cell_text(cell: ET.Element, shared_strings: list[str]) -> str:
+    namespace = {"m": "http://schemas.openxmlformats.org/spreadsheetml/2006/main"}
+    cell_type = cell.attrib.get("t")
+    if cell_type == "inlineStr":
+        return "".join(text_node.text or "" for text_node in cell.findall(".//m:t", namespace)).strip()
+
+    value_node = cell.find("m:v", namespace)
+    if value_node is None or value_node.text is None:
+        return ""
+
+    raw_value = value_node.text.strip()
+    if cell_type == "s":
+        shared_index = parse_intish(raw_value)
+        if shared_index is None or shared_index >= len(shared_strings):
+            return ""
+        return shared_strings[shared_index]
+    return raw_value
+
+
+def load_xlsx_sheet_rows(payload: bytes, sheet_name: str) -> list[dict[str, str]]:
+    workbook = zipfile.ZipFile(io.BytesIO(payload))
+    namespace = {
+        "m": "http://schemas.openxmlformats.org/spreadsheetml/2006/main",
+        "r": "http://schemas.openxmlformats.org/officeDocument/2006/relationships",
+    }
+    shared_strings = read_xlsx_shared_strings(workbook)
+
+    workbook_xml = ET.fromstring(workbook.read("xl/workbook.xml"))
+    rels_xml = ET.fromstring(workbook.read("xl/_rels/workbook.xml.rels"))
+    rel_targets = {rel.attrib["Id"]: rel.attrib["Target"] for rel in rels_xml}
+
+    sheet_target: str | None = None
+    for sheet in workbook_xml.find("m:sheets", namespace) or []:
+        if sheet.attrib.get("name") != sheet_name:
+            continue
+        relation_id = sheet.attrib.get("{http://schemas.openxmlformats.org/officeDocument/2006/relationships}id")
+        if relation_id:
+            sheet_target = rel_targets.get(relation_id)
+        break
+
+    if not sheet_target:
+        raise RuntimeError(f"Workbook is missing expected sheet: {sheet_name}")
+
+    normalized_target = sheet_target.lstrip("/")
+    if not normalized_target.startswith("xl/"):
+        normalized_target = f"xl/{normalized_target}"
+
+    worksheet = ET.fromstring(workbook.read(normalized_target))
+    sheet_data = worksheet.find("m:sheetData", namespace)
+    if sheet_data is None:
+        return []
+
+    raw_rows: list[dict[int, str]] = []
+    for row in sheet_data.findall("m:row", namespace):
+        values_by_index: dict[int, str] = {}
+        for cell in row.findall("m:c", namespace):
+            cell_ref = cell.attrib.get("r", "")
+            column_index = a1_column_index(cell_ref)
+            values_by_index[column_index] = read_xlsx_cell_text(cell, shared_strings)
+        if values_by_index:
+            raw_rows.append(values_by_index)
+
+    if not raw_rows:
+        return []
+
+    header_row = raw_rows[0]
+    ordered_indices = sorted(header_row)
+    headers = [header_row[index].strip() for index in ordered_indices]
+    normalized_rows: list[dict[str, str]] = []
+    for values_by_index in raw_rows[1:]:
+        row: dict[str, str] = {}
+        is_blank = True
+        for header, index in zip(headers, ordered_indices, strict=False):
+            if not header:
+                continue
+            value = values_by_index.get(index, "")
+            if value.strip():
+                is_blank = False
+            row[header] = value
+        if not is_blank:
+            normalized_rows.append(row)
+
+    return normalized_rows
+
+
+def excel_serial_to_date(serial_value: int) -> dt.date:
+    return dt.date(1899, 12, 30) + dt.timedelta(days=serial_value)
+
+
+def iso_date(value: dt.date) -> str:
+    return value.isoformat()
+
+
+def date_from_day_of_year(year: int, day_of_year: int) -> dt.date:
+    return dt.date(year, 1, 1) + dt.timedelta(days=day_of_year - 1)
+
+
+def load_uw_featured_area_reference() -> dict[str, Any]:
+    return json.loads(UW_FEATURED_AREA_REFERENCE_PATH.read_text(encoding="utf-8"))
+
+
+def extract_uw_peak_bloom_days(workbook_payload: bytes) -> dict[int, int]:
+    rows = load_xlsx_sheet_rows(workbook_payload, "Cherry bloom dates")
+    peak_days: dict[int, int] = {}
+    for row in rows:
+        if row.get("PLANT", "").strip() != UW_BLOOM_TARGET_PLANT:
+            continue
+        year = parse_intish(row.get("YEAR"))
+        bloom_day = parse_intish(row.get("BLOOMDAY"))
+        if year is None or bloom_day is None:
+            continue
+        peak_days[year] = bloom_day
+    return peak_days
+
+
+def extract_uw_start_offsets(workbook_payload: bytes, peak_days: dict[int, int]) -> list[int]:
+    rows = load_xlsx_sheet_rows(workbook_payload, "Stage-to-stage data")
+    offsets: list[int] = []
+    for row in rows:
+        if row.get("TRANSITION", "").strip() != UW_BLOOM_START_TRANSITION:
+            continue
+        year = parse_intish(row.get("YEAR"))
+        transition_serial = parse_intish(row.get("TRANSITIONDATE"))
+        if year is None or transition_serial is None or year not in peak_days:
+            continue
+        month_day_source = excel_serial_to_date(transition_serial)
+        try:
+            transition_date = dt.date(year, month_day_source.month, month_day_source.day)
+        except ValueError:
+            continue
+        start_day = transition_date.timetuple().tm_yday
+        offset = peak_days[year] - start_day
+        if offset > 0:
+            offsets.append(offset)
+    return offsets
+
+
+def extract_uw_weather_by_year(workbook_payload: bytes) -> dict[int, list[tuple[dt.date, float, float]]]:
+    rows = load_xlsx_sheet_rows(workbook_payload, "Weather data, 1963-2024")
+    station_year_rows: dict[str, dict[int, list[tuple[dt.date, float, float]]]] = {}
+    for row in rows:
+        station_id = row.get("STATIONID", "").strip()
+        serial_date = parse_intish(row.get("DATE"))
+        tmax = parse_floatish(row.get("TMAX"))
+        tmin = parse_floatish(row.get("TMIN"))
+        if not station_id or serial_date is None or tmax is None or tmin is None:
+            continue
+        weather_date = excel_serial_to_date(serial_date)
+        station_year_rows.setdefault(station_id, {}).setdefault(weather_date.year, []).append((weather_date, tmax, tmin))
+
+    preferred_by_year: dict[int, list[tuple[dt.date, float, float]]] = {}
+    available_years = sorted(
+        set(station_year_rows.get(UW_PRIMARY_WEATHER_STATION, {})) | set(station_year_rows.get(UW_SECONDARY_WEATHER_STATION, {}))
+    )
+    for year in available_years:
+        preferred_rows = (
+            station_year_rows.get(UW_PRIMARY_WEATHER_STATION, {}).get(year)
+            or station_year_rows.get(UW_SECONDARY_WEATHER_STATION, {}).get(year)
+            or []
+        )
+        preferred_by_year[year] = sorted(preferred_rows, key=lambda item: item[0])
+    return preferred_by_year
+
+
+def calculate_gdd_feature(
+    weather_rows: list[tuple[dt.date, float, float]],
+    year: int,
+    cutoff_month: int = UW_GDD_CUTOFF_MONTH,
+    cutoff_day: int = UW_GDD_CUTOFF_DAY,
+    base_temp_c: float = UW_GDD_BASE_TEMP_C,
+) -> float | None:
+    if not weather_rows:
+        return None
+
+    cutoff_date = dt.date(year, cutoff_month, cutoff_day)
+    expected_days = (cutoff_date - dt.date(year, 1, 1)).days + 1
+    rows_until_cutoff = [row for row in weather_rows if row[0] <= cutoff_date]
+    if len(rows_until_cutoff) < max(45, math.floor(expected_days * 0.75)):
+        return None
+
+    total = 0.0
+    for _, tmax, tmin in rows_until_cutoff:
+        mean_temp = (tmax + tmin) / 2
+        total += max(0.0, mean_temp - base_temp_c)
+    return round(total, 4)
+
+
+def fit_linear_regression(samples: list[tuple[float, float]]) -> tuple[float, float] | None:
+    if len(samples) < 2:
+        return None
+
+    x_mean = statistics.fmean(sample[0] for sample in samples)
+    y_mean = statistics.fmean(sample[1] for sample in samples)
+    denominator = sum((sample[0] - x_mean) ** 2 for sample in samples)
+    if denominator == 0:
+        return y_mean, 0.0
+
+    numerator = sum((sample[0] - x_mean) * (sample[1] - y_mean) for sample in samples)
+    slope = numerator / denominator
+    intercept = y_mean - slope * x_mean
+    return intercept, slope
+
+
+def predict_linear(samples: list[tuple[float, float]], feature_value: float) -> float | None:
+    model = fit_linear_regression(samples)
+    if model is None:
+        return None
+    intercept, slope = model
+    return intercept + slope * feature_value
+
+
+def leave_one_out_mae(samples: list[tuple[float, float]]) -> float | None:
+    if len(samples) < 3:
+        return None
+
+    errors: list[float] = []
+    for index, sample in enumerate(samples):
+        training = samples[:index] + samples[index + 1 :]
+        prediction = predict_linear(training, sample[0])
+        if prediction is None:
+            return None
+        errors.append(abs(prediction - sample[1]))
+
+    if not errors:
+        return None
+    return round(statistics.fmean(errors), 3)
+
+
+def parse_open_meteo_temperature_rows(payload: dict[str, Any]) -> list[tuple[dt.date, float, float]]:
+    daily = payload.get("daily", {}) if isinstance(payload, dict) else {}
+    times = daily.get("time") or []
+    max_values = daily.get("temperature_2m_max") or []
+    min_values = daily.get("temperature_2m_min") or []
+    rows: list[tuple[dt.date, float, float]] = []
+    for raw_date, raw_max, raw_min in zip(times, max_values, min_values, strict=False):
+        try:
+            weather_date = dt.date.fromisoformat(str(raw_date))
+        except ValueError:
+            continue
+        max_temp = parse_floatish(raw_max)
+        min_temp = parse_floatish(raw_min)
+        if max_temp is None or min_temp is None:
+            continue
+        rows.append((weather_date, max_temp, min_temp))
+    return rows
+
+
+def fetch_open_meteo_temperature_rows(
+    latitude: float,
+    longitude: float,
+    start_date: dt.date,
+    end_date: dt.date,
+) -> list[tuple[dt.date, float, float]]:
+    if start_date > end_date:
+        return []
+
+    today = dt.date.today()
+    merged_rows: dict[dt.date, tuple[dt.date, float, float]] = {}
+
+    archive_end = min(end_date, today - dt.timedelta(days=1))
+    if start_date <= archive_end:
+        archive_payload = fetch_json(
+            OPEN_METEO_ARCHIVE_ENDPOINT,
+            {
+                "latitude": f"{latitude:.5f}",
+                "longitude": f"{longitude:.5f}",
+                "start_date": iso_date(start_date),
+                "end_date": iso_date(archive_end),
+                "daily": "temperature_2m_max,temperature_2m_min",
+                "timezone": "auto",
+            },
+        )
+        for row in parse_open_meteo_temperature_rows(archive_payload):
+            merged_rows[row[0]] = row
+
+    if end_date >= today:
+        forecast_days = max(1, (end_date - today).days + 1)
+        forecast_payload = fetch_json(
+            OPEN_METEO_FORECAST_ENDPOINT,
+            {
+                "latitude": f"{latitude:.5f}",
+                "longitude": f"{longitude:.5f}",
+                "forecast_days": forecast_days,
+                "daily": "temperature_2m_max,temperature_2m_min",
+                "timezone": "auto",
+            },
+        )
+        for row in parse_open_meteo_temperature_rows(forecast_payload):
+            if start_date <= row[0] <= end_date:
+                merged_rows[row[0]] = row
+
+    return [merged_rows[weather_date] for weather_date in sorted(merged_rows)]
+
+
+def build_bloom_curve(start_date: dt.date, peak_date: dt.date, end_date: dt.date) -> tuple[list[str], list[int]]:
+    window_start = start_date - dt.timedelta(days=UW_CURVE_PADDING_DAYS)
+    window_end = end_date + dt.timedelta(days=UW_CURVE_PADDING_DAYS)
+    curve_dates: list[str] = []
+    curve_values: list[int] = []
+
+    ascent_span = max(1, (peak_date - start_date).days)
+    descent_span = max(1, (end_date - peak_date).days)
+    day_count = (window_end - window_start).days + 1
+
+    for offset in range(day_count):
+        current_date = window_start + dt.timedelta(days=offset)
+        curve_dates.append(iso_date(current_date))
+        if current_date <= start_date or current_date >= end_date:
+            curve_values.append(0)
+            continue
+        if current_date == peak_date:
+            curve_values.append(100)
+            continue
+        if current_date < peak_date:
+            progress = (current_date - start_date).days / ascent_span
+            value = 100 * math.sin(progress * math.pi / 2) ** 1.25
+        else:
+            progress = (end_date - current_date).days / descent_span
+            value = 100 * math.sin(progress * math.pi / 2) ** 1.1
+        curve_values.append(int(round(clamp_number(value, 0, 100))))
+
+    return curve_dates, curve_values
+
+
+def build_uw_bloom_forecast(area_reference: dict[str, Any], updated_at: str) -> dict[str, Any]:
+    workbook_payload = fetch_binary(UW_BLOOM_HISTORY_XLSX_URL)
+    peak_days = extract_uw_peak_bloom_days(workbook_payload)
+    start_offsets = extract_uw_start_offsets(workbook_payload, peak_days)
+    weather_by_year = extract_uw_weather_by_year(workbook_payload)
+
+    training_samples: list[tuple[float, float]] = []
+    for year, peak_day in sorted(peak_days.items()):
+        feature_value = calculate_gdd_feature(weather_by_year.get(year, []), year)
+        if feature_value is None:
+            continue
+        training_samples.append((feature_value, float(peak_day)))
+
+    sample_years = len(training_samples)
+    cv_mae_days = leave_one_out_mae(training_samples)
+    median_peak_day = int(round(statistics.median(peak_days.values()))) if peak_days else dt.date.today().timetuple().tm_yday
+    start_offset_days = (
+        int(round(statistics.median(start_offsets))) if start_offsets else UW_DEFAULT_START_OFFSET_DAYS
+    )
+    end_offset_days = start_offset_days if start_offsets else UW_DEFAULT_END_OFFSET_DAYS
+
+    forecast_mode = "historical_fallback"
+    peak_day_of_year = median_peak_day
+
+    if (
+        sample_years >= UW_MIN_FORECAST_SAMPLE_YEARS
+        and cv_mae_days is not None
+        and cv_mae_days <= UW_MAX_FORECAST_MAE_DAYS
+    ):
+        current_year = dt.date.today().year
+        cutoff_date = dt.date(current_year, UW_GDD_CUTOFF_MONTH, UW_GDD_CUTOFF_DAY)
+        weather_point = area_reference.get("weather_point") or area_reference.get("center") or [0, 0]
+        current_year_weather_rows = fetch_open_meteo_temperature_rows(
+            latitude=float(weather_point[1]),
+            longitude=float(weather_point[0]),
+            start_date=dt.date(current_year, 1, 1),
+            end_date=cutoff_date,
+        )
+        current_feature_value = calculate_gdd_feature(current_year_weather_rows, current_year)
+        predicted_peak_day = (
+            predict_linear(training_samples, current_feature_value) if current_feature_value is not None else None
+        )
+        if predicted_peak_day is not None:
+            min_training_day = min(int(sample[1]) for sample in training_samples)
+            max_training_day = max(int(sample[1]) for sample in training_samples)
+            peak_day_of_year = int(
+                round(clamp_number(predicted_peak_day, min_training_day - 7, max_training_day + 7))
+            )
+            forecast_mode = "ml"
+
+    forecast_year = dt.date.today().year
+    peak_date = date_from_day_of_year(forecast_year, peak_day_of_year)
+    start_date = peak_date - dt.timedelta(days=start_offset_days)
+    end_date = peak_date + dt.timedelta(days=end_offset_days)
+    curve_dates, curve_values = build_bloom_curve(start_date, peak_date, end_date)
+
+    return {
+        "mode": forecast_mode,
+        "curve_dates": curve_dates,
+        "curve_values": curve_values,
+        "start_date": iso_date(start_date),
+        "peak_date": iso_date(peak_date),
+        "end_date": iso_date(end_date),
+        "weather_adjustment_days": 0,
+        "updated_at": updated_at,
+        "sample_years": sample_years,
+        "cv_mae_days": round(cv_mae_days, 3) if cv_mae_days is not None else None,
+    }
+
+
+def feature_coord_priority(properties: dict[str, Any]) -> int:
+    coord_source = properties.get("coord_source")
+    if coord_source == "official":
+        return 3
+    if coord_source == "osm_verified":
+        return 2
+    if coord_source == "manual_pdf":
+        return 1
+    return 0
+
+
+def merge_feature_properties(target: dict[str, Any], source: dict[str, Any]) -> None:
+    featured_area_ids = {
+        *(target.get("featured_area_ids") or []),
+        *(source.get("featured_area_ids") or []),
+    }
+    if featured_area_ids:
+        target["featured_area_ids"] = sorted(featured_area_ids)
+
+    for field_name in ("cultivar", "detail_source_label", "location_note", "dbh"):
+        if not target.get(field_name) and source.get(field_name) not in (None, ""):
+            target[field_name] = source.get(field_name)
+
+    if feature_coord_priority(source) > feature_coord_priority(target):
+        target["coord_source"] = source.get("coord_source")
+
+
+def dedupe_featured_area_features(
+    features: list[dict[str, Any]],
+    featured_area_references: list[dict[str, Any]],
+) -> tuple[list[dict[str, Any]], dict[str, str]]:
+    if not featured_area_references:
+        return features, {}
+
+    features_by_id = {feature["properties"]["id"]: feature for feature in features}
+    dropped_feature_ids: set[str] = set()
+    alias_map: dict[str, str] = {}
+
+    for area_reference in featured_area_references:
+        bounds = area_reference.get("bounds")
+        if not bounds:
+            continue
+        area_feature_ids = [
+            feature["properties"]["id"]
+            for feature in features
+            if bounds_contain_coordinate(bounds, tuple(feature["geometry"]["coordinates"]))  # type: ignore[arg-type]
+        ]
+        ordered_ids = sorted(
+            area_feature_ids,
+            key=lambda feature_id: (
+                -feature_coord_priority(features_by_id[feature_id]["properties"]),
+                features_by_id[feature_id]["properties"].get("id", ""),
+            ),
+        )
+
+        for keep_index, keep_id in enumerate(ordered_ids):
+            if keep_id in dropped_feature_ids:
+                continue
+            keep_feature = features_by_id[keep_id]
+            keep_properties = keep_feature["properties"]
+            keep_coordinates = tuple(keep_feature["geometry"]["coordinates"])
+            keep_key = normalize_lookup_text(keep_properties.get("cultivar") or keep_properties.get("scientific_name"))
+            for drop_id in ordered_ids[keep_index + 1 :]:
+                if drop_id in dropped_feature_ids:
+                    continue
+                drop_feature = features_by_id[drop_id]
+                drop_properties = drop_feature["properties"]
+                drop_key = normalize_lookup_text(drop_properties.get("cultivar") or drop_properties.get("scientific_name"))
+                if keep_key and drop_key and keep_key != drop_key:
+                    continue
+                if not keep_key and not drop_key:
+                    continue
+                drop_coordinates = tuple(drop_feature["geometry"]["coordinates"])
+                if point_distance_meters(keep_coordinates, drop_coordinates) > 5:
+                    continue
+                dropped_feature_ids.add(drop_id)
+                alias_map[drop_id] = keep_id
+                merge_feature_properties(keep_properties, drop_properties)
+
+    deduped_features = [feature for feature in features if feature["properties"]["id"] not in dropped_feature_ids]
+    return deduped_features, alias_map
+
+
+def build_featured_area_outputs(
+    reference_payload: dict[str, Any],
+    output_features: list[dict[str, Any]],
+    alias_map: dict[str, str],
+    updated_at: str,
+) -> tuple[dict[str, Any], dict[str, dict[str, Any]]]:
+    features_by_id = {feature["properties"]["id"]: feature for feature in output_features}
+    sources_by_id = {source["id"]: source for source in reference_payload.get("sources", [])}
+
+    index_items: list[dict[str, Any]] = []
+    detail_payloads: dict[str, dict[str, Any]] = {}
+
+    for area_reference in reference_payload.get("areas", []):
+        detail_file_name = f"featured-area.{area_reference['id']}.v1.json"
+        resolved_tree_ids: list[str] = []
+        for tree_record in area_reference.get("tree_records", []):
+            resolved_tree_id = alias_map.get(tree_record["tree_id"], tree_record["tree_id"])
+            if resolved_tree_id not in features_by_id or resolved_tree_id in resolved_tree_ids:
+                continue
+            resolved_tree_ids.append(resolved_tree_id)
+
+        index_item = {
+            "id": area_reference["id"],
+            "region": area_reference["region"],
+            "jump_area_id": area_reference.get("jump_area_id"),
+            "detail_path": f"/data/{detail_file_name}",
+            "bounds": area_reference["bounds"],
+            "center": area_reference["center"],
+            "weather_point": area_reference.get("weather_point") or area_reference["center"],
+            "species_focus": area_reference.get("species_focus", []),
+            "default_species": area_reference.get("default_species", []),
+            "tree_count": len(resolved_tree_ids),
+        }
+        index_items.append(index_item)
+        detail_payloads[detail_file_name] = {
+            **index_item,
+            "tree_ids": resolved_tree_ids,
+            "sources": [
+                sources_by_id[source_id]
+                for source_id in area_reference.get("source_ids", [])
+                if source_id in sources_by_id
+            ],
+            "confidence_note_ids": area_reference.get("confidence_note_ids", []),
+            "bloom_forecast": build_uw_bloom_forecast(area_reference, updated_at),
+        }
+
+    return {
+        "generated_at": updated_at,
+        "version": reference_payload.get("version", "v1"),
+        "items": index_items,
+    }, detail_payloads
 
 
 def decode_cpg(payload: bytes | None) -> str:
@@ -2833,7 +3481,7 @@ def main() -> int:
     seattle_features = fetch_all_features(
         layer_url=SEATTLE_LAYER,
         where="SCIENTIFIC_NAME LIKE 'Prunus%' OR SCIENTIFIC_NAME LIKE 'Magnolia%' OR SCIENTIFIC_NAME LIKE 'Malus%'",
-        out_fields=["OBJECTID", "SCIENTIFIC_NAME", "COMMON_NAME", "OWNERSHIP", "SOURCE_DEPT"],
+        out_fields=["OBJECTID", "SCIENTIFIC_NAME", "COMMON_NAME", "OWNERSHIP", "SOURCE_DEPT", "DBH", "UNITDESC"],
         order_by_field="OBJECTID",
     )
 
@@ -3176,6 +3824,34 @@ def main() -> int:
     cupertino_zip_index = fetch_us_city_zip_index("Cupertino")
     oakland_zip_index = fetch_us_city_zip_index("Oakland")
 
+    uw_featured_area_reference = load_uw_featured_area_reference()
+    featured_tree_record_by_id: dict[str, dict[str, Any]] = {}
+    for area_reference in uw_featured_area_reference.get("areas", []):
+        for tree_record in area_reference.get("tree_records", []):
+            current = featured_tree_record_by_id.setdefault(
+                tree_record["tree_id"],
+                {
+                    "featured_area_ids": [],
+                    "cultivar": tree_record.get("cultivar"),
+                    "coord_source": tree_record.get("coord_source"),
+                    "location_note": tree_record.get("location_note"),
+                    "detail_source_label": (
+                        "UW Cherry Trees Map 2022 (manual supplemental)"
+                        if tree_record.get("manual_pdf")
+                        else "UW Cherry Trees Map 2022 / OSM supplemental"
+                    ),
+                },
+            )
+            current["featured_area_ids"] = sorted(
+                {*(current.get("featured_area_ids") or []), area_reference["id"]}
+            )
+            if not current.get("cultivar") and tree_record.get("cultivar"):
+                current["cultivar"] = tree_record.get("cultivar")
+            if not current.get("coord_source") and tree_record.get("coord_source"):
+                current["coord_source"] = tree_record.get("coord_source")
+            if not current.get("location_note") and tree_record.get("location_note"):
+                current["location_note"] = tree_record.get("location_note")
+
     uw_supplemental_payload = json.loads(UW_SUPPLEMENTAL_PATH.read_text(encoding="utf-8"))
     uw_supplemental_elements = uw_supplemental_payload.get("elements", [])
 
@@ -3232,6 +3908,12 @@ def main() -> int:
                     "ownership": canonical_ownership(ownership_raw),
                     "ownership_raw": ownership_raw,
                     "city": "Seattle",
+                    "cultivar": subtype_name,
+                    "featured_area_ids": None,
+                    "coord_source": "official",
+                    "detail_source_label": "Combined Tree Point",
+                    "location_note": (attrs.get("UNITDESC") or "").strip() or None,
+                    "dbh": parse_floatish(attrs.get("DBH")),
                     "source_dataset": "Combined Tree Point",
                     "source_department": attrs.get("SOURCE_DEPT") or "City of Seattle",
                     "source_last_edit_at": seattle_last_edit,
@@ -4940,6 +5622,7 @@ def main() -> int:
                 unknown_counter[scientific_normalized] += 1
             continue
 
+        featured_tree_record = featured_tree_record_by_id.get(f"uw-osm-{node_id}", {})
         output_features.append(
             {
                 "type": "Feature",
@@ -4954,6 +5637,13 @@ def main() -> int:
                     "ownership": canonical_ownership(ownership_raw),
                     "ownership_raw": ownership_raw,
                     "city": "Seattle",
+                    "cultivar": featured_tree_record.get("cultivar") or subtype_name,
+                    "featured_area_ids": featured_tree_record.get("featured_area_ids") or None,
+                    "coord_source": featured_tree_record.get("coord_source") or "osm_verified",
+                    "detail_source_label": featured_tree_record.get("detail_source_label")
+                    or "UW Cherry Trees Map 2022 / OSM supplemental",
+                    "location_note": featured_tree_record.get("location_note"),
+                    "dbh": None,
                     "source_dataset": "UW OSM Supplemental",
                     "source_department": "University of Washington (OSM supplemental)",
                     "source_last_edit_at": "",
@@ -4961,6 +5651,9 @@ def main() -> int:
             }
         )
 
+    output_features, featured_area_alias_map = dedupe_featured_area_features(
+        output_features, uw_featured_area_reference.get("areas", [])
+    )
     output_features.sort(key=lambda item: item["properties"]["id"])
 
     covered_cities = sorted({feature["properties"]["city"] for feature in output_features})
@@ -5015,6 +5708,12 @@ def main() -> int:
         )
 
     now_iso = dt.datetime.now(tz=dt.timezone.utc).isoformat()
+    featured_area_index, featured_area_details = build_featured_area_outputs(
+        uw_featured_area_reference,
+        output_features,
+        featured_area_alias_map,
+        now_iso,
+    )
     coverage_geojson = {"type": "FeatureCollection", "features": coverage_features}
     species_guide = build_species_guide()
     region_bounds = build_region_bounds(coverage_features)
@@ -5313,6 +6012,15 @@ def main() -> int:
             "records_fetched": len(uw_supplemental_elements),
             "records_included": len([f for f in output_features if f["properties"]["id"].startswith("uw-osm-")]),
         },
+        {
+            "name": "UW Cherry Bloom History",
+            "city": "Seattle",
+            "endpoint": UW_BLOOM_HISTORY_ITEM_URL,
+            "last_edit_at": "",
+            "records_fetched": len(featured_area_index.get("items", [])),
+            "records_included": len(featured_area_details),
+            "note": "Official UW Quad bloom history workbook used for featured-area forecast generation.",
+        },
     ]
 
     total_records = (
@@ -5368,6 +6076,19 @@ def main() -> int:
         "Vancouver WA": "Vancouver",
     }
 
+    featured_area_index_name = "featured-areas.v1.json"
+    (next_dir / featured_area_index_name).write_text(
+        json.dumps(featured_area_index, ensure_ascii=False, indent=2),
+        encoding="utf-8",
+    )
+    extra_output_names.append(featured_area_index_name)
+    for detail_file_name, detail_payload in featured_area_details.items():
+        (next_dir / detail_file_name).write_text(
+            json.dumps(detail_payload, ensure_ascii=False, indent=2),
+            encoding="utf-8",
+        )
+        extra_output_names.append(detail_file_name)
+
     for region_id, label in REGION_LABELS.items():
         features = region_feature_map[region_id]
         region_cities = sorted({feature["properties"]["city"] for feature in features})
@@ -5414,9 +6135,9 @@ def main() -> int:
             extra_output_names.append(coverage_file_name)
             region_entry["coverage_path"] = f"/data/{coverage_file_name}"
 
+        area_entries: list[dict[str, Any]] = []
+        shard_count = 0
         if features:
-            area_entries: list[dict[str, Any]] = []
-            shard_count = 0
             for city in region_cities:
                 city_features = [feature for feature in features if feature["properties"]["city"] == city]
                 city_slug = slugify_token(city)
@@ -5478,38 +6199,38 @@ def main() -> int:
                     }
                 )
 
-            area_index_name = f"trees.{region_id}.area-index.v2.json"
-            (next_dir / area_index_name).write_text(
-                json.dumps(
-                    {
-                        "generated_at": now_iso,
-                        "region": region_id,
-                        "strategy": "area_shard",
-                        "items": area_entries,
-                    },
-                    ensure_ascii=False,
-                    indent=2,
-                ),
-                encoding="utf-8",
-            )
-            extra_output_names.append(area_index_name)
-            region_entry["area_split"] = {
-                "strategy": "area_shard",
-                "index_path": f"/data/{area_index_name}",
-                "area_count": len(area_entries),
-                "shard_count": shard_count,
-                "ready": True,
-            }
-            region_entry["raw_bytes"] = aggregate_raw_bytes
-            region_entry["gzip_bytes"] = aggregate_gzip_bytes
-            region_entry["warning_level"] = classify_publish_warning_level(largest_shard_raw_bytes)
-            region_entry["aggregate_raw_bytes"] = aggregate_raw_bytes
-            region_entry["aggregate_gzip_bytes"] = aggregate_gzip_bytes
-            region_entry["aggregate_warning_level"] = classify_aggregate_advisory_level(aggregate_raw_bytes)
-            region_entry["largest_shard_raw_bytes"] = largest_shard_raw_bytes
-            region_entry["largest_shard_gzip_bytes"] = largest_shard_gzip_bytes
-            region_entry["largest_shard_area"] = largest_shard_area
-            region_entry["largest_shard_warning_level"] = classify_publish_warning_level(largest_shard_raw_bytes)
+        area_index_name = f"trees.{region_id}.area-index.v2.json"
+        (next_dir / area_index_name).write_text(
+            json.dumps(
+                {
+                    "generated_at": now_iso,
+                    "region": region_id,
+                    "strategy": "area_shard",
+                    "items": area_entries,
+                },
+                ensure_ascii=False,
+                indent=2,
+            ),
+            encoding="utf-8",
+        )
+        extra_output_names.append(area_index_name)
+        region_entry["area_split"] = {
+            "strategy": "area_shard",
+            "index_path": f"/data/{area_index_name}",
+            "area_count": len(area_entries),
+            "shard_count": shard_count,
+            "ready": True,
+        }
+        region_entry["raw_bytes"] = aggregate_raw_bytes
+        region_entry["gzip_bytes"] = aggregate_gzip_bytes
+        region_entry["warning_level"] = classify_publish_warning_level(largest_shard_raw_bytes)
+        region_entry["aggregate_raw_bytes"] = aggregate_raw_bytes
+        region_entry["aggregate_gzip_bytes"] = aggregate_gzip_bytes
+        region_entry["aggregate_warning_level"] = classify_aggregate_advisory_level(aggregate_raw_bytes)
+        region_entry["largest_shard_raw_bytes"] = largest_shard_raw_bytes
+        region_entry["largest_shard_gzip_bytes"] = largest_shard_gzip_bytes
+        region_entry["largest_shard_area"] = largest_shard_area
+        region_entry["largest_shard_warning_level"] = classify_publish_warning_level(largest_shard_raw_bytes)
 
         region_meta.append(region_entry)
         region_size_summary.append(
@@ -5566,6 +6287,11 @@ def main() -> int:
         city_index_path.unlink()
     for area_index_path in PUBLIC_DATA_DIR.glob("trees.*.area-index.v2.json"):
         area_index_path.unlink()
+    for featured_area_path in PUBLIC_DATA_DIR.glob("featured-area.*.v1.json"):
+        featured_area_path.unlink()
+    featured_area_index_path = PUBLIC_DATA_DIR / "featured-areas.v1.json"
+    if featured_area_index_path.exists():
+        featured_area_index_path.unlink()
     legacy_trees = PUBLIC_DATA_DIR / "trees.v1.geojson"
     if legacy_trees.exists():
         legacy_trees.unlink()

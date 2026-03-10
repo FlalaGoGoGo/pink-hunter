@@ -1,0 +1,37 @@
+{
+  "generated_at": "2026-03-10T19:54:55.115057+00:00",
+  "version": "v1",
+  "items": [
+    {
+      "id": "uw-seattle-quad",
+      "region": "wa",
+      "jump_area_id": "wa:seattle",
+      "detail_path": "/data/featured-area.uw-seattle-quad.v1.json",
+      "bounds": [
+        [
+          -122.30905,
+          47.65605
+        ],
+        [
+          -122.30595,
+          47.65835
+        ]
+      ],
+      "center": [
+        -122.30752,
+        47.65712
+      ],
+      "weather_point": [
+        -122.30752,
+        47.65712
+      ],
+      "species_focus": [
+        "cherry"
+      ],
+      "default_species": [
+        "cherry"
+      ],
+      "tree_count": 30
+    }
+  ]
+}

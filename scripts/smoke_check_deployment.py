@@ -39,6 +39,8 @@ def main() -> int:
       results.append({"url": site_url, "status": site_status, "json_ok": None})
       results.append(check_json(f"{data_base_url}/data/meta.v2.json", insecure=args.insecure))
       results.append(check_json(f"{data_base_url}/data/jump-index.v1.json", insecure=args.insecure))
+      results.append(check_json(f"{data_base_url}/data/featured-areas.v1.json", insecure=args.insecure))
+      results.append(check_json(f"{data_base_url}/data/featured-area.uw-seattle-quad.v1.json", insecure=args.insecure))
     except (HTTPError, URLError, TimeoutError, json.JSONDecodeError) as exc:
       print(json.dumps({"ok": False, "error": str(exc)}, ensure_ascii=False))
       return 1

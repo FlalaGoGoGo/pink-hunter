@@ -7,7 +7,16 @@ import {
   type PointerEvent as ReactPointerEvent,
   type ReactNode
 } from "react";
-import { loadAreaIndex, loadCoverageRegion, loadStaticAppData, loadTreeCollection, loadVisitorCount } from "./data";
+import {
+  loadAreaIndex,
+  loadCoverageRegion,
+  loadFeaturedAreaDetail,
+  loadFeaturedAreaWeather,
+  loadStaticAppData,
+  loadTreeCollection,
+  loadVisitorCount
+} from "./data";
+import { FeaturedAreaPanel, FeaturedAreaSummaryCard, FeaturedTreeMetaRows } from "./FeaturedAreaPanel";
 import {
   DEFAULT_LANGUAGE,
   LANGUAGE_OPTIONS,
@@ -40,6 +49,8 @@ import type {
   AppMeta,
   CoverageCollection,
   CoverageFeatureProps,
+  FeaturedAreaDetail,
+  FeaturedAreaIndexItem,
   JumpArea,
   CoverageRegion,
   JumpCountry,
@@ -54,8 +65,10 @@ import type {
   SpeciesCounts,
   StaticAppData,
   TreeCollection,
-  TreeFeatureProps
+  TreeFeatureProps,
+  WeatherSnapshot
 } from "./types";
+import { featuredAreaCopy, featuredAreaMeta } from "./featuredAreaContent";
 
 const SNAP_POINTS = [0.4, 0.72, 1] as const;
 const SELECTED_MARKER_IMAGE_ID = "selected-bloom-marker";
@@ -193,10 +206,12 @@ const REGION_CITY_OVERRIDES: Partial<Record<string, CoverageRegion>> = {
   Chino: "ca",
   Commerce: "ca",
   Cudahy: "ca",
+  "Dana Point": "ca",
   Downey: "ca",
   Encinitas: "ca",
   Escondido: "ca",
   Glendale: "ca",
+  Goleta: "ca",
   Glendora: "ca",
   "Huntington Park": "ca",
   Inglewood: "ca",
@@ -219,11 +234,13 @@ const REGION_CITY_OVERRIDES: Partial<Record<string, CoverageRegion>> = {
   Concord: "ca",
   Fremont: "ca",
   Milpitas: "ca",
+  Arcadia: "ca",
   "Palo Alto": "ca",
   Berkeley: "ca",
   Cupertino: "ca",
   Oakland: "ca",
   "San Diego": "ca",
+  Torrance: "ca",
   "South San Francisco": "ca",
   "San Francisco": "ca",
   "San Jose": "ca"
@@ -1533,6 +1550,7 @@ interface UrlState {
   ownership: OwnershipGroup[];
   legalDocument: LegalDocumentId | null;
   areaId: string | null;
+  featuredId: string | null;
   cities: string[];
   zipCodes: string[];
   hasSpeciesParam: boolean;
@@ -1591,6 +1609,7 @@ function parseUrlState(): UrlState {
   const language = parseLanguage(params.get("lang"));
   const legalDocument = parseLegalDocument(params.get("legal"));
   const areaId = params.get("area");
+  const featuredId = params.get("featured");
   const hasSpeciesParam = params.has("species");
   const hasOwnershipParam = params.has("ownership");
   const hasCityParam = params.has("city");
@@ -1611,6 +1630,7 @@ function parseUrlState(): UrlState {
     ownership,
     legalDocument,
     areaId,
+    featuredId,
     cities,
     zipCodes,
     hasSpeciesParam,
@@ -2169,7 +2189,11 @@ export default function App(): JSX.Element {
   const initialUrlState = useMemo(parseUrlState, []);
   const initialLayoutMode: LayoutMode =
     typeof window !== "undefined" && window.innerWidth >= 1024 ? "desktop_split" : "mobile_sheet";
-  const initialPanel: PanelView = initialUrlState.legalDocument ? "about" : "filters";
+  const initialPanel: PanelView = initialUrlState.legalDocument
+    ? "about"
+    : initialUrlState.featuredId
+      ? "details"
+      : "filters";
 
   const [data, setData] = useState<StaticAppData | null>(null);
   const [mapRuntime, setMapRuntime] = useState<MapRuntimeDeps | null>(null);
@@ -2210,6 +2234,12 @@ export default function App(): JSX.Element {
   const [aboutSummaryMode, setAboutSummaryMode] = useState<AboutSummaryMode>("region");
   const [selectedTree, setSelectedTree] = useState<SelectedTree | null>(null);
   const [selectedCoverage, setSelectedCoverage] = useState<SelectedCoverage | null>(null);
+  const [selectedFeaturedAreaId, setSelectedFeaturedAreaId] = useState<string | null>(initialUrlState.featuredId);
+  const [featuredAreaDetailCache, setFeaturedAreaDetailCache] = useState<Record<string, FeaturedAreaDetail>>({});
+  const [loadingFeaturedAreaDetail, setLoadingFeaturedAreaDetail] = useState(false);
+  const [featuredAreaWeatherCache, setFeaturedAreaWeatherCache] = useState<Record<string, WeatherSnapshot>>({});
+  const [featuredAreaWeatherErrors, setFeaturedAreaWeatherErrors] = useState<Record<string, string>>({});
+  const [loadingFeaturedAreaWeatherId, setLoadingFeaturedAreaWeatherId] = useState<string | null>(null);
   const [layoutMode, setLayoutMode] = useState<LayoutMode>(initialLayoutMode);
   const [mapStylePreset, setMapStylePreset] = useState<MapStylePreset>("positron");
   const [mapView, setMapView] = useState({
@@ -2326,8 +2356,24 @@ export default function App(): JSX.Element {
     const entries = (data?.meta.regions ?? []).map((regionMeta) => [regionMeta.id, regionMeta]);
     return new Map(entries as Array<[CoverageRegion, RegionMeta]>);
   }, [data]);
+  const featuredAreaById = useMemo(() => {
+    if (!data) {
+      return new Map<string, FeaturedAreaIndexItem>();
+    }
+    return new Map(data.featuredAreas.items.map((item) => [item.id, item]));
+  }, [data]);
 
   const activeRegionMeta = regionMetaById.get(activeRegion) ?? null;
+  const initialFeaturedArea = useMemo(
+    () => (initialUrlState.featuredId ? featuredAreaById.get(initialUrlState.featuredId) ?? null : null),
+    [featuredAreaById, initialUrlState.featuredId]
+  );
+  const selectedFeaturedAreaIndex = useMemo(
+    () => (selectedFeaturedAreaId ? featuredAreaById.get(selectedFeaturedAreaId) ?? null : null),
+    [featuredAreaById, selectedFeaturedAreaId]
+  );
+  const selectedFeaturedAreaDetail = selectedFeaturedAreaId ? featuredAreaDetailCache[selectedFeaturedAreaId] ?? null : null;
+  const selectedFeaturedAreaWeather = selectedFeaturedAreaId ? featuredAreaWeatherCache[selectedFeaturedAreaId] ?? null : null;
   const activeLanguageOption = LANGUAGE_OPTIONS.find((option) => option.id === language) ?? LANGUAGE_OPTIONS[0];
 
   useEffect(() => {
@@ -2339,6 +2385,110 @@ export default function App(): JSX.Element {
       setActiveRegion(fallbackRegion);
     }
   }, [activeRegion, data, regionMetaById]);
+
+  useEffect(() => {
+    if (!selectedFeaturedAreaId) {
+      return;
+    }
+    if (featuredAreaById.has(selectedFeaturedAreaId)) {
+      return;
+    }
+    setSelectedFeaturedAreaId(null);
+  }, [featuredAreaById, selectedFeaturedAreaId]);
+
+  useEffect(() => {
+    if (!selectedFeaturedAreaIndex) {
+      return;
+    }
+    if (activeRegion !== selectedFeaturedAreaIndex.region) {
+      setActiveRegion(selectedFeaturedAreaIndex.region);
+    }
+  }, [activeRegion, selectedFeaturedAreaIndex]);
+
+  useEffect(() => {
+    if (!selectedFeaturedAreaIndex?.jump_area_id) {
+      return;
+    }
+    if (!selectedJumpAreaId) {
+      setSelectedJumpAreaId(selectedFeaturedAreaIndex.jump_area_id);
+    }
+  }, [selectedFeaturedAreaIndex, selectedJumpAreaId]);
+
+  useEffect(() => {
+    if (!selectedFeaturedAreaIndex || featuredAreaDetailCache[selectedFeaturedAreaIndex.id]) {
+      return;
+    }
+
+    let cancelled = false;
+    setLoadingFeaturedAreaDetail(true);
+
+    void (async () => {
+      try {
+        const detail = await loadFeaturedAreaDetail(selectedFeaturedAreaIndex.detail_path);
+        if (cancelled) {
+          return;
+        }
+        setFeaturedAreaDetailCache((current) => ({
+          ...current,
+          [detail.id]: detail
+        }));
+      } catch (loadError) {
+        if (!cancelled) {
+          setError(loadError instanceof Error ? loadError.message : "Unknown featured area loading error");
+        }
+      } finally {
+        if (!cancelled) {
+          setLoadingFeaturedAreaDetail(false);
+        }
+      }
+    })();
+
+    return () => {
+      cancelled = true;
+    };
+  }, [featuredAreaDetailCache, selectedFeaturedAreaIndex]);
+
+  useEffect(() => {
+    if (!selectedFeaturedAreaDetail || featuredAreaWeatherCache[selectedFeaturedAreaDetail.id]) {
+      return;
+    }
+    if (featuredAreaWeatherErrors[selectedFeaturedAreaDetail.id]) {
+      return;
+    }
+
+    let cancelled = false;
+    setLoadingFeaturedAreaWeatherId(selectedFeaturedAreaDetail.id);
+
+    void (async () => {
+      try {
+        const [longitude, latitude] = selectedFeaturedAreaDetail.weather_point;
+        const weather = await loadFeaturedAreaWeather(selectedFeaturedAreaDetail.id, latitude, longitude);
+        if (cancelled) {
+          return;
+        }
+        setFeaturedAreaWeatherCache((current) => ({
+          ...current,
+          [weather.area_id]: weather
+        }));
+      } catch (loadError) {
+        if (!cancelled) {
+          setFeaturedAreaWeatherErrors((current) => ({
+            ...current,
+            [selectedFeaturedAreaDetail.id]:
+              loadError instanceof Error ? loadError.message : "Weather is temporarily unavailable"
+          }));
+        }
+      } finally {
+        if (!cancelled) {
+          setLoadingFeaturedAreaWeatherId((current) => (current === selectedFeaturedAreaDetail.id ? null : current));
+        }
+      }
+    })();
+
+    return () => {
+      cancelled = true;
+    };
+  }, [featuredAreaWeatherCache, featuredAreaWeatherErrors, selectedFeaturedAreaDetail]);
 
   const effectiveViewportBounds = viewportBounds ?? preferredBoundsForRegion(activeRegion, activeRegionMeta);
 
@@ -2591,6 +2741,31 @@ export default function App(): JSX.Element {
       ),
     [regionShardCache, requiredShardEntries]
   );
+  const loadedActiveRegionTrees = useMemo(
+    () =>
+      mergeTreeCollections(
+        Object.values(regionShardCache[activeRegion] ?? {}).filter((collection): collection is TreeCollection =>
+          Boolean(collection)
+        )
+      ),
+    [activeRegion, regionShardCache]
+  );
+  const loadedActiveRegionTreeById = useMemo(
+    () => new Map(loadedActiveRegionTrees.features.map((feature) => [feature.properties.id, feature])),
+    [loadedActiveRegionTrees]
+  );
+  const selectedFeaturedAreaTrees = useMemo(() => {
+    if (!selectedFeaturedAreaDetail) {
+      return [] as Array<{ coordinates: [number, number]; properties: TreeFeatureProps }>;
+    }
+    return selectedFeaturedAreaDetail.tree_ids
+      .map((treeId) => loadedActiveRegionTreeById.get(treeId))
+      .filter((feature): feature is TreeCollection["features"][number] => Boolean(feature))
+      .map((feature) => ({
+        coordinates: getTreeCoordinates(feature),
+        properties: feature.properties
+      }));
+  }, [loadedActiveRegionTreeById, selectedFeaturedAreaDetail]);
 
   const jumpCountries = useMemo(() => {
     if (!data) {
@@ -2931,10 +3106,10 @@ export default function App(): JSX.Element {
   const showMapLoadingOverlay = false;
 
   useEffect(() => {
-    if (!selectedTree && activePanel === "details") {
+    if (!selectedTree && !selectedFeaturedAreaId && activePanel === "details") {
       setActivePanel("filters");
     }
-  }, [activePanel, selectedTree]);
+  }, [activePanel, selectedFeaturedAreaId, selectedTree]);
 
   useEffect(() => {
     filteredFeaturesRef.current = filteredFeatures;
@@ -2969,6 +3144,7 @@ export default function App(): JSX.Element {
   const aboutCopy = ABOUT_COPY[language];
   const findPanelCopy = FIND_PANEL_COPY[language];
   const discoveryCopy = DISCOVERY_COPY[language];
+  const featuredAreaUiCopy = featuredAreaCopy(language);
   const jumpSubnationalLabel = jumpCountry === "us" ? findPanelCopy.jumpState : findPanelCopy.jumpProvince;
   const jumpAnySubnationalLabel = jumpCountry === "us" ? findPanelCopy.jumpAnyState : findPanelCopy.jumpAnyProvince;
 
@@ -3518,19 +3694,7 @@ export default function App(): JSX.Element {
             return;
           }
 
-          setSelectedTree({
-            coordinates: getTreeCoordinates(matched),
-            properties: matched.properties
-          });
-          setSelectedCoverage(null);
-          setStatusNotice(null);
-          if (!isDesktopRef.current) {
-            setSheetHeight(0.72);
-            setActivePanel("details");
-          }
-          if (isDesktopRef.current) {
-            setActivePanel("details");
-          }
+          openTreeDetails(matched.properties.id);
         });
 
         map.on("mouseenter", "tree-clusters", () => {
@@ -3577,6 +3741,7 @@ export default function App(): JSX.Element {
 
         if (!initialUrlState.hasViewportParam) {
           const defaultBounds =
+            initialFeaturedArea?.bounds ??
             initialJumpArea?.bounds ??
             preferredBoundsForRegion(initialUrlState.region, regionMetaById.get(initialUrlState.region) ?? null);
           if (defaultBounds) {
@@ -3627,6 +3792,7 @@ export default function App(): JSX.Element {
     initialUrlState.lon,
     initialUrlState.region,
     initialUrlState.zoom,
+    initialFeaturedArea,
     initialJumpArea,
     mapRuntime,
     regionMetaById
@@ -3812,6 +3978,9 @@ export default function App(): JSX.Element {
     if (selectedJumpAreaId) {
       params.set("area", selectedJumpAreaId);
     }
+    if (selectedFeaturedAreaId) {
+      params.set("featured", selectedFeaturedAreaId);
+    }
     if (activePanel === "about" && activeLegalDocument) {
       params.set("legal", activeLegalDocument);
     }
@@ -3842,6 +4011,7 @@ export default function App(): JSX.Element {
     data,
     language,
     mapView,
+    selectedFeaturedAreaId,
     selectedJumpAreaId,
     selectedOwnership,
     selectedSpecies,
@@ -3874,6 +4044,53 @@ export default function App(): JSX.Element {
     setSelectedJumpAreaId(null);
     setJumpAreaQuery("");
     setStatusNotice(null);
+  }
+
+  function openTreeDetails(treeId: string): void {
+    const matched = loadedActiveRegionTreeById.get(treeId);
+    if (!matched) {
+      return;
+    }
+
+    setSelectedTree({
+      coordinates: getTreeCoordinates(matched),
+      properties: matched.properties
+    });
+    setSelectedCoverage(null);
+    setStatusNotice(null);
+    setSelectedFeaturedAreaId(matched.properties.featured_area_ids?.[0] ?? null);
+    if (!isDesktopRef.current) {
+      setSheetHeight(0.72);
+    }
+    setActivePanel("details");
+  }
+
+  function openFeaturedArea(area: FeaturedAreaIndexItem): void {
+    setSelectedFeaturedAreaId(area.id);
+    setSelectedTree(null);
+    setSelectedCoverage(null);
+    setStatusNotice(null);
+    setUserLocation(null);
+    setJumpAreaExpanded(false);
+    setJumpAreaQuery("");
+    if (area.jump_area_id) {
+      setSelectedJumpAreaId(area.jump_area_id);
+    }
+    setActiveRegion(area.region);
+    if (
+      selectedSpecies.length === 0 ||
+      selectedSpecies.length === ALL_SPECIES.length
+    ) {
+      setSelectedSpecies([...area.default_species]);
+    }
+    if (selectedOwnership.length === 0) {
+      setSelectedOwnership([...allOwnershipOptions]);
+    }
+    fitMapToBounds(area.bounds);
+    if (!isDesktopRef.current) {
+      setSheetHeight(0.72);
+    }
+    setActivePanel("details");
   }
 
   function handleSelectJumpArea(area: JumpArea): void {
@@ -3913,6 +4130,7 @@ export default function App(): JSX.Element {
 
     setSelectedTree(null);
     setSelectedCoverage(null);
+    setSelectedFeaturedAreaId(null);
     setStatusNotice(null);
     setUserLocation(null);
     setJumpAreaExpanded(false);
@@ -3984,6 +4202,7 @@ export default function App(): JSX.Element {
         setLocatingUser(false);
         setSelectedTree(null);
         setSelectedCoverage(null);
+        setSelectedFeaturedAreaId(null);
         setSelectedJumpAreaId(null);
         setJumpAreaQuery("");
         setJumpAreaExpanded(false);
@@ -4054,6 +4273,7 @@ export default function App(): JSX.Element {
     setSelectedOwnership([...allOwnershipOptions]);
     setSelectedTree(null);
     setSelectedCoverage(null);
+    setSelectedFeaturedAreaId(null);
     setRegionShardCache((current) => {
       const next = { ...current };
       viewportShardEntries.forEach(({ region, shard }) => {
@@ -4115,6 +4335,13 @@ export default function App(): JSX.Element {
   }
 
   const selectedJumpAreaLabel = selectedJumpArea ? formatJumpAreaLabel(selectedJumpArea) : null;
+  const selectedTreeFeaturedAreaId = selectedTree?.properties.featured_area_ids?.[0] ?? null;
+  const selectedTreeFeaturedAreaDetail =
+    (selectedTreeFeaturedAreaId && featuredAreaDetailCache[selectedTreeFeaturedAreaId]) ||
+    (selectedFeaturedAreaDetail && selectedFeaturedAreaDetail.id === selectedTreeFeaturedAreaId
+      ? selectedFeaturedAreaDetail
+      : null);
+  const showDetailsTab = Boolean(selectedTree || selectedFeaturedAreaId);
   const locateButtonStyle = isDesktop
     ? { right: "446px", bottom: "4.9rem" }
     : { right: "0.88rem", bottom: `calc(${sheetHeight * 100}vh + 1rem)` };
@@ -4390,7 +4617,7 @@ export default function App(): JSX.Element {
           </section>
 
           <div className="sheet-toolbar">
-            {selectedTree && (
+            {showDetailsTab && (
               <button
                 className={activePanel === "details" ? "tab-btn active" : "tab-btn"}
                 onClick={() => setActivePanel("details")}
@@ -4425,62 +4652,104 @@ export default function App(): JSX.Element {
             </div>
           </div>
 
-          {activePanel === "details" && selectedTree ? (
-            <article className="tree-card selected details-card">
-              <header className="selected-tree-header">
-                <h4>{speciesLabel(language, selectedTree.properties.species_group)}</h4>
-                <img
-                  alt={`${speciesLabel(language, selectedTree.properties.species_group)} icon`}
-                  className="selected-tree-species-icon"
-                  loading="lazy"
-                  src={SPECIES_ICON_ART[selectedTree.properties.species_group]}
+          {activePanel === "details" ? (
+            <>
+              {!selectedTree && selectedFeaturedAreaDetail ? (
+                <FeaturedAreaPanel
+                  area={selectedFeaturedAreaDetail}
+                  language={language}
+                  onSelectTree={openTreeDetails}
+                  selectedTreeId={null}
+                  trees={selectedFeaturedAreaTrees}
+                  weather={selectedFeaturedAreaWeather}
+                  weatherError={
+                    selectedFeaturedAreaId ? featuredAreaWeatherErrors[selectedFeaturedAreaId] ?? null : null
+                  }
+                  weatherLoading={loadingFeaturedAreaWeatherId === selectedFeaturedAreaDetail.id}
                 />
-              </header>
-              {selectedTree.properties.subtype_name && (
-                <p>
-                  <strong>{t(language, "subtype")}: </strong>
-                  {selectedTree.properties.subtype_name}
-                </p>
-              )}
-              <p>
-                <strong>{t(language, "scientific")}: </strong>
-                {selectedTree.properties.scientific_name}
-              </p>
-              <p>
-                <strong>{t(language, "common")}: </strong>
-                {selectedTree.properties.common_name ?? t(language, "unknown")}
-              </p>
-              <p>
-                <strong>{t(language, "city")}: </strong>
-                {formatAreaLabelResolved(selectedTree.properties.city)}
-              </p>
-              {hasKnownZipCode(selectedTree.properties.zip_code) && (
-                <p>
-                  <strong>{t(language, "zipCode")}: </strong>
-                  {selectedTree.properties.zip_code}
-                </p>
-              )}
-              <p>
-                <strong>{t(language, "ownership")}: </strong>
-                {ownershipLabel(language, selectedTree.properties.ownership)} ({selectedTree.properties.ownership_raw})
-              </p>
-              <p>
-                <strong>{t(language, "coordinates")}: </strong>
-                {selectedTree.coordinates[0].toFixed(5)}, {selectedTree.coordinates[1].toFixed(5)}
-              </p>
-              <p>
-                <strong>{t(language, "source")}: </strong>
-                {selectedTree.properties.source_department}
-              </p>
-              <a
-                className="detail-route-btn"
-                href={treeDirectionsHref(selectedTree.coordinates)}
-                rel="noreferrer"
-                target="_blank"
-              >
-                {t(language, "navigateToTree")}
-              </a>
-            </article>
+              ) : null}
+              {!selectedTree && selectedFeaturedAreaId && !selectedFeaturedAreaDetail && loadingFeaturedAreaDetail ? (
+                <article className="tree-card selected details-card">
+                  <p className="featured-area-eyebrow">
+                    {featuredAreaMeta(language, selectedFeaturedAreaId).eyebrow}
+                  </p>
+                  <h4>{featuredAreaMeta(language, selectedFeaturedAreaId).label}</h4>
+                  <p>{featuredAreaUiCopy.weatherLoading}</p>
+                </article>
+              ) : null}
+              {selectedTree ? (
+                <>
+                  {selectedTreeFeaturedAreaDetail ? (
+                    <FeaturedAreaSummaryCard
+                      area={selectedTreeFeaturedAreaDetail}
+                      language={language}
+                      onOpenArea={() => openFeaturedArea(selectedTreeFeaturedAreaDetail)}
+                      weather={
+                        selectedTreeFeaturedAreaDetail.id === selectedFeaturedAreaId
+                          ? selectedFeaturedAreaWeather
+                          : featuredAreaWeatherCache[selectedTreeFeaturedAreaDetail.id] ?? null
+                      }
+                    />
+                  ) : null}
+                  <article className="tree-card selected details-card">
+                    <header className="selected-tree-header">
+                      <h4>{speciesLabel(language, selectedTree.properties.species_group)}</h4>
+                      <img
+                        alt={`${speciesLabel(language, selectedTree.properties.species_group)} icon`}
+                        className="selected-tree-species-icon"
+                        loading="lazy"
+                        src={SPECIES_ICON_ART[selectedTree.properties.species_group]}
+                      />
+                    </header>
+                    {selectedTree.properties.subtype_name && (
+                      <p>
+                        <strong>{t(language, "subtype")}: </strong>
+                        {selectedTree.properties.subtype_name}
+                      </p>
+                    )}
+                    <FeaturedTreeMetaRows language={language} tree={selectedTree} />
+                    <p>
+                      <strong>{t(language, "scientific")}: </strong>
+                      {selectedTree.properties.scientific_name}
+                    </p>
+                    <p>
+                      <strong>{t(language, "common")}: </strong>
+                      {selectedTree.properties.common_name ?? t(language, "unknown")}
+                    </p>
+                    <p>
+                      <strong>{t(language, "city")}: </strong>
+                      {formatAreaLabelResolved(selectedTree.properties.city)}
+                    </p>
+                    {hasKnownZipCode(selectedTree.properties.zip_code) && (
+                      <p>
+                        <strong>{t(language, "zipCode")}: </strong>
+                        {selectedTree.properties.zip_code}
+                      </p>
+                    )}
+                    <p>
+                      <strong>{t(language, "ownership")}: </strong>
+                      {ownershipLabel(language, selectedTree.properties.ownership)} ({selectedTree.properties.ownership_raw})
+                    </p>
+                    <p>
+                      <strong>{t(language, "coordinates")}: </strong>
+                      {selectedTree.coordinates[0].toFixed(5)}, {selectedTree.coordinates[1].toFixed(5)}
+                    </p>
+                    <p>
+                      <strong>{t(language, "source")}: </strong>
+                      {selectedTree.properties.source_department}
+                    </p>
+                    <a
+                      className="detail-route-btn"
+                      href={treeDirectionsHref(selectedTree.coordinates)}
+                      rel="noreferrer"
+                      target="_blank"
+                    >
+                      {t(language, "navigateToTree")}
+                    </a>
+                  </article>
+                </>
+              ) : null}
+            </>
           ) : activePanel === "filters" ? (
             <>
               <section className="filters show-panel">
@@ -4515,6 +4784,38 @@ export default function App(): JSX.Element {
                     </button>
                   </div>
                   <p className="show-block-copy">{findPanelCopy.showBody}</p>
+                </section>
+
+                <section className="show-block featured-areas-block">
+                  <div className="show-block-header">
+                    <h3>{featuredAreaUiCopy.sectionTitle}</h3>
+                  </div>
+                  <p className="show-block-copy">{featuredAreaUiCopy.sectionBody}</p>
+                  <div className="featured-area-index-list">
+                    {data.featuredAreas.items.map((area) => {
+                      const meta = featuredAreaMeta(language, area.id);
+                      return (
+                        <button
+                          className={
+                            area.id === selectedFeaturedAreaId
+                              ? "featured-area-index-card active"
+                              : "featured-area-index-card"
+                          }
+                          key={area.id}
+                          onClick={() => openFeaturedArea(area)}
+                          type="button"
+                        >
+                          <p className="featured-area-eyebrow">{meta.eyebrow}</p>
+                          <strong>{meta.label}</strong>
+                          <span>{meta.description}</span>
+                          <div className="featured-area-index-meta">
+                            <span>{area.tree_count.toLocaleString(language)}</span>
+                            <span>{featuredAreaUiCopy.cardButton}</span>
+                          </div>
+                        </button>
+                      );
+                    })}
+                  </div>
                 </section>
 
                 <section className="show-block">

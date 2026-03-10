@@ -1,0 +1,274 @@
+{
+  "version": "v1",
+  "areas": [
+    {
+      "id": "uw-seattle-quad",
+      "region": "wa",
+      "jump_area_id": "wa:seattle",
+      "bounds": [
+        [-122.30905, 47.65605],
+        [-122.30595, 47.65835]
+      ],
+      "center": [-122.30752, 47.65712],
+      "weather_point": [-122.30752, 47.65712],
+      "species_focus": ["cherry"],
+      "default_species": ["cherry"],
+      "source_ids": [
+        "uw_bloom_history",
+        "uw_cherry_map",
+        "seattle_tree_inventory",
+        "uw_osm_supplemental",
+        "open_meteo_weather"
+      ],
+      "confidence_note_ids": [
+        "official_peak_dates",
+        "osm_verified_locations",
+        "weather_adjustment_clamped"
+      ],
+      "tree_records": [
+        {
+          "tree_id": "uw-osm-10107514634",
+          "cultivar": "Cherry Plum",
+          "location_note": "Liberal Arts Quadrangle",
+          "coord_source": "osm_verified",
+          "manual_pdf": false
+        },
+        {
+          "tree_id": "uw-osm-10107514635",
+          "cultivar": "Cherry Plum",
+          "location_note": "Liberal Arts Quadrangle",
+          "coord_source": "osm_verified",
+          "manual_pdf": false
+        },
+        {
+          "tree_id": "uw-osm-7797158569",
+          "cultivar": "Yoshino",
+          "location_note": "Liberal Arts Quadrangle",
+          "coord_source": "osm_verified",
+          "manual_pdf": false
+        },
+        {
+          "tree_id": "uw-osm-7797158570",
+          "cultivar": "Yoshino",
+          "location_note": "Liberal Arts Quadrangle",
+          "coord_source": "osm_verified",
+          "manual_pdf": false
+        },
+        {
+          "tree_id": "uw-osm-7797158571",
+          "cultivar": "Yoshino",
+          "location_note": "Liberal Arts Quadrangle",
+          "coord_source": "osm_verified",
+          "manual_pdf": false
+        },
+        {
+          "tree_id": "uw-osm-7797158572",
+          "cultivar": "Yoshino",
+          "location_note": "Liberal Arts Quadrangle",
+          "coord_source": "osm_verified",
+          "manual_pdf": false
+        },
+        {
+          "tree_id": "uw-osm-7797158573",
+          "cultivar": "Yoshino",
+          "location_note": "Liberal Arts Quadrangle",
+          "coord_source": "osm_verified",
+          "manual_pdf": false
+        },
+        {
+          "tree_id": "uw-osm-7797158574",
+          "cultivar": "Yoshino",
+          "location_note": "Liberal Arts Quadrangle",
+          "coord_source": "osm_verified",
+          "manual_pdf": false
+        },
+        {
+          "tree_id": "uw-osm-7797158575",
+          "cultivar": "Yoshino",
+          "location_note": "Liberal Arts Quadrangle",
+          "coord_source": "osm_verified",
+          "manual_pdf": false
+        },
+        {
+          "tree_id": "uw-osm-7797158576",
+          "cultivar": "Yoshino",
+          "location_note": "Liberal Arts Quadrangle",
+          "coord_source": "osm_verified",
+          "manual_pdf": false
+        },
+        {
+          "tree_id": "uw-osm-7797158577",
+          "cultivar": "Yoshino",
+          "location_note": "Liberal Arts Quadrangle",
+          "coord_source": "osm_verified",
+          "manual_pdf": false
+        },
+        {
+          "tree_id": "uw-osm-7797158578",
+          "cultivar": "Yoshino",
+          "location_note": "Liberal Arts Quadrangle",
+          "coord_source": "osm_verified",
+          "manual_pdf": false
+        },
+        {
+          "tree_id": "uw-osm-7797158581",
+          "cultivar": "Yoshino",
+          "location_note": "Liberal Arts Quadrangle",
+          "coord_source": "osm_verified",
+          "manual_pdf": false
+        },
+        {
+          "tree_id": "uw-osm-7797158582",
+          "cultivar": "Yoshino",
+          "location_note": "Liberal Arts Quadrangle",
+          "coord_source": "osm_verified",
+          "manual_pdf": false
+        },
+        {
+          "tree_id": "uw-osm-7797158583",
+          "cultivar": "Yoshino",
+          "location_note": "Liberal Arts Quadrangle",
+          "coord_source": "osm_verified",
+          "manual_pdf": false
+        },
+        {
+          "tree_id": "uw-osm-7797158584",
+          "cultivar": "Yoshino",
+          "location_note": "Liberal Arts Quadrangle",
+          "coord_source": "osm_verified",
+          "manual_pdf": false
+        },
+        {
+          "tree_id": "uw-osm-7797254285",
+          "cultivar": "Yoshino",
+          "location_note": "Liberal Arts Quadrangle",
+          "coord_source": "osm_verified",
+          "manual_pdf": false
+        },
+        {
+          "tree_id": "uw-osm-7797254286",
+          "cultivar": "Yoshino",
+          "location_note": "Liberal Arts Quadrangle",
+          "coord_source": "osm_verified",
+          "manual_pdf": false
+        },
+        {
+          "tree_id": "uw-osm-7797254287",
+          "cultivar": "Yoshino",
+          "location_note": "Liberal Arts Quadrangle",
+          "coord_source": "osm_verified",
+          "manual_pdf": false
+        },
+        {
+          "tree_id": "uw-osm-7797254288",
+          "cultivar": "Yoshino",
+          "location_note": "Liberal Arts Quadrangle",
+          "coord_source": "osm_verified",
+          "manual_pdf": false
+        },
+        {
+          "tree_id": "uw-osm-7797254289",
+          "cultivar": "Yoshino",
+          "location_note": "Liberal Arts Quadrangle",
+          "coord_source": "osm_verified",
+          "manual_pdf": false
+        },
+        {
+          "tree_id": "uw-osm-7797254291",
+          "cultivar": "Yoshino",
+          "location_note": "Liberal Arts Quadrangle",
+          "coord_source": "osm_verified",
+          "manual_pdf": false
+        },
+        {
+          "tree_id": "uw-osm-7797254292",
+          "cultivar": "Yoshino",
+          "location_note": "Liberal Arts Quadrangle",
+          "coord_source": "osm_verified",
+          "manual_pdf": false
+        },
+        {
+          "tree_id": "uw-osm-7797254293",
+          "cultivar": "Yoshino",
+          "location_note": "Liberal Arts Quadrangle",
+          "coord_source": "osm_verified",
+          "manual_pdf": false
+        },
+        {
+          "tree_id": "uw-osm-7797254294",
+          "cultivar": "Yoshino",
+          "location_note": "Liberal Arts Quadrangle",
+          "coord_source": "osm_verified",
+          "manual_pdf": false
+        },
+        {
+          "tree_id": "uw-osm-7797254295",
+          "cultivar": "Yoshino",
+          "location_note": "Liberal Arts Quadrangle",
+          "coord_source": "osm_verified",
+          "manual_pdf": false
+        },
+        {
+          "tree_id": "uw-osm-7797254297",
+          "cultivar": "Yoshino",
+          "location_note": "Liberal Arts Quadrangle",
+          "coord_source": "osm_verified",
+          "manual_pdf": false
+        },
+        {
+          "tree_id": "uw-osm-7797254298",
+          "cultivar": "Yoshino",
+          "location_note": "Liberal Arts Quadrangle",
+          "coord_source": "osm_verified",
+          "manual_pdf": false
+        },
+        {
+          "tree_id": "uw-osm-7797254299",
+          "cultivar": "Yoshino",
+          "location_note": "Liberal Arts Quadrangle",
+          "coord_source": "osm_verified",
+          "manual_pdf": false
+        },
+        {
+          "tree_id": "uw-osm-7797254305",
+          "cultivar": "Yoshino",
+          "location_note": "Liberal Arts Quadrangle",
+          "coord_source": "osm_verified",
+          "manual_pdf": false
+        }
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "id": "uw_bloom_history",
+      "label": "UW Cherry Bloom History",
+      "kind": "official",
+      "href": "https://digital.lib.washington.edu/researchworks/items/75f5324f-1892-4e8c-ad26-7e74f4f535f1"
+    },
+    {
+      "id": "uw_cherry_map",
+      "label": "UW Cherry Trees Map 2022",
+      "kind": "official",
+      "href": "https://facilities.uw.edu/blog/files/media/uw-cherry-trees-map-2022-web.pdf"
+    },
+    {
+      "id": "seattle_tree_inventory",
+      "label": "Combined Tree Point",
+      "kind": "official",
+      "href": "https://services.arcgis.com/ZOyb2t4B0UYuYNYH/arcgis/rest/services/Combined_Tree_Point/FeatureServer/0"
+    },
+    {
+      "id": "uw_osm_supplemental",
+      "label": "UW OSM Supplemental",
+      "kind": "supplemental",
+      "href": null
+    },
+    {
+      "id": "open_meteo_weather",
+      "label": "Open-Meteo Forecast",
+      "kind": "live",
+      "href": "https://open-meteo.com/en/docs"
+    }
+  ]
+}

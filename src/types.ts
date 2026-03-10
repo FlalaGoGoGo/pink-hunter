@@ -4,6 +4,7 @@ export type SpeciesGroup = "cherry" | "plum" | "peach" | "magnolia" | "crabapple
 
 export type OwnershipGroup = "public" | "private" | "unknown";
 export type JurisdictionType = "city" | "county" | "district";
+export type TreeCoordSource = "official" | "osm_verified" | "manual_pdf";
 
 export type Language =
   | "zh-CN"
@@ -32,10 +33,16 @@ export interface TreeFeatureProps {
   scientific_name: string;
   common_name: string | null;
   subtype_name: string | null;
+  cultivar?: string | null;
   zip_code: string | null;
   ownership: OwnershipGroup;
   ownership_raw: string;
   city: string;
+  featured_area_ids?: string[] | null;
+  coord_source?: TreeCoordSource | null;
+  detail_source_label?: string | null;
+  location_note?: string | null;
+  dbh?: number | null;
   source_dataset: string;
   source_department: string;
   source_last_edit_at: string;
@@ -176,6 +183,72 @@ export interface AppMeta {
   }>;
 }
 
+export type FeaturedAreaSourceKind = "official" | "supplemental" | "live";
+export type BloomForecastMode = "ml" | "historical_fallback";
+
+export interface FeaturedAreaSource {
+  id: string;
+  label: string;
+  kind: FeaturedAreaSourceKind;
+  href: string | null;
+}
+
+export interface BloomForecast {
+  mode: BloomForecastMode;
+  curve_dates: string[];
+  curve_values: number[];
+  start_date: string;
+  peak_date: string;
+  end_date: string;
+  weather_adjustment_days: number;
+  updated_at: string;
+  sample_years: number;
+  cv_mae_days: number | null;
+}
+
+export interface FeaturedAreaIndexItem {
+  id: string;
+  region: CoverageRegion;
+  jump_area_id: string | null;
+  detail_path: string;
+  bounds: [[number, number], [number, number]];
+  center: [number, number];
+  weather_point: [number, number];
+  species_focus: SpeciesGroup[];
+  default_species: SpeciesGroup[];
+  tree_count: number;
+}
+
+export interface FeaturedAreaIndex {
+  generated_at: string;
+  version: string;
+  items: FeaturedAreaIndexItem[];
+}
+
+export interface FeaturedAreaDetail extends FeaturedAreaIndexItem {
+  tree_ids: string[];
+  sources: FeaturedAreaSource[];
+  confidence_note_ids: string[];
+  bloom_forecast: BloomForecast;
+}
+
+export interface WeatherDaySummary {
+  date: string;
+  weather_code: number;
+  temperature_max_c: number;
+  temperature_min_c: number;
+  precipitation_probability_max: number | null;
+}
+
+export interface WeatherSnapshot {
+  area_id: string;
+  fetched_at: string;
+  latitude: number;
+  longitude: number;
+  timezone: string;
+  days: WeatherDaySummary[];
+}
+
 export interface VisitorCountHitResponse {
   count: number;
   incremented: boolean;
@@ -210,6 +283,7 @@ export type CoverageCollection = GeoJsonCollection<CoverageFeatureProps, Polygon
 
 export interface StaticAppData {
   coverage: CoverageCollection | null;
+  featuredAreas: FeaturedAreaIndex;
   guide: SpeciesGuide;
   meta: AppMeta;
   jumpIndex: JumpIndex;

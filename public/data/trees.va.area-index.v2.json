@@ -1,59 +1,6 @@
 {
-  "generated_at": "2026-03-08T21:27:38.921978+00:00",
+  "generated_at": "2026-03-10T19:54:55.115057+00:00",
   "region": "va",
   "strategy": "area_shard",
-  "items": [
-    {
-      "jurisdiction": "Arlington",
-      "slug": "arlington",
-      "display_name": "Arlington County",
-      "jurisdiction_type": "county",
-      "state_province": "VA",
-      "country": "United States",
-      "bounds": [
-        [
-          -77.16817348415724,
-          38.833543326032775
-        ],
-        [
-          -77.04476359923983,
-          38.92654478764372
-        ]
-      ],
-      "tree_count": 1882,
-      "zip_codes": [
-        "None"
-      ],
-      "species_counts": {
-        "cherry": 1413,
-        "plum": 93,
-        "peach": 0,
-        "magnolia": 296,
-        "crabapple": 80
-      },
-      "ownership_groups": [
-        "public",
-        "private"
-      ],
-      "shards": [
-        {
-          "id": "arlington-001",
-          "bounds": [
-            [
-              -77.16817348415724,
-              38.833543326032775
-            ],
-            [
-              -77.04476359923983,
-              38.92654478764372
-            ]
-          ],
-          "data_path": "/data/trees.va.area.arlington.v2.geojson",
-          "tree_count": 1882,
-          "raw_bytes": 892680,
-          "gzip_bytes": 45013
-        }
-      ]
-    }
-  ]
+  "items": []
 }

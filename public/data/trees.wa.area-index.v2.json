@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-03-08T19:50:45.578289+00:00",
+  "generated_at": "2026-03-10T19:54:55.115057+00:00",
   "region": "wa",
   "strategy": "area_shard",
   "items": [
@@ -22,11 +22,7 @@
       ],
       "tree_count": 342,
       "zip_codes": [
-        "98004",
-        "98005",
-        "98006",
-        "98007",
-        "98008"
+        "None"
       ],
       "species_counts": {
         "cherry": 93,
@@ -53,8 +49,8 @@
           ],
           "data_path": "/data/trees.wa.area.bellevue.v2.geojson",
           "tree_count": 342,
-          "raw_bytes": 176453,
-          "gzip_bytes": 9229
+          "raw_bytes": 175427,
+          "gzip_bytes": 9110
         }
       ]
     },
@@ -75,7 +71,7 @@
           48.7963270217033
         ]
       ],
-      "tree_count": 645,
+      "tree_count": 653,
       "zip_codes": [
         "None"
       ],
@@ -84,7 +80,7 @@
         "plum": 88,
         "peach": 0,
         "magnolia": 61,
-        "crabapple": 257
+        "crabapple": 265
       },
       "ownership_groups": [
         "public"
@@ -103,9 +99,9 @@
             ]
           ],
           "data_path": "/data/trees.wa.area.bellingham.v2.geojson",
-          "tree_count": 645,
-          "raw_bytes": 316693,
-          "gzip_bytes": 17024
+          "tree_count": 653,
+          "raw_bytes": 320613,
+          "gzip_bytes": 17204
         }
       ]
     },
@@ -211,7 +207,7 @@
           "data_path": "/data/trees.wa.area.gig-harbor.v2.geojson",
           "tree_count": 63,
           "raw_bytes": 32607,
-          "gzip_bytes": 1956
+          "gzip_bytes": 1957
         }
       ]
     },
@@ -600,43 +596,17 @@
           47.73405616810464
         ]
       ],
-      "tree_count": 46114,
+      "tree_count": 65042,
       "zip_codes": [
-        "98101",
-        "98102",
-        "98103",
-        "98104",
-        "98105",
-        "98106",
-        "98107",
-        "98108",
-        "98109",
-        "98112",
-        "98115",
-        "98116",
-        "98117",
-        "98118",
-        "98119",
-        "98121",
-        "98122",
-        "98125",
-        "98126",
-        "98133",
-        "98134",
-        "98136",
-        "98144",
-        "98146",
-        "98177",
-        "98178",
         "98195",
-        "98199"
+        "None"
       ],
       "species_counts": {
-        "cherry": 18917,
-        "plum": 12042,
-        "peach": 215,
-        "magnolia": 4609,
-        "crabapple": 10331
+        "cherry": 26526,
+        "plum": 17864,
+        "peach": 254,
+        "magnolia": 5847,
+        "crabapple": 14551
       },
       "ownership_groups": [
         "public",
@@ -648,34 +618,68 @@
           "bounds": [
             [
               -122.41685449592762,
-              47.49646981402653
+              47.50996506118069
             ],
             [
-              -122.24121121056568,
-              47.64225280542805
+              -122.32130539979887,
+              47.641255744423034
             ]
           ],
           "data_path": "/data/trees.wa.area.seattle.shard-001.v2.geojson",
-          "tree_count": 23057,
-          "raw_bytes": 12631763,
-          "gzip_bytes": 634377
+          "tree_count": 16260,
+          "raw_bytes": 11755719,
+          "gzip_bytes": 452892
         },
         {
           "id": "seattle-002",
           "bounds": [
             [
+              -122.32130497393769,
+              47.49646981402653
+            ],
+            [
+              -122.24121121056568,
+              47.64126620644895
+            ]
+          ],
+          "data_path": "/data/trees.wa.area.seattle.shard-002.v2.geojson",
+          "tree_count": 16261,
+          "raw_bytes": 11769936,
+          "gzip_bytes": 485947
+        },
+        {
+          "id": "seattle-003",
+          "bounds": [
+            [
               -122.42046409992147,
-              47.64225311307368
+              47.6412703656351
+            ],
+            [
+              -122.35011814532082,
+              47.733646241649154
+            ]
+          ],
+          "data_path": "/data/trees.wa.area.seattle.shard-003.v2.geojson",
+          "tree_count": 16260,
+          "raw_bytes": 11669961,
+          "gzip_bytes": 466329
+        },
+        {
+          "id": "seattle-004",
+          "bounds": [
+            [
+              -122.35011707796669,
+              47.64127040866826
             ],
             [
               -122.24966488240047,
               47.73405616810464
             ]
           ],
-          "data_path": "/data/trees.wa.area.seattle.shard-002.v2.geojson",
-          "tree_count": 23057,
-          "raw_bytes": 12556991,
-          "gzip_bytes": 637045
+          "data_path": "/data/trees.wa.area.seattle.shard-004.v2.geojson",
+          "tree_count": 16261,
+          "raw_bytes": 11718002,
+          "gzip_bytes": 485570
         }
       ]
     },

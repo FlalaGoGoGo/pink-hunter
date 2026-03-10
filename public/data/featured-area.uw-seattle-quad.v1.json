@@ -1,0 +1,196 @@
+{
+  "id": "uw-seattle-quad",
+  "region": "wa",
+  "jump_area_id": "wa:seattle",
+  "detail_path": "/data/featured-area.uw-seattle-quad.v1.json",
+  "bounds": [
+    [
+      -122.30905,
+      47.65605
+    ],
+    [
+      -122.30595,
+      47.65835
+    ]
+  ],
+  "center": [
+    -122.30752,
+    47.65712
+  ],
+  "weather_point": [
+    -122.30752,
+    47.65712
+  ],
+  "species_focus": [
+    "cherry"
+  ],
+  "default_species": [
+    "cherry"
+  ],
+  "tree_count": 30,
+  "tree_ids": [
+    "uw-osm-10107514634",
+    "uw-osm-10107514635",
+    "uw-osm-7797158569",
+    "uw-osm-7797158570",
+    "uw-osm-7797158571",
+    "uw-osm-7797158572",
+    "uw-osm-7797158573",
+    "uw-osm-7797158574",
+    "uw-osm-7797158575",
+    "uw-osm-7797158576",
+    "uw-osm-7797158577",
+    "uw-osm-7797158578",
+    "uw-osm-7797158581",
+    "uw-osm-7797158582",
+    "uw-osm-7797158583",
+    "uw-osm-7797158584",
+    "uw-osm-7797254285",
+    "uw-osm-7797254286",
+    "uw-osm-7797254287",
+    "uw-osm-7797254288",
+    "uw-osm-7797254289",
+    "uw-osm-7797254291",
+    "uw-osm-7797254292",
+    "uw-osm-7797254293",
+    "uw-osm-7797254294",
+    "uw-osm-7797254295",
+    "uw-osm-7797254297",
+    "uw-osm-7797254298",
+    "uw-osm-7797254299",
+    "uw-osm-7797254305"
+  ],
+  "sources": [
+    {
+      "id": "uw_bloom_history",
+      "label": "UW Cherry Bloom History",
+      "kind": "official",
+      "href": "https://digital.lib.washington.edu/researchworks/items/75f5324f-1892-4e8c-ad26-7e74f4f535f1"
+    },
+    {
+      "id": "uw_cherry_map",
+      "label": "UW Cherry Trees Map 2022",
+      "kind": "official",
+      "href": "https://facilities.uw.edu/blog/files/media/uw-cherry-trees-map-2022-web.pdf"
+    },
+    {
+      "id": "seattle_tree_inventory",
+      "label": "Combined Tree Point",
+      "kind": "official",
+      "href": "https://services.arcgis.com/ZOyb2t4B0UYuYNYH/arcgis/rest/services/Combined_Tree_Point/FeatureServer/0"
+    },
+    {
+      "id": "uw_osm_supplemental",
+      "label": "UW OSM Supplemental",
+      "kind": "supplemental",
+      "href": null
+    },
+    {
+      "id": "open_meteo_weather",
+      "label": "Open-Meteo Forecast",
+      "kind": "live",
+      "href": "https://open-meteo.com/en/docs"
+    }
+  ],
+  "confidence_note_ids": [
+    "official_peak_dates",
+    "osm_verified_locations",
+    "weather_adjustment_clamped"
+  ],
+  "bloom_forecast": {
+    "mode": "historical_fallback",
+    "curve_dates": [
+      "2026-03-07",
+      "2026-03-08",
+      "2026-03-09",
+      "2026-03-10",
+      "2026-03-11",
+      "2026-03-12",
+      "2026-03-13",
+      "2026-03-14",
+      "2026-03-15",
+      "2026-03-16",
+      "2026-03-17",
+      "2026-03-18",
+      "2026-03-19",
+      "2026-03-20",
+      "2026-03-21",
+      "2026-03-22",
+      "2026-03-23",
+      "2026-03-24",
+      "2026-03-25",
+      "2026-03-26",
+      "2026-03-27",
+      "2026-03-28",
+      "2026-03-29",
+      "2026-03-30",
+      "2026-03-31",
+      "2026-04-01",
+      "2026-04-02",
+      "2026-04-03",
+      "2026-04-04",
+      "2026-04-05",
+      "2026-04-06",
+      "2026-04-07",
+      "2026-04-08",
+      "2026-04-09",
+      "2026-04-10",
+      "2026-04-11",
+      "2026-04-12",
+      "2026-04-13",
+      "2026-04-14",
+      "2026-04-15",
+      "2026-04-16"
+    ],
+    "curve_values": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      10,
+      23,
+      37,
+      51,
+      65,
+      77,
+      87,
+      94,
+      98,
+      100,
+      99,
+      95,
+      88,
+      79,
+      68,
+      56,
+      42,
+      27,
+      13,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "start_date": "2026-03-17",
+    "peak_date": "2026-03-27",
+    "end_date": "2026-04-06",
+    "weather_adjustment_days": 0,
+    "updated_at": "2026-03-10T19:54:55.115057+00:00",
+    "sample_years": 54,
+    "cv_mae_days": 7.348
+  }
+}
