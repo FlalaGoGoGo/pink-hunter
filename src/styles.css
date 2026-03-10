@@ -725,12 +725,13 @@ body {
   align-items: center;
   justify-content: center;
   min-height: 22px;
-  padding: 0.1rem 0.46rem;
+  padding: 0.18rem 0.46rem;
   border-radius: 999px;
   font-size: 0.6rem;
   font-weight: 800;
-  line-height: 1;
+  line-height: 1.15;
   text-align: center;
+  white-space: normal;
 }
 
 .jump-area-status-badge.covered {

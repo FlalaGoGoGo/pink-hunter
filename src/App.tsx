@@ -903,6 +903,7 @@ const DISCOVERY_COPY: Record<
     areaSearchEmpty: string;
     areaStatusCovered: string;
     areaStatusCityLevelCoverage: string;
+    areaStatusCityLevelCoverageCount: string;
     areaStatusOfficialUnavailable: string;
     areaStatusUntracked: string;
     locationLoading: string;
@@ -934,6 +935,7 @@ const DISCOVERY_COPY: Record<
     areaSearchEmpty: "No city or county matched that search.",
     areaStatusCovered: "Covered",
     areaStatusCityLevelCoverage: "Covered cities inside",
+    areaStatusCityLevelCoverageCount: "{count} covered cities inside",
     areaStatusOfficialUnavailable: "Official data unavailable",
     areaStatusUntracked: "Not added yet",
     locationLoading: "Locating your position...",
@@ -968,6 +970,7 @@ const DISCOVERY_COPY: Record<
     areaSearchEmpty: "没有匹配的城市或县。",
     areaStatusCovered: "已覆盖",
     areaStatusCityLevelCoverage: "县内已有覆盖城市",
+    areaStatusCityLevelCoverageCount: "县内已有 {count} 个覆盖城市",
     areaStatusOfficialUnavailable: "官方暂无公开数据",
     areaStatusUntracked: "尚未加入",
     locationLoading: "正在定位你的位置...",
@@ -1000,6 +1003,7 @@ const DISCOVERY_COPY: Record<
     areaSearchEmpty: "沒有符合的城市或縣。",
     areaStatusCovered: "已覆蓋",
     areaStatusCityLevelCoverage: "縣內已有覆蓋城市",
+    areaStatusCityLevelCoverageCount: "縣內已有 {count} 個覆蓋城市",
     areaStatusOfficialUnavailable: "官方暫無公開資料",
     areaStatusUntracked: "尚未加入",
     locationLoading: "正在定位你的位置...",
@@ -1032,6 +1036,7 @@ const DISCOVERY_COPY: Record<
     areaSearchEmpty: "Ninguna ciudad o condado coincide con la búsqueda.",
     areaStatusCovered: "Cubierto",
     areaStatusCityLevelCoverage: "Ciudades cubiertas dentro",
+    areaStatusCityLevelCoverageCount: "{count} ciudades cubiertas dentro",
     areaStatusOfficialUnavailable: "Sin datos oficiales",
     areaStatusUntracked: "Aún no añadido",
     locationLoading: "Buscando tu ubicación...",
@@ -1065,6 +1070,7 @@ const DISCOVERY_COPY: Record<
     areaSearchEmpty: "검색과 일치하는 시 또는 카운티가 없습니다.",
     areaStatusCovered: "커버됨",
     areaStatusCityLevelCoverage: "안에 커버된 도시 있음",
+    areaStatusCityLevelCoverageCount: "안에 커버된 도시 {count}곳",
     areaStatusOfficialUnavailable: "공식 공개 데이터 없음",
     areaStatusUntracked: "아직 미추가",
     locationLoading: "현재 위치를 찾는 중...",
@@ -1097,6 +1103,7 @@ const DISCOVERY_COPY: Record<
     areaSearchEmpty: "一致する市または郡はありません。",
     areaStatusCovered: "カバー済み",
     areaStatusCityLevelCoverage: "中にカバー済みの市あり",
+    areaStatusCityLevelCoverageCount: "中にカバー済みの市 {count} 件",
     areaStatusOfficialUnavailable: "公式データ未公開",
     areaStatusUntracked: "未追加",
     locationLoading: "現在地を取得しています...",
@@ -1129,6 +1136,7 @@ const DISCOVERY_COPY: Record<
     areaSearchEmpty: "Aucune ville ou aucun comté ne correspond à cette recherche.",
     areaStatusCovered: "Couvert",
     areaStatusCityLevelCoverage: "Villes couvertes dedans",
+    areaStatusCityLevelCoverageCount: "{count} villes couvertes dedans",
     areaStatusOfficialUnavailable: "Pas de données officielles",
     areaStatusUntracked: "Pas encore ajouté",
     locationLoading: "Localisation en cours...",
@@ -1162,6 +1170,7 @@ const DISCOVERY_COPY: Record<
     areaSearchEmpty: "Không có thành phố hoặc quận hạt nào khớp.",
     areaStatusCovered: "Đã phủ",
     areaStatusCityLevelCoverage: "Bên trong có thành phố đã phủ",
+    areaStatusCityLevelCoverageCount: "Bên trong có {count} thành phố đã phủ",
     areaStatusOfficialUnavailable: "Chưa có dữ liệu chính thức",
     areaStatusUntracked: "Chưa thêm",
     locationLoading: "Đang xác định vị trí của bạn...",
@@ -1655,6 +1664,10 @@ function boundsCenter(bounds: BoundsTuple): [number, number] {
 
 function normalizeSearchText(value: string): string {
   return value.toLowerCase().replace(/[^\p{L}\p{N}]+/gu, " ").trim();
+}
+
+function formatDiscoveryCount(template: string, count: number, language: Language): string {
+  return template.replace("{count}", count.toLocaleString(language));
 }
 
 function mergeTreeCollections(collections: TreeCollection[]): TreeCollection {
@@ -2925,19 +2938,21 @@ export default function App(): JSX.Element {
   );
 
   const jumpAreaStatusLabel = useCallback(
-    (status: JumpAreaDisplayStatus): string => {
-      if (status === "covered") {
+    (statusInfo: JumpAreaDisplayStatusInfo): string => {
+      if (statusInfo.kind === "covered") {
         return discoveryCopy.areaStatusCovered;
       }
-      if (status === "city_level_coverage") {
-        return discoveryCopy.areaStatusCityLevelCoverage;
+      if (statusInfo.kind === "city_level_coverage") {
+        return statusInfo.coveredCityCount > 0
+          ? formatDiscoveryCount(discoveryCopy.areaStatusCityLevelCoverageCount, statusInfo.coveredCityCount, language)
+          : discoveryCopy.areaStatusCityLevelCoverage;
       }
-      if (status === "official_unavailable") {
+      if (statusInfo.kind === "official_unavailable") {
         return discoveryCopy.areaStatusOfficialUnavailable;
       }
       return discoveryCopy.areaStatusUntracked;
     },
-    [discoveryCopy]
+    [discoveryCopy, language]
   );
 
   useEffect(() => {
@@ -4558,7 +4573,7 @@ export default function App(): JSX.Element {
                                       {jurisdictionTypeLabel(language, area.area_type)}
                                     </span>
                                     <span className={`jump-area-status-badge ${areaDisplayStatus.kind}`}>
-                                      {jumpAreaStatusLabel(areaDisplayStatus.kind)}
+                                      {jumpAreaStatusLabel(areaDisplayStatus)}
                                     </span>
                                   </div>
                                 </button>
