@@ -1,6 +1,6 @@
 {
   "version": "v2",
-  "generated_at": "2026-03-10T00:33:39.968145+00:00",
+  "generated_at": "2026-03-10T02:40:32.503886+00:00",
   "default_region": "wa",
   "coverage_rule": "official_jurisdiction_boundary_only",
   "coverage_skipped_cities": [],
@@ -170,13 +170,13 @@
           5.088887490341627e-14
         ],
         [
-          2.0301611073187027e-05,
-          38.68529312901432
+          0.7949803702920468,
+          51.55035300321103
         ]
       ],
       "data_path": null,
-      "tree_count": 202770,
-      "city_count": 68,
+      "tree_count": 203066,
+      "city_count": 73,
       "cities": [
         "Anaheim",
         "Azusa",
@@ -199,10 +199,12 @@
         "Fremont",
         "Fullerton",
         "Gilroy",
+        "Glendale",
         "Glendora",
         "Irvine",
         "La Canada Flintridge",
         "La Mesa",
+        "La Mirada",
         "La Verne",
         "Laguna Beach",
         "Los Angeles",
@@ -213,6 +215,7 @@
         "Morgan Hill",
         "Mountain View",
         "Newport Beach",
+        "Norwalk",
         "Oakland",
         "Oxnard",
         "Palo Alto",
@@ -233,10 +236,12 @@
         "San Rafael",
         "Santa Barbara",
         "Santa Clarita",
+        "Santa Fe Springs",
         "Santa Monica",
         "Santee",
         "Saratoga",
         "Solana Beach",
+        "South Gate",
         "South San Francisco",
         "Sunnyvale",
         "Thousand Oaks",
@@ -247,23 +252,23 @@
         "West Sacramento",
         "Yorba Linda"
       ],
-      "raw_bytes": 105325332,
-      "gzip_bytes": 4331872,
+      "raw_bytes": 105483597,
+      "gzip_bytes": 4339328,
       "warning_level": "none",
       "city_split": null,
       "species_counts": {
         "cherry": 16867,
         "plum": 45867,
         "peach": 4787,
-        "magnolia": 130662,
+        "magnolia": 130958,
         "crabapple": 4587
       },
       "ownership_groups": [
         "public",
         "private"
       ],
-      "aggregate_raw_bytes": 105325332,
-      "aggregate_gzip_bytes": 4331872,
+      "aggregate_raw_bytes": 105483597,
+      "aggregate_gzip_bytes": 4339328,
       "aggregate_warning_level": "very_large",
       "largest_shard_raw_bytes": 20242132,
       "largest_shard_gzip_bytes": 770544,
@@ -271,8 +276,8 @@
       "area_split": {
         "strategy": "area_shard",
         "index_path": "/data/trees.ca.area-index.v2.json",
-        "area_count": 68,
-        "shard_count": 68,
+        "area_count": 73,
+        "shard_count": 73,
         "ready": true
       },
       "largest_shard_warning_level": "none",

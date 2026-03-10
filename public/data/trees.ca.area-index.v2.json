@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-03-10T00:33:39.968145+00:00",
+  "generated_at": "2026-03-10T02:40:32.503886+00:00",
   "region": "ca",
   "strategy": "area_shard",
   "items": [
@@ -1133,6 +1133,57 @@
       ]
     },
     {
+      "jurisdiction": "Glendale",
+      "slug": "glendale",
+      "display_name": "Glendale",
+      "jurisdiction_type": "city",
+      "state_province": "CA",
+      "country": "United States",
+      "bounds": [
+        [
+          -1.5404383273700881,
+          50.59397087293264
+        ],
+        [
+          0.7949803702920468,
+          51.55035300321103
+        ]
+      ],
+      "tree_count": 35,
+      "zip_codes": [
+        "None"
+      ],
+      "species_counts": {
+        "cherry": 0,
+        "plum": 0,
+        "peach": 0,
+        "magnolia": 35,
+        "crabapple": 0
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "glendale-001",
+          "bounds": [
+            [
+              -1.5404383273700881,
+              50.59397087293264
+            ],
+            [
+              0.7949803702920468,
+              51.55035300321103
+            ]
+          ],
+          "data_path": "/data/trees.ca.area.glendale.v2.geojson",
+          "tree_count": 35,
+          "raw_bytes": 17535,
+          "gzip_bytes": 1309
+        }
+      ]
+    },
+    {
       "jurisdiction": "Glendora",
       "slug": "glendora",
       "display_name": "Glendora",
@@ -1344,6 +1395,57 @@
           "tree_count": 109,
           "raw_bytes": 56699,
           "gzip_bytes": 3378
+        }
+      ]
+    },
+    {
+      "jurisdiction": "La Mirada",
+      "slug": "la-mirada",
+      "display_name": "La Mirada",
+      "jurisdiction_type": "city",
+      "state_province": "CA",
+      "country": "United States",
+      "bounds": [
+        [
+          -118.03728,
+          33.89097988089999
+        ],
+        [
+          -117.98574980000001,
+          33.921512530899996
+        ]
+      ],
+      "tree_count": 55,
+      "zip_codes": [
+        "90638"
+      ],
+      "species_counts": {
+        "cherry": 0,
+        "plum": 0,
+        "peach": 0,
+        "magnolia": 55,
+        "crabapple": 0
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "la-mirada-001",
+          "bounds": [
+            [
+              -118.03728,
+              33.89097988089999
+            ],
+            [
+              -117.98574980000001,
+              33.921512530899996
+            ]
+          ],
+          "data_path": "/data/trees.ca.area.la-mirada.v2.geojson",
+          "tree_count": 55,
+          "raw_bytes": 29863,
+          "gzip_bytes": 1347
         }
       ]
     },
@@ -1976,6 +2078,57 @@
           "tree_count": 2286,
           "raw_bytes": 1180718,
           "gzip_bytes": 45810
+        }
+      ]
+    },
+    {
+      "jurisdiction": "Norwalk",
+      "slug": "norwalk",
+      "display_name": "Norwalk",
+      "jurisdiction_type": "city",
+      "state_province": "CA",
+      "country": "United States",
+      "bounds": [
+        [
+          -118.09835979999998,
+          33.91733712090001
+        ],
+        [
+          -118.0771526,
+          33.9316130709
+        ]
+      ],
+      "tree_count": 186,
+      "zip_codes": [
+        "90650"
+      ],
+      "species_counts": {
+        "cherry": 0,
+        "plum": 0,
+        "peach": 0,
+        "magnolia": 186,
+        "crabapple": 0
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "norwalk-001",
+          "bounds": [
+            [
+              -118.09835979999998,
+              33.91733712090001
+            ],
+            [
+              -118.0771526,
+              33.9316130709
+            ]
+          ],
+          "data_path": "/data/trees.ca.area.norwalk.v2.geojson",
+          "tree_count": 186,
+          "raw_bytes": 99513,
+          "gzip_bytes": 3662
         }
       ]
     },
@@ -3153,6 +3306,57 @@
       ]
     },
     {
+      "jurisdiction": "Santa Fe Springs",
+      "slug": "santa-fe-springs",
+      "display_name": "Santa Fe Springs",
+      "jurisdiction_type": "city",
+      "state_province": "CA",
+      "country": "United States",
+      "bounds": [
+        [
+          -118.0976522,
+          33.93179648089999
+        ],
+        [
+          -118.0810789,
+          33.94577424089999
+        ]
+      ],
+      "tree_count": 10,
+      "zip_codes": [
+        "90670"
+      ],
+      "species_counts": {
+        "cherry": 0,
+        "plum": 0,
+        "peach": 0,
+        "magnolia": 10,
+        "crabapple": 0
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "santa-fe-springs-001",
+          "bounds": [
+            [
+              -118.0976522,
+              33.93179648089999
+            ],
+            [
+              -118.0810789,
+              33.94577424089999
+            ]
+          ],
+          "data_path": "/data/trees.ca.area.santa-fe-springs.v2.geojson",
+          "tree_count": 10,
+          "raw_bytes": 5731,
+          "gzip_bytes": 550
+        }
+      ]
+    },
+    {
       "jurisdiction": "Santa Monica",
       "slug": "santa-monica",
       "display_name": "Santa Monica",
@@ -3354,6 +3558,57 @@
           "tree_count": 11,
           "raw_bytes": 6035,
           "gzip_bytes": 646
+        }
+      ]
+    },
+    {
+      "jurisdiction": "South Gate",
+      "slug": "south-gate",
+      "display_name": "South Gate",
+      "jurisdiction_type": "city",
+      "state_province": "CA",
+      "country": "United States",
+      "bounds": [
+        [
+          -118.18731679551466,
+          33.945191649862004
+        ],
+        [
+          -118.18595732738449,
+          33.94574091944711
+        ]
+      ],
+      "tree_count": 10,
+      "zip_codes": [
+        "90280"
+      ],
+      "species_counts": {
+        "cherry": 0,
+        "plum": 0,
+        "peach": 0,
+        "magnolia": 10,
+        "crabapple": 0
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "south-gate-001",
+          "bounds": [
+            [
+              -118.18731679551466,
+              33.945191649862004
+            ],
+            [
+              -118.18595732738449,
+              33.94574091944711
+            ]
+          ],
+          "data_path": "/data/trees.ca.area.south-gate.v2.geojson",
+          "tree_count": 10,
+          "raw_bytes": 5623,
+          "gzip_bytes": 588
         }
       ]
     },

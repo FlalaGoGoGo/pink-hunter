@@ -1124,6 +1124,26 @@
   ],
   "areas": [
     {
+      "id": "az:phoenix",
+      "country_id": "us",
+      "state_id": "az",
+      "jurisdiction": "Phoenix",
+      "display_name": "Phoenix",
+      "area_type": "city",
+      "bounds": [
+        [
+          -112.32406499972545,
+          33.290259999723524
+        ],
+        [
+          -111.92552100007323,
+          33.91839100033971
+        ]
+      ],
+      "region_hint": "az",
+      "coverage_status": "official_unavailable"
+    },
+    {
       "id": "bc:burnaby",
       "country_id": "ca",
       "state_id": "bc",
@@ -1401,86 +1421,6 @@
         ]
       ],
       "region_hint": "bc",
-      "coverage_status": "official_unavailable"
-    },
-    {
-      "id": "on:ottawa",
-      "country_id": "ca",
-      "state_id": "on",
-      "jurisdiction": "Ottawa",
-      "display_name": "Ottawa",
-      "area_type": "city",
-      "bounds": [
-        [
-          -76.27994670105957,
-          44.980306508216366
-        ],
-        [
-          -75.26063675999347,
-          45.51791442692148
-        ]
-      ],
-      "region_hint": "on",
-      "coverage_status": "covered"
-    },
-    {
-      "id": "on:toronto",
-      "country_id": "ca",
-      "state_id": "on",
-      "jurisdiction": "Toronto",
-      "display_name": "Toronto",
-      "area_type": "city",
-      "bounds": [
-        [
-          -79.6378558902,
-          43.5866509121
-        ],
-        [
-          -79.12438726,
-          43.8367290225
-        ]
-      ],
-      "region_hint": "on",
-      "coverage_status": "covered"
-    },
-    {
-      "id": "qc:montreal",
-      "country_id": "ca",
-      "state_id": "qc",
-      "jurisdiction": "Montreal",
-      "display_name": "Montreal",
-      "area_type": "city",
-      "bounds": [
-        [
-          -73.907971,
-          45.428586
-        ],
-        [
-          -73.477656,
-          45.702299
-        ]
-      ],
-      "region_hint": "qc",
-      "coverage_status": "covered"
-    },
-    {
-      "id": "az:phoenix",
-      "country_id": "us",
-      "state_id": "az",
-      "jurisdiction": "Phoenix",
-      "display_name": "Phoenix",
-      "area_type": "city",
-      "bounds": [
-        [
-          -112.32406499972545,
-          33.290259999723524
-        ],
-        [
-          -111.92552100007323,
-          33.91839100033971
-        ]
-      ],
-      "region_hint": "az",
       "coverage_status": "official_unavailable"
     },
     {
@@ -4852,16 +4792,16 @@
       "area_type": "city",
       "bounds": [
         [
-          -118.30781199994304,
-          34.11876099973763
+          -1.5404383273700881,
+          50.59397087293264
         ],
         [
-          -118.1815829999731,
-          34.2672029996876
+          0.7949803702920468,
+          51.55035300321103
         ]
       ],
       "region_hint": "ca",
-      "coverage_status": "untracked"
+      "coverage_status": "covered"
     },
     {
       "id": "ca:glendora",
@@ -5972,16 +5912,16 @@
       "area_type": "city",
       "bounds": [
         [
-          -118.038,
-          33.8733
+          -118.03728,
+          33.89097988089999
         ],
         [
-          -117.9766,
-          33.9283
+          -117.98574980000001,
+          33.921512530899996
         ]
       ],
       "region_hint": "ca",
-      "coverage_status": "untracked"
+      "coverage_status": "covered"
     },
     {
       "id": "ca:la-palma",
@@ -7872,16 +7812,16 @@
       "area_type": "city",
       "bounds": [
         [
-          -118.1116,
-          33.8803
+          -118.09835979999998,
+          33.91733712090001
         ],
         [
-          -118.0422,
-          33.9299
+          -118.0771526,
+          33.9316130709
         ]
       ],
       "region_hint": "ca",
-      "coverage_status": "untracked"
+      "coverage_status": "covered"
     },
     {
       "id": "ca:novato",
@@ -10272,16 +10212,16 @@
       "area_type": "city",
       "bounds": [
         [
-          -118.0984,
-          33.8826
+          -118.0976522,
+          33.93179648089999
         ],
         [
-          -118.0289,
-          33.9682
+          -118.0810789,
+          33.94577424089999
         ]
       ],
       "region_hint": "ca",
-      "coverage_status": "untracked"
+      "coverage_status": "covered"
     },
     {
       "id": "ca:santa-maria",
@@ -10852,16 +10792,16 @@
       "area_type": "city",
       "bounds": [
         [
-          -118.2315,
-          33.9099
+          -118.18731679551466,
+          33.945191649862004
         ],
         [
-          -118.1563,
-          33.9609
+          -118.18595732738449,
+          33.94574091944711
         ]
       ],
       "region_hint": "ca",
-      "coverage_status": "untracked"
+      "coverage_status": "covered"
     },
     {
       "id": "ca:south-lake-tahoe",
@@ -45064,6 +45004,46 @@
       "coverage_status": "untracked"
     },
     {
+      "id": "on:ottawa",
+      "country_id": "ca",
+      "state_id": "on",
+      "jurisdiction": "Ottawa",
+      "display_name": "Ottawa",
+      "area_type": "city",
+      "bounds": [
+        [
+          -76.27994670105957,
+          44.980306508216366
+        ],
+        [
+          -75.26063675999347,
+          45.51791442692148
+        ]
+      ],
+      "region_hint": "on",
+      "coverage_status": "covered"
+    },
+    {
+      "id": "on:toronto",
+      "country_id": "ca",
+      "state_id": "on",
+      "jurisdiction": "Toronto",
+      "display_name": "Toronto",
+      "area_type": "city",
+      "bounds": [
+        [
+          -79.6378558902,
+          43.5866509121
+        ],
+        [
+          -79.12438726,
+          43.8367290225
+        ]
+      ],
+      "region_hint": "on",
+      "coverage_status": "covered"
+    },
+    {
       "id": "or:adair",
       "country_id": "us",
       "state_id": "or",
@@ -72062,6 +72042,26 @@
       ],
       "region_hint": "pa",
       "coverage_status": "untracked"
+    },
+    {
+      "id": "qc:montreal",
+      "country_id": "ca",
+      "state_id": "qc",
+      "jurisdiction": "Montreal",
+      "display_name": "Montreal",
+      "area_type": "city",
+      "bounds": [
+        [
+          -73.907971,
+          45.428586
+        ],
+        [
+          -73.477656,
+          45.702299
+        ]
+      ],
+      "region_hint": "qc",
+      "coverage_status": "covered"
     },
     {
       "id": "tx:abbott",
