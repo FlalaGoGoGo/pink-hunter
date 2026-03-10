@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-03-09T18:44:46.480593Z",
+  "generated_at": "2026-03-10T00:33:39.968145+00:00",
   "countries": [
     {
       "id": "ca",
@@ -1464,6 +1464,26 @@
       "coverage_status": "covered"
     },
     {
+      "id": "az:phoenix",
+      "country_id": "us",
+      "state_id": "az",
+      "jurisdiction": "Phoenix",
+      "display_name": "Phoenix",
+      "area_type": "city",
+      "bounds": [
+        [
+          -112.32406499972545,
+          33.290259999723524
+        ],
+        [
+          -111.92552100007323,
+          33.91839100033971
+        ]
+      ],
+      "region_hint": "az",
+      "coverage_status": "official_unavailable"
+    },
+    {
       "id": "ca:adelanto",
       "country_id": "us",
       "state_id": "ca",
@@ -1981,7 +2001,7 @@
         ]
       ],
       "region_hint": "ca",
-      "coverage_status": "official_unavailable"
+      "coverage_status": "untracked"
     },
     {
       "id": "ca:avalon",
@@ -2532,16 +2552,16 @@
       "area_type": "city",
       "bounds": [
         [
-          -118.0374,
-          33.8099
+          -118.03505340599999,
+          33.81072300500006
         ],
         [
-          -117.9766,
-          33.8956
+          -117.98265599699992,
+          33.89003623100007
         ]
       ],
       "region_hint": "ca",
-      "coverage_status": "untracked"
+      "coverage_status": "covered"
     },
     {
       "id": "ca:burbank",
@@ -2552,16 +2572,16 @@
       "area_type": "city",
       "bounds": [
         [
-          -118.3703,
-          34.1426
+          -118.361063614405,
+          34.145680377073
         ],
         [
-          -118.28,
-          34.2217
+          -118.288086204085,
+          34.209971730183
         ]
       ],
       "region_hint": "ca",
-      "coverage_status": "untracked"
+      "coverage_status": "covered"
     },
     {
       "id": "ca:burlingame",
@@ -2752,16 +2772,16 @@
       "area_type": "city",
       "bounds": [
         [
-          -119.1095,
-          34.1914
+          -119.09757556013459,
+          34.194960837928726
         ],
         [
-          -118.9578,
-          34.2525
+          -118.96892570196813,
+          34.24396730406653
         ]
       ],
       "region_hint": "ca",
-      "coverage_status": "untracked"
+      "coverage_status": "covered"
     },
     {
       "id": "ca:campbell",
@@ -2832,12 +2852,12 @@
       "area_type": "city",
       "bounds": [
         [
-          -117.3593,
-          33.0613
+          -117.35971600033056,
+          33.06051899973199
         ],
         [
-          -117.2234,
-          33.1772
+          -117.2159069998948,
+          33.1825679999439
         ]
       ],
       "region_hint": "ca",
@@ -2872,12 +2892,12 @@
       "area_type": "city",
       "bounds": [
         [
-          -119.5442,
-          34.3493
+          -119.54421599999004,
+          34.349287999761096
         ],
         [
-          -119.4819,
-          34.4126
+          -119.48009499971297,
+          34.41361300027602
         ]
       ],
       "region_hint": "ca",
@@ -2992,16 +3012,16 @@
       "area_type": "city",
       "bounds": [
         [
-          -117.7353,
-          33.9241
+          -117.72838855694583,
+          34.00108546609157
         ],
         [
-          -117.5998,
-          34.0476
+          -117.65495338747193,
+          34.04051538469368
         ]
       ],
       "region_hint": "ca",
-      "coverage_status": "untracked"
+      "coverage_status": "covered"
     },
     {
       "id": "ca:chino-hills",
@@ -3052,12 +3072,12 @@
       "area_type": "city",
       "bounds": [
         [
-          -117.1238,
-          32.578
+          -117.12381799978398,
+          32.57800799968269
         ],
         [
-          -116.9278,
-          32.6843
+          -116.9277149998112,
+          32.6856129998112
         ]
       ],
       "region_hint": "ca",
@@ -3452,16 +3472,16 @@
       "area_type": "city",
       "bounds": [
         [
-          -117.6726,
-          33.8001
+          -117.64440799999993,
+          33.81820200000004
         ],
         [
-          -117.4845,
-          33.9162
+          -117.50342099999996,
+          33.914229000000034
         ]
       ],
       "region_hint": "ca",
-      "coverage_status": "untracked"
+      "coverage_status": "covered"
     },
     {
       "id": "ca:coronado",
@@ -4312,16 +4332,16 @@
       "area_type": "city",
       "bounds": [
         [
-          -117.1461,
-          33.0581
+          -117.12867120689546,
+          33.062858648814064
         ],
         [
-          -116.9939,
-          33.2116
+          -117.00020048855363,
+          33.18015749880879
         ]
       ],
       "region_hint": "ca",
-      "coverage_status": "untracked"
+      "coverage_status": "covered"
     },
     {
       "id": "ca:etna",
@@ -4461,7 +4481,7 @@
         ]
       ],
       "region_hint": "ca",
-      "coverage_status": "official_unavailable"
+      "coverage_status": "untracked"
     },
     {
       "id": "ca:fillmore",
@@ -4832,12 +4852,12 @@
       "area_type": "city",
       "bounds": [
         [
-          -118.3078,
-          34.1188
+          -118.30781199994304,
+          34.11876099973763
         ],
         [
-          -118.1816,
-          34.2672
+          -118.1815829999731,
+          34.2672029996876
         ]
       ],
       "region_hint": "ca",
@@ -4852,16 +4872,16 @@
       "area_type": "city",
       "bounds": [
         [
-          -117.8901,
-          34.1067
+          -117.8803236822033,
+          34.106638698663524
         ],
         [
-          -117.7943,
-          34.1797
+          -117.82033254394092,
+          34.15153695406573
         ]
       ],
       "region_hint": "ca",
-      "coverage_status": "untracked"
+      "coverage_status": "covered"
     },
     {
       "id": "ca:glenn-county",
@@ -5932,16 +5952,16 @@
       "area_type": "city",
       "bounds": [
         [
-          -117.0536,
-          32.7432
+          -117.05319659967039,
+          32.74567375004597
         ],
         [
-          -116.9818,
-          32.7942
+          -116.98572989957611,
+          32.79470969982438
         ]
       ],
       "region_hint": "ca",
-      "coverage_status": "untracked"
+      "coverage_status": "covered"
     },
     {
       "id": "ca:la-mirada",
@@ -6032,16 +6052,16 @@
       "area_type": "city",
       "bounds": [
         [
-          -117.8014,
-          34.09
+          -117.79173017199996,
+          34.09308920000006
         ],
         [
-          -117.7547,
-          34.1654
+          -117.75919894299994,
+          34.14824070500002
         ]
       ],
       "region_hint": "ca",
-      "coverage_status": "untracked"
+      "coverage_status": "covered"
     },
     {
       "id": "ca:lafayette",
@@ -6241,7 +6261,7 @@
         ]
       ],
       "region_hint": "ca",
-      "coverage_status": "official_unavailable"
+      "coverage_status": "untracked"
     },
     {
       "id": "ca:lancaster",
@@ -7021,7 +7041,7 @@
         ]
       ],
       "region_hint": "ca",
-      "coverage_status": "official_unavailable"
+      "coverage_status": "untracked"
     },
     {
       "id": "ca:maywood",
@@ -7781,7 +7801,7 @@
         ]
       ],
       "region_hint": "ca",
-      "coverage_status": "covered"
+      "coverage_status": "untracked"
     },
     {
       "id": "ca:newman",
@@ -7952,12 +7972,12 @@
       "area_type": "city",
       "bounds": [
         [
-          -117.3984,
-          33.1531
+          -117.3983920000977,
+          33.15308700010331
         ],
         [
-          -117.2379,
-          33.3
+          -117.23787199975759,
+          33.2999940001681
         ]
       ],
       "region_hint": "ca",
@@ -8952,16 +8972,16 @@
       "area_type": "city",
       "bounds": [
         [
-          -117.249,
-          34.0042
+          -117.23827049860198,
+          34.01215265443834
         ],
         [
-          -117.0524,
-          34.1026
+          -117.1065507851534,
+          34.08504642251329
         ]
       ],
       "region_hint": "ca",
-      "coverage_status": "untracked"
+      "coverage_status": "covered"
     },
     {
       "id": "ca:redondo-beach",
@@ -10352,16 +10372,16 @@
       "area_type": "city",
       "bounds": [
         [
-          -117.0383,
-          32.8156
+          -117.02171172399993,
+          5.088887490341627e-14
         ],
         [
-          -116.938,
-          32.9034
+          5.684341886080802e-14,
+          32.87248519700005
         ]
       ],
       "region_hint": "ca",
-      "coverage_status": "untracked"
+      "coverage_status": "covered"
     },
     {
       "id": "ca:saratoga",
@@ -11212,16 +11232,16 @@
       "area_type": "city",
       "bounds": [
         [
-          -119.0017,
-          34.1249
+          -118.99079705772157,
+          34.14161422202136
         ],
         [
-          -118.7765,
-          34.2508
+          -118.79102196870006,
+          34.24125812299325
         ]
       ],
       "region_hint": "ca",
-      "coverage_status": "untracked"
+      "coverage_status": "covered"
     },
     {
       "id": "ca:tiburon",
@@ -11252,12 +11272,12 @@
       "area_type": "city",
       "bounds": [
         [
-          -118.4832,
-          33.7825
+          -118.48323999966563,
+          33.78051999988221
         ],
         [
-          -118.3088,
-          33.8871
+          -118.30825399980893,
+          33.88706099982852
         ]
       ],
       "region_hint": "ca",
@@ -11712,16 +11732,16 @@
       "area_type": "city",
       "bounds": [
         [
-          -117.2883,
-          33.132
+          -117.27805488500219,
+          33.18122491500122
         ],
         [
-          -117.1923,
-          33.2385
+          -117.21113225100221,
+          33.23030809400125
         ]
       ],
       "region_hint": "ca",
-      "coverage_status": "untracked"
+      "coverage_status": "covered"
     },
     {
       "id": "ca:walnut",
@@ -11852,16 +11872,16 @@
       "area_type": "city",
       "bounds": [
         [
-          -117.9671,
-          34.0026
+          -117.96540331212404,
+          34.00236723843619
         ],
         [
-          -117.863,
-          34.0924
+          -117.86655213070688,
+          34.08608715558566
         ]
       ],
       "region_hint": "ca",
-      "coverage_status": "untracked"
+      "coverage_status": "covered"
     },
     {
       "id": "ca:west-hollywood",
@@ -12212,16 +12232,16 @@
       "area_type": "city",
       "bounds": [
         [
-          -117.8458,
-          33.8706
+          -117.8354814743905,
+          33.87242096815323
         ],
         [
-          -117.6836,
-          33.9184
+          -117.69590705706499,
+          33.91403671991873
         ]
       ],
       "region_hint": "ca",
-      "coverage_status": "untracked"
+      "coverage_status": "covered"
     },
     {
       "id": "ca:yountville",
@@ -13941,7 +13961,7 @@
         ]
       ],
       "region_hint": "co",
-      "coverage_status": "official_unavailable"
+      "coverage_status": "untracked"
     },
     {
       "id": "co:delta-county",
@@ -15981,7 +16001,7 @@
         ]
       ],
       "region_hint": "co",
-      "coverage_status": "official_unavailable"
+      "coverage_status": "untracked"
     },
     {
       "id": "co:lamar",
@@ -16821,7 +16841,7 @@
         ]
       ],
       "region_hint": "co",
-      "coverage_status": "covered"
+      "coverage_status": "untracked"
     },
     {
       "id": "co:naturita",
@@ -19084,6 +19104,46 @@
       "coverage_status": "covered"
     },
     {
+      "id": "ga:atlanta",
+      "country_id": "us",
+      "state_id": "ga",
+      "jurisdiction": "Atlanta",
+      "display_name": "Atlanta",
+      "area_type": "city",
+      "bounds": [
+        [
+          -84.5508539998525,
+          33.64794399969981
+        ],
+        [
+          -84.28956000009809,
+          33.88682300034589
+        ]
+      ],
+      "region_hint": "ga",
+      "coverage_status": "official_unavailable"
+    },
+    {
+      "id": "il:chicago",
+      "country_id": "us",
+      "state_id": "il",
+      "jurisdiction": "Chicago",
+      "display_name": "Chicago",
+      "area_type": "city",
+      "bounds": [
+        [
+          -87.9400970004394,
+          41.64428599980485
+        ],
+        [
+          -87.52366100015183,
+          42.023135000197996
+        ]
+      ],
+      "region_hint": "il",
+      "coverage_status": "official_unavailable"
+    },
+    {
       "id": "ma:agawam",
       "country_id": "us",
       "state_id": "ma",
@@ -19481,7 +19541,7 @@
         ]
       ],
       "region_hint": "ma",
-      "coverage_status": "covered"
+      "coverage_status": "untracked"
     },
     {
       "id": "ma:fall-river",
@@ -20241,7 +20301,7 @@
         ]
       ],
       "region_hint": "ma",
-      "coverage_status": "official_unavailable"
+      "coverage_status": "untracked"
     },
     {
       "id": "ma:somerville",
@@ -21001,7 +21061,7 @@
         ]
       ],
       "region_hint": "md",
-      "coverage_status": "covered"
+      "coverage_status": "untracked"
     },
     {
       "id": "md:capitol-heights",
@@ -22301,7 +22361,7 @@
         ]
       ],
       "region_hint": "md",
-      "coverage_status": "official_unavailable"
+      "coverage_status": "untracked"
     },
     {
       "id": "md:howard-county",
@@ -23041,7 +23101,7 @@
         ]
       ],
       "region_hint": "md",
-      "coverage_status": "covered"
+      "coverage_status": "untracked"
     },
     {
       "id": "md:ocean",
@@ -24104,6 +24164,26 @@
       "coverage_status": "untracked"
     },
     {
+      "id": "mi:detroit",
+      "country_id": "us",
+      "state_id": "mi",
+      "jurisdiction": "Detroit",
+      "display_name": "Detroit",
+      "area_type": "city",
+      "bounds": [
+        [
+          -83.28780300044481,
+          42.25495999989942
+        ],
+        [
+          -82.91042700006396,
+          42.450230000108434
+        ]
+      ],
+      "region_hint": "mi",
+      "coverage_status": "official_unavailable"
+    },
+    {
       "id": "nj:absecon",
       "country_id": "us",
       "state_id": "nj",
@@ -24132,12 +24212,12 @@
       "area_type": "city",
       "bounds": [
         [
-          -74.1554,
-          41.0201
+          -74.15544100026374,
+          41.018621000022605
         ],
         [
-          -74.1146,
-          41.0435
+          -74.11460899979724,
+          41.048720999736446
         ]
       ],
       "region_hint": "nj",
@@ -24612,12 +24692,12 @@
       "area_type": "city",
       "bounds": [
         [
-          -74.0173,
-          40.9121
+          -74.01748400018617,
+          40.90849800003974
         ],
         [
-          -73.9796,
-          40.9384
+          -73.97959300041659,
+          40.938408999910784
         ]
       ],
       "region_hint": "nj",
@@ -25472,12 +25552,12 @@
       "area_type": "city",
       "bounds": [
         [
-          -73.976,
-          40.9405
+          -73.97597800005023,
+          40.940515000294724
         ],
         [
-          -73.9363,
-          40.968
+          -73.93626100019249,
+          40.96798599984277
         ]
       ],
       "region_hint": "nj",
@@ -25512,12 +25592,12 @@
       "area_type": "city",
       "bounds": [
         [
-          -74.0107,
-          40.937
+          -74.01085400040141,
+          40.935935000192025
         ],
         [
-          -73.9756,
-          40.9552
+          -73.97556200012362,
+          40.95523399996681
         ]
       ],
       "region_hint": "nj",
@@ -25752,12 +25832,12 @@
       "area_type": "city",
       "bounds": [
         [
-          -73.9947,
-          40.8657
+          -73.99472699975485,
+          40.86569800029543
         ],
         [
-          -73.9494,
-          40.9117
+          -73.94939199989061,
+          40.9136280000322
         ]
       ],
       "region_hint": "nj",
@@ -25892,12 +25972,12 @@
       "area_type": "city",
       "bounds": [
         [
-          -74.1482,
-          40.9197
+          -74.14817100024638,
+          40.91771800020379
         ],
         [
-          -74.0894,
-          40.9551
+          -74.08941100005784,
+          40.95507600013985
         ]
       ],
       "region_hint": "nj",
@@ -26061,7 +26141,7 @@
         ]
       ],
       "region_hint": "nj",
-      "coverage_status": "official_unavailable"
+      "coverage_status": "untracked"
     },
     {
       "id": "nj:fort-lee",
@@ -26072,12 +26152,12 @@
       "area_type": "city",
       "bounds": [
         [
-          -73.9912,
-          40.8278
+          -73.99139500014401,
+          40.82783300023859
         ],
         [
-          -73.9483,
-          40.8691
+          -73.9483359997314,
+          40.869057999963545
         ]
       ],
       "region_hint": "nj",
@@ -26112,12 +26192,12 @@
       "area_type": "city",
       "bounds": [
         [
-          -74.2485,
-          40.9786
+          -74.24853200010709,
+          40.97856399996473
         ],
         [
-          -74.1676,
-          41.0452
+          -74.16758000027505,
+          41.04524599979929
         ]
       ],
       "region_hint": "nj",
@@ -26612,12 +26692,12 @@
       "area_type": "city",
       "bounds": [
         [
-          -74.0266,
-          40.9543
+          -74.02658299976643,
+          40.95428900013076
         ],
         [
-          -73.9747,
-          40.9677
+          -73.97469500011032,
+          40.97199399970989
         ]
       ],
       "region_hint": "nj",
@@ -26812,12 +26892,12 @@
       "area_type": "city",
       "bounds": [
         [
-          -74.0438,
-          40.7304
+          -74.0438719999791,
+          40.73039100020522
         ],
         [
-          -74.0142,
-          40.7588
+          -74.01424899976143,
+          40.758983999865464
         ]
       ],
       "region_hint": "nj",
@@ -27292,12 +27372,12 @@
       "area_type": "city",
       "bounds": [
         [
-          -74.2877,
-          40.5978
+          -74.28774299962654,
+          40.593041999793996
         ],
         [
-          -74.1996,
-          40.6549
+          -74.19958900044752,
+          40.654927000233045
         ]
       ],
       "region_hint": "nj",
@@ -27504,6 +27584,26 @@
       "coverage_status": "untracked"
     },
     {
+      "id": "nj:mahwah",
+      "country_id": "us",
+      "state_id": "nj",
+      "jurisdiction": "Mahwah",
+      "display_name": "Mahwah",
+      "area_type": "city",
+      "bounds": [
+        [
+          -74.2489539998815,
+          41.0219049997403
+        ],
+        [
+          -74.1039810002298,
+          41.13371400032804
+        ]
+      ],
+      "region_hint": "nj",
+      "coverage_status": "untracked"
+    },
+    {
       "id": "nj:manasquan",
       "country_id": "us",
       "state_id": "nj",
@@ -27621,7 +27721,7 @@
         ]
       ],
       "region_hint": "nj",
-      "coverage_status": "covered"
+      "coverage_status": "untracked"
     },
     {
       "id": "nj:medford-lakes",
@@ -27924,6 +28024,26 @@
       "coverage_status": "untracked"
     },
     {
+      "id": "nj:montclair",
+      "country_id": "us",
+      "state_id": "nj",
+      "jurisdiction": "Montclair",
+      "display_name": "Montclair",
+      "area_type": "city",
+      "bounds": [
+        [
+          -74.23772899973915,
+          40.78821299967672
+        ],
+        [
+          -74.18266199973476,
+          40.861034999944444
+        ]
+      ],
+      "region_hint": "nj",
+      "coverage_status": "untracked"
+    },
+    {
       "id": "nj:montvale",
       "country_id": "us",
       "state_id": "nj",
@@ -27932,12 +28052,12 @@
       "area_type": "city",
       "bounds": [
         [
-          -74.0798,
-          41.0386
+          -74.07979000024578,
+          41.03663199998699
         ],
         [
-          -74.0124,
-          41.0728
+          -74.01242500022144,
+          41.07278500012456
         ]
       ],
       "region_hint": "nj",
@@ -28012,12 +28132,12 @@
       "area_type": "city",
       "bounds": [
         [
-          -74.5014,
-          40.7803
+          -74.50142900043815,
+          40.780282000140495
         ],
         [
-          -74.4564,
-          40.8182
+          -74.45641699971578,
+          40.81822599975087
         ]
       ],
       "region_hint": "nj",
@@ -28192,12 +28312,12 @@
       "area_type": "city",
       "bounds": [
         [
-          -74.0333,
-          40.9146
+          -74.03329600029018,
+          40.91400900008561
         ],
         [
-          -74.0025,
-          40.9519
+          -74.00249999973744,
+          40.95201199969613
         ]
       ],
       "region_hint": "nj",
@@ -28461,7 +28581,7 @@
         ]
       ],
       "region_hint": "nj",
-      "coverage_status": "covered"
+      "coverage_status": "untracked"
     },
     {
       "id": "nj:oaklyn",
@@ -29252,12 +29372,12 @@
       "area_type": "city",
       "bounds": [
         [
-          -74.1491,
-          40.9551
+          -74.1490950001611,
+          40.95507600013985
         ],
         [
-          -74.0788,
-          41.0077
+          -74.07811700031851,
+          41.007697000078096
         ]
       ],
       "region_hint": "nj",
@@ -29292,12 +29412,12 @@
       "area_type": "city",
       "bounds": [
         [
-          -74.0504,
-          40.9092
+          -74.05041800009828,
+          40.90889900027992
         ],
         [
-          -74.0258,
-          40.9403
+          -74.02573800039272,
+          40.94377999984738
         ]
       ],
       "region_hint": "nj",
@@ -29532,12 +29652,12 @@
       "area_type": "city",
       "bounds": [
         [
-          -74.1239,
-          40.7876
+          -74.12404499966138,
+          40.78623199970659
         ],
         [
-          -74.0817,
-          40.8468
+          -74.08166300018958,
+          40.84683300027138
         ]
       ],
       "region_hint": "nj",
@@ -29581,7 +29701,7 @@
         ]
       ],
       "region_hint": "nj",
-      "coverage_status": "official_unavailable"
+      "coverage_status": "untracked"
     },
     {
       "id": "nj:salem-county",
@@ -30081,7 +30201,7 @@
         ]
       ],
       "region_hint": "nj",
-      "coverage_status": "official_unavailable"
+      "coverage_status": "untracked"
     },
     {
       "id": "nj:stone-harbor",
@@ -30244,6 +30364,26 @@
       "coverage_status": "untracked"
     },
     {
+      "id": "nj:teaneck",
+      "country_id": "us",
+      "state_id": "nj",
+      "jurisdiction": "Teaneck",
+      "display_name": "Teaneck",
+      "area_type": "city",
+      "bounds": [
+        [
+          -74.03720000036154,
+          40.86013700002385
+        ],
+        [
+          -73.98746400030849,
+          40.917079000071425
+        ]
+      ],
+      "region_hint": "nj",
+      "coverage_status": "untracked"
+    },
+    {
       "id": "nj:tenafly",
       "country_id": "us",
       "state_id": "nj",
@@ -30252,12 +30392,12 @@
       "area_type": "city",
       "bounds": [
         [
-          -73.9844,
-          40.8955
+          -73.98440499961083,
+          40.895496000190874
         ],
         [
-          -73.9199,
-          40.9378
+          -73.91993400042769,
+          40.937826000294464
         ]
       ],
       "region_hint": "nj",
@@ -30772,12 +30912,12 @@
       "area_type": "city",
       "bounds": [
         [
-          -74.0556,
-          40.9766
+          -74.05566100018605,
+          40.97346799987344
         ],
         [
-          -74.0047,
-          40.9985
+          -74.00438000025225,
+          41.000118999754626
         ]
       ],
       "region_hint": "nj",
@@ -31018,6 +31158,26 @@
         [
           -74.6028,
           40.0407
+        ]
+      ],
+      "region_hint": "nj",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "nj:wyckoff",
+      "country_id": "us",
+      "state_id": "nj",
+      "jurisdiction": "Wyckoff",
+      "display_name": "Wyckoff",
+      "area_type": "city",
+      "bounds": [
+        [
+          -74.19187500001613,
+          40.971130000097304
+        ],
+        [
+          -74.13753600010791,
+          41.02592100025152
         ]
       ],
       "region_hint": "nj",
@@ -32381,7 +32541,7 @@
         ]
       ],
       "region_hint": "ny",
-      "coverage_status": "official_unavailable"
+      "coverage_status": "untracked"
     },
     {
       "id": "ny:aurora",
@@ -33261,7 +33421,7 @@
         ]
       ],
       "region_hint": "ny",
-      "coverage_status": "covered"
+      "coverage_status": "untracked"
     },
     {
       "id": "ny:camden",
@@ -37461,7 +37621,7 @@
         ]
       ],
       "region_hint": "ny",
-      "coverage_status": "covered"
+      "coverage_status": "untracked"
     },
     {
       "id": "ny:kensington",
@@ -37721,7 +37881,7 @@
         ]
       ],
       "region_hint": "ny",
-      "coverage_status": "official_unavailable"
+      "coverage_status": "untracked"
     },
     {
       "id": "ny:lancaster",
@@ -38201,7 +38361,7 @@
         ]
       ],
       "region_hint": "ny",
-      "coverage_status": "official_unavailable"
+      "coverage_status": "untracked"
     },
     {
       "id": "ny:lowville",
@@ -38701,7 +38861,7 @@
         ]
       ],
       "region_hint": "ny",
-      "coverage_status": "official_unavailable"
+      "coverage_status": "untracked"
     },
     {
       "id": "ny:menands",
@@ -39021,7 +39181,7 @@
         ]
       ],
       "region_hint": "ny",
-      "coverage_status": "official_unavailable"
+      "coverage_status": "untracked"
     },
     {
       "id": "ny:monroe-county",
@@ -39101,7 +39261,7 @@
         ]
       ],
       "region_hint": "ny",
-      "coverage_status": "official_unavailable"
+      "coverage_status": "untracked"
     },
     {
       "id": "ny:monticello",
@@ -39661,7 +39821,7 @@
         ]
       ],
       "region_hint": "ny",
-      "coverage_status": "covered"
+      "coverage_status": "untracked"
     },
     {
       "id": "ny:newark-valley",
@@ -40901,7 +41061,7 @@
         ]
       ],
       "region_hint": "ny",
-      "coverage_status": "covered"
+      "coverage_status": "untracked"
     },
     {
       "id": "ny:philmont",
@@ -40941,7 +41101,7 @@
         ]
       ],
       "region_hint": "ny",
-      "coverage_status": "official_unavailable"
+      "coverage_status": "untracked"
     },
     {
       "id": "ny:piermont",
@@ -41121,7 +41281,7 @@
         ]
       ],
       "region_hint": "ny",
-      "coverage_status": "covered"
+      "coverage_status": "untracked"
     },
     {
       "id": "ny:poquott",
@@ -41701,7 +41861,7 @@
         ]
       ],
       "region_hint": "ny",
-      "coverage_status": "covered"
+      "coverage_status": "untracked"
     },
     {
       "id": "ny:rochester",
@@ -45041,7 +45201,7 @@
         ]
       ],
       "region_hint": "or",
-      "coverage_status": "covered"
+      "coverage_status": "untracked"
     },
     {
       "id": "or:ashland",
@@ -46001,7 +46161,7 @@
         ]
       ],
       "region_hint": "or",
-      "coverage_status": "covered"
+      "coverage_status": "untracked"
     },
     {
       "id": "or:dayton",
@@ -46101,7 +46261,7 @@
         ]
       ],
       "region_hint": "or",
-      "coverage_status": "official_unavailable"
+      "coverage_status": "untracked"
     },
     {
       "id": "or:donald",
@@ -48241,7 +48401,7 @@
         ]
       ],
       "region_hint": "or",
-      "coverage_status": "official_unavailable"
+      "coverage_status": "untracked"
     },
     {
       "id": "or:monument",
@@ -48501,7 +48661,7 @@
         ]
       ],
       "region_hint": "or",
-      "coverage_status": "official_unavailable"
+      "coverage_status": "untracked"
     },
     {
       "id": "or:north-plains",
@@ -48581,7 +48741,7 @@
         ]
       ],
       "region_hint": "or",
-      "coverage_status": "covered"
+      "coverage_status": "untracked"
     },
     {
       "id": "or:oakridge",
@@ -48721,7 +48881,7 @@
         ]
       ],
       "region_hint": "or",
-      "coverage_status": "official_unavailable"
+      "coverage_status": "untracked"
     },
     {
       "id": "or:pilot-rock",
@@ -48921,7 +49081,7 @@
         ]
       ],
       "region_hint": "or",
-      "coverage_status": "covered"
+      "coverage_status": "untracked"
     },
     {
       "id": "or:reedsport",
@@ -48961,7 +49121,7 @@
         ]
       ],
       "region_hint": "or",
-      "coverage_status": "official_unavailable"
+      "coverage_status": "untracked"
     },
     {
       "id": "or:riddle",
@@ -50661,7 +50821,7 @@
         ]
       ],
       "region_hint": "pa",
-      "coverage_status": "official_unavailable"
+      "coverage_status": "untracked"
     },
     {
       "id": "pa:aliquippa",
@@ -51121,7 +51281,7 @@
         ]
       ],
       "region_hint": "pa",
-      "coverage_status": "official_unavailable"
+      "coverage_status": "untracked"
     },
     {
       "id": "pa:austin",
@@ -51141,7 +51301,7 @@
         ]
       ],
       "region_hint": "pa",
-      "coverage_status": "covered"
+      "coverage_status": "untracked"
     },
     {
       "id": "pa:avalon",
@@ -51681,7 +51841,7 @@
         ]
       ],
       "region_hint": "pa",
-      "coverage_status": "covered"
+      "coverage_status": "untracked"
     },
     {
       "id": "pa:bellwood",
@@ -54981,7 +55141,7 @@
         ]
       ],
       "region_hint": "pa",
-      "coverage_status": "covered"
+      "coverage_status": "untracked"
     },
     {
       "id": "pa:dallastown",
@@ -55281,7 +55441,7 @@
         ]
       ],
       "region_hint": "pa",
-      "coverage_status": "official_unavailable"
+      "coverage_status": "untracked"
     },
     {
       "id": "pa:denver",
@@ -55301,7 +55461,7 @@
         ]
       ],
       "region_hint": "pa",
-      "coverage_status": "covered"
+      "coverage_status": "untracked"
     },
     {
       "id": "pa:derry",
@@ -56841,7 +57001,7 @@
         ]
       ],
       "region_hint": "pa",
-      "coverage_status": "covered"
+      "coverage_status": "untracked"
     },
     {
       "id": "pa:everson",
@@ -57141,7 +57301,7 @@
         ]
       ],
       "region_hint": "pa",
-      "coverage_status": "official_unavailable"
+      "coverage_status": "untracked"
     },
     {
       "id": "pa:finleyville",
@@ -59001,7 +59161,7 @@
         ]
       ],
       "region_hint": "pa",
-      "coverage_status": "covered"
+      "coverage_status": "untracked"
     },
     {
       "id": "pa:houtzdale",
@@ -61601,7 +61761,7 @@
         ]
       ],
       "region_hint": "pa",
-      "coverage_status": "official_unavailable"
+      "coverage_status": "untracked"
     },
     {
       "id": "pa:masontown",
@@ -62321,7 +62481,7 @@
         ]
       ],
       "region_hint": "pa",
-      "coverage_status": "official_unavailable"
+      "coverage_status": "untracked"
     },
     {
       "id": "pa:mill-hall",
@@ -62641,7 +62801,7 @@
         ]
       ],
       "region_hint": "pa",
-      "coverage_status": "official_unavailable"
+      "coverage_status": "untracked"
     },
     {
       "id": "pa:monroe-county",
@@ -62741,7 +62901,7 @@
         ]
       ],
       "region_hint": "pa",
-      "coverage_status": "official_unavailable"
+      "coverage_status": "untracked"
     },
     {
       "id": "pa:montour-county",
@@ -64501,7 +64661,7 @@
         ]
       ],
       "region_hint": "pa",
-      "coverage_status": "covered"
+      "coverage_status": "untracked"
     },
     {
       "id": "pa:oakmont",
@@ -64861,7 +65021,7 @@
         ]
       ],
       "region_hint": "pa",
-      "coverage_status": "covered"
+      "coverage_status": "untracked"
     },
     {
       "id": "pa:parker",
@@ -65801,7 +65961,7 @@
         ]
       ],
       "region_hint": "pa",
-      "coverage_status": "covered"
+      "coverage_status": "untracked"
     },
     {
       "id": "pa:potter-county",
@@ -66221,7 +66381,7 @@
         ]
       ],
       "region_hint": "pa",
-      "coverage_status": "official_unavailable"
+      "coverage_status": "untracked"
     },
     {
       "id": "pa:richlandtown",
@@ -66361,7 +66521,7 @@
         ]
       ],
       "region_hint": "pa",
-      "coverage_status": "covered"
+      "coverage_status": "untracked"
     },
     {
       "id": "pa:roaring-spring",
@@ -66581,7 +66741,7 @@
         ]
       ],
       "region_hint": "pa",
-      "coverage_status": "official_unavailable"
+      "coverage_status": "untracked"
     },
     {
       "id": "pa:rosslyn-farms",
@@ -72881,7 +73041,7 @@
         ]
       ],
       "region_hint": "tx",
-      "coverage_status": "covered"
+      "coverage_status": "untracked"
     },
     {
       "id": "tx:armstrong-county",
@@ -73021,7 +73181,7 @@
         ]
       ],
       "region_hint": "tx",
-      "coverage_status": "official_unavailable"
+      "coverage_status": "untracked"
     },
     {
       "id": "tx:aubrey",
@@ -73921,7 +74081,7 @@
         ]
       ],
       "region_hint": "tx",
-      "coverage_status": "covered"
+      "coverage_status": "untracked"
     },
     {
       "id": "tx:bellmead",
@@ -74121,7 +74281,7 @@
         ]
       ],
       "region_hint": "tx",
-      "coverage_status": "covered"
+      "coverage_status": "untracked"
     },
     {
       "id": "tx:bevil-oaks",
@@ -77821,7 +77981,7 @@
         ]
       ],
       "region_hint": "tx",
-      "coverage_status": "official_unavailable"
+      "coverage_status": "untracked"
     },
     {
       "id": "tx:coyote-flats",
@@ -78921,7 +79081,7 @@
         ]
       ],
       "region_hint": "tx",
-      "coverage_status": "covered"
+      "coverage_status": "untracked"
     },
     {
       "id": "tx:deport",
@@ -78961,7 +79121,7 @@
         ]
       ],
       "region_hint": "tx",
-      "coverage_status": "official_unavailable"
+      "coverage_status": "untracked"
     },
     {
       "id": "tx:devers",
@@ -83781,7 +83941,7 @@
         ]
       ],
       "region_hint": "tx",
-      "coverage_status": "official_unavailable"
+      "coverage_status": "untracked"
     },
     {
       "id": "tx:hilshire",
@@ -86761,7 +86921,7 @@
         ]
       ],
       "region_hint": "tx",
-      "coverage_status": "official_unavailable"
+      "coverage_status": "untracked"
     },
     {
       "id": "tx:lamar-county",
@@ -89761,7 +89921,7 @@
         ]
       ],
       "region_hint": "tx",
-      "coverage_status": "official_unavailable"
+      "coverage_status": "untracked"
     },
     {
       "id": "tx:moody",
@@ -90761,7 +90921,7 @@
         ]
       ],
       "region_hint": "tx",
-      "coverage_status": "covered"
+      "coverage_status": "untracked"
     },
     {
       "id": "tx:newcastle",
@@ -90781,7 +90941,7 @@
         ]
       ],
       "region_hint": "tx",
-      "coverage_status": "official_unavailable"
+      "coverage_status": "untracked"
     },
     {
       "id": "tx:newton",
@@ -92121,7 +92281,7 @@
         ]
       ],
       "region_hint": "tx",
-      "coverage_status": "covered"
+      "coverage_status": "untracked"
     },
     {
       "id": "tx:pattison",
@@ -93041,7 +93201,7 @@
         ]
       ],
       "region_hint": "tx",
-      "coverage_status": "covered"
+      "coverage_status": "untracked"
     },
     {
       "id": "tx:post",
@@ -93321,7 +93481,7 @@
         ]
       ],
       "region_hint": "tx",
-      "coverage_status": "covered"
+      "coverage_status": "untracked"
     },
     {
       "id": "tx:progreso",
@@ -94081,7 +94241,7 @@
         ]
       ],
       "region_hint": "tx",
-      "coverage_status": "official_unavailable"
+      "coverage_status": "untracked"
     },
     {
       "id": "tx:richland-hills",
@@ -94141,7 +94301,7 @@
         ]
       ],
       "region_hint": "tx",
-      "coverage_status": "official_unavailable"
+      "coverage_status": "untracked"
     },
     {
       "id": "tx:richwood",
@@ -94321,7 +94481,7 @@
         ]
       ],
       "region_hint": "tx",
-      "coverage_status": "covered"
+      "coverage_status": "untracked"
     },
     {
       "id": "tx:road-runner",
@@ -95381,7 +95541,7 @@
         ]
       ],
       "region_hint": "tx",
-      "coverage_status": "covered"
+      "coverage_status": "untracked"
     },
     {
       "id": "tx:san-elizario",
@@ -95761,7 +95921,7 @@
         ]
       ],
       "region_hint": "tx",
-      "coverage_status": "official_unavailable"
+      "coverage_status": "untracked"
     },
     {
       "id": "tx:santa-fe",
@@ -95801,7 +95961,7 @@
         ]
       ],
       "region_hint": "tx",
-      "coverage_status": "official_unavailable"
+      "coverage_status": "untracked"
     },
     {
       "id": "tx:savoy",
@@ -97641,7 +97801,7 @@
         ]
       ],
       "region_hint": "tx",
-      "coverage_status": "covered"
+      "coverage_status": "untracked"
     },
     {
       "id": "tx:sunray",
@@ -101241,7 +101401,7 @@
         ]
       ],
       "region_hint": "tx",
-      "coverage_status": "official_unavailable"
+      "coverage_status": "untracked"
     },
     {
       "id": "tx:wortham",
@@ -102501,7 +102661,7 @@
         ]
       ],
       "region_hint": "ut",
-      "coverage_status": "official_unavailable"
+      "coverage_status": "untracked"
     },
     {
       "id": "ut:deweyville",
@@ -104781,7 +104941,7 @@
         ]
       ],
       "region_hint": "ut",
-      "coverage_status": "official_unavailable"
+      "coverage_status": "untracked"
     },
     {
       "id": "ut:monticello",
@@ -105561,7 +105721,7 @@
         ]
       ],
       "region_hint": "ut",
-      "coverage_status": "covered"
+      "coverage_status": "untracked"
     },
     {
       "id": "ut:rich-county",
@@ -105621,7 +105781,7 @@
         ]
       ],
       "region_hint": "ut",
-      "coverage_status": "official_unavailable"
+      "coverage_status": "untracked"
     },
     {
       "id": "ut:river-heights",
@@ -105801,7 +105961,7 @@
         ]
       ],
       "region_hint": "ut",
-      "coverage_status": "official_unavailable"
+      "coverage_status": "untracked"
     },
     {
       "id": "ut:salina",
@@ -105961,7 +106121,7 @@
         ]
       ],
       "region_hint": "ut",
-      "coverage_status": "official_unavailable"
+      "coverage_status": "untracked"
     },
     {
       "id": "ut:santaquin",
@@ -106341,7 +106501,7 @@
         ]
       ],
       "region_hint": "ut",
-      "coverage_status": "official_unavailable"
+      "coverage_status": "untracked"
     },
     {
       "id": "ut:summit-county",
@@ -108701,7 +108861,7 @@
         ]
       ],
       "region_hint": "va",
-      "coverage_status": "official_unavailable"
+      "coverage_status": "untracked"
     },
     {
       "id": "va:craig-county",
@@ -110081,7 +110241,7 @@
         ]
       ],
       "region_hint": "va",
-      "coverage_status": "official_unavailable"
+      "coverage_status": "untracked"
     },
     {
       "id": "va:hillsville",
@@ -111041,7 +111201,7 @@
         ]
       ],
       "region_hint": "va",
-      "coverage_status": "official_unavailable"
+      "coverage_status": "untracked"
     },
     {
       "id": "va:montgomery-county",
@@ -111061,7 +111221,7 @@
         ]
       ],
       "region_hint": "va",
-      "coverage_status": "official_unavailable"
+      "coverage_status": "untracked"
     },
     {
       "id": "va:montross",
@@ -112101,7 +112261,7 @@
         ]
       ],
       "region_hint": "va",
-      "coverage_status": "official_unavailable"
+      "coverage_status": "untracked"
     },
     {
       "id": "va:richmond-county",
@@ -112321,7 +112481,7 @@
         ]
       ],
       "region_hint": "va",
-      "coverage_status": "official_unavailable"
+      "coverage_status": "untracked"
     },
     {
       "id": "va:saltville",
@@ -113741,7 +113901,7 @@
         ]
       ],
       "region_hint": "wa",
-      "coverage_status": "covered"
+      "coverage_status": "untracked"
     },
     {
       "id": "wa:asotin",
@@ -113801,7 +113961,7 @@
         ]
       ],
       "region_hint": "wa",
-      "coverage_status": "official_unavailable"
+      "coverage_status": "untracked"
     },
     {
       "id": "wa:bainbridge-island",
@@ -113981,7 +114141,7 @@
         ]
       ],
       "region_hint": "wa",
-      "coverage_status": "official_unavailable"
+      "coverage_status": "untracked"
     },
     {
       "id": "wa:blaine",
@@ -114021,7 +114181,7 @@
         ]
       ],
       "region_hint": "wa",
-      "coverage_status": "official_unavailable"
+      "coverage_status": "untracked"
     },
     {
       "id": "wa:bothell",
@@ -114041,7 +114201,7 @@
         ]
       ],
       "region_hint": "wa",
-      "coverage_status": "official_unavailable"
+      "coverage_status": "untracked"
     },
     {
       "id": "wa:bremerton",
@@ -114061,7 +114221,7 @@
         ]
       ],
       "region_hint": "wa",
-      "coverage_status": "official_unavailable"
+      "coverage_status": "untracked"
     },
     {
       "id": "wa:brewster",
@@ -114121,7 +114281,7 @@
         ]
       ],
       "region_hint": "wa",
-      "coverage_status": "official_unavailable"
+      "coverage_status": "untracked"
     },
     {
       "id": "wa:buckley",
@@ -114181,7 +114341,7 @@
         ]
       ],
       "region_hint": "wa",
-      "coverage_status": "official_unavailable"
+      "coverage_status": "untracked"
     },
     {
       "id": "wa:burlington",
@@ -114261,7 +114421,7 @@
         ]
       ],
       "region_hint": "wa",
-      "coverage_status": "official_unavailable"
+      "coverage_status": "untracked"
     },
     {
       "id": "wa:cashmere",
@@ -114541,7 +114701,7 @@
         ]
       ],
       "region_hint": "wa",
-      "coverage_status": "official_unavailable"
+      "coverage_status": "untracked"
     },
     {
       "id": "wa:colfax",
@@ -114801,7 +114961,7 @@
         ]
       ],
       "region_hint": "wa",
-      "coverage_status": "official_unavailable"
+      "coverage_status": "untracked"
     },
     {
       "id": "wa:cowlitz-county",
@@ -114901,7 +115061,7 @@
         ]
       ],
       "region_hint": "wa",
-      "coverage_status": "official_unavailable"
+      "coverage_status": "untracked"
     },
     {
       "id": "wa:dayton",
@@ -114961,7 +115121,7 @@
         ]
       ],
       "region_hint": "wa",
-      "coverage_status": "official_unavailable"
+      "coverage_status": "untracked"
     },
     {
       "id": "wa:douglas-county",
@@ -115021,7 +115181,7 @@
         ]
       ],
       "region_hint": "wa",
-      "coverage_status": "official_unavailable"
+      "coverage_status": "untracked"
     },
     {
       "id": "wa:east-wenatchee",
@@ -115101,7 +115261,7 @@
         ]
       ],
       "region_hint": "wa",
-      "coverage_status": "official_unavailable"
+      "coverage_status": "untracked"
     },
     {
       "id": "wa:electric",
@@ -115241,7 +115401,7 @@
         ]
       ],
       "region_hint": "wa",
-      "coverage_status": "official_unavailable"
+      "coverage_status": "untracked"
     },
     {
       "id": "wa:ephrata",
@@ -115361,7 +115521,7 @@
         ]
       ],
       "region_hint": "wa",
-      "coverage_status": "official_unavailable"
+      "coverage_status": "untracked"
     },
     {
       "id": "wa:ferndale",
@@ -115381,7 +115541,7 @@
         ]
       ],
       "region_hint": "wa",
-      "coverage_status": "official_unavailable"
+      "coverage_status": "untracked"
     },
     {
       "id": "wa:ferry-county",
@@ -115421,7 +115581,7 @@
         ]
       ],
       "region_hint": "wa",
-      "coverage_status": "official_unavailable"
+      "coverage_status": "untracked"
     },
     {
       "id": "wa:fircrest",
@@ -115701,7 +115861,7 @@
         ]
       ],
       "region_hint": "wa",
-      "coverage_status": "official_unavailable"
+      "coverage_status": "untracked"
     },
     {
       "id": "wa:grant-county",
@@ -115881,7 +116041,7 @@
         ]
       ],
       "region_hint": "wa",
-      "coverage_status": "official_unavailable"
+      "coverage_status": "untracked"
     },
     {
       "id": "wa:ilwaco",
@@ -115981,7 +116141,7 @@
         ]
       ],
       "region_hint": "wa",
-      "coverage_status": "official_unavailable"
+      "coverage_status": "untracked"
     },
     {
       "id": "wa:jefferson-county",
@@ -116121,7 +116281,7 @@
         ]
       ],
       "region_hint": "wa",
-      "coverage_status": "official_unavailable"
+      "coverage_status": "untracked"
     },
     {
       "id": "wa:kettle-falls",
@@ -116361,7 +116521,7 @@
         ]
       ],
       "region_hint": "wa",
-      "coverage_status": "official_unavailable"
+      "coverage_status": "untracked"
     },
     {
       "id": "wa:lake-forest-park",
@@ -116381,7 +116541,7 @@
         ]
       ],
       "region_hint": "wa",
-      "coverage_status": "official_unavailable"
+      "coverage_status": "untracked"
     },
     {
       "id": "wa:lake-stevens",
@@ -116401,7 +116561,7 @@
         ]
       ],
       "region_hint": "wa",
-      "coverage_status": "official_unavailable"
+      "coverage_status": "untracked"
     },
     {
       "id": "wa:lakewood",
@@ -116421,7 +116581,7 @@
         ]
       ],
       "region_hint": "wa",
-      "coverage_status": "official_unavailable"
+      "coverage_status": "untracked"
     },
     {
       "id": "wa:lamont",
@@ -116601,7 +116761,7 @@
         ]
       ],
       "region_hint": "wa",
-      "coverage_status": "official_unavailable"
+      "coverage_status": "untracked"
     },
     {
       "id": "wa:longview",
@@ -116661,7 +116821,7 @@
         ]
       ],
       "region_hint": "wa",
-      "coverage_status": "official_unavailable"
+      "coverage_status": "untracked"
     },
     {
       "id": "wa:lynnwood",
@@ -116681,7 +116841,7 @@
         ]
       ],
       "region_hint": "wa",
-      "coverage_status": "official_unavailable"
+      "coverage_status": "untracked"
     },
     {
       "id": "wa:mabton",
@@ -116761,7 +116921,7 @@
         ]
       ],
       "region_hint": "wa",
-      "coverage_status": "official_unavailable"
+      "coverage_status": "untracked"
     },
     {
       "id": "wa:marcus",
@@ -116801,7 +116961,7 @@
         ]
       ],
       "region_hint": "wa",
-      "coverage_status": "official_unavailable"
+      "coverage_status": "untracked"
     },
     {
       "id": "wa:mason-county",
@@ -116901,7 +117061,7 @@
         ]
       ],
       "region_hint": "wa",
-      "coverage_status": "official_unavailable"
+      "coverage_status": "untracked"
     },
     {
       "id": "wa:mercer-island",
@@ -116921,7 +117081,7 @@
         ]
       ],
       "region_hint": "wa",
-      "coverage_status": "official_unavailable"
+      "coverage_status": "untracked"
     },
     {
       "id": "wa:mesa",
@@ -117001,7 +117161,7 @@
         ]
       ],
       "region_hint": "wa",
-      "coverage_status": "official_unavailable"
+      "coverage_status": "untracked"
     },
     {
       "id": "wa:millwood",
@@ -117061,7 +117221,7 @@
         ]
       ],
       "region_hint": "wa",
-      "coverage_status": "official_unavailable"
+      "coverage_status": "untracked"
     },
     {
       "id": "wa:montesano",
@@ -117181,7 +117341,7 @@
         ]
       ],
       "region_hint": "wa",
-      "coverage_status": "official_unavailable"
+      "coverage_status": "untracked"
     },
     {
       "id": "wa:moxee",
@@ -117221,7 +117381,7 @@
         ]
       ],
       "region_hint": "wa",
-      "coverage_status": "official_unavailable"
+      "coverage_status": "untracked"
     },
     {
       "id": "wa:naches",
@@ -117301,7 +117461,7 @@
         ]
       ],
       "region_hint": "wa",
-      "coverage_status": "official_unavailable"
+      "coverage_status": "untracked"
     },
     {
       "id": "wa:newport",
@@ -117361,7 +117521,7 @@
         ]
       ],
       "region_hint": "wa",
-      "coverage_status": "official_unavailable"
+      "coverage_status": "untracked"
     },
     {
       "id": "wa:north-bend",
@@ -117381,7 +117541,7 @@
         ]
       ],
       "region_hint": "wa",
-      "coverage_status": "official_unavailable"
+      "coverage_status": "untracked"
     },
     {
       "id": "wa:north-bonneville",
@@ -117581,7 +117741,7 @@
         ]
       ],
       "region_hint": "wa",
-      "coverage_status": "official_unavailable"
+      "coverage_status": "untracked"
     },
     {
       "id": "wa:omak",
@@ -117881,7 +118041,7 @@
         ]
       ],
       "region_hint": "wa",
-      "coverage_status": "official_unavailable"
+      "coverage_status": "untracked"
     },
     {
       "id": "wa:port-townsend",
@@ -118161,7 +118321,7 @@
         ]
       ],
       "region_hint": "wa",
-      "coverage_status": "official_unavailable"
+      "coverage_status": "untracked"
     },
     {
       "id": "wa:ridgefield",
@@ -118221,7 +118381,7 @@
         ]
       ],
       "region_hint": "wa",
-      "coverage_status": "covered"
+      "coverage_status": "untracked"
     },
     {
       "id": "wa:rock-island",
@@ -118601,7 +118761,7 @@
         ]
       ],
       "region_hint": "wa",
-      "coverage_status": "official_unavailable"
+      "coverage_status": "untracked"
     },
     {
       "id": "wa:snohomish",
@@ -118661,7 +118821,7 @@
         ]
       ],
       "region_hint": "wa",
-      "coverage_status": "official_unavailable"
+      "coverage_status": "untracked"
     },
     {
       "id": "wa:soap-lake",
@@ -119041,7 +119201,7 @@
         ]
       ],
       "region_hint": "wa",
-      "coverage_status": "official_unavailable"
+      "coverage_status": "untracked"
     },
     {
       "id": "wa:sunnyside",
@@ -119081,7 +119241,7 @@
         ]
       ],
       "region_hint": "wa",
-      "coverage_status": "official_unavailable"
+      "coverage_status": "untracked"
     },
     {
       "id": "wa:tekoa",
@@ -119241,7 +119401,7 @@
         ]
       ],
       "region_hint": "wa",
-      "coverage_status": "official_unavailable"
+      "coverage_status": "untracked"
     },
     {
       "id": "wa:tumwater",
@@ -119261,7 +119421,7 @@
         ]
       ],
       "region_hint": "wa",
-      "coverage_status": "official_unavailable"
+      "coverage_status": "untracked"
     },
     {
       "id": "wa:twisp",
@@ -119341,7 +119501,7 @@
         ]
       ],
       "region_hint": "wa",
-      "coverage_status": "official_unavailable"
+      "coverage_status": "untracked"
     },
     {
       "id": "wa:vader",
@@ -119601,7 +119761,7 @@
         ]
       ],
       "region_hint": "wa",
-      "coverage_status": "official_unavailable"
+      "coverage_status": "untracked"
     },
     {
       "id": "wa:west-richland",
@@ -119821,7 +119981,7 @@
         ]
       ],
       "region_hint": "wa",
-      "coverage_status": "official_unavailable"
+      "coverage_status": "untracked"
     },
     {
       "id": "wa:woodland",
@@ -119861,7 +120021,7 @@
         ]
       ],
       "region_hint": "wa",
-      "coverage_status": "official_unavailable"
+      "coverage_status": "untracked"
     },
     {
       "id": "wa:yacolt",
@@ -119941,7 +120101,7 @@
         ]
       ],
       "region_hint": "wa",
-      "coverage_status": "official_unavailable"
+      "coverage_status": "untracked"
     },
     {
       "id": "wa:yelm",

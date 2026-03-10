@@ -362,7 +362,10 @@ def fetch_us_state_extent(state_fips: str) -> list[list[float]] | None:
 
 
 def load_boundary_bounds(path: Path) -> list[list[float]] | None:
-    payload = load_json(path)
+    try:
+        payload = load_json(path)
+    except (OSError, json.JSONDecodeError):
+        return None
     if payload.get("type") == "FeatureCollection":
         features = payload.get("features", [])
         if not features:
@@ -374,6 +377,11 @@ def load_boundary_bounds(path: Path) -> list[list[float]] | None:
 
 
 def load_us_jump_areas() -> list[dict[str, Any]]:
+    if US_JUMP_CACHE_PATH.exists():
+        try:
+            return load_json(US_JUMP_CACHE_PATH)
+        except (OSError, json.JSONDecodeError):
+            pass
     supported_state_codes = sorted(code for code in STATE_FIPS_TO_REGION if code != "11")
     place_features: list[dict[str, Any]] = []
     county_features: list[dict[str, Any]] = []
@@ -462,9 +470,23 @@ def load_us_jump_areas() -> list[dict[str, Any]]:
 def build_jump_index(data_dir: Path) -> dict[str, Any]:
     meta = load_json(data_dir / "meta.v2.json")
     coverage = load_json(data_dir / "coverage.v1.geojson")
+    existing_jump_index_path = data_dir / "jump-index.v1.json"
+    existing_jump_index = None
+    if existing_jump_index_path.exists():
+        try:
+            existing_jump_index = load_json(existing_jump_index_path)
+        except (OSError, json.JSONDecodeError):
+            existing_jump_index = None
     region_meta_by_id = {
         str(entry.get("id")): entry for entry in meta.get("regions", [])
     }
+    existing_state_bounds_by_id = {}
+    if existing_jump_index:
+        for state in existing_jump_index.get("states", []):
+            state_id = str(state.get("id", "")).strip()
+            bounds = state.get("bounds")
+            if state_id and bounds:
+                existing_state_bounds_by_id[state_id] = bounds
 
     area_map: dict[tuple[str, str], dict[str, Any]] = {}
     coverage_status_map: dict[tuple[str, str], str] = {}
@@ -578,13 +600,9 @@ def build_jump_index(data_dir: Path) -> dict[str, Any]:
     states: list[dict[str, Any]] = []
     for state_meta in US_STATE_META_BY_FIPS.values():
         state_id = state_meta["code"]
-        state_fips = next((fips for fips, meta_item in US_STATE_META_BY_FIPS.items() if meta_item["code"] == state_id), None)
         state_bounds = None
-        if state_fips:
-            try:
-                state_bounds = fetch_us_state_extent(state_fips)
-            except requests.RequestException:
-                state_bounds = None
+        if state_id in existing_state_bounds_by_id:
+            state_bounds = existing_state_bounds_by_id[state_id]
         if not state_bounds:
             state_bounds = union_bounds(
                 [
@@ -593,6 +611,13 @@ def build_jump_index(data_dir: Path) -> dict[str, Any]:
                     if item.get("country_id") == "us" and item.get("state_id") == state_id and item.get("bounds")
                 ]
             )
+        if not state_bounds:
+            state_fips = next((fips for fips, meta_item in US_STATE_META_BY_FIPS.items() if meta_item["code"] == state_id), None)
+            if state_fips:
+                try:
+                    state_bounds = fetch_us_state_extent(state_fips)
+                except requests.RequestException:
+                    state_bounds = None
         if not state_bounds:
             continue
         states.append(

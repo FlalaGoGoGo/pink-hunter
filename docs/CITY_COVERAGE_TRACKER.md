@@ -60,6 +60,16 @@ Last updated: 2026-03-08 (America/Los_Angeles)
 | ✅ | Sunnyvale | 8 | Official jurisdiction boundary | Official Santa Clara County public `Tree Inventories in Santa Clara County` service integrated using the `City = Sunnyvale` subset and official jurisdiction boundary |
 | ✅ | West Sacramento | 1,480 | Official jurisdiction boundary | Official City of West Sacramento `Tree Inventory` ArcGIS layer integrated from the city's GIS service and official jurisdiction boundary |
 | ✅ | West Hollywood | 438 | Official jurisdiction boundary | Official City of West Hollywood public tree inventory integrated from the city's open-data GIS service and official jurisdiction boundary |
+| ✅ | Burbank | 2,134 | Official jurisdiction boundary | Official City of Burbank public TreeKeeper inventory integrated from the city forestry portal and official jurisdiction boundary |
+| ✅ | Camarillo | 964 | Official jurisdiction boundary | Official City of Camarillo public `Trees` ArcGIS layer integrated from the city's GIS service and official jurisdiction boundary |
+| ✅ | Chino | 580 | Official jurisdiction boundary | Official City of Chino public `CityTrees_ResCityMaintSpecIden` ArcGIS layer integrated from the city's GIS service and official jurisdiction boundary |
+| ✅ | Escondido | 1,570 | Official jurisdiction boundary | Official City of Escondido public `TreeInventory` ArcGIS layer integrated from the city's GIS service and official jurisdiction boundary |
+| ✅ | Glendora | 665 | Official jurisdiction boundary | Official City of Glendora public tree inventory layer integrated from the city's ArcGIS service and official jurisdiction boundary |
+| ✅ | La Mesa | 109 | Official jurisdiction boundary | Official City of La Mesa public `Tree Inventory` ArcGIS layer integrated from the city's GIS service and official jurisdiction boundary |
+| ✅ | Redlands | 1,447 | Official jurisdiction boundary | Official City of Redlands public `Street Trees` ArcGIS layer integrated from the city's GIS service and official jurisdiction boundary |
+| ✅ | Santee | 305 | Official jurisdiction boundary | Official City of Santee public urban-forest benefits inventory integrated from the city's ArcGIS service and official jurisdiction boundary |
+| ✅ | Vista | 119 | Official jurisdiction boundary | Official City of Vista public i-Tree benefits inventory integrated from the city's ArcGIS service and official jurisdiction boundary |
+| ✅ | West Covina | 1,052 | Official jurisdiction boundary | Official City of West Covina public `Tree Information` ArcGIS layer integrated from the city's GIS service and official jurisdiction boundary |
 | ✅ | Bell | 93 | Official jurisdiction boundary | Official City of Bell public tree-benefits inventory integrated from the city's ArcGIS service and official jurisdiction boundary |
 | ✅ | San Fernando | 11 | Official jurisdiction boundary | Official City of San Fernando CAL FIRE public tree layer integrated from the city's ArcGIS service and official jurisdiction boundary |
 | ✅ | Washington DC | 16,533 | Official jurisdiction boundary | Urban Tree Canopy (DDOT); ornamental cherry cultivar mapping expanded |

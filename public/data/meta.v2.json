@@ -1,6 +1,6 @@
 {
   "version": "v2",
-  "generated_at": "2026-03-09T20:31:46.270542+00:00",
+  "generated_at": "2026-03-10T00:33:39.968145+00:00",
   "default_region": "wa",
   "coverage_rule": "official_jurisdiction_boundary_only",
   "coverage_skipped_cities": [],
@@ -103,10 +103,10 @@
   "coverage_official_unavailable_skipped_cities": [
     "Vancouver WA"
   ],
-  "source_count": 98,
-  "total_records": 1862769,
-  "included_records": 520398,
-  "unknown_records": 745072,
+  "source_count": 113,
+  "total_records": 1912364,
+  "included_records": 533641,
+  "unknown_records": 781424,
   "regions": [
     {
       "id": "bc",
@@ -157,7 +157,8 @@
         "shard_count": 3,
         "ready": true
       },
-      "largest_shard_warning_level": "none"
+      "largest_shard_warning_level": "none",
+      "coverage_path": "/data/coverage.bc.v1.geojson"
     },
     {
       "id": "ca",
@@ -174,26 +175,35 @@
         ]
       ],
       "data_path": null,
-      "tree_count": 189527,
-      "city_count": 53,
+      "tree_count": 202770,
+      "city_count": 68,
       "cities": [
         "Anaheim",
         "Azusa",
         "Bell",
         "Berkeley",
         "Beverly Hills",
+        "Buena Park",
+        "Burbank",
         "Burlingame",
+        "Camarillo",
+        "Chino",
         "Concord",
+        "Corona",
         "Costa Mesa",
         "Cupertino",
         "El Segundo",
         "Encinitas",
+        "Escondido",
         "Fontana",
         "Fremont",
         "Fullerton",
         "Gilroy",
+        "Glendora",
         "Irvine",
         "La Canada Flintridge",
+        "La Mesa",
+        "La Verne",
         "Laguna Beach",
         "Los Angeles",
         "Los Gatos",
@@ -210,6 +220,7 @@
         "Pomona",
         "Rancho Cucamonga",
         "Rancho Palos Verdes",
+        "Redlands",
         "Riverside",
         "Sacramento",
         "Salinas",
@@ -223,31 +234,36 @@
         "Santa Barbara",
         "Santa Clarita",
         "Santa Monica",
+        "Santee",
         "Saratoga",
         "Solana Beach",
         "South San Francisco",
         "Sunnyvale",
+        "Thousand Oaks",
         "Ventura",
+        "Vista",
+        "West Covina",
         "West Hollywood",
-        "West Sacramento"
+        "West Sacramento",
+        "Yorba Linda"
       ],
-      "raw_bytes": 98391982,
-      "gzip_bytes": 4048669,
+      "raw_bytes": 105325332,
+      "gzip_bytes": 4331872,
       "warning_level": "none",
       "city_split": null,
       "species_counts": {
-        "cherry": 16551,
-        "plum": 43845,
-        "peach": 4600,
-        "magnolia": 120013,
-        "crabapple": 4518
+        "cherry": 16867,
+        "plum": 45867,
+        "peach": 4787,
+        "magnolia": 130662,
+        "crabapple": 4587
       },
       "ownership_groups": [
         "public",
         "private"
       ],
-      "aggregate_raw_bytes": 98391982,
-      "aggregate_gzip_bytes": 4048669,
+      "aggregate_raw_bytes": 105325332,
+      "aggregate_gzip_bytes": 4331872,
       "aggregate_warning_level": "very_large",
       "largest_shard_raw_bytes": 20242132,
       "largest_shard_gzip_bytes": 770544,
@@ -255,11 +271,12 @@
       "area_split": {
         "strategy": "area_shard",
         "index_path": "/data/trees.ca.area-index.v2.json",
-        "area_count": 53,
-        "shard_count": 53,
+        "area_count": 68,
+        "shard_count": 68,
         "ready": true
       },
-      "largest_shard_warning_level": "none"
+      "largest_shard_warning_level": "none",
+      "coverage_path": "/data/coverage.ca.v1.geojson"
     },
     {
       "id": "co",
@@ -307,7 +324,8 @@
         "shard_count": 1,
         "ready": true
       },
-      "largest_shard_warning_level": "none"
+      "largest_shard_warning_level": "none",
+      "coverage_path": "/data/coverage.co.v1.geojson"
     },
     {
       "id": "dc",
@@ -357,7 +375,8 @@
         "shard_count": 1,
         "ready": true
       },
-      "largest_shard_warning_level": "none"
+      "largest_shard_warning_level": "none",
+      "coverage_path": "/data/coverage.dc.v1.geojson"
     },
     {
       "id": "ma",
@@ -408,7 +427,8 @@
         "shard_count": 2,
         "ready": true
       },
-      "largest_shard_warning_level": "none"
+      "largest_shard_warning_level": "none",
+      "coverage_path": "/data/coverage.ma.v1.geojson"
     },
     {
       "id": "md",
@@ -457,7 +477,8 @@
         "shard_count": 1,
         "ready": true
       },
-      "largest_shard_warning_level": "none"
+      "largest_shard_warning_level": "none",
+      "coverage_path": "/data/coverage.md.v1.geojson"
     },
     {
       "id": "nj",
@@ -511,7 +532,8 @@
         "shard_count": 6,
         "ready": true
       },
-      "largest_shard_warning_level": "none"
+      "largest_shard_warning_level": "none",
+      "coverage_path": "/data/coverage.nj.v1.geojson"
     },
     {
       "id": "nv",
@@ -559,7 +581,8 @@
         "shard_count": 1,
         "ready": true
       },
-      "largest_shard_warning_level": "none"
+      "largest_shard_warning_level": "none",
+      "coverage_path": "/data/coverage.nv.v1.geojson"
     },
     {
       "id": "ny",
@@ -608,7 +631,8 @@
         "shard_count": 2,
         "ready": true
       },
-      "largest_shard_warning_level": "none"
+      "largest_shard_warning_level": "none",
+      "coverage_path": "/data/coverage.ny.v1.geojson"
     },
     {
       "id": "on",
@@ -658,7 +682,8 @@
         "shard_count": 2,
         "ready": true
       },
-      "largest_shard_warning_level": "none"
+      "largest_shard_warning_level": "none",
+      "coverage_path": "/data/coverage.on.v1.geojson"
     },
     {
       "id": "or",
@@ -707,7 +732,8 @@
         "shard_count": 1,
         "ready": true
       },
-      "largest_shard_warning_level": "none"
+      "largest_shard_warning_level": "none",
+      "coverage_path": "/data/coverage.or.v1.geojson"
     },
     {
       "id": "pa",
@@ -757,7 +783,8 @@
         "shard_count": 2,
         "ready": true
       },
-      "largest_shard_warning_level": "none"
+      "largest_shard_warning_level": "none",
+      "coverage_path": "/data/coverage.pa.v1.geojson"
     },
     {
       "id": "qc",
@@ -806,7 +833,8 @@
         "shard_count": 1,
         "ready": true
       },
-      "largest_shard_warning_level": "none"
+      "largest_shard_warning_level": "none",
+      "coverage_path": "/data/coverage.qc.v1.geojson"
     },
     {
       "id": "tx",
@@ -856,7 +884,8 @@
         "shard_count": 3,
         "ready": true
       },
-      "largest_shard_warning_level": "none"
+      "largest_shard_warning_level": "none",
+      "coverage_path": "/data/coverage.tx.v1.geojson"
     },
     {
       "id": "ut",
@@ -904,7 +933,8 @@
         "shard_count": 1,
         "ready": true
       },
-      "largest_shard_warning_level": "none"
+      "largest_shard_warning_level": "none",
+      "coverage_path": "/data/coverage.ut.v1.geojson"
     },
     {
       "id": "va",
@@ -954,7 +984,8 @@
         "shard_count": 1,
         "ready": true
       },
-      "largest_shard_warning_level": "none"
+      "largest_shard_warning_level": "none",
+      "coverage_path": "/data/coverage.va.v1.geojson"
     },
     {
       "id": "wa",
@@ -1020,7 +1051,8 @@
         "shard_count": 18,
         "ready": true
       },
-      "largest_shard_warning_level": "none"
+      "largest_shard_warning_level": "none",
+      "coverage_path": "/data/coverage.wa.v1.geojson"
     }
   ],
   "sources": [
@@ -1121,12 +1153,39 @@
       "note": "Integrated from the official Analyze Boston BPRD Trees download, which includes both street and park trees."
     },
     {
+      "name": "Buena Park i-Tree Benefits",
+      "city": "Buena Park",
+      "endpoint": "https://services2.arcgis.com/yrktbS5Xw87hJQvs/ArcGIS/rest/services/Buena_Park_iTree_Benefits_WFL1/FeatureServer",
+      "last_edit_at": "2025-10-14T17:00:23.961000+00:00",
+      "records_fetched": 368,
+      "records_included": 365,
+      "note": "Integrated from the official City of Buena Park public tree inventory layer and official jurisdiction boundary."
+    },
+    {
+      "name": "TreeKeeper Inventory",
+      "city": "Burbank",
+      "endpoint": "https://burbankca.treekeepersoftware.com",
+      "last_edit_at": "",
+      "records_fetched": 37294,
+      "records_included": 2134,
+      "note": "Integrated from the official City of Burbank public TreeKeeper inventory and official jurisdiction boundary."
+    },
+    {
       "name": "City Street Tree Inventory",
       "city": "Burlingame",
       "endpoint": "https://www.burlingame.org/466/Trees-Urban-Forest",
       "last_edit_at": "2025-02-25T14:28:18.205000+00:00",
       "records_fetched": 16603,
       "records_included": 1997
+    },
+    {
+      "name": "Trees",
+      "city": "Camarillo",
+      "endpoint": "https://services3.arcgis.com/EKquOdzev2aNwKyB/arcgis/rest/services/Trees/FeatureServer",
+      "last_edit_at": "2025-08-28T21:20:39.654000+00:00",
+      "records_fetched": 1047,
+      "records_included": 964,
+      "note": "Integrated from the official City of Camarillo public tree inventory layer and official jurisdiction boundary."
     },
     {
       "name": "Street Trees",
@@ -1138,6 +1197,15 @@
       "note": "Integrated from the official City of Cambridge street-tree shapefile download."
     },
     {
+      "name": "City Trees",
+      "city": "Chino",
+      "endpoint": "https://services2.arcgis.com/6f07Mm2LapX6mneF/arcgis/rest/services/CityTrees_ResCityMaintSpecIden/FeatureServer",
+      "last_edit_at": "2015-03-26T14:41:32.850000+00:00",
+      "records_fetched": 580,
+      "records_included": 580,
+      "note": "Integrated from the official City of Chino public tree inventory layer and official jurisdiction boundary."
+    },
+    {
       "name": "Tree Inventory",
       "city": "Concord",
       "endpoint": "https://www.cityofconcord.org/1249/Tree-Inventory",
@@ -1145,6 +1213,15 @@
       "records_fetched": 76296,
       "records_included": 4103,
       "note": "Integrated via the official Concord TreePlotter page and city GIS boundary."
+    },
+    {
+      "name": "Corona Tree Sites",
+      "city": "Corona",
+      "endpoint": "https://services2.arcgis.com/yrktbS5Xw87hJQvs/ArcGIS/rest/services/WebMap_Corona_AllLayers_WFL1/FeatureServer",
+      "last_edit_at": "2023-10-24T21:00:38.445000+00:00",
+      "records_fetched": 2858,
+      "records_included": 2691,
+      "note": "Integrated from the official City of Corona public tree sites layer and official jurisdiction boundary."
     },
     {
       "name": "Costa Mesa Tree Benefits",
@@ -1189,6 +1266,15 @@
       "records_fetched": 27484,
       "records_included": 447,
       "note": "Integrated from the official City of Encinitas public street and parks tree inventory layers and official jurisdiction boundary."
+    },
+    {
+      "name": "Tree Inventory",
+      "city": "Escondido",
+      "endpoint": "https://services2.arcgis.com/eJcVbjTyyZIzZ5Ye/arcgis/rest/services/TreeInventory/FeatureServer",
+      "last_edit_at": "2021-09-14T15:57:30.802000+00:00",
+      "records_fetched": 1716,
+      "records_included": 1570,
+      "note": "Integrated from the official City of Escondido public tree inventory layer and official jurisdiction boundary."
     },
     {
       "name": "Everett TreeKeeper Park Sites",
@@ -1241,6 +1327,15 @@
       "records_fetched": 51,
       "records_included": 43,
       "note": "Integrated from the official Santa Clara County public tree inventory service using the City = Gilroy subset and official jurisdiction boundary."
+    },
+    {
+      "name": "Glendora Public Map Trees",
+      "city": "Glendora",
+      "endpoint": "https://services2.arcgis.com/NQC8oBejgXkIxQpu/arcgis/rest/services/Glendora_Public_Map_WFL1/FeatureServer",
+      "last_edit_at": "2023-08-29T23:23:49.925000+00:00",
+      "records_fetched": 941,
+      "records_included": 665,
+      "note": "Integrated from the official City of Glendora public tree inventory layer and official jurisdiction boundary."
     },
     {
       "name": "TreeKeeper Inventory",
@@ -1302,6 +1397,24 @@
       "records_fetched": 468,
       "records_included": 314,
       "note": "Integrated from the official City of La Canada Flintridge public tree inventory layer and official jurisdiction boundary."
+    },
+    {
+      "name": "Tree Inventory",
+      "city": "La Mesa",
+      "endpoint": "https://services3.arcgis.com/iYP51zxNr6TITn6r/arcgis/rest/services/Tree_Inventory/FeatureServer",
+      "last_edit_at": "2025-11-07T10:59:54.071000+00:00",
+      "records_fetched": 213,
+      "records_included": 109,
+      "note": "Integrated from the official City of La Mesa public tree inventory layer and official jurisdiction boundary."
+    },
+    {
+      "name": "La Verne Tree Benefits Map",
+      "city": "La Verne",
+      "endpoint": "https://services2.arcgis.com/yrktbS5Xw87hJQvs/ArcGIS/rest/services/City_of_La_Verne_Tree_Benefits_Map_WFL1/FeatureServer",
+      "last_edit_at": "2025-03-27T14:24:37.666000+00:00",
+      "records_fetched": 268,
+      "records_included": 226,
+      "note": "Integrated from the official City of La Verne public tree inventory layer and official jurisdiction boundary."
     },
     {
       "name": "City Maintained Tree Inventory",
@@ -1560,6 +1673,15 @@
       "note": "Integrated from the official City of Rancho Palos Verdes public tree inventory layer and official jurisdiction boundary."
     },
     {
+      "name": "Street Trees",
+      "city": "Redlands",
+      "endpoint": "https://services.arcgis.com/FLM8UAw9y5MmuVTV/arcgis/rest/services/Street_Trees/FeatureServer",
+      "last_edit_at": "2023-09-28T18:39:02.475000+00:00",
+      "records_fetched": 1619,
+      "records_included": 1447,
+      "note": "Integrated from the official City of Redlands public street trees layer and official jurisdiction boundary."
+    },
+    {
       "name": "TreeSite",
       "city": "Redmond",
       "endpoint": "https://services7.arcgis.com/9u5SMK7jcrQbBJIC/arcgis/rest/services/TreeSite/FeatureServer/0",
@@ -1715,6 +1837,15 @@
       "note": "Integrated from the official City of Santa Monica public trees feature service and official jurisdiction boundary."
     },
     {
+      "name": "All Boundaries Benefits Canopy",
+      "city": "Santee",
+      "endpoint": "https://services2.arcgis.com/yrktbS5Xw87hJQvs/arcgis/rest/services/CityOfSantee_AllBoundaries_Benefits_Canopy_WFL1/FeatureServer",
+      "last_edit_at": "2026-02-16T17:04:10.525000+00:00",
+      "records_fetched": 361,
+      "records_included": 305,
+      "note": "Integrated from the official City of Santee public tree inventory layer and official jurisdiction boundary."
+    },
+    {
       "name": "Tree Inventories in Santa Clara County",
       "city": "Saratoga",
       "endpoint": "https://www.arcgis.com/home/item.html?id=58f9d735c5b94915ba5374c82415a26f",
@@ -1799,6 +1930,15 @@
       "note": "Integrated from the official Santa Clara County public tree inventory service using the city = Sunnyvale subset and the official jurisdiction boundary."
     },
     {
+      "name": "Landscape Trees",
+      "city": "Thousand Oaks",
+      "endpoint": "https://gis.toaks.gov/server/rest/services/Landscape/MSLandscapeAssets/MapServer/3",
+      "last_edit_at": "",
+      "records_fetched": 670,
+      "records_included": 636,
+      "note": "Integrated from the official City of Thousand Oaks landscape trees layer and official jurisdiction boundary."
+    },
+    {
       "name": "Street Tree Data",
       "city": "Toronto",
       "endpoint": "https://open.toronto.ca/dataset/street-tree-data/",
@@ -1833,6 +1973,15 @@
       "records_included": 6094
     },
     {
+      "name": "Vista i-Tree Benefits",
+      "city": "Vista",
+      "endpoint": "https://services2.arcgis.com/yrktbS5Xw87hJQvs/arcgis/rest/services/City_of_Vista_iTree_benefits/FeatureServer",
+      "last_edit_at": "2025-12-29T16:00:22.003000+00:00",
+      "records_fetched": 137,
+      "records_included": 119,
+      "note": "Integrated from the official City of Vista public tree inventory layer and official jurisdiction boundary."
+    },
+    {
       "name": "City of Walla Walla Trees",
       "city": "Walla Walla",
       "endpoint": "https://gis2.ci.walla-walla.wa.us/arcgis/rest/services/Basemap/GISBaseMap_TreesVisible/MapServer/0",
@@ -1847,6 +1996,15 @@
       "last_edit_at": "",
       "records_fetched": 18366,
       "records_included": 16533
+    },
+    {
+      "name": "West Covina Tree Information",
+      "city": "West Covina",
+      "endpoint": "https://services8.arcgis.com/WV8ogNubjFL2BKPt/arcgis/rest/services/West_Covina_Tree_Information/FeatureServer",
+      "last_edit_at": "2023-08-23T17:28:14.516000+00:00",
+      "records_fetched": 1121,
+      "records_included": 1052,
+      "note": "Integrated from the official City of West Covina public tree inventory layer and official jurisdiction boundary."
     },
     {
       "name": "City Tree Inventory",
@@ -1873,14 +2031,23 @@
       "last_edit_at": "",
       "records_fetched": 510,
       "records_included": 509
+    },
+    {
+      "name": "Yorba Linda i-Tree Results",
+      "city": "Yorba Linda",
+      "endpoint": "https://services2.arcgis.com/yrktbS5Xw87hJQvs/ArcGIS/rest/services/WebMap_YorbaLinda_AllLayers_WFL1/FeatureServer",
+      "last_edit_at": "2024-05-24T16:12:35.273000+00:00",
+      "records_fetched": 487,
+      "records_included": 380,
+      "note": "Integrated from the official City of Yorba Linda public tree inventory layer and official jurisdiction boundary."
     }
   ],
   "species_counts": {
-    "cherry": 173777,
-    "plum": 103126,
-    "peach": 7339,
-    "magnolia": 152263,
-    "crabapple": 83893
+    "cherry": 174093,
+    "plum": 105148,
+    "peach": 7526,
+    "magnolia": 162912,
+    "crabapple": 83962
   },
   "areas": [
     {
@@ -1996,6 +2163,34 @@
       "state_province": "CA"
     },
     {
+      "jurisdiction": "Buena Park",
+      "region": "ca",
+      "tree_count": 365,
+      "species_counts": {
+        "cherry": 0,
+        "plum": 75,
+        "peach": 4,
+        "magnolia": 286,
+        "crabapple": 0
+      },
+      "jurisdiction_type": "city",
+      "state_province": "CA"
+    },
+    {
+      "jurisdiction": "Burbank",
+      "region": "ca",
+      "tree_count": 2134,
+      "species_counts": {
+        "cherry": 0,
+        "plum": 35,
+        "peach": 2,
+        "magnolia": 2096,
+        "crabapple": 1
+      },
+      "jurisdiction_type": "city",
+      "state_province": "CA"
+    },
+    {
       "jurisdiction": "Burlingame",
       "region": "ca",
       "tree_count": 1997,
@@ -2010,6 +2205,34 @@
       "state_province": "CA"
     },
     {
+      "jurisdiction": "Camarillo",
+      "region": "ca",
+      "tree_count": 964,
+      "species_counts": {
+        "cherry": 10,
+        "plum": 148,
+        "peach": 16,
+        "magnolia": 780,
+        "crabapple": 10
+      },
+      "jurisdiction_type": "city",
+      "state_province": "CA"
+    },
+    {
+      "jurisdiction": "Chino",
+      "region": "ca",
+      "tree_count": 580,
+      "species_counts": {
+        "cherry": 251,
+        "plum": 44,
+        "peach": 0,
+        "magnolia": 285,
+        "crabapple": 0
+      },
+      "jurisdiction_type": "city",
+      "state_province": "CA"
+    },
+    {
       "jurisdiction": "Concord",
       "region": "ca",
       "tree_count": 4103,
@@ -2019,6 +2242,20 @@
         "peach": 353,
         "magnolia": 1394,
         "crabapple": 365
+      },
+      "jurisdiction_type": "city",
+      "state_province": "CA"
+    },
+    {
+      "jurisdiction": "Corona",
+      "region": "ca",
+      "tree_count": 2691,
+      "species_counts": {
+        "cherry": 4,
+        "plum": 89,
+        "peach": 20,
+        "magnolia": 2570,
+        "crabapple": 8
       },
       "jurisdiction_type": "city",
       "state_province": "CA"
@@ -2080,6 +2317,20 @@
       "state_province": "CA"
     },
     {
+      "jurisdiction": "Escondido",
+      "region": "ca",
+      "tree_count": 1570,
+      "species_counts": {
+        "cherry": 21,
+        "plum": 677,
+        "peach": 24,
+        "magnolia": 847,
+        "crabapple": 1
+      },
+      "jurisdiction_type": "city",
+      "state_province": "CA"
+    },
+    {
       "jurisdiction": "Fontana",
       "region": "ca",
       "tree_count": 3732,
@@ -2136,6 +2387,20 @@
       "state_province": "CA"
     },
     {
+      "jurisdiction": "Glendora",
+      "region": "ca",
+      "tree_count": 665,
+      "species_counts": {
+        "cherry": 0,
+        "plum": 160,
+        "peach": 0,
+        "magnolia": 505,
+        "crabapple": 0
+      },
+      "jurisdiction_type": "city",
+      "state_province": "CA"
+    },
+    {
       "jurisdiction": "Irvine",
       "region": "ca",
       "tree_count": 986,
@@ -2159,6 +2424,34 @@
         "peach": 16,
         "magnolia": 160,
         "crabapple": 14
+      },
+      "jurisdiction_type": "city",
+      "state_province": "CA"
+    },
+    {
+      "jurisdiction": "La Mesa",
+      "region": "ca",
+      "tree_count": 109,
+      "species_counts": {
+        "cherry": 2,
+        "plum": 43,
+        "peach": 8,
+        "magnolia": 55,
+        "crabapple": 1
+      },
+      "jurisdiction_type": "city",
+      "state_province": "CA"
+    },
+    {
+      "jurisdiction": "La Verne",
+      "region": "ca",
+      "tree_count": 226,
+      "species_counts": {
+        "cherry": 4,
+        "plum": 12,
+        "peach": 4,
+        "magnolia": 202,
+        "crabapple": 4
       },
       "jurisdiction_type": "city",
       "state_province": "CA"
@@ -2388,6 +2681,20 @@
       "state_province": "CA"
     },
     {
+      "jurisdiction": "Redlands",
+      "region": "ca",
+      "tree_count": 1447,
+      "species_counts": {
+        "cherry": 12,
+        "plum": 259,
+        "peach": 65,
+        "magnolia": 1081,
+        "crabapple": 30
+      },
+      "jurisdiction_type": "city",
+      "state_province": "CA"
+    },
+    {
       "jurisdiction": "Riverside",
       "region": "ca",
       "tree_count": 5479,
@@ -2570,6 +2877,20 @@
       "state_province": "CA"
     },
     {
+      "jurisdiction": "Santee",
+      "region": "ca",
+      "tree_count": 305,
+      "species_counts": {
+        "cherry": 0,
+        "plum": 63,
+        "peach": 3,
+        "magnolia": 239,
+        "crabapple": 0
+      },
+      "jurisdiction_type": "city",
+      "state_province": "CA"
+    },
+    {
       "jurisdiction": "Saratoga",
       "region": "ca",
       "tree_count": 6,
@@ -2626,6 +2947,20 @@
       "state_province": "CA"
     },
     {
+      "jurisdiction": "Thousand Oaks",
+      "region": "ca",
+      "tree_count": 636,
+      "species_counts": {
+        "cherry": 3,
+        "plum": 304,
+        "peach": 8,
+        "magnolia": 313,
+        "crabapple": 8
+      },
+      "jurisdiction_type": "city",
+      "state_province": "CA"
+    },
+    {
       "jurisdiction": "Ventura",
       "region": "ca",
       "tree_count": 1322,
@@ -2635,6 +2970,34 @@
         "peach": 15,
         "magnolia": 798,
         "crabapple": 0
+      },
+      "jurisdiction_type": "city",
+      "state_province": "CA"
+    },
+    {
+      "jurisdiction": "Vista",
+      "region": "ca",
+      "tree_count": 119,
+      "species_counts": {
+        "cherry": 0,
+        "plum": 37,
+        "peach": 1,
+        "magnolia": 81,
+        "crabapple": 0
+      },
+      "jurisdiction_type": "city",
+      "state_province": "CA"
+    },
+    {
+      "jurisdiction": "West Covina",
+      "region": "ca",
+      "tree_count": 1052,
+      "species_counts": {
+        "cherry": 9,
+        "plum": 75,
+        "peach": 32,
+        "magnolia": 930,
+        "crabapple": 6
       },
       "jurisdiction_type": "city",
       "state_province": "CA"
@@ -2663,6 +3026,20 @@
         "peach": 9,
         "magnolia": 535,
         "crabapple": 45
+      },
+      "jurisdiction_type": "city",
+      "state_province": "CA"
+    },
+    {
+      "jurisdiction": "Yorba Linda",
+      "region": "ca",
+      "tree_count": 380,
+      "species_counts": {
+        "cherry": 0,
+        "plum": 1,
+        "peach": 0,
+        "magnolia": 379,
+        "crabapple": 0
       },
       "jurisdiction_type": "city",
       "state_province": "CA"

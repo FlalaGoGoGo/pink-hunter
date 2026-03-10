@@ -147,17 +147,25 @@ Live domain:
 - Bell
 - Beverly Hills
 - Berkeley
+- Burbank
 - Burlingame
+- Camarillo
+- Chino
 - Concord
 - Costa Mesa
 - Cupertino
 - El Segundo
+- Encinitas
+- Escondido
 - Fontana
 - Fremont
 - Fullerton
 - Gilroy
+- Glendora
 - Irvine
 - La Canada Flintridge
+- La Mesa
+- Laguna Beach
 - Los Angeles
 - Los Gatos
 - Maywood
@@ -173,12 +181,15 @@ Live domain:
 - Pomona
 - Rancho Cucamonga
 - Rancho Palos Verdes
+- Redlands
 - Riverside
 - Sacramento
 - Salinas
 - San Dimas
 - Santa Clarita
+- Santa Barbara
 - Santa Monica
+- Santee
 - San Diego
 - San Fernando
 - San Francisco
@@ -186,9 +197,13 @@ Live domain:
 - San Mateo
 - San Rafael
 - Saratoga
+- Solana Beach
 - South San Francisco
 - Sunnyvale
+- Ventura
+- Vista
 - West Sacramento
+- West Covina
 - West Hollywood
 
 </details>
