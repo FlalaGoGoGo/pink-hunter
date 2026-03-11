@@ -1,6 +1,58 @@
 {
-  "generated_at": "2026-03-11T04:49:29.507790+00:00",
+  "generated_at": "2026-03-11T19:23:12.439350+00:00",
   "region": "qc",
   "strategy": "area_shard",
-  "items": []
+  "items": [
+    {
+      "jurisdiction": "Montreal",
+      "slug": "montreal",
+      "display_name": "Montreal",
+      "jurisdiction_type": "city",
+      "state_province": "QC",
+      "country": "Canada",
+      "bounds": [
+        [
+          -73.907971,
+          45.428586
+        ],
+        [
+          -73.477656,
+          45.702299
+        ]
+      ],
+      "tree_count": 16258,
+      "zip_codes": [
+        "None"
+      ],
+      "species_counts": {
+        "cherry": 6727,
+        "plum": 88,
+        "peach": 25,
+        "magnolia": 294,
+        "crabapple": 9124
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "montreal-001",
+          "bounds": [
+            [
+              -73.907971,
+              45.428586
+            ],
+            [
+              -73.477656,
+              45.702299
+            ]
+          ],
+          "data_path": "/data/trees.qc.area.montreal.v2.geojson",
+          "tree_count": 16258,
+          "raw_bytes": 8319935,
+          "gzip_bytes": 265892
+        }
+      ]
+    }
+  ]
 }

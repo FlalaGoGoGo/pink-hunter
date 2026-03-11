@@ -1,6 +1,68 @@
 {
-  "generated_at": "2026-03-11T04:49:29.507790+00:00",
+  "generated_at": "2026-03-11T19:23:12.439350+00:00",
   "region": "ut",
   "strategy": "area_shard",
-  "items": []
+  "items": [
+    {
+      "jurisdiction": "Salt Lake City",
+      "slug": "salt-lake-city",
+      "display_name": "Salt Lake City",
+      "jurisdiction_type": "city",
+      "state_province": "UT",
+      "country": "United States",
+      "bounds": [
+        [
+          -112.02198889255153,
+          40.702871390243445
+        ],
+        [
+          -111.8027226376813,
+          40.80966289022474
+        ]
+      ],
+      "tree_count": 7810,
+      "zip_codes": [
+        "84101",
+        "84102",
+        "84103",
+        "84104",
+        "84105",
+        "84106",
+        "84108",
+        "84109",
+        "84111",
+        "84115",
+        "84116"
+      ],
+      "species_counts": {
+        "cherry": 1524,
+        "plum": 2797,
+        "peach": 204,
+        "magnolia": 45,
+        "crabapple": 3240
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "salt-lake-city-001",
+          "bounds": [
+            [
+              -112.02198889255153,
+              40.702871390243445
+            ],
+            [
+              -111.8027226376813,
+              40.80966289022474
+            ]
+          ],
+          "data_path": "/data/trees.ut.area.salt-lake-city.v2.geojson",
+          "tree_count": 7810,
+          "raw_bytes": 4387468,
+          "gzip_bytes": 185657
+        }
+      ]
+    }
+  ]
 }

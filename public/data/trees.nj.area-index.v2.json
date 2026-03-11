@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-03-11T18:28:46.766453+00:00",
+  "generated_at": "2026-03-11T19:23:12.439350+00:00",
   "region": "nj",
   "strategy": "area_shard",
   "items": [
@@ -51,6 +51,57 @@
           "tree_count": 284,
           "raw_bytes": 129580,
           "gzip_bytes": 5700
+        }
+      ]
+    },
+    {
+      "jurisdiction": "Ho-Ho-Kus",
+      "slug": "ho-ho-kus",
+      "display_name": "Ho-Ho-Kus",
+      "jurisdiction_type": "city",
+      "state_province": "NJ",
+      "country": "United States",
+      "bounds": [
+        [
+          -74.114139466244,
+          40.993837240714
+        ],
+        [
+          -74.083316840733,
+          41.00509845986
+        ]
+      ],
+      "tree_count": 18,
+      "zip_codes": [
+        "07423"
+      ],
+      "species_counts": {
+        "cherry": 8,
+        "plum": 3,
+        "peach": 0,
+        "magnolia": 5,
+        "crabapple": 2
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "ho-ho-kus-001",
+          "bounds": [
+            [
+              -74.114139466244,
+              40.993837240714
+            ],
+            [
+              -74.083316840733,
+              41.00509845986
+            ]
+          ],
+          "data_path": "/data/trees.nj.area.ho-ho-kus.v2.geojson",
+          "tree_count": 18,
+          "raw_bytes": 8782,
+          "gzip_bytes": 876
         }
       ]
     },
@@ -320,6 +371,57 @@
           "tree_count": 28,
           "raw_bytes": 13565,
           "gzip_bytes": 1048
+        }
+      ]
+    },
+    {
+      "jurisdiction": "Oradell",
+      "slug": "oradell",
+      "display_name": "Oradell",
+      "jurisdiction_type": "city",
+      "state_province": "NJ",
+      "country": "United States",
+      "bounds": [
+        [
+          -74.048941427545,
+          40.946545868911
+        ],
+        [
+          -74.014276568548,
+          40.95778279998
+        ]
+      ],
+      "tree_count": 23,
+      "zip_codes": [
+        "07649"
+      ],
+      "species_counts": {
+        "cherry": 8,
+        "plum": 12,
+        "peach": 0,
+        "magnolia": 1,
+        "crabapple": 2
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "oradell-001",
+          "bounds": [
+            [
+              -74.048941427545,
+              40.946545868911
+            ],
+            [
+              -74.014276568548,
+              40.95778279998
+            ]
+          ],
+          "data_path": "/data/trees.nj.area.oradell.v2.geojson",
+          "tree_count": 23,
+          "raw_bytes": 10935,
+          "gzip_bytes": 981
         }
       ]
     },

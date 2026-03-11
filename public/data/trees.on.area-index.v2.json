@@ -1,6 +1,109 @@
 {
-  "generated_at": "2026-03-11T04:49:29.507790+00:00",
+  "generated_at": "2026-03-11T19:23:12.439350+00:00",
   "region": "on",
   "strategy": "area_shard",
-  "items": []
+  "items": [
+    {
+      "jurisdiction": "Ottawa",
+      "slug": "ottawa",
+      "display_name": "Ottawa",
+      "jurisdiction_type": "city",
+      "state_province": "ON",
+      "country": "Canada",
+      "bounds": [
+        [
+          -76.27994670105957,
+          44.980306508216366
+        ],
+        [
+          -75.26063675999347,
+          45.51791442692148
+        ]
+      ],
+      "tree_count": 12913,
+      "zip_codes": [
+        "None"
+      ],
+      "species_counts": {
+        "cherry": 2661,
+        "plum": 8,
+        "peach": 0,
+        "magnolia": 154,
+        "crabapple": 10090
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "ottawa-001",
+          "bounds": [
+            [
+              -76.27994670105957,
+              44.980306508216366
+            ],
+            [
+              -75.26063675999347,
+              45.51791442692148
+            ]
+          ],
+          "data_path": "/data/trees.on.area.ottawa.v2.geojson",
+          "tree_count": 12913,
+          "raw_bytes": 6379242,
+          "gzip_bytes": 359729
+        }
+      ]
+    },
+    {
+      "jurisdiction": "Toronto",
+      "slug": "toronto",
+      "display_name": "Toronto",
+      "jurisdiction_type": "city",
+      "state_province": "ON",
+      "country": "Canada",
+      "bounds": [
+        [
+          -79.6378558902,
+          43.5866509121
+        ],
+        [
+          -79.12438726,
+          43.8367290225
+        ]
+      ],
+      "tree_count": 36302,
+      "zip_codes": [
+        "None"
+      ],
+      "species_counts": {
+        "cherry": 30789,
+        "plum": 2273,
+        "peach": 470,
+        "magnolia": 2728,
+        "crabapple": 42
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "toronto-001",
+          "bounds": [
+            [
+              -79.6378558902,
+              43.5866509121
+            ],
+            [
+              -79.12438726,
+              43.8367290225
+            ]
+          ],
+          "data_path": "/data/trees.on.area.toronto.v2.geojson",
+          "tree_count": 36302,
+          "raw_bytes": 17162901,
+          "gzip_bytes": 731296
+        }
+      ]
+    }
+  ]
 }

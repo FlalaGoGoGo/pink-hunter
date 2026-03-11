@@ -1,8 +1,59 @@
 {
-  "generated_at": "2026-03-11T04:49:29.507790+00:00",
+  "generated_at": "2026-03-11T19:23:12.439350+00:00",
   "region": "bc",
   "strategy": "area_shard",
   "items": [
+    {
+      "jurisdiction": "New Westminster",
+      "slug": "new-westminster",
+      "display_name": "New Westminster",
+      "jurisdiction_type": "city",
+      "state_province": "BC",
+      "country": "Canada",
+      "bounds": [
+        [
+          -122.95688184899996,
+          49.17739680600005
+        ],
+        [
+          -122.88560021399996,
+          49.23784194900003
+        ]
+      ],
+      "tree_count": 1786,
+      "zip_codes": [
+        "None"
+      ],
+      "species_counts": {
+        "cherry": 719,
+        "plum": 298,
+        "peach": 0,
+        "magnolia": 610,
+        "crabapple": 159
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "new-westminster-001",
+          "bounds": [
+            [
+              -122.95688184899996,
+              49.17739680600005
+            ],
+            [
+              -122.88560021399996,
+              49.23784194900003
+            ]
+          ],
+          "data_path": "/data/trees.bc.area.new-westminster.v2.geojson",
+          "tree_count": 1786,
+          "raw_bytes": 952340,
+          "gzip_bytes": 40285
+        }
+      ]
+    },
     {
       "jurisdiction": "Vancouver BC",
       "slug": "vancouver-bc",

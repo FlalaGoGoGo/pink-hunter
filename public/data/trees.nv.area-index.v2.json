@@ -1,6 +1,67 @@
 {
-  "generated_at": "2026-03-11T04:49:29.507790+00:00",
+  "generated_at": "2026-03-11T19:23:12.439350+00:00",
   "region": "nv",
   "strategy": "area_shard",
-  "items": []
+  "items": [
+    {
+      "jurisdiction": "Las Vegas",
+      "slug": "las-vegas",
+      "display_name": "Las Vegas",
+      "jurisdiction_type": "city",
+      "state_province": "NV",
+      "country": "United States",
+      "bounds": [
+        [
+          -115.35028713176655,
+          36.14457804241462
+        ],
+        [
+          -115.09974047027158,
+          36.32403148417679
+        ]
+      ],
+      "tree_count": 115,
+      "zip_codes": [
+        "89101",
+        "89102",
+        "89106",
+        "89108",
+        "89117",
+        "89128",
+        "89131",
+        "89138",
+        "89144",
+        "89145"
+      ],
+      "species_counts": {
+        "cherry": 0,
+        "plum": 91,
+        "peach": 11,
+        "magnolia": 7,
+        "crabapple": 6
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "las-vegas-001",
+          "bounds": [
+            [
+              -115.35028713176655,
+              36.14457804241462
+            ],
+            [
+              -115.09974047027158,
+              36.32403148417679
+            ]
+          ],
+          "data_path": "/data/trees.nv.area.las-vegas.v2.geojson",
+          "tree_count": 115,
+          "raw_bytes": 60244,
+          "gzip_bytes": 3235
+        }
+      ]
+    }
+  ]
 }
