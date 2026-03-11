@@ -1,6 +1,6 @@
 {
   "version": "v2",
-  "generated_at": "2026-03-10T19:54:55.115057+00:00",
+  "generated_at": "2026-03-11T04:49:29.507790+00:00",
   "default_region": "wa",
   "coverage_rule": "official_jurisdiction_boundary_only",
   "coverage_skipped_cities": [],
@@ -347,10 +347,10 @@
         "private"
       ],
       "raw_bytes": 57848265,
-      "gzip_bytes": 2396861,
+      "gzip_bytes": 2396860,
       "warning_level": "none",
       "aggregate_raw_bytes": 57848265,
-      "aggregate_gzip_bytes": 2396861,
+      "aggregate_gzip_bytes": 2396860,
       "aggregate_warning_level": "very_large",
       "largest_shard_raw_bytes": 11769936,
       "largest_shard_gzip_bytes": 485947,
@@ -1583,7 +1583,7 @@
       "name": "PW Trees Public Viewer",
       "city": "Gig Harbor",
       "endpoint": "https://services3.arcgis.com/FjNT4j1knnY5Wsw5/arcgis/rest/services/PW_Trees_Public_Viewer/FeatureServer/0",
-      "last_edit_at": "2026-03-10T05:25:47.455000+00:00",
+      "last_edit_at": "2026-03-11T04:06:44.961000+00:00",
       "records_fetched": 64,
       "records_included": 63
     },

@@ -4,6 +4,7 @@ from __future__ import annotations
 import argparse
 import gzip
 import json
+import re
 import sys
 from collections import defaultdict
 from pathlib import Path
@@ -24,6 +25,30 @@ from etl.build_data import (  # noqa: E402
     summarize_species_counts,
     summarize_zip_codes,
 )
+
+
+def normalize_publish_area_filenames(data_dir: Path, region_id: str) -> None:
+    bad_name_pattern = re.compile(
+        rf"^(trees\.{re.escape(region_id)}\.area\.[a-z0-9-]+(?:\.shard-\d{{3}})?\.v2) (?P<copy_num>\d+)\.geojson$"
+    )
+    candidates: dict[str, list[tuple[int, Path]]] = defaultdict(list)
+
+    for path in data_dir.glob(f"trees.{region_id}.area*geojson"):
+        match = bad_name_pattern.match(path.name)
+        if not match:
+            continue
+        canonical_name = f"{match.group(1)}.geojson"
+        candidates[canonical_name].append((int(match.group("copy_num")), path))
+
+    for canonical_name, versions in candidates.items():
+        canonical_path = data_dir / canonical_name
+        versions.sort(key=lambda item: item[0])
+        if not canonical_path.exists():
+            chosen_path = versions[-1][1]
+            chosen_path.rename(canonical_path)
+            versions = [entry for entry in versions if entry[1] != canonical_path]
+        for _, stale_path in versions:
+            stale_path.unlink(missing_ok=True)
 
 
 def load_area_feature_map(data_dir: Path, region_id: str) -> dict[str, list[dict]]:
@@ -55,6 +80,7 @@ def load_area_feature_map(data_dir: Path, region_id: str) -> dict[str, list[dict
 
 def write_region_area_shards(data_dir: Path, region_entry: dict[str, object], generated_at: str) -> None:
     region_id = str(region_entry["id"])
+    normalize_publish_area_filenames(data_dir, region_id)
     area_feature_map = load_area_feature_map(data_dir, region_id)
 
     for stale_path in data_dir.glob(f"trees.{region_id}.area.*.v2.geojson"):

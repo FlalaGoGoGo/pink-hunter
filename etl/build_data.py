@@ -1514,6 +1514,11 @@ def build_featured_area_outputs(
                 if source_id in sources_by_id
             ],
             "confidence_note_ids": area_reference.get("confidence_note_ids", []),
+            "inventory_summary": {
+                "mapped_tree_count": len(resolved_tree_ids),
+                "official_pdf_tree_count": area_reference.get("official_pdf_tree_count"),
+                "official_pdf_buckets": area_reference.get("official_pdf_buckets", []),
+            },
             "bloom_forecast": build_uw_bloom_forecast(area_reference, updated_at),
         }
 

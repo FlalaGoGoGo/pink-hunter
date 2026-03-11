@@ -97,6 +97,42 @@
     "osm_verified_locations",
     "weather_adjustment_clamped"
   ],
+  "inventory_summary": {
+    "mapped_tree_count": 30,
+    "official_pdf_tree_count": 91,
+    "official_pdf_buckets": [
+      {
+        "id": "central",
+        "label": "Central campus",
+        "tree_count": 16
+      },
+      {
+        "id": "east",
+        "label": "East campus",
+        "tree_count": 18
+      },
+      {
+        "id": "north",
+        "label": "North campus",
+        "tree_count": 23
+      },
+      {
+        "id": "south",
+        "label": "South campus",
+        "tree_count": 7
+      },
+      {
+        "id": "west",
+        "label": "West campus",
+        "tree_count": 25
+      },
+      {
+        "id": "misc",
+        "label": "Other coded locations",
+        "tree_count": 2
+      }
+    ]
+  },
   "bloom_forecast": {
     "mode": "historical_fallback",
     "curve_dates": [
@@ -189,7 +225,7 @@
     "peak_date": "2026-03-27",
     "end_date": "2026-04-06",
     "weather_adjustment_days": 0,
-    "updated_at": "2026-03-10T19:54:55.115057+00:00",
+    "updated_at": "2026-03-11T04:49:29.507790+00:00",
     "sample_years": 54,
     "cv_mae_days": 7.348
   }

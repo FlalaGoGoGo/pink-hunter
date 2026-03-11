@@ -25,6 +25,39 @@
         "osm_verified_locations",
         "weather_adjustment_clamped"
       ],
+      "official_pdf_tree_count": 91,
+      "official_pdf_buckets": [
+        {
+          "id": "central",
+          "label": "Central campus",
+          "tree_count": 16
+        },
+        {
+          "id": "east",
+          "label": "East campus",
+          "tree_count": 18
+        },
+        {
+          "id": "north",
+          "label": "North campus",
+          "tree_count": 23
+        },
+        {
+          "id": "south",
+          "label": "South campus",
+          "tree_count": 7
+        },
+        {
+          "id": "west",
+          "label": "West campus",
+          "tree_count": 25
+        },
+        {
+          "id": "misc",
+          "label": "Other coded locations",
+          "tree_count": 2
+        }
+      ],
       "tree_records": [
         {
           "tree_id": "uw-osm-10107514634",

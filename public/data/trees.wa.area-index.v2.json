@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-03-10T19:54:55.115057+00:00",
+  "generated_at": "2026-03-11T04:49:29.507790+00:00",
   "region": "wa",
   "strategy": "area_shard",
   "items": [
@@ -207,7 +207,7 @@
           "data_path": "/data/trees.wa.area.gig-harbor.v2.geojson",
           "tree_count": 63,
           "raw_bytes": 32607,
-          "gzip_bytes": 1957
+          "gzip_bytes": 1956
         }
       ]
     },

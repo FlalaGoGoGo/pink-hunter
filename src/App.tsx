@@ -68,10 +68,16 @@ import type {
   TreeFeatureProps,
   WeatherSnapshot
 } from "./types";
-import { featuredAreaCopy, featuredAreaMeta } from "./featuredAreaContent";
+import {
+  featuredAreaCopy,
+  featuredAreaMeta,
+  formatDistanceKm,
+  formatFeaturedPageLabel
+} from "./featuredAreaContent";
 
 const SNAP_POINTS = [0.4, 0.72, 1] as const;
 const SELECTED_MARKER_IMAGE_ID = "selected-bloom-marker";
+const FEATURED_AREA_PIN_IMAGE_ID = "featured-area-pin-marker";
 const ALL_SPECIES = ["cherry", "plum", "peach", "magnolia", "crabapple"] as const;
 const POINT_LAYER_IDS = [
   "tree-cherry",
@@ -88,6 +94,7 @@ const FALLBACK_STYLE_URL = "https://demotiles.maplibre.org/style.json";
 const ABOUT_SOURCES_PAGE_SIZE = 6;
 const ABOUT_REGION_SUMMARY_PAGE_SIZE = 3;
 const ABOUT_AREA_SUMMARY_PAGE_SIZE = 3;
+const FEATURED_AREA_PAGE_SIZE = 5;
 const BRAND_LOGO_PATH = "/assets/brand/pink-hunter-logo.png";
 const BRAND_MARK_PATH = "/assets/brand/pink-hunter-mark-512.png";
 const SORT_COLLATOR = new Intl.Collator("en", { sensitivity: "base" });
@@ -110,6 +117,12 @@ const COVERAGE_COLORS = {
   coveredLine: "#8a5567",
   unavailableFill: "#d7dbe1",
   unavailableLine: "#8f96a1"
+} as const;
+const FEATURED_AREA_COLORS = {
+  fill: "rgba(133, 112, 242, 0.16)",
+  fillSelected: "rgba(133, 112, 242, 0.24)",
+  line: "#6f5ce6",
+  lineSelected: "#5a45db"
 } as const;
 type BoundsTuple = [[number, number], [number, number]];
 
@@ -1703,6 +1716,19 @@ function boundsCenter(bounds: BoundsTuple): [number, number] {
   return [(minX + maxX) / 2, (minY + maxY) / 2];
 }
 
+function distanceKm(left: [number, number], right: [number, number]): number {
+  const toRadians = (value: number): number => (value * Math.PI) / 180;
+  const earthRadiusKm = 6371;
+  const deltaLat = toRadians(right[1] - left[1]);
+  const deltaLon = toRadians(right[0] - left[0]);
+  const lat1 = toRadians(left[1]);
+  const lat2 = toRadians(right[1]);
+  const a =
+    Math.sin(deltaLat / 2) ** 2 +
+    Math.cos(lat1) * Math.cos(lat2) * Math.sin(deltaLon / 2) ** 2;
+  return earthRadiusKm * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+}
+
 function normalizeSearchText(value: string): string {
   return value.toLowerCase().replace(/[^\p{L}\p{N}]+/gu, " ").trim();
 }
@@ -1732,6 +1758,47 @@ function toTreeCollection(features: TreeCollection["features"]): TreeCollection 
   return {
     type: "FeatureCollection",
     features
+  };
+}
+
+function buildFeaturedAreaBoundsCollection(items: FeaturedAreaIndexItem[]) {
+  return {
+    type: "FeatureCollection" as const,
+    features: items.map((item) => {
+      const [[minLon, minLat], [maxLon, maxLat]] = normalizeBounds(item.bounds);
+      return {
+        type: "Feature" as const,
+        geometry: {
+          type: "Polygon" as const,
+          coordinates: [[
+            [minLon, minLat],
+            [maxLon, minLat],
+            [maxLon, maxLat],
+            [minLon, maxLat],
+            [minLon, minLat]
+          ]]
+        },
+        properties: {
+          id: item.id
+        }
+      };
+    })
+  };
+}
+
+function buildFeaturedAreaPinCollection(items: FeaturedAreaIndexItem[]) {
+  return {
+    type: "FeatureCollection" as const,
+    features: items.map((item) => ({
+      type: "Feature" as const,
+      geometry: {
+        type: "Point" as const,
+        coordinates: item.center
+      },
+      properties: {
+        id: item.id
+      }
+    }))
   };
 }
 
@@ -2091,6 +2158,66 @@ function createSelectedBloomImageData(): ImageData {
   return ctx.getImageData(0, 0, size, size);
 }
 
+function createFeaturedAreaPinImageData(): ImageData {
+  const size = 96;
+  const canvas = document.createElement("canvas");
+  canvas.width = size;
+  canvas.height = size;
+  const context = canvas.getContext("2d");
+  if (!context) {
+    throw new Error("Canvas 2D context is unavailable.");
+  }
+  const ctx = context;
+
+  ctx.clearRect(0, 0, size, size);
+  ctx.translate(size / 2, size / 2 - 4);
+
+  ctx.shadowColor = "rgba(76, 59, 156, 0.26)";
+  ctx.shadowBlur = 16;
+  ctx.shadowOffsetY = 8;
+
+  ctx.beginPath();
+  ctx.moveTo(0, 32);
+  ctx.bezierCurveTo(20, 17, 28, 6, 28, -10);
+  ctx.arc(0, -10, 28, 0, Math.PI, true);
+  ctx.bezierCurveTo(-28, 6, -20, 17, 0, 32);
+  ctx.closePath();
+  ctx.fillStyle = "#7a69f0";
+  ctx.fill();
+
+  ctx.shadowBlur = 0;
+  ctx.shadowOffsetY = 0;
+  ctx.lineWidth = 5;
+  ctx.strokeStyle = "rgba(255,255,255,0.94)";
+  ctx.stroke();
+
+  ctx.beginPath();
+  ctx.arc(0, -10, 17, 0, Math.PI * 2);
+  ctx.fillStyle = "#8a7cff";
+  ctx.fill();
+
+  ctx.beginPath();
+  for (let index = 0; index < 5; index += 1) {
+    const outerAngle = -Math.PI / 2 + index * ((Math.PI * 2) / 5);
+    const innerAngle = outerAngle + Math.PI / 5;
+    const outerX = Math.cos(outerAngle) * 10.5;
+    const outerY = -10 + Math.sin(outerAngle) * 10.5;
+    const innerX = Math.cos(innerAngle) * 4.8;
+    const innerY = -10 + Math.sin(innerAngle) * 4.8;
+    if (index === 0) {
+      ctx.moveTo(outerX, outerY);
+    } else {
+      ctx.lineTo(outerX, outerY);
+    }
+    ctx.lineTo(innerX, innerY);
+  }
+  ctx.closePath();
+  ctx.fillStyle = "#fffafc";
+  ctx.fill();
+
+  return ctx.getImageData(0, 0, size, size);
+}
+
 function isHttpUrl(value: string): boolean {
   return /^https?:\/\//i.test(value);
 }
@@ -2235,6 +2362,7 @@ export default function App(): JSX.Element {
   const [selectedTree, setSelectedTree] = useState<SelectedTree | null>(null);
   const [selectedCoverage, setSelectedCoverage] = useState<SelectedCoverage | null>(null);
   const [selectedFeaturedAreaId, setSelectedFeaturedAreaId] = useState<string | null>(initialUrlState.featuredId);
+  const [featuredAreaPage, setFeaturedAreaPage] = useState(0);
   const [featuredAreaDetailCache, setFeaturedAreaDetailCache] = useState<Record<string, FeaturedAreaDetail>>({});
   const [loadingFeaturedAreaDetail, setLoadingFeaturedAreaDetail] = useState(false);
   const [featuredAreaWeatherCache, setFeaturedAreaWeatherCache] = useState<Record<string, WeatherSnapshot>>({});
@@ -2254,6 +2382,8 @@ export default function App(): JSX.Element {
   const mapRef = useRef<MapEngineMap | null>(null);
   const popupRef = useRef<MapEnginePopup | null>(null);
   const filteredFeaturesRef = useRef<TreeCollection["features"]>([]);
+  const openTreeDetailsRef = useRef<(treeId: string) => void>(() => undefined);
+  const openFeaturedAreaRef = useRef<(area: FeaturedAreaIndexItem) => void>(() => undefined);
   const isDesktopRef = useRef(layoutMode === "desktop_split");
   const dragStateRef = useRef<{ startY: number; startHeight: number; dragging: boolean }>({
     startY: 0,
@@ -2374,6 +2504,14 @@ export default function App(): JSX.Element {
   );
   const selectedFeaturedAreaDetail = selectedFeaturedAreaId ? featuredAreaDetailCache[selectedFeaturedAreaId] ?? null : null;
   const selectedFeaturedAreaWeather = selectedFeaturedAreaId ? featuredAreaWeatherCache[selectedFeaturedAreaId] ?? null : null;
+  const featuredAreaBoundsCollection = useMemo(
+    () => (data ? buildFeaturedAreaBoundsCollection(data.featuredAreas.items) : buildFeaturedAreaBoundsCollection([])),
+    [data]
+  );
+  const featuredAreaPinCollection = useMemo(
+    () => (data ? buildFeaturedAreaPinCollection(data.featuredAreas.items) : buildFeaturedAreaPinCollection([])),
+    [data]
+  );
   const activeLanguageOption = LANGUAGE_OPTIONS.find((option) => option.id === language) ?? LANGUAGE_OPTIONS[0];
 
   useEffect(() => {
@@ -3145,8 +3283,33 @@ export default function App(): JSX.Element {
   const findPanelCopy = FIND_PANEL_COPY[language];
   const discoveryCopy = DISCOVERY_COPY[language];
   const featuredAreaUiCopy = featuredAreaCopy(language);
+  const featuredAreaReferencePoint = userLocation ?? [mapView.lon, mapView.lat];
+  const sortedFeaturedAreas = useMemo(() => {
+    if (!data) {
+      return [] as Array<{ area: FeaturedAreaIndexItem; distanceKm: number }>;
+    }
+    return data.featuredAreas.items
+      .map((area) => ({
+        area,
+        distanceKm: distanceKm(featuredAreaReferencePoint, area.center)
+      }))
+      .sort((left, right) => left.distanceKm - right.distanceKm);
+  }, [data, featuredAreaReferencePoint]);
+  const featuredAreaPageCount = Math.max(1, Math.ceil(sortedFeaturedAreas.length / FEATURED_AREA_PAGE_SIZE));
+  const pagedFeaturedAreas = useMemo(
+    () =>
+      sortedFeaturedAreas.slice(
+        featuredAreaPage * FEATURED_AREA_PAGE_SIZE,
+        (featuredAreaPage + 1) * FEATURED_AREA_PAGE_SIZE
+      ),
+    [featuredAreaPage, sortedFeaturedAreas]
+  );
   const jumpSubnationalLabel = jumpCountry === "us" ? findPanelCopy.jumpState : findPanelCopy.jumpProvince;
   const jumpAnySubnationalLabel = jumpCountry === "us" ? findPanelCopy.jumpAnyState : findPanelCopy.jumpAnyProvince;
+
+  useEffect(() => {
+    setFeaturedAreaPage((current) => Math.min(current, featuredAreaPageCount - 1));
+  }, [featuredAreaPageCount]);
 
   const getJumpAreaDisplayStatus = useCallback(
     (area: JumpArea): JumpAreaDisplayStatusInfo =>
@@ -3486,6 +3649,76 @@ export default function App(): JSX.Element {
           }
         });
 
+        map.addSource("featured-areas", {
+          type: "geojson",
+          data: featuredAreaBoundsCollection
+        });
+
+        map.addSource("featured-area-pins", {
+          type: "geojson",
+          data: featuredAreaPinCollection
+        });
+
+        map.addLayer({
+          id: "featured-area-fill",
+          type: "fill",
+          source: "featured-areas",
+          paint: {
+            "fill-color": FEATURED_AREA_COLORS.fill,
+            "fill-opacity": 1
+          }
+        });
+
+        map.addLayer({
+          id: "featured-area-fill-selected",
+          type: "fill",
+          source: "featured-areas",
+          filter: ["==", ["get", "id"], "__none__"],
+          paint: {
+            "fill-color": FEATURED_AREA_COLORS.fillSelected,
+            "fill-opacity": 1
+          }
+        });
+
+        map.addLayer({
+          id: "featured-area-outline",
+          type: "line",
+          source: "featured-areas",
+          paint: {
+            "line-color": FEATURED_AREA_COLORS.line,
+            "line-width": ["interpolate", ["linear"], ["zoom"], 9, 1.3, 14, 2.3],
+            "line-dasharray": [3, 2]
+          }
+        });
+
+        map.addLayer({
+          id: "featured-area-outline-selected",
+          type: "line",
+          source: "featured-areas",
+          filter: ["==", ["get", "id"], "__none__"],
+          paint: {
+            "line-color": FEATURED_AREA_COLORS.lineSelected,
+            "line-width": ["interpolate", ["linear"], ["zoom"], 9, 2.1, 14, 3.3],
+            "line-dasharray": [3, 2]
+          }
+        });
+
+        if (!map.hasImage(FEATURED_AREA_PIN_IMAGE_ID)) {
+          map.addImage(FEATURED_AREA_PIN_IMAGE_ID, createFeaturedAreaPinImageData());
+        }
+
+        map.addLayer({
+          id: "featured-area-pins",
+          type: "symbol",
+          source: "featured-area-pins",
+          layout: {
+            "icon-image": FEATURED_AREA_PIN_IMAGE_ID,
+            "icon-size": ["interpolate", ["linear"], ["zoom"], 9, 0.34, 13, 0.46, 16, 0.58],
+            "icon-allow-overlap": true,
+            "icon-ignore-placement": true
+          }
+        });
+
         map.addSource("trees", {
           type: "geojson",
           data: filteredCollection,
@@ -3603,6 +3836,10 @@ export default function App(): JSX.Element {
           }
         });
 
+        (map as MapEngineMap & {
+          moveLayer?: (layerId: string, beforeId?: string) => void;
+        }).moveLayer?.("featured-area-pins", "user-location-halo");
+
         map.on("click", "tree-clusters", (event: MapLayerMouseEvent) => {
           const features = map.queryRenderedFeatures(event.point, { layers: ["tree-clusters"] });
           if (features.length === 0) {
@@ -3635,66 +3872,90 @@ export default function App(): JSX.Element {
             });
         });
 
+        const openFeaturedAreaFromLayer = (event: MapLayerMouseEvent): void => {
+          const id = map.queryRenderedFeatures(event.point, {
+            layers: ["featured-area-pins", "featured-area-fill-selected", "featured-area-outline-selected", "featured-area-fill", "featured-area-outline"]
+          })[0]?.properties?.id;
+          if (!id) {
+            return;
+          }
+          const area = featuredAreaById.get(String(id));
+          if (area) {
+            openFeaturedAreaRef.current(area);
+          }
+        };
+
+        ["featured-area-pins", "featured-area-fill-selected", "featured-area-outline-selected", "featured-area-fill", "featured-area-outline"].forEach((layerId) => {
+          map.on("click", layerId, openFeaturedAreaFromLayer);
+        });
+
+        POINT_LAYER_IDS.forEach((layerId) => {
+          map.on("click", layerId, (event: MapLayerMouseEvent) => {
+            const id = map.queryRenderedFeatures(event.point, { layers: [layerId] })[0]?.properties?.id;
+            if (!id) {
+              return;
+            }
+            openTreeDetailsRef.current(String(id));
+          });
+        });
+
         map.on("click", (event: MapLayerMouseEvent) => {
           const clusterFeatures = map.queryRenderedFeatures(event.point, { layers: ["tree-clusters"] });
           if (clusterFeatures.length > 0) {
             return;
           }
 
+          const featuredAreaFeatures = map.queryRenderedFeatures(event.point, {
+            layers: ["featured-area-pins", "featured-area-fill-selected", "featured-area-outline-selected", "featured-area-fill", "featured-area-outline"]
+          });
+          if (featuredAreaFeatures.length > 0) {
+            return;
+          }
+
           const features = map.queryRenderedFeatures(event.point, { layers: [...POINT_LAYER_IDS] });
-          if (features.length === 0) {
-            const coverageFeatures = map.queryRenderedFeatures(event.point, {
-              layers: [
-                "coverage-covered",
-                "coverage-outline",
-                "coverage-official-unavailable",
-                "coverage-unavailable-outline"
-              ]
-            });
-            if (coverageFeatures.length === 0) {
-              return;
-            }
+          if (features.length > 0) {
+            return;
+          }
 
-            const coverageFeature =
-              coverageFeatures.find((feature) => feature.properties?.status === "official_unavailable") ??
-              coverageFeatures[0];
-            const coverageProperties = coverageFeature.properties;
-            const jurisdiction = coverageProperties?.jurisdiction;
-            if (!jurisdiction) {
-              return;
-            }
+          const coverageFeatures = map.queryRenderedFeatures(event.point, {
+            layers: [
+              "coverage-covered",
+              "coverage-outline",
+              "coverage-official-unavailable",
+              "coverage-unavailable-outline"
+            ]
+          });
+          if (coverageFeatures.length === 0) {
+            setSelectedCoverage(null);
+            return;
+          }
 
-            const coverageStatus = String(coverageProperties.status ?? "official_unavailable");
-            if (coverageStatus === "covered") {
-              setSelectedTree(null);
-              setSelectedCoverage(null);
-              return;
-            }
+          const coverageFeature =
+            coverageFeatures.find((feature) => feature.properties?.status === "official_unavailable") ??
+            coverageFeatures[0];
+          const coverageProperties = coverageFeature.properties;
+          const jurisdiction = coverageProperties?.jurisdiction;
+          if (!jurisdiction) {
+            return;
+          }
 
+          const coverageStatus = String(coverageProperties.status ?? "official_unavailable");
+          if (coverageStatus === "covered") {
             setSelectedTree(null);
-            setSelectedCoverage({
-              coordinates: [event.lngLat.lng, event.lngLat.lat],
-              properties: {
-                id: String(coverageProperties.id ?? `coverage-${jurisdiction}`),
-                status: "official_unavailable",
-                jurisdiction: String(jurisdiction),
-                note: String(coverageProperties.note ?? "")
-              }
-            });
+            setSelectedCoverage(null);
             return;
           }
 
-          const id = features[0].properties?.id;
-          if (!id) {
-            return;
-          }
-
-          const matched = filteredFeaturesRef.current.find((feature) => feature.properties.id === id);
-          if (!matched) {
-            return;
-          }
-
-          openTreeDetails(matched.properties.id);
+          setSelectedTree(null);
+          setSelectedCoverage({
+            coordinates: [event.lngLat.lng, event.lngLat.lat],
+            properties: {
+              id: String(coverageProperties.id ?? `coverage-${jurisdiction}`),
+              status: "official_unavailable",
+              jurisdiction: String(jurisdiction),
+              note: String(coverageProperties.note ?? "")
+            }
+          });
         });
 
         map.on("mouseenter", "tree-clusters", () => {
@@ -3705,6 +3966,16 @@ export default function App(): JSX.Element {
         });
 
         POINT_LAYER_IDS.forEach((layerId) => {
+          map.on("mouseenter", layerId, () => {
+            map.getCanvas().style.cursor = "pointer";
+          });
+
+          map.on("mouseleave", layerId, () => {
+            map.getCanvas().style.cursor = "";
+          });
+        });
+
+        ["featured-area-pins", "featured-area-fill-selected", "featured-area-outline-selected", "featured-area-fill", "featured-area-outline"].forEach((layerId) => {
           map.on("mouseenter", layerId, () => {
             map.getCanvas().style.cursor = "pointer";
           });
@@ -3787,6 +4058,9 @@ export default function App(): JSX.Element {
     };
   }, [
     data,
+    featuredAreaBoundsCollection,
+    featuredAreaById,
+    featuredAreaPinCollection,
     initialUrlState.hasViewportParam,
     initialUrlState.lat,
     initialUrlState.lon,
@@ -3824,6 +4098,23 @@ export default function App(): JSX.Element {
       source.setData(displayCoverage);
     }
   }, [displayCoverage]);
+
+  useEffect(() => {
+    const map = mapRef.current;
+    if (!map) {
+      return;
+    }
+
+    const boundsSource = map.getSource("featured-areas") as GeoJSONSource | undefined;
+    if (boundsSource) {
+      boundsSource.setData(featuredAreaBoundsCollection);
+    }
+
+    const pinSource = map.getSource("featured-area-pins") as GeoJSONSource | undefined;
+    if (pinSource) {
+      pinSource.setData(featuredAreaPinCollection);
+    }
+  }, [featuredAreaBoundsCollection, featuredAreaPinCollection]);
 
   useEffect(() => {
     const map = mapRef.current;
@@ -3872,6 +4163,21 @@ export default function App(): JSX.Element {
       map.setFilter("tree-selected-star", ["==", ["get", "id"], selectedId]);
     }
   }, [selectedTree]);
+
+  useEffect(() => {
+    const map = mapRef.current;
+    if (!map) {
+      return;
+    }
+
+    const selectedId = selectedFeaturedAreaId ?? "__none__";
+    if (map.getLayer("featured-area-fill-selected")) {
+      map.setFilter("featured-area-fill-selected", ["==", ["get", "id"], selectedId]);
+    }
+    if (map.getLayer("featured-area-outline-selected")) {
+      map.setFilter("featured-area-outline-selected", ["==", ["get", "id"], selectedId]);
+    }
+  }, [selectedFeaturedAreaId]);
 
   useEffect(() => {
     const map = mapRef.current;
@@ -4047,7 +4353,10 @@ export default function App(): JSX.Element {
   }
 
   function openTreeDetails(treeId: string): void {
-    const matched = loadedActiveRegionTreeById.get(treeId);
+    const matched =
+      loadedActiveRegionTreeById.get(treeId) ??
+      filteredFeaturesRef.current.find((feature) => feature.properties.id === treeId) ??
+      currentTrees.features.find((feature) => feature.properties.id === treeId);
     if (!matched) {
       return;
     }
@@ -4092,6 +4401,11 @@ export default function App(): JSX.Element {
     }
     setActivePanel("details");
   }
+
+  useEffect(() => {
+    openTreeDetailsRef.current = openTreeDetails;
+    openFeaturedAreaRef.current = openFeaturedArea;
+  });
 
   function handleSelectJumpArea(area: JumpArea): void {
     setJumpCountry(area.country_id);
@@ -4658,8 +4972,6 @@ export default function App(): JSX.Element {
                 <FeaturedAreaPanel
                   area={selectedFeaturedAreaDetail}
                   language={language}
-                  onSelectTree={openTreeDetails}
-                  selectedTreeId={null}
                   trees={selectedFeaturedAreaTrees}
                   weather={selectedFeaturedAreaWeather}
                   weatherError={
@@ -4792,7 +5104,7 @@ export default function App(): JSX.Element {
                   </div>
                   <p className="show-block-copy">{featuredAreaUiCopy.sectionBody}</p>
                   <div className="featured-area-index-list">
-                    {data.featuredAreas.items.map((area) => {
+                    {pagedFeaturedAreas.map(({ area, distanceKm: areaDistanceKm }) => {
                       const meta = featuredAreaMeta(language, area.id);
                       return (
                         <button
@@ -4805,17 +5117,50 @@ export default function App(): JSX.Element {
                           onClick={() => openFeaturedArea(area)}
                           type="button"
                         >
-                          <p className="featured-area-eyebrow">{meta.eyebrow}</p>
-                          <strong>{meta.label}</strong>
-                          <span>{meta.description}</span>
-                          <div className="featured-area-index-meta">
-                            <span>{area.tree_count.toLocaleString(language)}</span>
-                            <span>{featuredAreaUiCopy.cardButton}</span>
+                          <div className="featured-area-index-main">
+                            <div>
+                              <p className="featured-area-eyebrow">{meta.eyebrow}</p>
+                              <strong>{meta.label}</strong>
+                              <span>{formatDistanceKm(language, areaDistanceKm)}</span>
+                            </div>
+                            <span aria-hidden="true" className="featured-area-index-arrow">
+                              <svg viewBox="0 0 20 20">
+                                <path
+                                  d="M7 4.5 12.5 10 7 15.5"
+                                  fill="none"
+                                  stroke="currentColor"
+                                  strokeLinecap="round"
+                                  strokeLinejoin="round"
+                                  strokeWidth="2"
+                                />
+                              </svg>
+                            </span>
                           </div>
                         </button>
                       );
                     })}
                   </div>
+                  {featuredAreaPageCount > 1 ? (
+                    <div className="featured-area-pagination">
+                      <button
+                        className="clear-btn featured-area-page-btn"
+                        disabled={featuredAreaPage === 0}
+                        onClick={() => setFeaturedAreaPage((current) => Math.max(0, current - 1))}
+                        type="button"
+                      >
+                        {featuredAreaUiCopy.previousPage}
+                      </button>
+                      <span>{formatFeaturedPageLabel(language, featuredAreaPage + 1, featuredAreaPageCount)}</span>
+                      <button
+                        className="clear-btn featured-area-page-btn"
+                        disabled={featuredAreaPage >= featuredAreaPageCount - 1}
+                        onClick={() => setFeaturedAreaPage((current) => Math.min(featuredAreaPageCount - 1, current + 1))}
+                        type="button"
+                      >
+                        {featuredAreaUiCopy.nextPage}
+                      </button>
+                    </div>
+                  ) : null}
                 </section>
 
                 <section className="show-block">

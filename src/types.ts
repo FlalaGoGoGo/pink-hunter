@@ -193,6 +193,18 @@ export interface FeaturedAreaSource {
   href: string | null;
 }
 
+export interface FeaturedAreaInventoryBucket {
+  id: string;
+  label: string;
+  tree_count: number;
+}
+
+export interface FeaturedAreaInventorySummary {
+  mapped_tree_count: number;
+  official_pdf_tree_count: number | null;
+  official_pdf_buckets: FeaturedAreaInventoryBucket[];
+}
+
 export interface BloomForecast {
   mode: BloomForecastMode;
   curve_dates: string[];
@@ -229,6 +241,7 @@ export interface FeaturedAreaDetail extends FeaturedAreaIndexItem {
   tree_ids: string[];
   sources: FeaturedAreaSource[];
   confidence_note_ids: string[];
+  inventory_summary: FeaturedAreaInventorySummary | null;
   bloom_forecast: BloomForecast;
 }
 
