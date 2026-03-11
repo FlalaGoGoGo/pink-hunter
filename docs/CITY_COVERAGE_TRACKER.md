@@ -1,6 +1,6 @@
 # City Coverage Tracker
 
-Last updated: 2026-03-08 (America/Los_Angeles)
+Last updated: 2026-03-11 (America/Los_Angeles)
 
 ## Integrated (In Product)
 | Done | City | Included Trees | Boundary Rule | Notes |
@@ -18,8 +18,17 @@ Last updated: 2026-03-08 (America/Los_Angeles)
 | ✅ | Cambridge | 1,954 | Official jurisdiction boundary | Official City of Cambridge `Street Trees` shapefile integrated; only current `SiteType = Tree` rows are included |
 | ✅ | Baltimore | 1,920 | Official jurisdiction boundary | Official Baltimore city forestry tree layer integrated from `gis.baltimorecity.gov`; botanical names come from `SPP` |
 | ✅ | Arlington | 1,882 | Official jurisdiction boundary | Official Arlington County `DPR Trees` layer integrated using the official county-equivalent jurisdiction boundary |
+| ✅ | Princeton | 1,310 | Official jurisdiction boundary | Official Princeton public TreeKeeper inventory integrated with the official jurisdiction boundary |
+| ✅ | Millburn | 1,133 | Official jurisdiction boundary | Official Millburn public TreeKeeper inventory integrated with the official jurisdiction boundary |
+| ✅ | Hoboken | 397 | Official jurisdiction boundary | Official City of Hoboken public tree inventory ArcGIS layer integrated with the official jurisdiction boundary |
+| ✅ | Dumont | 284 | Official jurisdiction boundary | Official Dumont public TreeKeeper inventory integrated with the official jurisdiction boundary |
+| ✅ | Westwood | 192 | Official jurisdiction boundary | Official Westwood public TreeKeeper inventory integrated with the official jurisdiction boundary |
+| ✅ | Rutherford | 126 | Official jurisdiction boundary | Official Rutherford public TreeKeeper inventory integrated with the official jurisdiction boundary |
+| ✅ | River Edge | 62 | Official jurisdiction boundary | Official River Edge public TreeKeeper inventory integrated with the official jurisdiction boundary |
 | ✅ | Austin | 675 | Official jurisdiction boundary | Official City of Austin `Tree Inventory` Socrata dataset integrated; invalid projected coordinate rows in the blossom subset are repaired by falling back to the dataset `geometry` point before publish |
+| ✅ | Montclair | 56 | Official jurisdiction boundary | Official Township of Montclair public tree inventory ArcGIS layer integrated with the official jurisdiction boundary |
 | ✅ | Dallas | 53 | Official jurisdiction boundary | Official City of Dallas public TreeKeeper inventory integrated from the city forestry page; blossom rows are filtered from `SITE_ATTR1` and coordinates come from the public lon/lat fields |
+| ✅ | Newark | 28 | Official jurisdiction boundary | Official Newark public TreeKeeper inventory integrated with the official jurisdiction boundary |
 | ✅ | Houston | 8,623 | Official jurisdiction boundary | Official City of Houston `COH Urban Forestry Trees` ArcGIS layer integrated from the city's public tree inventory web map and official jurisdiction boundary |
 | ✅ | Las Vegas | 115 | Official jurisdiction boundary | Official City of Las Vegas `CLV Tree Sites` ArcGIS layer integrated using server-side blossom filtering on `SPP_BOT` / `SPP_COM` |
 | ✅ | Salt Lake City | 7,810 | Official jurisdiction boundary | Official Salt Lake City Public Lands `Urban Forestry Inventory` ArcGIS layer integrated after excluding vacant sites and classifying `SPP` values |
@@ -117,7 +126,6 @@ Last updated: 2026-03-08 (America/Los_Angeles)
 | 🩶 | Monterey | In gray coverage | Official jurisdiction boundary | Official city tree standards and GIS entry points were reviewed, but no public citywide single-tree species dataset was confirmed |
 | 🩶 | Montgomery County, MD | In gray coverage | Official jurisdiction boundary | Official Montgomery County GIS layers were reviewed; the public `Tree Planting Locations` layer is a planting-program dataset rather than a countywide single-tree inventory |
 | 🩶 | Napa | In gray coverage | Official jurisdiction boundary | Official ArcGIS and city data portal searches did not confirm a public citywide single-tree species dataset |
-| 🩶 | Newark | In gray coverage | Official jurisdiction boundary | Official City of Newark open-data and GIS entry points were reviewed, but no verified public citywide single-tree species inventory was confirmed |
 | 🩶 | North Vancouver City | In gray coverage | Official jurisdiction boundary | Official Metro Vancouver administrative boundaries confirm the jurisdiction geometry, but this round did not confirm a public citywide single-tree species inventory for the City of North Vancouver |
 | 🩶 | North Vancouver District | In gray coverage | Official jurisdiction boundary | Official Metro Vancouver administrative boundaries confirm the jurisdiction geometry, but this round did not confirm a public jurisdiction-wide single-tree species inventory for the District of North Vancouver |
 | 🩶 | Redwood City | In gray coverage | Official jurisdiction boundary | Official city GIS and public-works materials were reviewed, but no verified public citywide single-tree dataset was confirmed in this round |
@@ -292,8 +300,14 @@ Last updated: 2026-03-08 (America/Los_Angeles)
 - Integrated `Arlington` from the official Arlington County `DPR Trees` layer using the county-equivalent jurisdiction boundary.
 - Added gray coverage for `Alexandria` after reviewing the official urban-forestry and GIS pages without finding a public single-tree inventory.
 - Confirmed `Montgomery County, MD` currently exposes `Tree Planting Locations`, not a countywide single-tree species inventory.
-- Promoted `Newark` into gray coverage after rechecking official city open-data and GIS entry points without finding a verified public citywide single-tree inventory.
 - Official Essex County open-data entry points were reviewed without confirming a verified countywide single-tree species inventory.
+
+## March 2026 New Jersey Municipal Expansion
+- Integrated `Hoboken` from the official City of Hoboken public tree inventory ArcGIS layer.
+- Integrated `Montclair` from the official Township of Montclair public tree inventory ArcGIS layer.
+- Integrated `Newark` from the official Newark public TreeKeeper inventory.
+- Integrated `Princeton` from the official Princeton public TreeKeeper inventory.
+- Integrated `Millburn`, `Dumont`, `Westwood`, `Rutherford`, and `River Edge` from official municipal public TreeKeeper inventories.
 
 ## March 2026 Seattle-Vancouver Corridor Sweep
 - Rechecked the Seattle-to-Vancouver corridor beyond already-covered cities.
@@ -318,7 +332,6 @@ Last updated: 2026-03-08 (America/Los_Angeles)
 ## March 2026 East Coast / Southern California Follow-up
 - Rechecked `Alexandria, VA`; official city urban-forestry and GIS materials still do not expose a verified public single-tree inventory, so it remains gray coverage.
 - Rechecked `Montgomery County, MD`; the official public `Tree Planting Locations` layer remains a planting-program dataset rather than a countywide single-tree inventory, so it remains gray coverage.
-- Promoted `Newark` into gray coverage after confirming the official city boundary workflow and rechecking official city data sources without finding a verified public single-tree inventory.
 - Official Essex County open-data entry points were reviewed again without confirming a countywide public single-tree inventory.
 - Integrated `San Diego` from the official City of San Diego `Trees (Street Trees)` ArcGIS layer using server-side blossom filtering on `COMMON_NAME`.
 - Confirmed that official public `Los Angeles` TreeKeeper inventory is available at city scale, but it currently remains not integrated because the blossom-filter path for a ~925k-tree public dataset has not yet been safely implemented.

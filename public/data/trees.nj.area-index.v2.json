@@ -1,8 +1,59 @@
 {
-  "generated_at": "2026-03-11T18:10:00+00:00",
+  "generated_at": "2026-03-11T18:28:46.766453+00:00",
   "region": "nj",
   "strategy": "area_shard",
   "items": [
+    {
+      "jurisdiction": "Dumont",
+      "slug": "dumont",
+      "display_name": "Dumont",
+      "jurisdiction_type": "city",
+      "state_province": "NJ",
+      "country": "United States",
+      "bounds": [
+        [
+          -74.0099909766,
+          40.9367808278
+        ],
+        [
+          -73.9765763531,
+          40.9546578336
+        ]
+      ],
+      "tree_count": 284,
+      "zip_codes": [
+        "07628"
+      ],
+      "species_counts": {
+        "cherry": 70,
+        "plum": 174,
+        "peach": 3,
+        "magnolia": 12,
+        "crabapple": 25
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "dumont-001",
+          "bounds": [
+            [
+              -74.0099909766,
+              40.9367808278
+            ],
+            [
+              -73.9765763531,
+              40.9546578336
+            ]
+          ],
+          "data_path": "/data/trees.nj.area.dumont.v2.geojson",
+          "tree_count": 284,
+          "raw_bytes": 129580,
+          "gzip_bytes": 5700
+        }
+      ]
+    },
     {
       "jurisdiction": "Hoboken",
       "slug": "hoboken",
@@ -108,6 +159,58 @@
           "tree_count": 2148,
           "raw_bytes": 1153133,
           "gzip_bytes": 50297
+        }
+      ]
+    },
+    {
+      "jurisdiction": "Millburn",
+      "slug": "millburn",
+      "display_name": "Millburn",
+      "jurisdiction_type": "city",
+      "state_province": "NJ",
+      "country": "United States",
+      "bounds": [
+        [
+          -74.3508807554,
+          40.7159264108
+        ],
+        [
+          -74.2856935099,
+          40.757530182725
+        ]
+      ],
+      "tree_count": 1133,
+      "zip_codes": [
+        "07041",
+        "07078"
+      ],
+      "species_counts": {
+        "cherry": 204,
+        "plum": 670,
+        "peach": 0,
+        "magnolia": 134,
+        "crabapple": 125
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "millburn-001",
+          "bounds": [
+            [
+              -74.3508807554,
+              40.7159264108
+            ],
+            [
+              -74.2856935099,
+              40.757530182725
+            ]
+          ],
+          "data_path": "/data/trees.nj.area.millburn.v2.geojson",
+          "tree_count": 1133,
+          "raw_bytes": 522931,
+          "gzip_bytes": 21943
         }
       ]
     },
@@ -269,6 +372,159 @@
           "tree_count": 1310,
           "raw_bytes": 667873,
           "gzip_bytes": 26227
+        }
+      ]
+    },
+    {
+      "jurisdiction": "River Edge",
+      "slug": "river-edge",
+      "display_name": "River Edge",
+      "jurisdiction_type": "city",
+      "state_province": "NJ",
+      "country": "United States",
+      "bounds": [
+        [
+          -74.042957521471,
+          40.915306962285
+        ],
+        [
+          -74.035613464613,
+          40.943310453783
+        ]
+      ],
+      "tree_count": 62,
+      "zip_codes": [
+        "07661"
+      ],
+      "species_counts": {
+        "cherry": 46,
+        "plum": 0,
+        "peach": 0,
+        "magnolia": 16,
+        "crabapple": 0
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "river-edge-001",
+          "bounds": [
+            [
+              -74.042957521471,
+              40.915306962285
+            ],
+            [
+              -74.035613464613,
+              40.943310453783
+            ]
+          ],
+          "data_path": "/data/trees.nj.area.river-edge.v2.geojson",
+          "tree_count": 62,
+          "raw_bytes": 29957,
+          "gzip_bytes": 1700
+        }
+      ]
+    },
+    {
+      "jurisdiction": "Rutherford",
+      "slug": "rutherford",
+      "display_name": "Rutherford",
+      "jurisdiction_type": "city",
+      "state_province": "NJ",
+      "country": "United States",
+      "bounds": [
+        [
+          -74.122463069845,
+          40.81481790578
+        ],
+        [
+          -74.100878988556,
+          40.84434276528
+        ]
+      ],
+      "tree_count": 126,
+      "zip_codes": [
+        "07070"
+      ],
+      "species_counts": {
+        "cherry": 36,
+        "plum": 50,
+        "peach": 0,
+        "magnolia": 25,
+        "crabapple": 15
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "rutherford-001",
+          "bounds": [
+            [
+              -74.122463069845,
+              40.81481790578
+            ],
+            [
+              -74.100878988556,
+              40.84434276528
+            ]
+          ],
+          "data_path": "/data/trees.nj.area.rutherford.v2.geojson",
+          "tree_count": 126,
+          "raw_bytes": 61135,
+          "gzip_bytes": 3201
+        }
+      ]
+    },
+    {
+      "jurisdiction": "Westwood",
+      "slug": "westwood",
+      "display_name": "Westwood",
+      "jurisdiction_type": "city",
+      "state_province": "NJ",
+      "country": "United States",
+      "bounds": [
+        [
+          -74.048835559165,
+          40.974112817378
+        ],
+        [
+          -74.007369499472,
+          40.998936320613
+        ]
+      ],
+      "tree_count": 192,
+      "zip_codes": [
+        "07675"
+      ],
+      "species_counts": {
+        "cherry": 171,
+        "plum": 12,
+        "peach": 0,
+        "magnolia": 7,
+        "crabapple": 2
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "westwood-001",
+          "bounds": [
+            [
+              -74.048835559165,
+              40.974112817378
+            ],
+            [
+              -74.007369499472,
+              40.998936320613
+            ]
+          ],
+          "data_path": "/data/trees.nj.area.westwood.v2.geojson",
+          "tree_count": 192,
+          "raw_bytes": 99746,
+          "gzip_bytes": 4780
         }
       ]
     }

@@ -1,6 +1,6 @@
 {
   "version": "v2",
-  "generated_at": "2026-03-11T17:56:33.512711+00:00",
+  "generated_at": "2026-03-11T18:28:46.766453+00:00",
   "default_region": "wa",
   "coverage_rule": "official_jurisdiction_boundary_only",
   "coverage_skipped_cities": [],
@@ -103,10 +103,10 @@
   "coverage_official_unavailable_skipped_cities": [
     "Vancouver WA"
   ],
-  "source_count": 36,
-  "total_records": 1186037,
+  "source_count": 41,
+  "total_records": 412771,
   "included_records": 379314,
-  "unknown_records": 99064,
+  "unknown_records": 126373,
   "species_counts": {
     "cherry": 88259,
     "plum": 92796,
@@ -663,40 +663,45 @@
       "available": true,
       "bounds": [
         [
-          -83.30238853338636,
-          36.20905163806406
+          -74.7155625868,
+          40.3168228536
         ],
         [
-          -74.024873,
-          40.855110987915324
+          -73.9765763531,
+          40.998936320613
         ]
       ],
       "data_path": null,
       "coverage_path": "/data/coverage.nj.v1.geojson",
-      "tree_count": 3939,
-      "city_count": 5,
+      "tree_count": 5736,
+      "city_count": 10,
       "cities": [
+        "Dumont",
         "Hoboken",
         "Jersey City",
+        "Millburn",
         "Montclair",
         "Newark",
-        "Princeton"
+        "Princeton",
+        "River Edge",
+        "Rutherford",
+        "Westwood"
       ],
       "species_counts": {
-        "cherry": 3252,
-        "plum": 66,
-        "peach": 2,
-        "magnolia": 239,
-        "crabapple": 380
+        "cherry": 3779,
+        "plum": 972,
+        "peach": 5,
+        "magnolia": 433,
+        "crabapple": 547
       },
       "ownership_groups": [
         "public"
       ],
-      "raw_bytes": 2068424,
-      "gzip_bytes": 85915,
+      "raw_bytes": 2911773,
+      "gzip_bytes": 123239,
       "warning_level": "none",
-      "aggregate_raw_bytes": 2068424,
-      "aggregate_gzip_bytes": 85915,
+      "aggregate_raw_bytes": 2911773,
+      "aggregate_gzip_bytes": 123239,
       "aggregate_warning_level": "none",
       "largest_shard_raw_bytes": 1153133,
       "largest_shard_gzip_bytes": 50297,
@@ -706,8 +711,8 @@
       "area_split": {
         "strategy": "area_shard",
         "index_path": "/data/trees.nj.area-index.v2.json",
-        "area_count": 5,
-        "shard_count": 5,
+        "area_count": 10,
+        "shard_count": 10,
         "ready": true
       }
     },
@@ -2557,6 +2562,15 @@
       "records_included": 1337
     },
     {
+      "name": "TreeKeeper Inventory",
+      "city": "Dumont",
+      "endpoint": "https://dumontnj.treekeepersoftware.com",
+      "last_edit_at": "",
+      "records_fetched": 4483,
+      "records_included": 284,
+      "note": "Integrated from the official Dumont public TreeKeeper inventory and jurisdiction boundary."
+    },
+    {
       "name": "Everett TreeKeeper Park Sites",
       "city": "Everett",
       "endpoint": "https://everettwa.treekeepersoftware.com/cffiles/grids.cfc",
@@ -2605,6 +2619,15 @@
       "last_edit_at": "",
       "records_fetched": 39014,
       "records_included": 3122
+    },
+    {
+      "name": "TreeKeeper Inventory",
+      "city": "Millburn",
+      "endpoint": "https://millburnnj.treekeepersoftware.com",
+      "last_edit_at": "",
+      "records_fetched": 10844,
+      "records_included": 1133,
+      "note": "Integrated from the official Millburn public TreeKeeper inventory and jurisdiction boundary."
     },
     {
       "name": "Tree Inventory",
@@ -2681,6 +2704,24 @@
       "records_fetched": 2218,
       "records_included": 1879,
       "note": ""
+    },
+    {
+      "name": "TreeKeeper Inventory",
+      "city": "River Edge",
+      "endpoint": "https://riveredgenj.treekeepersoftware.com",
+      "last_edit_at": "",
+      "records_fetched": 6153,
+      "records_included": 62,
+      "note": "Integrated from the official River Edge public TreeKeeper inventory and jurisdiction boundary."
+    },
+    {
+      "name": "TreeKeeper Inventory",
+      "city": "Rutherford",
+      "endpoint": "https://rutherfordnj.treekeepersoftware.com",
+      "last_edit_at": "",
+      "records_fetched": 8607,
+      "records_included": 126,
+      "note": "Integrated from the official Rutherford public TreeKeeper inventory and jurisdiction boundary."
     },
     {
       "name": "TreeKeeper Park Sites",
@@ -2802,6 +2843,15 @@
       "last_edit_at": "",
       "records_fetched": 18378,
       "records_included": 16543
+    },
+    {
+      "name": "TreeKeeper Inventory",
+      "city": "Westwood",
+      "endpoint": "https://westwoodnj.treekeepersoftware.com",
+      "last_edit_at": "",
+      "records_fetched": 4862,
+      "records_included": 192,
+      "note": "Integrated from the official Westwood public TreeKeeper inventory and jurisdiction boundary."
     },
     {
       "name": "Yakima Trees",
