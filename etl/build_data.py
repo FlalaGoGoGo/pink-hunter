@@ -2549,6 +2549,44 @@ def city_boundary_query_parts(city: str) -> tuple[str, str]:
 def region_for_city(city: str) -> str:
     if city in REGION_CITY_OVERRIDES:
         return REGION_CITY_OVERRIDES[city]
+    hint = CITY_BOUNDARY_HINTS.get(city, {})
+    state = str(hint.get("state", "")).strip()
+    if state == "53":
+        return "wa"
+    if state == "06":
+        return "ca"
+    if state == "41":
+        return "or"
+    if state == "32":
+        return "nv"
+    if state == "08":
+        return "co"
+    if state == "48":
+        return "tx"
+    if state == "49":
+        return "ut"
+    if state == "11":
+        return "dc"
+    if state == "51":
+        return "va"
+    if state == "24":
+        return "md"
+    if state == "34":
+        return "nj"
+    if state == "36":
+        return "ny"
+    if state == "42":
+        return "pa"
+    if state == "25":
+        return "ma"
+    if state == "04":
+        return "az"
+    if state == "13":
+        return "ga"
+    if state == "17":
+        return "il"
+    if state == "26":
+        return "mi"
     if city.endswith(" BC") or city.endswith(", BC"):
         return "bc"
     if city.endswith(" VA") or city.endswith(", VA"):
