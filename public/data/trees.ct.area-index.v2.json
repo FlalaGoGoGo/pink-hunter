@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-03-11T21:37:15.212278+00:00",
+  "generated_at": "2026-03-11T22:09:20.173625+00:00",
   "region": "ct",
   "strategy": "area_shard",
   "items": [
@@ -51,6 +51,57 @@
           "tree_count": 4502,
           "raw_bytes": 2291224,
           "gzip_bytes": 89123
+        }
+      ]
+    },
+    {
+      "jurisdiction": "Hartford",
+      "slug": "hartford",
+      "display_name": "Hartford",
+      "jurisdiction_type": "city",
+      "state_province": "CT",
+      "country": "United States",
+      "bounds": [
+        [
+          -72.714593833232,
+          41.728375529095
+        ],
+        [
+          -72.670065674604,
+          41.805598777482
+        ]
+      ],
+      "tree_count": 251,
+      "zip_codes": [
+        "None"
+      ],
+      "species_counts": {
+        "cherry": 11,
+        "plum": 201,
+        "peach": 23,
+        "magnolia": 16,
+        "crabapple": 0
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "hartford-001",
+          "bounds": [
+            [
+              -72.714593833232,
+              41.728375529095
+            ],
+            [
+              -72.670065674604,
+              41.805598777482
+            ]
+          ],
+          "data_path": "/data/trees.ct.area.hartford.v2.geojson",
+          "tree_count": 251,
+          "raw_bytes": 117018,
+          "gzip_bytes": 5684
         }
       ]
     },

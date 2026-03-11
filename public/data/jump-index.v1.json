@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-03-11T21:45:04.576134+00:00",
+  "generated_at": "2026-03-11T22:13:33.330344+00:00",
   "countries": [
     {
       "id": "ca",
@@ -19104,6 +19104,26 @@
       "coverage_status": "covered"
     },
     {
+      "id": "ct:hartford",
+      "country_id": "us",
+      "state_id": "ct",
+      "jurisdiction": "Hartford",
+      "display_name": "Hartford",
+      "area_type": "city",
+      "bounds": [
+        [
+          -72.714593833232,
+          41.728375529095
+        ],
+        [
+          -72.670065674604,
+          41.805598777482
+        ]
+      ],
+      "region_hint": "ct",
+      "coverage_status": "covered"
+    },
+    {
       "id": "ct:new-haven",
       "country_id": "us",
       "state_id": "ct",
@@ -19322,6 +19342,26 @@
       ],
       "region_hint": "ma",
       "coverage_status": "untracked"
+    },
+    {
+      "id": "ma:belmont",
+      "country_id": "us",
+      "state_id": "ma",
+      "jurisdiction": "Belmont",
+      "display_name": "Belmont",
+      "area_type": "city",
+      "bounds": [
+        [
+          -71.1986031651,
+          42.3774564869
+        ],
+        [
+          -71.1560378145,
+          42.4113889381
+        ]
+      ],
+      "region_hint": "ma",
+      "coverage_status": "covered"
     },
     {
       "id": "ma:berkshire-county",
@@ -20112,16 +20152,16 @@
       "area_type": "city",
       "bounds": [
         [
-          -71.2703,
-          42.283
+          -71.264878,
+          42.288894
         ],
         [
-          -71.1569,
-          42.3678
+          -71.165706,
+          42.365863215304
         ]
       ],
       "region_hint": "ma",
-      "coverage_status": "untracked"
+      "coverage_status": "covered"
     },
     {
       "id": "ma:norfolk-county",
@@ -37512,16 +37552,16 @@
       "area_type": "city",
       "bounds": [
         [
-          -76.5269,
-          42.4186
+          -76.526236348365,
+          42.421147058702
         ],
         [
-          -76.4698,
-          42.4671
+          -76.471332139992,
+          42.463900314366
         ]
       ],
       "region_hint": "ny",
-      "coverage_status": "untracked"
+      "coverage_status": "covered"
     },
     {
       "id": "ny:jamestown",
@@ -43472,16 +43512,16 @@
       "area_type": "city",
       "bounds": [
         [
-          -76.2045,
-          42.9842
+          -76.199448018137,
+          43.0109275219
         ],
         [
-          -76.0743,
-          43.0861
+          -76.089079568537,
+          43.08285350177
         ]
       ],
       "region_hint": "ny",
-      "coverage_status": "untracked"
+      "coverage_status": "covered"
     },
     {
       "id": "ny:tannersville",

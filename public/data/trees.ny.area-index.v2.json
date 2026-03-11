@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-03-11T21:37:15.212278+00:00",
+  "generated_at": "2026-03-11T22:09:20.173625+00:00",
   "region": "ny",
   "strategy": "area_shard",
   "items": [
@@ -102,6 +102,57 @@
           "tree_count": 4925,
           "raw_bytes": 2459543,
           "gzip_bytes": 111975
+        }
+      ]
+    },
+    {
+      "jurisdiction": "Ithaca",
+      "slug": "ithaca",
+      "display_name": "Ithaca",
+      "jurisdiction_type": "city",
+      "state_province": "NY",
+      "country": "United States",
+      "bounds": [
+        [
+          -76.526236348365,
+          42.421147058702
+        ],
+        [
+          -76.471332139992,
+          42.463900314366
+        ]
+      ],
+      "tree_count": 1357,
+      "zip_codes": [
+        "None"
+      ],
+      "species_counts": {
+        "cherry": 413,
+        "plum": 12,
+        "peach": 5,
+        "magnolia": 39,
+        "crabapple": 888
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "ithaca-001",
+          "bounds": [
+            [
+              -76.526236348365,
+              42.421147058702
+            ],
+            [
+              -76.471332139992,
+              42.463900314366
+            ]
+          ],
+          "data_path": "/data/trees.ny.area.ithaca.v2.geojson",
+          "tree_count": 1357,
+          "raw_bytes": 679937,
+          "gzip_bytes": 29911
         }
       ]
     },
@@ -344,6 +395,57 @@
           "tree_count": 20343,
           "raw_bytes": 11370492,
           "gzip_bytes": 345492
+        }
+      ]
+    },
+    {
+      "jurisdiction": "Syracuse",
+      "slug": "syracuse",
+      "display_name": "Syracuse",
+      "jurisdiction_type": "city",
+      "state_province": "NY",
+      "country": "United States",
+      "bounds": [
+        [
+          -76.199448018137,
+          43.0109275219
+        ],
+        [
+          -76.089079568537,
+          43.08285350177
+        ]
+      ],
+      "tree_count": 697,
+      "zip_codes": [
+        "None"
+      ],
+      "species_counts": {
+        "cherry": 98,
+        "plum": 0,
+        "peach": 0,
+        "magnolia": 11,
+        "crabapple": 588
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "syracuse-001",
+          "bounds": [
+            [
+              -76.199448018137,
+              43.0109275219
+            ],
+            [
+              -76.089079568537,
+              43.08285350177
+            ]
+          ],
+          "data_path": "/data/trees.ny.area.syracuse.v2.geojson",
+          "tree_count": 697,
+          "raw_bytes": 356209,
+          "gzip_bytes": 15175
         }
       ]
     }

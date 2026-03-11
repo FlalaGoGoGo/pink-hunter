@@ -1,6 +1,6 @@
 {
   "version": "v2",
-  "generated_at": "2026-03-11T21:45:04.576134+00:00",
+  "generated_at": "2026-03-11T22:13:33.330344+00:00",
   "default_region": "wa",
   "coverage_rule": "official_jurisdiction_boundary_only",
   "coverage_skipped_cities": [],
@@ -103,10 +103,10 @@
   "coverage_official_unavailable_skipped_cities": [
     "Vancouver WA"
   ],
-  "source_count": 132,
-  "total_records": 2546906,
-  "included_records": 575399,
-  "unknown_records": 985251,
+  "source_count": 137,
+  "total_records": 2606615,
+  "included_records": 580396,
+  "unknown_records": 999097,
   "species_counts": {
     "cherry": 193947,
     "plum": 112010,
@@ -391,33 +391,34 @@
           40.9946683921
         ],
         [
-          -72.86154175,
-          41.34869602
+          -72.670065674604,
+          41.805598777482
         ]
       ],
       "data_path": null,
-      "tree_count": 6951,
-      "city_count": 3,
+      "tree_count": 7202,
+      "city_count": 4,
       "cities": [
         "Greenwich",
+        "Hartford",
         "New Haven",
         "Stamford"
       ],
       "species_counts": {
-        "cherry": 4389,
-        "plum": 166,
-        "peach": 24,
-        "magnolia": 269,
+        "cherry": 4400,
+        "plum": 367,
+        "peach": 47,
+        "magnolia": 285,
         "crabapple": 2103
       },
       "ownership_groups": [
         "public"
       ],
-      "raw_bytes": 3537492,
-      "gzip_bytes": 137623,
+      "raw_bytes": 3654510,
+      "gzip_bytes": 143307,
       "warning_level": "none",
-      "aggregate_raw_bytes": 3537492,
-      "aggregate_gzip_bytes": 137623,
+      "aggregate_raw_bytes": 3654510,
+      "aggregate_gzip_bytes": 143307,
       "aggregate_warning_level": "none",
       "largest_shard_raw_bytes": 2291224,
       "largest_shard_gzip_bytes": 89123,
@@ -425,8 +426,8 @@
       "area_split": {
         "strategy": "area_shard",
         "index_path": "/data/trees.ct.area-index.v2.json",
-        "area_count": 3,
-        "shard_count": 3,
+        "area_count": 4,
+        "shard_count": 4,
         "ready": true
       },
       "largest_shard_warning_level": "none",
@@ -591,32 +592,34 @@
       ],
       "data_path": null,
       "coverage_path": "/data/coverage.ma.v1.geojson",
-      "tree_count": 8733,
-      "city_count": 6,
+      "tree_count": 11425,
+      "city_count": 8,
       "cities": [
+        "Belmont",
         "Boston",
         "Cambridge",
+        "Newton",
         "Somerville",
         "Springfield",
         "Waltham",
         "Worcester"
       ],
       "species_counts": {
-        "cherry": 4903,
-        "plum": 98,
+        "cherry": 5530,
+        "plum": 599,
         "peach": 16,
-        "magnolia": 424,
-        "crabapple": 3292
+        "magnolia": 449,
+        "crabapple": 4831
       },
       "ownership_groups": [
         "public",
         "private"
       ],
-      "raw_bytes": 4373786,
-      "gzip_bytes": 188809,
+      "raw_bytes": 5607362,
+      "gzip_bytes": 229804,
       "warning_level": "none",
-      "aggregate_raw_bytes": 4373786,
-      "aggregate_gzip_bytes": 188809,
+      "aggregate_raw_bytes": 5607362,
+      "aggregate_gzip_bytes": 229804,
       "aggregate_warning_level": "none",
       "largest_shard_raw_bytes": 2246062,
       "largest_shard_gzip_bytes": 87894,
@@ -626,8 +629,8 @@
       "area_split": {
         "strategy": "area_shard",
         "index_path": "/data/trees.ma.area-index.v2.json",
-        "area_count": 6,
-        "shard_count": 6,
+        "area_count": 8,
+        "shard_count": 8,
         "ready": true
       }
     },
@@ -849,33 +852,35 @@
         ],
         [
           -73.70203024,
-          42.962998900252
+          43.08285350177
         ]
       ],
       "data_path": null,
       "coverage_path": "/data/coverage.ny.v1.geojson",
-      "tree_count": 48006,
-      "city_count": 3,
+      "tree_count": 50060,
+      "city_count": 5,
       "cities": [
         "Albany",
         "Buffalo",
-        "New York City"
+        "Ithaca",
+        "New York City",
+        "Syracuse"
       ],
       "species_counts": {
-        "cherry": 32562,
-        "plum": 6974,
-        "peach": 29,
-        "magnolia": 1276,
-        "crabapple": 7165
+        "cherry": 33073,
+        "plum": 6986,
+        "peach": 34,
+        "magnolia": 1326,
+        "crabapple": 8641
       },
       "ownership_groups": [
         "public"
       ],
-      "raw_bytes": 26403442,
-      "gzip_bytes": 854495,
+      "raw_bytes": 27439588,
+      "gzip_bytes": 899581,
       "warning_level": "none",
-      "aggregate_raw_bytes": 26403442,
-      "aggregate_gzip_bytes": 854495,
+      "aggregate_raw_bytes": 27439588,
+      "aggregate_gzip_bytes": 899581,
       "aggregate_warning_level": "none",
       "largest_shard_raw_bytes": 11401075,
       "largest_shard_gzip_bytes": 346577,
@@ -885,8 +890,8 @@
       "area_split": {
         "strategy": "area_shard",
         "index_path": "/data/trees.ny.area-index.v2.json",
-        "area_count": 3,
-        "shard_count": 4,
+        "area_count": 5,
+        "shard_count": 6,
         "ready": true
       }
     },
@@ -3189,6 +3194,15 @@
       "records_included": 653
     },
     {
+      "name": "TreeKeeper Inventory",
+      "city": "Belmont",
+      "endpoint": "https://belmontma.treekeepersoftware.com",
+      "last_edit_at": "",
+      "records_fetched": 9269,
+      "records_included": 221,
+      "note": "Integrated from the official Town of Belmont public TreeKeeper inventory."
+    },
+    {
       "name": "Tree_Berkeley20191107",
       "city": "Berkeley",
       "endpoint": "https://www.arcgis.com/home/item.html?id=88829f4ae7254b5280732e88e65e6df5",
@@ -3437,6 +3451,15 @@
     },
     {
       "name": "TreeKeeper Inventory",
+      "city": "Hartford",
+      "endpoint": "https://hartfordct.treekeepersoftware.com",
+      "last_edit_at": "",
+      "records_fetched": 3276,
+      "records_included": 251,
+      "note": "Integrated from the official City of Hartford public TreeKeeper inventory."
+    },
+    {
+      "name": "TreeKeeper Inventory",
       "city": "Ho-Ho-Kus",
       "endpoint": "https://hohokusnj.treekeepersoftware.com",
       "last_edit_at": "",
@@ -3470,6 +3493,15 @@
       "records_fetched": 988,
       "records_included": 986,
       "note": "Integrated from the official City of Irvine City Trees layer and official city boundary."
+    },
+    {
+      "name": "TreeKeeper Inventory",
+      "city": "Ithaca",
+      "endpoint": "https://ithacany.treekeepersoftware.com",
+      "last_edit_at": "",
+      "records_fetched": 13332,
+      "records_included": 1357,
+      "note": "Integrated from the official City of Ithaca public TreeKeeper inventory."
     },
     {
       "name": "City of Jersey City Tree Inventory",
@@ -3674,6 +3706,15 @@
       "records_fetched": 2365,
       "records_included": 2286,
       "note": "Integrated from the official City of Newport Beach public tree inventory dashboard layer and official jurisdiction boundary."
+    },
+    {
+      "name": "TreeKeeper Inventory",
+      "city": "Newton",
+      "endpoint": "https://newtonma.treekeepersoftware.com",
+      "last_edit_at": "",
+      "records_fetched": 24490,
+      "records_included": 2471,
+      "note": "Integrated from the official City of Newton public TreeKeeper inventory."
     },
     {
       "name": "Oakland Street Trees",
@@ -4107,6 +4148,15 @@
       "records_fetched": 8,
       "records_included": 8,
       "note": "Integrated from the official Santa Clara County public tree inventory service using the city = Sunnyvale subset and the official jurisdiction boundary."
+    },
+    {
+      "name": "TreeKeeper Inventory",
+      "city": "Syracuse",
+      "endpoint": "https://syracuseny.treekeepersoftware.com",
+      "last_edit_at": "",
+      "records_fetched": 9555,
+      "records_included": 697,
+      "note": "Integrated from the official City of Syracuse public TreeKeeper inventory."
     },
     {
       "name": "TreeKeeper Inventory",

@@ -1,8 +1,59 @@
 {
-  "generated_at": "2026-03-11T21:37:15.212278+00:00",
+  "generated_at": "2026-03-11T22:09:20.173625+00:00",
   "region": "ma",
   "strategy": "area_shard",
   "items": [
+    {
+      "jurisdiction": "Belmont",
+      "slug": "belmont",
+      "display_name": "Belmont",
+      "jurisdiction_type": "city",
+      "state_province": "MA",
+      "country": "United States",
+      "bounds": [
+        [
+          -71.1986031651,
+          42.3774564869
+        ],
+        [
+          -71.1560378145,
+          42.4113889381
+        ]
+      ],
+      "tree_count": 221,
+      "zip_codes": [
+        "None"
+      ],
+      "species_counts": {
+        "cherry": 66,
+        "plum": 52,
+        "peach": 0,
+        "magnolia": 13,
+        "crabapple": 90
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "belmont-001",
+          "bounds": [
+            [
+              -71.1986031651,
+              42.3774564869
+            ],
+            [
+              -71.1560378145,
+              42.4113889381
+            ]
+          ],
+          "data_path": "/data/trees.ma.area.belmont.v2.geojson",
+          "tree_count": 221,
+          "raw_bytes": 104910,
+          "gzip_bytes": 4974
+        }
+      ]
+    },
     {
       "jurisdiction": "Boston",
       "slug": "boston",
@@ -138,6 +189,57 @@
           "tree_count": 1954,
           "raw_bytes": 934920,
           "gzip_bytes": 47874
+        }
+      ]
+    },
+    {
+      "jurisdiction": "Newton",
+      "slug": "newton",
+      "display_name": "Newton",
+      "jurisdiction_type": "city",
+      "state_province": "MA",
+      "country": "United States",
+      "bounds": [
+        [
+          -71.264878,
+          42.288894
+        ],
+        [
+          -71.165706,
+          42.365863215304
+        ]
+      ],
+      "tree_count": 2471,
+      "zip_codes": [
+        "None"
+      ],
+      "species_counts": {
+        "cherry": 561,
+        "plum": 449,
+        "peach": 0,
+        "magnolia": 12,
+        "crabapple": 1449
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "newton-001",
+          "bounds": [
+            [
+              -71.264878,
+              42.288894
+            ],
+            [
+              -71.165706,
+              42.365863215304
+            ]
+          ],
+          "data_path": "/data/trees.ma.area.newton.v2.geojson",
+          "tree_count": 2471,
+          "raw_bytes": 1128666,
+          "gzip_bytes": 36021
         }
       ]
     },
