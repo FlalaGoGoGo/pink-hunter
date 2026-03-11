@@ -5,30 +5,110 @@
   "detail_path": "/data/featured-area.uw-seattle-quad.v1.json",
   "bounds": [
     [
-      -122.30905,
-      47.65605
+      -122.3185,
+      47.6504
     ],
     [
-      -122.30595,
-      47.65835
+      -122.2987,
+      47.664
+    ]
+  ],
+  "outline": [
+    [
+      -122.3185,
+      47.6552
+    ],
+    [
+      -122.3176,
+      47.6581
+    ],
+    [
+      -122.3154,
+      47.6609
+    ],
+    [
+      -122.3118,
+      47.6637
+    ],
+    [
+      -122.3079,
+      47.664
+    ],
+    [
+      -122.3029,
+      47.6638
+    ],
+    [
+      -122.299,
+      47.6616
+    ],
+    [
+      -122.2987,
+      47.6583
+    ],
+    [
+      -122.2992,
+      47.6548
+    ],
+    [
+      -122.3009,
+      47.6514
+    ],
+    [
+      -122.305,
+      47.6504
+    ],
+    [
+      -122.3118,
+      47.6506
+    ],
+    [
+      -122.316,
+      47.6525
+    ],
+    [
+      -122.3182,
+      47.6542
     ]
   ],
   "center": [
-    -122.30752,
-    47.65712
+    -122.3086,
+    47.6572
   ],
   "weather_point": [
-    -122.30752,
-    47.65712
+    -122.3086,
+    47.6572
   ],
   "species_focus": [
     "cherry"
   ],
   "default_species": [
-    "cherry"
+    "cherry",
+    "plum",
+    "crabapple"
   ],
-  "tree_count": 30,
+  "tree_count": 50,
   "tree_ids": [
+    "seattle-66869217",
+    "seattle-66869772",
+    "seattle-66876777",
+    "seattle-66887446",
+    "seattle-66888328",
+    "seattle-66889852",
+    "seattle-66896881",
+    "seattle-66897046",
+    "seattle-66899408",
+    "seattle-66903516",
+    "seattle-66916050",
+    "seattle-66918625",
+    "seattle-66934460",
+    "seattle-66963149",
+    "seattle-66969869",
+    "seattle-67185667",
+    "seattle-67246851",
+    "seattle-67255375",
+    "seattle-67272749",
+    "seattle-67275192",
     "uw-osm-10107514634",
     "uw-osm-10107514635",
     "uw-osm-7797158569",
@@ -98,7 +178,7 @@
     "weather_adjustment_clamped"
   ],
   "inventory_summary": {
-    "mapped_tree_count": 30,
+    "mapped_tree_count": 50,
     "official_pdf_tree_count": 91,
     "official_pdf_buckets": [
       {
@@ -225,7 +305,7 @@
     "peak_date": "2026-03-27",
     "end_date": "2026-04-06",
     "weather_adjustment_days": 0,
-    "updated_at": "2026-03-11T04:49:29.507790+00:00",
+    "updated_at": "2026-03-11T05:44:39Z",
     "sample_years": 54,
     "cv_mae_days": 7.348
   }

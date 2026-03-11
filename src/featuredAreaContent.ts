@@ -376,44 +376,44 @@ const FEATURED_AREA_METADATA: Record<
 > = {
   "uw-seattle-quad": {
     "en-US": {
-      label: "UW Seattle Quad",
+      label: "UW Seattle Campus",
       eyebrow: "University of Washington",
-      description: "A campus pilot centered on the Quad with bloom timing, weather, and a tighter cherry inventory view."
+      description: "A campus-wide blossom pilot with bloom timing, weather, and a fuller UW tree inventory view."
     },
     "zh-CN": {
-      label: "UW Seattle Quad",
+      label: "UW Seattle Campus",
       eyebrow: "University of Washington",
-      description: "围绕 Quad 做的校园试点，把开花时间、天气和更紧凑的樱花树数据放在一起。"
+      description: "覆盖 UW Seattle 校园重点观赏区的试点，把开花时间、天气和更完整的树木数据放在一起。"
     },
     "zh-TW": {
-      label: "UW Seattle Quad",
+      label: "UW Seattle Campus",
       eyebrow: "University of Washington",
-      description: "圍繞 Quad 做的校園試點，把開花時間、天氣與更精簡的櫻花樹資料放在一起。"
+      description: "覆蓋 UW Seattle 校園重點觀賞區的試點，把開花時間、天氣與更完整的樹木資料放在一起。"
     },
     "es-ES": {
-      label: "UW Seattle Quad",
+      label: "UW Seattle Campus",
       eyebrow: "University of Washington",
-      description: "Piloto de campus centrado en el Quad con fechas de floración, tiempo y un inventario más claro."
+      description: "Piloto para todo el campus con floración, tiempo y una vista más completa del arbolado de UW."
     },
     "ko-KR": {
-      label: "UW Seattle Quad",
+      label: "UW Seattle Campus",
       eyebrow: "University of Washington",
-      description: "Quad를 중심으로 개화 시기, 날씨, 더 정리된 벚나무 데이터를 묶은 캠퍼스 시범판입니다."
+      description: "UW Seattle 캠퍼스 주요 관람 구역을 묶어 개화 시기, 날씨, 더 완전한 나무 데이터를 보여주는 시범판입니다."
     },
     "ja-JP": {
-      label: "UW Seattle Quad",
+      label: "UW Seattle Campus",
       eyebrow: "University of Washington",
-      description: "Quad を中心に、開花時期と天気、整理した桜データをまとめたキャンパス試験版です。"
+      description: "UW Seattle キャンパス全体の注目観賞エリアを対象に、開花時期と天気、より充実した樹木データをまとめた試験版です。"
     },
     "fr-FR": {
-      label: "UW Seattle Quad",
+      label: "UW Seattle Campus",
       eyebrow: "University of Washington",
-      description: "Pilote sur le campus autour du Quad avec les dates de floraison, la météo et un inventaire plus lisible."
+      description: "Pilote à l'échelle du campus avec floraison, météo et une vue plus complète des arbres UW."
     },
     "vi-VN": {
-      label: "UW Seattle Quad",
+      label: "UW Seattle Campus",
       eyebrow: "University of Washington",
-      description: "Bản thử nghiệm trong khuôn viên tập trung vào Quad, gộp thời gian nở hoa, thời tiết và dữ liệu cây gọn hơn."
+      description: "Bản thử nghiệm cho toàn khuôn viên UW Seattle, gộp thời gian nở hoa, thời tiết và dữ liệu cây đầy đủ hơn."
     }
   }
 };

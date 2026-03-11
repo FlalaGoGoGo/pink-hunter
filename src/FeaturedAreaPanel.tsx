@@ -45,12 +45,11 @@ type InventoryGroupSummary = {
 };
 
 const SVG_WIDTH = 1200;
-const SVG_HEIGHT = 340;
+const SVG_HEIGHT = 376;
 const CHART_LEFT = 72;
 const CHART_RIGHT = 40;
-const CHART_TOP = 44;
-const CHART_BOTTOM = 118;
-const ICON_ROW_BOTTOM = 42;
+const CHART_TOP = 34;
+const CHART_BOTTOM = 76;
 
 function dateNumber(dateString: string): number {
   return new Date(`${dateString}T12:00:00Z`).getTime();
@@ -241,8 +240,15 @@ function ForecastCurve({
     () => applyWeatherAdjustmentToForecast(areaId, forecast, weather),
     [areaId, forecast, weather]
   );
-  const weatherDays = useMemo(() => futureWeatherDays(weather), [weather]);
-  const allDates = adjustedForecast.curve_dates;
+  const visibleStart = adjustedForecast.start_date;
+  const visibleEnd = adjustedForecast.end_date;
+  const visiblePairs = adjustedForecast.curve_dates
+    .map((date, index) => ({
+      date,
+      value: adjustedForecast.curve_values[index] ?? 0
+    }))
+    .filter((pair) => pair.date >= visibleStart && pair.date <= visibleEnd);
+  const allDates = visiblePairs.map((pair) => pair.date);
   const minDate = allDates[0] ?? adjustedForecast.start_date;
   const maxDate = allDates[allDates.length - 1] ?? adjustedForecast.end_date;
   const dateSpan = Math.max(1, dateNumber(maxDate) - dateNumber(minDate));
@@ -252,10 +258,9 @@ function ForecastCurve({
     CHART_LEFT + ((dateNumber(date) - dateNumber(minDate)) / dateSpan) * chartWidth;
   const yForValue = (value: number): number => CHART_TOP + chartHeight - (value / 100) * chartHeight;
 
-  const linePath = adjustedForecast.curve_dates
-    .map((date, index) => {
-      const value = adjustedForecast.curve_values[index] ?? 0;
-      return `${index === 0 ? "M" : "L"} ${xForDate(date).toFixed(1)} ${yForValue(value).toFixed(1)}`;
+  const linePath = visiblePairs
+    .map((pair, index) => {
+      return `${index === 0 ? "M" : "L"} ${xForDate(pair.date).toFixed(1)} ${yForValue(pair.value).toFixed(1)}`;
     })
     .join(" ");
   const areaPath = `${linePath} L ${xForDate(maxDate).toFixed(1)} ${(CHART_TOP + chartHeight).toFixed(1)} L ${xForDate(minDate).toFixed(1)} ${(CHART_TOP + chartHeight).toFixed(1)} Z`;
@@ -278,8 +283,8 @@ function ForecastCurve({
     >
       <defs>
         <linearGradient id="featured-area-curve-fill" x1="0" x2="0" y1="0" y2="1">
-          <stop offset="0%" stopColor="rgba(132, 111, 240, 0.36)" />
-          <stop offset="100%" stopColor="rgba(132, 111, 240, 0.06)" />
+          <stop offset="0%" stopColor="rgba(237, 121, 173, 0.34)" />
+          <stop offset="100%" stopColor="rgba(237, 121, 173, 0.07)" />
         </linearGradient>
       </defs>
       <rect className="featured-area-chart-bg" height={SVG_HEIGHT} rx="28" ry="28" width={SVG_WIDTH} x="0" y="0" />
@@ -311,17 +316,6 @@ function ForecastCurve({
         );
       })}
 
-      {weatherDays.map((day) => {
-        const x = xForDate(day.date);
-        return (
-          <g className="featured-area-curve-weather" key={day.date} transform={`translate(${x - 9}, ${SVG_HEIGHT - ICON_ROW_BOTTOM - 16})`}>
-            <WeatherIcon code={day.weather_code} className="featured-area-chart-icon" size={18} />
-            <text className="featured-area-curve-weather-date" x="10" y="32">
-              {formatFeaturedWeekday(language, day.date)}
-            </text>
-          </g>
-        );
-      })}
     </svg>
   );
 }
@@ -425,11 +419,13 @@ export function FeaturedAreaPanel({
         <div className="featured-area-mode-badge">{adjustedForecast.mode === "ml" ? copy.forecastModeMl : copy.forecastModeFallback}</div>
       </header>
 
-      <section className="featured-area-section featured-area-forecast-shell">
-        <div className="featured-area-forecast-header">
+      <section className="featured-area-block featured-area-forecast-shell">
+        <div className="featured-area-block-head">
           <div>
             <h4>{copy.chartTitle}</h4>
-            <p>{describeWeatherAdjustment(language, adjustedForecast.weather_adjustment_days)}</p>
+            <p className="featured-area-section-copy">
+              {describeWeatherAdjustment(language, adjustedForecast.weather_adjustment_days)}
+            </p>
           </div>
           <div className="featured-area-updated">
             {copy.updatedAt}: {new Date(adjustedForecast.updated_at).toLocaleDateString(language)}
@@ -440,42 +436,49 @@ export function FeaturedAreaPanel({
           {metricChip(copy.peakLabel, formatFeaturedDate(language, adjustedForecast.peak_date))}
           {metricChip(copy.endLabel, formatFeaturedDate(language, adjustedForecast.end_date))}
         </div>
-        <ForecastCurve areaId={area.id} forecast={area.bloom_forecast} language={language} weather={weather} />
+        <div className="featured-area-chart-shell">
+          <ForecastCurve areaId={area.id} forecast={area.bloom_forecast} language={language} weather={weather} />
+        </div>
       </section>
 
-      <section className="featured-area-section featured-area-weather-shell">
-        <div className="featured-area-section-head">
+      <section className="featured-area-block">
+        <div className="featured-area-block-head">
           <h4>{copy.weatherTitle}</h4>
         </div>
         {weatherLoading ? <p className="featured-area-section-copy">{copy.weatherLoading}</p> : null}
         {!weatherLoading && weatherError ? <p className="featured-area-section-copy">{copy.weatherUnavailable}</p> : null}
         {!weatherLoading && !weatherError && weatherDays.length > 0 ? (
-          <div className="featured-area-weather-list">
-            {weatherDays.map((day) => {
-              const left = ((day.temperature_min_c - weatherMin) / weatherRangeSpan) * 100;
-              const width = ((day.temperature_max_c - day.temperature_min_c) / weatherRangeSpan) * 100;
-              return (
-                <div className="featured-area-weather-row" key={day.date}>
-                  <div className="featured-area-weather-day">
-                    <strong>{formatFeaturedWeekday(language, day.date)}</strong>
-                    <span>{formatFeaturedDate(language, day.date)}</span>
+          <div className="featured-area-weather-shell">
+            <div className="featured-area-weather-list">
+              {weatherDays.map((day) => {
+                const left = ((day.temperature_min_c - weatherMin) / weatherRangeSpan) * 100;
+                const width = ((day.temperature_max_c - day.temperature_min_c) / weatherRangeSpan) * 100;
+                return (
+                  <div className="featured-area-weather-row" key={day.date}>
+                    <div className="featured-area-weather-day">
+                      <strong>{formatFeaturedWeekday(language, day.date)}</strong>
+                      <span>{formatFeaturedDate(language, day.date)}</span>
+                    </div>
+                    <div className="featured-area-weather-icon-col">
+                      <WeatherIcon code={day.weather_code} className="featured-area-weather-icon" size={24} />
+                      <span>{featuredAreaWeatherLabel(language, day.weather_code)}</span>
+                    </div>
+                    <div className="featured-area-weather-rain">
+                      {day.precipitation_probability_max == null ? "--" : `${Math.round(day.precipitation_probability_max)}%`}
+                      <span>{copy.rainChanceShort}</span>
+                    </div>
+                    <div className="featured-area-weather-temp-min">{Math.round(day.temperature_min_c)}°</div>
+                    <div className="featured-area-weather-track" aria-label={copy.tempRangeLabel}>
+                      <div
+                        className="featured-area-weather-range"
+                        style={{ left: `${left}%`, width: `${Math.max(width, 10)}%` }}
+                      />
+                    </div>
+                    <div className="featured-area-weather-temp-max">{Math.round(day.temperature_max_c)}°</div>
                   </div>
-                  <div className="featured-area-weather-icon-col">
-                    <WeatherIcon code={day.weather_code} className="featured-area-weather-icon" size={20} />
-                    <span>{featuredAreaWeatherLabel(language, day.weather_code)}</span>
-                  </div>
-                  <div className="featured-area-weather-rain">
-                    {day.precipitation_probability_max == null ? "--" : `${Math.round(day.precipitation_probability_max)}%`}
-                    <span>{copy.rainChanceShort}</span>
-                  </div>
-                  <div className="featured-area-weather-temp-min">{Math.round(day.temperature_min_c)}°</div>
-                  <div className="featured-area-weather-track" aria-label={copy.tempRangeLabel}>
-                    <div className="featured-area-weather-range" style={{ left: `${left}%`, width: `${Math.max(width, 10)}%` }} />
-                  </div>
-                  <div className="featured-area-weather-temp-max">{Math.round(day.temperature_max_c)}°</div>
-                </div>
-              );
-            })}
+                );
+              })}
+            </div>
           </div>
         ) : null}
       </section>

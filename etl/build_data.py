@@ -1498,6 +1498,7 @@ def build_featured_area_outputs(
             "jump_area_id": area_reference.get("jump_area_id"),
             "detail_path": f"/data/{detail_file_name}",
             "bounds": area_reference["bounds"],
+            "outline": area_reference.get("outline"),
             "center": area_reference["center"],
             "weather_point": area_reference.get("weather_point") or area_reference["center"],
             "species_focus": area_reference.get("species_focus", []),

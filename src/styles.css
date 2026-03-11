@@ -2541,15 +2541,17 @@ body {
   width: 100%;
   text-align: left;
   border-radius: 18px;
-  border: 1px solid rgba(118, 98, 221, 0.18);
-  background: linear-gradient(180deg, rgba(252, 251, 255, 0.98), rgba(245, 242, 255, 0.98));
+  border: 1px solid rgba(224, 97, 151, 0.18);
+  background:
+    radial-gradient(circle at top left, rgba(246, 174, 205, 0.24), transparent 38%),
+    linear-gradient(180deg, rgba(255, 252, 253, 0.98), rgba(255, 246, 250, 0.98));
   padding: 0.78rem 0.82rem;
-  box-shadow: 0 12px 28px rgba(80, 65, 152, 0.08);
+  box-shadow: 0 12px 28px rgba(167, 86, 121, 0.08);
 }
 
 .featured-area-index-card.active {
-  border-color: rgba(107, 83, 223, 0.5);
-  box-shadow: 0 16px 30px rgba(82, 63, 170, 0.14);
+  border-color: rgba(224, 97, 151, 0.4);
+  box-shadow: 0 16px 30px rgba(196, 88, 136, 0.16);
 }
 
 .featured-area-index-main {
@@ -2561,7 +2563,7 @@ body {
 
 .featured-area-eyebrow {
   margin: 0 0 0.18rem;
-  color: #7160bb;
+  color: #c05b8e;
   font-size: 0.62rem;
   font-weight: 900;
   letter-spacing: 0.08em;
@@ -2572,13 +2574,13 @@ body {
   display: block;
   margin: 0;
   font-size: 0.95rem;
-  color: #342c55;
+  color: #602842;
 }
 
 .featured-area-index-card span {
   display: block;
   margin-top: 0.14rem;
-  color: #6a6484;
+  color: #866378;
   font-size: 0.74rem;
   line-height: 1.4;
 }
@@ -2591,8 +2593,8 @@ body {
   align-items: center;
   justify-content: center;
   border-radius: 999px;
-  background: rgba(122, 105, 240, 0.12);
-  color: #6555d5;
+  background: rgba(239, 121, 173, 0.12);
+  color: #d85f98;
 }
 
 .featured-area-index-arrow svg {
@@ -2606,7 +2608,7 @@ body {
   justify-content: space-between;
   gap: 0.6rem;
   margin-top: 0.66rem;
-  color: #625d78;
+  color: #7e6572;
   font-size: 0.74rem;
   font-weight: 800;
 }
@@ -2624,12 +2626,12 @@ body {
   display: grid;
   gap: 0.86rem;
   border-radius: 24px;
-  border: 1px solid rgba(118, 98, 221, 0.18);
+  border: 1px solid rgba(224, 97, 151, 0.16);
   background:
-    radial-gradient(circle at top left, rgba(146, 127, 249, 0.12), transparent 35%),
-    linear-gradient(180deg, rgba(253, 252, 255, 0.98), rgba(247, 243, 255, 0.98));
+    radial-gradient(circle at top left, rgba(247, 181, 209, 0.22), transparent 34%),
+    linear-gradient(180deg, rgba(255, 252, 253, 0.98), rgba(255, 246, 249, 0.98));
   padding: 0.92rem;
-  box-shadow: 0 18px 42px rgba(76, 60, 141, 0.12);
+  box-shadow: 0 18px 42px rgba(177, 94, 131, 0.12);
 }
 
 .featured-area-hero {
@@ -2641,12 +2643,12 @@ body {
   margin: 0.12rem 0 0.28rem;
   font-size: 1.2rem;
   line-height: 1.12;
-  color: #31294f;
+  color: #5f2841;
 }
 
 .featured-area-hero p {
   margin: 0;
-  color: #66617f;
+  color: #816574;
   font-size: 0.8rem;
   line-height: 1.52;
 }
@@ -2655,21 +2657,26 @@ body {
   justify-self: start;
   padding: 0.34rem 0.66rem;
   border-radius: 999px;
-  background: rgba(122, 105, 240, 0.1);
-  border: 1px solid rgba(107, 83, 223, 0.16);
-  color: #5e4ed0;
+  background: rgba(239, 121, 173, 0.1);
+  border: 1px solid rgba(224, 97, 151, 0.16);
+  color: #d05c93;
   font-size: 0.65rem;
   font-weight: 900;
   letter-spacing: 0.05em;
   text-transform: uppercase;
 }
 
+.featured-area-block {
+  display: grid;
+  gap: 0.64rem;
+}
+
 .featured-area-section {
   display: grid;
   gap: 0.62rem;
   border-radius: 22px;
-  border: 1px solid rgba(118, 98, 221, 0.12);
-  background: rgba(255, 255, 255, 0.86);
+  border: 1px solid rgba(224, 97, 151, 0.12);
+  background: rgba(255, 255, 255, 0.88);
   padding: 0.82rem;
 }
 
@@ -2677,49 +2684,64 @@ body {
   gap: 0.78rem;
 }
 
-.featured-area-section-head,
-.featured-area-forecast-header {
+.featured-area-block-head,
+.featured-area-section-head {
   display: flex;
   align-items: start;
   justify-content: space-between;
   gap: 0.75rem;
 }
 
-.featured-area-section-head h4,
-.featured-area-forecast-header h4 {
+.featured-area-block-head h4,
+.featured-area-section-head h4 {
   margin: 0;
-  font-size: 0.97rem;
-  color: #352d58;
+  font-size: 1rem;
+  color: #612740;
 }
 
 .featured-area-section-copy,
-.featured-area-forecast-header p,
 .featured-area-updated,
 .featured-area-summary-note {
   margin: 0;
-  color: #676181;
-  font-size: 0.75rem;
+  color: #866573;
+  font-size: 0.76rem;
   line-height: 1.48;
+}
+
+.featured-area-chart-shell,
+.featured-area-weather-shell {
+  border-radius: 24px;
+  border: 1px solid rgba(224, 97, 151, 0.12);
+  background: rgba(255, 255, 255, 0.92);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.45);
+}
+
+.featured-area-chart-shell {
+  padding: 0.38rem;
+}
+
+.featured-area-weather-shell {
+  padding: 0.26rem 0.9rem;
 }
 
 .featured-area-metrics,
 .featured-area-metrics.compact {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 0.58rem;
+  gap: 0.62rem;
 }
 
 .featured-area-metric {
   border-radius: 18px;
-  background: linear-gradient(180deg, rgba(248, 246, 255, 0.96), rgba(255, 255, 255, 0.96));
-  border: 1px solid rgba(118, 98, 221, 0.12);
-  padding: 0.7rem 0.66rem;
+  background: linear-gradient(180deg, rgba(255, 243, 248, 0.98), rgba(255, 255, 255, 0.98));
+  border: 1px solid rgba(224, 97, 151, 0.12);
+  padding: 0.76rem 0.72rem;
   display: grid;
   gap: 0.16rem;
 }
 
 .featured-area-metric span {
-  color: #786ea7;
+  color: #c15e90;
   font-size: 0.64rem;
   font-weight: 900;
   letter-spacing: 0.06em;
@@ -2727,8 +2749,8 @@ body {
 }
 
 .featured-area-metric strong {
-  color: #31294f;
-  font-size: 0.95rem;
+  color: #5d2840;
+  font-size: 0.98rem;
   line-height: 1.15;
 }
 
@@ -2736,10 +2758,11 @@ body {
   width: 100%;
   height: auto;
   overflow: visible;
+  display: block;
 }
 
 .featured-area-chart-bg {
-  fill: #fbfaff;
+  fill: #fffafd;
 }
 
 .featured-area-area-fill {
@@ -2748,25 +2771,25 @@ body {
 
 .featured-area-line {
   fill: none;
-  stroke: #7362e6;
+  stroke: #ec75aa;
   stroke-width: 5;
   stroke-linecap: round;
   stroke-linejoin: round;
 }
 
 .featured-area-baseline {
-  stroke: rgba(104, 95, 137, 0.16);
+  stroke: rgba(149, 96, 120, 0.16);
   stroke-width: 2;
 }
 
 .featured-area-point {
   fill: #ffffff;
-  stroke: #7362e6;
+  stroke: #ec75aa;
   stroke-width: 4;
 }
 
 .featured-area-marker-stem {
-  stroke: rgba(112, 102, 151, 0.24);
+  stroke: rgba(180, 114, 144, 0.24);
   stroke-width: 2;
 }
 
@@ -2778,14 +2801,14 @@ body {
 }
 
 .featured-area-marker-label {
-  fill: #4b3f83;
-  font-size: 17px;
+  fill: #9d486f;
+  font-size: 18px;
   font-weight: 900;
 }
 
 .featured-area-marker-date {
-  fill: #6b648c;
-  font-size: 14px;
+  fill: #8c6677;
+  font-size: 15px;
   font-weight: 800;
 }
 
@@ -2803,13 +2826,9 @@ body {
 }
 
 .featured-area-curve-weather-date {
-  fill: #756d96;
+  fill: #8c6677;
   font-size: 10px;
   font-weight: 800;
-}
-
-.featured-area-weather-shell {
-  gap: 0.36rem;
 }
 
 .featured-area-weather-list {
@@ -2819,11 +2838,11 @@ body {
 
 .featured-area-weather-row {
   display: grid;
-  grid-template-columns: 4.7rem 5.6rem 4rem 2.3rem minmax(90px, 1fr) 2.3rem;
+  grid-template-columns: 5rem 6.2rem 4.2rem 2.5rem minmax(116px, 1fr) 2.5rem;
   align-items: center;
-  gap: 0.5rem;
-  padding: 0.56rem 0;
-  border-bottom: 1px solid rgba(118, 98, 221, 0.08);
+  gap: 0.58rem;
+  padding: 0.74rem 0;
+  border-bottom: 1px solid rgba(224, 97, 151, 0.08);
 }
 
 .featured-area-weather-row:last-child {
@@ -2840,40 +2859,40 @@ body {
 .featured-area-weather-day strong,
 .featured-area-weather-temp-min,
 .featured-area-weather-temp-max {
-  color: #332c55;
-  font-size: 0.82rem;
+  color: #5e2940;
+  font-size: 0.88rem;
   font-weight: 800;
 }
 
 .featured-area-weather-day span,
 .featured-area-weather-icon-col span,
 .featured-area-weather-rain span {
-  color: #7a7397;
-  font-size: 0.67rem;
+  color: #896877;
+  font-size: 0.7rem;
   line-height: 1.2;
 }
 
 .featured-area-weather-icon-col {
-  grid-template-columns: 1.35rem minmax(0, 1fr);
+  grid-template-columns: 1.5rem minmax(0, 1fr);
   align-items: center;
 }
 
 .featured-area-weather-icon {
-  color: #7060e3;
+  color: #e56d9d;
 }
 
 .featured-area-weather-rain {
   text-align: left;
-  color: #4d8adb;
-  font-size: 0.72rem;
+  color: #5b8fd2;
+  font-size: 0.76rem;
   font-weight: 800;
 }
 
 .featured-area-weather-track {
   position: relative;
-  height: 0.38rem;
+  height: 0.42rem;
   border-radius: 999px;
-  background: rgba(118, 98, 221, 0.12);
+  background: rgba(239, 121, 173, 0.12);
 }
 
 .featured-area-weather-range {
@@ -2881,7 +2900,7 @@ body {
   top: 0;
   height: 100%;
   border-radius: 999px;
-  background: linear-gradient(90deg, #7ed1ff, #8e7dff);
+  background: linear-gradient(90deg, #79d0ff, #f295bf);
 }
 
 .featured-area-tree-summary-meta {
@@ -2892,21 +2911,21 @@ body {
 
 .featured-area-summary-stat {
   border-radius: 18px;
-  background: linear-gradient(180deg, rgba(248, 246, 255, 0.96), rgba(255, 255, 255, 0.96));
-  border: 1px solid rgba(118, 98, 221, 0.12);
+  background: linear-gradient(180deg, rgba(255, 243, 248, 0.98), rgba(255, 255, 255, 0.98));
+  border: 1px solid rgba(224, 97, 151, 0.12);
   padding: 0.68rem 0.72rem;
   display: grid;
   gap: 0.16rem;
 }
 
 .featured-area-summary-stat span {
-  color: #786ea7;
+  color: #c05c8e;
   font-size: 0.68rem;
   font-weight: 800;
 }
 
 .featured-area-summary-stat strong {
-  color: #31294f;
+  color: #5d2840;
   font-size: 1rem;
 }
 
@@ -2917,15 +2936,15 @@ body {
 
 .featured-area-inventory-card {
   border-radius: 18px;
-  border: 1px solid rgba(118, 98, 221, 0.12);
-  background: rgba(252, 251, 255, 0.95);
+  border: 1px solid rgba(224, 97, 151, 0.12);
+  background: rgba(255, 251, 253, 0.96);
   padding: 0.7rem 0.76rem;
   display: grid;
   gap: 0.42rem;
 }
 
 .featured-area-inventory-card.official {
-  background: linear-gradient(180deg, rgba(244, 241, 255, 0.95), rgba(251, 250, 255, 0.95));
+  background: linear-gradient(180deg, rgba(255, 245, 249, 0.96), rgba(255, 251, 253, 0.96));
 }
 
 .featured-area-inventory-head {
@@ -2936,12 +2955,12 @@ body {
 }
 
 .featured-area-inventory-head strong {
-  color: #342c55;
+  color: #612840;
   font-size: 0.82rem;
 }
 
 .featured-area-inventory-head span {
-  color: #665d87;
+  color: #8a6776;
   font-size: 0.76rem;
   font-weight: 900;
 }
@@ -2958,25 +2977,25 @@ body {
   gap: 0.32rem;
   padding: 0.32rem 0.56rem;
   border-radius: 999px;
-  background: rgba(122, 105, 240, 0.08);
-  color: #554d79;
+  background: rgba(239, 121, 173, 0.08);
+  color: #6f5563;
   font-size: 0.7rem;
   font-weight: 700;
 }
 
 .featured-area-inventory-chip.subtle {
-  background: rgba(122, 105, 240, 0.05);
+  background: rgba(239, 121, 173, 0.05);
 }
 
 .featured-area-inventory-chip strong {
-  color: #40365d;
+  color: #5d2840;
   font-size: 0.7rem;
 }
 
 .featured-area-confidence ul {
   margin: 0;
   padding-left: 1.1rem;
-  color: #625d7b;
+  color: #7d6771;
   font-size: 0.77rem;
   line-height: 1.55;
 }
@@ -2993,16 +3012,16 @@ body {
   gap: 0.38rem;
   padding: 0.44rem 0.62rem;
   border-radius: 999px;
-  background: rgba(245, 242, 255, 0.94);
-  border: 1px solid rgba(118, 98, 221, 0.12);
-  color: #5d5679;
+  background: rgba(255, 246, 250, 0.96);
+  border: 1px solid rgba(224, 97, 151, 0.12);
+  color: #705964;
   font-size: 0.72rem;
   font-weight: 700;
   text-decoration: none;
 }
 
 .featured-area-source-pill strong {
-  color: #7b73a2;
+  color: #b0708d;
   font-size: 0.61rem;
   letter-spacing: 0.05em;
   text-transform: uppercase;
@@ -3028,6 +3047,12 @@ body {
 }
 
 @media (max-width: 640px) {
+  .featured-area-block-head,
+  .featured-area-section-head {
+    flex-direction: column;
+    align-items: start;
+  }
+
   .featured-area-metrics,
   .featured-area-metrics.compact {
     grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -3043,7 +3068,7 @@ body {
   }
 
   .featured-area-weather-row {
-    grid-template-columns: 3.8rem 4.6rem 3.4rem 2rem minmax(66px, 1fr) 2rem;
+    grid-template-columns: 3.9rem 4.9rem 3.5rem 2rem minmax(68px, 1fr) 2rem;
     gap: 0.34rem;
   }
 

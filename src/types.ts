@@ -224,6 +224,7 @@ export interface FeaturedAreaIndexItem {
   jump_area_id: string | null;
   detail_path: string;
   bounds: [[number, number], [number, number]];
+  outline?: [number, number][] | null;
   center: [number, number];
   weather_point: [number, number];
   species_focus: SpeciesGroup[];

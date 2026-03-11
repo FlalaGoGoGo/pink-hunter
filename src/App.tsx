@@ -1765,18 +1765,23 @@ function buildFeaturedAreaBoundsCollection(items: FeaturedAreaIndexItem[]) {
   return {
     type: "FeatureCollection" as const,
     features: items.map((item) => {
-      const [[minLon, minLat], [maxLon, maxLat]] = normalizeBounds(item.bounds);
+      const outline = item.outline && item.outline.length >= 3
+        ? [...item.outline, item.outline[0]]
+        : (() => {
+            const [[minLon, minLat], [maxLon, maxLat]] = normalizeBounds(item.bounds);
+            return [
+              [minLon, minLat],
+              [maxLon, minLat],
+              [maxLon, maxLat],
+              [minLon, maxLat],
+              [minLon, minLat]
+            ] as [number, number][];
+          })();
       return {
         type: "Feature" as const,
         geometry: {
           type: "Polygon" as const,
-          coordinates: [[
-            [minLon, minLat],
-            [maxLon, minLat],
-            [maxLon, maxLat],
-            [minLon, maxLat],
-            [minLon, minLat]
-          ]]
+          coordinates: [outline]
         },
         properties: {
           id: item.id
@@ -1800,6 +1805,23 @@ function buildFeaturedAreaPinCollection(items: FeaturedAreaIndexItem[]) {
       }
     }))
   };
+}
+
+function pointInPolygon(point: [number, number], polygon: [number, number][]): boolean {
+  let inside = false;
+  let previous = polygon[polygon.length - 1];
+  for (const current of polygon) {
+    const intersects =
+      (current[1] > point[1]) !== (previous[1] > point[1]) &&
+      point[0] <
+        ((previous[0] - current[0]) * (point[1] - current[1])) / ((previous[1] - current[1]) || 1e-12) +
+          current[0];
+    if (intersects) {
+      inside = !inside;
+    }
+    previous = current;
+  }
+  return inside;
 }
 
 function getTreeCoordinates(feature: TreeCollection["features"][number]): [number, number] {
@@ -2513,6 +2535,27 @@ export default function App(): JSX.Element {
     [data]
   );
   const activeLanguageOption = LANGUAGE_OPTIONS.find((option) => option.id === language) ?? LANGUAGE_OPTIONS[0];
+
+  const featuredAreaIdForCoordinate = useCallback(
+    (coordinate: [number, number]): string | null => {
+      if (!data) {
+        return null;
+      }
+      for (const area of data.featuredAreas.items) {
+        if (area.outline && area.outline.length >= 3) {
+          if (pointInPolygon(coordinate, area.outline)) {
+            return area.id;
+          }
+          continue;
+        }
+        if (boundsContainCoordinate(area.bounds, coordinate)) {
+          return area.id;
+        }
+      }
+      return null;
+    },
+    [data]
+  );
 
   useEffect(() => {
     if (!data) {
@@ -3684,10 +3727,13 @@ export default function App(): JSX.Element {
           id: "featured-area-outline",
           type: "line",
           source: "featured-areas",
+          layout: {
+            "line-cap": "round",
+            "line-join": "round"
+          },
           paint: {
             "line-color": FEATURED_AREA_COLORS.line,
-            "line-width": ["interpolate", ["linear"], ["zoom"], 9, 1.3, 14, 2.3],
-            "line-dasharray": [3, 2]
+            "line-width": ["interpolate", ["linear"], ["zoom"], 9, 1.4, 14, 2.45]
           }
         });
 
@@ -3696,10 +3742,13 @@ export default function App(): JSX.Element {
           type: "line",
           source: "featured-areas",
           filter: ["==", ["get", "id"], "__none__"],
+          layout: {
+            "line-cap": "round",
+            "line-join": "round"
+          },
           paint: {
             "line-color": FEATURED_AREA_COLORS.lineSelected,
-            "line-width": ["interpolate", ["linear"], ["zoom"], 9, 2.1, 14, 3.3],
-            "line-dasharray": [3, 2]
+            "line-width": ["interpolate", ["linear"], ["zoom"], 9, 2.2, 14, 3.45]
           }
         });
 
@@ -4367,7 +4416,9 @@ export default function App(): JSX.Element {
     });
     setSelectedCoverage(null);
     setStatusNotice(null);
-    setSelectedFeaturedAreaId(matched.properties.featured_area_ids?.[0] ?? null);
+    setSelectedFeaturedAreaId(
+      matched.properties.featured_area_ids?.[0] ?? featuredAreaIdForCoordinate(getTreeCoordinates(matched))
+    );
     if (!isDesktopRef.current) {
       setSheetHeight(0.72);
     }
@@ -4649,7 +4700,9 @@ export default function App(): JSX.Element {
   }
 
   const selectedJumpAreaLabel = selectedJumpArea ? formatJumpAreaLabel(selectedJumpArea) : null;
-  const selectedTreeFeaturedAreaId = selectedTree?.properties.featured_area_ids?.[0] ?? null;
+  const selectedTreeFeaturedAreaId = selectedTree
+    ? selectedTree.properties.featured_area_ids?.[0] ?? featuredAreaIdForCoordinate(selectedTree.coordinates)
+    : null;
   const selectedTreeFeaturedAreaDetail =
     (selectedTreeFeaturedAreaId && featuredAreaDetailCache[selectedTreeFeaturedAreaId]) ||
     (selectedFeaturedAreaDetail && selectedFeaturedAreaDetail.id === selectedTreeFeaturedAreaId
