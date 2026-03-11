@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-03-11T22:13:33.330344+00:00",
+  "generated_at": "2026-03-11T22:47:33.047336+00:00",
   "countries": [
     {
       "id": "ca",
@@ -7872,12 +7872,12 @@
       "area_type": "city",
       "bounds": [
         [
-          -118.111611000061,
-          33.880313999900885
+          -73.47456500038376,
+          41.020448999779845
         ],
         [
-          -118.04220400003844,
-          33.933480999761024
+          -73.38014800004444,
+          41.17176800015394
         ]
       ],
       "region_hint": "ca",
@@ -19164,6 +19164,26 @@
       "coverage_status": "covered"
     },
     {
+      "id": "ct:west-hartford",
+      "country_id": "us",
+      "state_id": "ct",
+      "jurisdiction": "West Hartford",
+      "display_name": "West Hartford",
+      "area_type": "city",
+      "bounds": [
+        [
+          -72.76642803805461,
+          41.72497339359539
+        ],
+        [
+          -72.71625173132107,
+          41.79866118766447
+        ]
+      ],
+      "region_hint": "ct",
+      "coverage_status": "covered"
+    },
+    {
       "id": "dc:washington-dc",
       "country_id": "us",
       "state_id": "dc",
@@ -20752,16 +20772,16 @@
       "area_type": "city",
       "bounds": [
         [
-          -76.5397,
-          38.9424
+          -76.53290145099164,
+          38.94855573426864
         ],
         [
-          -76.4698,
-          39.0029
+          -76.47802345454693,
+          38.99604520680445
         ]
       ],
       "region_hint": "md",
-      "coverage_status": "untracked"
+      "coverage_status": "covered"
     },
     {
       "id": "md:anne-arundel-county",
@@ -42432,16 +42452,16 @@
       "area_type": "city",
       "bounds": [
         [
-          -73.8488,
-          43.0154
+          -73.84316682813507,
+          43.03717213291244
         ],
         [
-          -73.695,
-          43.1079
+          -73.70573148122277,
+          43.0988263520855
         ]
       ],
       "region_hint": "ny",
-      "coverage_status": "untracked"
+      "coverage_status": "covered"
     },
     {
       "id": "ny:saugerties",
@@ -43692,16 +43712,16 @@
       "area_type": "city",
       "bounds": [
         [
-          -73.7065,
-          42.6941
+          -73.7004029005766,
+          42.69581525284782
         ],
         [
-          -73.6524,
-          42.7958
+          -73.65250289437428,
+          42.79275882967273
         ]
       ],
       "region_hint": "ny",
-      "coverage_status": "untracked"
+      "coverage_status": "covered"
     },
     {
       "id": "ny:trumansburg",
@@ -109452,16 +109472,16 @@
       "area_type": "city",
       "bounds": [
         [
-          -77.3349,
-          38.8328
+          -77.33301311731341,
+          38.83433762006801
         ],
         [
-          -77.2689,
-          38.8717
+          -77.27034546435335,
+          38.86966841154592
         ]
       ],
       "region_hint": "va",
-      "coverage_status": "untracked"
+      "coverage_status": "covered"
     },
     {
       "id": "va:fairfax-county",

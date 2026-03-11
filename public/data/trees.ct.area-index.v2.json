@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-03-11T22:09:20.173625+00:00",
+  "generated_at": "2026-03-11T22:43:43.052501+00:00",
   "region": "ct",
   "strategy": "area_shard",
   "items": [
@@ -204,6 +204,60 @@
           "tree_count": 25,
           "raw_bytes": 11927,
           "gzip_bytes": 903
+        }
+      ]
+    },
+    {
+      "jurisdiction": "West Hartford",
+      "slug": "west-hartford",
+      "display_name": "West Hartford",
+      "jurisdiction_type": "city",
+      "state_province": "CT",
+      "country": "United States",
+      "bounds": [
+        [
+          -72.76642803805461,
+          41.72497339359539
+        ],
+        [
+          -72.71625173132107,
+          41.79866118766447
+        ]
+      ],
+      "tree_count": 206,
+      "zip_codes": [
+        "06107",
+        "06110",
+        "06117",
+        "06119"
+      ],
+      "species_counts": {
+        "cherry": 109,
+        "plum": 3,
+        "peach": 0,
+        "magnolia": 22,
+        "crabapple": 72
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "west-hartford-001",
+          "bounds": [
+            [
+              -72.76642803805461,
+              41.72497339359539
+            ],
+            [
+              -72.71625173132107,
+              41.79866118766447
+            ]
+          ],
+          "data_path": "/data/trees.ct.area.west-hartford.v2.geojson",
+          "tree_count": 206,
+          "raw_bytes": 107799,
+          "gzip_bytes": 5761
         }
       ]
     }

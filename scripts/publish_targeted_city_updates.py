@@ -91,6 +91,7 @@ from etl.build_data import (
     post_form_with_curl,
     slugify_token,
     title_case_if_upper,
+    web_mercator_to_lon_lat,
 )
 
 NORMALIZED_HEADER = [
@@ -800,9 +801,53 @@ EAST_COAST_TREEKEEPER_CONFIGS: dict[str, dict[str, Any]] = {
     },
 }
 
+EAST_COAST_TREEPLOTTER_CONFIGS: dict[str, dict[str, Any]] = {
+    "Annapolis": {
+        "folder": "AnnapolisMD",
+        "landing_url": "https://pg-cloud.com/AnnapolisMD/",
+        "region": "md",
+        "source_department": "City of Annapolis",
+        "note": "Integrated via the public Annapolis TreePlotter inventory page and official jurisdiction boundary clipping.",
+        "clip_to_boundary": True,
+    },
+    "Fairfax": {
+        "folder": "FairfaxVA",
+        "landing_url": "https://pg-cloud.com/FairfaxVA/",
+        "region": "va",
+        "source_department": "City of Fairfax",
+        "note": "Integrated via the public Fairfax TreePlotter inventory page and official jurisdiction boundary clipping.",
+        "clip_to_boundary": True,
+    },
+    "Saratoga Springs": {
+        "folder": "SaratogaSpringsNY",
+        "landing_url": "https://pg-cloud.com/SaratogaSpringsNY/",
+        "region": "ny",
+        "source_department": "City of Saratoga Springs",
+        "note": "Integrated via the public Saratoga Springs TreePlotter inventory page and official jurisdiction boundary clipping.",
+        "clip_to_boundary": True,
+    },
+    "Troy": {
+        "folder": "TroyNY",
+        "landing_url": "https://pg-cloud.com/TroyNY/",
+        "region": "ny",
+        "source_department": "City of Troy",
+        "note": "Integrated via the public Troy TreePlotter inventory page and official jurisdiction boundary clipping.",
+        "clip_to_boundary": True,
+    },
+    "West Hartford": {
+        "folder": "WestHartfordCT",
+        "landing_url": "https://pg-cloud.com/WestHartfordCT/",
+        "region": "ct",
+        "source_department": "Town of West Hartford",
+        "note": "Integrated via the public West Hartford TreePlotter inventory page and official jurisdiction boundary clipping.",
+        "clip_to_boundary": True,
+    },
+}
+
 SUPPORTED_CITIES = (
     "Albany",
     "Anaheim",
+    "Annapolis",
     "Arlington",
     "Austin",
     "Azusa",
@@ -827,6 +872,7 @@ SUPPORTED_CITIES = (
     "El Segundo",
     "Encinitas",
     "Escondido",
+    "Fairfax",
     "Falls Church",
     "Fontana",
     "Fort Lee",
@@ -898,6 +944,7 @@ SUPPORTED_CITIES = (
     "Sacramento",
     "Salinas",
     "Salt Lake City",
+    "Saratoga Springs",
     "San Diego",
     "San Dimas",
     "San Fernando",
@@ -922,9 +969,11 @@ SUPPORTED_CITIES = (
     "Thousand Oaks",
     "Torrance",
     "Toronto",
+    "Troy",
     "Ventura",
     "Vista",
     "Waltham",
+    "West Hartford",
     "West Hollywood",
     "West Sacramento",
     "West Covina",
@@ -2569,14 +2618,23 @@ def fetch_treeplotter_inventory(
     city: str,
     folder: str,
     landing_url: str,
-    boundary_layer: str,
     dataset_page: str,
     source_note: str,
+    region: str = "ca",
+    source_name: str = "Tree Inventory",
+    source_department: str | None = None,
+    ownership_raw: str = "Not published in public inventory",
+    boundary_layer: str | None = None,
+    clip_to_boundary: bool = False,
 ) -> dict[str, Any]:
-    boundary_info = fetch_json(boundary_layer, {"f": "pjson"})
+    source_last_edit_at = ""
+    if boundary_layer:
+        boundary_info = fetch_json(boundary_layer, {"f": "pjson"})
+        source_last_edit_at = iso_from_epoch((boundary_info.get("editingInfo") or {}).get("lastEditDate"))
     zip_index = fetch_us_city_zip_index(city)
     mapping_rows = load_mapping(MAPPING_PATH)
     subtype_rows = load_subtype_mapping(SUBTYPE_MAPPING_PATH)
+    boundary_geometry = load_city_boundary_geometry(city) if clip_to_boundary else None
 
     cookie_path = init_treeplotter_session(folder, landing_url)
     try:
@@ -2622,7 +2680,6 @@ def fetch_treeplotter_inventory(
     finally:
         Path(cookie_path).unlink(missing_ok=True)
 
-    source_last_edit_at = iso_from_epoch(boundary_info.get("editingInfo", {}).get("lastEditDate"))
     city_slug = slugify_token(city)
     output_features: list[dict[str, Any]] = []
     normalized_rows: list[dict[str, Any]] = []
@@ -2632,6 +2689,8 @@ def fetch_treeplotter_inventory(
         if not point:
             continue
         lon, lat = web_mercator_to_lon_lat(*point)
+        if boundary_geometry and not point_in_geometry(lon, lat, boundary_geometry):
+            continue
         species_id = (
             row.get("species_latin", {}).get("val")
             or row.get("species_common", {}).get("val")
@@ -2656,7 +2715,7 @@ def fetch_treeplotter_inventory(
             {
                 "id": row_id,
                 "city": city,
-                "source_dataset": "Tree Inventory",
+                "source_dataset": source_name,
                 "scientific_raw": scientific_raw,
                 "scientific_normalized": scientific_normalized,
                 "common_name": common_name or "",
@@ -2686,8 +2745,8 @@ def fetch_treeplotter_inventory(
                     "ownership": canonical_ownership(ownership_raw),
                     "ownership_raw": ownership_raw,
                     "city": city,
-                    "source_dataset": "Tree Inventory",
-                    "source_department": f"City of {city}",
+                    "source_dataset": source_name,
+                    "source_department": source_department or f"City of {city}",
                     "source_last_edit_at": source_last_edit_at,
                 },
             }
@@ -2695,11 +2754,11 @@ def fetch_treeplotter_inventory(
 
     return {
         "city": city,
-        "region": "ca",
+        "region": region,
         "features": output_features,
         "normalized_rows": normalized_rows,
         "source": {
-            "name": "Tree Inventory",
+            "name": source_name,
             "city": city,
             "endpoint": dataset_page,
             "last_edit_at": source_last_edit_at,
@@ -3108,6 +3167,22 @@ def fetch_concord() -> dict[str, Any]:
         boundary_layer=CONCORD_BOUNDARY_LAYER,
         dataset_page=CONCORD_DATASET_PAGE,
         source_note="Integrated via the official Concord TreePlotter page and city GIS boundary.",
+    )
+
+
+def build_treeplotter_fetcher(city: str, config: dict[str, Any]) -> Any:
+    return lambda city=city, config=config: fetch_treeplotter_inventory(
+        city=city,
+        folder=str(config["folder"]),
+        landing_url=str(config["landing_url"]),
+        dataset_page=str(config.get("dataset_page") or config["landing_url"]),
+        source_note=str(config["note"]),
+        region=str(config.get("region", "ca")),
+        source_name=str(config.get("source_name", "Tree Inventory")),
+        source_department=config.get("source_department"),
+        ownership_raw=str(config.get("ownership_raw", "Not published in public inventory")),
+        boundary_layer=config.get("boundary_layer"),
+        clip_to_boundary=bool(config.get("clip_to_boundary", False)),
     )
 
 
@@ -6519,6 +6594,7 @@ CITY_FETCHERS = {
 
 CITY_FETCHERS.update({city: build_nyc_metro_treekeeper_fetcher(city, config) for city, config in NYC_METRO_TREEKEEPER_CONFIGS.items()})
 CITY_FETCHERS.update({city: build_treekeeper_fetcher(city, config) for city, config in EAST_COAST_TREEKEEPER_CONFIGS.items()})
+CITY_FETCHERS.update({city: build_treeplotter_fetcher(city, config) for city, config in EAST_COAST_TREEPLOTTER_CONFIGS.items()})
 CITY_FETCHERS.update({city: build_nyc_metro_arcgis_fetcher(city, config) for city, config in NYC_METRO_ARCGIS_CONFIGS.items()})
 
 

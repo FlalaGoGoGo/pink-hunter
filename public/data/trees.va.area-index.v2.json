@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-03-11T21:37:15.212278+00:00",
+  "generated_at": "2026-03-11T22:43:43.052501+00:00",
   "region": "va",
   "strategy": "area_shard",
   "items": [
@@ -52,6 +52,59 @@
           "tree_count": 1882,
           "raw_bytes": 892680,
           "gzip_bytes": 45013
+        }
+      ]
+    },
+    {
+      "jurisdiction": "Fairfax",
+      "slug": "fairfax",
+      "display_name": "Fairfax",
+      "jurisdiction_type": "city",
+      "state_province": "VA",
+      "country": "United States",
+      "bounds": [
+        [
+          -77.33301311731341,
+          38.83433762006801
+        ],
+        [
+          -77.27034546435335,
+          38.86966841154592
+        ]
+      ],
+      "tree_count": 481,
+      "zip_codes": [
+        "22030",
+        "22031",
+        "22032"
+      ],
+      "species_counts": {
+        "cherry": 316,
+        "plum": 15,
+        "peach": 4,
+        "magnolia": 118,
+        "crabapple": 28
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "fairfax-001",
+          "bounds": [
+            [
+              -77.33301311731341,
+              38.83433762006801
+            ],
+            [
+              -77.27034546435335,
+              38.86966841154592
+            ]
+          ],
+          "data_path": "/data/trees.va.area.fairfax.v2.geojson",
+          "tree_count": 481,
+          "raw_bytes": 239565,
+          "gzip_bytes": 12164
         }
       ]
     },
