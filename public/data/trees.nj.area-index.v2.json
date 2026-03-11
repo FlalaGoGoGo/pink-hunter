@@ -1,6 +1,276 @@
 {
-  "generated_at": "2026-03-11T04:49:29.507790+00:00",
+  "generated_at": "2026-03-11T18:10:00+00:00",
   "region": "nj",
   "strategy": "area_shard",
-  "items": []
+  "items": [
+    {
+      "jurisdiction": "Hoboken",
+      "slug": "hoboken",
+      "display_name": "Hoboken",
+      "jurisdiction_type": "city",
+      "state_province": "NJ",
+      "country": "United States",
+      "bounds": [
+        [
+          -74.042138,
+          40.73590600000001
+        ],
+        [
+          -74.024873,
+          40.755974
+        ]
+      ],
+      "tree_count": 397,
+      "zip_codes": [
+        "07030"
+      ],
+      "species_counts": {
+        "cherry": 297,
+        "plum": 55,
+        "peach": 1,
+        "magnolia": 16,
+        "crabapple": 28
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "hoboken-001",
+          "bounds": [
+            [
+              -74.042138,
+              40.73590600000001
+            ],
+            [
+              -74.024873,
+              40.755974
+            ]
+          ],
+          "data_path": "/data/trees.nj.area.hoboken.v2.geojson",
+          "tree_count": 397,
+          "raw_bytes": 204959,
+          "gzip_bytes": 6533
+        }
+      ]
+    },
+    {
+      "jurisdiction": "Jersey City",
+      "slug": "jersey-city",
+      "display_name": "Jersey City",
+      "jurisdiction_type": "city",
+      "state_province": "NJ",
+      "country": "United States",
+      "bounds": [
+        [
+          -74.10476052098124,
+          40.688807439511784
+        ],
+        [
+          -74.03213147488759,
+          40.758711906729154
+        ]
+      ],
+      "tree_count": 2148,
+      "zip_codes": [
+        "07087",
+        "07302",
+        "07304",
+        "07305",
+        "07306",
+        "07307",
+        "07310"
+      ],
+      "species_counts": {
+        "cherry": 2004,
+        "plum": 1,
+        "peach": 0,
+        "magnolia": 21,
+        "crabapple": 122
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "jersey-city-001",
+          "bounds": [
+            [
+              -74.10476052098124,
+              40.688807439511784
+            ],
+            [
+              -74.03213147488759,
+              40.758711906729154
+            ]
+          ],
+          "data_path": "/data/trees.nj.area.jersey-city.v2.geojson",
+          "tree_count": 2148,
+          "raw_bytes": 1153133,
+          "gzip_bytes": 50297
+        }
+      ]
+    },
+    {
+      "jurisdiction": "Montclair",
+      "slug": "montclair",
+      "display_name": "Montclair",
+      "jurisdiction_type": "city",
+      "state_province": "NJ",
+      "country": "United States",
+      "bounds": [
+        [
+          -74.21953640933499,
+          40.79896420842759
+        ],
+        [
+          -74.20100416502362,
+          40.855110987915324
+        ]
+      ],
+      "tree_count": 56,
+      "zip_codes": [
+        "07042",
+        "07043"
+      ],
+      "species_counts": {
+        "cherry": 27,
+        "plum": 5,
+        "peach": 0,
+        "magnolia": 0,
+        "crabapple": 24
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "montclair-001",
+          "bounds": [
+            [
+              -74.21953640933499,
+              40.79896420842759
+            ],
+            [
+              -74.20100416502362,
+              40.855110987915324
+            ]
+          ],
+          "data_path": "/data/trees.nj.area.montclair.v2.geojson",
+          "tree_count": 56,
+          "raw_bytes": 28894,
+          "gzip_bytes": 1810
+        }
+      ]
+    },
+    {
+      "jurisdiction": "Newark",
+      "slug": "newark",
+      "display_name": "Newark",
+      "jurisdiction_type": "city",
+      "state_province": "NJ",
+      "country": "United States",
+      "bounds": [
+        [
+          -74.218701378,
+          40.707362649
+        ],
+        [
+          -74.153513117,
+          40.771560641
+        ]
+      ],
+      "tree_count": 28,
+      "zip_codes": [
+        "07103",
+        "07104",
+        "07105",
+        "07106",
+        "07107",
+        "07108",
+        "07112"
+      ],
+      "species_counts": {
+        "cherry": 22,
+        "plum": 5,
+        "peach": 0,
+        "magnolia": 1,
+        "crabapple": 0
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "newark-001",
+          "bounds": [
+            [
+              -74.218701378,
+              40.707362649
+            ],
+            [
+              -74.153513117,
+              40.771560641
+            ]
+          ],
+          "data_path": "/data/trees.nj.area.newark.v2.geojson",
+          "tree_count": 28,
+          "raw_bytes": 13565,
+          "gzip_bytes": 1048
+        }
+      ]
+    },
+    {
+      "jurisdiction": "Princeton",
+      "slug": "princeton",
+      "display_name": "Princeton",
+      "jurisdiction_type": "city",
+      "state_province": "NJ",
+      "country": "United States",
+      "bounds": [
+        [
+          -74.7155625868,
+          40.3168228536
+        ],
+        [
+          -74.6218982181,
+          40.3828495691
+        ]
+      ],
+      "tree_count": 1310,
+      "zip_codes": [
+        "08540",
+        "08542"
+      ],
+      "species_counts": {
+        "cherry": 902,
+        "plum": 0,
+        "peach": 1,
+        "magnolia": 201,
+        "crabapple": 206
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "princeton-001",
+          "bounds": [
+            [
+              -74.7155625868,
+              40.3168228536
+            ],
+            [
+              -74.6218982181,
+              40.3828495691
+            ]
+          ],
+          "data_path": "/data/trees.nj.area.princeton.v2.geojson",
+          "tree_count": 1310,
+          "raw_bytes": 667873,
+          "gzip_bytes": 26227
+        }
+      ]
+    }
+  ]
 }

@@ -1,6 +1,6 @@
 {
   "version": "v2",
-  "generated_at": "2026-03-11T04:49:29.507790+00:00",
+  "generated_at": "2026-03-11T17:56:33.512711+00:00",
   "default_region": "wa",
   "coverage_rule": "official_jurisdiction_boundary_only",
   "coverage_skipped_cities": [],
@@ -63,7 +63,6 @@
     "Mountlake Terrace",
     "Mukilteo",
     "Napa",
-    "Newark",
     "Newcastle",
     "Normandy Park",
     "North Bend",
@@ -104,16 +103,16 @@
   "coverage_official_unavailable_skipped_cities": [
     "Vancouver WA"
   ],
-  "source_count": 31,
+  "source_count": 36,
   "total_records": 1186037,
-  "included_records": 375375,
+  "included_records": 379314,
   "unknown_records": 99064,
   "species_counts": {
-    "cherry": 85007,
-    "plum": 92730,
-    "peach": 5429,
-    "magnolia": 151663,
-    "crabapple": 40546
+    "cherry": 88259,
+    "plum": 92796,
+    "peach": 5431,
+    "magnolia": 151902,
+    "crabapple": 40926
   },
   "regions": [
     {
@@ -163,207 +162,53 @@
       }
     },
     {
-      "id": "ga",
-      "label": "GA",
-      "available": false,
-      "bounds": [
-        [
-          -84.5508539998525,
-          33.64794399969981
-        ],
-        [
-          -84.28956000009809,
-          33.88682300034589
-        ]
-      ],
-      "data_path": null,
-      "coverage_path": "/data/coverage.ga.v1.geojson",
-      "tree_count": 0,
-      "city_count": 0,
-      "cities": [],
-      "species_counts": {
-        "cherry": 0,
-        "plum": 0,
-        "peach": 0,
-        "magnolia": 0,
-        "crabapple": 0
-      },
-      "ownership_groups": [],
-      "raw_bytes": 0,
-      "gzip_bytes": 0,
-      "warning_level": "none",
-      "aggregate_raw_bytes": 0,
-      "aggregate_gzip_bytes": 0,
-      "aggregate_warning_level": "none",
-      "largest_shard_raw_bytes": 0,
-      "largest_shard_gzip_bytes": 0,
-      "largest_shard_area": null,
-      "largest_shard_warning_level": "none",
-      "city_split": null,
-      "area_split": {
-        "strategy": "area_shard",
-        "index_path": "/data/trees.ga.area-index.v2.json",
-        "area_count": 0,
-        "shard_count": 0,
-        "ready": true
-      }
-    },
-    {
-      "id": "il",
-      "label": "IL",
-      "available": false,
-      "bounds": [
-        [
-          -87.9400970004394,
-          41.64428599980485
-        ],
-        [
-          -87.52366100015183,
-          42.023135000197996
-        ]
-      ],
-      "data_path": null,
-      "coverage_path": "/data/coverage.il.v1.geojson",
-      "tree_count": 0,
-      "city_count": 0,
-      "cities": [],
-      "species_counts": {
-        "cherry": 0,
-        "plum": 0,
-        "peach": 0,
-        "magnolia": 0,
-        "crabapple": 0
-      },
-      "ownership_groups": [],
-      "raw_bytes": 0,
-      "gzip_bytes": 0,
-      "warning_level": "none",
-      "aggregate_raw_bytes": 0,
-      "aggregate_gzip_bytes": 0,
-      "aggregate_warning_level": "none",
-      "largest_shard_raw_bytes": 0,
-      "largest_shard_gzip_bytes": 0,
-      "largest_shard_area": null,
-      "largest_shard_warning_level": "none",
-      "city_split": null,
-      "area_split": {
-        "strategy": "area_shard",
-        "index_path": "/data/trees.il.area-index.v2.json",
-        "area_count": 0,
-        "shard_count": 0,
-        "ready": true
-      }
-    },
-    {
-      "id": "mi",
-      "label": "MI",
-      "available": false,
-      "bounds": [
-        [
-          -83.28780300044481,
-          42.25495999989942
-        ],
-        [
-          -82.91042700006396,
-          42.450230000108434
-        ]
-      ],
-      "data_path": null,
-      "coverage_path": "/data/coverage.mi.v1.geojson",
-      "tree_count": 0,
-      "city_count": 0,
-      "cities": [],
-      "species_counts": {
-        "cherry": 0,
-        "plum": 0,
-        "peach": 0,
-        "magnolia": 0,
-        "crabapple": 0
-      },
-      "ownership_groups": [],
-      "raw_bytes": 0,
-      "gzip_bytes": 0,
-      "warning_level": "none",
-      "aggregate_raw_bytes": 0,
-      "aggregate_gzip_bytes": 0,
-      "aggregate_warning_level": "none",
-      "largest_shard_raw_bytes": 0,
-      "largest_shard_gzip_bytes": 0,
-      "largest_shard_area": null,
-      "largest_shard_warning_level": "none",
-      "city_split": null,
-      "area_split": {
-        "strategy": "area_shard",
-        "index_path": "/data/trees.mi.area-index.v2.json",
-        "area_count": 0,
-        "shard_count": 0,
-        "ready": true
-      }
-    },
-    {
-      "id": "wa",
-      "label": "WA",
+      "id": "bc",
+      "label": "BC",
       "available": true,
       "bounds": [
         [
-          -123.08,
-          47.02
+          -123.47799044362478,
+          48.40249758903433
         ],
         [
-          -121.55,
-          48.08
+          -122.62108637425426,
+          49.4138112645356
         ]
       ],
       "data_path": null,
-      "coverage_path": "/data/coverage.wa.v1.geojson",
-      "tree_count": 86604,
-      "city_count": 17,
+      "coverage_path": "/data/coverage.bc.v1.geojson",
+      "tree_count": 44683,
+      "city_count": 2,
       "cities": [
-        "Bellevue",
-        "Bellingham",
-        "Everett",
-        "Gig Harbor",
-        "Kenmore",
-        "Kirkland",
-        "Puyallup",
-        "Redmond",
-        "Renton",
-        "Sammamish",
-        "SeaTac",
-        "Seattle",
-        "Shoreline",
-        "Snohomish",
-        "Spokane",
-        "Walla Walla",
-        "Yakima"
+        "Vancouver BC",
+        "Victoria BC"
       ],
       "species_counts": {
-        "cherry": 33479,
-        "plum": 25908,
-        "peach": 383,
-        "magnolia": 7184,
-        "crabapple": 19650
+        "cherry": 21621,
+        "plum": 13146,
+        "peach": 0,
+        "magnolia": 5117,
+        "crabapple": 4799
       },
       "ownership_groups": [
-        "public",
-        "private"
+        "public"
       ],
-      "raw_bytes": 57848265,
-      "gzip_bytes": 2396860,
+      "raw_bytes": 23601575,
+      "gzip_bytes": 1077620,
       "warning_level": "none",
-      "aggregate_raw_bytes": 57848265,
-      "aggregate_gzip_bytes": 2396860,
-      "aggregate_warning_level": "very_large",
-      "largest_shard_raw_bytes": 11769936,
-      "largest_shard_gzip_bytes": 485947,
-      "largest_shard_area": "Seattle",
+      "aggregate_raw_bytes": 23601575,
+      "aggregate_gzip_bytes": 1077620,
+      "aggregate_warning_level": "none",
+      "largest_shard_raw_bytes": 20121607,
+      "largest_shard_gzip_bytes": 925188,
+      "largest_shard_area": "Vancouver BC",
       "largest_shard_warning_level": "none",
       "city_split": null,
       "area_split": {
         "strategy": "area_shard",
-        "index_path": "/data/trees.wa.area-index.v2.json",
-        "area_count": 17,
-        "shard_count": 20,
+        "index_path": "/data/trees.bc.area-index.v2.json",
+        "area_count": 2,
+        "shard_count": 2,
         "ready": true
       }
     },
@@ -532,6 +377,341 @@
       }
     },
     {
+      "id": "dc",
+      "label": "DC",
+      "available": true,
+      "bounds": [
+        [
+          -77.11975900017987,
+          38.791644999914155
+        ],
+        [
+          -76.90939300018182,
+          38.99584500030949
+        ]
+      ],
+      "data_path": null,
+      "coverage_path": "/data/coverage.dc.v1.geojson",
+      "tree_count": 16543,
+      "city_count": 1,
+      "cities": [
+        "Washington DC"
+      ],
+      "species_counts": {
+        "cherry": 10665,
+        "plum": 336,
+        "peach": 0,
+        "magnolia": 3509,
+        "crabapple": 2033
+      },
+      "ownership_groups": [
+        "public",
+        "private"
+      ],
+      "raw_bytes": 8520473,
+      "gzip_bytes": 457349,
+      "warning_level": "none",
+      "aggregate_raw_bytes": 8520473,
+      "aggregate_gzip_bytes": 457349,
+      "aggregate_warning_level": "none",
+      "largest_shard_raw_bytes": 8520473,
+      "largest_shard_gzip_bytes": 457349,
+      "largest_shard_area": "Washington DC",
+      "largest_shard_warning_level": "none",
+      "city_split": null,
+      "area_split": {
+        "strategy": "area_shard",
+        "index_path": "/data/trees.dc.area-index.v2.json",
+        "area_count": 1,
+        "shard_count": 1,
+        "ready": true
+      }
+    },
+    {
+      "id": "ga",
+      "label": "GA",
+      "available": false,
+      "bounds": [
+        [
+          -84.5508539998525,
+          33.64794399969981
+        ],
+        [
+          -84.28956000009809,
+          33.88682300034589
+        ]
+      ],
+      "data_path": null,
+      "coverage_path": "/data/coverage.ga.v1.geojson",
+      "tree_count": 0,
+      "city_count": 0,
+      "cities": [],
+      "species_counts": {
+        "cherry": 0,
+        "plum": 0,
+        "peach": 0,
+        "magnolia": 0,
+        "crabapple": 0
+      },
+      "ownership_groups": [],
+      "raw_bytes": 0,
+      "gzip_bytes": 0,
+      "warning_level": "none",
+      "aggregate_raw_bytes": 0,
+      "aggregate_gzip_bytes": 0,
+      "aggregate_warning_level": "none",
+      "largest_shard_raw_bytes": 0,
+      "largest_shard_gzip_bytes": 0,
+      "largest_shard_area": null,
+      "largest_shard_warning_level": "none",
+      "city_split": null,
+      "area_split": {
+        "strategy": "area_shard",
+        "index_path": "/data/trees.ga.area-index.v2.json",
+        "area_count": 0,
+        "shard_count": 0,
+        "ready": true
+      }
+    },
+    {
+      "id": "il",
+      "label": "IL",
+      "available": false,
+      "bounds": [
+        [
+          -87.9400970004394,
+          41.64428599980485
+        ],
+        [
+          -87.52366100015183,
+          42.023135000197996
+        ]
+      ],
+      "data_path": null,
+      "coverage_path": "/data/coverage.il.v1.geojson",
+      "tree_count": 0,
+      "city_count": 0,
+      "cities": [],
+      "species_counts": {
+        "cherry": 0,
+        "plum": 0,
+        "peach": 0,
+        "magnolia": 0,
+        "crabapple": 0
+      },
+      "ownership_groups": [],
+      "raw_bytes": 0,
+      "gzip_bytes": 0,
+      "warning_level": "none",
+      "aggregate_raw_bytes": 0,
+      "aggregate_gzip_bytes": 0,
+      "aggregate_warning_level": "none",
+      "largest_shard_raw_bytes": 0,
+      "largest_shard_gzip_bytes": 0,
+      "largest_shard_area": null,
+      "largest_shard_warning_level": "none",
+      "city_split": null,
+      "area_split": {
+        "strategy": "area_shard",
+        "index_path": "/data/trees.il.area-index.v2.json",
+        "area_count": 0,
+        "shard_count": 0,
+        "ready": true
+      }
+    },
+    {
+      "id": "ma",
+      "label": "MA",
+      "available": false,
+      "bounds": [
+        [
+          -123.08,
+          47.02
+        ],
+        [
+          -121.55,
+          48.08
+        ]
+      ],
+      "data_path": null,
+      "coverage_path": null,
+      "tree_count": 0,
+      "city_count": 0,
+      "cities": [],
+      "species_counts": {
+        "cherry": 0,
+        "plum": 0,
+        "peach": 0,
+        "magnolia": 0,
+        "crabapple": 0
+      },
+      "ownership_groups": [],
+      "raw_bytes": 0,
+      "gzip_bytes": 0,
+      "warning_level": "none",
+      "aggregate_raw_bytes": 0,
+      "aggregate_gzip_bytes": 0,
+      "aggregate_warning_level": "none",
+      "largest_shard_raw_bytes": 0,
+      "largest_shard_gzip_bytes": 0,
+      "largest_shard_area": null,
+      "largest_shard_warning_level": "none",
+      "city_split": null,
+      "area_split": {
+        "strategy": "area_shard",
+        "index_path": "/data/trees.ma.area-index.v2.json",
+        "area_count": 0,
+        "shard_count": 0,
+        "ready": true
+      }
+    },
+    {
+      "id": "md",
+      "label": "MD",
+      "available": false,
+      "bounds": [
+        [
+          -77.5276853901476,
+          38.93424875542158
+        ],
+        [
+          -76.88763834031488,
+          39.354336126989374
+        ]
+      ],
+      "data_path": null,
+      "coverage_path": "/data/coverage.md.v1.geojson",
+      "tree_count": 0,
+      "city_count": 0,
+      "cities": [],
+      "species_counts": {
+        "cherry": 0,
+        "plum": 0,
+        "peach": 0,
+        "magnolia": 0,
+        "crabapple": 0
+      },
+      "ownership_groups": [],
+      "raw_bytes": 0,
+      "gzip_bytes": 0,
+      "warning_level": "none",
+      "aggregate_raw_bytes": 0,
+      "aggregate_gzip_bytes": 0,
+      "aggregate_warning_level": "none",
+      "largest_shard_raw_bytes": 0,
+      "largest_shard_gzip_bytes": 0,
+      "largest_shard_area": null,
+      "largest_shard_warning_level": "none",
+      "city_split": null,
+      "area_split": {
+        "strategy": "area_shard",
+        "index_path": "/data/trees.md.area-index.v2.json",
+        "area_count": 0,
+        "shard_count": 0,
+        "ready": true
+      }
+    },
+    {
+      "id": "mi",
+      "label": "MI",
+      "available": false,
+      "bounds": [
+        [
+          -83.28780300044481,
+          42.25495999989942
+        ],
+        [
+          -82.91042700006396,
+          42.450230000108434
+        ]
+      ],
+      "data_path": null,
+      "coverage_path": "/data/coverage.mi.v1.geojson",
+      "tree_count": 0,
+      "city_count": 0,
+      "cities": [],
+      "species_counts": {
+        "cherry": 0,
+        "plum": 0,
+        "peach": 0,
+        "magnolia": 0,
+        "crabapple": 0
+      },
+      "ownership_groups": [],
+      "raw_bytes": 0,
+      "gzip_bytes": 0,
+      "warning_level": "none",
+      "aggregate_raw_bytes": 0,
+      "aggregate_gzip_bytes": 0,
+      "aggregate_warning_level": "none",
+      "largest_shard_raw_bytes": 0,
+      "largest_shard_gzip_bytes": 0,
+      "largest_shard_area": null,
+      "largest_shard_warning_level": "none",
+      "city_split": null,
+      "area_split": {
+        "strategy": "area_shard",
+        "index_path": "/data/trees.mi.area-index.v2.json",
+        "area_count": 0,
+        "shard_count": 0,
+        "ready": true
+      }
+    },
+    {
+      "id": "nj",
+      "label": "NJ",
+      "available": true,
+      "bounds": [
+        [
+          -83.30238853338636,
+          36.20905163806406
+        ],
+        [
+          -74.024873,
+          40.855110987915324
+        ]
+      ],
+      "data_path": null,
+      "coverage_path": "/data/coverage.nj.v1.geojson",
+      "tree_count": 3939,
+      "city_count": 5,
+      "cities": [
+        "Hoboken",
+        "Jersey City",
+        "Montclair",
+        "Newark",
+        "Princeton"
+      ],
+      "species_counts": {
+        "cherry": 3252,
+        "plum": 66,
+        "peach": 2,
+        "magnolia": 239,
+        "crabapple": 380
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "raw_bytes": 2068424,
+      "gzip_bytes": 85915,
+      "warning_level": "none",
+      "aggregate_raw_bytes": 2068424,
+      "aggregate_gzip_bytes": 85915,
+      "aggregate_warning_level": "none",
+      "largest_shard_raw_bytes": 1153133,
+      "largest_shard_gzip_bytes": 50297,
+      "largest_shard_area": "Jersey City",
+      "largest_shard_warning_level": "none",
+      "city_split": null,
+      "area_split": {
+        "strategy": "area_shard",
+        "index_path": "/data/trees.nj.area-index.v2.json",
+        "area_count": 5,
+        "shard_count": 5,
+        "ready": true
+      }
+    },
+    {
       "id": "nv",
       "label": "NV",
       "available": false,
@@ -572,6 +752,98 @@
       "area_split": {
         "strategy": "area_shard",
         "index_path": "/data/trees.nv.area-index.v2.json",
+        "area_count": 0,
+        "shard_count": 0,
+        "ready": true
+      }
+    },
+    {
+      "id": "ny",
+      "label": "NY",
+      "available": false,
+      "bounds": [
+        [
+          -123.08,
+          47.02
+        ],
+        [
+          -121.55,
+          48.08
+        ]
+      ],
+      "data_path": null,
+      "coverage_path": null,
+      "tree_count": 0,
+      "city_count": 0,
+      "cities": [],
+      "species_counts": {
+        "cherry": 0,
+        "plum": 0,
+        "peach": 0,
+        "magnolia": 0,
+        "crabapple": 0
+      },
+      "ownership_groups": [],
+      "raw_bytes": 0,
+      "gzip_bytes": 0,
+      "warning_level": "none",
+      "aggregate_raw_bytes": 0,
+      "aggregate_gzip_bytes": 0,
+      "aggregate_warning_level": "none",
+      "largest_shard_raw_bytes": 0,
+      "largest_shard_gzip_bytes": 0,
+      "largest_shard_area": null,
+      "largest_shard_warning_level": "none",
+      "city_split": null,
+      "area_split": {
+        "strategy": "area_shard",
+        "index_path": "/data/trees.ny.area-index.v2.json",
+        "area_count": 0,
+        "shard_count": 0,
+        "ready": true
+      }
+    },
+    {
+      "id": "on",
+      "label": "ON",
+      "available": false,
+      "bounds": [
+        [
+          -123.08,
+          47.02
+        ],
+        [
+          -121.55,
+          48.08
+        ]
+      ],
+      "data_path": null,
+      "coverage_path": null,
+      "tree_count": 0,
+      "city_count": 0,
+      "cities": [],
+      "species_counts": {
+        "cherry": 0,
+        "plum": 0,
+        "peach": 0,
+        "magnolia": 0,
+        "crabapple": 0
+      },
+      "ownership_groups": [],
+      "raw_bytes": 0,
+      "gzip_bytes": 0,
+      "warning_level": "none",
+      "aggregate_raw_bytes": 0,
+      "aggregate_gzip_bytes": 0,
+      "aggregate_warning_level": "none",
+      "largest_shard_raw_bytes": 0,
+      "largest_shard_gzip_bytes": 0,
+      "largest_shard_area": null,
+      "largest_shard_warning_level": "none",
+      "city_split": null,
+      "area_split": {
+        "strategy": "area_shard",
+        "index_path": "/data/trees.on.area-index.v2.json",
         "area_count": 0,
         "shard_count": 0,
         "ready": true
@@ -624,6 +896,98 @@
         "index_path": "/data/trees.or.area-index.v2.json",
         "area_count": 1,
         "shard_count": 1,
+        "ready": true
+      }
+    },
+    {
+      "id": "pa",
+      "label": "PA",
+      "available": false,
+      "bounds": [
+        [
+          -123.08,
+          47.02
+        ],
+        [
+          -121.55,
+          48.08
+        ]
+      ],
+      "data_path": null,
+      "coverage_path": null,
+      "tree_count": 0,
+      "city_count": 0,
+      "cities": [],
+      "species_counts": {
+        "cherry": 0,
+        "plum": 0,
+        "peach": 0,
+        "magnolia": 0,
+        "crabapple": 0
+      },
+      "ownership_groups": [],
+      "raw_bytes": 0,
+      "gzip_bytes": 0,
+      "warning_level": "none",
+      "aggregate_raw_bytes": 0,
+      "aggregate_gzip_bytes": 0,
+      "aggregate_warning_level": "none",
+      "largest_shard_raw_bytes": 0,
+      "largest_shard_gzip_bytes": 0,
+      "largest_shard_area": null,
+      "largest_shard_warning_level": "none",
+      "city_split": null,
+      "area_split": {
+        "strategy": "area_shard",
+        "index_path": "/data/trees.pa.area-index.v2.json",
+        "area_count": 0,
+        "shard_count": 0,
+        "ready": true
+      }
+    },
+    {
+      "id": "qc",
+      "label": "QC",
+      "available": false,
+      "bounds": [
+        [
+          -123.08,
+          47.02
+        ],
+        [
+          -121.55,
+          48.08
+        ]
+      ],
+      "data_path": null,
+      "coverage_path": null,
+      "tree_count": 0,
+      "city_count": 0,
+      "cities": [],
+      "species_counts": {
+        "cherry": 0,
+        "plum": 0,
+        "peach": 0,
+        "magnolia": 0,
+        "crabapple": 0
+      },
+      "ownership_groups": [],
+      "raw_bytes": 0,
+      "gzip_bytes": 0,
+      "warning_level": "none",
+      "aggregate_raw_bytes": 0,
+      "aggregate_gzip_bytes": 0,
+      "aggregate_warning_level": "none",
+      "largest_shard_raw_bytes": 0,
+      "largest_shard_gzip_bytes": 0,
+      "largest_shard_area": null,
+      "largest_shard_warning_level": "none",
+      "city_split": null,
+      "area_split": {
+        "strategy": "area_shard",
+        "index_path": "/data/trees.qc.area-index.v2.json",
+        "area_count": 0,
+        "shard_count": 0,
         "ready": true
       }
     },
@@ -720,200 +1084,6 @@
       }
     },
     {
-      "id": "dc",
-      "label": "DC",
-      "available": true,
-      "bounds": [
-        [
-          -77.11975900017987,
-          38.791644999914155
-        ],
-        [
-          -76.90939300018182,
-          38.99584500030949
-        ]
-      ],
-      "data_path": null,
-      "coverage_path": "/data/coverage.dc.v1.geojson",
-      "tree_count": 16543,
-      "city_count": 1,
-      "cities": [
-        "Washington DC"
-      ],
-      "species_counts": {
-        "cherry": 10665,
-        "plum": 336,
-        "peach": 0,
-        "magnolia": 3509,
-        "crabapple": 2033
-      },
-      "ownership_groups": [
-        "public",
-        "private"
-      ],
-      "raw_bytes": 8520473,
-      "gzip_bytes": 457349,
-      "warning_level": "none",
-      "aggregate_raw_bytes": 8520473,
-      "aggregate_gzip_bytes": 457349,
-      "aggregate_warning_level": "none",
-      "largest_shard_raw_bytes": 8520473,
-      "largest_shard_gzip_bytes": 457349,
-      "largest_shard_area": "Washington DC",
-      "largest_shard_warning_level": "none",
-      "city_split": null,
-      "area_split": {
-        "strategy": "area_shard",
-        "index_path": "/data/trees.dc.area-index.v2.json",
-        "area_count": 1,
-        "shard_count": 1,
-        "ready": true
-      }
-    },
-    {
-      "id": "bc",
-      "label": "BC",
-      "available": true,
-      "bounds": [
-        [
-          -123.47799044362478,
-          48.40249758903433
-        ],
-        [
-          -122.62108637425426,
-          49.4138112645356
-        ]
-      ],
-      "data_path": null,
-      "coverage_path": "/data/coverage.bc.v1.geojson",
-      "tree_count": 44683,
-      "city_count": 2,
-      "cities": [
-        "Vancouver BC",
-        "Victoria BC"
-      ],
-      "species_counts": {
-        "cherry": 21621,
-        "plum": 13146,
-        "peach": 0,
-        "magnolia": 5117,
-        "crabapple": 4799
-      },
-      "ownership_groups": [
-        "public"
-      ],
-      "raw_bytes": 23601575,
-      "gzip_bytes": 1077620,
-      "warning_level": "none",
-      "aggregate_raw_bytes": 23601575,
-      "aggregate_gzip_bytes": 1077620,
-      "aggregate_warning_level": "none",
-      "largest_shard_raw_bytes": 20121607,
-      "largest_shard_gzip_bytes": 925188,
-      "largest_shard_area": "Vancouver BC",
-      "largest_shard_warning_level": "none",
-      "city_split": null,
-      "area_split": {
-        "strategy": "area_shard",
-        "index_path": "/data/trees.bc.area-index.v2.json",
-        "area_count": 2,
-        "shard_count": 2,
-        "ready": true
-      }
-    },
-    {
-      "id": "on",
-      "label": "ON",
-      "available": false,
-      "bounds": [
-        [
-          -123.08,
-          47.02
-        ],
-        [
-          -121.55,
-          48.08
-        ]
-      ],
-      "data_path": null,
-      "coverage_path": null,
-      "tree_count": 0,
-      "city_count": 0,
-      "cities": [],
-      "species_counts": {
-        "cherry": 0,
-        "plum": 0,
-        "peach": 0,
-        "magnolia": 0,
-        "crabapple": 0
-      },
-      "ownership_groups": [],
-      "raw_bytes": 0,
-      "gzip_bytes": 0,
-      "warning_level": "none",
-      "aggregate_raw_bytes": 0,
-      "aggregate_gzip_bytes": 0,
-      "aggregate_warning_level": "none",
-      "largest_shard_raw_bytes": 0,
-      "largest_shard_gzip_bytes": 0,
-      "largest_shard_area": null,
-      "largest_shard_warning_level": "none",
-      "city_split": null,
-      "area_split": {
-        "strategy": "area_shard",
-        "index_path": "/data/trees.on.area-index.v2.json",
-        "area_count": 0,
-        "shard_count": 0,
-        "ready": true
-      }
-    },
-    {
-      "id": "qc",
-      "label": "QC",
-      "available": false,
-      "bounds": [
-        [
-          -123.08,
-          47.02
-        ],
-        [
-          -121.55,
-          48.08
-        ]
-      ],
-      "data_path": null,
-      "coverage_path": null,
-      "tree_count": 0,
-      "city_count": 0,
-      "cities": [],
-      "species_counts": {
-        "cherry": 0,
-        "plum": 0,
-        "peach": 0,
-        "magnolia": 0,
-        "crabapple": 0
-      },
-      "ownership_groups": [],
-      "raw_bytes": 0,
-      "gzip_bytes": 0,
-      "warning_level": "none",
-      "aggregate_raw_bytes": 0,
-      "aggregate_gzip_bytes": 0,
-      "aggregate_warning_level": "none",
-      "largest_shard_raw_bytes": 0,
-      "largest_shard_gzip_bytes": 0,
-      "largest_shard_area": null,
-      "largest_shard_warning_level": "none",
-      "city_split": null,
-      "area_split": {
-        "strategy": "area_shard",
-        "index_path": "/data/trees.qc.area-index.v2.json",
-        "area_count": 0,
-        "shard_count": 0,
-        "ready": true
-      }
-    },
-    {
       "id": "va",
       "label": "VA",
       "available": false,
@@ -960,101 +1130,9 @@
       }
     },
     {
-      "id": "md",
-      "label": "MD",
-      "available": false,
-      "bounds": [
-        [
-          -77.5276853901476,
-          38.93424875542158
-        ],
-        [
-          -76.88763834031488,
-          39.354336126989374
-        ]
-      ],
-      "data_path": null,
-      "coverage_path": "/data/coverage.md.v1.geojson",
-      "tree_count": 0,
-      "city_count": 0,
-      "cities": [],
-      "species_counts": {
-        "cherry": 0,
-        "plum": 0,
-        "peach": 0,
-        "magnolia": 0,
-        "crabapple": 0
-      },
-      "ownership_groups": [],
-      "raw_bytes": 0,
-      "gzip_bytes": 0,
-      "warning_level": "none",
-      "aggregate_raw_bytes": 0,
-      "aggregate_gzip_bytes": 0,
-      "aggregate_warning_level": "none",
-      "largest_shard_raw_bytes": 0,
-      "largest_shard_gzip_bytes": 0,
-      "largest_shard_area": null,
-      "largest_shard_warning_level": "none",
-      "city_split": null,
-      "area_split": {
-        "strategy": "area_shard",
-        "index_path": "/data/trees.md.area-index.v2.json",
-        "area_count": 0,
-        "shard_count": 0,
-        "ready": true
-      }
-    },
-    {
-      "id": "nj",
-      "label": "NJ",
-      "available": false,
-      "bounds": [
-        [
-          -74.25136099975268,
-          40.67436799975193
-        ],
-        [
-          -74.11278699990707,
-          40.78826700012708
-        ]
-      ],
-      "data_path": null,
-      "coverage_path": "/data/coverage.nj.v1.geojson",
-      "tree_count": 0,
-      "city_count": 0,
-      "cities": [],
-      "species_counts": {
-        "cherry": 0,
-        "plum": 0,
-        "peach": 0,
-        "magnolia": 0,
-        "crabapple": 0
-      },
-      "ownership_groups": [],
-      "raw_bytes": 0,
-      "gzip_bytes": 0,
-      "warning_level": "none",
-      "aggregate_raw_bytes": 0,
-      "aggregate_gzip_bytes": 0,
-      "aggregate_warning_level": "none",
-      "largest_shard_raw_bytes": 0,
-      "largest_shard_gzip_bytes": 0,
-      "largest_shard_area": null,
-      "largest_shard_warning_level": "none",
-      "city_split": null,
-      "area_split": {
-        "strategy": "area_shard",
-        "index_path": "/data/trees.nj.area-index.v2.json",
-        "area_count": 0,
-        "shard_count": 0,
-        "ready": true
-      }
-    },
-    {
-      "id": "ny",
-      "label": "NY",
-      "available": false,
+      "id": "wa",
+      "label": "WA",
+      "available": true,
       "bounds": [
         [
           -123.08,
@@ -1066,126 +1144,55 @@
         ]
       ],
       "data_path": null,
-      "coverage_path": null,
-      "tree_count": 0,
-      "city_count": 0,
-      "cities": [],
-      "species_counts": {
-        "cherry": 0,
-        "plum": 0,
-        "peach": 0,
-        "magnolia": 0,
-        "crabapple": 0
-      },
-      "ownership_groups": [],
-      "raw_bytes": 0,
-      "gzip_bytes": 0,
-      "warning_level": "none",
-      "aggregate_raw_bytes": 0,
-      "aggregate_gzip_bytes": 0,
-      "aggregate_warning_level": "none",
-      "largest_shard_raw_bytes": 0,
-      "largest_shard_gzip_bytes": 0,
-      "largest_shard_area": null,
-      "largest_shard_warning_level": "none",
-      "city_split": null,
-      "area_split": {
-        "strategy": "area_shard",
-        "index_path": "/data/trees.ny.area-index.v2.json",
-        "area_count": 0,
-        "shard_count": 0,
-        "ready": true
-      }
-    },
-    {
-      "id": "pa",
-      "label": "PA",
-      "available": false,
-      "bounds": [
-        [
-          -123.08,
-          47.02
-        ],
-        [
-          -121.55,
-          48.08
-        ]
+      "coverage_path": "/data/coverage.wa.v1.geojson",
+      "tree_count": 86604,
+      "city_count": 17,
+      "cities": [
+        "Bellevue",
+        "Bellingham",
+        "Everett",
+        "Gig Harbor",
+        "Kenmore",
+        "Kirkland",
+        "Puyallup",
+        "Redmond",
+        "Renton",
+        "Sammamish",
+        "SeaTac",
+        "Seattle",
+        "Shoreline",
+        "Snohomish",
+        "Spokane",
+        "Walla Walla",
+        "Yakima"
       ],
-      "data_path": null,
-      "coverage_path": null,
-      "tree_count": 0,
-      "city_count": 0,
-      "cities": [],
       "species_counts": {
-        "cherry": 0,
-        "plum": 0,
-        "peach": 0,
-        "magnolia": 0,
-        "crabapple": 0
+        "cherry": 33479,
+        "plum": 25908,
+        "peach": 383,
+        "magnolia": 7184,
+        "crabapple": 19650
       },
-      "ownership_groups": [],
-      "raw_bytes": 0,
-      "gzip_bytes": 0,
-      "warning_level": "none",
-      "aggregate_raw_bytes": 0,
-      "aggregate_gzip_bytes": 0,
-      "aggregate_warning_level": "none",
-      "largest_shard_raw_bytes": 0,
-      "largest_shard_gzip_bytes": 0,
-      "largest_shard_area": null,
-      "largest_shard_warning_level": "none",
-      "city_split": null,
-      "area_split": {
-        "strategy": "area_shard",
-        "index_path": "/data/trees.pa.area-index.v2.json",
-        "area_count": 0,
-        "shard_count": 0,
-        "ready": true
-      }
-    },
-    {
-      "id": "ma",
-      "label": "MA",
-      "available": false,
-      "bounds": [
-        [
-          -123.08,
-          47.02
-        ],
-        [
-          -121.55,
-          48.08
-        ]
+      "ownership_groups": [
+        "public",
+        "private"
       ],
-      "data_path": null,
-      "coverage_path": null,
-      "tree_count": 0,
-      "city_count": 0,
-      "cities": [],
-      "species_counts": {
-        "cherry": 0,
-        "plum": 0,
-        "peach": 0,
-        "magnolia": 0,
-        "crabapple": 0
-      },
-      "ownership_groups": [],
-      "raw_bytes": 0,
-      "gzip_bytes": 0,
+      "raw_bytes": 57848265,
+      "gzip_bytes": 2396860,
       "warning_level": "none",
-      "aggregate_raw_bytes": 0,
-      "aggregate_gzip_bytes": 0,
-      "aggregate_warning_level": "none",
-      "largest_shard_raw_bytes": 0,
-      "largest_shard_gzip_bytes": 0,
-      "largest_shard_area": null,
+      "aggregate_raw_bytes": 57848265,
+      "aggregate_gzip_bytes": 2396860,
+      "aggregate_warning_level": "very_large",
+      "largest_shard_raw_bytes": 11769936,
+      "largest_shard_gzip_bytes": 485947,
+      "largest_shard_area": "Seattle",
       "largest_shard_warning_level": "none",
       "city_split": null,
       "area_split": {
         "strategy": "area_shard",
-        "index_path": "/data/trees.ma.area-index.v2.json",
-        "area_count": 0,
-        "shard_count": 0,
+        "index_path": "/data/trees.wa.area-index.v2.json",
+        "area_count": 17,
+        "shard_count": 20,
         "ready": true
       }
     }
@@ -2186,6 +2193,76 @@
       "state_province": "DC"
     },
     {
+      "jurisdiction": "Hoboken",
+      "region": "nj",
+      "tree_count": 397,
+      "species_counts": {
+        "cherry": 297,
+        "plum": 55,
+        "peach": 1,
+        "magnolia": 16,
+        "crabapple": 28
+      },
+      "jurisdiction_type": "city",
+      "state_province": "NJ"
+    },
+    {
+      "jurisdiction": "Jersey City",
+      "region": "nj",
+      "tree_count": 2148,
+      "species_counts": {
+        "cherry": 2004,
+        "plum": 1,
+        "peach": 0,
+        "magnolia": 21,
+        "crabapple": 122
+      },
+      "jurisdiction_type": "city",
+      "state_province": "NJ"
+    },
+    {
+      "jurisdiction": "Montclair",
+      "region": "nj",
+      "tree_count": 56,
+      "species_counts": {
+        "cherry": 27,
+        "plum": 5,
+        "peach": 0,
+        "magnolia": 0,
+        "crabapple": 24
+      },
+      "jurisdiction_type": "city",
+      "state_province": "NJ"
+    },
+    {
+      "jurisdiction": "Newark",
+      "region": "nj",
+      "tree_count": 28,
+      "species_counts": {
+        "cherry": 22,
+        "plum": 5,
+        "peach": 0,
+        "magnolia": 1,
+        "crabapple": 0
+      },
+      "jurisdiction_type": "city",
+      "state_province": "NJ"
+    },
+    {
+      "jurisdiction": "Princeton",
+      "region": "nj",
+      "tree_count": 1310,
+      "species_counts": {
+        "cherry": 902,
+        "plum": 0,
+        "peach": 1,
+        "magnolia": 201,
+        "crabapple": 206
+      },
+      "jurisdiction_type": "city",
+      "state_province": "NJ"
+    },
+    {
       "jurisdiction": "Portland",
       "region": "or",
       "tree_count": 24775,
@@ -2440,20 +2517,153 @@
   ],
   "sources": [
     {
-      "name": "Combined Tree Point",
-      "city": "Seattle",
-      "endpoint": "https://services.arcgis.com/ZOyb2t4B0UYuYNYH/arcgis/rest/services/Combined_Tree_Point/FeatureServer/0",
-      "last_edit_at": "2026-03-10T19:26:01.831000+00:00",
-      "records_fetched": 67184,
-      "records_included": 65012
-    },
-    {
       "name": "City Trees",
       "city": "Bellevue",
       "endpoint": "https://services1.arcgis.com/EYzEZbDhXZjURPbP/arcgis/rest/services/City_Trees/FeatureServer/29",
       "last_edit_at": "2026-03-10T19:10:09.488000+00:00",
       "records_fetched": 342,
       "records_included": 342
+    },
+    {
+      "name": "Bellingham Trees",
+      "city": "Bellingham",
+      "endpoint": "https://maps.cob.org/arcgis3/rest/services/Parks/NotableTrees/MapServer/0",
+      "last_edit_at": "",
+      "records_fetched": 909,
+      "records_included": 653
+    },
+    {
+      "name": "Tree_Berkeley20191107",
+      "city": "Berkeley",
+      "endpoint": "https://www.arcgis.com/home/item.html?id=88829f4ae7254b5280732e88e65e6df5",
+      "last_edit_at": "2019-11-07T19:08:30+00:00",
+      "records_fetched": 46037,
+      "records_included": 3973
+    },
+    {
+      "name": "City Street Tree Inventory",
+      "city": "Burlingame",
+      "endpoint": "https://www.burlingame.org/466/Trees-Urban-Forest",
+      "last_edit_at": "2025-02-25T14:28:18.205000+00:00",
+      "records_fetched": 16603,
+      "records_included": 1997
+    },
+    {
+      "name": "Trees",
+      "city": "Cupertino",
+      "endpoint": "https://gis-cupertino.opendata.arcgis.com/",
+      "last_edit_at": "",
+      "records_fetched": 24613,
+      "records_included": 1337
+    },
+    {
+      "name": "Everett TreeKeeper Park Sites",
+      "city": "Everett",
+      "endpoint": "https://everettwa.treekeepersoftware.com/cffiles/grids.cfc",
+      "last_edit_at": "",
+      "records_fetched": 15162,
+      "records_included": 464
+    },
+    {
+      "name": "PW Trees Public Viewer",
+      "city": "Gig Harbor",
+      "endpoint": "https://services3.arcgis.com/FjNT4j1knnY5Wsw5/arcgis/rest/services/PW_Trees_Public_Viewer/FeatureServer/0",
+      "last_edit_at": "2026-03-11T04:06:44.961000+00:00",
+      "records_fetched": 64,
+      "records_included": 63
+    },
+    {
+      "name": "Tree Inventory",
+      "city": "Hoboken",
+      "endpoint": "https://services8.arcgis.com/LDmC4ZVHdfKcEzxl/arcgis/rest/services/2023_Tree_Inventory_/FeatureServer",
+      "last_edit_at": "2024-10-29T18:07:28.399000+00:00",
+      "records_fetched": 5511,
+      "records_included": 397,
+      "note": "Integrated from the official City of Hoboken public tree inventory ArcGIS layer."
+    },
+    {
+      "name": "City of Jersey City Tree Inventory",
+      "city": "Jersey City",
+      "endpoint": "https://www.jerseycitynj.gov/cityhall/infrastructure/division_of_sustainability/urbanforests",
+      "last_edit_at": "2023-11-02T19:09:49.597000+00:00",
+      "records_fetched": 20029,
+      "records_included": 2148,
+      "note": "Integrated from the public Jersey City Tree Inventory service referenced by the city's Urban Forests materials."
+    },
+    {
+      "name": "Public Trees",
+      "city": "Kenmore",
+      "endpoint": "https://gwa.kenmorewa.gov/arcgis/rest/services/Public_Trees/FeatureServer/22",
+      "last_edit_at": "",
+      "records_fetched": 911,
+      "records_included": 329
+    },
+    {
+      "name": "2023-2024 Kirkland Tree Inventory",
+      "city": "Kirkland",
+      "endpoint": "https://pg-cloud.com/main/server/db.php",
+      "last_edit_at": "",
+      "records_fetched": 39014,
+      "records_included": 3122
+    },
+    {
+      "name": "Tree Inventory",
+      "city": "Montclair",
+      "endpoint": "https://services9.arcgis.com/QHXEWAb0pE2rvfbb/arcgis/rest/services/Montclair_Trees_2017_WFL1/FeatureServer",
+      "last_edit_at": "2022-01-15T22:14:18.092000+00:00",
+      "records_fetched": 1170,
+      "records_included": 56,
+      "note": "Integrated from the official Township of Montclair public tree inventory ArcGIS layer."
+    },
+    {
+      "name": "Tree Inventory",
+      "city": "Morristown",
+      "endpoint": "https://services.arcgis.com/xhDV83hFoiDFnMbw/arcgis/rest/services/Legacy_Trees_2021/FeatureServer",
+      "last_edit_at": "2023-05-24T19:54:12.746000+00:00",
+      "records_fetched": 237,
+      "records_included": 10,
+      "note": "Integrated from the official Morristown public tree inventory ArcGIS layer."
+    },
+    {
+      "name": "TreeKeeper Inventory",
+      "city": "Newark",
+      "endpoint": "https://newarknj.treekeepersoftware.com",
+      "last_edit_at": "",
+      "records_fetched": 1456,
+      "records_included": 28,
+      "note": "Integrated from the official Newark public TreeKeeper inventory and jurisdiction boundary."
+    },
+    {
+      "name": "Oakland Street Trees",
+      "city": "Oakland",
+      "endpoint": "https://data.oaklandca.gov/Environmental/Oakland-Street-Trees/4jcx-enxf",
+      "last_edit_at": "2013-01-22T20:50:21+00:00",
+      "records_fetched": 38613,
+      "records_included": 3977
+    },
+    {
+      "name": "Tree Data",
+      "city": "Palo Alto",
+      "endpoint": "https://opengis.cityofpaloalto.org/",
+      "last_edit_at": "2023-01-04T12:54:30.056000+00:00",
+      "records_fetched": 39629,
+      "records_included": 4996
+    },
+    {
+      "name": "Street Tree Inventory - Active Records",
+      "city": "Portland",
+      "endpoint": "https://www.portlandmaps.com/od/rest/services/COP_OpenData_Environment/MapServer/1415",
+      "last_edit_at": "",
+      "records_fetched": 252205,
+      "records_included": 24775
+    },
+    {
+      "name": "City Maintained Street Trees",
+      "city": "Puyallup",
+      "endpoint": "https://services8.arcgis.com/5K6vnOH0GkPyJs6A/arcgis/rest/services/City_Maintained_Street_Trees/FeatureServer/0",
+      "last_edit_at": "2026-01-06T23:31:01.859000+00:00",
+      "records_fetched": 76,
+      "records_included": 76
     },
     {
       "name": "TreeSite",
@@ -2473,12 +2683,36 @@
       "note": ""
     },
     {
-      "name": "Public Trees",
-      "city": "Kenmore",
-      "endpoint": "https://gwa.kenmorewa.gov/arcgis/rest/services/Public_Trees/FeatureServer/22",
+      "name": "TreeKeeper Park Sites",
+      "city": "Sammamish",
+      "endpoint": "https://sammamishwa.treekeepersoftware.com/cffiles/grids.cfc",
       "last_edit_at": "",
-      "records_fetched": 911,
-      "records_included": 329
+      "records_fetched": 11379,
+      "records_included": 247
+    },
+    {
+      "name": "TreeKeeper Street Sites",
+      "city": "Sammamish",
+      "endpoint": "https://sammamishwa.treekeepersoftware.com/cffiles/grids.cfc",
+      "last_edit_at": "",
+      "records_fetched": 8618,
+      "records_included": 916
+    },
+    {
+      "name": "Street Tree List",
+      "city": "San Francisco",
+      "endpoint": "https://data.sfgov.org/City-Infrastructure/Street-Tree-List/tkzw-k3nq",
+      "last_edit_at": "2026-03-05T13:44:30+00:00",
+      "records_fetched": 198096,
+      "records_included": 24099
+    },
+    {
+      "name": "Street Tree",
+      "city": "San Jose",
+      "endpoint": "https://data.sanjoseca.gov/dataset/street-tree",
+      "last_edit_at": "",
+      "records_fetched": 346240,
+      "records_included": 18025
     },
     {
       "name": "Trees",
@@ -2489,20 +2723,29 @@
       "records_included": 1337
     },
     {
-      "name": "City Maintained Street Trees",
-      "city": "Puyallup",
-      "endpoint": "https://services8.arcgis.com/5K6vnOH0GkPyJs6A/arcgis/rest/services/City_Maintained_Street_Trees/FeatureServer/0",
-      "last_edit_at": "2026-01-06T23:31:01.859000+00:00",
-      "records_fetched": 76,
-      "records_included": 76
+      "name": "Combined Tree Point",
+      "city": "Seattle",
+      "endpoint": "https://services.arcgis.com/ZOyb2t4B0UYuYNYH/arcgis/rest/services/Combined_Tree_Point/FeatureServer/0",
+      "last_edit_at": "2026-03-10T19:26:01.831000+00:00",
+      "records_fetched": 67184,
+      "records_included": 65012
     },
     {
-      "name": "PW Trees Public Viewer",
-      "city": "Gig Harbor",
-      "endpoint": "https://services3.arcgis.com/FjNT4j1knnY5Wsw5/arcgis/rest/services/PW_Trees_Public_Viewer/FeatureServer/0",
-      "last_edit_at": "2026-03-11T04:06:44.961000+00:00",
-      "records_fetched": 64,
-      "records_included": 63
+      "name": "UW Cherry Bloom History",
+      "city": "Seattle",
+      "endpoint": "https://digital.lib.washington.edu/researchworks/items/75f5324f-1892-4e8c-ad26-7e74f4f535f1",
+      "last_edit_at": "",
+      "records_fetched": 1,
+      "records_included": 1,
+      "note": "Official UW Quad bloom history workbook used for featured-area forecast generation."
+    },
+    {
+      "name": "UW OSM Supplemental",
+      "city": "Seattle",
+      "endpoint": "OpenStreetMap Overpass supplemental file",
+      "last_edit_at": "",
+      "records_fetched": 30,
+      "records_included": 30
     },
     {
       "name": "Public Tree Inventory",
@@ -2521,100 +2764,12 @@
       "records_included": 856
     },
     {
-      "name": "Bellingham Trees",
-      "city": "Bellingham",
-      "endpoint": "https://maps.cob.org/arcgis3/rest/services/Parks/NotableTrees/MapServer/0",
-      "last_edit_at": "",
-      "records_fetched": 909,
-      "records_included": 653
-    },
-    {
       "name": "Spokane Tree Inventory",
       "city": "Spokane",
       "endpoint": "https://services.arcgis.com/3PDwyTturHqnGCu0/arcgis/rest/services/Tree_Inventory/FeatureServer/7",
       "last_edit_at": "2025-07-22T20:56:02.406000+00:00",
       "records_fetched": 8522,
       "records_included": 8472
-    },
-    {
-      "name": "Yakima Trees",
-      "city": "Yakima",
-      "endpoint": "https://gis.yakimawa.gov/arcgis/rest/services/Parks/Trees/MapServer/0",
-      "last_edit_at": "",
-      "records_fetched": 510,
-      "records_included": 509
-    },
-    {
-      "name": "City of Walla Walla Trees",
-      "city": "Walla Walla",
-      "endpoint": "https://gis2.ci.walla-walla.wa.us/arcgis/rest/services/Basemap/GISBaseMap_TreesVisible/MapServer/0",
-      "last_edit_at": "",
-      "records_fetched": 1235,
-      "records_included": 1167
-    },
-    {
-      "name": "Street Tree Inventory - Active Records",
-      "city": "Portland",
-      "endpoint": "https://www.portlandmaps.com/od/rest/services/COP_OpenData_Environment/MapServer/1415",
-      "last_edit_at": "",
-      "records_fetched": 252205,
-      "records_included": 24775
-    },
-    {
-      "name": "Street Tree",
-      "city": "San Jose",
-      "endpoint": "https://data.sanjoseca.gov/dataset/street-tree",
-      "last_edit_at": "",
-      "records_fetched": 346240,
-      "records_included": 18025
-    },
-    {
-      "name": "Street Tree List",
-      "city": "San Francisco",
-      "endpoint": "https://data.sfgov.org/City-Infrastructure/Street-Tree-List/tkzw-k3nq",
-      "last_edit_at": "2026-03-05T13:44:30+00:00",
-      "records_fetched": 198096,
-      "records_included": 24099
-    },
-    {
-      "name": "City Street Tree Inventory",
-      "city": "Burlingame",
-      "endpoint": "https://www.burlingame.org/466/Trees-Urban-Forest",
-      "last_edit_at": "2025-02-25T14:28:18.205000+00:00",
-      "records_fetched": 16603,
-      "records_included": 1997
-    },
-    {
-      "name": "Tree Data",
-      "city": "Palo Alto",
-      "endpoint": "https://opengis.cityofpaloalto.org/",
-      "last_edit_at": "2023-01-04T12:54:30.056000+00:00",
-      "records_fetched": 39629,
-      "records_included": 4996
-    },
-    {
-      "name": "Tree_Berkeley20191107",
-      "city": "Berkeley",
-      "endpoint": "https://www.arcgis.com/home/item.html?id=88829f4ae7254b5280732e88e65e6df5",
-      "last_edit_at": "2019-11-07T19:08:30+00:00",
-      "records_fetched": 46037,
-      "records_included": 3973
-    },
-    {
-      "name": "Trees",
-      "city": "Cupertino",
-      "endpoint": "https://gis-cupertino.opendata.arcgis.com/",
-      "last_edit_at": "",
-      "records_fetched": 24613,
-      "records_included": 1337
-    },
-    {
-      "name": "Oakland Street Trees",
-      "city": "Oakland",
-      "endpoint": "https://data.oaklandca.gov/Environmental/Oakland-Street-Trees/4jcx-enxf",
-      "last_edit_at": "2013-01-22T20:50:21+00:00",
-      "records_fetched": 38613,
-      "records_included": 3977
     },
     {
       "name": "Public trees",
@@ -2633,36 +2788,12 @@
       "records_included": 6094
     },
     {
-      "name": "TreeKeeper Street Sites",
-      "city": "Sammamish",
-      "endpoint": "https://sammamishwa.treekeepersoftware.com/cffiles/grids.cfc",
+      "name": "City of Walla Walla Trees",
+      "city": "Walla Walla",
+      "endpoint": "https://gis2.ci.walla-walla.wa.us/arcgis/rest/services/Basemap/GISBaseMap_TreesVisible/MapServer/0",
       "last_edit_at": "",
-      "records_fetched": 8618,
-      "records_included": 916
-    },
-    {
-      "name": "TreeKeeper Park Sites",
-      "city": "Sammamish",
-      "endpoint": "https://sammamishwa.treekeepersoftware.com/cffiles/grids.cfc",
-      "last_edit_at": "",
-      "records_fetched": 11379,
-      "records_included": 247
-    },
-    {
-      "name": "Everett TreeKeeper Park Sites",
-      "city": "Everett",
-      "endpoint": "https://everettwa.treekeepersoftware.com/cffiles/grids.cfc",
-      "last_edit_at": "",
-      "records_fetched": 15162,
-      "records_included": 464
-    },
-    {
-      "name": "2023-2024 Kirkland Tree Inventory",
-      "city": "Kirkland",
-      "endpoint": "https://pg-cloud.com/main/server/db.php",
-      "last_edit_at": "",
-      "records_fetched": 39014,
-      "records_included": 3122
+      "records_fetched": 1235,
+      "records_included": 1167
     },
     {
       "name": "Urban Tree Canopy",
@@ -2673,21 +2804,12 @@
       "records_included": 16543
     },
     {
-      "name": "UW OSM Supplemental",
-      "city": "Seattle",
-      "endpoint": "OpenStreetMap Overpass supplemental file",
+      "name": "Yakima Trees",
+      "city": "Yakima",
+      "endpoint": "https://gis.yakimawa.gov/arcgis/rest/services/Parks/Trees/MapServer/0",
       "last_edit_at": "",
-      "records_fetched": 30,
-      "records_included": 30
-    },
-    {
-      "name": "UW Cherry Bloom History",
-      "city": "Seattle",
-      "endpoint": "https://digital.lib.washington.edu/researchworks/items/75f5324f-1892-4e8c-ad26-7e74f4f535f1",
-      "last_edit_at": "",
-      "records_fetched": 1,
-      "records_included": 1,
-      "note": "Official UW Quad bloom history workbook used for featured-area forecast generation."
+      "records_fetched": 510,
+      "records_included": 509
     }
   ]
 }
