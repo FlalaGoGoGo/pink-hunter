@@ -30,6 +30,7 @@ US_COUNTY_LAYER_URL = "https://tigerweb.geo.census.gov/arcgis/rest/services/TIGE
 
 REGION_COUNTRY: dict[str, str] = {
     "az": "us",
+    "ct": "us",
     "ga": "us",
     "il": "us",
     "mi": "us",
@@ -54,6 +55,7 @@ REGION_COUNTRY: dict[str, str] = {
 
 REGION_FULL_NAMES: dict[str, str] = {
     "az": "Arizona",
+    "ct": "Connecticut",
     "ga": "Georgia",
     "il": "Illinois",
     "mi": "Michigan",

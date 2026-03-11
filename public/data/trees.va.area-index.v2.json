@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-03-11T19:23:12.439350+00:00",
+  "generated_at": "2026-03-11T21:37:15.212278+00:00",
   "region": "va",
   "strategy": "area_shard",
   "items": [
@@ -52,6 +52,57 @@
           "tree_count": 1882,
           "raw_bytes": 892680,
           "gzip_bytes": 45013
+        }
+      ]
+    },
+    {
+      "jurisdiction": "Falls Church",
+      "slug": "falls-church",
+      "display_name": "Falls Church",
+      "jurisdiction_type": "city",
+      "state_province": "VA",
+      "country": "United States",
+      "bounds": [
+        [
+          -77.193464177797,
+          38.873540136327
+        ],
+        [
+          -77.152380622202,
+          38.896307138953
+        ]
+      ],
+      "tree_count": 912,
+      "zip_codes": [
+        "None"
+      ],
+      "species_counts": {
+        "cherry": 469,
+        "plum": 106,
+        "peach": 0,
+        "magnolia": 300,
+        "crabapple": 37
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "falls-church-001",
+          "bounds": [
+            [
+              -77.193464177797,
+              38.873540136327
+            ],
+            [
+              -77.152380622202,
+              38.896307138953
+            ]
+          ],
+          "data_path": "/data/trees.va.area.falls-church.v2.geojson",
+          "tree_count": 912,
+          "raw_bytes": 473964,
+          "gzip_bytes": 20690
         }
       ]
     }

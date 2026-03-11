@@ -1,8 +1,110 @@
 {
-  "generated_at": "2026-03-11T19:23:12.439350+00:00",
+  "generated_at": "2026-03-11T21:37:15.212278+00:00",
   "region": "ny",
   "strategy": "area_shard",
   "items": [
+    {
+      "jurisdiction": "Albany",
+      "slug": "albany",
+      "display_name": "Albany",
+      "jurisdiction_type": "city",
+      "state_province": "NY",
+      "country": "United States",
+      "bounds": [
+        [
+          -73.8817272447,
+          42.6264306853
+        ],
+        [
+          -73.7339230216,
+          42.7128510717
+        ]
+      ],
+      "tree_count": 2396,
+      "zip_codes": [
+        "None"
+      ],
+      "species_counts": {
+        "cherry": 1042,
+        "plum": 34,
+        "peach": 22,
+        "magnolia": 226,
+        "crabapple": 1072
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "albany-001",
+          "bounds": [
+            [
+              -73.8817272447,
+              42.6264306853
+            ],
+            [
+              -73.7339230216,
+              42.7128510717
+            ]
+          ],
+          "data_path": "/data/trees.ny.area.albany.v2.geojson",
+          "tree_count": 2396,
+          "raw_bytes": 1172332,
+          "gzip_bytes": 50451
+        }
+      ]
+    },
+    {
+      "jurisdiction": "Buffalo",
+      "slug": "buffalo",
+      "display_name": "Buffalo",
+      "jurisdiction_type": "city",
+      "state_province": "NY",
+      "country": "United States",
+      "bounds": [
+        [
+          -78.907909953544,
+          42.832645189965
+        ],
+        [
+          -78.799418968488,
+          42.962998900252
+        ]
+      ],
+      "tree_count": 4925,
+      "zip_codes": [
+        "None"
+      ],
+      "species_counts": {
+        "cherry": 2241,
+        "plum": 61,
+        "peach": 7,
+        "magnolia": 50,
+        "crabapple": 2566
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "buffalo-001",
+          "bounds": [
+            [
+              -78.907909953544,
+              42.832645189965
+            ],
+            [
+              -78.799418968488,
+              42.962998900252
+            ]
+          ],
+          "data_path": "/data/trees.ny.area.buffalo.v2.geojson",
+          "tree_count": 4925,
+          "raw_bytes": 2459543,
+          "gzip_bytes": 111975
+        }
+      ]
+    },
     {
       "jurisdiction": "New York City",
       "slug": "new-york-city",

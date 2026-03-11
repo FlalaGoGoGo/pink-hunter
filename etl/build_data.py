@@ -193,6 +193,7 @@ PUBLISH_MUST_SPLIT_BYTES = 25 * 1024 * 1024
 PUBLISH_HARD_FAIL_BYTES = 30 * 1024 * 1024
 REGION_LABELS: dict[str, str] = {
     "az": "AZ",
+    "ct": "CT",
     "ga": "GA",
     "il": "IL",
     "mi": "MI",
@@ -260,10 +261,20 @@ REGION_CITY_OVERRIDES: dict[str, str] = {
     "Linden": "nj",
     "Montclair": "nj",
     "Boston": "ma",
+    "Waltham": "ma",
+    "Springfield": "ma",
+    "Somerville": "ma",
+    "Worcester": "ma",
     "New York City": "ny",
+    "Albany": "ny",
+    "Buffalo": "ny",
     "Pittsburgh": "pa",
     "Philadelphia": "pa",
     "Cambridge": "ma",
+    "Falls Church": "va",
+    "Greenwich": "ct",
+    "New Haven": "ct",
+    "Stamford": "ct",
     "Ottawa": "on",
     "Toronto": "on",
     "Montreal": "qc",
@@ -489,10 +500,20 @@ CITY_BOUNDARY_HINTS: dict[str, dict[str, str]] = {
     "Linden": {"state": "34"},
     "Montclair": {"state": "34"},
     "Boston": {"state": "25"},
+    "Waltham": {"state": "25"},
+    "Springfield": {"state": "25"},
+    "Somerville": {"state": "25"},
+    "Worcester": {"state": "25"},
     "New York City": {"state": "36", "basename": "New York"},
+    "Albany": {"state": "36"},
+    "Buffalo": {"state": "36"},
     "Pittsburgh": {"state": "42"},
     "Philadelphia": {"state": "42"},
     "Cambridge": {"state": "25"},
+    "Falls Church": {"state": "51"},
+    "Greenwich": {"state": "09"},
+    "New Haven": {"state": "09"},
+    "Stamford": {"state": "09"},
     "Ottawa": {"boundary_source": "ottawa_arcgis"},
     "Toronto": {"boundary_source": "toronto_zip"},
     "Montreal": {"boundary_source": "montreal_arrondissements_geojson"},
@@ -2567,6 +2588,8 @@ def region_for_city(city: str) -> str:
         return "ut"
     if state == "11":
         return "dc"
+    if state == "09":
+        return "ct"
     if state == "51":
         return "va"
     if state == "24":

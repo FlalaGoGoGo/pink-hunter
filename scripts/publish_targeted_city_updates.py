@@ -677,7 +677,91 @@ NYC_METRO_ARCGIS_CONFIGS: dict[str, dict[str, Any]] = {
     },
 }
 
+EAST_COAST_TREEKEEPER_CONFIGS: dict[str, dict[str, Any]] = {
+    "Albany": {
+        "base_url": "https://albanyny.treekeepersoftware.com",
+        "uid": "pinkhunter-albany-ny",
+        "region": "ny",
+        "source_department": "City of Albany",
+        "note": "Integrated from the official City of Albany public TreeKeeper inventory.",
+        "use_zip_index": False,
+    },
+    "Buffalo": {
+        "base_url": "https://buffalony.treekeepersoftware.com",
+        "uid": "pinkhunter-buffalo-ny",
+        "region": "ny",
+        "source_department": "City of Buffalo",
+        "note": "Integrated from the official City of Buffalo public TreeKeeper inventory.",
+        "use_zip_index": False,
+    },
+    "Falls Church": {
+        "base_url": "https://fallschurchva.treekeepersoftware.com",
+        "uid": "pinkhunter-falls-church-va",
+        "region": "va",
+        "source_department": "City of Falls Church",
+        "note": "Integrated from the official City of Falls Church public TreeKeeper inventory.",
+        "use_zip_index": False,
+    },
+    "Greenwich": {
+        "base_url": "https://greenwichct.treekeepersoftware.com",
+        "uid": "pinkhunter-greenwich-ct",
+        "region": "ct",
+        "source_department": "Town of Greenwich",
+        "note": "Integrated from the official Town of Greenwich public TreeKeeper inventory.",
+        "use_zip_index": False,
+    },
+    "New Haven": {
+        "base_url": "https://newhavenct.treekeepersoftware.com",
+        "uid": "pinkhunter-new-haven-ct",
+        "region": "ct",
+        "source_department": "City of New Haven",
+        "note": "Integrated from the official City of New Haven public TreeKeeper inventory.",
+        "use_zip_index": False,
+    },
+    "Somerville": {
+        "base_url": "https://somervillema.treekeepersoftware.com",
+        "uid": "pinkhunter-somerville-ma",
+        "region": "ma",
+        "source_department": "City of Somerville",
+        "note": "Integrated from the official City of Somerville public TreeKeeper inventory.",
+        "use_zip_index": False,
+    },
+    "Springfield": {
+        "base_url": "https://springfieldma.treekeepersoftware.com",
+        "uid": "pinkhunter-springfield-ma",
+        "region": "ma",
+        "source_department": "City of Springfield",
+        "note": "Integrated from the official City of Springfield public TreeKeeper inventory.",
+        "use_zip_index": False,
+    },
+    "Stamford": {
+        "base_url": "https://stamfordct.treekeepersoftware.com",
+        "uid": "pinkhunter-stamford-ct",
+        "region": "ct",
+        "source_department": "City of Stamford",
+        "note": "Integrated from the official City of Stamford public TreeKeeper inventory.",
+        "use_zip_index": False,
+    },
+    "Waltham": {
+        "base_url": "https://walthamma.treekeepersoftware.com",
+        "uid": "pinkhunter-waltham-ma",
+        "region": "ma",
+        "source_department": "City of Waltham",
+        "note": "Integrated from the official City of Waltham public TreeKeeper inventory.",
+        "use_zip_index": False,
+    },
+    "Worcester": {
+        "base_url": "https://worcesterma.treekeepersoftware.com",
+        "uid": "pinkhunter-worcester-ma",
+        "region": "ma",
+        "source_department": "City of Worcester",
+        "note": "Integrated from the official City of Worcester public TreeKeeper inventory.",
+        "use_zip_index": False,
+    },
+}
+
 SUPPORTED_CITIES = (
+    "Albany",
     "Anaheim",
     "Arlington",
     "Austin",
@@ -686,6 +770,7 @@ SUPPORTED_CITIES = (
     "Bell",
     "Beverly Hills",
     "Boston",
+    "Buffalo",
     "Burbank",
     "Buena Park",
     "Camarillo",
@@ -701,8 +786,10 @@ SUPPORTED_CITIES = (
     "El Segundo",
     "Encinitas",
     "Escondido",
+    "Falls Church",
     "Fontana",
     "Fort Lee",
+    "Greenwich",
     "Glendale",
     "Goleta",
     "Franklin Lakes",
@@ -740,6 +827,7 @@ SUPPORTED_CITIES = (
     "Morgan Hill",
     "Morristown",
     "Mountain View",
+    "New Haven",
     "New Milford",
     "New Westminster",
     "New York City",
@@ -777,9 +865,12 @@ SUPPORTED_CITIES = (
     "Santa Monica",
     "Saratoga",
     "Santee",
+    "Somerville",
     "South Gate",
     "Solana Beach",
     "South San Francisco",
+    "Springfield",
+    "Stamford",
     "Sunnyvale",
     "Teaneck",
     "Tenafly",
@@ -788,10 +879,12 @@ SUPPORTED_CITIES = (
     "Toronto",
     "Ventura",
     "Vista",
+    "Waltham",
     "West Hollywood",
     "West Sacramento",
     "West Covina",
     "Westwood",
+    "Worcester",
     "Wyckoff",
     "Yorba Linda",
     "Arcadia",
@@ -1466,8 +1559,14 @@ def load_meta() -> dict[str, Any]:
     return json.loads((PUBLIC_DATA_DIR / "meta.v2.json").read_text(encoding="utf-8"))
 
 
+def write_json_atomic(path: Path, payload: Any) -> None:
+    tmp_path = path.with_name(f"{path.name}.tmp")
+    tmp_path.write_text(json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8")
+    tmp_path.replace(path)
+
+
 def save_meta(meta: dict[str, Any]) -> None:
-    (PUBLIC_DATA_DIR / "meta.v2.json").write_text(json.dumps(meta, ensure_ascii=False, indent=2), encoding="utf-8")
+    write_json_atomic(PUBLIC_DATA_DIR / "meta.v2.json", meta)
 
 
 def ensure_region_entries(meta: dict[str, Any], regions: set[str]) -> None:
@@ -1508,12 +1607,14 @@ def ensure_region_entries(meta: dict[str, Any], regions: set[str]) -> None:
     meta["regions"].sort(key=lambda item: item.get("id", ""))
 
 
-def refresh_publish_indexes(target_regions: set[str]) -> None:
+def refresh_publish_indexes(target_regions: set[str], *, skip_global_refresh: bool = False) -> None:
     for region in sorted(target_regions):
         subprocess.run(
             ["python3", "scripts/refresh_region_area_shards.py", "--data-dir", "public/data", "--region", region],
             check=True,
         )
+    if skip_global_refresh:
+        return
     subprocess.run(
         ["python3", "scripts/refresh_coverage_metadata.py", "--data-dir", "public/data"],
         check=True,
@@ -2686,6 +2787,7 @@ def fetch_treekeeper_inventory_city(
     source_department: str | None = None,
     ownership_raw: str | None = None,
     note: str | None = None,
+    use_zip_index: bool = True,
 ) -> dict[str, Any]:
     summary_payload, rows = fetch_treekeeper_rows(
         f"{base_url.rstrip('/')}/cffiles/search.cfc",
@@ -2694,7 +2796,7 @@ def fetch_treekeeper_inventory_city(
         fac_id=fac_id,
     )
     boundary_geometry = load_city_boundary_geometry(city)
-    zip_index = fetch_us_city_zip_index(city)
+    zip_index = fetch_us_city_zip_index(city) if use_zip_index else []
     mapping_rows = load_mapping(MAPPING_PATH)
     subtype_rows = load_subtype_mapping(SUBTYPE_MAPPING_PATH)
     species_field = detect_treekeeper_species_field(rows, mapping_rows, subtype_rows) or "SITE_ATTR1"
@@ -2782,6 +2884,19 @@ def build_nyc_metro_treekeeper_fetcher(city: str, config: dict[str, str]) -> Any
         uid=config["uid"],
         region="nj",
         source_department=city,
+        use_zip_index=False,
+    )
+
+
+def build_treekeeper_fetcher(city: str, config: dict[str, Any]) -> Any:
+    return lambda city=city, config=config: fetch_treekeeper_inventory_city(
+        city=city,
+        base_url=config["base_url"],
+        uid=config["uid"],
+        region=str(config["region"]),
+        source_department=config.get("source_department"),
+        note=config.get("note"),
+        use_zip_index=bool(config.get("use_zip_index", True)),
     )
 
 
@@ -6358,12 +6473,18 @@ CITY_FETCHERS = {
 }
 
 CITY_FETCHERS.update({city: build_nyc_metro_treekeeper_fetcher(city, config) for city, config in NYC_METRO_TREEKEEPER_CONFIGS.items()})
+CITY_FETCHERS.update({city: build_treekeeper_fetcher(city, config) for city, config in EAST_COAST_TREEKEEPER_CONFIGS.items()})
 CITY_FETCHERS.update({city: build_nyc_metro_arcgis_fetcher(city, config) for city, config in NYC_METRO_ARCGIS_CONFIGS.items()})
 
 
 def main() -> int:
     parser = argparse.ArgumentParser(description="Publish targeted city updates into existing city-split public data.")
     parser.add_argument("--city", action="append", choices=SUPPORTED_CITIES, help="City to refresh. Repeat for multiple cities.")
+    parser.add_argument(
+        "--skip-global-refresh",
+        action="store_true",
+        help="Skip global coverage/meta refresh. Useful when publishing several batches and refreshing once at the end.",
+    )
     args = parser.parse_args()
 
     target_cities = args.city or list(SUPPORTED_CITIES)
@@ -6381,13 +6502,10 @@ def main() -> int:
     meta["generated_at"] = dt.datetime.now(tz=dt.timezone.utc).isoformat()
     ensure_region_entries(meta, target_regions)
     save_meta(meta)
-    refresh_publish_indexes(target_regions)
+    refresh_publish_indexes(target_regions, skip_global_refresh=args.skip_global_refresh)
 
     unknown_items = recompute_unknown_items_from_path(normalized_path)
-    (PUBLIC_DATA_DIR / "unknown_scientific_names.v1.json").write_text(
-        json.dumps(unknown_items, ensure_ascii=False, indent=2),
-        encoding="utf-8",
-    )
+    write_json_atomic(PUBLIC_DATA_DIR / "unknown_scientific_names.v1.json", unknown_items)
 
     meta = load_meta()
     meta["generated_at"] = dt.datetime.now(tz=dt.timezone.utc).isoformat()

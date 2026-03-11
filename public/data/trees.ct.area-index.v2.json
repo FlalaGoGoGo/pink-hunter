@@ -1,0 +1,160 @@
+{
+  "generated_at": "2026-03-11T21:37:15.212278+00:00",
+  "region": "ct",
+  "strategy": "area_shard",
+  "items": [
+    {
+      "jurisdiction": "Greenwich",
+      "slug": "greenwich",
+      "display_name": "Greenwich",
+      "jurisdiction_type": "city",
+      "state_province": "CT",
+      "country": "United States",
+      "bounds": [
+        [
+          -73.7162722948,
+          40.9946683921
+        ],
+        [
+          -73.5556611049,
+          41.1422151225
+        ]
+      ],
+      "tree_count": 4502,
+      "zip_codes": [
+        "None"
+      ],
+      "species_counts": {
+        "cherry": 2975,
+        "plum": 66,
+        "peach": 21,
+        "magnolia": 202,
+        "crabapple": 1238
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "greenwich-001",
+          "bounds": [
+            [
+              -73.7162722948,
+              40.9946683921
+            ],
+            [
+              -73.5556611049,
+              41.1422151225
+            ]
+          ],
+          "data_path": "/data/trees.ct.area.greenwich.v2.geojson",
+          "tree_count": 4502,
+          "raw_bytes": 2291224,
+          "gzip_bytes": 89123
+        }
+      ]
+    },
+    {
+      "jurisdiction": "New Haven",
+      "slug": "new-haven",
+      "display_name": "New Haven",
+      "jurisdiction_type": "city",
+      "state_province": "CT",
+      "country": "United States",
+      "bounds": [
+        [
+          -72.98447418,
+          41.249266515932
+        ],
+        [
+          -72.86154175,
+          41.34869602
+        ]
+      ],
+      "tree_count": 2424,
+      "zip_codes": [
+        "None"
+      ],
+      "species_counts": {
+        "cherry": 1410,
+        "plum": 100,
+        "peach": 3,
+        "magnolia": 64,
+        "crabapple": 847
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "new-haven-001",
+          "bounds": [
+            [
+              -72.98447418,
+              41.249266515932
+            ],
+            [
+              -72.86154175,
+              41.34869602
+            ]
+          ],
+          "data_path": "/data/trees.ct.area.new-haven.v2.geojson",
+          "tree_count": 2424,
+          "raw_bytes": 1234341,
+          "gzip_bytes": 47597
+        }
+      ]
+    },
+    {
+      "jurisdiction": "Stamford",
+      "slug": "stamford",
+      "display_name": "Stamford",
+      "jurisdiction_type": "city",
+      "state_province": "CT",
+      "country": "United States",
+      "bounds": [
+        [
+          -73.5380863593,
+          41.052260839
+        ],
+        [
+          -73.5341713378,
+          41.0576610784
+        ]
+      ],
+      "tree_count": 25,
+      "zip_codes": [
+        "None"
+      ],
+      "species_counts": {
+        "cherry": 4,
+        "plum": 0,
+        "peach": 0,
+        "magnolia": 3,
+        "crabapple": 18
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "stamford-001",
+          "bounds": [
+            [
+              -73.5380863593,
+              41.052260839
+            ],
+            [
+              -73.5341713378,
+              41.0576610784
+            ]
+          ],
+          "data_path": "/data/trees.ct.area.stamford.v2.geojson",
+          "tree_count": 25,
+          "raw_bytes": 11927,
+          "gzip_bytes": 903
+        }
+      ]
+    }
+  ]
+}

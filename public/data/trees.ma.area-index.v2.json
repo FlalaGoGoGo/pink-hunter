@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-03-11T19:23:12.439350+00:00",
+  "generated_at": "2026-03-11T21:37:15.212278+00:00",
   "region": "ma",
   "strategy": "area_shard",
   "items": [
@@ -138,6 +138,210 @@
           "tree_count": 1954,
           "raw_bytes": 934920,
           "gzip_bytes": 47874
+        }
+      ]
+    },
+    {
+      "jurisdiction": "Somerville",
+      "slug": "somerville",
+      "display_name": "Somerville",
+      "jurisdiction_type": "city",
+      "state_province": "MA",
+      "country": "United States",
+      "bounds": [
+        [
+          -71.133797813618,
+          42.374547764605
+        ],
+        [
+          -71.08071778221,
+          42.415663606303
+        ]
+      ],
+      "tree_count": 338,
+      "zip_codes": [
+        "None"
+      ],
+      "species_counts": {
+        "cherry": 299,
+        "plum": 17,
+        "peach": 0,
+        "magnolia": 5,
+        "crabapple": 17
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "somerville-001",
+          "bounds": [
+            [
+              -71.133797813618,
+              42.374547764605
+            ],
+            [
+              -71.08071778221,
+              42.415663606303
+            ]
+          ],
+          "data_path": "/data/trees.ma.area.somerville.v2.geojson",
+          "tree_count": 338,
+          "raw_bytes": 173138,
+          "gzip_bytes": 7618
+        }
+      ]
+    },
+    {
+      "jurisdiction": "Springfield",
+      "slug": "springfield",
+      "display_name": "Springfield",
+      "jurisdiction_type": "city",
+      "state_province": "MA",
+      "country": "United States",
+      "bounds": [
+        [
+          -72.6188,
+          42.0672000009
+        ],
+        [
+          -72.473642443643,
+          42.160069732898
+        ]
+      ],
+      "tree_count": 1590,
+      "zip_codes": [
+        "None"
+      ],
+      "species_counts": {
+        "cherry": 672,
+        "plum": 5,
+        "peach": 10,
+        "magnolia": 27,
+        "crabapple": 876
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "springfield-001",
+          "bounds": [
+            [
+              -72.6188,
+              42.0672000009
+            ],
+            [
+              -72.473642443643,
+              42.160069732898
+            ]
+          ],
+          "data_path": "/data/trees.ma.area.springfield.v2.geojson",
+          "tree_count": 1590,
+          "raw_bytes": 834547,
+          "gzip_bytes": 36927
+        }
+      ]
+    },
+    {
+      "jurisdiction": "Waltham",
+      "slug": "waltham",
+      "display_name": "Waltham",
+      "jurisdiction_type": "city",
+      "state_province": "MA",
+      "country": "United States",
+      "bounds": [
+        [
+          -71.255242117513,
+          42.361584729146
+        ],
+        [
+          -71.198070763181,
+          42.415240377145
+        ]
+      ],
+      "tree_count": 63,
+      "zip_codes": [
+        "None"
+      ],
+      "species_counts": {
+        "cherry": 35,
+        "plum": 8,
+        "peach": 0,
+        "magnolia": 1,
+        "crabapple": 19
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "waltham-001",
+          "bounds": [
+            [
+              -71.255242117513,
+              42.361584729146
+            ],
+            [
+              -71.198070763181,
+              42.415240377145
+            ]
+          ],
+          "data_path": "/data/trees.ma.area.waltham.v2.geojson",
+          "tree_count": 63,
+          "raw_bytes": 31438,
+          "gzip_bytes": 1730
+        }
+      ]
+    },
+    {
+      "jurisdiction": "Worcester",
+      "slug": "worcester",
+      "display_name": "Worcester",
+      "jurisdiction_type": "city",
+      "state_province": "MA",
+      "country": "United States",
+      "bounds": [
+        [
+          -71.871774040568,
+          42.218876580306
+        ],
+        [
+          -71.739574173517,
+          42.334639038519
+        ]
+      ],
+      "tree_count": 300,
+      "zip_codes": [
+        "None"
+      ],
+      "species_counts": {
+        "cherry": 184,
+        "plum": 0,
+        "peach": 0,
+        "magnolia": 8,
+        "crabapple": 108
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "worcester-001",
+          "bounds": [
+            [
+              -71.871774040568,
+              42.218876580306
+            ],
+            [
+              -71.739574173517,
+              42.334639038519
+            ]
+          ],
+          "data_path": "/data/trees.ma.area.worcester.v2.geojson",
+          "tree_count": 300,
+          "raw_bytes": 153681,
+          "gzip_bytes": 6766
         }
       ]
     }

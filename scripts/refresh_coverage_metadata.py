@@ -34,6 +34,15 @@ def make_coverage_feature(city: str, geometry: dict[str, Any], status: str, note
     }
 
 
+def write_json_atomic(path: Path, payload: Any, *, pretty: bool = False) -> None:
+    tmp_path = path.with_name(f"{path.name}.tmp")
+    tmp_path.write_text(
+        json.dumps(payload, ensure_ascii=False, indent=2 if pretty else None),
+        encoding="utf-8",
+    )
+    tmp_path.replace(path)
+
+
 def slugify_city(city: str) -> str:
     if city in SPECIAL_BOUNDARY_SLUGS:
         return SPECIAL_BOUNDARY_SLUGS[city]
@@ -137,9 +146,9 @@ def main() -> int:
         coverage_file_name = f"coverage.{region_id}.v1.geojson"
         coverage_file_path = data_dir / coverage_file_name
         if region_features:
-            coverage_file_path.write_text(
-                json.dumps({"type": "FeatureCollection", "features": region_features}, ensure_ascii=False),
-                encoding="utf-8",
+            write_json_atomic(
+                coverage_file_path,
+                {"type": "FeatureCollection", "features": region_features},
             )
             region["coverage_path"] = f"/data/{coverage_file_name}"
         else:
@@ -147,11 +156,8 @@ def main() -> int:
             if coverage_file_path.exists():
                 coverage_file_path.unlink()
 
-    (data_dir / "coverage.v1.geojson").write_text(
-        json.dumps(coverage_geojson, ensure_ascii=False),
-        encoding="utf-8",
-    )
-    meta_path.write_text(json.dumps(meta, ensure_ascii=False, indent=2), encoding="utf-8")
+    write_json_atomic(data_dir / "coverage.v1.geojson", coverage_geojson)
+    write_json_atomic(meta_path, meta, pretty=True)
     return 0
 
 

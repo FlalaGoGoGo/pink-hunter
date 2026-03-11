@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-03-11T19:23:12.439350+00:00",
+  "generated_at": "2026-03-11T21:45:04.576134+00:00",
   "countries": [
     {
       "id": "ca",
@@ -19084,6 +19084,66 @@
       "coverage_status": "untracked"
     },
     {
+      "id": "ct:greenwich",
+      "country_id": "us",
+      "state_id": "ct",
+      "jurisdiction": "Greenwich",
+      "display_name": "Greenwich",
+      "area_type": "city",
+      "bounds": [
+        [
+          -73.7162722948,
+          40.9946683921
+        ],
+        [
+          -73.5556611049,
+          41.1422151225
+        ]
+      ],
+      "region_hint": "ct",
+      "coverage_status": "covered"
+    },
+    {
+      "id": "ct:new-haven",
+      "country_id": "us",
+      "state_id": "ct",
+      "jurisdiction": "New Haven",
+      "display_name": "New Haven",
+      "area_type": "city",
+      "bounds": [
+        [
+          -72.98447418,
+          41.249266515932
+        ],
+        [
+          -72.86154175,
+          41.34869602
+        ]
+      ],
+      "region_hint": "ct",
+      "coverage_status": "covered"
+    },
+    {
+      "id": "ct:stamford",
+      "country_id": "us",
+      "state_id": "ct",
+      "jurisdiction": "Stamford",
+      "display_name": "Stamford",
+      "area_type": "city",
+      "bounds": [
+        [
+          -73.5380863593,
+          41.052260839
+        ],
+        [
+          -73.5341713378,
+          41.0576610784
+        ]
+      ],
+      "region_hint": "ct",
+      "coverage_status": "covered"
+    },
+    {
       "id": "dc:washington-dc",
       "country_id": "us",
       "state_id": "dc",
@@ -20312,16 +20372,16 @@
       "area_type": "city",
       "bounds": [
         [
-          -71.1346,
-          42.3732
+          -71.133797813618,
+          42.374547764605
         ],
         [
-          -71.0727,
-          42.4181
+          -71.08071778221,
+          42.415663606303
         ]
       ],
       "region_hint": "ma",
-      "coverage_status": "untracked"
+      "coverage_status": "covered"
     },
     {
       "id": "ma:southbridge",
@@ -20352,16 +20412,16 @@
       "area_type": "city",
       "bounds": [
         [
-          -72.6221,
-          42.0637
+          -72.6188,
+          42.0672000009
         ],
         [
-          -72.4711,
-          42.1621
+          -72.473642443643,
+          42.160069732898
         ]
       ],
       "region_hint": "ma",
-      "coverage_status": "untracked"
+      "coverage_status": "covered"
     },
     {
       "id": "ma:suffolk-county",
@@ -20412,16 +20472,16 @@
       "area_type": "city",
       "bounds": [
         [
-          -71.2857,
-          42.3537
+          -71.255242117513,
+          42.361584729146
         ],
         [
-          -71.1942,
-          42.4244
+          -71.198070763181,
+          42.415240377145
         ]
       ],
       "region_hint": "ma",
-      "coverage_status": "untracked"
+      "coverage_status": "covered"
     },
     {
       "id": "ma:watertown",
@@ -20552,16 +20612,16 @@
       "area_type": "city",
       "bounds": [
         [
-          -71.884,
-          42.2101
+          -71.871774040568,
+          42.218876580306
         ],
         [
-          -71.7312,
-          42.3412
+          -71.739574173517,
+          42.334639038519
         ]
       ],
       "region_hint": "ma",
-      "coverage_status": "untracked"
+      "coverage_status": "covered"
     },
     {
       "id": "ma:worcester-county",
@@ -32012,16 +32072,16 @@
       "area_type": "city",
       "bounds": [
         [
-          -73.8942,
-          42.6139
+          -73.8817272447,
+          42.6264306853
         ],
         [
-          -73.7233,
-          42.7224
+          -73.7339230216,
+          42.7128510717
         ]
       ],
       "region_hint": "ny",
-      "coverage_status": "untracked"
+      "coverage_status": "covered"
     },
     {
       "id": "ny:albany-county",
@@ -33332,16 +33392,16 @@
       "area_type": "city",
       "bounds": [
         [
-          -78.9569,
-          42.832
+          -78.907909953544,
+          42.832645189965
         ],
         [
-          -78.7983,
-          42.9665
+          -78.799418968488,
+          42.962998900252
         ]
       ],
       "region_hint": "ny",
-      "coverage_status": "untracked"
+      "coverage_status": "covered"
     },
     {
       "id": "ny:burdett",
@@ -109392,16 +109452,16 @@
       "area_type": "city",
       "bounds": [
         [
-          -77.195,
-          38.8734
+          -77.193464177797,
+          38.873540136327
         ],
         [
-          -77.1498,
-          38.8985
+          -77.152380622202,
+          38.896307138953
         ]
       ],
       "region_hint": "va",
-      "coverage_status": "untracked"
+      "coverage_status": "covered"
     },
     {
       "id": "va:farmville",

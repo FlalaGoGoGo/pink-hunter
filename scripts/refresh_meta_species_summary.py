@@ -22,6 +22,12 @@ from etl.build_data import (
 )
 
 
+def write_json_atomic(path: Path, payload: dict[str, object]) -> None:
+    tmp_path = path.with_name(f"{path.name}.tmp")
+    tmp_path.write_text(json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8")
+    tmp_path.replace(path)
+
+
 def empty_species_counts() -> dict[str, int]:
     return {species: 0 for species in SPECIES_GROUPS}
 
@@ -124,7 +130,7 @@ def main() -> int:
     meta["species_counts"] = summarize_species_counts(all_features) if all_features else empty_species_counts()
     meta["areas"] = sorted(area_summaries, key=lambda item: (str(item["region"]), str(item["jurisdiction"])))
 
-    meta_path.write_text(json.dumps(meta, ensure_ascii=False, indent=2), encoding="utf-8")
+    write_json_atomic(meta_path, meta)
     return 0
 
 
