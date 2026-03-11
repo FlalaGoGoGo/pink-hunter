@@ -218,8 +218,13 @@ REGION_LABELS: dict[str, str] = {
 SPECIES_GROUPS: list[str] = ["cherry", "plum", "peach", "magnolia", "crabapple"]
 REGION_CITY_OVERRIDES: dict[str, str] = {
     "Phoenix": "az",
+    "Tempe": "az",
     "Atlanta": "ga",
+    "Johns Creek": "ga",
     "Chicago": "il",
+    "Danville": "il",
+    "Evanston": "il",
+    "O'Fallon": "il",
     "Detroit": "mi",
     "Denver": "co",
     "Austin": "tx",
@@ -421,8 +426,13 @@ REGION_CITY_OVERRIDES: dict[str, str] = {
 
 CITY_BOUNDARY_HINTS: dict[str, dict[str, str]] = {
     "Phoenix": {"state": "04"},
+    "Tempe": {"state": "04"},
     "Atlanta": {"state": "13"},
+    "Johns Creek": {"state": "13"},
     "Chicago": {"state": "17"},
+    "Danville": {"state": "17"},
+    "Evanston": {"state": "17"},
+    "O'Fallon": {"state": "17"},
     "Detroit": {"state": "26"},
     "Denver": {"state": "08"},
     "Austin": {"state": "48"},

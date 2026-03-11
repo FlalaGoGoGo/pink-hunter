@@ -1,6 +1,163 @@
 {
-  "generated_at": "2026-03-11T19:23:12.439350+00:00",
+  "generated_at": "2026-03-11T23:33:13.981553+00:00",
   "region": "il",
   "strategy": "area_shard",
-  "items": []
+  "items": [
+    {
+      "jurisdiction": "Danville",
+      "slug": "danville",
+      "display_name": "Danville",
+      "jurisdiction_type": "city",
+      "state_province": "IL",
+      "country": "United States",
+      "bounds": [
+        [
+          -87.66205090952096,
+          40.109635535046436
+        ],
+        [
+          -87.5522818627157,
+          40.20336067034987
+        ]
+      ],
+      "tree_count": 351,
+      "zip_codes": [
+        "61832",
+        "61834"
+      ],
+      "species_counts": {
+        "cherry": 122,
+        "plum": 0,
+        "peach": 0,
+        "magnolia": 36,
+        "crabapple": 193
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "danville-001",
+          "bounds": [
+            [
+              -87.66205090952096,
+              40.109635535046436
+            ],
+            [
+              -87.5522818627157,
+              40.20336067034987
+            ]
+          ],
+          "data_path": "/data/trees.il.area.danville.v2.geojson",
+          "tree_count": 351,
+          "raw_bytes": 171584,
+          "gzip_bytes": 8477
+        }
+      ]
+    },
+    {
+      "jurisdiction": "Evanston",
+      "slug": "evanston",
+      "display_name": "Evanston",
+      "jurisdiction_type": "city",
+      "state_province": "IL",
+      "country": "United States",
+      "bounds": [
+        [
+          -87.73238646165063,
+          42.01967194981587
+        ],
+        [
+          -87.66555203362194,
+          42.07108385147641
+        ]
+      ],
+      "tree_count": 1093,
+      "zip_codes": [
+        "60201",
+        "60202"
+      ],
+      "species_counts": {
+        "cherry": 12,
+        "plum": 121,
+        "peach": 0,
+        "magnolia": 96,
+        "crabapple": 864
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "evanston-001",
+          "bounds": [
+            [
+              -87.73238646165063,
+              42.01967194981587
+            ],
+            [
+              -87.66555203362194,
+              42.07108385147641
+            ]
+          ],
+          "data_path": "/data/trees.il.area.evanston.v2.geojson",
+          "tree_count": 1093,
+          "raw_bytes": 535220,
+          "gzip_bytes": 26497
+        }
+      ]
+    },
+    {
+      "jurisdiction": "O'Fallon",
+      "slug": "o-fallon",
+      "display_name": "O'Fallon",
+      "jurisdiction_type": "city",
+      "state_province": "IL",
+      "country": "United States",
+      "bounds": [
+        [
+          -89.9647282844153,
+          38.579949584954356
+        ],
+        [
+          -89.88462081158308,
+          38.64272256276275
+        ]
+      ],
+      "tree_count": 152,
+      "zip_codes": [
+        "62254",
+        "62269"
+      ],
+      "species_counts": {
+        "cherry": 15,
+        "plum": 1,
+        "peach": 0,
+        "magnolia": 20,
+        "crabapple": 116
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "o-fallon-001",
+          "bounds": [
+            [
+              -89.9647282844153,
+              38.579949584954356
+            ],
+            [
+              -89.88462081158308,
+              38.64272256276275
+            ]
+          ],
+          "data_path": "/data/trees.il.area.o-fallon.v2.geojson",
+          "tree_count": 152,
+          "raw_bytes": 76572,
+          "gzip_bytes": 4333
+        }
+      ]
+    }
+  ]
 }

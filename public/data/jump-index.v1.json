@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-03-11T22:47:33.047336+00:00",
+  "generated_at": "2026-03-11T23:35:36.706067+00:00",
   "countries": [
     {
       "id": "ca",
@@ -1482,6 +1482,26 @@
       ],
       "region_hint": "az",
       "coverage_status": "official_unavailable"
+    },
+    {
+      "id": "az:tempe",
+      "country_id": "us",
+      "state_id": "az",
+      "jurisdiction": "Tempe",
+      "display_name": "Tempe",
+      "area_type": "city",
+      "bounds": [
+        [
+          -111.94877166660586,
+          33.38923432970812
+        ],
+        [
+          -111.8947834756492,
+          33.424712490413874
+        ]
+      ],
+      "region_hint": "az",
+      "coverage_status": "covered"
     },
     {
       "id": "ca:adelanto",
@@ -7872,12 +7892,12 @@
       "area_type": "city",
       "bounds": [
         [
-          -73.47456500038376,
-          41.020448999779845
+          -118.111611000061,
+          33.880313999900885
         ],
         [
-          -73.38014800004444,
-          41.17176800015394
+          -118.04220400003844,
+          33.933480999761024
         ]
       ],
       "region_hint": "ca",
@@ -19224,6 +19244,26 @@
       "coverage_status": "official_unavailable"
     },
     {
+      "id": "ga:johns-creek",
+      "country_id": "us",
+      "state_id": "ga",
+      "jurisdiction": "Johns Creek",
+      "display_name": "Johns Creek",
+      "area_type": "city",
+      "bounds": [
+        [
+          -84.26849206375643,
+          34.020560606519275
+        ],
+        [
+          -84.1871499,
+          34.0810963
+        ]
+      ],
+      "region_hint": "ga",
+      "coverage_status": "covered"
+    },
+    {
       "id": "il:chicago",
       "country_id": "us",
       "state_id": "il",
@@ -19242,6 +19282,66 @@
       ],
       "region_hint": "il",
       "coverage_status": "official_unavailable"
+    },
+    {
+      "id": "il:danville",
+      "country_id": "us",
+      "state_id": "il",
+      "jurisdiction": "Danville",
+      "display_name": "Danville",
+      "area_type": "city",
+      "bounds": [
+        [
+          -87.66205090952096,
+          40.109635535046436
+        ],
+        [
+          -87.5522818627157,
+          40.20336067034987
+        ]
+      ],
+      "region_hint": "il",
+      "coverage_status": "covered"
+    },
+    {
+      "id": "il:evanston",
+      "country_id": "us",
+      "state_id": "il",
+      "jurisdiction": "Evanston",
+      "display_name": "Evanston",
+      "area_type": "city",
+      "bounds": [
+        [
+          -87.73238646165063,
+          42.01967194981587
+        ],
+        [
+          -87.66555203362194,
+          42.07108385147641
+        ]
+      ],
+      "region_hint": "il",
+      "coverage_status": "covered"
+    },
+    {
+      "id": "il:o-fallon",
+      "country_id": "us",
+      "state_id": "il",
+      "jurisdiction": "O'Fallon",
+      "display_name": "O'Fallon",
+      "area_type": "city",
+      "bounds": [
+        [
+          -89.9647282844153,
+          38.579949584954356
+        ],
+        [
+          -89.88462081158308,
+          38.64272256276275
+        ]
+      ],
+      "region_hint": "il",
+      "coverage_status": "covered"
     },
     {
       "id": "ma:agawam",

@@ -1,6 +1,59 @@
 {
-  "generated_at": "2026-03-11T19:23:12.439350+00:00",
+  "generated_at": "2026-03-11T23:33:13.981553+00:00",
   "region": "ga",
   "strategy": "area_shard",
-  "items": []
+  "items": [
+    {
+      "jurisdiction": "Johns Creek",
+      "slug": "johns-creek",
+      "display_name": "Johns Creek",
+      "jurisdiction_type": "city",
+      "state_province": "GA",
+      "country": "United States",
+      "bounds": [
+        [
+          -84.26849206375643,
+          34.020560606519275
+        ],
+        [
+          -84.1871499,
+          34.0810963
+        ]
+      ],
+      "tree_count": 8,
+      "zip_codes": [
+        "30005",
+        "30022"
+      ],
+      "species_counts": {
+        "cherry": 0,
+        "plum": 0,
+        "peach": 0,
+        "magnolia": 8,
+        "crabapple": 0
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "johns-creek-001",
+          "bounds": [
+            [
+              -84.26849206375643,
+              34.020560606519275
+            ],
+            [
+              -84.1871499,
+              34.0810963
+            ]
+          ],
+          "data_path": "/data/trees.ga.area.johns-creek.v2.geojson",
+          "tree_count": 8,
+          "raw_bytes": 4310,
+          "gzip_bytes": 557
+        }
+      ]
+    }
+  ]
 }

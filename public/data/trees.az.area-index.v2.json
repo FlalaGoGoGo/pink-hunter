@@ -1,6 +1,59 @@
 {
-  "generated_at": "2026-03-11T19:23:12.439350+00:00",
+  "generated_at": "2026-03-11T23:33:13.981553+00:00",
   "region": "az",
   "strategy": "area_shard",
-  "items": []
+  "items": [
+    {
+      "jurisdiction": "Tempe",
+      "slug": "tempe",
+      "display_name": "Tempe",
+      "jurisdiction_type": "city",
+      "state_province": "AZ",
+      "country": "United States",
+      "bounds": [
+        [
+          -111.94877166660586,
+          33.38923432970812
+        ],
+        [
+          -111.8947834756492,
+          33.424712490413874
+        ]
+      ],
+      "tree_count": 32,
+      "zip_codes": [
+        "85281",
+        "85282"
+      ],
+      "species_counts": {
+        "cherry": 0,
+        "plum": 2,
+        "peach": 18,
+        "magnolia": 0,
+        "crabapple": 12
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "tempe-001",
+          "bounds": [
+            [
+              -111.94877166660586,
+              33.38923432970812
+            ],
+            [
+              -111.8947834756492,
+              33.424712490413874
+            ]
+          ],
+          "data_path": "/data/trees.az.area.tempe.v2.geojson",
+          "tree_count": 32,
+          "raw_bytes": 15629,
+          "gzip_bytes": 1104
+        }
+      ]
+    }
+  ]
 }

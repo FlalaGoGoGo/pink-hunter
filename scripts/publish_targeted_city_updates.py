@@ -15,6 +15,7 @@ import sys
 import tempfile
 import io
 import shutil
+import time
 import urllib.request
 import requests
 from collections import Counter
@@ -844,6 +845,76 @@ EAST_COAST_TREEPLOTTER_CONFIGS: dict[str, dict[str, Any]] = {
     },
 }
 
+UNCOVERED_STATE_ARCGIS_CONFIGS: dict[str, dict[str, Any]] = {
+    "Danville": {
+        "region": "il",
+        "layer_url": "https://gis.cityofdanville.org/arcgis/rest/services/PublicWorks/Tree_Inventory/FeatureServer/0",
+        "dataset_page": "https://gis.cityofdanville.org/arcgis/rest/services/PublicWorks/Tree_Inventory/FeatureServer",
+        "object_id_field": "OBJECTID",
+        "common_field": "TreeCommonName",
+        "source_name": "Tree Inventory",
+        "source_department": "City of Danville",
+        "ownership_raw": "City of Danville",
+        "note": "Integrated from the official City of Danville public tree inventory ArcGIS layer.",
+        "clip_to_boundary": True,
+    },
+    "Evanston": {
+        "region": "il",
+        "layer_url": "https://maps.cityofevanston.org/arcgis/rest/services/OpenData/ArcGISOpenData/MapServer/8",
+        "dataset_page": "https://data.cityofevanston.org/datasets/evanston::trees",
+        "object_id_field": "OBJECTID",
+        "common_field": "Common",
+        "genus_field": "Genus",
+        "species_field": "SPP",
+        "source_name": "Trees",
+        "source_department": "City of Evanston",
+        "ownership_raw": "City of Evanston",
+        "note": "Integrated from the official City of Evanston public trees ArcGIS layer.",
+        "clip_to_boundary": True,
+    },
+    "Johns Creek": {
+        "region": "ga",
+        "layer_url": "https://services1.arcgis.com/bqfNVPUK3HOnCFmA/arcgis/rest/services/Tree_Inventory/FeatureServer/0",
+        "dataset_page": "https://services1.arcgis.com/bqfNVPUK3HOnCFmA/arcgis/rest/services/Tree_Inventory/FeatureServer",
+        "object_id_field": "OBJECTID",
+        "common_field": "TreeSpeciesFromML",
+        "source_name": "Tree Inventory",
+        "source_department": "City of Johns Creek",
+        "ownership_raw": "City of Johns Creek",
+        "note": "Integrated from the official City of Johns Creek public Tree Inventory ArcGIS layer using the published species labels.",
+        "clip_to_boundary": True,
+    },
+    "O'Fallon": {
+        "region": "il",
+        "layer_url": "https://services.arcgis.com/K8hCj4l2z1EMabnx/arcgis/rest/services/CityTrees/FeatureServer/1",
+        "dataset_page": "https://services.arcgis.com/K8hCj4l2z1EMabnx/arcgis/rest/services/CityTrees/FeatureServer",
+        "object_id_field": "OBJECTID",
+        "common_field": "COMMON_NAME",
+        "scientific_field": "TREESPECIES",
+        "lon_field": "LONGITUDE",
+        "lat_field": "LATITUDE",
+        "source_name": "City Trees",
+        "source_department": "City of O'Fallon",
+        "ownership_raw": "City of O'Fallon",
+        "note": "Integrated from the official City of O'Fallon public city tree ArcGIS service.",
+        "clip_to_boundary": True,
+    },
+    "Tempe": {
+        "region": "az",
+        "layer_url": "https://services.arcgis.com/lQySeXwbBg53XWDi/arcgis/rest/services/TempeGuadalupe_CanopyCover2019_TreeInv_2021_Tempe_iTreeResults_TempeAZOct_2021_1/FeatureServer/0",
+        "dataset_page": "https://data.tempe.gov/datasets/tempegov::tree-inventory",
+        "object_id_field": "OBJECTID",
+        "scientific_field": "Species_Name",
+        "lon_field": "xCoordinate",
+        "lat_field": "yCoordinate",
+        "source_name": "Tree Inventory",
+        "source_department": "City of Tempe",
+        "ownership_raw": "City of Tempe",
+        "note": "Integrated from the official City of Tempe tree inventory dataset published on the city ArcGIS open-data portal.",
+        "clip_to_boundary": True,
+    },
+}
+
 SUPPORTED_CITIES = (
     "Albany",
     "Anaheim",
@@ -868,10 +939,12 @@ SUPPORTED_CITIES = (
     "Cudahy",
     "Dana Point",
     "Dallas",
+    "Danville",
     "Denver",
     "El Segundo",
     "Encinitas",
     "Escondido",
+    "Evanston",
     "Fairfax",
     "Falls Church",
     "Fontana",
@@ -894,6 +967,7 @@ SUPPORTED_CITIES = (
     "Inglewood",
     "Irvine",
     "Ithaca",
+    "Johns Creek",
     "Jersey City",
     "La Mirada",
     "La Canada Flintridge",
@@ -926,6 +1000,7 @@ SUPPORTED_CITIES = (
     "Norwalk",
     "Oradell",
     "Ottawa",
+    "O'Fallon",
     "Oxnard",
     "Paramount",
     "Pasadena",
@@ -964,6 +1039,7 @@ SUPPORTED_CITIES = (
     "Stamford",
     "Sunnyvale",
     "Syracuse",
+    "Tempe",
     "Teaneck",
     "Tenafly",
     "Thousand Oaks",
@@ -1592,28 +1668,37 @@ def rewrite_normalized_rows(target_cities: set[str], new_rows: list[dict[str, An
     normalized_new_rows = [normalize_row_for_csv(row) for row in new_rows]
     normalized_new_rows.sort(key=lambda item: item["id"])
 
-    with tempfile.NamedTemporaryFile(
-        "w",
-        encoding="utf-8",
-        newline="",
-        dir=path.parent,
-        prefix=f"{path.stem}.",
-        suffix=".tmp",
-        delete=False,
-    ) as handle:
-        temp_path = Path(handle.name)
-        writer = csv.DictWriter(handle, fieldnames=NORMALIZED_HEADER)
-        writer.writeheader()
-        if path.exists():
-            with path.open("r", encoding="utf-8", newline="") as source_handle:
-                reader = csv.DictReader(source_handle)
-                for row in reader:
-                    if row.get("city") in target_cities:
-                        continue
-                    writer.writerow({column: str(row.get(column, "")) for column in NORMALIZED_HEADER})
-        writer.writerows(normalized_new_rows)
-
-    temp_path.replace(path)
+    for attempt in range(3):
+        temp_path: Path | None = None
+        try:
+            with tempfile.NamedTemporaryFile(
+                "w",
+                encoding="utf-8",
+                newline="",
+                dir=path.parent,
+                prefix=f"{path.stem}.",
+                suffix=".tmp",
+                delete=False,
+            ) as handle:
+                temp_path = Path(handle.name)
+                writer = csv.DictWriter(handle, fieldnames=NORMALIZED_HEADER)
+                writer.writeheader()
+                if path.exists():
+                    with path.open("r", encoding="utf-8", newline="") as source_handle:
+                        reader = csv.DictReader(source_handle)
+                        for row in reader:
+                            if row.get("city") in target_cities:
+                                continue
+                            writer.writerow({column: str(row.get(column, "")) for column in NORMALIZED_HEADER})
+                writer.writerows(normalized_new_rows)
+            temp_path.replace(path)
+            break
+        except TimeoutError:
+            if temp_path is not None:
+                temp_path.unlink(missing_ok=True)
+            if attempt == 2:
+                raise
+            time.sleep(1)
     return path
 
 
@@ -3017,6 +3102,31 @@ def build_nyc_metro_arcgis_fetcher(city: str, config: dict[str, Any]) -> Any:
         source_department=config["source_department"],
         ownership_raw=f"City of {city}",
         note=config["note"],
+        common_field=config.get("common_field"),
+        botanical_field=config.get("botanical_field"),
+        scientific_field=config.get("scientific_field"),
+        genus_field=config.get("genus_field"),
+        species_field=config.get("species_field"),
+        lon_field=config.get("lon_field"),
+        lat_field=config.get("lat_field"),
+        zip_field=config.get("zip_field"),
+    )
+
+
+def build_arcgis_fetcher(city: str, config: dict[str, Any]) -> Any:
+    return lambda city=city, config=config: fetch_arcgis_inventory_city_result(
+        city=city,
+        region=str(config["region"]),
+        layer_url=str(config["layer_url"]),
+        dataset_page=str(config["dataset_page"]),
+        where=str(config.get("where", "1=1")),
+        out_fields=list(config.get("out_fields", ["*"])),
+        object_id_field=str(config["object_id_field"]),
+        source_name=str(config.get("source_name", "Tree Inventory")),
+        source_department=str(config["source_department"]),
+        ownership_raw=str(config.get("ownership_raw", config["source_department"])),
+        note=str(config["note"]),
+        clip_to_boundary=bool(config.get("clip_to_boundary", False)),
         common_field=config.get("common_field"),
         botanical_field=config.get("botanical_field"),
         scientific_field=config.get("scientific_field"),
@@ -6596,6 +6706,7 @@ CITY_FETCHERS.update({city: build_nyc_metro_treekeeper_fetcher(city, config) for
 CITY_FETCHERS.update({city: build_treekeeper_fetcher(city, config) for city, config in EAST_COAST_TREEKEEPER_CONFIGS.items()})
 CITY_FETCHERS.update({city: build_treeplotter_fetcher(city, config) for city, config in EAST_COAST_TREEPLOTTER_CONFIGS.items()})
 CITY_FETCHERS.update({city: build_nyc_metro_arcgis_fetcher(city, config) for city, config in NYC_METRO_ARCGIS_CONFIGS.items()})
+CITY_FETCHERS.update({city: build_arcgis_fetcher(city, config) for city, config in UNCOVERED_STATE_ARCGIS_CONFIGS.items()})
 
 
 def main() -> int:
