@@ -96,7 +96,6 @@ const ABOUT_REGION_SUMMARY_PAGE_SIZE = 3;
 const ABOUT_AREA_SUMMARY_PAGE_SIZE = 3;
 const FEATURED_AREA_PAGE_SIZE = 5;
 const BRAND_LOGO_PATH = "/assets/brand/pink-hunter-logo.png";
-const BRAND_MARK_PATH = "/assets/brand/pink-hunter-mark-512.png";
 const SORT_COLLATOR = new Intl.Collator("en", { sensitivity: "base" });
 const EMPTY_SPECIES_COUNTS: SpeciesCounts = {
   cherry: 0,
@@ -2683,7 +2682,13 @@ export default function App(): JSX.Element {
       return activeRegionMeta ? [activeRegionMeta] : availableRegions;
     }
     const matched = availableRegions.filter((region) => boundsIntersect(region.bounds, viewport));
-    return matched;
+    if (!activeRegionMeta) {
+      return matched;
+    }
+    if (matched.some((region) => region.id === activeRegionMeta.id)) {
+      return matched;
+    }
+    return [activeRegionMeta, ...matched];
   }, [activeRegionMeta, data, effectiveViewportBounds]);
 
   const visibleRegionIds = useMemo(() => visibleRegions.map((region) => region.id), [visibleRegions]);
@@ -4848,7 +4853,6 @@ export default function App(): JSX.Element {
         <img alt="Pink Hunter" className="loading-brand-logo" src={BRAND_LOGO_PATH} />
         <div className="loading-progress-track" aria-hidden="true">
           <div className="loading-progress-fill" />
-          <img alt="" className="loading-progress-flower" src={BRAND_MARK_PATH} />
         </div>
         <p className="loading-copy">{t(language, "loading")}</p>
       </div>
@@ -5171,8 +5175,7 @@ export default function App(): JSX.Element {
                           type="button"
                         >
                           <div className="featured-area-index-main">
-                            <div>
-                              <p className="featured-area-eyebrow">{meta.eyebrow}</p>
+                            <div className="featured-area-index-text">
                               <strong>{meta.label}</strong>
                               <span>{formatDistanceKm(language, areaDistanceKm)}</span>
                             </div>

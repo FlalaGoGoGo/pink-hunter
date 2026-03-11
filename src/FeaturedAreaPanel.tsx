@@ -411,22 +411,22 @@ export function FeaturedAreaPanel({
   return (
     <article className="featured-area-card">
       <header className="featured-area-hero">
-        <div>
+        <div className="featured-area-hero-copy">
           <p className="featured-area-eyebrow">{meta.eyebrow}</p>
           <h3>{meta.label}</h3>
           <p>{meta.description}</p>
+          <div className="featured-area-mode-badge">
+            {adjustedForecast.mode === "ml" ? copy.forecastModeMl : copy.forecastModeFallback}
+          </div>
         </div>
-        <div className="featured-area-mode-badge">{adjustedForecast.mode === "ml" ? copy.forecastModeMl : copy.forecastModeFallback}</div>
       </header>
 
       <section className="featured-area-block featured-area-forecast-shell">
         <div className="featured-area-block-head">
-          <div>
-            <h4>{copy.chartTitle}</h4>
-            <p className="featured-area-section-copy">
-              {describeWeatherAdjustment(language, adjustedForecast.weather_adjustment_days)}
-            </p>
-          </div>
+          <h4>{copy.chartTitle}</h4>
+          <p className="featured-area-section-copy">
+            {describeWeatherAdjustment(language, adjustedForecast.weather_adjustment_days)}
+          </p>
           <div className="featured-area-updated">
             {copy.updatedAt}: {new Date(adjustedForecast.updated_at).toLocaleDateString(language)}
           </div>

@@ -184,6 +184,7 @@ US_CENSUS_ZCTA_LAYER = (
 STRICT_OFFICIAL_JURISDICTION_BOUNDARY_ONLY = True
 DEFAULT_REGION = "wa"
 WA_METRO_OVERVIEW_BOUNDS: list[list[float]] = [[-123.08, 47.02], [-121.55, 48.08]]
+CA_STATE_OVERVIEW_BOUNDS: list[list[float]] = [[-124.48, 32.45], [-114.13, 42.08]]
 WARNING_BYTES = 35 * 1024 * 1024
 HIGH_WARNING_BYTES = 45 * 1024 * 1024
 HARD_FAIL_BYTES = 50 * 1024 * 1024
@@ -2733,6 +2734,7 @@ def build_region_bounds(coverage_features: list[dict[str, Any]]) -> dict[str, li
         output[region] = [[bounds[0], bounds[1]], [bounds[2], bounds[3]]]
 
     output["wa"] = WA_METRO_OVERVIEW_BOUNDS
+    output["ca"] = CA_STATE_OVERVIEW_BOUNDS
     return output
 
 
