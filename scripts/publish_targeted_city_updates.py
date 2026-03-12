@@ -1117,9 +1117,13 @@ MILWAUKEE_COUNTY_TREE_VIEW_LAYER = (
 )
 MILWAUKEE_COUNTY_TREE_VIEW_PAGE = "https://experience.arcgis.com/experience/b1d9ccfd3a2949728e5b445bfdc78935"
 MILWAUKEE_COUNTY_SUPPORTED_CITIES = (
+    "Cudahy WI",
+    "Fox Point",
     "Franklin",
+    "Glendale WI",
     "Greenfield",
     "Greendale",
+    "Hales Corners",
     "Milwaukee",
     "Oak Creek",
     "Shorewood",
@@ -1127,6 +1131,7 @@ MILWAUKEE_COUNTY_SUPPORTED_CITIES = (
     "St. Francis",
     "Wauwatosa",
     "West Allis",
+    "Whitefish Bay",
 )
 
 SUPPORTED_CITIES = (
@@ -1152,6 +1157,7 @@ SUPPORTED_CITIES = (
     "Corona",
     "Costa Mesa",
     "Cudahy",
+    "Cudahy WI",
     "Dana Point",
     "Dallas",
     "Danville",
@@ -1164,12 +1170,14 @@ SUPPORTED_CITIES = (
     "Evanston",
     "Fairfax",
     "Falls Church",
+    "Fox Point",
     "Franklin",
     "Fontana",
     "Fort Lee",
     "Greenfield",
     "Greenwich",
     "Glendale",
+    "Glendale WI",
     "Greendale",
     "Goleta",
     "Grand Rapids",
@@ -1180,6 +1188,7 @@ SUPPORTED_CITIES = (
     "Glen Rock",
     "Glendora",
     "Haworth",
+    "Hales Corners",
     "Hartford",
     "Ho-Ho-Kus",
     "Hoboken",
@@ -1283,6 +1292,7 @@ SUPPORTED_CITIES = (
     "West Sacramento",
     "West Covina",
     "Westwood",
+    "Whitefish Bay",
     "Worcester",
     "Wyckoff",
     "Yorba Linda",

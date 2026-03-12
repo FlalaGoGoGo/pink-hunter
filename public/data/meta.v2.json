@@ -1,6 +1,6 @@
 {
   "version": "v2",
-  "generated_at": "2026-03-12T04:59:53.213568+00:00",
+  "generated_at": "2026-03-12T05:35:52.872888+00:00",
   "default_region": "wa",
   "coverage_rule": "official_jurisdiction_boundary_only",
   "coverage_skipped_cities": [],
@@ -101,10 +101,10 @@
     "Yarrow Point"
   ],
   "coverage_official_unavailable_skipped_cities": [],
-  "source_count": 172,
-  "total_records": 2932104,
-  "included_records": 592135,
-  "unknown_records": 1293681,
+  "source_count": 177,
+  "total_records": 2935657,
+  "included_records": 592253,
+  "unknown_records": 1296936,
   "species_counts": {
     "cherry": 193947,
     "plum": 112010,
@@ -1368,35 +1368,40 @@
         ]
       ],
       "data_path": null,
-      "tree_count": 1161,
-      "city_count": 10,
+      "tree_count": 1279,
+      "city_count": 15,
       "cities": [
+        "Cudahy WI",
+        "Fox Point",
         "Franklin",
+        "Glendale WI",
         "Greendale",
         "Greenfield",
+        "Hales Corners",
         "Milwaukee",
         "Oak Creek",
         "Shorewood",
         "South Milwaukee",
         "St. Francis",
         "Wauwatosa",
-        "West Allis"
+        "West Allis",
+        "Whitefish Bay"
       ],
       "species_counts": {
         "cherry": 1,
         "plum": 0,
         "peach": 1,
-        "magnolia": 93,
-        "crabapple": 1066
+        "magnolia": 95,
+        "crabapple": 1182
       },
       "ownership_groups": [
         "public"
       ],
-      "raw_bytes": 581597,
-      "gzip_bytes": 31008,
+      "raw_bytes": 641323,
+      "gzip_bytes": 35629,
       "warning_level": "none",
-      "aggregate_raw_bytes": 581597,
-      "aggregate_gzip_bytes": 31008,
+      "aggregate_raw_bytes": 641323,
+      "aggregate_gzip_bytes": 35629,
       "aggregate_warning_level": "none",
       "largest_shard_raw_bytes": 340439,
       "largest_shard_gzip_bytes": 16670,
@@ -1404,8 +1409,8 @@
       "area_split": {
         "strategy": "area_shard",
         "index_path": "/data/trees.wi.area-index.v2.json",
-        "area_count": 10,
-        "shard_count": 10,
+        "area_count": 15,
+        "shard_count": 15,
         "ready": true
       },
       "largest_shard_warning_level": "none",
@@ -3438,6 +3443,15 @@
       "note": "Integrated from the public City of Cudahy tree layers and official jurisdiction boundary."
     },
     {
+      "name": "Tree Points - All (view)",
+      "city": "Cudahy WI",
+      "endpoint": "https://experience.arcgis.com/experience/b1d9ccfd3a2949728e5b445bfdc78935",
+      "last_edit_at": "",
+      "records_fetched": 974,
+      "records_included": 30,
+      "note": "Integrated from the official Milwaukee County public tree viewer and official jurisdiction boundary clipping."
+    },
+    {
       "name": "Trees",
       "city": "Cupertino",
       "endpoint": "https://gis-cupertino.opendata.arcgis.com/",
@@ -3572,6 +3586,15 @@
     },
     {
       "name": "Tree Points - All (view)",
+      "city": "Fox Point",
+      "endpoint": "https://experience.arcgis.com/experience/b1d9ccfd3a2949728e5b445bfdc78935",
+      "last_edit_at": "",
+      "records_fetched": 133,
+      "records_included": 3,
+      "note": "Integrated from the official Milwaukee County public tree viewer and official jurisdiction boundary clipping."
+    },
+    {
+      "name": "Tree Points - All (view)",
       "city": "Franklin",
       "endpoint": "https://experience.arcgis.com/experience/b1d9ccfd3a2949728e5b445bfdc78935",
       "last_edit_at": "",
@@ -3622,6 +3645,15 @@
       "records_fetched": 7567,
       "records_included": 35,
       "note": "Integrated from the public Glendale tree survey layer and official jurisdiction boundary."
+    },
+    {
+      "name": "Tree Points - All (view)",
+      "city": "Glendale WI",
+      "endpoint": "https://experience.arcgis.com/experience/b1d9ccfd3a2949728e5b445bfdc78935",
+      "last_edit_at": "",
+      "records_fetched": 1217,
+      "records_included": 31,
+      "note": "Integrated from the official Milwaukee County public tree viewer and official jurisdiction boundary clipping."
     },
     {
       "name": "Glendora Public Map Trees",
@@ -3676,6 +3708,15 @@
       "records_fetched": 60903,
       "records_included": 4502,
       "note": "Integrated from the official Town of Greenwich public TreeKeeper inventory."
+    },
+    {
+      "name": "Tree Points - All (view)",
+      "city": "Hales Corners",
+      "endpoint": "https://experience.arcgis.com/experience/b1d9ccfd3a2949728e5b445bfdc78935",
+      "last_edit_at": "",
+      "records_fetched": 1073,
+      "records_included": 48,
+      "note": "Integrated from the official Milwaukee County public tree viewer and official jurisdiction boundary clipping."
     },
     {
       "name": "TreeKeeper Inventory",
@@ -4696,6 +4737,15 @@
       "records_fetched": 4862,
       "records_included": 192,
       "note": "Integrated from the official Westwood public TreeKeeper inventory and jurisdiction boundary."
+    },
+    {
+      "name": "Tree Points - All (view)",
+      "city": "Whitefish Bay",
+      "endpoint": "https://experience.arcgis.com/experience/b1d9ccfd3a2949728e5b445bfdc78935",
+      "last_edit_at": "",
+      "records_fetched": 156,
+      "records_included": 6,
+      "note": "Integrated from the official Milwaukee County public tree viewer and official jurisdiction boundary clipping."
     },
     {
       "name": "TreeKeeper Inventory",

@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-03-12T04:59:53.213568+00:00",
+  "generated_at": "2026-03-12T05:35:52.872888+00:00",
   "countries": [
     {
       "id": "ca",
@@ -120784,6 +120784,26 @@
       "coverage_status": "untracked"
     },
     {
+      "id": "wi:bayside",
+      "country_id": "us",
+      "state_id": "wi",
+      "jurisdiction": "Bayside",
+      "display_name": "Bayside",
+      "area_type": "city",
+      "bounds": [
+        [
+          -87.92467000029988,
+          43.16959599997969
+        ],
+        [
+          -87.88092899982188,
+          43.19768400021508
+        ]
+      ],
+      "region_hint": "wi",
+      "coverage_status": "untracked"
+    },
+    {
       "id": "wi:brown-deer",
       "country_id": "us",
       "state_id": "wi",
@@ -120804,6 +120824,66 @@
       "coverage_status": "untracked"
     },
     {
+      "id": "wi:cudahy",
+      "country_id": "us",
+      "state_id": "wi",
+      "jurisdiction": "Cudahy",
+      "display_name": "Cudahy",
+      "area_type": "city",
+      "bounds": [
+        [
+          -87.88784900003488,
+          42.93001300021447
+        ],
+        [
+          -87.8430399997021,
+          42.96647099973843
+        ]
+      ],
+      "region_hint": "wi",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "wi:cudahy-wi",
+      "country_id": "us",
+      "state_id": "wi",
+      "jurisdiction": "Cudahy WI",
+      "display_name": "Cudahy WI",
+      "area_type": "city",
+      "bounds": [
+        [
+          -87.85284325142312,
+          42.93364022662009
+        ],
+        [
+          -87.84502641866712,
+          42.96173765306886
+        ]
+      ],
+      "region_hint": "wi",
+      "coverage_status": "covered"
+    },
+    {
+      "id": "wi:fox-point",
+      "country_id": "us",
+      "state_id": "wi",
+      "jurisdiction": "Fox Point",
+      "display_name": "Fox Point",
+      "area_type": "city",
+      "bounds": [
+        [
+          -87.88460613680397,
+          43.16938129717554
+        ],
+        [
+          -87.8840214010342,
+          43.16943625983286
+        ]
+      ],
+      "region_hint": "wi",
+      "coverage_status": "covered"
+    },
+    {
       "id": "wi:franklin",
       "country_id": "us",
       "state_id": "wi",
@@ -120818,6 +120898,46 @@
         [
           -87.95943975458177,
           42.92360360947448
+        ]
+      ],
+      "region_hint": "wi",
+      "coverage_status": "covered"
+    },
+    {
+      "id": "wi:glendale",
+      "country_id": "us",
+      "state_id": "wi",
+      "jurisdiction": "Glendale",
+      "display_name": "Glendale",
+      "area_type": "city",
+      "bounds": [
+        [
+          -87.95475799994965,
+          43.08974600027412
+        ],
+        [
+          -87.90770099975435,
+          43.162287999734325
+        ]
+      ],
+      "region_hint": "wi",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "wi:glendale-wi",
+      "country_id": "us",
+      "state_id": "wi",
+      "jurisdiction": "Glendale WI",
+      "display_name": "Glendale WI",
+      "area_type": "city",
+      "bounds": [
+        [
+          -87.93048128522008,
+          43.104218093633534
+        ],
+        [
+          -87.92000489531104,
+          43.136280735748336
         ]
       ],
       "region_hint": "wi",
@@ -120864,6 +120984,26 @@
       "coverage_status": "covered"
     },
     {
+      "id": "wi:hales-corners",
+      "country_id": "us",
+      "state_id": "wi",
+      "jurisdiction": "Hales Corners",
+      "display_name": "Hales Corners",
+      "area_type": "city",
+      "bounds": [
+        [
+          -88.05920585937136,
+          42.930888936594464
+        ],
+        [
+          -88.02886873475546,
+          42.93919741915098
+        ]
+      ],
+      "region_hint": "wi",
+      "coverage_status": "covered"
+    },
+    {
       "id": "wi:milwaukee",
       "country_id": "us",
       "state_id": "wi",
@@ -120902,6 +121042,26 @@
       ],
       "region_hint": "wi",
       "coverage_status": "covered"
+    },
+    {
+      "id": "wi:river-hills",
+      "country_id": "us",
+      "state_id": "wi",
+      "jurisdiction": "River Hills",
+      "display_name": "River Hills",
+      "area_type": "city",
+      "bounds": [
+        [
+          -87.96270699965935,
+          43.14053000017487
+        ],
+        [
+          -87.91499099986319,
+          43.192407000029554
+        ]
+      ],
+      "region_hint": "wi",
+      "coverage_status": "untracked"
     },
     {
       "id": "wi:shorewood",
@@ -121004,6 +121164,26 @@
       "coverage_status": "covered"
     },
     {
+      "id": "wi:west-milwaukee",
+      "country_id": "us",
+      "state_id": "wi",
+      "jurisdiction": "West Milwaukee",
+      "display_name": "West Milwaukee",
+      "area_type": "city",
+      "bounds": [
+        [
+          -87.98266999970691,
+          43.00078799967399
+        ],
+        [
+          -87.96097600000577,
+          43.02416700005469
+        ]
+      ],
+      "region_hint": "wi",
+      "coverage_status": "untracked"
+    },
+    {
       "id": "wi:whitefish-bay",
       "country_id": "us",
       "state_id": "wi",
@@ -121012,16 +121192,16 @@
       "area_type": "city",
       "bounds": [
         [
-          -87.91365299967168,
-          43.098697000145684
+          -87.90632933388136,
+          43.10047988650465
         ],
         [
-          -87.87635000025615,
-          43.134638999786205
+          -87.88791730999743,
+          43.110027533707886
         ]
       ],
       "region_hint": "wi",
-      "coverage_status": "untracked"
+      "coverage_status": "covered"
     }
   ]
 }

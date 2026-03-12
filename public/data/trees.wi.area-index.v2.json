@@ -1,8 +1,110 @@
 {
-  "generated_at": "2026-03-12T04:59:38.040172+00:00",
+  "generated_at": "2026-03-12T05:35:12.557031+00:00",
   "region": "wi",
   "strategy": "area_shard",
   "items": [
+    {
+      "jurisdiction": "Cudahy WI",
+      "slug": "cudahy-wi",
+      "display_name": "Cudahy WI",
+      "jurisdiction_type": "city",
+      "state_province": "WI",
+      "country": "United States",
+      "bounds": [
+        [
+          -87.85284325142312,
+          42.93364022662009
+        ],
+        [
+          -87.84502641866712,
+          42.96173765306886
+        ]
+      ],
+      "tree_count": 30,
+      "zip_codes": [
+        "53110"
+      ],
+      "species_counts": {
+        "cherry": 0,
+        "plum": 0,
+        "peach": 0,
+        "magnolia": 0,
+        "crabapple": 30
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "cudahy-wi-001",
+          "bounds": [
+            [
+              -87.85284325142312,
+              42.93364022662009
+            ],
+            [
+              -87.84502641866712,
+              42.96173765306886
+            ]
+          ],
+          "data_path": "/data/trees.wi.area.cudahy-wi.v2.geojson",
+          "tree_count": 30,
+          "raw_bytes": 14980,
+          "gzip_bytes": 1080
+        }
+      ]
+    },
+    {
+      "jurisdiction": "Fox Point",
+      "slug": "fox-point",
+      "display_name": "Fox Point",
+      "jurisdiction_type": "city",
+      "state_province": "WI",
+      "country": "United States",
+      "bounds": [
+        [
+          -87.88460613680397,
+          43.16938129717554
+        ],
+        [
+          -87.8840214010342,
+          43.16943625983286
+        ]
+      ],
+      "tree_count": 3,
+      "zip_codes": [
+        "53217"
+      ],
+      "species_counts": {
+        "cherry": 0,
+        "plum": 0,
+        "peach": 0,
+        "magnolia": 0,
+        "crabapple": 3
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "fox-point-001",
+          "bounds": [
+            [
+              -87.88460613680397,
+              43.16938129717554
+            ],
+            [
+              -87.8840214010342,
+              43.16943625983286
+            ]
+          ],
+          "data_path": "/data/trees.wi.area.fox-point.v2.geojson",
+          "tree_count": 3,
+          "raw_bytes": 1529,
+          "gzip_bytes": 410
+        }
+      ]
+    },
     {
       "jurisdiction": "Franklin",
       "slug": "franklin",
@@ -51,6 +153,58 @@
           "tree_count": 87,
           "raw_bytes": 42954,
           "gzip_bytes": 2250
+        }
+      ]
+    },
+    {
+      "jurisdiction": "Glendale WI",
+      "slug": "glendale-wi",
+      "display_name": "Glendale WI",
+      "jurisdiction_type": "city",
+      "state_province": "WI",
+      "country": "United States",
+      "bounds": [
+        [
+          -87.93048128522008,
+          43.104218093633534
+        ],
+        [
+          -87.92000489531104,
+          43.136280735748336
+        ]
+      ],
+      "tree_count": 31,
+      "zip_codes": [
+        "53209",
+        "53217"
+      ],
+      "species_counts": {
+        "cherry": 0,
+        "plum": 0,
+        "peach": 0,
+        "magnolia": 0,
+        "crabapple": 31
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "glendale-wi-001",
+          "bounds": [
+            [
+              -87.93048128522008,
+              43.104218093633534
+            ],
+            [
+              -87.92000489531104,
+              43.136280735748336
+            ]
+          ],
+          "data_path": "/data/trees.wi.area.glendale-wi.v2.geojson",
+          "tree_count": 31,
+          "raw_bytes": 15680,
+          "gzip_bytes": 1105
         }
       ]
     },
@@ -155,6 +309,57 @@
           "tree_count": 22,
           "raw_bytes": 11095,
           "gzip_bytes": 889
+        }
+      ]
+    },
+    {
+      "jurisdiction": "Hales Corners",
+      "slug": "hales-corners",
+      "display_name": "Hales Corners",
+      "jurisdiction_type": "city",
+      "state_province": "WI",
+      "country": "United States",
+      "bounds": [
+        [
+          -88.05920585937136,
+          42.930888936594464
+        ],
+        [
+          -88.02886873475546,
+          42.93919741915098
+        ]
+      ],
+      "tree_count": 48,
+      "zip_codes": [
+        "53130"
+      ],
+      "species_counts": {
+        "cherry": 0,
+        "plum": 0,
+        "peach": 0,
+        "magnolia": 2,
+        "crabapple": 46
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "hales-corners-001",
+          "bounds": [
+            [
+              -88.05920585937136,
+              42.930888936594464
+            ],
+            [
+              -88.02886873475546,
+              42.93919741915098
+            ]
+          ],
+          "data_path": "/data/trees.wi.area.hales-corners.v2.geojson",
+          "tree_count": 48,
+          "raw_bytes": 24439,
+          "gzip_bytes": 1532
         }
       ]
     },
@@ -541,6 +746,58 @@
           "tree_count": 131,
           "raw_bytes": 65922,
           "gzip_bytes": 3366
+        }
+      ]
+    },
+    {
+      "jurisdiction": "Whitefish Bay",
+      "slug": "whitefish-bay",
+      "display_name": "Whitefish Bay",
+      "jurisdiction_type": "city",
+      "state_province": "WI",
+      "country": "United States",
+      "bounds": [
+        [
+          -87.90632933388136,
+          43.10047988650465
+        ],
+        [
+          -87.88791730999743,
+          43.110027533707886
+        ]
+      ],
+      "tree_count": 6,
+      "zip_codes": [
+        "53211",
+        "53217"
+      ],
+      "species_counts": {
+        "cherry": 0,
+        "plum": 0,
+        "peach": 0,
+        "magnolia": 0,
+        "crabapple": 6
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "whitefish-bay-001",
+          "bounds": [
+            [
+              -87.90632933388136,
+              43.10047988650465
+            ],
+            [
+              -87.88791730999743,
+              43.110027533707886
+            ]
+          ],
+          "data_path": "/data/trees.wi.area.whitefish-bay.v2.geojson",
+          "tree_count": 6,
+          "raw_bytes": 3098,
+          "gzip_bytes": 494
         }
       ]
     }

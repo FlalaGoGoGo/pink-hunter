@@ -13004,6 +13004,26 @@
     {
       "country_id": "us",
       "state_id": "wi",
+      "jurisdiction": "Bayside",
+      "area_type": "city",
+      "slug": "bayside",
+      "boundary_path": "data/reference/boundaries/us/wi/bayside.geojson",
+      "boundary_rule": "official_jurisdiction_boundary_only",
+      "boundary_source": "US Census TIGERweb Places/CouSub",
+      "bounds": [
+        [
+          -87.92467000029988,
+          43.16959599997969
+        ],
+        [
+          -87.88092899982188,
+          43.19768400021508
+        ]
+      ]
+    },
+    {
+      "country_id": "us",
+      "state_id": "wi",
       "jurisdiction": "Brown Deer",
       "area_type": "city",
       "slug": "brown-deer",
@@ -13024,6 +13044,66 @@
     {
       "country_id": "us",
       "state_id": "wi",
+      "jurisdiction": "Cudahy",
+      "area_type": "city",
+      "slug": "cudahy",
+      "boundary_path": "data/reference/boundaries/us/wi/cudahy.geojson",
+      "boundary_rule": "official_jurisdiction_boundary_only",
+      "boundary_source": "US Census TIGERweb Places/CouSub",
+      "bounds": [
+        [
+          -87.88784900003488,
+          42.93001300021447
+        ],
+        [
+          -87.8430399997021,
+          42.96647099973843
+        ]
+      ]
+    },
+    {
+      "country_id": "us",
+      "state_id": "wi",
+      "jurisdiction": "Cudahy WI",
+      "area_type": "city",
+      "slug": "cudahy-wi",
+      "boundary_path": "data/reference/boundaries/us/wi/cudahy-wi.geojson",
+      "boundary_rule": "official_jurisdiction_boundary_only",
+      "boundary_source": "US Census TIGERweb Places/CouSub",
+      "bounds": [
+        [
+          -87.88784900003488,
+          42.93001300021447
+        ],
+        [
+          -87.8430399997021,
+          42.96647099973843
+        ]
+      ]
+    },
+    {
+      "country_id": "us",
+      "state_id": "wi",
+      "jurisdiction": "Fox Point",
+      "area_type": "city",
+      "slug": "fox-point",
+      "boundary_path": "data/reference/boundaries/us/wi/fox-point.geojson",
+      "boundary_rule": "official_jurisdiction_boundary_only",
+      "boundary_source": "US Census TIGERweb Places/CouSub",
+      "bounds": [
+        [
+          -87.91554300023225,
+          43.13295800003156
+        ],
+        [
+          -87.8812259999228,
+          43.17634000013611
+        ]
+      ]
+    },
+    {
+      "country_id": "us",
+      "state_id": "wi",
       "jurisdiction": "Franklin",
       "area_type": "city",
       "slug": "franklin",
@@ -13038,6 +13118,46 @@
         [
           -87.94938099996756,
           42.93039699995403
+        ]
+      ]
+    },
+    {
+      "country_id": "us",
+      "state_id": "wi",
+      "jurisdiction": "Glendale",
+      "area_type": "city",
+      "slug": "glendale",
+      "boundary_path": "data/reference/boundaries/us/wi/glendale.geojson",
+      "boundary_rule": "official_jurisdiction_boundary_only",
+      "boundary_source": "US Census TIGERweb Places/CouSub",
+      "bounds": [
+        [
+          -87.95475799994965,
+          43.08974600027412
+        ],
+        [
+          -87.90770099975435,
+          43.162287999734325
+        ]
+      ]
+    },
+    {
+      "country_id": "us",
+      "state_id": "wi",
+      "jurisdiction": "Glendale WI",
+      "area_type": "city",
+      "slug": "glendale-wi",
+      "boundary_path": "data/reference/boundaries/us/wi/glendale-wi.geojson",
+      "boundary_rule": "official_jurisdiction_boundary_only",
+      "boundary_source": "US Census TIGERweb Places/CouSub",
+      "bounds": [
+        [
+          -87.95475799994965,
+          43.08974600027412
+        ],
+        [
+          -87.90770099975435,
+          43.162287999734325
         ]
       ]
     },
@@ -13084,6 +13204,26 @@
     {
       "country_id": "us",
       "state_id": "wi",
+      "jurisdiction": "Hales Corners",
+      "area_type": "city",
+      "slug": "hales-corners",
+      "boundary_path": "data/reference/boundaries/us/wi/hales-corners.geojson",
+      "boundary_rule": "official_jurisdiction_boundary_only",
+      "boundary_source": "US Census TIGERweb Places/CouSub",
+      "bounds": [
+        [
+          -88.06949599963849,
+          42.928382000047236
+        ],
+        [
+          -88.02581500033325,
+          42.95344900010909
+        ]
+      ]
+    },
+    {
+      "country_id": "us",
+      "state_id": "wi",
       "jurisdiction": "Milwaukee",
       "area_type": "city",
       "slug": "milwaukee",
@@ -13118,6 +13258,26 @@
         [
           -87.82496899986492,
           42.93037200029051
+        ]
+      ]
+    },
+    {
+      "country_id": "us",
+      "state_id": "wi",
+      "jurisdiction": "River Hills",
+      "area_type": "city",
+      "slug": "river-hills",
+      "boundary_path": "data/reference/boundaries/us/wi/river-hills.geojson",
+      "boundary_rule": "official_jurisdiction_boundary_only",
+      "boundary_source": "US Census TIGERweb Places/CouSub",
+      "bounds": [
+        [
+          -87.96270699965935,
+          43.14053000017487
+        ],
+        [
+          -87.91499099986319,
+          43.192407000029554
         ]
       ]
     },
@@ -13218,6 +13378,26 @@
         [
           -87.97570299963826,
           43.03101399979117
+        ]
+      ]
+    },
+    {
+      "country_id": "us",
+      "state_id": "wi",
+      "jurisdiction": "West Milwaukee",
+      "area_type": "city",
+      "slug": "west-milwaukee",
+      "boundary_path": "data/reference/boundaries/us/wi/west-milwaukee.geojson",
+      "boundary_rule": "official_jurisdiction_boundary_only",
+      "boundary_source": "US Census TIGERweb Places/CouSub",
+      "bounds": [
+        [
+          -87.98266999970691,
+          43.00078799967399
+        ],
+        [
+          -87.96097600000577,
+          43.02416700005469
         ]
       ]
     },
