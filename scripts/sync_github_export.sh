@@ -133,6 +133,8 @@ fi
 
 run_preflight_checks
 
+git -C "$TMP_REPO" add -A
+
 git -C "$TMP_REPO" commit -m "$COMMIT_MESSAGE"
 git -C "$TMP_REPO" -c pack.windowMemory=100m -c pack.packSizeLimit=100m -c pack.threads=1 push origin main
 
