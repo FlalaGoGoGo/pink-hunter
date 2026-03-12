@@ -72,6 +72,9 @@ Region-scoped GeoJSON `FeatureCollection` for coverage overlays used by staging 
 - `id: string`
 - `status: "covered" | "official_unavailable"`
 - `jurisdiction: string`
+- `country_id: "us" | "ca"`
+- `state_id: string`
+- `area_type: "city" | "county" | "district"`
 - `note: string`
 
 ## `GET /data/species-guide.v1.json`

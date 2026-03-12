@@ -52,6 +52,9 @@ export interface CoverageFeatureProps {
   id: string;
   status: "covered" | "official_unavailable";
   jurisdiction: string;
+  country_id: "us" | "ca";
+  state_id: string;
+  area_type: JurisdictionType;
   note: string;
 }
 

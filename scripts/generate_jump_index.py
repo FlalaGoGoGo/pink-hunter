@@ -17,6 +17,7 @@ from etl.build_data import (  # noqa: E402
     REGION_CITY_OVERRIDES,
     REGION_LABELS,
     bounds_for_geometry,
+    load_boundary_catalog,
     slugify_token,
 )
 
@@ -490,18 +491,22 @@ def build_jump_index(data_dir: Path) -> dict[str, Any]:
             if state_id and bounds:
                 existing_state_bounds_by_id[state_id] = bounds
 
-    area_map: dict[tuple[str, str], dict[str, Any]] = {}
-    coverage_status_map: dict[tuple[str, str], str] = {}
+    area_map: dict[tuple[str, str, str], dict[str, Any]] = {}
+    coverage_status_map: dict[tuple[str, str, str], str] = {}
     for feature in coverage.get("features", []):
-        jurisdiction = str(feature.get("properties", {}).get("jurisdiction", "")).strip()
+        properties = feature.get("properties", {})
+        jurisdiction = str(properties.get("jurisdiction", "")).strip()
         if not jurisdiction:
             continue
-        region = infer_region_for_jurisdiction(jurisdiction)
-        if not region:
+        state_id = str(properties.get("state_id", "")).strip()
+        country_id = str(properties.get("country_id", "")).strip()
+        if not state_id:
+            state_id = infer_region_for_jurisdiction(jurisdiction) or ""
+        if not country_id and state_id:
+            country_id = REGION_COUNTRY.get(state_id, "us")
+        if not state_id or not country_id:
             continue
-        coverage_status_map[(region, jurisdiction)] = str(
-            feature.get("properties", {}).get("status", "untracked")
-        )
+        coverage_status_map[(country_id, state_id, jurisdiction)] = str(properties.get("status", "untracked"))
 
     for area_index_path in sorted(data_dir.glob("trees.*.area-index.v2.json")):
         area_index = load_json(area_index_path)
@@ -510,10 +515,11 @@ def build_jump_index(data_dir: Path) -> dict[str, Any]:
             jurisdiction = str(item.get("jurisdiction", "")).strip()
             if not jurisdiction:
                 continue
-            key = (region, jurisdiction)
+            country_id = REGION_COUNTRY[region]
+            key = (country_id, region, jurisdiction)
             area_map[key] = {
                 "id": f"{region}:{slugify_token(jurisdiction)}",
-                "country_id": REGION_COUNTRY[region],
+                "country_id": country_id,
                 "state_id": region,
                 "jurisdiction": jurisdiction,
                 "display_name": normalize_display_name(str(item.get("display_name") or jurisdiction)),
@@ -529,46 +535,97 @@ def build_jump_index(data_dir: Path) -> dict[str, Any]:
         jurisdiction = str(properties.get("jurisdiction", "")).strip()
         if not jurisdiction or status != "official_unavailable":
             continue
-        region = infer_region_for_jurisdiction(jurisdiction)
-        if not region:
+        state_id = str(properties.get("state_id", "")).strip()
+        country_id = str(properties.get("country_id", "")).strip()
+        if not state_id:
+            state_id = infer_region_for_jurisdiction(jurisdiction) or ""
+        if not country_id and state_id:
+            country_id = REGION_COUNTRY.get(state_id, "us")
+        if not state_id or not country_id:
             continue
-        key = (region, jurisdiction)
+        key = (country_id, state_id, jurisdiction)
         if key in area_map:
             continue
         area_map[key] = {
-            "id": f"{region}:{slugify_token(jurisdiction)}",
-            "country_id": REGION_COUNTRY[region],
-            "state_id": region,
+            "id": f"{state_id}:{slugify_token(jurisdiction)}",
+            "country_id": country_id,
+            "state_id": state_id,
             "jurisdiction": jurisdiction,
             "display_name": normalize_display_name(jurisdiction),
-            "area_type": infer_jurisdiction_type(jurisdiction),
+            "area_type": str(properties.get("area_type") or infer_jurisdiction_type(jurisdiction)),
             "bounds": normalize_bounds(bounds_for_geometry(feature.get("geometry"))),
-            "region_hint": region,
+            "region_hint": state_id if state_id in REGION_LABELS else None,
             "coverage_status": "official_unavailable",
+        }
+
+    for item in load_boundary_catalog():
+        country_id = str(item.get("country_id", "")).strip()
+        state_id = str(item.get("state_id", "")).strip()
+        jurisdiction = str(item.get("jurisdiction", "")).strip()
+        if not country_id or not state_id or not jurisdiction:
+            continue
+        key = (country_id, state_id, jurisdiction)
+        if key in area_map:
+            continue
+        bounds = item.get("bounds")
+        if not bounds:
+            continue
+        area_map[key] = {
+            "id": f"{state_id}:{slugify_token(jurisdiction)}",
+            "country_id": country_id,
+            "state_id": state_id,
+            "jurisdiction": jurisdiction,
+            "display_name": normalize_display_name(jurisdiction),
+            "area_type": str(item.get("area_type") or infer_jurisdiction_type(jurisdiction)),
+            "bounds": bounds,
+            "region_hint": state_id if state_id in REGION_LABELS else None,
+            "coverage_status": coverage_status_map.get((country_id, state_id, jurisdiction), "untracked"),
         }
 
     for boundary_path in sorted(REFERENCE_DIR.glob("boundary_*.geojson")):
         slug = boundary_path.stem.removeprefix("boundary_")
         jurisdiction = titleize_slug(slug)
-        region = infer_region_for_jurisdiction(jurisdiction)
-        if not region:
+        state_id = infer_region_for_jurisdiction(jurisdiction) or ""
+        country_id = REGION_COUNTRY.get(state_id, "us") if state_id else ""
+        if state_id and country_id and (country_id, state_id, jurisdiction) in area_map:
             continue
-        key = (region, jurisdiction)
+
+        payload = load_json(boundary_path)
+        if payload.get("type") == "FeatureCollection":
+            features = payload.get("features", [])
+            if not features:
+                continue
+            feature = features[0]
+        elif payload.get("type") == "Feature":
+            feature = payload
+        else:
+            continue
+        properties = feature.get("properties", {})
+        jurisdiction = str(properties.get("jurisdiction", "")).strip() or jurisdiction
+        state_id = str(properties.get("state_id", "")).strip() or state_id
+        country_id = str(properties.get("country_id", "")).strip() or country_id
+        if not state_id:
+            state_id = infer_region_for_jurisdiction(jurisdiction) or ""
+        if not country_id and state_id:
+            country_id = REGION_COUNTRY.get(state_id, "us")
+        if not state_id or not country_id:
+            continue
+        key = (country_id, state_id, jurisdiction)
         if key in area_map:
             continue
         bounds = load_boundary_bounds(boundary_path)
         if not bounds:
             continue
         area_map[key] = {
-            "id": f"{region}:{slugify_token(jurisdiction)}",
-            "country_id": REGION_COUNTRY[region],
-            "state_id": region,
+            "id": f"{state_id}:{slugify_token(jurisdiction)}",
+            "country_id": country_id,
+            "state_id": state_id,
             "jurisdiction": jurisdiction,
             "display_name": normalize_display_name(jurisdiction),
-            "area_type": infer_jurisdiction_type(jurisdiction),
+            "area_type": str(properties.get("area_type") or infer_jurisdiction_type(jurisdiction)),
             "bounds": bounds,
-            "region_hint": region,
-            "coverage_status": coverage_status_map.get((region, jurisdiction), "untracked"),
+            "region_hint": state_id if state_id in REGION_LABELS else None,
+            "coverage_status": coverage_status_map.get((country_id, state_id, jurisdiction), "untracked"),
         }
 
     existing_display_keys = {
@@ -582,7 +639,8 @@ def build_jump_index(data_dir: Path) -> dict[str, Any]:
         if not state_id or not jurisdiction:
             continue
         region_hint = item.get("region_hint")
-        key = (str(region_hint or state_id), jurisdiction)
+        country_id = "us"
+        key = (country_id, state_id, jurisdiction)
         display_key = (state_id, normalize_display_name(jurisdiction))
         if key in area_map or display_key in existing_display_keys:
             continue
@@ -595,7 +653,7 @@ def build_jump_index(data_dir: Path) -> dict[str, Any]:
             "area_type": str(item["area_type"]),
             "bounds": item["bounds"],
             "region_hint": region_hint,
-            "coverage_status": coverage_status_map.get((str(region_hint or state_id), jurisdiction), "untracked"),
+            "coverage_status": coverage_status_map.get((country_id, state_id, jurisdiction), "untracked"),
         }
         existing_display_keys.add(display_key)
 

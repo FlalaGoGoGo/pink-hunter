@@ -3,7 +3,6 @@ from __future__ import annotations
 
 import argparse
 import json
-import re
 import sys
 from pathlib import Path
 from typing import Any
@@ -12,67 +11,34 @@ PROJECT_ROOT = Path(__file__).resolve().parents[1]
 if str(PROJECT_ROOT) not in sys.path:
     sys.path.insert(0, str(PROJECT_ROOT))
 
-from etl.build_data import OFFICIAL_DATA_UNAVAILABLE_CITIES, REGION_LABELS, region_for_city
+from etl.build_data import (
+    REGION_LABELS,
+    country_for_region,
+    load_city_boundary_geometry,
+    load_coverage_status_registry,
+    make_coverage_feature,
+    write_json_atomic,
+)
 
 STRICT_OFFICIAL_JURISDICTION_BOUNDARY_ONLY = True
-SPECIAL_BOUNDARY_SLUGS = {
-    "Richmond BC": "richmond_bc",
-    "Vancouver WA": "vancouver",
-}
-
-
-def make_coverage_feature(city: str, geometry: dict[str, Any], status: str, note: str) -> dict[str, Any]:
-    return {
-        "type": "Feature",
-        "geometry": geometry,
-        "properties": {
-            "id": f"{status.replace('_', '-')}-{city.lower().replace(' ', '-')}",
-            "status": status,
-            "jurisdiction": city,
-            "note": note,
-        },
-    }
-
-
-def write_json_atomic(path: Path, payload: Any, *, pretty: bool = False) -> None:
-    tmp_path = path.with_name(f"{path.name}.tmp")
-    tmp_path.write_text(
-        json.dumps(payload, ensure_ascii=False, indent=2 if pretty else None),
-        encoding="utf-8",
-    )
-    tmp_path.replace(path)
-
-
-def slugify_city(city: str) -> str:
-    if city in SPECIAL_BOUNDARY_SLUGS:
-        return SPECIAL_BOUNDARY_SLUGS[city]
-    return re.sub(r"[^a-z0-9]+", "_", city.lower()).strip("_")
-
-
-def load_city_boundary_geometry(reference_dir: Path, city: str) -> dict[str, Any] | None:
-    boundary_path = reference_dir / f"boundary_{slugify_city(city)}.geojson"
-    if not boundary_path.exists():
-        return None
-    payload = json.loads(boundary_path.read_text(encoding="utf-8"))
-    if payload.get("type") == "FeatureCollection":
-        features = payload.get("features") or []
-        if not features:
-            return None
-        return (features[0] or {}).get("geometry")
-    if payload.get("type") == "Feature":
-        return payload.get("geometry")
-    return payload.get("geometry")
-
-
-def load_covered_cities(data_dir: Path) -> list[str]:
-    covered_cities: set[str] = set()
+def load_covered_city_records(data_dir: Path) -> list[dict[str, str]]:
+    covered_city_map: dict[tuple[str, str, str], dict[str, str]] = {}
     for area_index_path in sorted(data_dir.glob("trees.*.area-index.v2.json")):
         payload = json.loads(area_index_path.read_text(encoding="utf-8"))
+        state_id = str(payload.get("region", "")).strip()
+        country_id = country_for_region(state_id) if state_id else "us"
         for item in payload.get("items", []):
             city = str(item.get("jurisdiction", "")).strip()
             if city and int(item.get("tree_count", 0) or 0) > 0:
-                covered_cities.add(city)
-    return sorted(covered_cities)
+                covered_city_map[(country_id, state_id, city)] = {
+                    "country_id": country_id,
+                    "state_id": state_id,
+                    "jurisdiction": city,
+                }
+    return sorted(
+        covered_city_map.values(),
+        key=lambda item: (item["state_id"], item["jurisdiction"]),
+    )
 
 
 def main() -> int:
@@ -86,19 +52,38 @@ def main() -> int:
         raise FileNotFoundError(f"Missing metadata file: {meta_path}")
 
     meta = json.loads(meta_path.read_text(encoding="utf-8"))
-    reference_dir = PROJECT_ROOT / "data" / "reference"
-    covered_cities = load_covered_cities(data_dir)
-    covered_city_set = set(covered_cities)
-    configured_official_unavailable = set(meta.get("coverage_official_unavailable_cities", []))
-    configured_official_unavailable.update(OFFICIAL_DATA_UNAVAILABLE_CITIES.keys())
-    official_unavailable_cities = sorted(
-        city for city in configured_official_unavailable if city not in covered_city_set
+    covered_city_records = load_covered_city_records(data_dir)
+    covered_city_keys = {
+        (record["country_id"], record["state_id"], record["jurisdiction"]) for record in covered_city_records
+    }
+    official_unavailable_entries = sorted(
+        [
+            entry
+            for entry in load_coverage_status_registry()
+            if str(entry.get("status", "")).strip() == "official_unavailable"
+            and (
+                str(entry.get("country_id", "")).strip(),
+                str(entry.get("state_id", "")).strip(),
+                str(entry.get("jurisdiction", "")).strip(),
+            )
+            not in covered_city_keys
+        ],
+        key=lambda entry: (
+            str(entry.get("state_id", "")).strip(),
+            str(entry.get("jurisdiction", "")).strip(),
+        ),
     )
+    official_unavailable_cities = [str(entry.get("jurisdiction", "")).strip() for entry in official_unavailable_entries]
 
     coverage_features: list[dict[str, Any]] = []
     skipped_coverage_cities: list[str] = []
-    for city in covered_cities:
-        geometry = load_city_boundary_geometry(reference_dir, city)
+    for record in covered_city_records:
+        city = record["jurisdiction"]
+        geometry = load_city_boundary_geometry(
+            city,
+            state_id=record["state_id"],
+            country_id=record["country_id"],
+        )
         if not geometry:
             skipped_coverage_cities.append(city)
             if STRICT_OFFICIAL_JURISDICTION_BOUNDARY_ONLY:
@@ -108,31 +93,42 @@ def main() -> int:
             make_coverage_feature(
                 city,
                 geometry,
-                "covered",
-                f"Covered by public tree inventory for {city}; geometry from official jurisdiction boundary."
+                status="covered",
+                note=f"Covered by public tree inventory for {city}; geometry from official jurisdiction boundary.",
+                state_id=record["state_id"],
+                country_id=record["country_id"],
             )
         )
 
     skipped_official_unavailable_cities: list[str] = []
-    for city in official_unavailable_cities:
-        geometry = load_city_boundary_geometry(reference_dir, city)
+    for entry in official_unavailable_entries:
+        city = str(entry.get("jurisdiction", "")).strip()
+        geometry = load_city_boundary_geometry(
+            city,
+            state_id=str(entry.get("state_id", "")).strip() or None,
+            country_id=str(entry.get("country_id", "")).strip() or None,
+        )
         if not geometry:
             skipped_official_unavailable_cities.append(city)
             if STRICT_OFFICIAL_JURISDICTION_BOUNDARY_ONLY:
                 continue
             raise RuntimeError(f"Missing official jurisdiction boundary geometry for: {city}")
-        existing_note = OFFICIAL_DATA_UNAVAILABLE_CITIES.get(city, "")
-        if not existing_note:
-            for feature in meta.get("coverage_notes", []):
-                if feature.get("jurisdiction") == city:
-                    existing_note = str(feature.get("note", ""))
-                    break
-        coverage_features.append(make_coverage_feature(city, geometry, "official_unavailable", existing_note))
+        coverage_features.append(
+            make_coverage_feature(
+                city,
+                geometry,
+                status="official_unavailable",
+                note=str(entry.get("note", "")).strip(),
+                state_id=str(entry.get("state_id", "")).strip() or None,
+                country_id=str(entry.get("country_id", "")).strip() or None,
+                area_type=str(entry.get("area_type", "")).strip() or None,
+            )
+        )
 
     coverage_geojson = {"type": "FeatureCollection", "features": coverage_features}
     coverage_by_region: dict[str, list[dict[str, Any]]] = {region: [] for region in REGION_LABELS}
     for feature in coverage_features:
-        region_id = region_for_city(str(feature["properties"]["jurisdiction"]))
+        region_id = str(feature["properties"].get("state_id", "")).strip()
         if region_id in coverage_by_region:
             coverage_by_region[region_id].append(feature)
 

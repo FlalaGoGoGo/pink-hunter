@@ -2181,8 +2181,8 @@ def build_zip_index(
     return index
 
 
-def fetch_us_city_zip_index(city: str) -> list[dict[str, Any]]:
-    geometry = load_city_boundary_geometry(city)
+def fetch_us_city_zip_index(city: str, *, state_id: str | None = None) -> list[dict[str, Any]]:
+    geometry = load_city_boundary_geometry(city, state_id=state_id)
     if not geometry:
         return []
 
@@ -2600,9 +2600,130 @@ def load_first_feature(path: Path) -> dict[str, Any]:
     return features[0]
 
 
-def city_boundary_cache_path(city: str) -> Path:
+def write_json_atomic(path: Path, payload: Any, *, pretty: bool = False) -> None:
+    ensure_dir(path.parent)
+    tmp_path = path.with_name(f"{path.name}.tmp")
+    tmp_path.write_text(
+        json.dumps(payload, ensure_ascii=False, indent=2 if pretty else None),
+        encoding="utf-8",
+    )
+    tmp_path.replace(path)
+
+
+def load_json_file(path: Path) -> Any:
+    return json.loads(path.read_text(encoding="utf-8"))
+
+
+def country_for_region(region: str) -> str:
+    return "ca" if region in CANADIAN_REGION_IDS else "us"
+
+
+def boundary_area_type_for_jurisdiction(jurisdiction: str) -> str:
+    if jurisdiction == "Washington DC" or jurisdiction.endswith(" District"):
+        return "district"
+    if jurisdiction == "Arlington" or jurisdiction.endswith(" County"):
+        return "county"
+    return "city"
+
+
+def city_boundary_cache_path(city: str, *, state_id: str | None = None, country_id: str | None = None) -> Path:
+    if state_id and country_id:
+        slug = slugify_token(city)
+        return BOUNDARY_CACHE_ROOT / country_id / state_id / f"{slug}.geojson"
     slug = re.sub(r"[^a-z0-9]+", "_", city.lower()).strip("_")
     return REFERENCE_DIR / f"boundary_{slug}.geojson"
+
+
+def load_boundary_catalog() -> list[dict[str, Any]]:
+    if not BOUNDARY_CATALOG_PATH.exists():
+        return []
+    payload = load_json_file(BOUNDARY_CATALOG_PATH)
+    items = payload.get("items")
+    if not isinstance(items, list):
+        return []
+    return [item for item in items if isinstance(item, dict)]
+
+
+def write_boundary_catalog(entries: list[dict[str, Any]]) -> None:
+    sorted_entries = sorted(
+        entries,
+        key=lambda item: (
+            str(item.get("country_id", "")),
+            str(item.get("state_id", "")),
+            str(item.get("jurisdiction", "")),
+        ),
+    )
+    write_json_atomic(
+        BOUNDARY_CATALOG_PATH,
+        {"version": 1, "items": sorted_entries},
+        pretty=True,
+    )
+
+
+def build_boundary_catalog_entry(feature: dict[str, Any], boundary_path: Path) -> dict[str, Any]:
+    properties = feature.get("properties", {})
+    raw_bounds = bounds_for_geometry(feature.get("geometry"))
+    bounds = None
+    if raw_bounds is not None:
+        bounds = [[float(raw_bounds[0]), float(raw_bounds[1])], [float(raw_bounds[2]), float(raw_bounds[3])]]
+    return {
+        "country_id": str(properties.get("country_id", "")).strip(),
+        "state_id": str(properties.get("state_id", "")).strip(),
+        "jurisdiction": str(properties.get("jurisdiction", "")).strip(),
+        "area_type": str(properties.get("area_type", "")).strip() or "city",
+        "slug": boundary_path.stem,
+        "boundary_path": str(boundary_path.relative_to(ROOT)),
+        "boundary_rule": str(properties.get("boundary_rule", "")).strip() or "official_jurisdiction_boundary_only",
+        "boundary_source": str(properties.get("boundary_source", "")).strip(),
+        "bounds": bounds,
+    }
+
+
+def upsert_boundary_catalog_entry(feature: dict[str, Any], boundary_path: Path) -> None:
+    entry = build_boundary_catalog_entry(feature, boundary_path)
+    catalog = load_boundary_catalog()
+    next_entries = [
+        item
+        for item in catalog
+        if not (
+            str(item.get("country_id", "")).strip() == entry["country_id"]
+            and str(item.get("state_id", "")).strip() == entry["state_id"]
+            and str(item.get("jurisdiction", "")).strip() == entry["jurisdiction"]
+        )
+    ]
+    next_entries.append(entry)
+    write_boundary_catalog(next_entries)
+
+
+def legacy_coverage_status_registry_items() -> list[dict[str, str]]:
+    items: list[dict[str, str]] = []
+    for jurisdiction, note in sorted(OFFICIAL_DATA_UNAVAILABLE_CITIES.items()):
+        state_id = region_for_city(jurisdiction)
+        items.append(
+            {
+                "country_id": country_for_region(state_id),
+                "state_id": state_id,
+                "jurisdiction": jurisdiction,
+                "area_type": boundary_area_type_for_jurisdiction(jurisdiction),
+                "status": "official_unavailable",
+                "note": note,
+            }
+        )
+    return items
+
+
+def load_coverage_status_registry() -> list[dict[str, str]]:
+    if not COVERAGE_STATUS_REGISTRY_PATH.exists():
+        write_json_atomic(
+            COVERAGE_STATUS_REGISTRY_PATH,
+            {"version": 1, "items": legacy_coverage_status_registry_items()},
+            pretty=True,
+        )
+    payload = load_json_file(COVERAGE_STATUS_REGISTRY_PATH)
+    items = payload.get("items")
+    if not isinstance(items, list):
+        return []
+    return [item for item in items if isinstance(item, dict) and str(item.get("status", "")).strip()]
 
 
 def city_boundary_query_parts(city: str) -> tuple[str, str]:
@@ -2819,7 +2940,10 @@ def bounds_for_geometry(geometry: dict[str, Any]) -> tuple[float, float, float, 
 def build_region_bounds(coverage_features: list[dict[str, Any]]) -> dict[str, list[list[float]]]:
     region_bounds: dict[str, list[float] | None] = {region: None for region in REGION_LABELS}
     for feature in coverage_features:
-        region = region_for_city(feature["properties"]["jurisdiction"])
+        properties = feature.get("properties", {})
+        region = str(properties.get("state_id", "")).strip() or region_for_city(str(properties.get("jurisdiction", "")))
+        if region not in region_bounds:
+            continue
         bounds = bounds_for_geometry(feature["geometry"])
         if not bounds:
             continue
@@ -2844,10 +2968,22 @@ def build_region_bounds(coverage_features: list[dict[str, Any]]) -> dict[str, li
     return output
 
 
-def boundary_feature_matches_city(feature: dict[str, Any], city: str) -> bool:
+def boundary_feature_matches_city(
+    feature: dict[str, Any],
+    city: str,
+    *,
+    state_id: str | None = None,
+    country_id: str | None = None,
+) -> bool:
     properties = feature.get("properties", {})
     geometry = feature.get("geometry")
     if properties.get("jurisdiction") == city and geometry:
+        feature_state_id = str(properties.get("state_id", "")).strip()
+        feature_country_id = str(properties.get("country_id", "")).strip()
+        if state_id and feature_state_id and feature_state_id != state_id:
+            return False
+        if country_id and feature_country_id and feature_country_id != country_id:
+            return False
         return True
     basename, state = city_boundary_query_parts(city)
     return (
@@ -2858,16 +2994,107 @@ def boundary_feature_matches_city(feature: dict[str, Any], city: str) -> bool:
     )
 
 
-def make_city_boundary_feature(city: str, geometry: dict[str, Any], *, source: str) -> dict[str, Any]:
+def make_city_boundary_feature(
+    city: str,
+    geometry: dict[str, Any],
+    *,
+    source: str,
+    state_id: str | None = None,
+    country_id: str | None = None,
+) -> dict[str, Any]:
+    resolved_state_id = state_id or region_for_city(city)
+    resolved_country_id = country_id or country_for_region(resolved_state_id)
     return {
         "type": "Feature",
         "geometry": geometry,
         "properties": {
             "jurisdiction": city,
+            "country_id": resolved_country_id,
+            "state_id": resolved_state_id,
+            "area_type": boundary_area_type_for_jurisdiction(city),
             "boundary_rule": "official_jurisdiction_boundary_only",
             "boundary_source": source,
         },
     }
+
+
+def make_coverage_feature(
+    jurisdiction: str,
+    geometry: dict[str, Any],
+    *,
+    status: str,
+    note: str,
+    state_id: str | None = None,
+    country_id: str | None = None,
+    area_type: str | None = None,
+) -> dict[str, Any]:
+    resolved_state_id = state_id or region_for_city(jurisdiction)
+    resolved_country_id = country_id or country_for_region(resolved_state_id)
+    resolved_area_type = area_type or boundary_area_type_for_jurisdiction(jurisdiction)
+    return {
+        "type": "Feature",
+        "geometry": geometry,
+        "properties": {
+            "id": f"{status.replace('_', '-')}-{resolved_country_id}-{resolved_state_id}-{slugify_token(jurisdiction)}",
+            "status": status,
+            "jurisdiction": jurisdiction,
+            "country_id": resolved_country_id,
+            "state_id": resolved_state_id,
+            "area_type": resolved_area_type,
+            "note": note,
+        },
+    }
+
+
+def standardize_boundary_feature(
+    city: str,
+    feature: dict[str, Any],
+    *,
+    state_id: str | None = None,
+    country_id: str | None = None,
+) -> dict[str, Any]:
+    properties = feature.get("properties", {})
+    geometry = feature.get("geometry")
+    if not geometry:
+        raise RuntimeError(f"Boundary feature for {city} is missing geometry.")
+    resolved_state_id = state_id or str(properties.get("state_id", "")).strip() or region_for_city(city)
+    resolved_country_id = country_id or str(properties.get("country_id", "")).strip() or country_for_region(resolved_state_id)
+    resolved_source = str(properties.get("boundary_source", "")).strip()
+    if not resolved_source:
+        resolved_source = "US Census TIGERweb Places/CouSub"
+    normalized = make_city_boundary_feature(
+        city,
+        geometry,
+        source=resolved_source,
+        state_id=resolved_state_id,
+        country_id=resolved_country_id,
+    )
+    for field in ("STATE", "BASENAME", "NAME", "GEOID", "LSADC"):
+        value = properties.get(field)
+        if value not in (None, ""):
+            normalized["properties"][field] = value
+    return normalized
+
+
+def load_boundary_feature_from_path(path: Path) -> dict[str, Any]:
+    payload = load_json_file(path)
+    if payload.get("type") == "FeatureCollection":
+        features = payload.get("features") or []
+        if not features:
+            raise RuntimeError(f"No features found in boundary file: {path}")
+        return features[0]
+    if payload.get("type") == "Feature":
+        return payload
+    raise RuntimeError(f"Unsupported boundary payload at: {path}")
+
+
+def write_boundary_feature_cache(feature: dict[str, Any], boundary_path: Path) -> None:
+    write_json_atomic(
+        boundary_path,
+        {"type": "FeatureCollection", "features": [feature]},
+        pretty=True,
+    )
+    upsert_boundary_catalog_entry(feature, boundary_path)
 
 
 def fetch_city_boundary_feature(city: str) -> dict[str, Any] | None:
@@ -3109,9 +3336,10 @@ def fetch_special_city_boundary_feature(city: str) -> dict[str, Any] | None:
         features = payload.get("features", [])
         if not features:
             return None
-        feature = features[0]
-        feature["properties"] = {**(feature.get("properties") or {}), "jurisdiction": city}
-        return feature
+        geometry = features[0].get("geometry") or {}
+        if not geometry:
+            return None
+        return make_city_boundary_feature(city, geometry, source="City of Victoria Open Data")
 
     if boundary_source == "burnaby_arcgis":
         return fetch_arcgis_boundary_feature(BURNABY_BOUNDARY_LAYER, source="City of Burnaby Open Data")
@@ -3144,34 +3372,85 @@ def fetch_special_city_boundary_feature(city: str) -> dict[str, Any] | None:
     return None
 
 
-def load_city_boundary_geometry(city: str) -> dict[str, Any] | None:
-    boundary_path = city_boundary_cache_path(city)
-    special_boundary_source = CITY_BOUNDARY_HINTS.get(city, {}).get("boundary_source")
+def load_city_boundary_feature(
+    city: str,
+    *,
+    state_id: str | None = None,
+    country_id: str | None = None,
+    refresh: bool = False,
+) -> dict[str, Any] | None:
+    resolved_state_id = state_id or region_for_city(city)
+    resolved_country_id = country_id or country_for_region(resolved_state_id)
+    canonical_boundary_path = city_boundary_cache_path(city, state_id=resolved_state_id, country_id=resolved_country_id)
+    legacy_boundary_path = city_boundary_cache_path(city)
 
-    if boundary_path.exists() and not special_boundary_source:
-        feature = load_first_feature(boundary_path)
-        if boundary_feature_matches_city(feature, city):
-            geometry = feature.get("geometry")
-            if not geometry:
-                raise RuntimeError(f"No geometry found in boundary file: {boundary_path}")
-            return geometry
+    if not refresh:
+        for boundary_path in (canonical_boundary_path, legacy_boundary_path):
+            if not boundary_path.exists():
+                continue
+            feature = load_boundary_feature_from_path(boundary_path)
+            if not boundary_feature_matches_city(
+                feature,
+                city,
+                state_id=resolved_state_id,
+                country_id=resolved_country_id,
+            ):
+                continue
+            standardized = standardize_boundary_feature(
+                city,
+                feature,
+                state_id=resolved_state_id,
+                country_id=resolved_country_id,
+            )
+            if boundary_path != canonical_boundary_path or standardized != feature:
+                write_boundary_feature_cache(standardized, canonical_boundary_path)
+            return standardized
 
     feature = fetch_special_city_boundary_feature(city) or fetch_city_boundary_feature(city)
-    if not feature and boundary_path.exists():
-        cached_feature = load_first_feature(boundary_path)
-        if boundary_feature_matches_city(cached_feature, city):
-            geometry = cached_feature.get("geometry")
-            if not geometry:
-                raise RuntimeError(f"No geometry found in boundary file: {boundary_path}")
-            return geometry
     if not feature:
+        if legacy_boundary_path.exists():
+            cached_feature = load_boundary_feature_from_path(legacy_boundary_path)
+            if boundary_feature_matches_city(
+                cached_feature,
+                city,
+                state_id=resolved_state_id,
+                country_id=resolved_country_id,
+            ):
+                standardized = standardize_boundary_feature(
+                    city,
+                    cached_feature,
+                    state_id=resolved_state_id,
+                    country_id=resolved_country_id,
+                )
+                write_boundary_feature_cache(standardized, canonical_boundary_path)
+                return standardized
         return None
 
-    ensure_dir(boundary_path.parent)
-    boundary_path.write_text(
-        json.dumps({"type": "FeatureCollection", "features": [feature]}, ensure_ascii=False, indent=2),
-        encoding="utf-8",
+    standardized = standardize_boundary_feature(
+        city,
+        feature,
+        state_id=resolved_state_id,
+        country_id=resolved_country_id,
     )
+    write_boundary_feature_cache(standardized, canonical_boundary_path)
+    return standardized
+
+
+def load_city_boundary_geometry(
+    city: str,
+    *,
+    state_id: str | None = None,
+    country_id: str | None = None,
+    refresh: bool = False,
+) -> dict[str, Any] | None:
+    feature = load_city_boundary_feature(
+        city,
+        state_id=state_id,
+        country_id=country_id,
+        refresh=refresh,
+    )
+    if not feature:
+        return None
     return feature.get("geometry")
 
 
@@ -5771,14 +6050,47 @@ def main() -> int:
     output_features.sort(key=lambda item: item["properties"]["id"])
 
     covered_cities = sorted({feature["properties"]["city"] for feature in output_features})
-    covered_city_set = set(covered_cities)
-    official_unavailable_cities = sorted(
-        city for city in OFFICIAL_DATA_UNAVAILABLE_CITIES if city not in covered_city_set
+    covered_city_records = [
+        {
+            "jurisdiction": city,
+            "state_id": region_for_city(city),
+            "country_id": country_for_region(region_for_city(city)),
+        }
+        for city in covered_cities
+    ]
+    covered_city_keys = {
+        (record["country_id"], record["state_id"], record["jurisdiction"]) for record in covered_city_records
+    }
+    coverage_status_registry = load_coverage_status_registry()
+    official_unavailable_entries = sorted(
+        [
+            entry
+            for entry in coverage_status_registry
+            if str(entry.get("status", "")).strip() == "official_unavailable"
+            and (
+                str(entry.get("country_id", "")).strip(),
+                str(entry.get("state_id", "")).strip(),
+                str(entry.get("jurisdiction", "")).strip(),
+            )
+            not in covered_city_keys
+        ],
+        key=lambda entry: (
+            str(entry.get("state_id", "")).strip(),
+            str(entry.get("jurisdiction", "")).strip(),
+        ),
     )
+    official_unavailable_cities = [
+        str(entry.get("jurisdiction", "")).strip() for entry in official_unavailable_entries
+    ]
     coverage_features: list[dict[str, Any]] = []
     skipped_coverage_cities: list[str] = []
-    for city in covered_cities:
-        geometry = load_city_boundary_geometry(city)
+    for record in covered_city_records:
+        city = record["jurisdiction"]
+        geometry = load_city_boundary_geometry(
+            city,
+            state_id=record["state_id"],
+            country_id=record["country_id"],
+        )
         if not geometry:
             skipped_coverage_cities.append(city)
             if STRICT_OFFICIAL_JURISDICTION_BOUNDARY_ONLY:
@@ -5787,21 +6099,24 @@ def main() -> int:
         note = f"Covered by public tree inventory for {city}; geometry from official jurisdiction boundary."
 
         coverage_features.append(
-            {
-                "type": "Feature",
-                "geometry": geometry,
-                "properties": {
-                    "id": f"covered-{city.lower().replace(' ', '-')}",
-                    "status": "covered",
-                    "jurisdiction": city,
-                    "note": note,
-                },
-            }
+            make_coverage_feature(
+                city,
+                geometry,
+                status="covered",
+                note=note,
+                state_id=record["state_id"],
+                country_id=record["country_id"],
+            )
         )
 
     skipped_official_unavailable_cities: list[str] = []
-    for city in official_unavailable_cities:
-        geometry = load_city_boundary_geometry(city)
+    for entry in official_unavailable_entries:
+        city = str(entry.get("jurisdiction", "")).strip()
+        geometry = load_city_boundary_geometry(
+            city,
+            state_id=str(entry.get("state_id", "")).strip() or None,
+            country_id=str(entry.get("country_id", "")).strip() or None,
+        )
         if not geometry:
             skipped_official_unavailable_cities.append(city)
             if STRICT_OFFICIAL_JURISDICTION_BOUNDARY_ONLY:
@@ -5809,16 +6124,15 @@ def main() -> int:
             raise RuntimeError(f"Missing official jurisdiction boundary geometry for: {city}")
 
         coverage_features.append(
-            {
-                "type": "Feature",
-                "geometry": geometry,
-                "properties": {
-                    "id": f"official-unavailable-{city.lower().replace(' ', '-')}",
-                    "status": "official_unavailable",
-                    "jurisdiction": city,
-                    "note": OFFICIAL_DATA_UNAVAILABLE_CITIES[city],
-                },
-            }
+            make_coverage_feature(
+                city,
+                geometry,
+                status="official_unavailable",
+                note=str(entry.get("note", "")).strip(),
+                state_id=str(entry.get("state_id", "")).strip() or None,
+                country_id=str(entry.get("country_id", "")).strip() or None,
+                area_type=str(entry.get("area_type", "")).strip() or None,
+            )
         )
 
     now_iso = dt.datetime.now(tz=dt.timezone.utc).isoformat()
@@ -5833,7 +6147,9 @@ def main() -> int:
     region_bounds = build_region_bounds(coverage_features)
     coverage_region_feature_map: dict[str, list[dict[str, Any]]] = {region: [] for region in REGION_LABELS}
     for feature in coverage_features:
-        region_id = region_for_city(str(feature["properties"]["jurisdiction"]))
+        region_id = str(feature["properties"].get("state_id", "")).strip() or region_for_city(
+            str(feature["properties"]["jurisdiction"])
+        )
         if region_id in coverage_region_feature_map:
             coverage_region_feature_map[region_id].append(feature)
 

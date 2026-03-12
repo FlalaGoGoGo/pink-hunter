@@ -4007,6 +4007,9 @@ export default function App(): JSX.Element {
               id: String(coverageProperties.id ?? `coverage-${jurisdiction}`),
               status: "official_unavailable",
               jurisdiction: String(jurisdiction),
+              country_id: String(coverageProperties.country_id ?? "us") as CoverageFeatureProps["country_id"],
+              state_id: String(coverageProperties.state_id ?? activeRegion),
+              area_type: String(coverageProperties.area_type ?? "city") as CoverageFeatureProps["area_type"],
               note: String(coverageProperties.note ?? "")
             }
           });

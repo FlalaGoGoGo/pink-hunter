@@ -196,6 +196,8 @@ Last updated: 2026-03-07 (America/Los_Angeles)
   - `python3 scripts/refresh_region_area_shards.py --data-dir public/data --region all`
 - When a new city source has been validated but is not yet folded into the main full ETL path, publish it incrementally with:
   - `python3 scripts/publish_targeted_city_updates.py --city <City Name>`
+- When preparing a whole state in advance so future city activation can reuse stored boundaries, prebuild the state city/place boundaries with:
+  - `python3 scripts/prebuild_state_boundaries.py --country us --state ca`
 - If gray-coverage rules or official-boundary hints changed without rebuilding all tree rows, refresh coverage and meta bounds with:
   - `python3 scripts/refresh_coverage_metadata.py --data-dir public/data`
 - After that, rerun `python3 scripts/check_region_data_sizes.py --data-dir public/data` so `meta.v2.json` and area-shard artifacts stay internally consistent.
