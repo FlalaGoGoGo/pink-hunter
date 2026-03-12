@@ -217,6 +217,7 @@ REGION_LABELS: dict[str, str] = {
 }
 SPECIES_GROUPS: list[str] = ["cherry", "plum", "peach", "magnolia", "crabapple"]
 REGION_CITY_OVERRIDES: dict[str, str] = {
+    "Ann Arbor": "mi",
     "Phoenix": "az",
     "Tempe": "az",
     "Atlanta": "ga",
@@ -225,7 +226,11 @@ REGION_CITY_OVERRIDES: dict[str, str] = {
     "Danville": "il",
     "Evanston": "il",
     "O'Fallon": "il",
+    "Dearborn Heights": "mi",
     "Detroit": "mi",
+    "East Lansing": "mi",
+    "Grand Rapids": "mi",
+    "Novi": "mi",
     "Denver": "co",
     "Austin": "tx",
     "Dallas": "tx",
@@ -425,6 +430,7 @@ REGION_CITY_OVERRIDES: dict[str, str] = {
 }
 
 CITY_BOUNDARY_HINTS: dict[str, dict[str, str]] = {
+    "Ann Arbor": {"state": "26"},
     "Phoenix": {"state": "04"},
     "Tempe": {"state": "04"},
     "Atlanta": {"state": "13"},
@@ -433,7 +439,11 @@ CITY_BOUNDARY_HINTS: dict[str, dict[str, str]] = {
     "Danville": {"state": "17"},
     "Evanston": {"state": "17"},
     "O'Fallon": {"state": "17"},
+    "Dearborn Heights": {"state": "26"},
     "Detroit": {"state": "26"},
+    "East Lansing": {"state": "26"},
+    "Grand Rapids": {"state": "26"},
+    "Novi": {"state": "26"},
     "Denver": {"state": "08"},
     "Austin": {"state": "48"},
     "Dallas": {"state": "48"},
@@ -737,6 +747,11 @@ OFFICIAL_DATA_UNAVAILABLE_CITIES: dict[str, str] = {
     "Woodway": "City investigated; no official public single-tree species dataset was confirmed.",
     "Yarrow Point": "City investigated; no official public single-tree species dataset was confirmed.",
 }
+
+BOUNDARY_CACHE_ROOT = REFERENCE_DIR / "boundaries"
+BOUNDARY_CATALOG_PATH = REFERENCE_DIR / "boundary_catalog.v1.json"
+COVERAGE_STATUS_REGISTRY_PATH = REFERENCE_DIR / "coverage_status_registry.v1.json"
+CANADIAN_REGION_IDS = {"bc", "on", "qc"}
 
 UW_SUPPLEMENTAL_PATH = SUPPLEMENTAL_DIR / "uw_prunus_overpass.json"
 UW_FEATURED_AREA_REFERENCE_PATH = REFERENCE_DIR / "uw_featured_area_reference.v1.json"

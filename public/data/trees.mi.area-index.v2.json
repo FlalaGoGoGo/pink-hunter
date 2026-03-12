@@ -1,6 +1,276 @@
 {
-  "generated_at": "2026-03-11T19:23:12.439350+00:00",
+  "generated_at": "2026-03-12T02:39:19.284129+00:00",
   "region": "mi",
   "strategy": "area_shard",
-  "items": []
+  "items": [
+    {
+      "jurisdiction": "Ann Arbor",
+      "slug": "ann-arbor",
+      "display_name": "Ann Arbor",
+      "jurisdiction_type": "city",
+      "state_province": "MI",
+      "country": "United States",
+      "bounds": [
+        [
+          -83.79871981765618,
+          42.22790595456471
+        ],
+        [
+          -83.68017690435622,
+          42.322804423682676
+        ]
+      ],
+      "tree_count": 3756,
+      "zip_codes": [
+        "48103",
+        "48104",
+        "48105",
+        "48108",
+        "48109"
+      ],
+      "species_counts": {
+        "cherry": 521,
+        "plum": 427,
+        "peach": 9,
+        "magnolia": 64,
+        "crabapple": 2735
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "ann-arbor-001",
+          "bounds": [
+            [
+              -83.79871981765618,
+              42.22790595456471
+            ],
+            [
+              -83.68017690435622,
+              42.322804423682676
+            ]
+          ],
+          "data_path": "/data/trees.mi.area.ann-arbor.v2.geojson",
+          "tree_count": 3756,
+          "raw_bytes": 1791964,
+          "gzip_bytes": 93485
+        }
+      ]
+    },
+    {
+      "jurisdiction": "Dearborn Heights",
+      "slug": "dearborn-heights",
+      "display_name": "Dearborn Heights",
+      "jurisdiction_type": "city",
+      "state_province": "MI",
+      "country": "United States",
+      "bounds": [
+        [
+          -83.3025182033055,
+          42.316545474092585
+        ],
+        [
+          -83.30205975924032,
+          42.31789449677802
+        ]
+      ],
+      "tree_count": 2,
+      "zip_codes": [
+        "48127"
+      ],
+      "species_counts": {
+        "cherry": 1,
+        "plum": 0,
+        "peach": 0,
+        "magnolia": 0,
+        "crabapple": 1
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "dearborn-heights-001",
+          "bounds": [
+            [
+              -83.3025182033055,
+              42.316545474092585
+            ],
+            [
+              -83.30205975924032,
+              42.31789449677802
+            ]
+          ],
+          "data_path": "/data/trees.mi.area.dearborn-heights.v2.geojson",
+          "tree_count": 2,
+          "raw_bytes": 1094,
+          "gzip_bytes": 392
+        }
+      ]
+    },
+    {
+      "jurisdiction": "East Lansing",
+      "slug": "east-lansing",
+      "display_name": "East Lansing",
+      "jurisdiction_type": "city",
+      "state_province": "MI",
+      "country": "United States",
+      "bounds": [
+        [
+          -84.50905978904741,
+          42.72000068431562
+        ],
+        [
+          -84.44781170229342,
+          42.785928371206396
+        ]
+      ],
+      "tree_count": 521,
+      "zip_codes": [
+        "48823",
+        "48824",
+        "48825",
+        "48906"
+      ],
+      "species_counts": {
+        "cherry": 32,
+        "plum": 0,
+        "peach": 0,
+        "magnolia": 13,
+        "crabapple": 476
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "east-lansing-001",
+          "bounds": [
+            [
+              -84.50905978904741,
+              42.72000068431562
+            ],
+            [
+              -84.44781170229342,
+              42.785928371206396
+            ]
+          ],
+          "data_path": "/data/trees.mi.area.east-lansing.v2.geojson",
+          "tree_count": 521,
+          "raw_bytes": 256802,
+          "gzip_bytes": 12937
+        }
+      ]
+    },
+    {
+      "jurisdiction": "Grand Rapids",
+      "slug": "grand-rapids",
+      "display_name": "Grand Rapids",
+      "jurisdiction_type": "city",
+      "state_province": "MI",
+      "country": "United States",
+      "bounds": [
+        [
+          -85.67846039183422,
+          42.96191716090708
+        ],
+        [
+          -85.60146139037305,
+          43.02269673718202
+        ]
+      ],
+      "tree_count": 13,
+      "zip_codes": [
+        "49503",
+        "49504",
+        "49505",
+        "49506",
+        "49525"
+      ],
+      "species_counts": {
+        "cherry": 2,
+        "plum": 0,
+        "peach": 0,
+        "magnolia": 1,
+        "crabapple": 10
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "grand-rapids-001",
+          "bounds": [
+            [
+              -85.67846039183422,
+              42.96191716090708
+            ],
+            [
+              -85.60146139037305,
+              43.02269673718202
+            ]
+          ],
+          "data_path": "/data/trees.mi.area.grand-rapids.v2.geojson",
+          "tree_count": 13,
+          "raw_bytes": 7021,
+          "gzip_bytes": 842
+        }
+      ]
+    },
+    {
+      "jurisdiction": "Novi",
+      "slug": "novi",
+      "display_name": "Novi",
+      "jurisdiction_type": "city",
+      "state_province": "MI",
+      "country": "United States",
+      "bounds": [
+        [
+          -83.55248366543869,
+          42.43552793841185
+        ],
+        [
+          -83.43595178501062,
+          42.524228421396714
+        ]
+      ],
+      "tree_count": 1556,
+      "zip_codes": [
+        "48167",
+        "48374",
+        "48375",
+        "48377"
+      ],
+      "species_counts": {
+        "cherry": 46,
+        "plum": 47,
+        "peach": 4,
+        "magnolia": 10,
+        "crabapple": 1449
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "novi-001",
+          "bounds": [
+            [
+              -83.55248366543869,
+              42.43552793841185
+            ],
+            [
+              -83.43595178501062,
+              42.524228421396714
+            ]
+          ],
+          "data_path": "/data/trees.mi.area.novi.v2.geojson",
+          "tree_count": 1556,
+          "raw_bytes": 794384,
+          "gzip_bytes": 36701
+        }
+      ]
+    }
+  ]
 }

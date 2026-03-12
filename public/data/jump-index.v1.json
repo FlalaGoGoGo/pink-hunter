@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-03-11T23:35:36.706067+00:00",
+  "generated_at": "2026-03-12T02:39:57.352192+00:00",
   "countries": [
     {
       "id": "ca",
@@ -24384,6 +24384,46 @@
       "coverage_status": "untracked"
     },
     {
+      "id": "mi:ann-arbor",
+      "country_id": "us",
+      "state_id": "mi",
+      "jurisdiction": "Ann Arbor",
+      "display_name": "Ann Arbor",
+      "area_type": "city",
+      "bounds": [
+        [
+          -83.79871981765618,
+          42.22790595456471
+        ],
+        [
+          -83.68017690435622,
+          42.322804423682676
+        ]
+      ],
+      "region_hint": "mi",
+      "coverage_status": "covered"
+    },
+    {
+      "id": "mi:dearborn-heights",
+      "country_id": "us",
+      "state_id": "mi",
+      "jurisdiction": "Dearborn Heights",
+      "display_name": "Dearborn Heights",
+      "area_type": "city",
+      "bounds": [
+        [
+          -83.3025182033055,
+          42.316545474092585
+        ],
+        [
+          -83.30205975924032,
+          42.31789449677802
+        ]
+      ],
+      "region_hint": "mi",
+      "coverage_status": "covered"
+    },
+    {
       "id": "mi:detroit",
       "country_id": "us",
       "state_id": "mi",
@@ -24402,6 +24442,66 @@
       ],
       "region_hint": "mi",
       "coverage_status": "official_unavailable"
+    },
+    {
+      "id": "mi:east-lansing",
+      "country_id": "us",
+      "state_id": "mi",
+      "jurisdiction": "East Lansing",
+      "display_name": "East Lansing",
+      "area_type": "city",
+      "bounds": [
+        [
+          -84.50905978904741,
+          42.72000068431562
+        ],
+        [
+          -84.44781170229342,
+          42.785928371206396
+        ]
+      ],
+      "region_hint": "mi",
+      "coverage_status": "covered"
+    },
+    {
+      "id": "mi:grand-rapids",
+      "country_id": "us",
+      "state_id": "mi",
+      "jurisdiction": "Grand Rapids",
+      "display_name": "Grand Rapids",
+      "area_type": "city",
+      "bounds": [
+        [
+          -85.67846039183422,
+          42.96191716090708
+        ],
+        [
+          -85.60146139037305,
+          43.02269673718202
+        ]
+      ],
+      "region_hint": "mi",
+      "coverage_status": "covered"
+    },
+    {
+      "id": "mi:novi",
+      "country_id": "us",
+      "state_id": "mi",
+      "jurisdiction": "Novi",
+      "display_name": "Novi",
+      "area_type": "city",
+      "bounds": [
+        [
+          -83.55248366543869,
+          42.43552793841185
+        ],
+        [
+          -83.43595178501062,
+          42.524228421396714
+        ]
+      ],
+      "region_hint": "mi",
+      "coverage_status": "covered"
     },
     {
       "id": "nj:absecon",
