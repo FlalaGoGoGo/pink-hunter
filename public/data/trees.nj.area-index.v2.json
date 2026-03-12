@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-03-12T05:35:52.872888+00:00",
+  "generated_at": "2026-03-12T19:37:30.923047+00:00",
   "region": "nj",
   "strategy": "area_shard",
   "items": [
@@ -314,6 +314,57 @@
           "tree_count": 56,
           "raw_bytes": 28894,
           "gzip_bytes": 1810
+        }
+      ]
+    },
+    {
+      "jurisdiction": "Morristown",
+      "slug": "morristown",
+      "display_name": "Morristown",
+      "jurisdiction_type": "city",
+      "state_province": "NJ",
+      "country": "United States",
+      "bounds": [
+        [
+          -83.30238853338636,
+          36.20905163806406
+        ],
+        [
+          -83.29261288320825,
+          36.22010536701617
+        ]
+      ],
+      "tree_count": 10,
+      "zip_codes": [
+        "None"
+      ],
+      "species_counts": {
+        "cherry": 1,
+        "plum": 0,
+        "peach": 0,
+        "magnolia": 9,
+        "crabapple": 0
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "morristown-001",
+          "bounds": [
+            [
+              -83.30238853338636,
+              36.20905163806406
+            ],
+            [
+              -83.29261288320825,
+              36.22010536701617
+            ]
+          ],
+          "data_path": "/data/trees.nj.area.morristown.v2.geojson",
+          "tree_count": 10,
+          "raw_bytes": 5203,
+          "gzip_bytes": 631
         }
       ]
     },

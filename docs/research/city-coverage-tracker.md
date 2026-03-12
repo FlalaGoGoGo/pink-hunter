@@ -13,14 +13,19 @@ Last updated: 2026-03-12 (America/Los_Angeles)
 | ✅ | Ottawa | 12,913 | Official jurisdiction boundary | Official City of Ottawa `Tree Inventory / Inventaire des arbres` ArcGIS layer integrated with blossom-side server filtering and official city boundary |
 | ✅ | Denver | 19,900 | Official jurisdiction boundary | Official City and County of Denver `Public Tree Inventory` ArcGIS layer integrated from the city open-data portal and official jurisdiction boundary |
 | ✅ | Boston | 4,488 | Official jurisdiction boundary | Official Analyze Boston `BPRD Trees` download integrated; includes both street and park trees published by Boston Parks and Recreation |
+| ✅ | Dedham | 425 | Official jurisdiction boundary | Official Town of Dedham public tree inventory ArcGIS layer integrated with server-side blossom filtering on `Species_bot` / `Species_com` |
 | ✅ | Pittsburgh | 3,691 | Official jurisdiction boundary | Official public Pittsburgh TreeKeeper inventory domain integrated; blossom names are parsed from `SITE_ATTR6` |
 | ✅ | Jersey City | 2,148 | Official jurisdiction boundary | Public Jersey City tree inventory service integrated from the city-referenced Urban Forests materials and official jurisdiction boundary |
 | ✅ | Cambridge | 1,954 | Official jurisdiction boundary | Official City of Cambridge `Street Trees` shapefile integrated; only current `SiteType = Tree` rows are included |
+| ✅ | Groton | 100 | Official jurisdiction boundary | Official Town of Groton public tree inventory ArcGIS service integrated using the official town boundary from the Census county subdivision rather than the smaller Groton city place |
 | ✅ | Baltimore | 1,920 | Official jurisdiction boundary | Official Baltimore city forestry tree layer integrated from `gis.baltimorecity.gov`; botanical names come from `SPP` |
 | ✅ | Arlington | 1,882 | Official jurisdiction boundary | Official Arlington County `DPR Trees` layer integrated using the official county-equivalent jurisdiction boundary |
+| ✅ | Richmond | 2,099 | Official jurisdiction boundary | Official City of Richmond, Virginia public tree inventory ArcGIS layer integrated with `Status = In Service` and server-side botanical blossom filtering on `SPP` |
+| ✅ | Virginia Beach | 1,629 | Official jurisdiction boundary | Official City of Virginia Beach `VBTrees` inventory integrated after excluding `Removed`, `Proposed`, `Schedule`, and `Hold` rows |
 | ✅ | Princeton | 1,310 | Official jurisdiction boundary | Official Princeton public TreeKeeper inventory integrated with the official jurisdiction boundary |
 | ✅ | Millburn | 1,133 | Official jurisdiction boundary | Official Millburn public TreeKeeper inventory integrated with the official jurisdiction boundary |
 | ✅ | Hoboken | 397 | Official jurisdiction boundary | Official City of Hoboken public tree inventory ArcGIS layer integrated with the official jurisdiction boundary |
+| ✅ | Morristown | 10 | Official jurisdiction boundary | Official Morristown public tree inventory ArcGIS layer integrated with the official jurisdiction boundary |
 | ✅ | Dumont | 284 | Official jurisdiction boundary | Official Dumont public TreeKeeper inventory integrated with the official jurisdiction boundary |
 | ✅ | Westwood | 192 | Official jurisdiction boundary | Official Westwood public TreeKeeper inventory integrated with the official jurisdiction boundary |
 | ✅ | Rutherford | 126 | Official jurisdiction boundary | Official Rutherford public TreeKeeper inventory integrated with the official jurisdiction boundary |
@@ -160,7 +165,7 @@ Last updated: 2026-03-12 (America/Los_Angeles)
 | 🩶 | North Vancouver District | In gray coverage | Official jurisdiction boundary | Official Metro Vancouver administrative boundaries confirm the jurisdiction geometry, but this round did not confirm a public jurisdiction-wide single-tree species inventory for the District of North Vancouver |
 | 🩶 | Redwood City | In gray coverage | Official jurisdiction boundary | Official city GIS and public-works materials were reviewed, but no verified public citywide single-tree dataset was confirmed in this round |
 | 🩶 | Roseville | In gray coverage | Official jurisdiction boundary | Official City of Roseville GIS and open-data entry points were reviewed, but no public citywide single-tree species inventory was confirmed in this round |
-| 🩶 | Richmond | In gray coverage | Official jurisdiction boundary | Official Richmond, CA ArcGIS and city data searches did not confirm a public citywide public single-tree species dataset |
+| 🩶 | Richmond (CA) | In gray coverage | Official jurisdiction boundary | Official Richmond, CA ArcGIS and city data searches did not confirm a public citywide public single-tree species dataset |
 | 🩶 | Richmond BC | In gray coverage | Official jurisdiction boundary | Official City of Richmond GIS boundary services were confirmed, but no public citywide single-tree species inventory was confirmed in this round |
 | 🩶 | Saanich | In gray coverage | Official jurisdiction boundary | Official Saanich GIS/open-data sources were reviewed; no public single-tree species inventory was confirmed |
 | 🩶 | Salem | In gray coverage | Official jurisdiction boundary | Official ArcGIS and city GIS searches did not confirm a public citywide single-tree species dataset |
@@ -291,7 +296,7 @@ Last updated: 2026-03-12 (America/Los_Angeles)
 - Integrated `Sacramento` from the official City of Sacramento `City Maintained Trees` ArcGIS layer published through the city open-data portal.
 - Integrated `Pleasanton`, `Lodi`, `Poway`, `Redondo Beach`, and `Citrus Heights` from official public ArcGIS tree inventories by reusing the existing California ArcGIS single-tree publish path.
 - Integrated `Sunnyvale` from the official Santa Clara County public `Tree Inventories in Santa Clara County` service using the `City = Sunnyvale` subset and the official jurisdiction boundary.
-- Added gray coverage for `Santa Clara`, `Napa`, `Richmond`, `Santa Cruz`, `Santa Rosa`, and `Stockton` after city-site and official data portal review did not confirm a public citywide single-tree species dataset.
+- Added gray coverage for `Santa Clara`, `Napa`, `Richmond (CA)`, `Santa Cruz`, `Santa Rosa`, and `Stockton` after city-site and official data portal review did not confirm a public citywide single-tree species dataset.
 - Fixed a bad legacy `Palo Alto` boundary cache by switching the city boundary back to the official Census place geometry; this removed the incorrect East Bay pink polygon that had been covering Hayward / Livermore / Fremont in the map UI.
 
 ## March 2026 BC Expansion
@@ -300,7 +305,7 @@ Last updated: 2026-03-12 (America/Los_Angeles)
 - `Vancouver BC` boundary is sourced from the official City of Vancouver `city-boundary` dataset and converted from the published legal boundary line into a polygon for coverage rendering.
 - `Federal Way` was rechecked and downgraded from candidate status after the accessible hosted service turned out to be street lights, not trees.
 - Added gray-coverage boundary support for `Burnaby`, `Delta`, and `Saanich` where official city boundaries are public but no official public single-tree species dataset is currently available.
-- Rechecked `Richmond`; official boundary resolution now works, so the city moved into gray coverage rather than remaining excluded.
+- Rechecked `Richmond (CA)`; official boundary resolution now works, so the city moved into gray coverage rather than remaining excluded.
 
 ## March 2026 California / Oregon Expansion
 - Integrated `Milpitas`, `San Mateo`, `San Rafael`, `Salinas`, and `Fremont` from official city-published public tree datasets.
@@ -364,6 +369,11 @@ Last updated: 2026-03-12 (America/Los_Angeles)
 - Rechecked `Alexandria, VA`; official city urban-forestry and GIS materials still do not expose a verified public single-tree inventory, so it remains gray coverage.
 - Rechecked `Montgomery County, MD`; the official public `Tree Planting Locations` layer remains a planting-program dataset rather than a countywide single-tree inventory, so it remains gray coverage.
 - Official Essex County open-data entry points were reviewed again without confirming a countywide public single-tree inventory.
+- Integrated `Dedham` from the official Town of Dedham public tree inventory ArcGIS layer.
+- Integrated `Groton` from the official Town of Groton public tree inventory ArcGIS service after switching the boundary match to the official town county subdivision instead of the smaller Groton city place.
+- Integrated `Morristown` from the official Morristown public tree inventory ArcGIS layer.
+- Integrated `Richmond, VA` from the official City of Richmond public tree inventory ArcGIS layer while keeping `Richmond (CA)` in gray coverage.
+- Integrated `Virginia Beach` from the official City of Virginia Beach `VBTrees` ArcGIS service after excluding non-live status rows.
 - Integrated `San Diego` from the official City of San Diego `Trees (Street Trees)` ArcGIS layer using server-side blossom filtering on `COMMON_NAME`.
 - Confirmed that official public `Los Angeles` TreeKeeper inventory is available at city scale, but it currently remains not integrated because the blossom-filter path for a ~925k-tree public dataset has not yet been safely implemented.
 

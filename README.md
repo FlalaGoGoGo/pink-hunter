@@ -52,9 +52,25 @@ Live domain:
 </details>
 
 <details>
+<summary>Connecticut</summary>
+
+- Greenwich
+- Groton
+- Hartford
+- New Haven
+- Stamford
+- West Hartford
+
+</details>
+
+<details>
 <summary>Virginia</summary>
 
 - Arlington
+- Fairfax
+- Falls Church
+- Richmond
+- Virginia Beach
 
 </details>
 
@@ -68,7 +84,19 @@ Live domain:
 <details>
 <summary>New Jersey</summary>
 
+- Dumont
+- Ho-Ho-Kus
+- Hoboken
 - Jersey City
+- Millburn
+- Montclair
+- Morristown
+- Newark
+- Oradell
+- Princeton
+- River Edge
+- Rutherford
+- Westwood
 
 </details>
 
@@ -83,8 +111,15 @@ Live domain:
 <details>
 <summary>Massachusetts</summary>
 
+- Belmont
 - Boston
 - Cambridge
+- Dedham
+- Newton
+- Somerville
+- Springfield
+- Waltham
+- Worcester
 
 </details>
 
@@ -247,7 +282,7 @@ Live domain:
 
 ### Gray Coverage
 - Gray coverage marks cities whose official boundary is public but whose official public single-tree dataset is not available yet.
-- Current gray-coverage examples include `Alexandria`, `Montgomery County`, `Newark`, `Santa Clara`, `Monterey`, `Napa`, `Richmond`, `Santa Cruz`, `Santa Rosa`, `Stockton`, `Redwood City`, `Alameda`, `Hayward`, `Daly City`, `Long Beach`, `Santa Ana`, `Beaverton`, `Gresham`, `Hillsboro`, `Salem`, `Tigard`, `Burnaby`, `Coquitlam`, `Delta`, `Langley City`, `North Vancouver City`, `North Vancouver District`, `Richmond BC`, `Saanich`, `Surrey`, `West Vancouver`, and `White Rock`.
+- Current gray-coverage examples include `Alexandria`, `Montgomery County`, `Newark`, `Santa Clara`, `Monterey`, `Napa`, `Richmond (CA)`, `Santa Cruz`, `Santa Rosa`, `Stockton`, `Redwood City`, `Alameda`, `Hayward`, `Daly City`, `Long Beach`, `Santa Ana`, `Beaverton`, `Gresham`, `Hillsboro`, `Salem`, `Tigard`, `Burnaby`, `Coquitlam`, `Delta`, `Langley City`, `North Vancouver City`, `North Vancouver District`, `Richmond BC`, `Saanich`, `Surrey`, `West Vancouver`, and `White Rock`.
 - Tracking details: [docs/research/city-coverage-tracker.md](docs/research/city-coverage-tracker.md)
 
 ## Official Data Sources
@@ -282,9 +317,18 @@ Live domain:
 </details>
 
 <details>
+<summary>Connecticut</summary>
+
+- Groton: [Groton Tree Inventory](https://experience.arcgis.com/experience/d06d9f14108945d097d879d724d4cf56)
+
+</details>
+
+<details>
 <summary>Virginia</summary>
 
 - Arlington: [Open Data Portal](https://www.arlingtonva.us/About-Arlington/Data-and-Research/Open-Data-Portal)
+- Richmond: [Tree Inventory, City of Richmond, Virginia](https://cor.maps.arcgis.com/apps/webappviewer/index.html?id=3dda2aa7521941d8a48dc91f5014a5c8)
+- Virginia Beach: [VBTrees](https://geo.vbgov.com/mapservices/rest/services/Parks_and_Recreation/VBTrees/MapServer)
 
 </details>
 
@@ -299,6 +343,7 @@ Live domain:
 <summary>New Jersey</summary>
 
 - Jersey City: [Urban Forests](https://www.jerseycitynj.gov/cityhall/infrastructure/division_of_sustainability/urbanforests)
+- Morristown: [Legacy Trees 2021](https://services.arcgis.com/xhDV83hFoiDFnMbw/arcgis/rest/services/Legacy_Trees_2021/FeatureServer)
 
 </details>
 
@@ -315,6 +360,7 @@ Live domain:
 
 - Boston: [BPRD Trees](https://data.boston.gov/dataset/bprd-trees)
 - Cambridge: [Street Trees](https://www.cambridgema.gov/GIS/gisdatadictionary/Environmental/ENVIRONMENTAL_StreetTrees)
+- Dedham: [Tree Inventory](https://gis.dedham-ma.gov/arcgis/rest/services/public/TreeInventory/MapServer)
 
 </details>
 

@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-03-12T05:35:52.872888+00:00",
+  "generated_at": "2026-03-12T19:37:30.923047+00:00",
   "region": "ct",
   "strategy": "area_shard",
   "items": [
@@ -51,6 +51,58 @@
           "tree_count": 4502,
           "raw_bytes": 2291224,
           "gzip_bytes": 89123
+        }
+      ]
+    },
+    {
+      "jurisdiction": "Groton",
+      "slug": "groton",
+      "display_name": "Groton",
+      "jurisdiction_type": "city",
+      "state_province": "CT",
+      "country": "United States",
+      "bounds": [
+        [
+          -72.08408902893031,
+          41.30816832834351
+        ],
+        [
+          -71.97038616005848,
+          41.389306571868396
+        ]
+      ],
+      "tree_count": 100,
+      "zip_codes": [
+        "06340",
+        "06355"
+      ],
+      "species_counts": {
+        "cherry": 28,
+        "plum": 11,
+        "peach": 0,
+        "magnolia": 9,
+        "crabapple": 52
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "groton-001",
+          "bounds": [
+            [
+              -72.08408902893031,
+              41.30816832834351
+            ],
+            [
+              -71.97038616005848,
+              41.389306571868396
+            ]
+          ],
+          "data_path": "/data/trees.ct.area.groton.v2.geojson",
+          "tree_count": 100,
+          "raw_bytes": 49952,
+          "gzip_bytes": 3118
         }
       ]
     },

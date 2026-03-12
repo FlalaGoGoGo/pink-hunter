@@ -494,6 +494,48 @@ BOTANICAL_COMMON_BLOSSOM_WHERE = (
     "UPPER(CommonName) LIKE '%CRABAPPLE%' OR "
     "UPPER(CommonName) LIKE '%APPLE%'"
 )
+DEDHAM_BLOSSOM_WHERE = (
+    "UPPER(Species_bot) LIKE 'PRUNUS%' OR "
+    "UPPER(Species_bot) LIKE 'MALUS%' OR "
+    "UPPER(Species_bot) LIKE 'MAGNOLIA%' OR "
+    "UPPER(Species_com) LIKE '%CHERRY%' OR "
+    "UPPER(Species_com) LIKE '%PLUM%' OR "
+    "UPPER(Species_com) LIKE '%PEACH%' OR "
+    "UPPER(Species_com) LIKE '%MAGNOLIA%' OR "
+    "UPPER(Species_com) LIKE '%CRABAPPLE%' OR "
+    "UPPER(Species_com) LIKE '%APPLE%'"
+)
+GROTON_BLOSSOM_WHERE = (
+    "UPPER(Genus) LIKE 'PRUNUS%' OR "
+    "UPPER(Genus) LIKE 'MALUS%' OR "
+    "UPPER(Genus) LIKE 'MAGNOLIA%' OR "
+    "UPPER(CommonName) LIKE '%CHERRY%' OR "
+    "UPPER(CommonName) LIKE '%PLUM%' OR "
+    "UPPER(CommonName) LIKE '%PEACH%' OR "
+    "UPPER(CommonName) LIKE '%MAGNOLIA%' OR "
+    "UPPER(CommonName) LIKE '%CRABAPPLE%' OR "
+    "UPPER(CommonName) LIKE '%APPLE%'"
+)
+RICHMOND_VA_BLOSSOM_WHERE = (
+    "Status = 'In Service' AND ("
+    "UPPER(SPP) LIKE 'PRUNUS%' OR "
+    "UPPER(SPP) LIKE 'MALUS%' OR "
+    "UPPER(SPP) LIKE 'MAGNOLIA%'"
+    ")"
+)
+VIRGINIA_BEACH_BLOSSOM_WHERE = (
+    "(Status = 'Existing' OR Status = 'Planted') AND ("
+    "UPPER(ScientificName) LIKE 'PRUNUS%' OR "
+    "UPPER(ScientificName) LIKE 'MALUS%' OR "
+    "UPPER(ScientificName) LIKE 'MAGNOLIA%' OR "
+    "UPPER(CommonName) LIKE '%CHERRY%' OR "
+    "UPPER(CommonName) LIKE '%PLUM%' OR "
+    "UPPER(CommonName) LIKE '%PEACH%' OR "
+    "UPPER(CommonName) LIKE '%MAGNOLIA%' OR "
+    "UPPER(CommonName) LIKE '%CRABAPPLE%' OR "
+    "UPPER(CommonName) LIKE '%APPLE%'"
+    ")"
+)
 ESCONDIDO_BLOSSOM_WHERE = (
     "UPPER(BOTANICAL_NAME) LIKE 'PRUNUS%' OR "
     "UPPER(BOTANICAL_NAME) LIKE 'MALUS%' OR "
@@ -903,6 +945,20 @@ UNCOVERED_STATE_ARCGIS_CONFIGS: dict[str, dict[str, Any]] = {
         "note": "Integrated from the public City of Dearborn Heights tree record ArcGIS layer.",
         "clip_to_boundary": True,
     },
+    "Dedham": {
+        "region": "ma",
+        "layer_url": "https://gis.dedham-ma.gov/arcgis/rest/services/public/TreeInventory/MapServer/0",
+        "dataset_page": "https://gis.dedham-ma.gov/arcgis/rest/services/public/TreeInventory/MapServer",
+        "where": DEDHAM_BLOSSOM_WHERE,
+        "object_id_field": "OBJECTID",
+        "common_field": "Species_com",
+        "botanical_field": "Species_bot",
+        "source_name": "Tree Inventory",
+        "source_department": "Town of Dedham",
+        "ownership_raw": "Town of Dedham",
+        "note": "Integrated from the official Town of Dedham public tree inventory ArcGIS layer.",
+        "clip_to_boundary": True,
+    },
     "East Lansing": {
         "region": "mi",
         "layer_url": "https://gis2.cityofeastlansing.com/arcgis/rest/services/TREES_STATUS/FeatureServer/0",
@@ -941,6 +997,23 @@ UNCOVERED_STATE_ARCGIS_CONFIGS: dict[str, dict[str, Any]] = {
         "source_department": "City of Grand Rapids",
         "ownership_raw": "City of Grand Rapids",
         "note": "Integrated from the official City of Grand Rapids public street tree ArcGIS layer.",
+        "clip_to_boundary": True,
+    },
+    "Groton": {
+        "region": "ct",
+        "layer_url": "https://services3.arcgis.com/5eUtyAeI50fTMNL4/arcgis/rest/services/TreePublicTest/FeatureServer/0",
+        "dataset_page": "https://experience.arcgis.com/experience/d06d9f14108945d097d879d724d4cf56",
+        "where": GROTON_BLOSSOM_WHERE,
+        "object_id_field": "OBJECTID",
+        "common_field": "CommonName",
+        "genus_field": "Genus",
+        "species_field": "Species",
+        "lon_field": "Longitude",
+        "lat_field": "Latitude",
+        "source_name": "Tree Inventory",
+        "source_department": "Town of Groton",
+        "ownership_raw": "Town of Groton",
+        "note": "Integrated from the official Town of Groton public tree inventory ArcGIS experience and service.",
         "clip_to_boundary": True,
     },
     "Johns Creek": {
@@ -1048,6 +1121,19 @@ UNCOVERED_STATE_ARCGIS_CONFIGS: dict[str, dict[str, Any]] = {
         "note": "Integrated from the official City of O'Fallon public city tree ArcGIS service.",
         "clip_to_boundary": True,
     },
+    "Richmond": {
+        "region": "va",
+        "layer_url": "https://services1.arcgis.com/k3vhq11XkBNeeOfM/arcgis/rest/services/Tree_Inventory_Public_View/FeatureServer/0",
+        "dataset_page": "https://cor.maps.arcgis.com/apps/webappviewer/index.html?id=3dda2aa7521941d8a48dc91f5014a5c8",
+        "where": RICHMOND_VA_BLOSSOM_WHERE,
+        "object_id_field": "OBJECTID",
+        "scientific_field": "SPP",
+        "source_name": "Tree Inventory",
+        "source_department": "City of Richmond",
+        "ownership_raw": "City of Richmond",
+        "note": "Integrated from the official City of Richmond, Virginia public tree inventory ArcGIS layer.",
+        "clip_to_boundary": True,
+    },
     "Shorewood": {
         "region": "wi",
         "layer_url": "https://utility.arcgis.com/usrsvcs/servers/18874e6d99b242878288adc0cf478841/rest/services/Environmental/Trees_View/FeatureServer/0",
@@ -1099,6 +1185,22 @@ UNCOVERED_STATE_ARCGIS_CONFIGS: dict[str, dict[str, Any]] = {
         "source_department": "City of Tempe",
         "ownership_raw": "City of Tempe",
         "note": "Integrated from the official City of Tempe tree inventory dataset published on the city ArcGIS open-data portal.",
+        "clip_to_boundary": True,
+    },
+    "Virginia Beach": {
+        "region": "va",
+        "layer_url": "https://geo.vbgov.com/mapservices/rest/services/Parks_and_Recreation/VBTrees/MapServer/0",
+        "dataset_page": "https://geo.vbgov.com/mapservices/rest/services/Parks_and_Recreation/VBTrees/MapServer",
+        "where": VIRGINIA_BEACH_BLOSSOM_WHERE,
+        "object_id_field": "OBJECTID",
+        "common_field": "CommonName",
+        "scientific_field": "ScientificName",
+        "lon_field": "Longitude",
+        "lat_field": "Latitude",
+        "source_name": "VBTrees",
+        "source_department": "City of Virginia Beach",
+        "ownership_raw": "City of Virginia Beach",
+        "note": "Integrated from the official City of Virginia Beach public VBTrees ArcGIS inventory.",
         "clip_to_boundary": True,
     },
     "Wauwatosa": {
@@ -1180,6 +1282,7 @@ SUPPORTED_CITIES = (
     "Dallas",
     "Danville",
     "Dearborn Heights",
+    "Dedham",
     "Denver",
     "East Lansing",
     "El Segundo",
@@ -1194,6 +1297,7 @@ SUPPORTED_CITIES = (
     "Fort Lee",
     "Greenfield",
     "Greenwich",
+    "Groton",
     "Glendale",
     "Glendale WI",
     "Greendale",
@@ -1267,6 +1371,7 @@ SUPPORTED_CITIES = (
     "Rancho Palos Verdes",
     "Redlands",
     "Redondo Beach",
+    "Richmond",
     "Ridgewood",
     "River Edge",
     "Riverside",
@@ -1306,6 +1411,7 @@ SUPPORTED_CITIES = (
     "Troy",
     "Ventura",
     "Vista",
+    "Virginia Beach",
     "Wauwatosa",
     "Waltham",
     "West Allis",

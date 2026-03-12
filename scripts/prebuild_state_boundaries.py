@@ -29,6 +29,7 @@ SUPPORTED_US_STATE_FIPS = {
     "az": "04",
     "ca": "06",
     "co": "08",
+    "ct": "09",
     "dc": "11",
     "ga": "13",
     "il": "17",

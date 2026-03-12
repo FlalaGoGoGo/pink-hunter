@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-03-12T05:35:52.872888+00:00",
+  "generated_at": "2026-03-12T19:37:30.923047+00:00",
   "region": "va",
   "strategy": "area_shard",
   "items": [
@@ -156,6 +156,129 @@
           "tree_count": 912,
           "raw_bytes": 473964,
           "gzip_bytes": 20690
+        }
+      ]
+    },
+    {
+      "jurisdiction": "Richmond",
+      "slug": "richmond",
+      "display_name": "Richmond",
+      "jurisdiction_type": "city",
+      "state_province": "VA",
+      "country": "United States",
+      "bounds": [
+        [
+          -77.58617926015197,
+          37.46203116924331
+        ],
+        [
+          -77.3906047225511,
+          37.60044441171984
+        ]
+      ],
+      "tree_count": 2099,
+      "zip_codes": [
+        "23219",
+        "23220",
+        "23221",
+        "23222",
+        "23223",
+        "23224",
+        "23225",
+        "23226",
+        "23227",
+        "23230",
+        "23231",
+        "23234",
+        "23235",
+        "23284"
+      ],
+      "species_counts": {
+        "cherry": 763,
+        "plum": 173,
+        "peach": 6,
+        "magnolia": 905,
+        "crabapple": 252
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "richmond-001",
+          "bounds": [
+            [
+              -77.58617926015197,
+              37.46203116924331
+            ],
+            [
+              -77.3906047225511,
+              37.60044441171984
+            ]
+          ],
+          "data_path": "/data/trees.va.area.richmond.v2.geojson",
+          "tree_count": 2099,
+          "raw_bytes": 1064202,
+          "gzip_bytes": 51981
+        }
+      ]
+    },
+    {
+      "jurisdiction": "Virginia Beach",
+      "slug": "virginia-beach",
+      "display_name": "Virginia Beach",
+      "jurisdiction_type": "city",
+      "state_province": "VA",
+      "country": "United States",
+      "bounds": [
+        [
+          -76.21248310300244,
+          36.580621332813884
+        ],
+        [
+          -75.9345795230355,
+          36.91977611249068
+        ]
+      ],
+      "tree_count": 1629,
+      "zip_codes": [
+        "23451",
+        "23452",
+        "23453",
+        "23454",
+        "23455",
+        "23456",
+        "23457",
+        "23462",
+        "23464"
+      ],
+      "species_counts": {
+        "cherry": 326,
+        "plum": 4,
+        "peach": 0,
+        "magnolia": 1245,
+        "crabapple": 54
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "virginia-beach-001",
+          "bounds": [
+            [
+              -76.21248310300244,
+              36.580621332813884
+            ],
+            [
+              -75.9345795230355,
+              36.91977611249068
+            ]
+          ],
+          "data_path": "/data/trees.va.area.virginia-beach.v2.geojson",
+          "tree_count": 1629,
+          "raw_bytes": 838862,
+          "gzip_bytes": 42431
         }
       ]
     }

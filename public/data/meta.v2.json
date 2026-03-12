@@ -1,9 +1,26 @@
 {
   "version": "v2",
-  "generated_at": "2026-03-12T18:57:33.551421+00:00",
+  "generated_at": "2026-03-12T19:38:26.573144+00:00",
   "default_region": "wa",
   "coverage_rule": "official_jurisdiction_boundary_only",
-  "coverage_skipped_cities": [],
+  "coverage_skipped_cities": [
+    "Denver",
+    "Cudahy WI",
+    "Fox Point",
+    "Franklin",
+    "Glendale WI",
+    "Greendale",
+    "Greenfield",
+    "Hales Corners",
+    "Milwaukee",
+    "Oak Creek",
+    "Shorewood",
+    "South Milwaukee",
+    "St. Francis",
+    "Wauwatosa",
+    "West Allis",
+    "Whitefish Bay"
+  ],
   "coverage_official_unavailable_cities": [
     "Phoenix",
     "Burnaby",
@@ -101,16 +118,16 @@
     "Yarrow Point"
   ],
   "coverage_official_unavailable_skipped_cities": [],
-  "source_count": 182,
-  "total_records": 2938585,
-  "included_records": 595055,
-  "unknown_records": 1297062,
+  "source_count": 187,
+  "total_records": 2945948,
+  "included_records": 599318,
+  "unknown_records": 1300148,
   "species_counts": {
-    "cherry": 196833,
-    "plum": 113942,
-    "peach": 7847,
-    "magnolia": 169508,
-    "crabapple": 106925
+    "cherry": 197952,
+    "plum": 114271,
+    "peach": 7860,
+    "magnolia": 171691,
+    "crabapple": 107544
   },
   "regions": [
     {
@@ -363,7 +380,7 @@
         ]
       ],
       "data_path": null,
-      "coverage_path": "/data/coverage.co.v1.geojson",
+      "coverage_path": null,
       "tree_count": 19900,
       "city_count": 1,
       "cities": [
@@ -408,35 +425,36 @@
           40.9946683921
         ],
         [
-          -72.670065674604,
+          -71.97038616005848,
           41.805598777482
         ]
       ],
       "data_path": null,
-      "tree_count": 7408,
-      "city_count": 5,
+      "tree_count": 7508,
+      "city_count": 6,
       "cities": [
         "Greenwich",
+        "Groton",
         "Hartford",
         "New Haven",
         "Stamford",
         "West Hartford"
       ],
       "species_counts": {
-        "cherry": 4509,
-        "plum": 370,
+        "cherry": 4537,
+        "plum": 381,
         "peach": 47,
-        "magnolia": 307,
-        "crabapple": 2175
+        "magnolia": 316,
+        "crabapple": 2227
       },
       "ownership_groups": [
         "public"
       ],
-      "raw_bytes": 3762309,
-      "gzip_bytes": 149068,
+      "raw_bytes": 3812261,
+      "gzip_bytes": 152186,
       "warning_level": "none",
-      "aggregate_raw_bytes": 3762309,
-      "aggregate_gzip_bytes": 149068,
+      "aggregate_raw_bytes": 3812261,
+      "aggregate_gzip_bytes": 152186,
       "aggregate_warning_level": "none",
       "largest_shard_raw_bytes": 2291224,
       "largest_shard_gzip_bytes": 89123,
@@ -444,8 +462,8 @@
       "area_split": {
         "strategy": "area_shard",
         "index_path": "/data/trees.ct.area-index.v2.json",
-        "area_count": 5,
-        "shard_count": 5,
+        "area_count": 6,
+        "shard_count": 6,
         "ready": true
       },
       "largest_shard_warning_level": "none",
@@ -620,12 +638,13 @@
       ],
       "data_path": null,
       "coverage_path": "/data/coverage.ma.v1.geojson",
-      "tree_count": 11425,
-      "city_count": 8,
+      "tree_count": 11850,
+      "city_count": 9,
       "cities": [
         "Belmont",
         "Boston",
         "Cambridge",
+        "Dedham",
         "Newton",
         "Somerville",
         "Springfield",
@@ -633,21 +652,21 @@
         "Worcester"
       ],
       "species_counts": {
-        "cherry": 5530,
-        "plum": 599,
-        "peach": 16,
-        "magnolia": 449,
-        "crabapple": 4831
+        "cherry": 5531,
+        "plum": 740,
+        "peach": 23,
+        "magnolia": 464,
+        "crabapple": 5092
       },
       "ownership_groups": [
         "public",
         "private"
       ],
-      "raw_bytes": 5607362,
-      "gzip_bytes": 229804,
+      "raw_bytes": 5801917,
+      "gzip_bytes": 240297,
       "warning_level": "none",
-      "aggregate_raw_bytes": 5607362,
-      "aggregate_gzip_bytes": 229804,
+      "aggregate_raw_bytes": 5801917,
+      "aggregate_gzip_bytes": 240297,
       "aggregate_warning_level": "none",
       "largest_shard_raw_bytes": 2246062,
       "largest_shard_gzip_bytes": 87894,
@@ -657,8 +676,8 @@
       "area_split": {
         "strategy": "area_shard",
         "index_path": "/data/trees.ma.area-index.v2.json",
-        "area_count": 8,
-        "shard_count": 8,
+        "area_count": 9,
+        "shard_count": 9,
         "ready": true
       }
     },
@@ -773,8 +792,8 @@
       "available": true,
       "bounds": [
         [
-          -74.7155625868,
-          40.3168228536
+          -83.30238853338636,
+          36.20905163806406
         ],
         [
           -73.9765763531,
@@ -783,8 +802,8 @@
       ],
       "data_path": null,
       "coverage_path": "/data/coverage.nj.v1.geojson",
-      "tree_count": 5777,
-      "city_count": 12,
+      "tree_count": 5787,
+      "city_count": 13,
       "cities": [
         "Dumont",
         "Ho-Ho-Kus",
@@ -792,6 +811,7 @@
         "Jersey City",
         "Millburn",
         "Montclair",
+        "Morristown",
         "Newark",
         "Oradell",
         "Princeton",
@@ -800,20 +820,20 @@
         "Westwood"
       ],
       "species_counts": {
-        "cherry": 3795,
+        "cherry": 3796,
         "plum": 987,
         "peach": 5,
-        "magnolia": 439,
+        "magnolia": 448,
         "crabapple": 551
       },
       "ownership_groups": [
         "public"
       ],
-      "raw_bytes": 2931490,
-      "gzip_bytes": 125096,
+      "raw_bytes": 2936693,
+      "gzip_bytes": 125727,
       "warning_level": "none",
-      "aggregate_raw_bytes": 2931490,
-      "aggregate_gzip_bytes": 125096,
+      "aggregate_raw_bytes": 2936693,
+      "aggregate_gzip_bytes": 125727,
       "aggregate_warning_level": "none",
       "largest_shard_raw_bytes": 1153133,
       "largest_shard_gzip_bytes": 50297,
@@ -823,8 +843,8 @@
       "area_split": {
         "strategy": "area_shard",
         "index_path": "/data/trees.nj.area-index.v2.json",
-        "area_count": 12,
-        "shard_count": 12,
+        "area_count": 13,
+        "shard_count": 13,
         "ready": true
       }
     },
@@ -1244,50 +1264,52 @@
       "available": true,
       "bounds": [
         [
-          -77.33301311731341,
-          38.833543326032775
+          -77.58617926015197,
+          36.580621332813884
         ],
         [
-          -77.04476359923983,
+          -75.9345795230355,
           38.92654478764372
         ]
       ],
       "data_path": null,
       "coverage_path": "/data/coverage.va.v1.geojson",
-      "tree_count": 3275,
-      "city_count": 3,
+      "tree_count": 7003,
+      "city_count": 5,
       "cities": [
         "Arlington",
         "Fairfax",
-        "Falls Church"
+        "Falls Church",
+        "Richmond",
+        "Virginia Beach"
       ],
       "species_counts": {
-        "cherry": 2198,
-        "plum": 214,
-        "peach": 4,
-        "magnolia": 714,
-        "crabapple": 145
+        "cherry": 3287,
+        "plum": 391,
+        "peach": 10,
+        "magnolia": 2864,
+        "crabapple": 451
       },
       "ownership_groups": [
         "public",
         "private"
       ],
-      "raw_bytes": 1606209,
-      "gzip_bytes": 77867,
+      "raw_bytes": 3509273,
+      "gzip_bytes": 172279,
       "warning_level": "none",
-      "aggregate_raw_bytes": 1606209,
-      "aggregate_gzip_bytes": 77867,
+      "aggregate_raw_bytes": 3509273,
+      "aggregate_gzip_bytes": 172279,
       "aggregate_warning_level": "none",
-      "largest_shard_raw_bytes": 892680,
-      "largest_shard_gzip_bytes": 45013,
-      "largest_shard_area": "Arlington",
+      "largest_shard_raw_bytes": 1064202,
+      "largest_shard_gzip_bytes": 51981,
+      "largest_shard_area": "Richmond",
       "largest_shard_warning_level": "none",
       "city_split": null,
       "area_split": {
         "strategy": "area_shard",
         "index_path": "/data/trees.va.area-index.v2.json",
-        "area_count": 3,
-        "shard_count": 3,
+        "area_count": 5,
+        "shard_count": 5,
         "ready": true
       }
     },
@@ -1419,7 +1441,7 @@
         "ready": true
       },
       "largest_shard_warning_level": "none",
-      "coverage_path": "/data/coverage.wi.v1.geojson"
+      "coverage_path": null
     }
   ],
   "areas": [
@@ -2670,6 +2692,20 @@
       "state_province": "CT"
     },
     {
+      "jurisdiction": "Groton",
+      "region": "ct",
+      "tree_count": 100,
+      "species_counts": {
+        "cherry": 28,
+        "plum": 11,
+        "peach": 0,
+        "magnolia": 9,
+        "crabapple": 52
+      },
+      "jurisdiction_type": "city",
+      "state_province": "CT"
+    },
+    {
       "jurisdiction": "Hartford",
       "region": "ct",
       "tree_count": 251,
@@ -2833,6 +2869,20 @@
         "peach": 4,
         "magnolia": 300,
         "crabapple": 675
+      },
+      "jurisdiction_type": "city",
+      "state_province": "MA"
+    },
+    {
+      "jurisdiction": "Dedham",
+      "region": "ma",
+      "tree_count": 425,
+      "species_counts": {
+        "cherry": 1,
+        "plum": 141,
+        "peach": 7,
+        "magnolia": 15,
+        "crabapple": 261
       },
       "jurisdiction_type": "city",
       "state_province": "MA"
@@ -3085,6 +3135,20 @@
         "peach": 0,
         "magnolia": 0,
         "crabapple": 24
+      },
+      "jurisdiction_type": "city",
+      "state_province": "NJ"
+    },
+    {
+      "jurisdiction": "Morristown",
+      "region": "nj",
+      "tree_count": 10,
+      "species_counts": {
+        "cherry": 1,
+        "plum": 0,
+        "peach": 0,
+        "magnolia": 9,
+        "crabapple": 0
       },
       "jurisdiction_type": "city",
       "state_province": "NJ"
@@ -3463,6 +3527,34 @@
         "peach": 0,
         "magnolia": 300,
         "crabapple": 37
+      },
+      "jurisdiction_type": "city",
+      "state_province": "VA"
+    },
+    {
+      "jurisdiction": "Richmond",
+      "region": "va",
+      "tree_count": 2099,
+      "species_counts": {
+        "cherry": 763,
+        "plum": 173,
+        "peach": 6,
+        "magnolia": 905,
+        "crabapple": 252
+      },
+      "jurisdiction_type": "city",
+      "state_province": "VA"
+    },
+    {
+      "jurisdiction": "Virginia Beach",
+      "region": "va",
+      "tree_count": 1629,
+      "species_counts": {
+        "cherry": 326,
+        "plum": 4,
+        "peach": 0,
+        "magnolia": 1245,
+        "crabapple": 54
       },
       "jurisdiction_type": "city",
       "state_province": "VA"
@@ -4210,6 +4302,15 @@
       "note": "Integrated from the public City of Dearborn Heights tree record ArcGIS layer."
     },
     {
+      "name": "Tree Inventory",
+      "city": "Dedham",
+      "endpoint": "https://gis.dedham-ma.gov/arcgis/rest/services/public/TreeInventory/MapServer",
+      "last_edit_at": "",
+      "records_fetched": 619,
+      "records_included": 425,
+      "note": "Integrated from the official Town of Dedham public tree inventory ArcGIS layer."
+    },
+    {
       "name": "TreeKeeper Inventory",
       "city": "Dumont",
       "endpoint": "https://dumontnj.treekeepersoftware.com",
@@ -4422,6 +4523,15 @@
       "records_fetched": 60903,
       "records_included": 4502,
       "note": "Integrated from the official Town of Greenwich public TreeKeeper inventory."
+    },
+    {
+      "name": "Tree Inventory",
+      "city": "Groton",
+      "endpoint": "https://experience.arcgis.com/experience/d06d9f14108945d097d879d724d4cf56",
+      "last_edit_at": "2025-04-24T18:38:19.073000+00:00",
+      "records_fetched": 231,
+      "records_included": 100,
+      "note": "Integrated from the official Town of Groton public tree inventory ArcGIS experience and service."
     },
     {
       "name": "Tree Points - All (view)",
@@ -4680,6 +4790,15 @@
       "records_fetched": 83,
       "records_included": 83,
       "note": "Integrated from the official Santa Clara County public tree inventory service using the City = Morgan Hill subset and official jurisdiction boundary."
+    },
+    {
+      "name": "Tree Inventory",
+      "city": "Morristown",
+      "endpoint": "https://services.arcgis.com/xhDV83hFoiDFnMbw/arcgis/rest/services/Legacy_Trees_2021/FeatureServer",
+      "last_edit_at": "2023-05-24T19:54:12.746000+00:00",
+      "records_fetched": 237,
+      "records_included": 10,
+      "note": "Integrated from the official Morristown public tree inventory ArcGIS layer."
     },
     {
       "name": "Trees",
@@ -4954,6 +5073,15 @@
       "records_fetched": 2218,
       "records_included": 1879,
       "note": ""
+    },
+    {
+      "name": "Tree Inventory",
+      "city": "Richmond",
+      "endpoint": "https://cor.maps.arcgis.com/apps/webappviewer/index.html?id=3dda2aa7521941d8a48dc91f5014a5c8",
+      "last_edit_at": "2026-03-12T16:18:11.305000+00:00",
+      "records_fetched": 4462,
+      "records_included": 2099,
+      "note": "Integrated from the official City of Richmond, Virginia public tree inventory ArcGIS layer."
     },
     {
       "name": "TreeKeeper Inventory",
@@ -5390,6 +5518,15 @@
       "last_edit_at": "2024-11-04T17:30:12+00:00",
       "records_fetched": 6363,
       "records_included": 6094
+    },
+    {
+      "name": "VBTrees",
+      "city": "Virginia Beach",
+      "endpoint": "https://geo.vbgov.com/mapservices/rest/services/Parks_and_Recreation/VBTrees/MapServer",
+      "last_edit_at": "",
+      "records_fetched": 1814,
+      "records_included": 1629,
+      "note": "Integrated from the official City of Virginia Beach public VBTrees ArcGIS inventory."
     },
     {
       "name": "Vista i-Tree Benefits",

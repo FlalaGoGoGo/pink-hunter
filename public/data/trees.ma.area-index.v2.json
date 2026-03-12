@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-03-12T05:35:52.872888+00:00",
+  "generated_at": "2026-03-12T19:37:30.923047+00:00",
   "region": "ma",
   "strategy": "area_shard",
   "items": [
@@ -189,6 +189,57 @@
           "tree_count": 1954,
           "raw_bytes": 934920,
           "gzip_bytes": 47874
+        }
+      ]
+    },
+    {
+      "jurisdiction": "Dedham",
+      "slug": "dedham",
+      "display_name": "Dedham",
+      "jurisdiction_type": "city",
+      "state_province": "MA",
+      "country": "United States",
+      "bounds": [
+        [
+          -71.22177447730658,
+          42.21846458525285
+        ],
+        [
+          -71.13935969448991,
+          42.275105962943854
+        ]
+      ],
+      "tree_count": 425,
+      "zip_codes": [
+        "02026"
+      ],
+      "species_counts": {
+        "cherry": 1,
+        "plum": 141,
+        "peach": 7,
+        "magnolia": 15,
+        "crabapple": 261
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "dedham-001",
+          "bounds": [
+            [
+              -71.22177447730658,
+              42.21846458525285
+            ],
+            [
+              -71.13935969448991,
+              42.275105962943854
+            ]
+          ],
+          "data_path": "/data/trees.ma.area.dedham.v2.geojson",
+          "tree_count": 425,
+          "raw_bytes": 194555,
+          "gzip_bytes": 10493
         }
       ]
     },

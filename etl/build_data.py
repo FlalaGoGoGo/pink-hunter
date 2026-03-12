@@ -289,9 +289,11 @@ REGION_CITY_OVERRIDES: dict[str, str] = {
     "Montclair": "nj",
     "Belmont": "ma",
     "Boston": "ma",
+    "Dedham": "ma",
     "Annapolis": "md",
     "Fairfax": "va",
     "Hartford": "ct",
+    "Groton": "ct",
     "Ithaca": "ny",
     "Saratoga Springs": "ny",
     "Troy": "ny",
@@ -312,6 +314,7 @@ REGION_CITY_OVERRIDES: dict[str, str] = {
     "Greenwich": "ct",
     "New Haven": "ct",
     "Stamford": "ct",
+    "Virginia Beach": "va",
     "Ottawa": "on",
     "Toronto": "on",
     "Montreal": "qc",
@@ -563,9 +566,11 @@ CITY_BOUNDARY_HINTS: dict[str, dict[str, str]] = {
     "Montclair": {"state": "34"},
     "Belmont": {"state": "25"},
     "Boston": {"state": "25"},
+    "Dedham": {"state": "25"},
     "Annapolis": {"state": "24"},
     "Fairfax": {"state": "51"},
     "Hartford": {"state": "09"},
+    "Groton": {"state": "09", "preferred_lsadc": "43"},
     "Ithaca": {"state": "36"},
     "Saratoga Springs": {"state": "36"},
     "Troy": {"state": "36"},
@@ -586,6 +591,7 @@ CITY_BOUNDARY_HINTS: dict[str, dict[str, str]] = {
     "Greenwich": {"state": "09"},
     "New Haven": {"state": "09"},
     "Stamford": {"state": "09"},
+    "Virginia Beach": {"state": "51"},
     "Ottawa": {"boundary_source": "ottawa_arcgis"},
     "Toronto": {"boundary_source": "toronto_zip"},
     "Montreal": {"boundary_source": "montreal_arrondissements_geojson"},
@@ -2758,10 +2764,36 @@ def load_coverage_status_registry() -> list[dict[str, str]]:
     return [item for item in items if isinstance(item, dict) and str(item.get("status", "")).strip()]
 
 
-def city_boundary_query_parts(city: str) -> tuple[str, str]:
+REGION_TO_STATE_FIPS: dict[str, str] = {
+    "az": "04",
+    "ca": "06",
+    "ct": "09",
+    "dc": "11",
+    "ga": "13",
+    "il": "17",
+    "ma": "25",
+    "md": "24",
+    "mi": "26",
+    "nj": "34",
+    "nv": "32",
+    "ny": "36",
+    "or": "41",
+    "pa": "42",
+    "tx": "48",
+    "ut": "49",
+    "va": "51",
+    "wa": "53",
+}
+
+
+def city_boundary_query_parts(city: str, state_id: str | None = None) -> tuple[str, str]:
     hint = CITY_BOUNDARY_HINTS.get(city, {})
     basename = hint.get("basename", city)
     state = hint.get("state", "53")
+    if state_id:
+        explicit_state = REGION_TO_STATE_FIPS.get(str(state_id).strip().lower(), str(state_id).strip())
+        if explicit_state:
+            state = explicit_state
     return basename, state
 
 
@@ -3011,6 +3043,11 @@ def boundary_feature_matches_city(
 ) -> bool:
     properties = feature.get("properties", {})
     geometry = feature.get("geometry")
+    hint = CITY_BOUNDARY_HINTS.get(city, {})
+    preferred_lsadc = str(hint.get("preferred_lsadc", "")).strip()
+    expected_state_fips = ""
+    if state_id:
+        expected_state_fips = REGION_TO_STATE_FIPS.get(str(state_id).strip().lower(), str(state_id).strip())
     if properties.get("jurisdiction") == city and geometry:
         feature_state_id = str(properties.get("state_id", "")).strip()
         feature_country_id = str(properties.get("country_id", "")).strip()
@@ -3018,13 +3055,21 @@ def boundary_feature_matches_city(
             return False
         if country_id and feature_country_id and feature_country_id != country_id:
             return False
+        if expected_state_fips and str(properties.get("STATE", "")).strip() and str(properties.get("STATE", "")).strip() != expected_state_fips:
+            return False
+        if preferred_lsadc and str(properties.get("LSADC", "")).strip() and str(properties.get("LSADC", "")).strip() != preferred_lsadc:
+            return False
         return True
-    basename, state = city_boundary_query_parts(city)
+    basename, state = city_boundary_query_parts(city, state_id=state_id)
     return (
         bool(geometry)
         and properties.get("STATE") == state
         and properties.get("BASENAME") == basename
-        and properties.get("LSADC") in ALLOWED_CENSUS_PLACE_LSADC
+        and (
+            properties.get("LSADC") == preferred_lsadc
+            if preferred_lsadc
+            else properties.get("LSADC") in ALLOWED_CENSUS_PLACE_LSADC
+        )
     )
 
 
@@ -3131,20 +3176,31 @@ def write_boundary_feature_cache(feature: dict[str, Any], boundary_path: Path) -
     upsert_boundary_catalog_entry(feature, boundary_path)
 
 
-def fetch_city_boundary_feature(city: str) -> dict[str, Any] | None:
-    basename, state = city_boundary_query_parts(city)
+def fetch_city_boundary_feature(city: str, *, state_id: str | None = None) -> dict[str, Any] | None:
+    hint = CITY_BOUNDARY_HINTS.get(city, {})
+    basename, state = city_boundary_query_parts(city, state_id=state_id)
     escaped_city = basename.replace("'", "''")
+    preferred_lsadc = str(hint.get("preferred_lsadc", "")).strip()
     query_base = {
         "outFields": "BASENAME,NAME,STATE,GEOID,LSADC",
         "returnGeometry": "true",
         "outSR": "4326",
         "f": "geojson",
     }
-    for where in (
-        f"STATE = '{state}' AND BASENAME = '{escaped_city}' AND LSADC IN ('25','43')",
-        f"STATE = '{state}' AND BASENAME = '{escaped_city}'",
-    ):
-        for layer_url in (US_CENSUS_CITIES_LAYER, US_CENSUS_COUNTY_SUBDIVISIONS_LAYER):
+    where_clauses: list[str] = []
+    if preferred_lsadc:
+        where_clauses.append(f"STATE = '{state}' AND BASENAME = '{escaped_city}' AND LSADC = '{preferred_lsadc}'")
+    where_clauses.extend(
+        [
+            f"STATE = '{state}' AND BASENAME = '{escaped_city}' AND LSADC IN ('25','43')",
+            f"STATE = '{state}' AND BASENAME = '{escaped_city}'",
+        ]
+    )
+    layer_order = (US_CENSUS_CITIES_LAYER, US_CENSUS_COUNTY_SUBDIVISIONS_LAYER)
+    if preferred_lsadc == "43":
+        layer_order = (US_CENSUS_COUNTY_SUBDIVISIONS_LAYER, US_CENSUS_CITIES_LAYER)
+    for where in where_clauses:
+        for layer_url in layer_order:
             payload = fetch_json(
                 f"{layer_url}/query",
                 {
@@ -3440,7 +3496,7 @@ def load_city_boundary_feature(
                 write_boundary_feature_cache(standardized, canonical_boundary_path)
             return standardized
 
-    feature = fetch_special_city_boundary_feature(city) or fetch_city_boundary_feature(city)
+    feature = fetch_special_city_boundary_feature(city) or fetch_city_boundary_feature(city, state_id=resolved_state_id)
     if not feature:
         if legacy_boundary_path.exists():
             cached_feature = load_boundary_feature_from_path(legacy_boundary_path)
