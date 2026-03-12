@@ -10,17 +10,19 @@
 - Cycle D: Michigan / Illinois / Wisconsin
 
 ## Standard Cycle Sequence
-1. Prebuild official state or province boundaries.
-2. Produce a candidate city queue.
-3. Validate official public single-tree datasets.
-4. Publish cities incrementally.
-5. Refresh shards, coverage, and metadata.
-6. Pass the size gate.
-7. Sync release to GitHub.
-8. Smoke-check GitHub Pages.
-9. Smoke-check AWS if that path changed.
+1. Review the `A1 / A2 / B / C` city table in `docs/research/city-coverage-tracker.md`.
+2. Prebuild official state or province boundaries.
+3. Produce a candidate city queue.
+4. Validate official public single-tree datasets.
+5. Publish cities incrementally.
+6. Refresh shards, coverage, and metadata.
+7. Pass the size gate.
+8. Sync release to GitHub.
+9. Smoke-check GitHub Pages.
+10. Smoke-check AWS if that path changed.
 
 ## Discovery Heuristic
+- Expansion priority is `A2 -> B -> C`.
 - Once one city works in a cycle, look for neighboring cities that share the same source family, schema, vendor, or ArcGIS org before starting a fresh open-web search.
 - Prefer batches that reuse an existing boundary cache and parser shape, even if the first tree counts are smaller. Reusable throughput matters more than one-off wins.
 

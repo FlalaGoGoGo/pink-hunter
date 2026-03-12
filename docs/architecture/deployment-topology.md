@@ -19,6 +19,7 @@
 
 ## Data Model
 - Tree data: `public/data/trees.<region>.area-index.v2.json` and area shard GeoJSON files
+- Tree render tiles: `public/data/trees.render.v1.pmtiles` plus `public/data/trees.render.v1.json`
 - Coverage data: `public/data/coverage.<region>.v1.geojson`
 - Compatibility fallback: `public/data/coverage.v1.geojson`
 - Predictions namespace: `public/data/predictions/*.v1.json`
@@ -30,4 +31,5 @@
 ## Runtime Loading
 - Coverage loading is now configurable independently from runtime environment.
 - GitHub Pages and AWS can both use `lazy_by_region`.
+- Tree rendering can run in `pmtiles` mode, which moves point drawing to vector tiles while keeping shard GeoJSON as the detail fallback path.
 - Large hotspot cities should target roughly `12 MiB raw` per shard for better perceived performance.

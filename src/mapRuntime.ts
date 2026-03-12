@@ -62,6 +62,7 @@ type MapModule = {
   Popup: new (options: unknown) => MapEnginePopup;
   ScaleControl: new (options: unknown) => unknown;
   accessToken?: string;
+  addProtocol?(scheme: string, loadFn: unknown): void;
 };
 
 export interface MapRuntimeDeps {
@@ -70,15 +71,18 @@ export interface MapRuntimeDeps {
   polygonClipping: PolygonClippingModule;
 }
 
-const runtimePromises: Partial<Record<MapStack, Promise<MapRuntimeDeps>>> = {};
+const runtimePromises = new Map<string, Promise<MapRuntimeDeps>>();
 
 function normalizeRuntimeModule<T extends object>(module: RuntimeImport<T>): T {
   return ((module as { default?: T }).default ?? module) as T;
 }
 
 export async function loadMapRuntimeDeps(config: AppRuntimeConfig): Promise<MapRuntimeDeps> {
-  if (!runtimePromises[config.mapStack]) {
-    runtimePromises[config.mapStack] =
+  const cacheKey = `${config.mapStack}:${config.treeRenderMode}`;
+
+  if (!runtimePromises.has(cacheKey)) {
+    runtimePromises.set(
+      cacheKey,
       config.mapStack === "mapbox"
         ? Promise.all([import("mapbox-gl"), import("polygon-clipping")]).then(([mapbox, polygonClipping]) => {
             const normalized = normalizeRuntimeModule(mapbox as RuntimeImport<MapModule>);
@@ -91,12 +95,24 @@ export async function loadMapRuntimeDeps(config: AppRuntimeConfig): Promise<MapR
               polygonClipping: normalizeRuntimeModule(polygonClipping)
             };
           })
-        : Promise.all([import("maplibre-gl"), import("polygon-clipping")]).then(([maplibre, polygonClipping]) => ({
-            kind: "maplibre",
-            map: normalizeRuntimeModule(maplibre as RuntimeImport<MapModule>),
-            polygonClipping: normalizeRuntimeModule(polygonClipping)
-          }));
+        : Promise.all([
+            import("maplibre-gl"),
+            import("polygon-clipping"),
+            config.treeRenderMode === "pmtiles" ? import("pmtiles") : Promise.resolve(null)
+          ]).then(([maplibre, polygonClipping, pmtilesModule]) => {
+            const normalized = normalizeRuntimeModule(maplibre as RuntimeImport<MapModule>);
+            if (config.treeRenderMode === "pmtiles" && pmtilesModule) {
+              const protocol = new pmtilesModule.Protocol();
+              normalized.addProtocol?.("pmtiles", protocol.tile);
+            }
+            return {
+              kind: "maplibre",
+              map: normalized,
+              polygonClipping: normalizeRuntimeModule(polygonClipping)
+            };
+          })
+    );
   }
 
-  return runtimePromises[config.mapStack] as Promise<MapRuntimeDeps>;
+  return runtimePromises.get(cacheKey) as Promise<MapRuntimeDeps>;
 }

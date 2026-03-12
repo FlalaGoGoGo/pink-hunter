@@ -23,9 +23,15 @@ jobs:
       - name: Install ETL dependencies
         run: python3 -m pip install -r requirements.txt
 
+      - name: Install tippecanoe
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y tippecanoe
+
       - name: Rebuild data files
         run: |
           python3 etl/build_data.py
+          python3 scripts/build_tree_render_tiles.py --data-dir public/data
 
       - name: Check region data sizes
         run: python3 scripts/check_region_data_sizes.py --data-dir public/data --summary-file "$GITHUB_STEP_SUMMARY"

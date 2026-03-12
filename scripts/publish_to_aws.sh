@@ -39,6 +39,8 @@ APP_CACHE_CONTROL_ASSETS="${APP_CACHE_CONTROL_ASSETS:-public,max-age=31536000,im
 DATA_CACHE_CONTROL="${DATA_CACHE_CONTROL:-public,max-age=86400,stale-while-revalidate=604800}"
 
 pushd "$ROOT_DIR" >/dev/null
+export VITE_TREE_RENDER_MODE="${VITE_TREE_RENDER_MODE:-pmtiles}"
+python3 scripts/build_tree_render_tiles.py --data-dir public/data
 python3 scripts/check_region_data_sizes.py --data-dir public/data
 npm ci --no-fund --no-audit
 "${NODE20_RUNNER[@]}" node_modules/typescript/bin/tsc -b

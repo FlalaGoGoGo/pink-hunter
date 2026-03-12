@@ -31,6 +31,7 @@ import {
   BLANK_MAP_STYLE,
   buildMapboxStyleProbeUrl,
   buildMapboxStyleUrl,
+  resolveDataUrl,
   runtimeConfig
 } from "./runtimeConfig";
 import {
@@ -1471,6 +1472,11 @@ interface SelectedCoverage {
   properties: CoverageFeatureProps;
 }
 
+interface TreeRenderLookupHint {
+  region: CoverageRegion;
+  areaSlug: string;
+}
+
 type StatusNoticeKind =
   | "city_level_coverage"
   | "official_unavailable"
@@ -1758,6 +1764,24 @@ function toTreeCollection(features: TreeCollection["features"]): TreeCollection 
     type: "FeatureCollection",
     features
   };
+}
+
+const EMPTY_TREE_COLLECTION = toTreeCollection([]);
+
+function buildTreeLayerFilter(
+  species: SpeciesGroup,
+  selectedSpecies: SpeciesGroup[],
+  selectedOwnership: OwnershipGroup[]
+) {
+  if (!selectedSpecies.includes(species) || selectedOwnership.length === 0) {
+    return ["==", 1, 0] as const;
+  }
+
+  return [
+    "all",
+    ["==", ["get", "species_group"], species],
+    ["match", ["get", "ownership"], selectedOwnership, true, false]
+  ] as const;
 }
 
 function buildFeaturedAreaBoundsCollection(items: FeaturedAreaIndexItem[]) {
@@ -2403,7 +2427,9 @@ export default function App(): JSX.Element {
   const mapRef = useRef<MapEngineMap | null>(null);
   const popupRef = useRef<MapEnginePopup | null>(null);
   const filteredFeaturesRef = useRef<TreeCollection["features"]>([]);
-  const openTreeDetailsRef = useRef<(treeId: string) => void>(() => undefined);
+  const openTreeDetailsRef = useRef<(treeId: string, hint?: TreeRenderLookupHint) => Promise<void>>(
+    async () => undefined
+  );
   const openFeaturedAreaRef = useRef<(area: FeaturedAreaIndexItem) => void>(() => undefined);
   const isDesktopRef = useRef(layoutMode === "desktop_split");
   const dragStateRef = useRef<{ startY: number; startHeight: number; dragging: boolean }>({
@@ -2425,6 +2451,7 @@ export default function App(): JSX.Element {
     activePanel === "about" && activeLegalDocumentResult
       ? activeLegalDocumentResult.content.summary
       : t(language, "browserDescription");
+  const pmtilesEnabled = runtimeConfig.treeRenderMode === "pmtiles" && Boolean(data?.treeTiles);
   const openAboutOverview = useCallback(() => {
     setActiveLegalDocument(null);
     setActivePanel("about");
@@ -3773,51 +3800,62 @@ export default function App(): JSX.Element {
           }
         });
 
-        map.addSource("trees", {
-          type: "geojson",
-          data: filteredCollection,
-          cluster: true,
-          clusterMaxZoom: 11,
-          clusterRadius: 48
-        });
+        const treeSourceConfig = pmtilesEnabled && data.treeTiles
+          ? {
+              type: "vector" as const,
+              url: `pmtiles://${resolveDataUrl(data.treeTiles.path)}`
+            }
+          : {
+              type: "geojson" as const,
+              data: filteredCollection,
+              cluster: true,
+              clusterMaxZoom: 11,
+              clusterRadius: 48
+            };
 
-        map.addLayer({
-          id: "tree-clusters",
-          type: "circle",
-          source: "trees",
-          filter: ["has", "point_count"],
-          paint: {
-            "circle-color": "#f4a8c5",
-            "circle-radius": ["step", ["get", "point_count"], 13, 35, 17, 120, 21],
-            "circle-stroke-width": 1.5,
-            "circle-stroke-color": "#ffffff",
-            "circle-opacity": 0.95
-          }
-        });
+        map.addSource("trees", treeSourceConfig);
 
-        if (supportsClusterText) {
+        if (!pmtilesEnabled) {
           map.addLayer({
-            id: "tree-cluster-count",
-            type: "symbol",
+            id: "tree-clusters",
+            type: "circle",
             source: "trees",
             filter: ["has", "point_count"],
-            layout: {
-              "text-field": ["get", "point_count_abbreviated"],
-              "text-size": 12,
-              "text-font": ["Open Sans Bold"]
-            },
             paint: {
-              "text-color": "#4f2d3d"
+              "circle-color": "#f4a8c5",
+              "circle-radius": ["step", ["get", "point_count"], 13, 35, 17, 120, 21],
+              "circle-stroke-width": 1.5,
+              "circle-stroke-color": "#ffffff",
+              "circle-opacity": 0.95
             }
           });
+
+          if (supportsClusterText) {
+            map.addLayer({
+              id: "tree-cluster-count",
+              type: "symbol",
+              source: "trees",
+              filter: ["has", "point_count"],
+              layout: {
+                "text-field": ["get", "point_count_abbreviated"],
+                "text-size": 12,
+                "text-font": ["Open Sans Bold"]
+              },
+              paint: {
+                "text-color": "#4f2d3d"
+              }
+            });
+          }
         }
 
         ALL_SPECIES.forEach((species) => {
-          map.addLayer({
+          const baseLayer = {
             id: `tree-${species}`,
-            type: "circle",
+            type: "circle" as const,
             source: "trees",
-            filter: ["all", ["!", ["has", "point_count"]], ["==", ["get", "species_group"], species]],
+            filter: pmtilesEnabled
+              ? buildTreeLayerFilter(species, selectedSpecies, selectedOwnership)
+              : ["all", ["!", ["has", "point_count"]], ["==", ["get", "species_group"], species]],
             paint: {
               "circle-color": POINT_COLORS[species],
               "circle-radius": ["interpolate", ["linear"], ["zoom"], 8, 1.8, 12, 3.4, 15, 5.6],
@@ -3825,18 +3863,32 @@ export default function App(): JSX.Element {
               "circle-stroke-color": "#ffffff",
               "circle-stroke-width": 0.75
             }
-          });
+          };
+
+          map.addLayer(
+            pmtilesEnabled && data.treeTiles
+              ? {
+                  ...baseLayer,
+                  "source-layer": data.treeTiles.vector_layer,
+                  minzoom: data.treeTiles.minzoom
+                }
+              : baseLayer
+          );
         });
 
         if (!map.hasImage(SELECTED_MARKER_IMAGE_ID)) {
           map.addImage(SELECTED_MARKER_IMAGE_ID, createSelectedBloomImageData());
         }
 
+        map.addSource("selected-tree", {
+          type: "geojson",
+          data: EMPTY_TREE_COLLECTION
+        });
+
         map.addLayer({
           id: "tree-selected-halo",
           type: "circle",
-          source: "trees",
-          filter: ["==", ["get", "id"], "__none__"],
+          source: "selected-tree",
           paint: {
             "circle-color": "rgba(255, 250, 253, 0.86)",
             "circle-radius": ["interpolate", ["linear"], ["zoom"], 8, 6.5, 15, 10.5],
@@ -3848,8 +3900,7 @@ export default function App(): JSX.Element {
         map.addLayer({
           id: "tree-selected-star",
           type: "symbol",
-          source: "trees",
-          filter: ["==", ["get", "id"], "__none__"],
+          source: "selected-tree",
           layout: {
             "icon-image": SELECTED_MARKER_IMAGE_ID,
             "icon-size": ["interpolate", ["linear"], ["zoom"], 8, 0.26, 12, 0.34, 15, 0.42],
@@ -3894,37 +3945,39 @@ export default function App(): JSX.Element {
           moveLayer?: (layerId: string, beforeId?: string) => void;
         }).moveLayer?.("featured-area-pins", "user-location-halo");
 
-        map.on("click", "tree-clusters", (event: MapLayerMouseEvent) => {
-          const features = map.queryRenderedFeatures(event.point, { layers: ["tree-clusters"] });
-          if (features.length === 0) {
-            return;
-          }
+        if (!pmtilesEnabled) {
+          map.on("click", "tree-clusters", (event: MapLayerMouseEvent) => {
+            const features = map.queryRenderedFeatures(event.point, { layers: ["tree-clusters"] });
+            if (features.length === 0) {
+              return;
+            }
 
-          const clusterId = features[0].properties?.cluster_id;
-          const source = map.getSource("trees") as GeoJSONSource;
-          if (clusterId == null || !source?.getClusterExpansionZoom) {
-            return;
-          }
+            const clusterId = features[0].properties?.cluster_id;
+            const source = map.getSource("trees") as GeoJSONSource;
+            if (clusterId == null || !source?.getClusterExpansionZoom) {
+              return;
+            }
 
-          void source
-            .getClusterExpansionZoom(Number(clusterId))
-            .then((zoom) => {
-              const geometry = features[0].geometry as
-                | { type?: string; coordinates?: [number, number] }
-                | undefined;
-              if (!geometry || geometry.type !== "Point" || !geometry.coordinates) {
-                return;
-              }
+            void source
+              .getClusterExpansionZoom(Number(clusterId))
+              .then((zoom) => {
+                const geometry = features[0].geometry as
+                  | { type?: string; coordinates?: [number, number] }
+                  | undefined;
+                if (!geometry || geometry.type !== "Point" || !geometry.coordinates) {
+                  return;
+                }
 
-              map.easeTo({
-                center: geometry.coordinates,
-                zoom
+                map.easeTo({
+                  center: geometry.coordinates,
+                  zoom
+                });
+              })
+              .catch(() => {
+                // Ignore cluster expansion failures.
               });
-            })
-            .catch(() => {
-              // Ignore cluster expansion failures.
-            });
-        });
+          });
+        }
 
         const openFeaturedAreaFromLayer = (event: MapLayerMouseEvent): void => {
           const id = map.queryRenderedFeatures(event.point, {
@@ -3945,18 +3998,27 @@ export default function App(): JSX.Element {
 
         POINT_LAYER_IDS.forEach((layerId) => {
           map.on("click", layerId, (event: MapLayerMouseEvent) => {
-            const id = map.queryRenderedFeatures(event.point, { layers: [layerId] })[0]?.properties?.id;
+            const feature = map.queryRenderedFeatures(event.point, { layers: [layerId] })[0];
+            const id = feature?.properties?.id;
             if (!id) {
               return;
             }
-            openTreeDetailsRef.current(String(id));
+            const region = feature?.properties?.region;
+            const areaSlug = feature?.properties?.area_slug;
+            const hint =
+              typeof region === "string" && typeof areaSlug === "string"
+                ? { region: region as CoverageRegion, areaSlug }
+                : undefined;
+            void openTreeDetailsRef.current(String(id), hint);
           });
         });
 
         map.on("click", (event: MapLayerMouseEvent) => {
-          const clusterFeatures = map.queryRenderedFeatures(event.point, { layers: ["tree-clusters"] });
-          if (clusterFeatures.length > 0) {
-            return;
+          if (!pmtilesEnabled) {
+            const clusterFeatures = map.queryRenderedFeatures(event.point, { layers: ["tree-clusters"] });
+            if (clusterFeatures.length > 0) {
+              return;
+            }
           }
 
           const featuredAreaFeatures = map.queryRenderedFeatures(event.point, {
@@ -4126,12 +4188,21 @@ export default function App(): JSX.Element {
     initialFeaturedArea,
     initialJumpArea,
     mapRuntime,
-    regionMetaById
+    pmtilesEnabled,
+    regionMetaById,
+    selectedOwnership,
+    selectedSpecies
   ]);
 
   useEffect(() => {
     const map = mapRef.current;
     if (!map || !mapRuntime) {
+      return;
+    }
+    if (pmtilesEnabled) {
+      if (selectedTree && !filteredFeatures.find((feature) => feature.properties.id === selectedTree.properties.id)) {
+        setSelectedTree(null);
+      }
       return;
     }
     const source = map.getSource("trees") as GeoJSONSource | undefined;
@@ -4142,7 +4213,7 @@ export default function App(): JSX.Element {
     if (selectedTree && !filteredFeatures.find((feature) => feature.properties.id === selectedTree.properties.id)) {
       setSelectedTree(null);
     }
-  }, [filteredCollection, filteredFeatures, selectedTree]);
+  }, [filteredCollection, filteredFeatures, mapRuntime, pmtilesEnabled, selectedTree]);
 
   useEffect(() => {
     const map = mapRef.current;
@@ -4212,14 +4283,40 @@ export default function App(): JSX.Element {
       return;
     }
 
-    const selectedId = selectedTree?.properties.id ?? "__none__";
-    if (map.getLayer("tree-selected-halo")) {
-      map.setFilter("tree-selected-halo", ["==", ["get", "id"], selectedId]);
+    const source = map.getSource("selected-tree") as GeoJSONSource | undefined;
+    if (!source) {
+      return;
     }
-    if (map.getLayer("tree-selected-star")) {
-      map.setFilter("tree-selected-star", ["==", ["get", "id"], selectedId]);
-    }
+
+    source.setData(
+      selectedTree
+        ? toTreeCollection([
+            {
+              type: "Feature",
+              geometry: {
+                type: "Point",
+                coordinates: selectedTree.coordinates
+              },
+              properties: selectedTree.properties
+            }
+          ])
+        : EMPTY_TREE_COLLECTION
+    );
   }, [selectedTree]);
+
+  useEffect(() => {
+    const map = mapRef.current;
+    if (!map || !pmtilesEnabled) {
+      return;
+    }
+
+    ALL_SPECIES.forEach((species) => {
+      const layerId = `tree-${species}`;
+      if (map.getLayer(layerId)) {
+        map.setFilter(layerId, buildTreeLayerFilter(species, selectedSpecies, selectedOwnership));
+      }
+    });
+  }, [pmtilesEnabled, selectedOwnership, selectedSpecies]);
 
   useEffect(() => {
     const map = mapRef.current;
@@ -4409,15 +4506,93 @@ export default function App(): JSX.Element {
     setStatusNotice(null);
   }
 
-  function openTreeDetails(treeId: string): void {
-    const matched =
+  const loadAreaIndexForRegion = useCallback(
+    async (region: CoverageRegion): Promise<AreaIndex | null> => {
+      const cached = regionAreaIndexCache[region];
+      if (cached) {
+        return cached;
+      }
+
+      const indexPath = regionMetaById.get(region)?.area_split?.index_path;
+      if (!indexPath) {
+        return null;
+      }
+
+      const loaded = await loadAreaIndex(indexPath);
+      setRegionAreaIndexCache((current) => ({
+        ...current,
+        [region]: current[region] ?? loaded
+      }));
+      return loaded;
+    },
+    [regionAreaIndexCache, regionMetaById]
+  );
+
+  const loadTreeFeatureFromHint = useCallback(
+    async (treeId: string, hint: TreeRenderLookupHint): Promise<TreeCollection["features"][number] | null> => {
+      const areaIndex = await loadAreaIndexForRegion(hint.region);
+      const areaItem = areaIndex?.items.find((item) => item.slug === hint.areaSlug);
+      if (!areaItem) {
+        return null;
+      }
+
+      const cachedRegionCollections = regionShardCache[hint.region] ?? {};
+      const missingShards = areaItem.shards.filter((shard) => !cachedRegionCollections[shard.data_path]);
+      let loadedCollections: Record<string, TreeCollection> = {};
+
+      if (missingShards.length > 0) {
+        setLoadingShards(true);
+        try {
+          const loaded = await Promise.all(
+            missingShards.map(async (shard) => [shard.data_path, await loadTreeCollection(shard.data_path)] as const)
+          );
+          loadedCollections = Object.fromEntries(loaded);
+          setRegionShardCache((current) => ({
+            ...current,
+            [hint.region]: {
+              ...(current[hint.region] ?? {}),
+              ...loadedCollections
+            }
+          }));
+        } finally {
+          setLoadingShards(false);
+        }
+      }
+
+      for (const shard of areaItem.shards) {
+        const collection = loadedCollections[shard.data_path] ?? cachedRegionCollections[shard.data_path];
+        const matched = collection?.features.find((feature) => feature.properties.id === treeId);
+        if (matched) {
+          return matched;
+        }
+      }
+
+      return null;
+    },
+    [loadAreaIndexForRegion, regionShardCache]
+  );
+
+  const openTreeDetails = useCallback(async (treeId: string, hint?: TreeRenderLookupHint): Promise<void> => {
+    let matched: TreeCollection["features"][number] | undefined =
       loadedActiveRegionTreeById.get(treeId) ??
       filteredFeaturesRef.current.find((feature) => feature.properties.id === treeId) ??
-      currentTrees.features.find((feature) => feature.properties.id === treeId);
+      currentTrees.features.find((feature) => feature.properties.id === treeId) ??
+      undefined;
+
+    if (!matched && hint) {
+      try {
+        matched = (await loadTreeFeatureFromHint(treeId, hint)) ?? undefined;
+      } catch (loadError) {
+        setError(loadError instanceof Error ? loadError.message : "Unknown tree loading error");
+        return;
+      }
+    }
+
     if (!matched) {
       return;
     }
 
+    setActiveRegion(hint?.region ?? regionForCity(matched.properties.city));
     setSelectedTree({
       coordinates: getTreeCoordinates(matched),
       properties: matched.properties
@@ -4431,7 +4606,11 @@ export default function App(): JSX.Element {
       setSheetHeight(0.72);
     }
     setActivePanel("details");
-  }
+  }, [
+    currentTrees,
+    loadTreeFeatureFromHint,
+    loadedActiveRegionTreeById
+  ]);
 
   function openFeaturedArea(area: FeaturedAreaIndexItem): void {
     setSelectedFeaturedAreaId(area.id);

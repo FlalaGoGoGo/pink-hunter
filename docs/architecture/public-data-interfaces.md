@@ -62,6 +62,22 @@ GeoJSON `FeatureCollection` for one shard of a larger area.
 - `source_department: string`
 - `source_last_edit_at: ISO8601 string`
 
+## `GET /data/trees.render.v1.json`
+Manifest for the PMTiles render layer.
+
+### Shape
+- `generated_at`
+- `path`
+- `vector_layer`
+- `minzoom`
+- `maxzoom`
+- `tree_count`
+- `bounds`
+- `regions[]`
+
+## `GET /data/trees.render.v1.pmtiles`
+PMTiles vector archive used for map rendering. This layer is intentionally lightweight and carries only render-safe fields needed for filters and click-to-detail handoff.
+
 ## `GET /data/coverage.v1.geojson`
 GeoJSON `FeatureCollection` for coverage overlays.
 

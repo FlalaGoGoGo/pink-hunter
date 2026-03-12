@@ -1,4 +1,4 @@
-import type { CoverageLoadMode, MapStack, RuntimeEnv, VisitorCounterMode } from "./types";
+import type { CoverageLoadMode, MapStack, RuntimeEnv, TreeRenderMode, VisitorCounterMode } from "./types";
 
 const DEFAULT_COUNTER_API_BASE_URL = "https://api.counterapi.dev/v1/pink-hunter/pinkhunter-flalaz-com";
 const DEFAULT_MAPBOX_STYLE_ID = "mapbox/light-v11";
@@ -11,6 +11,7 @@ export interface AppRuntimeConfig {
   dataBaseUrl: string;
   mapStack: MapStack;
   coverageLoadMode: CoverageLoadMode;
+  treeRenderMode: TreeRenderMode;
   visitorCounterMode: VisitorCounterMode;
   counterApiBaseUrl: string;
   visitorApiBaseUrl: string;
@@ -28,6 +29,17 @@ function parseCoverageLoadMode(
       return "eager_all";
     case "lazy_by_region":
       return "lazy_by_region";
+    default:
+      return fallback;
+  }
+}
+
+function parseTreeRenderMode(rawValue: string | undefined, fallback: TreeRenderMode): TreeRenderMode {
+  switch ((rawValue ?? "").trim().toLowerCase()) {
+    case "geojson":
+      return "geojson";
+    case "pmtiles":
+      return "pmtiles";
     default:
       return fallback;
   }
@@ -61,16 +73,18 @@ function isAwsRuntime(env: RuntimeEnv): boolean {
 }
 
 const env = parseRuntimeEnv(import.meta.env.VITE_RUNTIME_ENV);
+const treeRenderMode = parseTreeRenderMode(import.meta.env.VITE_TREE_RENDER_MODE, "pmtiles");
 
 export const runtimeConfig: AppRuntimeConfig = {
   env,
   appBaseUrl: normalizeBaseUrl(import.meta.env.VITE_APP_BASE_URL),
   dataBaseUrl: normalizeBaseUrl(import.meta.env.VITE_DATA_BASE_URL),
-  mapStack: isAwsRuntime(env) ? "mapbox" : "maplibre",
+  mapStack: treeRenderMode === "pmtiles" ? "maplibre" : isAwsRuntime(env) ? "mapbox" : "maplibre",
   coverageLoadMode: parseCoverageLoadMode(
     import.meta.env.VITE_COVERAGE_LOAD_MODE,
     isAwsRuntime(env) ? "lazy_by_region" : "eager_all"
   ),
+  treeRenderMode,
   visitorCounterMode: isAwsRuntime(env) ? "aws_api" : "counterapi",
   counterApiBaseUrl: normalizeBaseUrl(import.meta.env.VITE_COUNTER_API_BASE_URL) || DEFAULT_COUNTER_API_BASE_URL,
   visitorApiBaseUrl: normalizeBaseUrl(import.meta.env.VITE_VISITOR_API_BASE_URL),

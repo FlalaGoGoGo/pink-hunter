@@ -6,13 +6,15 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
+    "build:render-tiles": "python3 scripts/build_tree_render_tiles.py --data-dir public/data",
     "preview": "vite preview",
     "prebuild:boundaries:ca": "python3 scripts/prebuild_state_boundaries.py --country us --state ca",
-    "etl": "python3 etl/build_data.py && python3 scripts/publish_targeted_city_updates.py --city Arlington --city Austin --city Baltimore --city Boston --city Dallas --city Denver --city Gilroy --city Houston --city Irvine --city Jersey\\ City --city Las\\ Vegas --city Los\\ Angeles --city Los\\ Gatos --city Mountain\\ View --city Milpitas --city Morgan\\ Hill --city Sacramento --city Salt\\ Lake\\ City --city San\\ Mateo --city San\\ Rafael --city Salinas --city Saratoga --city Sunnyvale --city West\\ Sacramento --city Fremont --city Concord --city South\\ San\\ Francisco --city New\\ York\\ City --city Philadelphia --city Cambridge --city Pittsburgh --city Ottawa --city Toronto --city Montreal --city New\\ Westminster --city San\\ Diego && python3 scripts/refresh_coverage_metadata.py --data-dir public/data && python3 scripts/generate_jump_index.py --data-dir public/data"
+    "etl": "python3 etl/build_data.py && python3 scripts/publish_targeted_city_updates.py --city Arlington --city Austin --city Baltimore --city Boston --city Dallas --city Denver --city Gilroy --city Houston --city Irvine --city Jersey\\ City --city Las\\ Vegas --city Los\\ Angeles --city Los\\ Gatos --city Mountain\\ View --city Milpitas --city Morgan\\ Hill --city Sacramento --city Salt\\ Lake\\ City --city San\\ Mateo --city San\\ Rafael --city Salinas --city Saratoga --city Sunnyvale --city West\\ Sacramento --city Fremont --city Concord --city South\\ San\\ Francisco --city New\\ York\\ City --city Philadelphia --city Cambridge --city Pittsburgh --city Ottawa --city Toronto --city Montreal --city New\\ Westminster --city San\\ Diego && python3 scripts/refresh_coverage_metadata.py --data-dir public/data && python3 scripts/generate_jump_index.py --data-dir public/data && python3 scripts/build_tree_render_tiles.py --data-dir public/data"
   },
   "dependencies": {
     "mapbox-gl": "^3.12.0",
     "maplibre-gl": "^4.7.1",
+    "pmtiles": "^4.4.0",
     "polygon-clipping": "^0.15.7",
     "react": "^18.3.1",
     "react-dom": "^18.3.1"

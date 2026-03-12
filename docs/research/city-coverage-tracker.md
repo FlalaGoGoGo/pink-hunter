@@ -2,7 +2,24 @@
 
 Last updated: 2026-03-12 (America/Los_Angeles)
 
-## Integrated (In Product)
+## Review Order Before Any City Task
+1. Review `A2` first. Those cities are the highest publish priority.
+2. If `A2` is empty, review `B` next. Those cities have official point-tree data, but a blocker still prevents product publish.
+3. Review `C` only when planning gray coverage, source research, or longer-horizon backlog work.
+4. Review `A1` when refreshing an existing city, debugging regressions, or comparing methods that already work.
+
+## Classification Model
+| Bucket | Meaning | Default Action |
+|---|---|---|
+| `A1` | Official public point-tree data exists, the 5 in-scope blossom groups are already publishable, and the city is already in product | Maintain, refresh, or reuse as a template |
+| `A2` | Official public point-tree data exists, the 5 in-scope blossom groups are already publishable, but the city is not yet in product | Highest expansion priority |
+| `B` | Official public point-tree data exists, but the current source is partial, blocked, or not yet stable enough to publish the 5 in-scope blossom groups | Fix blockers and promote to `A2` |
+| `C` | No verified official public citywide point-tree dataset is currently usable, or the place is outside the current city workflow | Gray coverage, defer, or re-research later |
+
+## A2 — Official Point-Tree Data Confirmed, In-Scope Trees Present, Not Yet Integrated
+Current state: no cities are parked in `A2` right now.
+
+## A1 — Official Point-Tree Data Confirmed, In-Scope Trees Present, Already Integrated
 | Done | City | Included Trees | Boundary Rule | Notes |
 |---|---|---:|---|---|
 | ✅ | Seattle | 46,114 | Official jurisdiction boundary | Includes UW supplemental points; ornamental cherry keyword sweep rerun |
@@ -141,7 +158,19 @@ Last updated: 2026-03-12 (America/Los_Angeles)
 | ✅ | Gig Harbor | 63 | Official jurisdiction boundary | PW Trees Public Viewer |
 | ✅ | SeaTac | 38 | Official jurisdiction boundary | Genus/common-name normalization added |
 
-## Gray Coverage (Official Boundary Resolved, No Official Public Tree Dataset)
+## B — Official Point-Tree Data Exists But Is Not Product-Ready
+These cities are not in `A2` yet because the official point-tree source is still partial, blocked, or otherwise not publish-ready under the current rules.
+
+| Done | City | Estimated In-Scope Count | Status | Blocker |
+|---|---|---:|---|---|
+| ⏳ | Mercer Island | 803 (Town Center only) | Partial-only | Official urban-forestry page documents a 2018 Town Center street-tree inventory, but a verified citywide public single-tree endpoint is still not confirmed |
+| ⏳ | Bremerton | Unknown | Blocked public map | Official Park Tree Map web map exists under a city account, but the underlying feature service currently returns `403 Forbidden` to direct public queries |
+| ⏳ | Poulsbo | 75 | Partial-only | Official `Historic Trees of Poulsbo` feature service is public, but it is a curated historic-tree layer, not a citywide public inventory |
+| ⏳ | Pasco | Unknown | Partial-only | Official city content found in this round was a `Volunteer Park Tree Walk` map, not a citywide public single-tree inventory |
+
+## C — No Verified Official Public Point-Tree Dataset Or Outside Current Workflow
+
+### Gray Coverage (Official Boundary Resolved, No Official Public Tree Dataset)
 | Done | City | Status | Boundary Rule | Notes |
 |---|---|---|---|---|
 | 🩶 | Alexandria | In gray coverage | Official jurisdiction boundary | Official City of Alexandria urban-forestry and GIS pages were reviewed, but no public single-tree species inventory was confirmed |
@@ -180,15 +209,7 @@ Last updated: 2026-03-12 (America/Los_Angeles)
 | 🩶 | White Rock | In gray coverage | Official jurisdiction boundary | Official Metro Vancouver administrative boundaries confirm the City of White Rock geometry, but this round did not confirm a public citywide single-tree species inventory |
 | 🩶 | Langley City | In gray coverage | Official jurisdiction boundary | Official City of Langley / Metro Vancouver public GIS entry points were reviewed; the official jurisdiction boundary is available, but no public citywide single-tree species inventory was confirmed |
 
-## Validated, Not Yet Integrated
-| Done | City | Estimated In-Scope Count | Status | Blocker |
-|---|---|---:|---|---|
-| ⏳ | Mercer Island | 803 (Town Center only) | Partial-only | Official urban-forestry page documents a 2018 Town Center street-tree inventory, but a verified citywide public single-tree endpoint is still not confirmed |
-| ⏳ | Bremerton | Unknown | Blocked public map | Official Park Tree Map web map exists under a city account, but the underlying feature service currently returns `403 Forbidden` to direct public queries |
-| ⏳ | Poulsbo | 75 | Partial-only | Official `Historic Trees of Poulsbo` feature service is public, but it is a curated historic-tree layer, not a citywide public inventory |
-| ⏳ | Pasco | Unknown | Partial-only | Official city content found in this round was a `Volunteer Park Tree Walk` map, not a citywide public single-tree inventory |
-
-## Investigated (Blocked / Not Usable Yet)
+### Investigated / Blocked / Out Of Scope
 | Done | City | Status | Reason |
 |---|---|---|---|
 | ⚠️ | Vashon | Unincorporated place | Not an incorporated city under the current official city-boundary rule, so there is no municipal city dataset/boundary target in the present workflow |

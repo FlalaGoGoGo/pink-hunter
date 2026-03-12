@@ -26,6 +26,7 @@ export type MapStack = "maplibre" | "mapbox";
 export type VisitorCounterMode = "counterapi" | "aws_api";
 export type RuntimeEnv = "stable" | "staging" | "production";
 export type CoverageLoadMode = "eager_all" | "lazy_by_region";
+export type TreeRenderMode = "geojson" | "pmtiles";
 
 export interface TreeFeatureProps {
   id: string;
@@ -46,6 +47,15 @@ export interface TreeFeatureProps {
   source_dataset: string;
   source_department: string;
   source_last_edit_at: string;
+}
+
+export interface TreeRenderFeatureProps {
+  id: string;
+  species_group: SpeciesGroup;
+  ownership: OwnershipGroup;
+  city: string;
+  region: CoverageRegion;
+  area_slug: string;
 }
 
 export interface CoverageFeatureProps {
@@ -295,8 +305,21 @@ export type GeoJsonCollection<P, G extends Geometry = Geometry> = FeatureCollect
 
 export type TreeFeature = GeoJsonFeature<TreeFeatureProps, Point>;
 export type TreeCollection = GeoJsonCollection<TreeFeatureProps, Point>;
+export type TreeRenderFeature = GeoJsonFeature<TreeRenderFeatureProps, Point>;
+export type TreeRenderCollection = GeoJsonCollection<TreeRenderFeatureProps, Point>;
 export type CoverageFeature = GeoJsonFeature<CoverageFeatureProps, Polygon | MultiPolygon>;
 export type CoverageCollection = GeoJsonCollection<CoverageFeatureProps, Polygon | MultiPolygon>;
+
+export interface TreeRenderTilesManifest {
+  generated_at: string;
+  path: string;
+  vector_layer: string;
+  minzoom: number;
+  maxzoom: number;
+  tree_count: number;
+  bounds: [[number, number], [number, number]];
+  regions: CoverageRegion[];
+}
 
 export interface StaticAppData {
   coverage: CoverageCollection | null;
@@ -304,4 +327,5 @@ export interface StaticAppData {
   guide: SpeciesGuide;
   meta: AppMeta;
   jumpIndex: JumpIndex;
+  treeTiles: TreeRenderTilesManifest | null;
 }

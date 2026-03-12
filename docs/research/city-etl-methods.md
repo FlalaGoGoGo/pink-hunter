@@ -8,6 +8,10 @@ Last updated: 2026-03-12 (America/Los_Angeles)
 
 ## Shared Rules
 - Coverage polygons must use official jurisdiction boundary geometries only.
+- Before starting city work, review `docs/research/city-coverage-tracker.md` and identify the city bucket first:
+  - `A2`: ready to publish
+  - `B`: official point-tree source exists but still blocked
+  - `C`: no verified usable official point-tree source yet
 - ZIP assignment is spatial:
   - Washington state: state ZIP polygons from `ZIP_LAYER`
   - Washington DC: census ZCTA polygons from `US_CENSUS_ZCTA_LAYER`
@@ -90,6 +94,7 @@ Last updated: 2026-03-12 (America/Los_Angeles)
   - `genus:en`
 
 ## Discovery And Recovery Tactics
+- Promotion path is explicit: `C -> B -> A2 -> A1`.
 - When a source family lands, search for the next cities in this order:
   1. sibling services inside the same ArcGIS org or contractor org
   2. neighboring public sites on the same TreeKeeper or TreePlotter tenancy

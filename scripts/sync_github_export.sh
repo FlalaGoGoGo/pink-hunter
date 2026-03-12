@@ -64,6 +64,9 @@ prune_export_siblings() {
 }
 
 run_preflight_checks() {
+  echo "Rebuilding PMTiles render artifacts..." >&2
+  python3 "$ROOT_DIR/scripts/build_tree_render_tiles.py" --data-dir "$TMP_REPO/public/data"
+
   echo "Running shard consistency check..." >&2
   python3 "$ROOT_DIR/scripts/check_region_data_sizes.py" --data-dir "$TMP_REPO/public/data"
 

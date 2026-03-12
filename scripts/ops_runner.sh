@@ -16,6 +16,7 @@ Commands:
   publish-city          Publish targeted city updates
   full-etl              Run the canonical ETL flow
   refresh-shards        Refresh area shard artifacts
+  refresh-render-tiles  Rebuild PMTiles render artifacts
   sync-release          Sync, commit, and push the GitHub export repo
   deploy-pages          Sync release for GitHub Pages and smoke-check production
   deploy-aws            Publish the current build to AWS
@@ -63,6 +64,7 @@ case "$command_name" in
   publish-city)
     require_command python3
     python3 "$ROOT_DIR/scripts/publish_targeted_city_updates.py" "$@"
+    python3 "$ROOT_DIR/scripts/build_tree_render_tiles.py" --data-dir "$ROOT_DIR/public/data"
     python3 "$ROOT_DIR/scripts/check_region_data_sizes.py" --data-dir "$ROOT_DIR/public/data"
     ;;
   full-etl)
@@ -76,7 +78,12 @@ case "$command_name" in
   refresh-shards)
     require_command python3
     python3 "$ROOT_DIR/scripts/refresh_region_area_shards.py" "$@"
+    python3 "$ROOT_DIR/scripts/build_tree_render_tiles.py" --data-dir "$ROOT_DIR/public/data"
     python3 "$ROOT_DIR/scripts/check_region_data_sizes.py" --data-dir "$ROOT_DIR/public/data"
+    ;;
+  refresh-render-tiles)
+    require_command python3
+    python3 "$ROOT_DIR/scripts/build_tree_render_tiles.py" --data-dir "$ROOT_DIR/public/data"
     ;;
   sync-release)
     run_sync_release "$@"
