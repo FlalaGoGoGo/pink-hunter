@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-03-12T05:35:52.872888+00:00",
+  "generated_at": "2026-03-12T19:38:26.573144+00:00",
   "region": "ga",
   "strategy": "area_shard",
   "items": [
@@ -32,6 +32,38 @@
         "magnolia": 8,
         "crabapple": 0
       },
+      "ownership_counts": {
+        "public": 8,
+        "private": 0,
+        "unknown": 0
+      },
+      "species_ownership_counts": {
+        "cherry": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        },
+        "plum": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        },
+        "peach": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        },
+        "magnolia": {
+          "public": 8,
+          "private": 0,
+          "unknown": 0
+        },
+        "crabapple": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        }
+      },
       "ownership_groups": [
         "public"
       ],
@@ -50,6 +82,45 @@
           ],
           "data_path": "/data/trees.ga.area.johns-creek.v2.geojson",
           "tree_count": 8,
+          "ownership_counts": {
+            "public": 8,
+            "private": 0,
+            "unknown": 0
+          },
+          "species_counts": {
+            "cherry": 0,
+            "plum": 0,
+            "peach": 0,
+            "magnolia": 8,
+            "crabapple": 0
+          },
+          "species_ownership_counts": {
+            "cherry": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            },
+            "plum": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            },
+            "peach": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            },
+            "magnolia": {
+              "public": 8,
+              "private": 0,
+              "unknown": 0
+            },
+            "crabapple": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            }
+          },
           "raw_bytes": 4310,
           "gzip_bytes": 557
         }

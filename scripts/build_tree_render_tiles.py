@@ -64,6 +64,7 @@ def build_shard_lookup(data_dir: Path) -> tuple[dict[str, dict[str, str]], list[
                     "region": region,
                     "area_slug": area_slug,
                     "city": city,
+                    "data_path": str(shard["data_path"]),
                 }
 
     return shard_lookup, sorted(set(regions)), [[min_lon, min_lat], [max_lon, max_lat]]
@@ -87,6 +88,7 @@ def build_render_feature(
             "city": shard_meta["city"],
             "region": shard_meta["region"],
             "area_slug": shard_meta["area_slug"],
+            "data_path": shard_meta["data_path"],
         },
     }
 

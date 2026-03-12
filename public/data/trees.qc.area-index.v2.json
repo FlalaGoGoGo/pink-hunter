@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-03-12T05:35:52.872888+00:00",
+  "generated_at": "2026-03-12T19:38:26.573144+00:00",
   "region": "qc",
   "strategy": "area_shard",
   "items": [
@@ -31,6 +31,38 @@
         "magnolia": 294,
         "crabapple": 9124
       },
+      "ownership_counts": {
+        "public": 16258,
+        "private": 0,
+        "unknown": 0
+      },
+      "species_ownership_counts": {
+        "cherry": {
+          "public": 6727,
+          "private": 0,
+          "unknown": 0
+        },
+        "plum": {
+          "public": 88,
+          "private": 0,
+          "unknown": 0
+        },
+        "peach": {
+          "public": 25,
+          "private": 0,
+          "unknown": 0
+        },
+        "magnolia": {
+          "public": 294,
+          "private": 0,
+          "unknown": 0
+        },
+        "crabapple": {
+          "public": 9124,
+          "private": 0,
+          "unknown": 0
+        }
+      },
       "ownership_groups": [
         "public"
       ],
@@ -49,6 +81,45 @@
           ],
           "data_path": "/data/trees.qc.area.montreal.v2.geojson",
           "tree_count": 16258,
+          "ownership_counts": {
+            "public": 16258,
+            "private": 0,
+            "unknown": 0
+          },
+          "species_counts": {
+            "cherry": 6727,
+            "plum": 88,
+            "peach": 25,
+            "magnolia": 294,
+            "crabapple": 9124
+          },
+          "species_ownership_counts": {
+            "cherry": {
+              "public": 6727,
+              "private": 0,
+              "unknown": 0
+            },
+            "plum": {
+              "public": 88,
+              "private": 0,
+              "unknown": 0
+            },
+            "peach": {
+              "public": 25,
+              "private": 0,
+              "unknown": 0
+            },
+            "magnolia": {
+              "public": 294,
+              "private": 0,
+              "unknown": 0
+            },
+            "crabapple": {
+              "public": 9124,
+              "private": 0,
+              "unknown": 0
+            }
+          },
           "raw_bytes": 8319935,
           "gzip_bytes": 265892
         }

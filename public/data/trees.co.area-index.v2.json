@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-03-12T05:35:52.872888+00:00",
+  "generated_at": "2026-03-12T19:38:26.573144+00:00",
   "region": "co",
   "strategy": "area_shard",
   "items": [
@@ -68,6 +68,38 @@
         "magnolia": 220,
         "crabapple": 14623
       },
+      "ownership_counts": {
+        "public": 19900,
+        "private": 0,
+        "unknown": 0
+      },
+      "species_ownership_counts": {
+        "cherry": {
+          "public": 1543,
+          "private": 0,
+          "unknown": 0
+        },
+        "plum": {
+          "public": 2527,
+          "private": 0,
+          "unknown": 0
+        },
+        "peach": {
+          "public": 987,
+          "private": 0,
+          "unknown": 0
+        },
+        "magnolia": {
+          "public": 220,
+          "private": 0,
+          "unknown": 0
+        },
+        "crabapple": {
+          "public": 14623,
+          "private": 0,
+          "unknown": 0
+        }
+      },
       "ownership_groups": [
         "public"
       ],
@@ -86,6 +118,45 @@
           ],
           "data_path": "/data/trees.co.area.denver.v2.geojson",
           "tree_count": 19900,
+          "ownership_counts": {
+            "public": 19900,
+            "private": 0,
+            "unknown": 0
+          },
+          "species_counts": {
+            "cherry": 1543,
+            "plum": 2527,
+            "peach": 987,
+            "magnolia": 220,
+            "crabapple": 14623
+          },
+          "species_ownership_counts": {
+            "cherry": {
+              "public": 1543,
+              "private": 0,
+              "unknown": 0
+            },
+            "plum": {
+              "public": 2527,
+              "private": 0,
+              "unknown": 0
+            },
+            "peach": {
+              "public": 987,
+              "private": 0,
+              "unknown": 0
+            },
+            "magnolia": {
+              "public": 220,
+              "private": 0,
+              "unknown": 0
+            },
+            "crabapple": {
+              "public": 14623,
+              "private": 0,
+              "unknown": 0
+            }
+          },
           "raw_bytes": 11604093,
           "gzip_bytes": 526311
         }

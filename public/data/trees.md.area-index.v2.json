@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-03-12T05:35:52.872888+00:00",
+  "generated_at": "2026-03-12T19:38:26.573144+00:00",
   "region": "md",
   "strategy": "area_shard",
   "items": [
@@ -33,6 +33,38 @@
         "magnolia": 63,
         "crabapple": 69
       },
+      "ownership_counts": {
+        "public": 260,
+        "private": 0,
+        "unknown": 0
+      },
+      "species_ownership_counts": {
+        "cherry": {
+          "public": 122,
+          "private": 0,
+          "unknown": 0
+        },
+        "plum": {
+          "public": 5,
+          "private": 0,
+          "unknown": 0
+        },
+        "peach": {
+          "public": 1,
+          "private": 0,
+          "unknown": 0
+        },
+        "magnolia": {
+          "public": 63,
+          "private": 0,
+          "unknown": 0
+        },
+        "crabapple": {
+          "public": 69,
+          "private": 0,
+          "unknown": 0
+        }
+      },
       "ownership_groups": [
         "public"
       ],
@@ -51,6 +83,45 @@
           ],
           "data_path": "/data/trees.md.area.annapolis.v2.geojson",
           "tree_count": 260,
+          "ownership_counts": {
+            "public": 260,
+            "private": 0,
+            "unknown": 0
+          },
+          "species_counts": {
+            "cherry": 122,
+            "plum": 5,
+            "peach": 1,
+            "magnolia": 63,
+            "crabapple": 69
+          },
+          "species_ownership_counts": {
+            "cherry": {
+              "public": 122,
+              "private": 0,
+              "unknown": 0
+            },
+            "plum": {
+              "public": 5,
+              "private": 0,
+              "unknown": 0
+            },
+            "peach": {
+              "public": 1,
+              "private": 0,
+              "unknown": 0
+            },
+            "magnolia": {
+              "public": 63,
+              "private": 0,
+              "unknown": 0
+            },
+            "crabapple": {
+              "public": 69,
+              "private": 0,
+              "unknown": 0
+            }
+          },
           "raw_bytes": 130939,
           "gzip_bytes": 6869
         }
@@ -110,6 +181,38 @@
         "magnolia": 674,
         "crabapple": 890
       },
+      "ownership_counts": {
+        "public": 1920,
+        "private": 0,
+        "unknown": 0
+      },
+      "species_ownership_counts": {
+        "cherry": {
+          "public": 174,
+          "private": 0,
+          "unknown": 0
+        },
+        "plum": {
+          "public": 162,
+          "private": 0,
+          "unknown": 0
+        },
+        "peach": {
+          "public": 20,
+          "private": 0,
+          "unknown": 0
+        },
+        "magnolia": {
+          "public": 674,
+          "private": 0,
+          "unknown": 0
+        },
+        "crabapple": {
+          "public": 890,
+          "private": 0,
+          "unknown": 0
+        }
+      },
       "ownership_groups": [
         "public"
       ],
@@ -128,6 +231,45 @@
           ],
           "data_path": "/data/trees.md.area.baltimore.v2.geojson",
           "tree_count": 1920,
+          "ownership_counts": {
+            "public": 1920,
+            "private": 0,
+            "unknown": 0
+          },
+          "species_counts": {
+            "cherry": 174,
+            "plum": 162,
+            "peach": 20,
+            "magnolia": 674,
+            "crabapple": 890
+          },
+          "species_ownership_counts": {
+            "cherry": {
+              "public": 174,
+              "private": 0,
+              "unknown": 0
+            },
+            "plum": {
+              "public": 162,
+              "private": 0,
+              "unknown": 0
+            },
+            "peach": {
+              "public": 20,
+              "private": 0,
+              "unknown": 0
+            },
+            "magnolia": {
+              "public": 674,
+              "private": 0,
+              "unknown": 0
+            },
+            "crabapple": {
+              "public": 890,
+              "private": 0,
+              "unknown": 0
+            }
+          },
           "raw_bytes": 933719,
           "gzip_bytes": 50460
         }

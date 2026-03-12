@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-03-12T05:35:52.872888+00:00",
+  "generated_at": "2026-03-12T19:38:26.573144+00:00",
   "region": "ny",
   "strategy": "area_shard",
   "items": [
@@ -31,6 +31,38 @@
         "magnolia": 226,
         "crabapple": 1072
       },
+      "ownership_counts": {
+        "public": 2396,
+        "private": 0,
+        "unknown": 0
+      },
+      "species_ownership_counts": {
+        "cherry": {
+          "public": 1042,
+          "private": 0,
+          "unknown": 0
+        },
+        "plum": {
+          "public": 34,
+          "private": 0,
+          "unknown": 0
+        },
+        "peach": {
+          "public": 22,
+          "private": 0,
+          "unknown": 0
+        },
+        "magnolia": {
+          "public": 226,
+          "private": 0,
+          "unknown": 0
+        },
+        "crabapple": {
+          "public": 1072,
+          "private": 0,
+          "unknown": 0
+        }
+      },
       "ownership_groups": [
         "public"
       ],
@@ -49,6 +81,45 @@
           ],
           "data_path": "/data/trees.ny.area.albany.v2.geojson",
           "tree_count": 2396,
+          "ownership_counts": {
+            "public": 2396,
+            "private": 0,
+            "unknown": 0
+          },
+          "species_counts": {
+            "cherry": 1042,
+            "plum": 34,
+            "peach": 22,
+            "magnolia": 226,
+            "crabapple": 1072
+          },
+          "species_ownership_counts": {
+            "cherry": {
+              "public": 1042,
+              "private": 0,
+              "unknown": 0
+            },
+            "plum": {
+              "public": 34,
+              "private": 0,
+              "unknown": 0
+            },
+            "peach": {
+              "public": 22,
+              "private": 0,
+              "unknown": 0
+            },
+            "magnolia": {
+              "public": 226,
+              "private": 0,
+              "unknown": 0
+            },
+            "crabapple": {
+              "public": 1072,
+              "private": 0,
+              "unknown": 0
+            }
+          },
           "raw_bytes": 1172332,
           "gzip_bytes": 50451
         }
@@ -82,6 +153,38 @@
         "magnolia": 50,
         "crabapple": 2566
       },
+      "ownership_counts": {
+        "public": 4925,
+        "private": 0,
+        "unknown": 0
+      },
+      "species_ownership_counts": {
+        "cherry": {
+          "public": 2241,
+          "private": 0,
+          "unknown": 0
+        },
+        "plum": {
+          "public": 61,
+          "private": 0,
+          "unknown": 0
+        },
+        "peach": {
+          "public": 7,
+          "private": 0,
+          "unknown": 0
+        },
+        "magnolia": {
+          "public": 50,
+          "private": 0,
+          "unknown": 0
+        },
+        "crabapple": {
+          "public": 2566,
+          "private": 0,
+          "unknown": 0
+        }
+      },
       "ownership_groups": [
         "public"
       ],
@@ -100,6 +203,45 @@
           ],
           "data_path": "/data/trees.ny.area.buffalo.v2.geojson",
           "tree_count": 4925,
+          "ownership_counts": {
+            "public": 4925,
+            "private": 0,
+            "unknown": 0
+          },
+          "species_counts": {
+            "cherry": 2241,
+            "plum": 61,
+            "peach": 7,
+            "magnolia": 50,
+            "crabapple": 2566
+          },
+          "species_ownership_counts": {
+            "cherry": {
+              "public": 2241,
+              "private": 0,
+              "unknown": 0
+            },
+            "plum": {
+              "public": 61,
+              "private": 0,
+              "unknown": 0
+            },
+            "peach": {
+              "public": 7,
+              "private": 0,
+              "unknown": 0
+            },
+            "magnolia": {
+              "public": 50,
+              "private": 0,
+              "unknown": 0
+            },
+            "crabapple": {
+              "public": 2566,
+              "private": 0,
+              "unknown": 0
+            }
+          },
           "raw_bytes": 2459543,
           "gzip_bytes": 111975
         }
@@ -133,6 +275,38 @@
         "magnolia": 39,
         "crabapple": 888
       },
+      "ownership_counts": {
+        "public": 1357,
+        "private": 0,
+        "unknown": 0
+      },
+      "species_ownership_counts": {
+        "cherry": {
+          "public": 413,
+          "private": 0,
+          "unknown": 0
+        },
+        "plum": {
+          "public": 12,
+          "private": 0,
+          "unknown": 0
+        },
+        "peach": {
+          "public": 5,
+          "private": 0,
+          "unknown": 0
+        },
+        "magnolia": {
+          "public": 39,
+          "private": 0,
+          "unknown": 0
+        },
+        "crabapple": {
+          "public": 888,
+          "private": 0,
+          "unknown": 0
+        }
+      },
       "ownership_groups": [
         "public"
       ],
@@ -151,6 +325,45 @@
           ],
           "data_path": "/data/trees.ny.area.ithaca.v2.geojson",
           "tree_count": 1357,
+          "ownership_counts": {
+            "public": 1357,
+            "private": 0,
+            "unknown": 0
+          },
+          "species_counts": {
+            "cherry": 413,
+            "plum": 12,
+            "peach": 5,
+            "magnolia": 39,
+            "crabapple": 888
+          },
+          "species_ownership_counts": {
+            "cherry": {
+              "public": 413,
+              "private": 0,
+              "unknown": 0
+            },
+            "plum": {
+              "public": 12,
+              "private": 0,
+              "unknown": 0
+            },
+            "peach": {
+              "public": 5,
+              "private": 0,
+              "unknown": 0
+            },
+            "magnolia": {
+              "public": 39,
+              "private": 0,
+              "unknown": 0
+            },
+            "crabapple": {
+              "public": 888,
+              "private": 0,
+              "unknown": 0
+            }
+          },
           "raw_bytes": 679937,
           "gzip_bytes": 29911
         }
@@ -358,6 +571,38 @@
         "magnolia": 1000,
         "crabapple": 3527
       },
+      "ownership_counts": {
+        "public": 40685,
+        "private": 0,
+        "unknown": 0
+      },
+      "species_ownership_counts": {
+        "cherry": {
+          "public": 29279,
+          "private": 0,
+          "unknown": 0
+        },
+        "plum": {
+          "public": 6879,
+          "private": 0,
+          "unknown": 0
+        },
+        "peach": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        },
+        "magnolia": {
+          "public": 1000,
+          "private": 0,
+          "unknown": 0
+        },
+        "crabapple": {
+          "public": 3527,
+          "private": 0,
+          "unknown": 0
+        }
+      },
       "ownership_groups": [
         "public"
       ],
@@ -376,6 +621,45 @@
           ],
           "data_path": "/data/trees.ny.area.new-york-city.shard-001.v2.geojson",
           "tree_count": 20342,
+          "ownership_counts": {
+            "public": 20342,
+            "private": 0,
+            "unknown": 0
+          },
+          "species_counts": {
+            "cherry": 13997,
+            "plum": 3755,
+            "peach": 0,
+            "magnolia": 606,
+            "crabapple": 1984
+          },
+          "species_ownership_counts": {
+            "cherry": {
+              "public": 13997,
+              "private": 0,
+              "unknown": 0
+            },
+            "plum": {
+              "public": 3755,
+              "private": 0,
+              "unknown": 0
+            },
+            "peach": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            },
+            "magnolia": {
+              "public": 606,
+              "private": 0,
+              "unknown": 0
+            },
+            "crabapple": {
+              "public": 1984,
+              "private": 0,
+              "unknown": 0
+            }
+          },
           "raw_bytes": 11401075,
           "gzip_bytes": 346577
         },
@@ -393,6 +677,45 @@
           ],
           "data_path": "/data/trees.ny.area.new-york-city.shard-002.v2.geojson",
           "tree_count": 20343,
+          "ownership_counts": {
+            "public": 20343,
+            "private": 0,
+            "unknown": 0
+          },
+          "species_counts": {
+            "cherry": 15282,
+            "plum": 3124,
+            "peach": 0,
+            "magnolia": 394,
+            "crabapple": 1543
+          },
+          "species_ownership_counts": {
+            "cherry": {
+              "public": 15282,
+              "private": 0,
+              "unknown": 0
+            },
+            "plum": {
+              "public": 3124,
+              "private": 0,
+              "unknown": 0
+            },
+            "peach": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            },
+            "magnolia": {
+              "public": 394,
+              "private": 0,
+              "unknown": 0
+            },
+            "crabapple": {
+              "public": 1543,
+              "private": 0,
+              "unknown": 0
+            }
+          },
           "raw_bytes": 11370492,
           "gzip_bytes": 345492
         }
@@ -426,6 +749,38 @@
         "magnolia": 21,
         "crabapple": 459
       },
+      "ownership_counts": {
+        "public": 586,
+        "private": 0,
+        "unknown": 0
+      },
+      "species_ownership_counts": {
+        "cherry": {
+          "public": 83,
+          "private": 0,
+          "unknown": 0
+        },
+        "plum": {
+          "public": 12,
+          "private": 0,
+          "unknown": 0
+        },
+        "peach": {
+          "public": 11,
+          "private": 0,
+          "unknown": 0
+        },
+        "magnolia": {
+          "public": 21,
+          "private": 0,
+          "unknown": 0
+        },
+        "crabapple": {
+          "public": 459,
+          "private": 0,
+          "unknown": 0
+        }
+      },
       "ownership_groups": [
         "public"
       ],
@@ -444,6 +799,45 @@
           ],
           "data_path": "/data/trees.ny.area.saratoga-springs.v2.geojson",
           "tree_count": 586,
+          "ownership_counts": {
+            "public": 586,
+            "private": 0,
+            "unknown": 0
+          },
+          "species_counts": {
+            "cherry": 83,
+            "plum": 12,
+            "peach": 11,
+            "magnolia": 21,
+            "crabapple": 459
+          },
+          "species_ownership_counts": {
+            "cherry": {
+              "public": 83,
+              "private": 0,
+              "unknown": 0
+            },
+            "plum": {
+              "public": 12,
+              "private": 0,
+              "unknown": 0
+            },
+            "peach": {
+              "public": 11,
+              "private": 0,
+              "unknown": 0
+            },
+            "magnolia": {
+              "public": 21,
+              "private": 0,
+              "unknown": 0
+            },
+            "crabapple": {
+              "public": 459,
+              "private": 0,
+              "unknown": 0
+            }
+          },
           "raw_bytes": 300396,
           "gzip_bytes": 14751
         }
@@ -477,6 +871,38 @@
         "magnolia": 11,
         "crabapple": 588
       },
+      "ownership_counts": {
+        "public": 697,
+        "private": 0,
+        "unknown": 0
+      },
+      "species_ownership_counts": {
+        "cherry": {
+          "public": 98,
+          "private": 0,
+          "unknown": 0
+        },
+        "plum": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        },
+        "peach": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        },
+        "magnolia": {
+          "public": 11,
+          "private": 0,
+          "unknown": 0
+        },
+        "crabapple": {
+          "public": 588,
+          "private": 0,
+          "unknown": 0
+        }
+      },
       "ownership_groups": [
         "public"
       ],
@@ -495,6 +921,45 @@
           ],
           "data_path": "/data/trees.ny.area.syracuse.v2.geojson",
           "tree_count": 697,
+          "ownership_counts": {
+            "public": 697,
+            "private": 0,
+            "unknown": 0
+          },
+          "species_counts": {
+            "cherry": 98,
+            "plum": 0,
+            "peach": 0,
+            "magnolia": 11,
+            "crabapple": 588
+          },
+          "species_ownership_counts": {
+            "cherry": {
+              "public": 98,
+              "private": 0,
+              "unknown": 0
+            },
+            "plum": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            },
+            "peach": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            },
+            "magnolia": {
+              "public": 11,
+              "private": 0,
+              "unknown": 0
+            },
+            "crabapple": {
+              "public": 588,
+              "private": 0,
+              "unknown": 0
+            }
+          },
           "raw_bytes": 356209,
           "gzip_bytes": 15175
         }
@@ -529,6 +994,38 @@
         "magnolia": 18,
         "crabapple": 378
       },
+      "ownership_counts": {
+        "public": 716,
+        "private": 0,
+        "unknown": 0
+      },
+      "species_ownership_counts": {
+        "cherry": {
+          "public": 287,
+          "private": 0,
+          "unknown": 0
+        },
+        "plum": {
+          "public": 24,
+          "private": 0,
+          "unknown": 0
+        },
+        "peach": {
+          "public": 9,
+          "private": 0,
+          "unknown": 0
+        },
+        "magnolia": {
+          "public": 18,
+          "private": 0,
+          "unknown": 0
+        },
+        "crabapple": {
+          "public": 378,
+          "private": 0,
+          "unknown": 0
+        }
+      },
       "ownership_groups": [
         "public"
       ],
@@ -547,6 +1044,45 @@
           ],
           "data_path": "/data/trees.ny.area.troy.v2.geojson",
           "tree_count": 716,
+          "ownership_counts": {
+            "public": 716,
+            "private": 0,
+            "unknown": 0
+          },
+          "species_counts": {
+            "cherry": 287,
+            "plum": 24,
+            "peach": 9,
+            "magnolia": 18,
+            "crabapple": 378
+          },
+          "species_ownership_counts": {
+            "cherry": {
+              "public": 287,
+              "private": 0,
+              "unknown": 0
+            },
+            "plum": {
+              "public": 24,
+              "private": 0,
+              "unknown": 0
+            },
+            "peach": {
+              "public": 9,
+              "private": 0,
+              "unknown": 0
+            },
+            "magnolia": {
+              "public": 18,
+              "private": 0,
+              "unknown": 0
+            },
+            "crabapple": {
+              "public": 378,
+              "private": 0,
+              "unknown": 0
+            }
+          },
           "raw_bytes": 343653,
           "gzip_bytes": 17790
         }

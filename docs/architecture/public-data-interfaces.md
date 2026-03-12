@@ -33,12 +33,17 @@ Published area-shard index for one region.
   - `tree_count`
   - `zip_codes[]`
   - `species_counts`
+  - `ownership_counts`
+  - `species_ownership_counts`
   - `ownership_groups[]`
   - `shards[]`
     - `id`
     - `bounds`
     - `data_path`
     - `tree_count`
+    - `ownership_counts`
+    - `species_counts`
+    - `species_ownership_counts`
     - `raw_bytes`
     - `gzip_bytes`
 
@@ -77,6 +82,15 @@ Manifest for the PMTiles render layer.
 
 ## `GET /data/trees.render.v1.pmtiles`
 PMTiles vector archive used for map rendering. This layer is intentionally lightweight and carries only render-safe fields needed for filters and click-to-detail handoff.
+
+### `feature.properties`
+- `id`
+- `species_group`
+- `ownership`
+- `city`
+- `region`
+- `area_slug`
+- `data_path`
 
 ## `GET /data/coverage.v1.geojson`
 GeoJSON `FeatureCollection` for coverage overlays.

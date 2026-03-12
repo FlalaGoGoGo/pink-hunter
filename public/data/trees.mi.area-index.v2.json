@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-03-12T05:35:52.872888+00:00",
+  "generated_at": "2026-03-12T19:38:26.573144+00:00",
   "region": "mi",
   "strategy": "area_shard",
   "items": [
@@ -35,6 +35,38 @@
         "magnolia": 64,
         "crabapple": 2735
       },
+      "ownership_counts": {
+        "public": 3756,
+        "private": 0,
+        "unknown": 0
+      },
+      "species_ownership_counts": {
+        "cherry": {
+          "public": 521,
+          "private": 0,
+          "unknown": 0
+        },
+        "plum": {
+          "public": 427,
+          "private": 0,
+          "unknown": 0
+        },
+        "peach": {
+          "public": 9,
+          "private": 0,
+          "unknown": 0
+        },
+        "magnolia": {
+          "public": 64,
+          "private": 0,
+          "unknown": 0
+        },
+        "crabapple": {
+          "public": 2735,
+          "private": 0,
+          "unknown": 0
+        }
+      },
       "ownership_groups": [
         "public"
       ],
@@ -53,6 +85,45 @@
           ],
           "data_path": "/data/trees.mi.area.ann-arbor.v2.geojson",
           "tree_count": 3756,
+          "ownership_counts": {
+            "public": 3756,
+            "private": 0,
+            "unknown": 0
+          },
+          "species_counts": {
+            "cherry": 521,
+            "plum": 427,
+            "peach": 9,
+            "magnolia": 64,
+            "crabapple": 2735
+          },
+          "species_ownership_counts": {
+            "cherry": {
+              "public": 521,
+              "private": 0,
+              "unknown": 0
+            },
+            "plum": {
+              "public": 427,
+              "private": 0,
+              "unknown": 0
+            },
+            "peach": {
+              "public": 9,
+              "private": 0,
+              "unknown": 0
+            },
+            "magnolia": {
+              "public": 64,
+              "private": 0,
+              "unknown": 0
+            },
+            "crabapple": {
+              "public": 2735,
+              "private": 0,
+              "unknown": 0
+            }
+          },
           "raw_bytes": 1791964,
           "gzip_bytes": 93485
         }
@@ -86,6 +157,38 @@
         "magnolia": 0,
         "crabapple": 1
       },
+      "ownership_counts": {
+        "public": 2,
+        "private": 0,
+        "unknown": 0
+      },
+      "species_ownership_counts": {
+        "cherry": {
+          "public": 1,
+          "private": 0,
+          "unknown": 0
+        },
+        "plum": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        },
+        "peach": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        },
+        "magnolia": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        },
+        "crabapple": {
+          "public": 1,
+          "private": 0,
+          "unknown": 0
+        }
+      },
       "ownership_groups": [
         "public"
       ],
@@ -104,6 +207,45 @@
           ],
           "data_path": "/data/trees.mi.area.dearborn-heights.v2.geojson",
           "tree_count": 2,
+          "ownership_counts": {
+            "public": 2,
+            "private": 0,
+            "unknown": 0
+          },
+          "species_counts": {
+            "cherry": 1,
+            "plum": 0,
+            "peach": 0,
+            "magnolia": 0,
+            "crabapple": 1
+          },
+          "species_ownership_counts": {
+            "cherry": {
+              "public": 1,
+              "private": 0,
+              "unknown": 0
+            },
+            "plum": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            },
+            "peach": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            },
+            "magnolia": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            },
+            "crabapple": {
+              "public": 1,
+              "private": 0,
+              "unknown": 0
+            }
+          },
           "raw_bytes": 1094,
           "gzip_bytes": 392
         }
@@ -140,6 +282,38 @@
         "magnolia": 13,
         "crabapple": 476
       },
+      "ownership_counts": {
+        "public": 521,
+        "private": 0,
+        "unknown": 0
+      },
+      "species_ownership_counts": {
+        "cherry": {
+          "public": 32,
+          "private": 0,
+          "unknown": 0
+        },
+        "plum": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        },
+        "peach": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        },
+        "magnolia": {
+          "public": 13,
+          "private": 0,
+          "unknown": 0
+        },
+        "crabapple": {
+          "public": 476,
+          "private": 0,
+          "unknown": 0
+        }
+      },
       "ownership_groups": [
         "public"
       ],
@@ -158,6 +332,45 @@
           ],
           "data_path": "/data/trees.mi.area.east-lansing.v2.geojson",
           "tree_count": 521,
+          "ownership_counts": {
+            "public": 521,
+            "private": 0,
+            "unknown": 0
+          },
+          "species_counts": {
+            "cherry": 32,
+            "plum": 0,
+            "peach": 0,
+            "magnolia": 13,
+            "crabapple": 476
+          },
+          "species_ownership_counts": {
+            "cherry": {
+              "public": 32,
+              "private": 0,
+              "unknown": 0
+            },
+            "plum": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            },
+            "peach": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            },
+            "magnolia": {
+              "public": 13,
+              "private": 0,
+              "unknown": 0
+            },
+            "crabapple": {
+              "public": 476,
+              "private": 0,
+              "unknown": 0
+            }
+          },
           "raw_bytes": 256802,
           "gzip_bytes": 12937
         }
@@ -195,6 +408,38 @@
         "magnolia": 1,
         "crabapple": 10
       },
+      "ownership_counts": {
+        "public": 13,
+        "private": 0,
+        "unknown": 0
+      },
+      "species_ownership_counts": {
+        "cherry": {
+          "public": 2,
+          "private": 0,
+          "unknown": 0
+        },
+        "plum": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        },
+        "peach": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        },
+        "magnolia": {
+          "public": 1,
+          "private": 0,
+          "unknown": 0
+        },
+        "crabapple": {
+          "public": 10,
+          "private": 0,
+          "unknown": 0
+        }
+      },
       "ownership_groups": [
         "public"
       ],
@@ -213,6 +458,45 @@
           ],
           "data_path": "/data/trees.mi.area.grand-rapids.v2.geojson",
           "tree_count": 13,
+          "ownership_counts": {
+            "public": 13,
+            "private": 0,
+            "unknown": 0
+          },
+          "species_counts": {
+            "cherry": 2,
+            "plum": 0,
+            "peach": 0,
+            "magnolia": 1,
+            "crabapple": 10
+          },
+          "species_ownership_counts": {
+            "cherry": {
+              "public": 2,
+              "private": 0,
+              "unknown": 0
+            },
+            "plum": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            },
+            "peach": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            },
+            "magnolia": {
+              "public": 1,
+              "private": 0,
+              "unknown": 0
+            },
+            "crabapple": {
+              "public": 10,
+              "private": 0,
+              "unknown": 0
+            }
+          },
           "raw_bytes": 7021,
           "gzip_bytes": 842
         }
@@ -249,6 +533,38 @@
         "magnolia": 10,
         "crabapple": 1449
       },
+      "ownership_counts": {
+        "public": 1556,
+        "private": 0,
+        "unknown": 0
+      },
+      "species_ownership_counts": {
+        "cherry": {
+          "public": 46,
+          "private": 0,
+          "unknown": 0
+        },
+        "plum": {
+          "public": 47,
+          "private": 0,
+          "unknown": 0
+        },
+        "peach": {
+          "public": 4,
+          "private": 0,
+          "unknown": 0
+        },
+        "magnolia": {
+          "public": 10,
+          "private": 0,
+          "unknown": 0
+        },
+        "crabapple": {
+          "public": 1449,
+          "private": 0,
+          "unknown": 0
+        }
+      },
       "ownership_groups": [
         "public"
       ],
@@ -267,6 +583,45 @@
           ],
           "data_path": "/data/trees.mi.area.novi.v2.geojson",
           "tree_count": 1556,
+          "ownership_counts": {
+            "public": 1556,
+            "private": 0,
+            "unknown": 0
+          },
+          "species_counts": {
+            "cherry": 46,
+            "plum": 47,
+            "peach": 4,
+            "magnolia": 10,
+            "crabapple": 1449
+          },
+          "species_ownership_counts": {
+            "cherry": {
+              "public": 46,
+              "private": 0,
+              "unknown": 0
+            },
+            "plum": {
+              "public": 47,
+              "private": 0,
+              "unknown": 0
+            },
+            "peach": {
+              "public": 4,
+              "private": 0,
+              "unknown": 0
+            },
+            "magnolia": {
+              "public": 10,
+              "private": 0,
+              "unknown": 0
+            },
+            "crabapple": {
+              "public": 1449,
+              "private": 0,
+              "unknown": 0
+            }
+          },
           "raw_bytes": 794384,
           "gzip_bytes": 36701
         }

@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-03-12T05:35:52.872888+00:00",
+  "generated_at": "2026-03-12T19:38:26.573144+00:00",
   "region": "or",
   "strategy": "area_shard",
   "items": [
@@ -31,6 +31,38 @@
         "magnolia": 5191,
         "crabapple": 9477
       },
+      "ownership_counts": {
+        "public": 24775,
+        "private": 0,
+        "unknown": 0
+      },
+      "species_ownership_counts": {
+        "cherry": {
+          "public": 2375,
+          "private": 0,
+          "unknown": 0
+        },
+        "plum": {
+          "public": 7473,
+          "private": 0,
+          "unknown": 0
+        },
+        "peach": {
+          "public": 259,
+          "private": 0,
+          "unknown": 0
+        },
+        "magnolia": {
+          "public": 5191,
+          "private": 0,
+          "unknown": 0
+        },
+        "crabapple": {
+          "public": 9477,
+          "private": 0,
+          "unknown": 0
+        }
+      },
       "ownership_groups": [
         "public"
       ],
@@ -49,6 +81,45 @@
           ],
           "data_path": "/data/trees.or.area.portland.shard-001.v2.geojson",
           "tree_count": 12387,
+          "ownership_counts": {
+            "public": 12387,
+            "private": 0,
+            "unknown": 0
+          },
+          "species_counts": {
+            "cherry": 1008,
+            "plum": 3280,
+            "peach": 104,
+            "magnolia": 2850,
+            "crabapple": 5145
+          },
+          "species_ownership_counts": {
+            "cherry": {
+              "public": 1008,
+              "private": 0,
+              "unknown": 0
+            },
+            "plum": {
+              "public": 3280,
+              "private": 0,
+              "unknown": 0
+            },
+            "peach": {
+              "public": 104,
+              "private": 0,
+              "unknown": 0
+            },
+            "magnolia": {
+              "public": 2850,
+              "private": 0,
+              "unknown": 0
+            },
+            "crabapple": {
+              "public": 5145,
+              "private": 0,
+              "unknown": 0
+            }
+          },
           "raw_bytes": 6510618,
           "gzip_bytes": 292466
         },
@@ -66,6 +137,45 @@
           ],
           "data_path": "/data/trees.or.area.portland.shard-002.v2.geojson",
           "tree_count": 12388,
+          "ownership_counts": {
+            "public": 12388,
+            "private": 0,
+            "unknown": 0
+          },
+          "species_counts": {
+            "cherry": 1367,
+            "plum": 4193,
+            "peach": 155,
+            "magnolia": 2341,
+            "crabapple": 4332
+          },
+          "species_ownership_counts": {
+            "cherry": {
+              "public": 1367,
+              "private": 0,
+              "unknown": 0
+            },
+            "plum": {
+              "public": 4193,
+              "private": 0,
+              "unknown": 0
+            },
+            "peach": {
+              "public": 155,
+              "private": 0,
+              "unknown": 0
+            },
+            "magnolia": {
+              "public": 2341,
+              "private": 0,
+              "unknown": 0
+            },
+            "crabapple": {
+              "public": 4332,
+              "private": 0,
+              "unknown": 0
+            }
+          },
           "raw_bytes": 6498911,
           "gzip_bytes": 293757
         }

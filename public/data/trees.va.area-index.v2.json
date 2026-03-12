@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-03-12T19:37:30.923047+00:00",
+  "generated_at": "2026-03-12T19:38:26.573144+00:00",
   "region": "va",
   "strategy": "area_shard",
   "items": [
@@ -31,6 +31,38 @@
         "magnolia": 296,
         "crabapple": 80
       },
+      "ownership_counts": {
+        "public": 1853,
+        "private": 29,
+        "unknown": 0
+      },
+      "species_ownership_counts": {
+        "cherry": {
+          "public": 1392,
+          "private": 21,
+          "unknown": 0
+        },
+        "plum": {
+          "public": 92,
+          "private": 1,
+          "unknown": 0
+        },
+        "peach": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        },
+        "magnolia": {
+          "public": 290,
+          "private": 6,
+          "unknown": 0
+        },
+        "crabapple": {
+          "public": 79,
+          "private": 1,
+          "unknown": 0
+        }
+      },
       "ownership_groups": [
         "public",
         "private"
@@ -50,6 +82,45 @@
           ],
           "data_path": "/data/trees.va.area.arlington.v2.geojson",
           "tree_count": 1882,
+          "ownership_counts": {
+            "public": 1853,
+            "private": 29,
+            "unknown": 0
+          },
+          "species_counts": {
+            "cherry": 1413,
+            "plum": 93,
+            "peach": 0,
+            "magnolia": 296,
+            "crabapple": 80
+          },
+          "species_ownership_counts": {
+            "cherry": {
+              "public": 1392,
+              "private": 21,
+              "unknown": 0
+            },
+            "plum": {
+              "public": 92,
+              "private": 1,
+              "unknown": 0
+            },
+            "peach": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            },
+            "magnolia": {
+              "public": 290,
+              "private": 6,
+              "unknown": 0
+            },
+            "crabapple": {
+              "public": 79,
+              "private": 1,
+              "unknown": 0
+            }
+          },
           "raw_bytes": 892680,
           "gzip_bytes": 45013
         }
@@ -85,6 +156,38 @@
         "magnolia": 118,
         "crabapple": 28
       },
+      "ownership_counts": {
+        "public": 481,
+        "private": 0,
+        "unknown": 0
+      },
+      "species_ownership_counts": {
+        "cherry": {
+          "public": 316,
+          "private": 0,
+          "unknown": 0
+        },
+        "plum": {
+          "public": 15,
+          "private": 0,
+          "unknown": 0
+        },
+        "peach": {
+          "public": 4,
+          "private": 0,
+          "unknown": 0
+        },
+        "magnolia": {
+          "public": 118,
+          "private": 0,
+          "unknown": 0
+        },
+        "crabapple": {
+          "public": 28,
+          "private": 0,
+          "unknown": 0
+        }
+      },
       "ownership_groups": [
         "public"
       ],
@@ -103,6 +206,45 @@
           ],
           "data_path": "/data/trees.va.area.fairfax.v2.geojson",
           "tree_count": 481,
+          "ownership_counts": {
+            "public": 481,
+            "private": 0,
+            "unknown": 0
+          },
+          "species_counts": {
+            "cherry": 316,
+            "plum": 15,
+            "peach": 4,
+            "magnolia": 118,
+            "crabapple": 28
+          },
+          "species_ownership_counts": {
+            "cherry": {
+              "public": 316,
+              "private": 0,
+              "unknown": 0
+            },
+            "plum": {
+              "public": 15,
+              "private": 0,
+              "unknown": 0
+            },
+            "peach": {
+              "public": 4,
+              "private": 0,
+              "unknown": 0
+            },
+            "magnolia": {
+              "public": 118,
+              "private": 0,
+              "unknown": 0
+            },
+            "crabapple": {
+              "public": 28,
+              "private": 0,
+              "unknown": 0
+            }
+          },
           "raw_bytes": 239565,
           "gzip_bytes": 12164
         }
@@ -136,6 +278,38 @@
         "magnolia": 300,
         "crabapple": 37
       },
+      "ownership_counts": {
+        "public": 912,
+        "private": 0,
+        "unknown": 0
+      },
+      "species_ownership_counts": {
+        "cherry": {
+          "public": 469,
+          "private": 0,
+          "unknown": 0
+        },
+        "plum": {
+          "public": 106,
+          "private": 0,
+          "unknown": 0
+        },
+        "peach": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        },
+        "magnolia": {
+          "public": 300,
+          "private": 0,
+          "unknown": 0
+        },
+        "crabapple": {
+          "public": 37,
+          "private": 0,
+          "unknown": 0
+        }
+      },
       "ownership_groups": [
         "public"
       ],
@@ -154,6 +328,45 @@
           ],
           "data_path": "/data/trees.va.area.falls-church.v2.geojson",
           "tree_count": 912,
+          "ownership_counts": {
+            "public": 912,
+            "private": 0,
+            "unknown": 0
+          },
+          "species_counts": {
+            "cherry": 469,
+            "plum": 106,
+            "peach": 0,
+            "magnolia": 300,
+            "crabapple": 37
+          },
+          "species_ownership_counts": {
+            "cherry": {
+              "public": 469,
+              "private": 0,
+              "unknown": 0
+            },
+            "plum": {
+              "public": 106,
+              "private": 0,
+              "unknown": 0
+            },
+            "peach": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            },
+            "magnolia": {
+              "public": 300,
+              "private": 0,
+              "unknown": 0
+            },
+            "crabapple": {
+              "public": 37,
+              "private": 0,
+              "unknown": 0
+            }
+          },
           "raw_bytes": 473964,
           "gzip_bytes": 20690
         }
@@ -200,6 +413,38 @@
         "magnolia": 905,
         "crabapple": 252
       },
+      "ownership_counts": {
+        "public": 2099,
+        "private": 0,
+        "unknown": 0
+      },
+      "species_ownership_counts": {
+        "cherry": {
+          "public": 763,
+          "private": 0,
+          "unknown": 0
+        },
+        "plum": {
+          "public": 173,
+          "private": 0,
+          "unknown": 0
+        },
+        "peach": {
+          "public": 6,
+          "private": 0,
+          "unknown": 0
+        },
+        "magnolia": {
+          "public": 905,
+          "private": 0,
+          "unknown": 0
+        },
+        "crabapple": {
+          "public": 252,
+          "private": 0,
+          "unknown": 0
+        }
+      },
       "ownership_groups": [
         "public"
       ],
@@ -218,6 +463,45 @@
           ],
           "data_path": "/data/trees.va.area.richmond.v2.geojson",
           "tree_count": 2099,
+          "ownership_counts": {
+            "public": 2099,
+            "private": 0,
+            "unknown": 0
+          },
+          "species_counts": {
+            "cherry": 763,
+            "plum": 173,
+            "peach": 6,
+            "magnolia": 905,
+            "crabapple": 252
+          },
+          "species_ownership_counts": {
+            "cherry": {
+              "public": 763,
+              "private": 0,
+              "unknown": 0
+            },
+            "plum": {
+              "public": 173,
+              "private": 0,
+              "unknown": 0
+            },
+            "peach": {
+              "public": 6,
+              "private": 0,
+              "unknown": 0
+            },
+            "magnolia": {
+              "public": 905,
+              "private": 0,
+              "unknown": 0
+            },
+            "crabapple": {
+              "public": 252,
+              "private": 0,
+              "unknown": 0
+            }
+          },
           "raw_bytes": 1064202,
           "gzip_bytes": 51981
         }
@@ -259,6 +543,38 @@
         "magnolia": 1245,
         "crabapple": 54
       },
+      "ownership_counts": {
+        "public": 1629,
+        "private": 0,
+        "unknown": 0
+      },
+      "species_ownership_counts": {
+        "cherry": {
+          "public": 326,
+          "private": 0,
+          "unknown": 0
+        },
+        "plum": {
+          "public": 4,
+          "private": 0,
+          "unknown": 0
+        },
+        "peach": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        },
+        "magnolia": {
+          "public": 1245,
+          "private": 0,
+          "unknown": 0
+        },
+        "crabapple": {
+          "public": 54,
+          "private": 0,
+          "unknown": 0
+        }
+      },
       "ownership_groups": [
         "public"
       ],
@@ -277,6 +593,45 @@
           ],
           "data_path": "/data/trees.va.area.virginia-beach.v2.geojson",
           "tree_count": 1629,
+          "ownership_counts": {
+            "public": 1629,
+            "private": 0,
+            "unknown": 0
+          },
+          "species_counts": {
+            "cherry": 326,
+            "plum": 4,
+            "peach": 0,
+            "magnolia": 1245,
+            "crabapple": 54
+          },
+          "species_ownership_counts": {
+            "cherry": {
+              "public": 326,
+              "private": 0,
+              "unknown": 0
+            },
+            "plum": {
+              "public": 4,
+              "private": 0,
+              "unknown": 0
+            },
+            "peach": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            },
+            "magnolia": {
+              "public": 1245,
+              "private": 0,
+              "unknown": 0
+            },
+            "crabapple": {
+              "public": 54,
+              "private": 0,
+              "unknown": 0
+            }
+          },
           "raw_bytes": 838862,
           "gzip_bytes": 42431
         }

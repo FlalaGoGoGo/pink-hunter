@@ -105,6 +105,11 @@ const EMPTY_SPECIES_COUNTS: SpeciesCounts = {
   magnolia: 0,
   crabapple: 0
 };
+const EMPTY_OWNERSHIP_COUNTS: Record<OwnershipGroup, number> = {
+  public: 0,
+  private: 0,
+  unknown: 0
+};
 const POINT_COLORS: Record<SpeciesGroup, string> = {
   cherry: "#ef79ad",
   plum: "#d976b4",
@@ -1475,6 +1480,7 @@ interface SelectedCoverage {
 interface TreeRenderLookupHint {
   region: CoverageRegion;
   areaSlug: string;
+  dataPath?: string;
 }
 
 type StatusNoticeKind =
@@ -1767,6 +1773,51 @@ function toTreeCollection(features: TreeCollection["features"]): TreeCollection 
 }
 
 const EMPTY_TREE_COLLECTION = toTreeCollection([]);
+
+function shardFilteredTreeCount(
+  shard: AreaShard,
+  selectedSpecies: SpeciesGroup[],
+  selectedOwnership: OwnershipGroup[]
+): number {
+  const shardSpeciesOwnership = shard.species_ownership_counts;
+  if (shardSpeciesOwnership) {
+    return selectedSpecies.reduce((speciesTotal, species) => {
+      const ownershipCounts = shardSpeciesOwnership[species];
+      if (!ownershipCounts) {
+        return speciesTotal;
+      }
+      return (
+        speciesTotal +
+        selectedOwnership.reduce((ownershipTotal, ownership) => ownershipTotal + (ownershipCounts[ownership] ?? 0), 0)
+      );
+    }, 0);
+  }
+
+  if (selectedSpecies.length === ALL_SPECIES.length) {
+    const ownershipCounts = shard.ownership_counts ?? EMPTY_OWNERSHIP_COUNTS;
+    return selectedOwnership.reduce((sum, ownership) => sum + (ownershipCounts[ownership] ?? 0), 0);
+  }
+
+  const speciesCounts = shard.species_counts ?? EMPTY_SPECIES_COUNTS;
+  return selectedSpecies.reduce((sum, species) => sum + (speciesCounts[species] ?? 0), 0);
+}
+
+function ownershipOptionsFromShards(shards: AreaShard[], fallback: OwnershipGroup[]): OwnershipGroup[] {
+  const ownershipCounts = { ...EMPTY_OWNERSHIP_COUNTS };
+
+  shards.forEach((shard) => {
+    const shardCounts = shard.ownership_counts;
+    if (!shardCounts) {
+      return;
+    }
+    (ALL_OWNERSHIP as readonly OwnershipGroup[]).forEach((ownership) => {
+      ownershipCounts[ownership] += shardCounts[ownership] ?? 0;
+    });
+  });
+
+  const narrowed = (ALL_OWNERSHIP as readonly OwnershipGroup[]).filter((ownership) => ownershipCounts[ownership] > 0);
+  return narrowed.length > 0 ? [...narrowed] : fallback;
+}
 
 function buildTreeLayerFilter(
   species: SpeciesGroup,
@@ -2890,14 +2941,22 @@ export default function App(): JSX.Element {
     return next;
   }, [effectiveViewportBounds, requiredAreaEntries]);
 
+  const shouldAutoLoadViewportShards = !pmtilesEnabled || Boolean(selectedFeaturedAreaDetail);
+
   const missingRequiredShardEntries = useMemo(
     () =>
-      requiredShardEntries.filter(({ region, shard }) => !regionShardCache[region]?.[shard.data_path]),
-    [regionShardCache, requiredShardEntries]
+      shouldAutoLoadViewportShards
+        ? requiredShardEntries.filter(({ region, shard }) => !regionShardCache[region]?.[shard.data_path])
+        : [],
+    [regionShardCache, requiredShardEntries, shouldAutoLoadViewportShards]
   );
 
   const activeRegionPending = Boolean(
-    data && (loadingAreaIndexes || loadingShards || pendingAreaIndexRegions.length > 0 || missingRequiredShardEntries.length > 0)
+    data &&
+      (loadingAreaIndexes ||
+        loadingShards ||
+        pendingAreaIndexRegions.length > 0 ||
+        (shouldAutoLoadViewportShards && missingRequiredShardEntries.length > 0))
   );
 
   useEffect(() => {
@@ -2945,15 +3004,6 @@ export default function App(): JSX.Element {
     };
   }, [missingRequiredShardEntries]);
 
-  const currentTrees = useMemo(
-    () =>
-      mergeTreeCollections(
-        requiredShardEntries
-          .map(({ region, shard }) => regionShardCache[region]?.[shard.data_path])
-          .filter((collection): collection is TreeCollection => Boolean(collection))
-      ),
-    [regionShardCache, requiredShardEntries]
-  );
   const loadedActiveRegionTrees = useMemo(
     () =>
       mergeTreeCollections(
@@ -2962,6 +3012,17 @@ export default function App(): JSX.Element {
         )
       ),
     [activeRegion, regionShardCache]
+  );
+  const currentTrees = useMemo(
+    () =>
+      pmtilesEnabled
+        ? loadedActiveRegionTrees
+        : mergeTreeCollections(
+            requiredShardEntries
+              .map(({ region, shard }) => regionShardCache[region]?.[shard.data_path])
+              .filter((collection): collection is TreeCollection => Boolean(collection))
+          ),
+    [loadedActiveRegionTrees, pmtilesEnabled, regionShardCache, requiredShardEntries]
   );
   const loadedActiveRegionTreeById = useMemo(
     () => new Map(loadedActiveRegionTrees.features.map((feature) => [feature.properties.id, feature])),
@@ -3300,7 +3361,27 @@ export default function App(): JSX.Element {
     });
   }, [currentTrees, selectedOwnership, selectedSpecies]);
 
+  const filteredTreeCountFromIndex = useMemo(() => {
+    if (selectedSpecies.length === 0 || selectedOwnership.length === 0) {
+      return 0;
+    }
+
+    return requiredShardEntries.reduce(
+      (sum, { shard }) => sum + shardFilteredTreeCount(shard, selectedSpecies, selectedOwnership),
+      0
+    );
+  }, [requiredShardEntries, selectedOwnership, selectedSpecies]);
+
+  const visibleFilteredTreeCount = pmtilesEnabled ? filteredTreeCountFromIndex : filteredFeatures.length;
+
   const ownershipOptions = useMemo(() => {
+    if (pmtilesEnabled) {
+      return ownershipOptionsFromShards(
+        requiredShardEntries.map(({ shard }) => shard),
+        allOwnershipOptions
+      );
+    }
+
     if (currentTrees.features.length === 0) {
       return allOwnershipOptions;
     }
@@ -3313,7 +3394,7 @@ export default function App(): JSX.Element {
 
     const narrowed = (["public", "private", "unknown"] as const).filter((item) => options.has(item));
     return narrowed.length > 0 ? [...narrowed] : allOwnershipOptions;
-  }, [allOwnershipOptions, currentTrees]);
+  }, [allOwnershipOptions, currentTrees, pmtilesEnabled, requiredShardEntries]);
 
   const filteredCollection = useMemo(() => toTreeCollection(filteredFeatures), [filteredFeatures]);
   const showMapLoadingOverlay = false;
@@ -4005,9 +4086,14 @@ export default function App(): JSX.Element {
             }
             const region = feature?.properties?.region;
             const areaSlug = feature?.properties?.area_slug;
+            const dataPath = feature?.properties?.data_path;
             const hint =
               typeof region === "string" && typeof areaSlug === "string"
-                ? { region: region as CoverageRegion, areaSlug }
+                ? {
+                    region: region as CoverageRegion,
+                    areaSlug,
+                    dataPath: typeof dataPath === "string" ? dataPath : undefined
+                  }
                 : undefined;
             void openTreeDetailsRef.current(String(id), hint);
           });
@@ -4530,23 +4616,21 @@ export default function App(): JSX.Element {
 
   const loadTreeFeatureFromHint = useCallback(
     async (treeId: string, hint: TreeRenderLookupHint): Promise<TreeCollection["features"][number] | null> => {
-      const areaIndex = await loadAreaIndexForRegion(hint.region);
-      const areaItem = areaIndex?.items.find((item) => item.slug === hint.areaSlug);
-      if (!areaItem) {
-        return null;
-      }
+      const loadShardCollections = async (
+        dataPaths: string[],
+        existingCollections: Record<string, TreeCollection>
+      ): Promise<Record<string, TreeCollection>> => {
+        const missingDataPaths = dataPaths.filter((dataPath) => !existingCollections[dataPath]);
+        if (missingDataPaths.length === 0) {
+          return existingCollections;
+        }
 
-      const cachedRegionCollections = regionShardCache[hint.region] ?? {};
-      const missingShards = areaItem.shards.filter((shard) => !cachedRegionCollections[shard.data_path]);
-      let loadedCollections: Record<string, TreeCollection> = {};
-
-      if (missingShards.length > 0) {
         setLoadingShards(true);
         try {
           const loaded = await Promise.all(
-            missingShards.map(async (shard) => [shard.data_path, await loadTreeCollection(shard.data_path)] as const)
+            missingDataPaths.map(async (dataPath) => [dataPath, await loadTreeCollection(dataPath)] as const)
           );
-          loadedCollections = Object.fromEntries(loaded);
+          const loadedCollections = Object.fromEntries(loaded);
           setRegionShardCache((current) => ({
             ...current,
             [hint.region]: {
@@ -4554,13 +4638,38 @@ export default function App(): JSX.Element {
               ...loadedCollections
             }
           }));
+          return {
+            ...existingCollections,
+            ...loadedCollections
+          };
         } finally {
           setLoadingShards(false);
         }
+      };
+
+      let candidateCollections = { ...(regionShardCache[hint.region] ?? {}) };
+
+      if (hint.dataPath) {
+        candidateCollections = await loadShardCollections([hint.dataPath], candidateCollections);
+        const matched = candidateCollections[hint.dataPath]?.features.find((feature) => feature.properties.id === treeId);
+        if (matched) {
+          return matched;
+        }
       }
 
+      const areaIndex = await loadAreaIndexForRegion(hint.region);
+      const areaItem = areaIndex?.items.find((item) => item.slug === hint.areaSlug);
+      if (!areaItem) {
+        return null;
+      }
+
+      candidateCollections = await loadShardCollections(
+        areaItem.shards.map((shard) => shard.data_path),
+        candidateCollections
+      );
+
       for (const shard of areaItem.shards) {
-        const collection = loadedCollections[shard.data_path] ?? cachedRegionCollections[shard.data_path];
+        const collection = candidateCollections[shard.data_path];
         const matched = collection?.features.find((feature) => feature.properties.id === treeId);
         if (matched) {
           return matched;
@@ -4986,7 +5095,7 @@ export default function App(): JSX.Element {
       );
     }
 
-    if (!activeRegionPending && filteredFeatures.length === 0) {
+    if (!activeRegionPending && visibleFilteredTreeCount === 0) {
       const filtersCleared = selectedSpecies.length === 0 || selectedOwnership.length === 0;
       return (
         <article className="status-card covered_empty">
@@ -5201,7 +5310,7 @@ export default function App(): JSX.Element {
               {t(language, "showAbout")}
             </button>
             <div className="record-count">
-              {filteredFeatures.length.toLocaleString()} {t(language, "records")}
+              {visibleFilteredTreeCount.toLocaleString()} {t(language, "records")}
             </div>
           </div>
 
@@ -5582,7 +5691,7 @@ export default function App(): JSX.Element {
                   </div>
                 </section>
               </section>
-              {activeRegionPending ? null : filteredFeatures.length > 0 ? (
+              {activeRegionPending ? null : visibleFilteredTreeCount > 0 ? (
                 <p className="selection-hint">{t(language, "tapTreeHint")}</p>
               ) : null}
             </>

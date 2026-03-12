@@ -19,6 +19,8 @@ export type CoverageRegion = "wa" | "ca" | "co" | "nv" | "or" | "tx" | "ut" | "d
 export type RegionWarningLevel = "none" | "warning" | "high_warning" | "hard_fail";
 export type RegionAggregateAdvisoryLevel = "none" | "watch" | "large" | "very_large";
 export type SpeciesCounts = Record<SpeciesGroup, number>;
+export type OwnershipCounts = Record<OwnershipGroup, number>;
+export type SpeciesOwnershipCounts = Record<SpeciesGroup, OwnershipCounts>;
 
 export type LayoutMode = "mobile_sheet" | "desktop_split";
 export type MapStylePreset = "positron" | "demotiles" | "mapbox" | "blank_fallback";
@@ -104,6 +106,9 @@ export interface AreaShard {
   bounds: [[number, number], [number, number]];
   data_path: string;
   tree_count: number;
+  ownership_counts?: OwnershipCounts;
+  species_counts?: SpeciesCounts;
+  species_ownership_counts?: SpeciesOwnershipCounts;
   raw_bytes: number;
   gzip_bytes: number;
 }
@@ -119,6 +124,8 @@ export interface AreaIndexItem {
   tree_count: number;
   zip_codes: string[];
   species_counts: SpeciesCounts;
+  ownership_counts?: OwnershipCounts;
+  species_ownership_counts?: SpeciesOwnershipCounts;
   ownership_groups?: OwnershipGroup[];
   shards: AreaShard[];
 }

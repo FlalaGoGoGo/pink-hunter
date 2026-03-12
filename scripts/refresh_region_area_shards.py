@@ -21,8 +21,10 @@ from etl.build_data import (  # noqa: E402
     encode_feature_collection,
     slugify_token,
     split_features_for_publish,
+    summarize_ownership_counts,
     summarize_ownership_groups,
     summarize_species_counts,
+    summarize_species_ownership_counts,
     summarize_zip_codes,
 )
 
@@ -119,6 +121,9 @@ def write_region_area_shards(data_dir: Path, region_entry: dict[str, object], ge
                     "bounds": bounds_from_features(shard_features),
                     "data_path": f"/data/{file_name}",
                     "tree_count": len(shard_features),
+                    "ownership_counts": summarize_ownership_counts(shard_features),
+                    "species_counts": summarize_species_counts(shard_features),
+                    "species_ownership_counts": summarize_species_ownership_counts(shard_features),
                     "raw_bytes": raw_bytes,
                     "gzip_bytes": gzip_bytes,
                 }
@@ -143,6 +148,8 @@ def write_region_area_shards(data_dir: Path, region_entry: dict[str, object], ge
                 "tree_count": len(features),
                 "zip_codes": summarize_zip_codes(features),
                 "species_counts": summarize_species_counts(features),
+                "ownership_counts": summarize_ownership_counts(features),
+                "species_ownership_counts": summarize_species_ownership_counts(features),
                 "ownership_groups": summarize_ownership_groups(features),
                 "shards": shard_entries,
             }

@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-03-12T05:35:52.872888+00:00",
+  "generated_at": "2026-03-12T19:38:26.573144+00:00",
   "region": "pa",
   "strategy": "area_shard",
   "items": [
@@ -79,6 +79,38 @@
         "magnolia": 787,
         "crabapple": 2906
       },
+      "ownership_counts": {
+        "public": 17717,
+        "private": 0,
+        "unknown": 0
+      },
+      "species_ownership_counts": {
+        "cherry": {
+          "public": 12993,
+          "private": 0,
+          "unknown": 0
+        },
+        "plum": {
+          "public": 950,
+          "private": 0,
+          "unknown": 0
+        },
+        "peach": {
+          "public": 81,
+          "private": 0,
+          "unknown": 0
+        },
+        "magnolia": {
+          "public": 787,
+          "private": 0,
+          "unknown": 0
+        },
+        "crabapple": {
+          "public": 2906,
+          "private": 0,
+          "unknown": 0
+        }
+      },
       "ownership_groups": [
         "public"
       ],
@@ -97,6 +129,45 @@
           ],
           "data_path": "/data/trees.pa.area.philadelphia.v2.geojson",
           "tree_count": 17717,
+          "ownership_counts": {
+            "public": 17717,
+            "private": 0,
+            "unknown": 0
+          },
+          "species_counts": {
+            "cherry": 12993,
+            "plum": 950,
+            "peach": 81,
+            "magnolia": 787,
+            "crabapple": 2906
+          },
+          "species_ownership_counts": {
+            "cherry": {
+              "public": 12993,
+              "private": 0,
+              "unknown": 0
+            },
+            "plum": {
+              "public": 950,
+              "private": 0,
+              "unknown": 0
+            },
+            "peach": {
+              "public": 81,
+              "private": 0,
+              "unknown": 0
+            },
+            "magnolia": {
+              "public": 787,
+              "private": 0,
+              "unknown": 0
+            },
+            "crabapple": {
+              "public": 2906,
+              "private": 0,
+              "unknown": 0
+            }
+          },
           "raw_bytes": 9956244,
           "gzip_bytes": 449127
         }
@@ -160,6 +231,38 @@
         "magnolia": 261,
         "crabapple": 673
       },
+      "ownership_counts": {
+        "public": 3691,
+        "private": 0,
+        "unknown": 0
+      },
+      "species_ownership_counts": {
+        "cherry": {
+          "public": 2659,
+          "private": 0,
+          "unknown": 0
+        },
+        "plum": {
+          "public": 51,
+          "private": 0,
+          "unknown": 0
+        },
+        "peach": {
+          "public": 47,
+          "private": 0,
+          "unknown": 0
+        },
+        "magnolia": {
+          "public": 261,
+          "private": 0,
+          "unknown": 0
+        },
+        "crabapple": {
+          "public": 673,
+          "private": 0,
+          "unknown": 0
+        }
+      },
       "ownership_groups": [
         "public"
       ],
@@ -178,6 +281,45 @@
           ],
           "data_path": "/data/trees.pa.area.pittsburgh.v2.geojson",
           "tree_count": 3691,
+          "ownership_counts": {
+            "public": 3691,
+            "private": 0,
+            "unknown": 0
+          },
+          "species_counts": {
+            "cherry": 2659,
+            "plum": 51,
+            "peach": 47,
+            "magnolia": 261,
+            "crabapple": 673
+          },
+          "species_ownership_counts": {
+            "cherry": {
+              "public": 2659,
+              "private": 0,
+              "unknown": 0
+            },
+            "plum": {
+              "public": 51,
+              "private": 0,
+              "unknown": 0
+            },
+            "peach": {
+              "public": 47,
+              "private": 0,
+              "unknown": 0
+            },
+            "magnolia": {
+              "public": 261,
+              "private": 0,
+              "unknown": 0
+            },
+            "crabapple": {
+              "public": 673,
+              "private": 0,
+              "unknown": 0
+            }
+          },
           "raw_bytes": 1938987,
           "gzip_bytes": 87310
         }

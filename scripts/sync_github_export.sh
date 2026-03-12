@@ -111,6 +111,7 @@ tar -C "$ROOT_DIR" \
   --exclude='dist' \
   --exclude='data/tmp' \
   --exclude='data/normalized' \
+  --exclude='data/reference' \
   --exclude='.DS_Store' \
   --exclude='~$*' \
   --exclude='__pycache__' \

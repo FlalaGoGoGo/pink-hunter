@@ -2878,6 +2878,34 @@ def summarize_species_counts(features: list[dict[str, Any]]) -> dict[str, int]:
     return {species: int(counts.get(species, 0)) for species in SPECIES_GROUPS}
 
 
+def summarize_ownership_counts(features: list[dict[str, Any]]) -> dict[str, int]:
+    valid_groups = ("public", "private", "unknown")
+    counts = Counter(
+        str(feature.get("properties", {}).get("ownership", "")).strip().lower()
+        for feature in features
+        if str(feature.get("properties", {}).get("ownership", "")).strip().lower() in valid_groups
+    )
+    return {group: int(counts.get(group, 0)) for group in valid_groups}
+
+
+def summarize_species_ownership_counts(features: list[dict[str, Any]]) -> dict[str, dict[str, int]]:
+    valid_groups = ("public", "private", "unknown")
+    summary: dict[str, dict[str, int]] = {
+        species: {group: 0 for group in valid_groups}
+        for species in SPECIES_GROUPS
+    }
+
+    for feature in features:
+        properties = feature.get("properties", {})
+        species = str(properties.get("species_group", "")).strip().lower()
+        ownership = str(properties.get("ownership", "")).strip().lower()
+        if species not in summary or ownership not in valid_groups:
+            continue
+        summary[species][ownership] += 1
+
+    return summary
+
+
 def classify_warning_level(raw_bytes: int) -> str:
     if raw_bytes >= HARD_FAIL_BYTES:
         return "hard_fail"
@@ -6678,6 +6706,9 @@ def main() -> int:
                             "bounds": bounds_from_features(shard_features),
                             "data_path": f"/data/{shard_file_name}",
                             "tree_count": len(shard_features),
+                            "ownership_counts": summarize_ownership_counts(shard_features),
+                            "species_counts": summarize_species_counts(shard_features),
+                            "species_ownership_counts": summarize_species_ownership_counts(shard_features),
                             "raw_bytes": shard_raw_bytes,
                             "gzip_bytes": shard_gzip_bytes,
                         }
@@ -6704,6 +6735,8 @@ def main() -> int:
                         "tree_count": len(city_features),
                         "zip_codes": summarize_zip_codes(city_features),
                         "species_counts": summarize_species_counts(city_features),
+                        "ownership_counts": summarize_ownership_counts(city_features),
+                        "species_ownership_counts": summarize_species_ownership_counts(city_features),
                         "ownership_groups": summarize_ownership_groups(city_features),
                         "shards": shard_entries,
                     }

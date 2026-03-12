@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-03-12T19:37:30.923047+00:00",
+  "generated_at": "2026-03-12T19:38:26.573144+00:00",
   "region": "nj",
   "strategy": "area_shard",
   "items": [
@@ -31,6 +31,38 @@
         "magnolia": 12,
         "crabapple": 25
       },
+      "ownership_counts": {
+        "public": 284,
+        "private": 0,
+        "unknown": 0
+      },
+      "species_ownership_counts": {
+        "cherry": {
+          "public": 70,
+          "private": 0,
+          "unknown": 0
+        },
+        "plum": {
+          "public": 174,
+          "private": 0,
+          "unknown": 0
+        },
+        "peach": {
+          "public": 3,
+          "private": 0,
+          "unknown": 0
+        },
+        "magnolia": {
+          "public": 12,
+          "private": 0,
+          "unknown": 0
+        },
+        "crabapple": {
+          "public": 25,
+          "private": 0,
+          "unknown": 0
+        }
+      },
       "ownership_groups": [
         "public"
       ],
@@ -49,6 +81,45 @@
           ],
           "data_path": "/data/trees.nj.area.dumont.v2.geojson",
           "tree_count": 284,
+          "ownership_counts": {
+            "public": 284,
+            "private": 0,
+            "unknown": 0
+          },
+          "species_counts": {
+            "cherry": 70,
+            "plum": 174,
+            "peach": 3,
+            "magnolia": 12,
+            "crabapple": 25
+          },
+          "species_ownership_counts": {
+            "cherry": {
+              "public": 70,
+              "private": 0,
+              "unknown": 0
+            },
+            "plum": {
+              "public": 174,
+              "private": 0,
+              "unknown": 0
+            },
+            "peach": {
+              "public": 3,
+              "private": 0,
+              "unknown": 0
+            },
+            "magnolia": {
+              "public": 12,
+              "private": 0,
+              "unknown": 0
+            },
+            "crabapple": {
+              "public": 25,
+              "private": 0,
+              "unknown": 0
+            }
+          },
           "raw_bytes": 129580,
           "gzip_bytes": 5700
         }
@@ -82,6 +153,38 @@
         "magnolia": 5,
         "crabapple": 2
       },
+      "ownership_counts": {
+        "public": 18,
+        "private": 0,
+        "unknown": 0
+      },
+      "species_ownership_counts": {
+        "cherry": {
+          "public": 8,
+          "private": 0,
+          "unknown": 0
+        },
+        "plum": {
+          "public": 3,
+          "private": 0,
+          "unknown": 0
+        },
+        "peach": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        },
+        "magnolia": {
+          "public": 5,
+          "private": 0,
+          "unknown": 0
+        },
+        "crabapple": {
+          "public": 2,
+          "private": 0,
+          "unknown": 0
+        }
+      },
       "ownership_groups": [
         "public"
       ],
@@ -100,6 +203,45 @@
           ],
           "data_path": "/data/trees.nj.area.ho-ho-kus.v2.geojson",
           "tree_count": 18,
+          "ownership_counts": {
+            "public": 18,
+            "private": 0,
+            "unknown": 0
+          },
+          "species_counts": {
+            "cherry": 8,
+            "plum": 3,
+            "peach": 0,
+            "magnolia": 5,
+            "crabapple": 2
+          },
+          "species_ownership_counts": {
+            "cherry": {
+              "public": 8,
+              "private": 0,
+              "unknown": 0
+            },
+            "plum": {
+              "public": 3,
+              "private": 0,
+              "unknown": 0
+            },
+            "peach": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            },
+            "magnolia": {
+              "public": 5,
+              "private": 0,
+              "unknown": 0
+            },
+            "crabapple": {
+              "public": 2,
+              "private": 0,
+              "unknown": 0
+            }
+          },
           "raw_bytes": 8782,
           "gzip_bytes": 876
         }
@@ -133,6 +275,38 @@
         "magnolia": 16,
         "crabapple": 28
       },
+      "ownership_counts": {
+        "public": 397,
+        "private": 0,
+        "unknown": 0
+      },
+      "species_ownership_counts": {
+        "cherry": {
+          "public": 297,
+          "private": 0,
+          "unknown": 0
+        },
+        "plum": {
+          "public": 55,
+          "private": 0,
+          "unknown": 0
+        },
+        "peach": {
+          "public": 1,
+          "private": 0,
+          "unknown": 0
+        },
+        "magnolia": {
+          "public": 16,
+          "private": 0,
+          "unknown": 0
+        },
+        "crabapple": {
+          "public": 28,
+          "private": 0,
+          "unknown": 0
+        }
+      },
       "ownership_groups": [
         "public"
       ],
@@ -151,6 +325,45 @@
           ],
           "data_path": "/data/trees.nj.area.hoboken.v2.geojson",
           "tree_count": 397,
+          "ownership_counts": {
+            "public": 397,
+            "private": 0,
+            "unknown": 0
+          },
+          "species_counts": {
+            "cherry": 297,
+            "plum": 55,
+            "peach": 1,
+            "magnolia": 16,
+            "crabapple": 28
+          },
+          "species_ownership_counts": {
+            "cherry": {
+              "public": 297,
+              "private": 0,
+              "unknown": 0
+            },
+            "plum": {
+              "public": 55,
+              "private": 0,
+              "unknown": 0
+            },
+            "peach": {
+              "public": 1,
+              "private": 0,
+              "unknown": 0
+            },
+            "magnolia": {
+              "public": 16,
+              "private": 0,
+              "unknown": 0
+            },
+            "crabapple": {
+              "public": 28,
+              "private": 0,
+              "unknown": 0
+            }
+          },
           "raw_bytes": 204959,
           "gzip_bytes": 6533
         }
@@ -190,6 +403,38 @@
         "magnolia": 21,
         "crabapple": 122
       },
+      "ownership_counts": {
+        "public": 2148,
+        "private": 0,
+        "unknown": 0
+      },
+      "species_ownership_counts": {
+        "cherry": {
+          "public": 2004,
+          "private": 0,
+          "unknown": 0
+        },
+        "plum": {
+          "public": 1,
+          "private": 0,
+          "unknown": 0
+        },
+        "peach": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        },
+        "magnolia": {
+          "public": 21,
+          "private": 0,
+          "unknown": 0
+        },
+        "crabapple": {
+          "public": 122,
+          "private": 0,
+          "unknown": 0
+        }
+      },
       "ownership_groups": [
         "public"
       ],
@@ -208,6 +453,45 @@
           ],
           "data_path": "/data/trees.nj.area.jersey-city.v2.geojson",
           "tree_count": 2148,
+          "ownership_counts": {
+            "public": 2148,
+            "private": 0,
+            "unknown": 0
+          },
+          "species_counts": {
+            "cherry": 2004,
+            "plum": 1,
+            "peach": 0,
+            "magnolia": 21,
+            "crabapple": 122
+          },
+          "species_ownership_counts": {
+            "cherry": {
+              "public": 2004,
+              "private": 0,
+              "unknown": 0
+            },
+            "plum": {
+              "public": 1,
+              "private": 0,
+              "unknown": 0
+            },
+            "peach": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            },
+            "magnolia": {
+              "public": 21,
+              "private": 0,
+              "unknown": 0
+            },
+            "crabapple": {
+              "public": 122,
+              "private": 0,
+              "unknown": 0
+            }
+          },
           "raw_bytes": 1153133,
           "gzip_bytes": 50297
         }
@@ -242,6 +526,38 @@
         "magnolia": 134,
         "crabapple": 125
       },
+      "ownership_counts": {
+        "public": 1133,
+        "private": 0,
+        "unknown": 0
+      },
+      "species_ownership_counts": {
+        "cherry": {
+          "public": 204,
+          "private": 0,
+          "unknown": 0
+        },
+        "plum": {
+          "public": 670,
+          "private": 0,
+          "unknown": 0
+        },
+        "peach": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        },
+        "magnolia": {
+          "public": 134,
+          "private": 0,
+          "unknown": 0
+        },
+        "crabapple": {
+          "public": 125,
+          "private": 0,
+          "unknown": 0
+        }
+      },
       "ownership_groups": [
         "public"
       ],
@@ -260,6 +576,45 @@
           ],
           "data_path": "/data/trees.nj.area.millburn.v2.geojson",
           "tree_count": 1133,
+          "ownership_counts": {
+            "public": 1133,
+            "private": 0,
+            "unknown": 0
+          },
+          "species_counts": {
+            "cherry": 204,
+            "plum": 670,
+            "peach": 0,
+            "magnolia": 134,
+            "crabapple": 125
+          },
+          "species_ownership_counts": {
+            "cherry": {
+              "public": 204,
+              "private": 0,
+              "unknown": 0
+            },
+            "plum": {
+              "public": 670,
+              "private": 0,
+              "unknown": 0
+            },
+            "peach": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            },
+            "magnolia": {
+              "public": 134,
+              "private": 0,
+              "unknown": 0
+            },
+            "crabapple": {
+              "public": 125,
+              "private": 0,
+              "unknown": 0
+            }
+          },
           "raw_bytes": 522931,
           "gzip_bytes": 21943
         }
@@ -294,6 +649,38 @@
         "magnolia": 0,
         "crabapple": 24
       },
+      "ownership_counts": {
+        "public": 56,
+        "private": 0,
+        "unknown": 0
+      },
+      "species_ownership_counts": {
+        "cherry": {
+          "public": 27,
+          "private": 0,
+          "unknown": 0
+        },
+        "plum": {
+          "public": 5,
+          "private": 0,
+          "unknown": 0
+        },
+        "peach": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        },
+        "magnolia": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        },
+        "crabapple": {
+          "public": 24,
+          "private": 0,
+          "unknown": 0
+        }
+      },
       "ownership_groups": [
         "public"
       ],
@@ -312,6 +699,45 @@
           ],
           "data_path": "/data/trees.nj.area.montclair.v2.geojson",
           "tree_count": 56,
+          "ownership_counts": {
+            "public": 56,
+            "private": 0,
+            "unknown": 0
+          },
+          "species_counts": {
+            "cherry": 27,
+            "plum": 5,
+            "peach": 0,
+            "magnolia": 0,
+            "crabapple": 24
+          },
+          "species_ownership_counts": {
+            "cherry": {
+              "public": 27,
+              "private": 0,
+              "unknown": 0
+            },
+            "plum": {
+              "public": 5,
+              "private": 0,
+              "unknown": 0
+            },
+            "peach": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            },
+            "magnolia": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            },
+            "crabapple": {
+              "public": 24,
+              "private": 0,
+              "unknown": 0
+            }
+          },
           "raw_bytes": 28894,
           "gzip_bytes": 1810
         }
@@ -345,6 +771,38 @@
         "magnolia": 9,
         "crabapple": 0
       },
+      "ownership_counts": {
+        "public": 10,
+        "private": 0,
+        "unknown": 0
+      },
+      "species_ownership_counts": {
+        "cherry": {
+          "public": 1,
+          "private": 0,
+          "unknown": 0
+        },
+        "plum": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        },
+        "peach": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        },
+        "magnolia": {
+          "public": 9,
+          "private": 0,
+          "unknown": 0
+        },
+        "crabapple": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        }
+      },
       "ownership_groups": [
         "public"
       ],
@@ -363,6 +821,45 @@
           ],
           "data_path": "/data/trees.nj.area.morristown.v2.geojson",
           "tree_count": 10,
+          "ownership_counts": {
+            "public": 10,
+            "private": 0,
+            "unknown": 0
+          },
+          "species_counts": {
+            "cherry": 1,
+            "plum": 0,
+            "peach": 0,
+            "magnolia": 9,
+            "crabapple": 0
+          },
+          "species_ownership_counts": {
+            "cherry": {
+              "public": 1,
+              "private": 0,
+              "unknown": 0
+            },
+            "plum": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            },
+            "peach": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            },
+            "magnolia": {
+              "public": 9,
+              "private": 0,
+              "unknown": 0
+            },
+            "crabapple": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            }
+          },
           "raw_bytes": 5203,
           "gzip_bytes": 631
         }
@@ -402,6 +899,38 @@
         "magnolia": 1,
         "crabapple": 0
       },
+      "ownership_counts": {
+        "public": 28,
+        "private": 0,
+        "unknown": 0
+      },
+      "species_ownership_counts": {
+        "cherry": {
+          "public": 22,
+          "private": 0,
+          "unknown": 0
+        },
+        "plum": {
+          "public": 5,
+          "private": 0,
+          "unknown": 0
+        },
+        "peach": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        },
+        "magnolia": {
+          "public": 1,
+          "private": 0,
+          "unknown": 0
+        },
+        "crabapple": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        }
+      },
       "ownership_groups": [
         "public"
       ],
@@ -420,6 +949,45 @@
           ],
           "data_path": "/data/trees.nj.area.newark.v2.geojson",
           "tree_count": 28,
+          "ownership_counts": {
+            "public": 28,
+            "private": 0,
+            "unknown": 0
+          },
+          "species_counts": {
+            "cherry": 22,
+            "plum": 5,
+            "peach": 0,
+            "magnolia": 1,
+            "crabapple": 0
+          },
+          "species_ownership_counts": {
+            "cherry": {
+              "public": 22,
+              "private": 0,
+              "unknown": 0
+            },
+            "plum": {
+              "public": 5,
+              "private": 0,
+              "unknown": 0
+            },
+            "peach": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            },
+            "magnolia": {
+              "public": 1,
+              "private": 0,
+              "unknown": 0
+            },
+            "crabapple": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            }
+          },
           "raw_bytes": 13565,
           "gzip_bytes": 1048
         }
@@ -453,6 +1021,38 @@
         "magnolia": 1,
         "crabapple": 2
       },
+      "ownership_counts": {
+        "public": 23,
+        "private": 0,
+        "unknown": 0
+      },
+      "species_ownership_counts": {
+        "cherry": {
+          "public": 8,
+          "private": 0,
+          "unknown": 0
+        },
+        "plum": {
+          "public": 12,
+          "private": 0,
+          "unknown": 0
+        },
+        "peach": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        },
+        "magnolia": {
+          "public": 1,
+          "private": 0,
+          "unknown": 0
+        },
+        "crabapple": {
+          "public": 2,
+          "private": 0,
+          "unknown": 0
+        }
+      },
       "ownership_groups": [
         "public"
       ],
@@ -471,6 +1071,45 @@
           ],
           "data_path": "/data/trees.nj.area.oradell.v2.geojson",
           "tree_count": 23,
+          "ownership_counts": {
+            "public": 23,
+            "private": 0,
+            "unknown": 0
+          },
+          "species_counts": {
+            "cherry": 8,
+            "plum": 12,
+            "peach": 0,
+            "magnolia": 1,
+            "crabapple": 2
+          },
+          "species_ownership_counts": {
+            "cherry": {
+              "public": 8,
+              "private": 0,
+              "unknown": 0
+            },
+            "plum": {
+              "public": 12,
+              "private": 0,
+              "unknown": 0
+            },
+            "peach": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            },
+            "magnolia": {
+              "public": 1,
+              "private": 0,
+              "unknown": 0
+            },
+            "crabapple": {
+              "public": 2,
+              "private": 0,
+              "unknown": 0
+            }
+          },
           "raw_bytes": 10935,
           "gzip_bytes": 981
         }
@@ -505,6 +1144,38 @@
         "magnolia": 201,
         "crabapple": 206
       },
+      "ownership_counts": {
+        "public": 1310,
+        "private": 0,
+        "unknown": 0
+      },
+      "species_ownership_counts": {
+        "cherry": {
+          "public": 902,
+          "private": 0,
+          "unknown": 0
+        },
+        "plum": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        },
+        "peach": {
+          "public": 1,
+          "private": 0,
+          "unknown": 0
+        },
+        "magnolia": {
+          "public": 201,
+          "private": 0,
+          "unknown": 0
+        },
+        "crabapple": {
+          "public": 206,
+          "private": 0,
+          "unknown": 0
+        }
+      },
       "ownership_groups": [
         "public"
       ],
@@ -523,6 +1194,45 @@
           ],
           "data_path": "/data/trees.nj.area.princeton.v2.geojson",
           "tree_count": 1310,
+          "ownership_counts": {
+            "public": 1310,
+            "private": 0,
+            "unknown": 0
+          },
+          "species_counts": {
+            "cherry": 902,
+            "plum": 0,
+            "peach": 1,
+            "magnolia": 201,
+            "crabapple": 206
+          },
+          "species_ownership_counts": {
+            "cherry": {
+              "public": 902,
+              "private": 0,
+              "unknown": 0
+            },
+            "plum": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            },
+            "peach": {
+              "public": 1,
+              "private": 0,
+              "unknown": 0
+            },
+            "magnolia": {
+              "public": 201,
+              "private": 0,
+              "unknown": 0
+            },
+            "crabapple": {
+              "public": 206,
+              "private": 0,
+              "unknown": 0
+            }
+          },
           "raw_bytes": 667873,
           "gzip_bytes": 26227
         }
@@ -556,6 +1266,38 @@
         "magnolia": 16,
         "crabapple": 0
       },
+      "ownership_counts": {
+        "public": 62,
+        "private": 0,
+        "unknown": 0
+      },
+      "species_ownership_counts": {
+        "cherry": {
+          "public": 46,
+          "private": 0,
+          "unknown": 0
+        },
+        "plum": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        },
+        "peach": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        },
+        "magnolia": {
+          "public": 16,
+          "private": 0,
+          "unknown": 0
+        },
+        "crabapple": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        }
+      },
       "ownership_groups": [
         "public"
       ],
@@ -574,6 +1316,45 @@
           ],
           "data_path": "/data/trees.nj.area.river-edge.v2.geojson",
           "tree_count": 62,
+          "ownership_counts": {
+            "public": 62,
+            "private": 0,
+            "unknown": 0
+          },
+          "species_counts": {
+            "cherry": 46,
+            "plum": 0,
+            "peach": 0,
+            "magnolia": 16,
+            "crabapple": 0
+          },
+          "species_ownership_counts": {
+            "cherry": {
+              "public": 46,
+              "private": 0,
+              "unknown": 0
+            },
+            "plum": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            },
+            "peach": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            },
+            "magnolia": {
+              "public": 16,
+              "private": 0,
+              "unknown": 0
+            },
+            "crabapple": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            }
+          },
           "raw_bytes": 29957,
           "gzip_bytes": 1700
         }
@@ -607,6 +1388,38 @@
         "magnolia": 25,
         "crabapple": 15
       },
+      "ownership_counts": {
+        "public": 126,
+        "private": 0,
+        "unknown": 0
+      },
+      "species_ownership_counts": {
+        "cherry": {
+          "public": 36,
+          "private": 0,
+          "unknown": 0
+        },
+        "plum": {
+          "public": 50,
+          "private": 0,
+          "unknown": 0
+        },
+        "peach": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        },
+        "magnolia": {
+          "public": 25,
+          "private": 0,
+          "unknown": 0
+        },
+        "crabapple": {
+          "public": 15,
+          "private": 0,
+          "unknown": 0
+        }
+      },
       "ownership_groups": [
         "public"
       ],
@@ -625,6 +1438,45 @@
           ],
           "data_path": "/data/trees.nj.area.rutherford.v2.geojson",
           "tree_count": 126,
+          "ownership_counts": {
+            "public": 126,
+            "private": 0,
+            "unknown": 0
+          },
+          "species_counts": {
+            "cherry": 36,
+            "plum": 50,
+            "peach": 0,
+            "magnolia": 25,
+            "crabapple": 15
+          },
+          "species_ownership_counts": {
+            "cherry": {
+              "public": 36,
+              "private": 0,
+              "unknown": 0
+            },
+            "plum": {
+              "public": 50,
+              "private": 0,
+              "unknown": 0
+            },
+            "peach": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            },
+            "magnolia": {
+              "public": 25,
+              "private": 0,
+              "unknown": 0
+            },
+            "crabapple": {
+              "public": 15,
+              "private": 0,
+              "unknown": 0
+            }
+          },
           "raw_bytes": 61135,
           "gzip_bytes": 3201
         }
@@ -658,6 +1510,38 @@
         "magnolia": 7,
         "crabapple": 2
       },
+      "ownership_counts": {
+        "public": 192,
+        "private": 0,
+        "unknown": 0
+      },
+      "species_ownership_counts": {
+        "cherry": {
+          "public": 171,
+          "private": 0,
+          "unknown": 0
+        },
+        "plum": {
+          "public": 12,
+          "private": 0,
+          "unknown": 0
+        },
+        "peach": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        },
+        "magnolia": {
+          "public": 7,
+          "private": 0,
+          "unknown": 0
+        },
+        "crabapple": {
+          "public": 2,
+          "private": 0,
+          "unknown": 0
+        }
+      },
       "ownership_groups": [
         "public"
       ],
@@ -676,6 +1560,45 @@
           ],
           "data_path": "/data/trees.nj.area.westwood.v2.geojson",
           "tree_count": 192,
+          "ownership_counts": {
+            "public": 192,
+            "private": 0,
+            "unknown": 0
+          },
+          "species_counts": {
+            "cherry": 171,
+            "plum": 12,
+            "peach": 0,
+            "magnolia": 7,
+            "crabapple": 2
+          },
+          "species_ownership_counts": {
+            "cherry": {
+              "public": 171,
+              "private": 0,
+              "unknown": 0
+            },
+            "plum": {
+              "public": 12,
+              "private": 0,
+              "unknown": 0
+            },
+            "peach": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            },
+            "magnolia": {
+              "public": 7,
+              "private": 0,
+              "unknown": 0
+            },
+            "crabapple": {
+              "public": 2,
+              "private": 0,
+              "unknown": 0
+            }
+          },
           "raw_bytes": 99746,
           "gzip_bytes": 4780
         }

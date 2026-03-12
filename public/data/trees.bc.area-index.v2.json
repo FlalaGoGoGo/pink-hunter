@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-03-12T05:35:52.872888+00:00",
+  "generated_at": "2026-03-12T19:38:26.573144+00:00",
   "region": "bc",
   "strategy": "area_shard",
   "items": [
@@ -31,6 +31,38 @@
         "magnolia": 610,
         "crabapple": 159
       },
+      "ownership_counts": {
+        "public": 1786,
+        "private": 0,
+        "unknown": 0
+      },
+      "species_ownership_counts": {
+        "cherry": {
+          "public": 719,
+          "private": 0,
+          "unknown": 0
+        },
+        "plum": {
+          "public": 298,
+          "private": 0,
+          "unknown": 0
+        },
+        "peach": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        },
+        "magnolia": {
+          "public": 610,
+          "private": 0,
+          "unknown": 0
+        },
+        "crabapple": {
+          "public": 159,
+          "private": 0,
+          "unknown": 0
+        }
+      },
       "ownership_groups": [
         "public"
       ],
@@ -49,6 +81,45 @@
           ],
           "data_path": "/data/trees.bc.area.new-westminster.v2.geojson",
           "tree_count": 1786,
+          "ownership_counts": {
+            "public": 1786,
+            "private": 0,
+            "unknown": 0
+          },
+          "species_counts": {
+            "cherry": 719,
+            "plum": 298,
+            "peach": 0,
+            "magnolia": 610,
+            "crabapple": 159
+          },
+          "species_ownership_counts": {
+            "cherry": {
+              "public": 719,
+              "private": 0,
+              "unknown": 0
+            },
+            "plum": {
+              "public": 298,
+              "private": 0,
+              "unknown": 0
+            },
+            "peach": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            },
+            "magnolia": {
+              "public": 610,
+              "private": 0,
+              "unknown": 0
+            },
+            "crabapple": {
+              "public": 159,
+              "private": 0,
+              "unknown": 0
+            }
+          },
           "raw_bytes": 952340,
           "gzip_bytes": 40285
         }
@@ -82,6 +153,38 @@
         "magnolia": 4719,
         "crabapple": 4373
       },
+      "ownership_counts": {
+        "public": 38589,
+        "private": 0,
+        "unknown": 0
+      },
+      "species_ownership_counts": {
+        "cherry": {
+          "public": 18439,
+          "private": 0,
+          "unknown": 0
+        },
+        "plum": {
+          "public": 11058,
+          "private": 0,
+          "unknown": 0
+        },
+        "peach": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        },
+        "magnolia": {
+          "public": 4719,
+          "private": 0,
+          "unknown": 0
+        },
+        "crabapple": {
+          "public": 4373,
+          "private": 0,
+          "unknown": 0
+        }
+      },
       "ownership_groups": [
         "public"
       ],
@@ -100,6 +203,45 @@
           ],
           "data_path": "/data/trees.bc.area.vancouver-bc.shard-001.v2.geojson",
           "tree_count": 19294,
+          "ownership_counts": {
+            "public": 19294,
+            "private": 0,
+            "unknown": 0
+          },
+          "species_counts": {
+            "cherry": 8907,
+            "plum": 5838,
+            "peach": 0,
+            "magnolia": 2427,
+            "crabapple": 2122
+          },
+          "species_ownership_counts": {
+            "cherry": {
+              "public": 8907,
+              "private": 0,
+              "unknown": 0
+            },
+            "plum": {
+              "public": 5838,
+              "private": 0,
+              "unknown": 0
+            },
+            "peach": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            },
+            "magnolia": {
+              "public": 2427,
+              "private": 0,
+              "unknown": 0
+            },
+            "crabapple": {
+              "public": 2122,
+              "private": 0,
+              "unknown": 0
+            }
+          },
           "raw_bytes": 10061104,
           "gzip_bytes": 466494
         },
@@ -117,6 +259,45 @@
           ],
           "data_path": "/data/trees.bc.area.vancouver-bc.shard-002.v2.geojson",
           "tree_count": 19295,
+          "ownership_counts": {
+            "public": 19295,
+            "private": 0,
+            "unknown": 0
+          },
+          "species_counts": {
+            "cherry": 9532,
+            "plum": 5220,
+            "peach": 0,
+            "magnolia": 2292,
+            "crabapple": 2251
+          },
+          "species_ownership_counts": {
+            "cherry": {
+              "public": 9532,
+              "private": 0,
+              "unknown": 0
+            },
+            "plum": {
+              "public": 5220,
+              "private": 0,
+              "unknown": 0
+            },
+            "peach": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            },
+            "magnolia": {
+              "public": 2292,
+              "private": 0,
+              "unknown": 0
+            },
+            "crabapple": {
+              "public": 2251,
+              "private": 0,
+              "unknown": 0
+            }
+          },
           "raw_bytes": 10060546,
           "gzip_bytes": 462728
         }
@@ -150,6 +331,38 @@
         "magnolia": 398,
         "crabapple": 426
       },
+      "ownership_counts": {
+        "public": 6094,
+        "private": 0,
+        "unknown": 0
+      },
+      "species_ownership_counts": {
+        "cherry": {
+          "public": 3182,
+          "private": 0,
+          "unknown": 0
+        },
+        "plum": {
+          "public": 2088,
+          "private": 0,
+          "unknown": 0
+        },
+        "peach": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        },
+        "magnolia": {
+          "public": 398,
+          "private": 0,
+          "unknown": 0
+        },
+        "crabapple": {
+          "public": 426,
+          "private": 0,
+          "unknown": 0
+        }
+      },
       "ownership_groups": [
         "public"
       ],
@@ -168,6 +381,45 @@
           ],
           "data_path": "/data/trees.bc.area.victoria-bc.v2.geojson",
           "tree_count": 6094,
+          "ownership_counts": {
+            "public": 6094,
+            "private": 0,
+            "unknown": 0
+          },
+          "species_counts": {
+            "cherry": 3182,
+            "plum": 2088,
+            "peach": 0,
+            "magnolia": 398,
+            "crabapple": 426
+          },
+          "species_ownership_counts": {
+            "cherry": {
+              "public": 3182,
+              "private": 0,
+              "unknown": 0
+            },
+            "plum": {
+              "public": 2088,
+              "private": 0,
+              "unknown": 0
+            },
+            "peach": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            },
+            "magnolia": {
+              "public": 398,
+              "private": 0,
+              "unknown": 0
+            },
+            "crabapple": {
+              "public": 426,
+              "private": 0,
+              "unknown": 0
+            }
+          },
           "raw_bytes": 3479968,
           "gzip_bytes": 152432
         }

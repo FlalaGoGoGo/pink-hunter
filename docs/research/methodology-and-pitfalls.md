@@ -12,6 +12,8 @@
 - Official boundary reuse is a force multiplier. Prebuild the boundary layer first, then activate cities on top of it.
 - Size gates protect GitHub risk, but product performance also depends on shard granularity. Hotspot cities need tighter shard targets.
 - Lazy loading alone is not enough once the browser keeps merging and re-uploading large GeoJSON sources. The stronger path is PMTiles or vector-tile rendering with GeoJSON reserved for detail fallback.
+- When PMTiles is active, counts and filter availability should come from shard-level summary fields in the area index, not from loading viewport shards just to count them.
+- When PMTiles is active, click-to-detail should carry the exact shard `data_path` whenever possible, so detail fallback can load one shard first instead of sweeping a whole city.
 - Methods are only reusable if they are written down in docs immediately after they work.
 
 ## Historical Thread Additions

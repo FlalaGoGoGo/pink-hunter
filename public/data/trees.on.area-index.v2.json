@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-03-12T05:35:52.872888+00:00",
+  "generated_at": "2026-03-12T19:38:26.573144+00:00",
   "region": "on",
   "strategy": "area_shard",
   "items": [
@@ -31,6 +31,38 @@
         "magnolia": 154,
         "crabapple": 10090
       },
+      "ownership_counts": {
+        "public": 12913,
+        "private": 0,
+        "unknown": 0
+      },
+      "species_ownership_counts": {
+        "cherry": {
+          "public": 2661,
+          "private": 0,
+          "unknown": 0
+        },
+        "plum": {
+          "public": 8,
+          "private": 0,
+          "unknown": 0
+        },
+        "peach": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        },
+        "magnolia": {
+          "public": 154,
+          "private": 0,
+          "unknown": 0
+        },
+        "crabapple": {
+          "public": 10090,
+          "private": 0,
+          "unknown": 0
+        }
+      },
       "ownership_groups": [
         "public"
       ],
@@ -49,6 +81,45 @@
           ],
           "data_path": "/data/trees.on.area.ottawa.v2.geojson",
           "tree_count": 12913,
+          "ownership_counts": {
+            "public": 12913,
+            "private": 0,
+            "unknown": 0
+          },
+          "species_counts": {
+            "cherry": 2661,
+            "plum": 8,
+            "peach": 0,
+            "magnolia": 154,
+            "crabapple": 10090
+          },
+          "species_ownership_counts": {
+            "cherry": {
+              "public": 2661,
+              "private": 0,
+              "unknown": 0
+            },
+            "plum": {
+              "public": 8,
+              "private": 0,
+              "unknown": 0
+            },
+            "peach": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            },
+            "magnolia": {
+              "public": 154,
+              "private": 0,
+              "unknown": 0
+            },
+            "crabapple": {
+              "public": 10090,
+              "private": 0,
+              "unknown": 0
+            }
+          },
           "raw_bytes": 6379242,
           "gzip_bytes": 359729
         }
@@ -82,6 +153,38 @@
         "magnolia": 2728,
         "crabapple": 42
       },
+      "ownership_counts": {
+        "public": 36302,
+        "private": 0,
+        "unknown": 0
+      },
+      "species_ownership_counts": {
+        "cherry": {
+          "public": 30789,
+          "private": 0,
+          "unknown": 0
+        },
+        "plum": {
+          "public": 2273,
+          "private": 0,
+          "unknown": 0
+        },
+        "peach": {
+          "public": 470,
+          "private": 0,
+          "unknown": 0
+        },
+        "magnolia": {
+          "public": 2728,
+          "private": 0,
+          "unknown": 0
+        },
+        "crabapple": {
+          "public": 42,
+          "private": 0,
+          "unknown": 0
+        }
+      },
       "ownership_groups": [
         "public"
       ],
@@ -100,6 +203,45 @@
           ],
           "data_path": "/data/trees.on.area.toronto.shard-001.v2.geojson",
           "tree_count": 18151,
+          "ownership_counts": {
+            "public": 18151,
+            "private": 0,
+            "unknown": 0
+          },
+          "species_counts": {
+            "cherry": 14491,
+            "plum": 1657,
+            "peach": 427,
+            "magnolia": 1554,
+            "crabapple": 22
+          },
+          "species_ownership_counts": {
+            "cherry": {
+              "public": 14491,
+              "private": 0,
+              "unknown": 0
+            },
+            "plum": {
+              "public": 1657,
+              "private": 0,
+              "unknown": 0
+            },
+            "peach": {
+              "public": 427,
+              "private": 0,
+              "unknown": 0
+            },
+            "magnolia": {
+              "public": 1554,
+              "private": 0,
+              "unknown": 0
+            },
+            "crabapple": {
+              "public": 22,
+              "private": 0,
+              "unknown": 0
+            }
+          },
           "raw_bytes": 8575688,
           "gzip_bytes": 342215
         },
@@ -117,6 +259,45 @@
           ],
           "data_path": "/data/trees.on.area.toronto.shard-002.v2.geojson",
           "tree_count": 18151,
+          "ownership_counts": {
+            "public": 18151,
+            "private": 0,
+            "unknown": 0
+          },
+          "species_counts": {
+            "cherry": 16298,
+            "plum": 616,
+            "peach": 43,
+            "magnolia": 1174,
+            "crabapple": 20
+          },
+          "species_ownership_counts": {
+            "cherry": {
+              "public": 16298,
+              "private": 0,
+              "unknown": 0
+            },
+            "plum": {
+              "public": 616,
+              "private": 0,
+              "unknown": 0
+            },
+            "peach": {
+              "public": 43,
+              "private": 0,
+              "unknown": 0
+            },
+            "magnolia": {
+              "public": 1174,
+              "private": 0,
+              "unknown": 0
+            },
+            "crabapple": {
+              "public": 20,
+              "private": 0,
+              "unknown": 0
+            }
+          },
           "raw_bytes": 8587256,
           "gzip_bytes": 333237
         }
