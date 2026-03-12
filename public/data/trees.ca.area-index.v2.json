@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-03-12T03:21:16.442219+00:00",
+  "generated_at": "2026-03-12T05:35:52.872888+00:00",
   "region": "ca",
   "strategy": "area_shard",
   "items": [
@@ -1914,18 +1914,35 @@
           "id": "los-angeles-001",
           "bounds": [
             [
-              -118.660408935307,
+              -118.562725732396,
               33.7071976349
+            ],
+            [
+              -118.186568059,
+              34.0624949154
+            ]
+          ],
+          "data_path": "/data/trees.ca.area.los-angeles.shard-001.v2.geojson",
+          "tree_count": 20229,
+          "raw_bytes": 10127602,
+          "gzip_bytes": 389054
+        },
+        {
+          "id": "los-angeles-002",
+          "bounds": [
+            [
+              -118.660408935307,
+              34.062495909221
             ],
             [
               -118.156102984,
               34.326885697469
             ]
           ],
-          "data_path": "/data/trees.ca.area.los-angeles.v2.geojson",
-          "tree_count": 40459,
-          "raw_bytes": 20242132,
-          "gzip_bytes": 770544
+          "data_path": "/data/trees.ca.area.los-angeles.shard-002.v2.geojson",
+          "tree_count": 20230,
+          "raw_bytes": 10114573,
+          "gzip_bytes": 406530
         }
       ]
     },
@@ -3205,14 +3222,31 @@
               37.70824221728633
             ],
             [
+              -122.43262086836687,
+              37.806245186226505
+            ]
+          ],
+          "data_path": "/data/trees.ca.area.san-francisco.shard-001.v2.geojson",
+          "tree_count": 12049,
+          "raw_bytes": 6412236,
+          "gzip_bytes": 287943
+        },
+        {
+          "id": "san-francisco-002",
+          "bounds": [
+            [
+              -122.43261911558334,
+              37.70853068292657
+            ],
+            [
               -122.37522580172649,
               37.807794446511195
             ]
           ],
-          "data_path": "/data/trees.ca.area.san-francisco.v2.geojson",
-          "tree_count": 24099,
-          "raw_bytes": 12853690,
-          "gzip_bytes": 556355
+          "data_path": "/data/trees.ca.area.san-francisco.shard-002.v2.geojson",
+          "tree_count": 12050,
+          "raw_bytes": 6441497,
+          "gzip_bytes": 278795
         }
       ]
     },

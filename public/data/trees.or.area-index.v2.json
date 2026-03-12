@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-03-11T19:23:12.439350+00:00",
+  "generated_at": "2026-03-12T05:35:52.872888+00:00",
   "region": "or",
   "strategy": "area_shard",
   "items": [
@@ -43,14 +43,31 @@
               45.4350079092413
             ],
             [
-              -122.48250881977508,
+              -122.63373012325069,
               45.63452836335847
             ]
           ],
-          "data_path": "/data/trees.or.area.portland.v2.geojson",
-          "tree_count": 24775,
-          "raw_bytes": 13009486,
-          "gzip_bytes": 581491
+          "data_path": "/data/trees.or.area.portland.shard-001.v2.geojson",
+          "tree_count": 12387,
+          "raw_bytes": 6510618,
+          "gzip_bytes": 292466
+        },
+        {
+          "id": "portland-002",
+          "bounds": [
+            [
+              -122.6337300190461,
+              45.45797922546795
+            ],
+            [
+              -122.48250881977508,
+              45.57681841874777
+            ]
+          ],
+          "data_path": "/data/trees.or.area.portland.shard-002.v2.geojson",
+          "tree_count": 12388,
+          "raw_bytes": 6498911,
+          "gzip_bytes": 293757
         }
       ]
     }

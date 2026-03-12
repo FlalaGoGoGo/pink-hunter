@@ -15,8 +15,9 @@ Live domain:
 ## Hard Repo Rule
 - Every accepted local change must also be synchronized into `/Users/zhangziling/Documents/Project-Pink-Hunter/GitHub/pink-hunter`.
 - After sync, the GitHub export repo must be committed and pushed to [FlalaGoGoGo/pink-hunter](https://github.com/FlalaGoGoGo/pink-hunter).
-- Policy doc: [docs/GITHUB_SYNC_POLICY.md](docs/GITHUB_SYNC_POLICY.md)
+- Policy doc: [docs/ops/github-sync-policy.md](docs/ops/github-sync-policy.md)
 - Preferred helper: `./scripts/sync_github_export.sh "Commit message"`
+- Preferred command wrapper: `./scripts/ops_runner.sh sync-release "Commit message"`
 - Published region data must pass `./scripts/check_region_data_sizes.py --data-dir public/data` before sync/push.
 
 ## Coverage Areas
@@ -227,7 +228,7 @@ Live domain:
 ### Gray Coverage
 - Gray coverage marks cities whose official boundary is public but whose official public single-tree dataset is not available yet.
 - Current gray-coverage examples include `Alexandria`, `Montgomery County`, `Newark`, `Santa Clara`, `Monterey`, `Napa`, `Richmond`, `Santa Cruz`, `Santa Rosa`, `Stockton`, `Redwood City`, `Alameda`, `Hayward`, `Daly City`, `Long Beach`, `Santa Ana`, `Beaverton`, `Gresham`, `Hillsboro`, `Salem`, `Tigard`, `Burnaby`, `Coquitlam`, `Delta`, `Langley City`, `North Vancouver City`, `North Vancouver District`, `Richmond BC`, `Saanich`, `Surrey`, `West Vancouver`, and `White Rock`.
-- Tracking details: [docs/CITY_COVERAGE_TRACKER.md](docs/CITY_COVERAGE_TRACKER.md)
+- Tracking details: [docs/research/city-coverage-tracker.md](docs/research/city-coverage-tracker.md)
 
 ## Official Data Sources
 <details>
@@ -484,10 +485,12 @@ Live domain:
 - Region aggregate size is still tracked, but only as advisory scale metadata and not as a GitHub single-file risk.
 
 ## Docs
-- API: [docs/API.md](docs/API.md)
-- Coverage tracker: [docs/CITY_COVERAGE_TRACKER.md](docs/CITY_COVERAGE_TRACKER.md)
-- ETL methods: [docs/CITY_ETL_METHODS.md](docs/CITY_ETL_METHODS.md)
-- Taxonomy keywords: [docs/TAXONOMY_KEYWORDS.md](docs/TAXONOMY_KEYWORDS.md)
-- GitHub Pages subdomain setup: [docs/GITHUB_PAGES_SUBDOMAIN_SETUP.md](docs/GITHUB_PAGES_SUBDOMAIN_SETUP.md)
-- GitHub sync policy: [docs/GITHUB_SYNC_POLICY.md](docs/GITHUB_SYNC_POLICY.md)
-- Nano Banana prompts: [docs/NANO_BANANA_PROMPTS.md](docs/NANO_BANANA_PROMPTS.md)
+- Docs index: [docs/README.md](docs/README.md)
+- Ops: [docs/ops/README.md](docs/ops/README.md)
+- Architecture: [docs/architecture/README.md](docs/architecture/README.md)
+- Strategy: [docs/strategy/README.md](docs/strategy/README.md)
+- Research: [docs/research/README.md](docs/research/README.md)
+- Public data interfaces: [docs/architecture/public-data-interfaces.md](docs/architecture/public-data-interfaces.md)
+- Coverage tracker: [docs/research/city-coverage-tracker.md](docs/research/city-coverage-tracker.md)
+- ETL methods: [docs/research/city-etl-methods.md](docs/research/city-etl-methods.md)
+- GitHub sync policy: [docs/ops/github-sync-policy.md](docs/ops/github-sync-policy.md)

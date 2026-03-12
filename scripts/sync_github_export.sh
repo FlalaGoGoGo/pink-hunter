@@ -37,6 +37,32 @@ resolve_node20_runner() {
   NODE20_RUNNER=(npx -y node@20)
 }
 
+cleanup_export_repo() {
+  local repo_dir="$1"
+  rm -rf \
+    "$repo_dir/node_modules" \
+    "$repo_dir/dist" \
+    "$repo_dir/data/normalized" \
+    "$repo_dir/data/tmp"
+  find "$repo_dir" \
+    \( -name '.DS_Store' -o -name '__pycache__' -o -name '*.pyc' -o -name '*.tmp' -o -name '* 2*' \) \
+    -print0 | xargs -0 rm -rf --
+}
+
+prune_export_siblings() {
+  local github_dir="$ROOT_DIR/GitHub"
+  local entry_name
+  shopt -s nullglob
+  for path in "$github_dir"/pink-hunter*; do
+    entry_name="$(basename "$path")"
+    if [ "$entry_name" = "pink-hunter" ]; then
+      continue
+    fi
+    rm -rf "$path"
+  done
+  shopt -u nullglob
+}
+
 run_preflight_checks() {
   echo "Running shard consistency check..." >&2
   python3 "$ROOT_DIR/scripts/check_region_data_sizes.py" --data-dir "$TMP_REPO/public/data"
@@ -71,7 +97,7 @@ fi
 
 git clone --depth 1 "$REMOTE_URL" "$TMP_REPO" >&2
 
-rm -rf "$TMP_REPO/data/tmp" "$TMP_REPO/data/normalized"
+cleanup_export_repo "$TMP_REPO"
 
 find "$TMP_REPO" -mindepth 1 -maxdepth 1 ! -name '.git' -exec rm -rf {} +
 
@@ -93,8 +119,10 @@ git -C "$TMP_REPO" add -A
 
 if git -C "$TMP_REPO" diff --cached --quiet; then
   echo "No GitHub export changes to commit."
+  cleanup_export_repo "$TMP_REPO"
   rm -rf "$EXPORT_DIR"
   mkdir -p "$(dirname "$EXPORT_DIR")"
+  prune_export_siblings
   mv "$TMP_REPO" "$EXPORT_DIR"
   exit 0
 fi
@@ -104,6 +132,8 @@ run_preflight_checks
 git -C "$TMP_REPO" commit -m "$COMMIT_MESSAGE"
 git -C "$TMP_REPO" -c pack.windowMemory=100m -c pack.packSizeLimit=100m -c pack.threads=1 push origin main
 
+cleanup_export_repo "$TMP_REPO"
 rm -rf "$EXPORT_DIR"
 mkdir -p "$(dirname "$EXPORT_DIR")"
+prune_export_siblings
 mv "$TMP_REPO" "$EXPORT_DIR"

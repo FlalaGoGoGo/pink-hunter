@@ -19,6 +19,20 @@ export interface AppRuntimeConfig {
   mapboxStyleId: string;
 }
 
+function parseCoverageLoadMode(
+  rawValue: string | undefined,
+  fallback: CoverageLoadMode
+): CoverageLoadMode {
+  switch ((rawValue ?? "").trim().toLowerCase()) {
+    case "eager_all":
+      return "eager_all";
+    case "lazy_by_region":
+      return "lazy_by_region";
+    default:
+      return fallback;
+  }
+}
+
 function normalizeBaseUrl(rawValue: string | undefined): string {
   return (rawValue ?? "").trim().replace(/\/+$/, "");
 }
@@ -53,7 +67,10 @@ export const runtimeConfig: AppRuntimeConfig = {
   appBaseUrl: normalizeBaseUrl(import.meta.env.VITE_APP_BASE_URL),
   dataBaseUrl: normalizeBaseUrl(import.meta.env.VITE_DATA_BASE_URL),
   mapStack: isAwsRuntime(env) ? "mapbox" : "maplibre",
-  coverageLoadMode: isAwsRuntime(env) ? "lazy_by_region" : "eager_all",
+  coverageLoadMode: parseCoverageLoadMode(
+    import.meta.env.VITE_COVERAGE_LOAD_MODE,
+    isAwsRuntime(env) ? "lazy_by_region" : "eager_all"
+  ),
   visitorCounterMode: isAwsRuntime(env) ? "aws_api" : "counterapi",
   counterApiBaseUrl: normalizeBaseUrl(import.meta.env.VITE_COUNTER_API_BASE_URL) || DEFAULT_COUNTER_API_BASE_URL,
   visitorApiBaseUrl: normalizeBaseUrl(import.meta.env.VITE_VISITOR_API_BASE_URL),

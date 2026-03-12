@@ -188,6 +188,7 @@ CA_STATE_OVERVIEW_BOUNDS: list[list[float]] = [[-124.48, 32.45], [-114.13, 42.08
 WARNING_BYTES = 35 * 1024 * 1024
 HIGH_WARNING_BYTES = 45 * 1024 * 1024
 HARD_FAIL_BYTES = 50 * 1024 * 1024
+PUBLISH_UI_TARGET_SPLIT_BYTES = 12 * 1024 * 1024
 PUBLISH_TARGET_SPLIT_BYTES = 20 * 1024 * 1024
 PUBLISH_MUST_SPLIT_BYTES = 25 * 1024 * 1024
 PUBLISH_HARD_FAIL_BYTES = 30 * 1024 * 1024
@@ -2944,7 +2945,7 @@ def split_features_for_publish(features: list[dict[str, Any]]) -> list[list[dict
 
     def recurse(current: list[dict[str, Any]], depth: int = 0) -> list[list[dict[str, Any]]]:
         payload_bytes = len(encode_feature_collection(current))
-        if payload_bytes < PUBLISH_TARGET_SPLIT_BYTES or len(current) <= 1 or depth >= 12:
+        if payload_bytes < PUBLISH_UI_TARGET_SPLIT_BYTES or len(current) <= 1 or depth >= 12:
             return [current]
 
         x_span = max(feature_point(feature)[0] for feature in current) - min(feature_point(feature)[0] for feature in current)

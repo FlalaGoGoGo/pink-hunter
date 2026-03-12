@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-03-11T19:23:12.439350+00:00",
+  "generated_at": "2026-03-12T05:35:52.872888+00:00",
   "region": "on",
   "strategy": "area_shard",
   "items": [
@@ -94,14 +94,31 @@
               43.5866509121
             ],
             [
+              -79.4203704524,
+              43.7963703515
+            ]
+          ],
+          "data_path": "/data/trees.on.area.toronto.shard-001.v2.geojson",
+          "tree_count": 18151,
+          "raw_bytes": 8575688,
+          "gzip_bytes": 342215
+        },
+        {
+          "id": "toronto-002",
+          "bounds": [
+            [
+              -79.4203704524,
+              43.6268903755
+            ],
+            [
               -79.12438726,
               43.8367290225
             ]
           ],
-          "data_path": "/data/trees.on.area.toronto.v2.geojson",
-          "tree_count": 36302,
-          "raw_bytes": 17162901,
-          "gzip_bytes": 731296
+          "data_path": "/data/trees.on.area.toronto.shard-002.v2.geojson",
+          "tree_count": 18151,
+          "raw_bytes": 8587256,
+          "gzip_bytes": 333237
         }
       ]
     }

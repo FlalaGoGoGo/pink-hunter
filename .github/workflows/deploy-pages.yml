@@ -17,6 +17,9 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      VITE_RUNTIME_ENV: stable
+      VITE_COVERAGE_LOAD_MODE: lazy_by_region
     steps:
       - name: Checkout
         uses: actions/checkout@v4

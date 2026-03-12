@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-03-11T19:23:12.439350+00:00",
+  "generated_at": "2026-03-12T05:35:52.872888+00:00",
   "region": "bc",
   "strategy": "area_shard",
   "items": [
@@ -94,14 +94,31 @@
               49.20125799917632
             ],
             [
-              -123.02343900043819,
+              -123.10847400034976,
               49.30294299922973
             ]
           ],
-          "data_path": "/data/trees.bc.area.vancouver-bc.v2.geojson",
-          "tree_count": 38589,
-          "raw_bytes": 20121607,
-          "gzip_bytes": 925188
+          "data_path": "/data/trees.bc.area.vancouver-bc.shard-001.v2.geojson",
+          "tree_count": 19294,
+          "raw_bytes": 10061104,
+          "gzip_bytes": 466494
+        },
+        {
+          "id": "vancouver-bc-002",
+          "bounds": [
+            [
+              -123.10846999913542,
+              49.205420998255796
+            ],
+            [
+              -123.02343900043819,
+              49.2999999984606
+            ]
+          ],
+          "data_path": "/data/trees.bc.area.vancouver-bc.shard-002.v2.geojson",
+          "tree_count": 19295,
+          "raw_bytes": 10060546,
+          "gzip_bytes": 462728
         }
       ]
     },

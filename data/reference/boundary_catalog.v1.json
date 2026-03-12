@@ -344,6 +344,26 @@
     {
       "country_id": "us",
       "state_id": "az",
+      "jurisdiction": "Mesa",
+      "area_type": "city",
+      "slug": "mesa",
+      "boundary_path": "data/reference/boundaries/us/az/mesa.geojson",
+      "boundary_rule": "official_jurisdiction_boundary_only",
+      "boundary_source": "US Census TIGERweb Places/CouSub",
+      "bounds": [
+        [
+          -119.01743599963145,
+          46.562038999947355
+        ],
+        [
+          -118.98564499991721,
+          46.58386500017363
+        ]
+      ]
+    },
+    {
+      "country_id": "us",
+      "state_id": "az",
       "jurisdiction": "Phoenix",
       "area_type": "city",
       "slug": "phoenix",
@@ -10764,6 +10784,26 @@
     {
       "country_id": "us",
       "state_id": "nj",
+      "jurisdiction": "Haworth",
+      "area_type": "city",
+      "slug": "haworth",
+      "boundary_path": "data/reference/boundaries/us/nj/haworth.geojson",
+      "boundary_rule": "official_jurisdiction_boundary_only",
+      "boundary_source": "US Census TIGERweb Places/CouSub",
+      "bounds": [
+        [
+          -74.02658299976643,
+          40.95428900013076
+        ],
+        [
+          -73.97469500011032,
+          40.97199399970989
+        ]
+      ]
+    },
+    {
+      "country_id": "us",
+      "state_id": "nj",
       "jurisdiction": "Ho-Ho-Kus",
       "area_type": "city",
       "slug": "ho-ho-kus",
@@ -10898,6 +10938,46 @@
         [
           -74.18266199973476,
           40.861034999944444
+        ]
+      ]
+    },
+    {
+      "country_id": "us",
+      "state_id": "nj",
+      "jurisdiction": "Montvale",
+      "area_type": "city",
+      "slug": "montvale",
+      "boundary_path": "data/reference/boundaries/us/nj/montvale.geojson",
+      "boundary_rule": "official_jurisdiction_boundary_only",
+      "boundary_source": "US Census TIGERweb Places/CouSub",
+      "bounds": [
+        [
+          -74.07979000024578,
+          41.03663199998699
+        ],
+        [
+          -74.01242500022144,
+          41.07278500012456
+        ]
+      ]
+    },
+    {
+      "country_id": "us",
+      "state_id": "nj",
+      "jurisdiction": "Morristown",
+      "area_type": "city",
+      "slug": "morristown",
+      "boundary_path": "data/reference/boundaries/us/nj/morristown.geojson",
+      "boundary_rule": "official_jurisdiction_boundary_only",
+      "boundary_source": "US Census TIGERweb Places/CouSub",
+      "bounds": [
+        [
+          -74.50142900043815,
+          40.780282000140495
+        ],
+        [
+          -74.45641699971578,
+          40.81822599975087
         ]
       ]
     },
@@ -11064,6 +11144,26 @@
     {
       "country_id": "us",
       "state_id": "nj",
+      "jurisdiction": "Tenafly",
+      "area_type": "city",
+      "slug": "tenafly",
+      "boundary_path": "data/reference/boundaries/us/nj/tenafly.geojson",
+      "boundary_rule": "official_jurisdiction_boundary_only",
+      "boundary_source": "US Census TIGERweb Places/CouSub",
+      "bounds": [
+        [
+          -73.98440499961083,
+          40.895496000190874
+        ],
+        [
+          -73.91993400042769,
+          40.937826000294464
+        ]
+      ]
+    },
+    {
+      "country_id": "us",
+      "state_id": "nj",
       "jurisdiction": "Westwood",
       "area_type": "city",
       "slug": "westwood",
@@ -11078,6 +11178,26 @@
         [
           -74.00438000025225,
           41.000118999754626
+        ]
+      ]
+    },
+    {
+      "country_id": "us",
+      "state_id": "nj",
+      "jurisdiction": "Wyckoff",
+      "area_type": "city",
+      "slug": "wyckoff",
+      "boundary_path": "data/reference/boundaries/us/nj/wyckoff.geojson",
+      "boundary_rule": "official_jurisdiction_boundary_only",
+      "boundary_source": "US Census TIGERweb Places/CouSub",
+      "bounds": [
+        [
+          -74.19187500001613,
+          40.971130000097304
+        ],
+        [
+          -74.13753600010791,
+          41.02592100025152
         ]
       ]
     },

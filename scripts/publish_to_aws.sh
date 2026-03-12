@@ -3,10 +3,32 @@ set -euo pipefail
 
 ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 
-command -v aws >/dev/null 2>&1 || {
-  echo "aws CLI is required." >&2
-  exit 1
+require_command() {
+  local command_name="$1"
+  command -v "$command_name" >/dev/null 2>&1 || {
+    echo "$command_name is required." >&2
+    exit 1
+  }
 }
+
+resolve_node20_runner() {
+  require_command node
+
+  local node_major
+  node_major="$(node -p 'process.versions.node.split(".")[0]' 2>/dev/null || true)"
+  if [ "$node_major" = "20" ]; then
+    NODE20_RUNNER=(node)
+    return
+  fi
+
+  require_command npx
+  NODE20_RUNNER=(npx -y node@20)
+}
+
+require_command aws
+require_command npm
+require_command python3
+resolve_node20_runner
 
 : "${APP_BUCKET_NAME:?Set APP_BUCKET_NAME.}"
 : "${DATA_BUCKET_NAME:?Set DATA_BUCKET_NAME.}"
@@ -17,7 +39,10 @@ APP_CACHE_CONTROL_ASSETS="${APP_CACHE_CONTROL_ASSETS:-public,max-age=31536000,im
 DATA_CACHE_CONTROL="${DATA_CACHE_CONTROL:-public,max-age=86400,stale-while-revalidate=604800}"
 
 pushd "$ROOT_DIR" >/dev/null
-npm run build
+python3 scripts/check_region_data_sizes.py --data-dir public/data
+npm ci --no-fund --no-audit
+"${NODE20_RUNNER[@]}" node_modules/typescript/bin/tsc -b
+"${NODE20_RUNNER[@]}" node_modules/vite/bin/vite.js build
 
 aws s3 sync dist/assets "s3://${APP_BUCKET_NAME}/assets/" \
   --delete \
