@@ -236,6 +236,8 @@ GLENDALE_TREES_LAYER = "https://services2.arcgis.com/B282VrEXeknzSool/arcgis/res
 GLENDALE_DATASET_PAGE = "https://www.glendaleca.gov/your-government/departments/public-works/urban-forestry/tree-inventory-map"
 INGLEWOOD_TREES_LAYER = "https://services5.arcgis.com/t4zDNzBF9Dot8HEQ/arcgis/rest/services/Inglewood_Tree_Layer_view/FeatureServer/0"
 INGLEWOOD_DATASET_PAGE = "https://services5.arcgis.com/t4zDNzBF9Dot8HEQ/arcgis/rest/services/Inglewood_Tree_Layer_view/FeatureServer"
+INGLEWOOD_FRUIT_TREES_LAYER = "https://services5.arcgis.com/t4zDNzBF9Dot8HEQ/arcgis/rest/services/Inglewood_Fruit_Tree_Recipients_view/FeatureServer/0"
+INGLEWOOD_FRUIT_DATASET_PAGE = "https://services5.arcgis.com/t4zDNzBF9Dot8HEQ/arcgis/rest/services/Inglewood_Fruit_Tree_Recipients_view/FeatureServer"
 LYNWOOD_TREES_LAYER = "https://services5.arcgis.com/t4zDNzBF9Dot8HEQ/arcgis/rest/services/Lynwood_Public_Trees_(CAL_FIRE)_view/FeatureServer/0"
 LYNWOOD_DATASET_PAGE = "https://services5.arcgis.com/t4zDNzBF9Dot8HEQ/arcgis/rest/services/Lynwood_Public_Trees_(CAL_FIRE)_view/FeatureServer"
 HUNTINGTON_PARK_TREES_LAYER = "https://services5.arcgis.com/t4zDNzBF9Dot8HEQ/arcgis/rest/services/UFMP_Huntington_Park_Tree_Sites_view/FeatureServer/0"
@@ -1358,8 +1360,8 @@ def fetch_arcgis_inventory_city(
     }
 
 
-def clip_features_to_city_boundary(city: str, features: list[dict[str, Any]]) -> list[dict[str, Any]]:
-    boundary = load_city_boundary_geometry(city)
+def clip_features_to_city_boundary(city: str, region: str, features: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    boundary = load_city_boundary_geometry(city, state_id=region)
     clipped: list[dict[str, Any]] = []
     for feature in features:
         geom = feature.get("geometry", {})
@@ -1404,7 +1406,7 @@ def fetch_arcgis_inventory_city_result(
         object_id_field=object_id_field,
     )
     if clip_to_boundary:
-        features = clip_features_to_city_boundary(city, features)
+        features = clip_features_to_city_boundary(city, region, features)
     return build_arcgis_inventory_result(
         city=city,
         region=region,
@@ -1450,7 +1452,7 @@ def build_arcgis_inventory_result(
     lat_field: str | None = None,
     zip_field: str | None = None,
 ) -> dict[str, Any]:
-    zip_index = fetch_us_city_zip_index(city)
+    zip_index = fetch_us_city_zip_index(city, state_id=region)
     mapping_rows = load_mapping(MAPPING_PATH)
     subtype_rows = load_subtype_mapping(SUBTYPE_MAPPING_PATH)
     output_features: list[dict[str, Any]] = []
@@ -2788,7 +2790,7 @@ def fetch_treeplotter_inventory(
     zip_index = fetch_us_city_zip_index(city)
     mapping_rows = load_mapping(MAPPING_PATH)
     subtype_rows = load_subtype_mapping(SUBTYPE_MAPPING_PATH)
-    boundary_geometry = load_city_boundary_geometry(city) if clip_to_boundary else None
+    boundary_geometry = load_city_boundary_geometry(city, state_id=region) if clip_to_boundary else None
 
     cookie_path = init_treeplotter_session(folder, landing_url)
     try:
@@ -3053,8 +3055,8 @@ def fetch_treekeeper_inventory_city(
         uid=uid,
         fac_id=fac_id,
     )
-    boundary_geometry = load_city_boundary_geometry(city)
-    zip_index = fetch_us_city_zip_index(city) if use_zip_index else []
+    boundary_geometry = load_city_boundary_geometry(city, state_id=region)
+    zip_index = fetch_us_city_zip_index(city, state_id=region) if use_zip_index else []
     mapping_rows = load_mapping(MAPPING_PATH)
     subtype_rows = load_subtype_mapping(SUBTYPE_MAPPING_PATH)
     species_field = detect_treekeeper_species_field(rows, mapping_rows, subtype_rows) or "SITE_ATTR1"
@@ -6378,7 +6380,7 @@ def fetch_glendale() -> dict[str, Any]:
 
 
 def fetch_inglewood() -> dict[str, Any]:
-    return fetch_arcgis_inventory_city_result(
+    main_result = fetch_arcgis_inventory_city_result(
         city="Inglewood",
         region="ca",
         layer_url=INGLEWOOD_TREES_LAYER,
@@ -6392,6 +6394,31 @@ def fetch_inglewood() -> dict[str, Any]:
         note="Integrated from the public Inglewood tree layer and official jurisdiction boundary.",
         common_field="NAME",
         zip_field="Zipcode",
+        clip_to_boundary=True,
+    )
+    fruit_result = fetch_arcgis_inventory_city_result(
+        city="Inglewood",
+        region="ca",
+        layer_url=INGLEWOOD_FRUIT_TREES_LAYER,
+        dataset_page=INGLEWOOD_FRUIT_DATASET_PAGE,
+        where="1=1",
+        out_fields=["FID", "Fruit_Tree_Species", "Address"],
+        object_id_field="FID",
+        source_name="Inglewood Fruit Tree Recipients",
+        source_department="City of Inglewood",
+        ownership_raw="City of Inglewood",
+        note="Integrated from the public Inglewood fruit tree recipients layer and official jurisdiction boundary.",
+        scientific_field="Fruit_Tree_Species",
+        clip_to_boundary=True,
+    )
+    return merge_city_results(
+        city="Inglewood",
+        region="ca",
+        dataset_page=INGLEWOOD_FRUIT_DATASET_PAGE,
+        source_name="Inglewood Tree Layers",
+        source_department="City of Inglewood",
+        note="Integrated from the public City of Inglewood tree layers and official jurisdiction boundary.",
+        results=[main_result, fruit_result],
     )
 
 
@@ -6498,7 +6525,7 @@ def fetch_cudahy() -> dict[str, Any]:
         ownership_raw="City of Cudahy",
         note="Integrated from the public South Gate/Cudahy tree layer clipped to the official Cudahy jurisdiction boundary.",
         clip_to_boundary=True,
-        common_field="NAME",
+        scientific_field="NAME",
     )
     fruit_result = fetch_arcgis_inventory_city_result(
         city="Cudahy",
@@ -6513,7 +6540,7 @@ def fetch_cudahy() -> dict[str, Any]:
         ownership_raw="City of Cudahy",
         note="Integrated from the public South Gate/Cudahy fruit tree layer clipped to the official Cudahy jurisdiction boundary.",
         clip_to_boundary=True,
-        common_field="NAME",
+        scientific_field="NAME",
     )
     return merge_city_results(
         city="Cudahy",
