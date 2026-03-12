@@ -197,6 +197,7 @@ REGION_LABELS: dict[str, str] = {
     "ga": "GA",
     "il": "IL",
     "mi": "MI",
+    "wi": "WI",
     "wa": "WA",
     "ca": "CA",
     "co": "CO",
@@ -231,6 +232,16 @@ REGION_CITY_OVERRIDES: dict[str, str] = {
     "East Lansing": "mi",
     "Grand Rapids": "mi",
     "Novi": "mi",
+    "Milwaukee": "wi",
+    "Wauwatosa": "wi",
+    "West Allis": "wi",
+    "Greenfield": "wi",
+    "Franklin": "wi",
+    "Oak Creek": "wi",
+    "South Milwaukee": "wi",
+    "Shorewood": "wi",
+    "Greendale": "wi",
+    "St. Francis": "wi",
     "Denver": "co",
     "Austin": "tx",
     "Dallas": "tx",
@@ -444,6 +455,16 @@ CITY_BOUNDARY_HINTS: dict[str, dict[str, str]] = {
     "East Lansing": {"state": "26"},
     "Grand Rapids": {"state": "26"},
     "Novi": {"state": "26"},
+    "Milwaukee": {"state": "55"},
+    "Wauwatosa": {"state": "55"},
+    "West Allis": {"state": "55"},
+    "Greenfield": {"state": "55"},
+    "Franklin": {"state": "55"},
+    "Oak Creek": {"state": "55"},
+    "South Milwaukee": {"state": "55"},
+    "Shorewood": {"state": "55"},
+    "Greendale": {"state": "55"},
+    "St. Francis": {"state": "55"},
     "Denver": {"state": "08"},
     "Austin": {"state": "48"},
     "Dallas": {"state": "48"},
@@ -2776,6 +2797,8 @@ def region_for_city(city: str) -> str:
         return "il"
     if state == "26":
         return "mi"
+    if state == "55":
+        return "wi"
     if city.endswith(" BC") or city.endswith(", BC"):
         return "bc"
     if city.endswith(" VA") or city.endswith(", VA"):

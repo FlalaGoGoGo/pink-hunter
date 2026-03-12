@@ -9344,6 +9344,26 @@
     {
       "country_id": "us",
       "state_id": "ca",
+      "jurisdiction": "Ventura",
+      "area_type": "city",
+      "slug": "ventura",
+      "boundary_path": "data/reference/boundaries/us/ca/ventura.geojson",
+      "boundary_rule": "official_jurisdiction_boundary_only",
+      "boundary_source": "US Census TIGERweb Places/CouSub",
+      "bounds": [
+        [
+          -119.50095300026126,
+          34.227837999843224
+        ],
+        [
+          -119.1291320001377,
+          34.4152259999355
+        ]
+      ]
+    },
+    {
+      "country_id": "us",
+      "state_id": "ca",
       "jurisdiction": "Vernon",
       "area_type": "city",
       "slug": "vernon",
@@ -10624,6 +10644,26 @@
     {
       "country_id": "us",
       "state_id": "nj",
+      "jurisdiction": "Bergenfield",
+      "area_type": "city",
+      "slug": "bergenfield",
+      "boundary_path": "data/reference/boundaries/us/nj/bergenfield.geojson",
+      "boundary_rule": "official_jurisdiction_boundary_only",
+      "boundary_source": "US Census TIGERweb Places/CouSub",
+      "bounds": [
+        [
+          -74.01748400018617,
+          40.90849800003974
+        ],
+        [
+          -73.97959300041659,
+          40.938408999910784
+        ]
+      ]
+    },
+    {
+      "country_id": "us",
+      "state_id": "nj",
       "jurisdiction": "Dumont",
       "area_type": "city",
       "slug": "dumont",
@@ -10644,6 +10684,46 @@
     {
       "country_id": "us",
       "state_id": "nj",
+      "jurisdiction": "Englewood",
+      "area_type": "city",
+      "slug": "englewood",
+      "boundary_path": "data/reference/boundaries/us/nj/englewood.geojson",
+      "boundary_rule": "official_jurisdiction_boundary_only",
+      "boundary_source": "US Census TIGERweb Places/CouSub",
+      "bounds": [
+        [
+          -73.99472699975485,
+          40.86569800029543
+        ],
+        [
+          -73.94939199989061,
+          40.9136280000322
+        ]
+      ]
+    },
+    {
+      "country_id": "us",
+      "state_id": "nj",
+      "jurisdiction": "Fair Lawn",
+      "area_type": "city",
+      "slug": "fair-lawn",
+      "boundary_path": "data/reference/boundaries/us/nj/fair-lawn.geojson",
+      "boundary_rule": "official_jurisdiction_boundary_only",
+      "boundary_source": "US Census TIGERweb Places/CouSub",
+      "bounds": [
+        [
+          -74.14817100024638,
+          40.91771800020379
+        ],
+        [
+          -74.08941100005784,
+          40.95507600013985
+        ]
+      ]
+    },
+    {
+      "country_id": "us",
+      "state_id": "nj",
       "jurisdiction": "Fort Lee",
       "area_type": "city",
       "slug": "fort-lee",
@@ -10658,6 +10738,26 @@
         [
           -73.9483359997314,
           40.869057999963545
+        ]
+      ]
+    },
+    {
+      "country_id": "us",
+      "state_id": "nj",
+      "jurisdiction": "Franklin Lakes",
+      "area_type": "city",
+      "slug": "franklin-lakes",
+      "boundary_path": "data/reference/boundaries/us/nj/franklin-lakes.geojson",
+      "boundary_rule": "official_jurisdiction_boundary_only",
+      "boundary_source": "US Census TIGERweb Places/CouSub",
+      "bounds": [
+        [
+          -74.24853200010709,
+          40.97856399996473
+        ],
+        [
+          -74.16758000027505,
+          41.04524599979929
         ]
       ]
     },
@@ -12898,6 +12998,246 @@
         [
           -122.20978399967704,
           47.657601000020726
+        ]
+      ]
+    },
+    {
+      "country_id": "us",
+      "state_id": "wi",
+      "jurisdiction": "Brown Deer",
+      "area_type": "city",
+      "slug": "brown-deer",
+      "boundary_path": "data/reference/boundaries/us/wi/brown-deer.geojson",
+      "boundary_rule": "official_jurisdiction_boundary_only",
+      "boundary_source": "US Census TIGERweb Places/CouSub",
+      "bounds": [
+        [
+          -87.99475799966461,
+          43.14857700014894
+        ],
+        [
+          -87.9507910001291,
+          43.19255000014826
+        ]
+      ]
+    },
+    {
+      "country_id": "us",
+      "state_id": "wi",
+      "jurisdiction": "Franklin",
+      "area_type": "city",
+      "slug": "franklin",
+      "boundary_path": "data/reference/boundaries/us/wi/franklin.geojson",
+      "boundary_rule": "official_jurisdiction_boundary_only",
+      "boundary_source": "US Census TIGERweb Places/CouSub",
+      "bounds": [
+        [
+          -88.0699469997252,
+          42.84332299993456
+        ],
+        [
+          -87.94938099996756,
+          42.93039699995403
+        ]
+      ]
+    },
+    {
+      "country_id": "us",
+      "state_id": "wi",
+      "jurisdiction": "Greendale",
+      "area_type": "city",
+      "slug": "greendale",
+      "boundary_path": "data/reference/boundaries/us/wi/greendale.geojson",
+      "boundary_rule": "official_jurisdiction_boundary_only",
+      "boundary_source": "US Census TIGERweb Places/CouSub",
+      "bounds": [
+        [
+          -88.03012399956224,
+          42.91963000008064
+        ],
+        [
+          -87.96656899989792,
+          42.955071999698035
+        ]
+      ]
+    },
+    {
+      "country_id": "us",
+      "state_id": "wi",
+      "jurisdiction": "Greenfield",
+      "area_type": "city",
+      "slug": "greenfield",
+      "boundary_path": "data/reference/boundaries/us/wi/greenfield.geojson",
+      "boundary_rule": "official_jurisdiction_boundary_only",
+      "boundary_source": "US Census TIGERweb Places/CouSub",
+      "bounds": [
+        [
+          -88.06928999977416,
+          42.93037200029051
+        ],
+        [
+          -87.94851300012934,
+          42.98810299989727
+        ]
+      ]
+    },
+    {
+      "country_id": "us",
+      "state_id": "wi",
+      "jurisdiction": "Milwaukee",
+      "area_type": "city",
+      "slug": "milwaukee",
+      "boundary_path": "data/reference/boundaries/us/wi/milwaukee.geojson",
+      "boundary_rule": "official_jurisdiction_boundary_only",
+      "boundary_source": "US Census TIGERweb Places/CouSub",
+      "bounds": [
+        [
+          -88.07100899973217,
+          42.9208230001938
+        ],
+        [
+          -87.86380700001378,
+          43.19477200024862
+        ]
+      ]
+    },
+    {
+      "country_id": "us",
+      "state_id": "wi",
+      "jurisdiction": "Oak Creek",
+      "area_type": "city",
+      "slug": "oak-creek",
+      "boundary_path": "data/reference/boundaries/us/wi/oak-creek.geojson",
+      "boundary_rule": "official_jurisdiction_boundary_only",
+      "boundary_source": "US Census TIGERweb Places/CouSub",
+      "bounds": [
+        [
+          -87.95197199996177,
+          42.84211699989479
+        ],
+        [
+          -87.82496899986492,
+          42.93037200029051
+        ]
+      ]
+    },
+    {
+      "country_id": "us",
+      "state_id": "wi",
+      "jurisdiction": "Shorewood",
+      "area_type": "city",
+      "slug": "shorewood",
+      "boundary_path": "data/reference/boundaries/us/wi/shorewood.geojson",
+      "boundary_rule": "official_jurisdiction_boundary_only",
+      "boundary_source": "US Census TIGERweb Places/CouSub",
+      "bounds": [
+        [
+          -87.90709300020713,
+          43.081918999955796
+        ],
+        [
+          -87.8703830002702,
+          43.10031400011995
+        ]
+      ]
+    },
+    {
+      "country_id": "us",
+      "state_id": "wi",
+      "jurisdiction": "South Milwaukee",
+      "area_type": "city",
+      "slug": "south-milwaukee",
+      "boundary_path": "data/reference/boundaries/us/wi/south-milwaukee.geojson",
+      "boundary_rule": "official_jurisdiction_boundary_only",
+      "boundary_source": "US Census TIGERweb Places/CouSub",
+      "bounds": [
+        [
+          -87.88210200015695,
+          42.893124999937164
+        ],
+        [
+          -87.83925700000458,
+          42.930198999893975
+        ]
+      ]
+    },
+    {
+      "country_id": "us",
+      "state_id": "wi",
+      "jurisdiction": "St. Francis",
+      "area_type": "city",
+      "slug": "st-francis",
+      "boundary_path": "data/reference/boundaries/us/wi/st-francis.geojson",
+      "boundary_rule": "official_jurisdiction_boundary_only",
+      "boundary_source": "US Census TIGERweb Places/CouSub",
+      "bounds": [
+        [
+          -87.89405899969508,
+          42.95909299994759
+        ],
+        [
+          -87.84780599976389,
+          42.98672499989748
+        ]
+      ]
+    },
+    {
+      "country_id": "us",
+      "state_id": "wi",
+      "jurisdiction": "Wauwatosa",
+      "area_type": "city",
+      "slug": "wauwatosa",
+      "boundary_path": "data/reference/boundaries/us/wi/wauwatosa.geojson",
+      "boundary_rule": "official_jurisdiction_boundary_only",
+      "boundary_source": "US Census TIGERweb Places/CouSub",
+      "bounds": [
+        [
+          -88.06699300040616,
+          43.03088499988165
+        ],
+        [
+          -87.98398000030933,
+          43.10444800007346
+        ]
+      ]
+    },
+    {
+      "country_id": "us",
+      "state_id": "wi",
+      "jurisdiction": "West Allis",
+      "area_type": "city",
+      "slug": "west-allis",
+      "boundary_path": "data/reference/boundaries/us/wi/west-allis.geojson",
+      "boundary_rule": "official_jurisdiction_boundary_only",
+      "boundary_source": "US Census TIGERweb Places/CouSub",
+      "bounds": [
+        [
+          -88.06862000030266,
+          42.97723300011861
+        ],
+        [
+          -87.97570299963826,
+          43.03101399979117
+        ]
+      ]
+    },
+    {
+      "country_id": "us",
+      "state_id": "wi",
+      "jurisdiction": "Whitefish Bay",
+      "area_type": "city",
+      "slug": "whitefish-bay",
+      "boundary_path": "data/reference/boundaries/us/wi/whitefish-bay.geojson",
+      "boundary_rule": "official_jurisdiction_boundary_only",
+      "boundary_source": "US Census TIGERweb Places/CouSub",
+      "bounds": [
+        [
+          -87.91365299967168,
+          43.098697000145684
+        ],
+        [
+          -87.87635000025615,
+          43.134638999786205
         ]
       ]
     }

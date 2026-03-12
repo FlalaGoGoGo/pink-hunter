@@ -1,6 +1,6 @@
 {
   "version": "v2",
-  "generated_at": "2026-03-12T03:23:20.065856+00:00",
+  "generated_at": "2026-03-12T04:59:53.213568+00:00",
   "default_region": "wa",
   "coverage_rule": "official_jurisdiction_boundary_only",
   "coverage_skipped_cities": [],
@@ -101,10 +101,10 @@
     "Yarrow Point"
   ],
   "coverage_official_unavailable_skipped_cities": [],
-  "source_count": 162,
-  "total_records": 2890633,
-  "included_records": 590974,
-  "unknown_records": 1254035,
+  "source_count": 172,
+  "total_records": 2932104,
+  "included_records": 592135,
+  "unknown_records": 1293681,
   "species_counts": {
     "cherry": 193947,
     "plum": 112010,
@@ -1352,6 +1352,64 @@
         "shard_count": 20,
         "ready": true
       }
+    },
+    {
+      "id": "wi",
+      "label": "WI",
+      "available": true,
+      "bounds": [
+        [
+          -88.06527167548244,
+          42.86132258425465
+        ],
+        [
+          -87.84167736777376,
+          43.172201678954195
+        ]
+      ],
+      "data_path": null,
+      "tree_count": 1161,
+      "city_count": 10,
+      "cities": [
+        "Franklin",
+        "Greendale",
+        "Greenfield",
+        "Milwaukee",
+        "Oak Creek",
+        "Shorewood",
+        "South Milwaukee",
+        "St. Francis",
+        "Wauwatosa",
+        "West Allis"
+      ],
+      "species_counts": {
+        "cherry": 1,
+        "plum": 0,
+        "peach": 1,
+        "magnolia": 93,
+        "crabapple": 1066
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "raw_bytes": 581597,
+      "gzip_bytes": 31008,
+      "warning_level": "none",
+      "aggregate_raw_bytes": 581597,
+      "aggregate_gzip_bytes": 31008,
+      "aggregate_warning_level": "none",
+      "largest_shard_raw_bytes": 340439,
+      "largest_shard_gzip_bytes": 16670,
+      "largest_shard_area": "Milwaukee",
+      "area_split": {
+        "strategy": "area_shard",
+        "index_path": "/data/trees.wi.area-index.v2.json",
+        "area_count": 10,
+        "shard_count": 10,
+        "ready": true
+      },
+      "largest_shard_warning_level": "none",
+      "coverage_path": "/data/coverage.wi.v1.geojson"
     }
   ],
   "areas": [
@@ -3513,6 +3571,15 @@
       "note": "Integrated from the official City of Fontana public tree inventory layer and official jurisdiction boundary."
     },
     {
+      "name": "Tree Points - All (view)",
+      "city": "Franklin",
+      "endpoint": "https://experience.arcgis.com/experience/b1d9ccfd3a2949728e5b445bfdc78935",
+      "last_edit_at": "",
+      "records_fetched": 2510,
+      "records_included": 87,
+      "note": "Integrated from the official Milwaukee County public tree viewer and official jurisdiction boundary clipping."
+    },
+    {
       "name": "Tree Inventory",
       "city": "Fremont",
       "endpoint": "https://www.fremont.gov/government/departments/maintenance-operations/urban-forestry/tree-inventory-tree-value",
@@ -3582,6 +3649,24 @@
       "records_fetched": 8898,
       "records_included": 13,
       "note": "Integrated from the official City of Grand Rapids public street tree ArcGIS layer."
+    },
+    {
+      "name": "Tree Points - All (view)",
+      "city": "Greendale",
+      "endpoint": "https://experience.arcgis.com/experience/b1d9ccfd3a2949728e5b445bfdc78935",
+      "last_edit_at": "",
+      "records_fetched": 641,
+      "records_included": 81,
+      "note": "Integrated from the official Milwaukee County public tree viewer and official jurisdiction boundary clipping."
+    },
+    {
+      "name": "Tree Points - All (view)",
+      "city": "Greenfield",
+      "endpoint": "https://experience.arcgis.com/experience/b1d9ccfd3a2949728e5b445bfdc78935",
+      "last_edit_at": "",
+      "records_fetched": 537,
+      "records_included": 22,
+      "note": "Integrated from the official Milwaukee County public tree viewer and official jurisdiction boundary clipping."
     },
     {
       "name": "TreeKeeper Inventory",
@@ -3788,6 +3873,15 @@
       "records_included": 1696
     },
     {
+      "name": "Tree Points - All (view)",
+      "city": "Milwaukee",
+      "endpoint": "https://experience.arcgis.com/experience/b1d9ccfd3a2949728e5b445bfdc78935",
+      "last_edit_at": "",
+      "records_fetched": 28344,
+      "records_included": 680,
+      "note": "Integrated from the official Milwaukee County public tree viewer and official jurisdiction boundary clipping."
+    },
+    {
       "name": "Tree Inventory",
       "city": "Montclair",
       "endpoint": "https://services9.arcgis.com/QHXEWAb0pE2rvfbb/arcgis/rest/services/Montclair_Trees_2017_WFL1/FeatureServer",
@@ -3912,6 +4006,15 @@
       "records_fetched": 3726,
       "records_included": 152,
       "note": "Integrated from the official City of O'Fallon public city tree ArcGIS service."
+    },
+    {
+      "name": "Tree Points - All (view)",
+      "city": "Oak Creek",
+      "endpoint": "https://experience.arcgis.com/experience/b1d9ccfd3a2949728e5b445bfdc78935",
+      "last_edit_at": "",
+      "records_fetched": 145,
+      "records_included": 15,
+      "note": "Integrated from the official Milwaukee County public tree viewer and official jurisdiction boundary clipping."
     },
     {
       "name": "Oakland Street Trees",
@@ -4295,6 +4398,15 @@
       "records_included": 2244
     },
     {
+      "name": "Tree Points - All (view)",
+      "city": "Shorewood",
+      "endpoint": "https://experience.arcgis.com/experience/b1d9ccfd3a2949728e5b445bfdc78935",
+      "last_edit_at": "",
+      "records_fetched": 375,
+      "records_included": 26,
+      "note": "Integrated from the official Milwaukee County public tree viewer and official jurisdiction boundary clipping."
+    },
+    {
       "name": "Snohomish Tree Inventory",
       "city": "Snohomish",
       "endpoint": "https://services9.arcgis.com/hUiJ0kKwHN6Cf0DY/arcgis/rest/services/Tree_Inventory_Canopy_2024_WFL1/FeatureServer/3",
@@ -4330,6 +4442,15 @@
       "note": "Integrated from the public South Gate/Cudahy tree layer clipped to the official South Gate jurisdiction boundary."
     },
     {
+      "name": "Tree Points - All (view)",
+      "city": "South Milwaukee",
+      "endpoint": "https://experience.arcgis.com/experience/b1d9ccfd3a2949728e5b445bfdc78935",
+      "last_edit_at": "",
+      "records_fetched": 1204,
+      "records_included": 28,
+      "note": "Integrated from the official Milwaukee County public tree viewer and official jurisdiction boundary clipping."
+    },
+    {
       "name": "TreeKeeper Inventory",
       "city": "South San Francisco",
       "endpoint": "https://www.ssfca.gov/Departments/Parks-Recreation/Divisions/Parks-Division/Trees",
@@ -4354,6 +4475,15 @@
       "records_fetched": 49412,
       "records_included": 1590,
       "note": "Integrated from the official City of Springfield public TreeKeeper inventory."
+    },
+    {
+      "name": "Tree Points - All (view)",
+      "city": "St. Francis",
+      "endpoint": "https://experience.arcgis.com/experience/b1d9ccfd3a2949728e5b445bfdc78935",
+      "last_edit_at": "",
+      "records_fetched": 585,
+      "records_included": 14,
+      "note": "Integrated from the official Milwaukee County public tree viewer and official jurisdiction boundary clipping."
     },
     {
       "name": "TreeKeeper Inventory",
@@ -4503,6 +4633,24 @@
       "last_edit_at": "",
       "records_fetched": 18378,
       "records_included": 16543
+    },
+    {
+      "name": "Tree Points - All (view)",
+      "city": "Wauwatosa",
+      "endpoint": "https://experience.arcgis.com/experience/b1d9ccfd3a2949728e5b445bfdc78935",
+      "last_edit_at": "",
+      "records_fetched": 3546,
+      "records_included": 77,
+      "note": "Integrated from the official Milwaukee County public tree viewer and official jurisdiction boundary clipping."
+    },
+    {
+      "name": "Tree Points - All (view)",
+      "city": "West Allis",
+      "endpoint": "https://experience.arcgis.com/experience/b1d9ccfd3a2949728e5b445bfdc78935",
+      "last_edit_at": "",
+      "records_fetched": 3584,
+      "records_included": 131,
+      "note": "Integrated from the official Milwaukee County public tree viewer and official jurisdiction boundary clipping."
     },
     {
       "name": "West Covina Tree Information",

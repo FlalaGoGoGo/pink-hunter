@@ -19,6 +19,7 @@ import time
 import urllib.request
 import requests
 from collections import Counter
+from functools import lru_cache
 from pathlib import Path
 from typing import Any
 
@@ -950,6 +951,71 @@ UNCOVERED_STATE_ARCGIS_CONFIGS: dict[str, dict[str, Any]] = {
         "note": "Integrated from the public City of Novi tree sites ArcGIS layer.",
         "clip_to_boundary": True,
     },
+    "Franklin": {
+        "region": "wi",
+        "layer_url": "https://utility.arcgis.com/usrsvcs/servers/18874e6d99b242878288adc0cf478841/rest/services/Environmental/Trees_View/FeatureServer/0",
+        "dataset_page": "https://experience.arcgis.com/experience/b1d9ccfd3a2949728e5b445bfdc78935",
+        "object_id_field": "OBJECTID",
+        "common_field": "Spp_Common",
+        "scientific_field": "Spp_Latin",
+        "source_name": "Tree Points - All (view)",
+        "source_department": "Milwaukee County",
+        "ownership_raw": "Milwaukee County",
+        "note": "Integrated from the official Milwaukee County public tree viewer and official jurisdiction boundary clipping.",
+        "clip_to_boundary": True,
+    },
+    "Greenfield": {
+        "region": "wi",
+        "layer_url": "https://utility.arcgis.com/usrsvcs/servers/18874e6d99b242878288adc0cf478841/rest/services/Environmental/Trees_View/FeatureServer/0",
+        "dataset_page": "https://experience.arcgis.com/experience/b1d9ccfd3a2949728e5b445bfdc78935",
+        "object_id_field": "OBJECTID",
+        "common_field": "Spp_Common",
+        "scientific_field": "Spp_Latin",
+        "source_name": "Tree Points - All (view)",
+        "source_department": "Milwaukee County",
+        "ownership_raw": "Milwaukee County",
+        "note": "Integrated from the official Milwaukee County public tree viewer and official jurisdiction boundary clipping.",
+        "clip_to_boundary": True,
+    },
+    "Greendale": {
+        "region": "wi",
+        "layer_url": "https://utility.arcgis.com/usrsvcs/servers/18874e6d99b242878288adc0cf478841/rest/services/Environmental/Trees_View/FeatureServer/0",
+        "dataset_page": "https://experience.arcgis.com/experience/b1d9ccfd3a2949728e5b445bfdc78935",
+        "object_id_field": "OBJECTID",
+        "common_field": "Spp_Common",
+        "scientific_field": "Spp_Latin",
+        "source_name": "Tree Points - All (view)",
+        "source_department": "Milwaukee County",
+        "ownership_raw": "Milwaukee County",
+        "note": "Integrated from the official Milwaukee County public tree viewer and official jurisdiction boundary clipping.",
+        "clip_to_boundary": True,
+    },
+    "Milwaukee": {
+        "region": "wi",
+        "layer_url": "https://utility.arcgis.com/usrsvcs/servers/18874e6d99b242878288adc0cf478841/rest/services/Environmental/Trees_View/FeatureServer/0",
+        "dataset_page": "https://experience.arcgis.com/experience/b1d9ccfd3a2949728e5b445bfdc78935",
+        "object_id_field": "OBJECTID",
+        "common_field": "Spp_Common",
+        "scientific_field": "Spp_Latin",
+        "source_name": "Tree Points - All (view)",
+        "source_department": "Milwaukee County",
+        "ownership_raw": "Milwaukee County",
+        "note": "Integrated from the official Milwaukee County public tree viewer and official jurisdiction boundary clipping.",
+        "clip_to_boundary": True,
+    },
+    "Oak Creek": {
+        "region": "wi",
+        "layer_url": "https://utility.arcgis.com/usrsvcs/servers/18874e6d99b242878288adc0cf478841/rest/services/Environmental/Trees_View/FeatureServer/0",
+        "dataset_page": "https://experience.arcgis.com/experience/b1d9ccfd3a2949728e5b445bfdc78935",
+        "object_id_field": "OBJECTID",
+        "common_field": "Spp_Common",
+        "scientific_field": "Spp_Latin",
+        "source_name": "Tree Points - All (view)",
+        "source_department": "Milwaukee County",
+        "ownership_raw": "Milwaukee County",
+        "note": "Integrated from the official Milwaukee County public tree viewer and official jurisdiction boundary clipping.",
+        "clip_to_boundary": True,
+    },
     "O'Fallon": {
         "region": "il",
         "layer_url": "https://services.arcgis.com/K8hCj4l2z1EMabnx/arcgis/rest/services/CityTrees/FeatureServer/1",
@@ -963,6 +1029,45 @@ UNCOVERED_STATE_ARCGIS_CONFIGS: dict[str, dict[str, Any]] = {
         "source_department": "City of O'Fallon",
         "ownership_raw": "City of O'Fallon",
         "note": "Integrated from the official City of O'Fallon public city tree ArcGIS service.",
+        "clip_to_boundary": True,
+    },
+    "Shorewood": {
+        "region": "wi",
+        "layer_url": "https://utility.arcgis.com/usrsvcs/servers/18874e6d99b242878288adc0cf478841/rest/services/Environmental/Trees_View/FeatureServer/0",
+        "dataset_page": "https://experience.arcgis.com/experience/b1d9ccfd3a2949728e5b445bfdc78935",
+        "object_id_field": "OBJECTID",
+        "common_field": "Spp_Common",
+        "scientific_field": "Spp_Latin",
+        "source_name": "Tree Points - All (view)",
+        "source_department": "Milwaukee County",
+        "ownership_raw": "Milwaukee County",
+        "note": "Integrated from the official Milwaukee County public tree viewer and official jurisdiction boundary clipping.",
+        "clip_to_boundary": True,
+    },
+    "South Milwaukee": {
+        "region": "wi",
+        "layer_url": "https://utility.arcgis.com/usrsvcs/servers/18874e6d99b242878288adc0cf478841/rest/services/Environmental/Trees_View/FeatureServer/0",
+        "dataset_page": "https://experience.arcgis.com/experience/b1d9ccfd3a2949728e5b445bfdc78935",
+        "object_id_field": "OBJECTID",
+        "common_field": "Spp_Common",
+        "scientific_field": "Spp_Latin",
+        "source_name": "Tree Points - All (view)",
+        "source_department": "Milwaukee County",
+        "ownership_raw": "Milwaukee County",
+        "note": "Integrated from the official Milwaukee County public tree viewer and official jurisdiction boundary clipping.",
+        "clip_to_boundary": True,
+    },
+    "St. Francis": {
+        "region": "wi",
+        "layer_url": "https://utility.arcgis.com/usrsvcs/servers/18874e6d99b242878288adc0cf478841/rest/services/Environmental/Trees_View/FeatureServer/0",
+        "dataset_page": "https://experience.arcgis.com/experience/b1d9ccfd3a2949728e5b445bfdc78935",
+        "object_id_field": "OBJECTID",
+        "common_field": "Spp_Common",
+        "scientific_field": "Spp_Latin",
+        "source_name": "Tree Points - All (view)",
+        "source_department": "Milwaukee County",
+        "ownership_raw": "Milwaukee County",
+        "note": "Integrated from the official Milwaukee County public tree viewer and official jurisdiction boundary clipping.",
         "clip_to_boundary": True,
     },
     "Tempe": {
@@ -979,7 +1084,50 @@ UNCOVERED_STATE_ARCGIS_CONFIGS: dict[str, dict[str, Any]] = {
         "note": "Integrated from the official City of Tempe tree inventory dataset published on the city ArcGIS open-data portal.",
         "clip_to_boundary": True,
     },
+    "Wauwatosa": {
+        "region": "wi",
+        "layer_url": "https://utility.arcgis.com/usrsvcs/servers/18874e6d99b242878288adc0cf478841/rest/services/Environmental/Trees_View/FeatureServer/0",
+        "dataset_page": "https://experience.arcgis.com/experience/b1d9ccfd3a2949728e5b445bfdc78935",
+        "object_id_field": "OBJECTID",
+        "common_field": "Spp_Common",
+        "scientific_field": "Spp_Latin",
+        "source_name": "Tree Points - All (view)",
+        "source_department": "Milwaukee County",
+        "ownership_raw": "Milwaukee County",
+        "note": "Integrated from the official Milwaukee County public tree viewer and official jurisdiction boundary clipping.",
+        "clip_to_boundary": True,
+    },
+    "West Allis": {
+        "region": "wi",
+        "layer_url": "https://utility.arcgis.com/usrsvcs/servers/18874e6d99b242878288adc0cf478841/rest/services/Environmental/Trees_View/FeatureServer/0",
+        "dataset_page": "https://experience.arcgis.com/experience/b1d9ccfd3a2949728e5b445bfdc78935",
+        "object_id_field": "OBJECTID",
+        "common_field": "Spp_Common",
+        "scientific_field": "Spp_Latin",
+        "source_name": "Tree Points - All (view)",
+        "source_department": "Milwaukee County",
+        "ownership_raw": "Milwaukee County",
+        "note": "Integrated from the official Milwaukee County public tree viewer and official jurisdiction boundary clipping.",
+        "clip_to_boundary": True,
+    },
 }
+
+MILWAUKEE_COUNTY_TREE_VIEW_LAYER = (
+    "https://utility.arcgis.com/usrsvcs/servers/18874e6d99b242878288adc0cf478841/rest/services/Environmental/Trees_View/FeatureServer/0"
+)
+MILWAUKEE_COUNTY_TREE_VIEW_PAGE = "https://experience.arcgis.com/experience/b1d9ccfd3a2949728e5b445bfdc78935"
+MILWAUKEE_COUNTY_SUPPORTED_CITIES = (
+    "Franklin",
+    "Greenfield",
+    "Greendale",
+    "Milwaukee",
+    "Oak Creek",
+    "Shorewood",
+    "South Milwaukee",
+    "St. Francis",
+    "Wauwatosa",
+    "West Allis",
+)
 
 SUPPORTED_CITIES = (
     "Ann Arbor",
@@ -1016,10 +1164,13 @@ SUPPORTED_CITIES = (
     "Evanston",
     "Fairfax",
     "Falls Church",
+    "Franklin",
     "Fontana",
     "Fort Lee",
+    "Greenfield",
     "Greenwich",
     "Glendale",
+    "Greendale",
     "Goleta",
     "Grand Rapids",
     "Franklin Lakes",
@@ -1053,6 +1204,7 @@ SUPPORTED_CITIES = (
     "Maywood",
     "Millburn",
     "Milpitas",
+    "Milwaukee",
     "Monterey Park",
     "Montclair",
     "Montreal",
@@ -1072,6 +1224,7 @@ SUPPORTED_CITIES = (
     "Oradell",
     "Ottawa",
     "O'Fallon",
+    "Oak Creek",
     "Oxnard",
     "Paramount",
     "Pasadena",
@@ -1102,12 +1255,15 @@ SUPPORTED_CITIES = (
     "Santa Monica",
     "Saratoga",
     "Santee",
+    "Shorewood",
     "Somerville",
     "South Gate",
+    "South Milwaukee",
     "Solana Beach",
     "South San Francisco",
     "Springfield",
     "Stamford",
+    "St. Francis",
     "Sunnyvale",
     "Syracuse",
     "Tempe",
@@ -1119,7 +1275,9 @@ SUPPORTED_CITIES = (
     "Troy",
     "Ventura",
     "Vista",
+    "Wauwatosa",
     "Waltham",
+    "West Allis",
     "West Hartford",
     "West Hollywood",
     "West Sacramento",
@@ -3207,6 +3365,43 @@ def build_arcgis_fetcher(city: str, config: dict[str, Any]) -> Any:
         lat_field=config.get("lat_field"),
         zip_field=config.get("zip_field"),
     )
+
+
+@lru_cache(maxsize=1)
+def load_milwaukee_county_tree_view() -> tuple[list[dict[str, Any]], str]:
+    layer_info = fetch_json(MILWAUKEE_COUNTY_TREE_VIEW_LAYER, {"f": "pjson"})
+    features = fetch_arcgis_features_by_object_ids(
+        MILWAUKEE_COUNTY_TREE_VIEW_LAYER,
+        where="1=1",
+        out_fields=["OBJECTID", "OwnedBy", "MaintainedBy", "Spp_Latin", "Spp_Common"],
+        object_id_field="OBJECTID",
+        chunk_size=2000,
+    )
+    last_edit_at = iso_from_epoch((layer_info.get("editingInfo") or {}).get("lastEditDate"))
+    return features, last_edit_at
+
+
+def build_milwaukee_county_fetcher(city: str) -> Any:
+    def fetcher(city: str = city) -> dict[str, Any]:
+        features, last_edit_at = load_milwaukee_county_tree_view()
+        clipped_features = clip_features_to_city_boundary(city, "wi", features)
+        return build_arcgis_inventory_result(
+            city=city,
+            region="wi",
+            features=clipped_features,
+            total_records=len(clipped_features),
+            last_edit_at=last_edit_at,
+            source_name="Tree Points - All (view)",
+            source_department="Milwaukee County",
+            dataset_page=MILWAUKEE_COUNTY_TREE_VIEW_PAGE,
+            ownership_raw="Milwaukee County",
+            note="Integrated from the official Milwaukee County public tree viewer and official jurisdiction boundary clipping.",
+            object_id_field="OBJECTID",
+            common_field="Spp_Common",
+            scientific_field="Spp_Latin",
+        )
+
+    return fetcher
 
 
 def fetch_los_angeles_filtered_rows() -> list[dict[str, Any]]:
@@ -6803,6 +6998,7 @@ CITY_FETCHERS.update({city: build_treekeeper_fetcher(city, config) for city, con
 CITY_FETCHERS.update({city: build_treeplotter_fetcher(city, config) for city, config in EAST_COAST_TREEPLOTTER_CONFIGS.items()})
 CITY_FETCHERS.update({city: build_nyc_metro_arcgis_fetcher(city, config) for city, config in NYC_METRO_ARCGIS_CONFIGS.items()})
 CITY_FETCHERS.update({city: build_arcgis_fetcher(city, config) for city, config in UNCOVERED_STATE_ARCGIS_CONFIGS.items()})
+CITY_FETCHERS.update({city: build_milwaukee_county_fetcher(city) for city in MILWAUKEE_COUNTY_SUPPORTED_CITIES})
 
 
 def main() -> int:

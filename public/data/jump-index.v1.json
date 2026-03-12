@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-03-12T03:23:20.065856+00:00",
+  "generated_at": "2026-03-12T04:59:53.213568+00:00",
   "countries": [
     {
       "id": "ca",
@@ -1692,6 +1692,26 @@
       "area_type": "city",
       "bounds": [
         [
+          -120.8303,
+          38.4138
+        ],
+        [
+          -120.8173,
+          38.421
+        ]
+      ],
+      "region_hint": "ca",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ca:amador-city",
+      "country_id": "us",
+      "state_id": "ca",
+      "jurisdiction": "Amador City",
+      "display_name": "Amador City",
+      "area_type": "city",
+      "bounds": [
+        [
           -120.83032799960273,
           38.41382199981062
         ],
@@ -2712,6 +2732,26 @@
       "area_type": "city",
       "bounds": [
         [
+          -118.1341,
+          35.0144
+        ],
+        [
+          -117.6313,
+          35.2742
+        ]
+      ],
+      "region_hint": "ca",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ca:california-city",
+      "country_id": "us",
+      "state_id": "ca",
+      "jurisdiction": "California City",
+      "display_name": "California City",
+      "area_type": "city",
+      "bounds": [
+        [
           -118.13461600018947,
           35.01403800022564
         ],
@@ -2949,6 +2989,26 @@
       "state_id": "ca",
       "jurisdiction": "Cathedral",
       "display_name": "Cathedral",
+      "area_type": "city",
+      "bounds": [
+        [
+          -116.5033,
+          33.7561
+        ],
+        [
+          -116.4058,
+          33.8914
+        ]
+      ],
+      "region_hint": "ca",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ca:cathedral-city",
+      "country_id": "us",
+      "state_id": "ca",
+      "jurisdiction": "Cathedral City",
+      "display_name": "Cathedral City",
       "area_type": "city",
       "bounds": [
         [
@@ -3612,6 +3672,26 @@
       "area_type": "city",
       "bounds": [
         [
+          -124.2177,
+          41.7362
+        ],
+        [
+          -124.1419,
+          41.8581
+        ]
+      ],
+      "region_hint": "ca",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ca:crescent-city",
+      "country_id": "us",
+      "state_id": "ca",
+      "jurisdiction": "Crescent City",
+      "display_name": "Crescent City",
+      "area_type": "city",
+      "bounds": [
+        [
           -124.21770800029154,
           41.73616200020681
         ],
@@ -3649,6 +3729,26 @@
       "state_id": "ca",
       "jurisdiction": "Culver",
       "display_name": "Culver",
+      "area_type": "city",
+      "bounds": [
+        [
+          -118.4485,
+          33.9769
+        ],
+        [
+          -118.3696,
+          34.0351
+        ]
+      ],
+      "region_hint": "ca",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ca:culver-city",
+      "country_id": "us",
+      "state_id": "ca",
+      "jurisdiction": "Culver City",
+      "display_name": "Culver City",
       "area_type": "city",
       "bounds": [
         [
@@ -4649,6 +4749,26 @@
       "state_id": "ca",
       "jurisdiction": "Foster",
       "display_name": "Foster",
+      "area_type": "city",
+      "bounds": [
+        [
+          -122.2885,
+          37.5342
+        ],
+        [
+          -122.1561,
+          37.6064
+        ]
+      ],
+      "region_hint": "ca",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ca:foster-city",
+      "country_id": "us",
+      "state_id": "ca",
+      "jurisdiction": "Foster City",
+      "display_name": "Foster City",
       "area_type": "city",
       "bounds": [
         [
@@ -5832,6 +5952,26 @@
       "area_type": "city",
       "bounds": [
         [
+          -121.1663,
+          36.192
+        ],
+        [
+          -121.1093,
+          36.2436
+        ]
+      ],
+      "region_hint": "ca",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ca:king-city",
+      "country_id": "us",
+      "state_id": "ca",
+      "jurisdiction": "King City",
+      "display_name": "King City",
+      "area_type": "city",
+      "bounds": [
+        [
           -121.16778700010929,
           36.19195899980222
         ],
@@ -6792,12 +6932,12 @@
       "area_type": "city",
       "bounds": [
         [
-          -120.251,
-          39.6731
+          -120.25096500000214,
+          39.672795999825404
         ],
         [
-          -120.2381,
-          39.6806
+          -120.23801400022909,
+          39.68156300014982
         ]
       ],
       "region_hint": "ca",
@@ -7789,6 +7929,26 @@
       "state_id": "ca",
       "jurisdiction": "Nevada",
       "display_name": "Nevada",
+      "area_type": "city",
+      "bounds": [
+        [
+          -121.0394,
+          39.2436
+        ],
+        [
+          -121.0069,
+          39.278
+        ]
+      ],
+      "region_hint": "ca",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ca:nevada-city",
+      "country_id": "us",
+      "state_id": "ca",
+      "jurisdiction": "Nevada City",
+      "display_name": "Nevada City",
       "area_type": "city",
       "bounds": [
         [
@@ -10112,6 +10272,26 @@
       "area_type": "city",
       "bounds": [
         [
+          -121.8805,
+          36.6101
+        ],
+        [
+          -121.8393,
+          36.645
+        ]
+      ],
+      "region_hint": "ca",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ca:sand-city",
+      "country_id": "us",
+      "state_id": "ca",
+      "jurisdiction": "Sand City",
+      "display_name": "Sand City",
+      "area_type": "city",
+      "bounds": [
+        [
           -121.88100100004971,
           36.6100210000364
         ],
@@ -11052,6 +11232,26 @@
       "area_type": "city",
       "bounds": [
         [
+          -122.0545,
+          38.2362
+        ],
+        [
+          -121.9699,
+          38.2651
+        ]
+      ],
+      "region_hint": "ca",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ca:suisun-city",
+      "country_id": "us",
+      "state_id": "ca",
+      "jurisdiction": "Suisun City",
+      "display_name": "Suisun City",
+      "area_type": "city",
+      "bounds": [
+        [
           -122.05448899988133,
           38.230074999826634
         ],
@@ -11249,6 +11449,26 @@
       "state_id": "ca",
       "jurisdiction": "Temple",
       "display_name": "Temple",
+      "area_type": "city",
+      "bounds": [
+        [
+          -118.0814,
+          34.0856
+        ],
+        [
+          -118.0286,
+          34.121
+        ]
+      ],
+      "region_hint": "ca",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ca:temple-city",
+      "country_id": "us",
+      "state_id": "ca",
+      "jurisdiction": "Temple City",
+      "display_name": "Temple City",
       "area_type": "city",
       "bounds": [
         [
@@ -11569,6 +11789,26 @@
       "state_id": "ca",
       "jurisdiction": "Union",
       "display_name": "Union",
+      "area_type": "city",
+      "bounds": [
+        [
+          -122.0968,
+          37.5626
+        ],
+        [
+          -121.9398,
+          37.6364
+        ]
+      ],
+      "region_hint": "ca",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ca:union-city",
+      "country_id": "us",
+      "state_id": "ca",
+      "jurisdiction": "Union City",
+      "display_name": "Union City",
       "area_type": "city",
       "bounds": [
         [
@@ -11972,6 +12212,26 @@
       "area_type": "city",
       "bounds": [
         [
+          -118.8565,
+          34.1103
+        ],
+        [
+          -118.7889,
+          34.1682
+        ]
+      ],
+      "region_hint": "ca",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ca:westlake-village",
+      "country_id": "us",
+      "state_id": "ca",
+      "jurisdiction": "Westlake Village",
+      "display_name": "Westlake Village",
+      "area_type": "city",
+      "bounds": [
+        [
           -118.85647299960053,
           34.11031999992421
         ],
@@ -12329,6 +12589,26 @@
       "state_id": "ca",
       "jurisdiction": "Yuba",
       "display_name": "Yuba",
+      "area_type": "city",
+      "bounds": [
+        [
+          -121.6889,
+          39.0875
+        ],
+        [
+          -121.5989,
+          39.1744
+        ]
+      ],
+      "region_hint": "ca",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "ca:yuba-city",
+      "country_id": "us",
+      "state_id": "ca",
+      "jurisdiction": "Yuba City",
+      "display_name": "Yuba City",
       "area_type": "city",
       "bounds": [
         [
@@ -120501,6 +120781,246 @@
         ]
       ],
       "region_hint": "wa",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "wi:brown-deer",
+      "country_id": "us",
+      "state_id": "wi",
+      "jurisdiction": "Brown Deer",
+      "display_name": "Brown Deer",
+      "area_type": "city",
+      "bounds": [
+        [
+          -87.99475799966461,
+          43.14857700014894
+        ],
+        [
+          -87.9507910001291,
+          43.19255000014826
+        ]
+      ],
+      "region_hint": "wi",
+      "coverage_status": "untracked"
+    },
+    {
+      "id": "wi:franklin",
+      "country_id": "us",
+      "state_id": "wi",
+      "jurisdiction": "Franklin",
+      "display_name": "Franklin",
+      "area_type": "city",
+      "bounds": [
+        [
+          -88.03123310239066,
+          42.86132258425465
+        ],
+        [
+          -87.95943975458177,
+          42.92360360947448
+        ]
+      ],
+      "region_hint": "wi",
+      "coverage_status": "covered"
+    },
+    {
+      "id": "wi:greendale",
+      "country_id": "us",
+      "state_id": "wi",
+      "jurisdiction": "Greendale",
+      "display_name": "Greendale",
+      "area_type": "city",
+      "bounds": [
+        [
+          -88.02858173897495,
+          42.92512133551781
+        ],
+        [
+          -87.99865633284321,
+          42.951317624676264
+        ]
+      ],
+      "region_hint": "wi",
+      "coverage_status": "covered"
+    },
+    {
+      "id": "wi:greenfield",
+      "country_id": "us",
+      "state_id": "wi",
+      "jurisdiction": "Greenfield",
+      "display_name": "Greenfield",
+      "area_type": "city",
+      "bounds": [
+        [
+          -88.04543258136255,
+          42.95162466720503
+        ],
+        [
+          -87.96122267827971,
+          42.97365255904281
+        ]
+      ],
+      "region_hint": "wi",
+      "coverage_status": "covered"
+    },
+    {
+      "id": "wi:milwaukee",
+      "country_id": "us",
+      "state_id": "wi",
+      "jurisdiction": "Milwaukee",
+      "display_name": "Milwaukee",
+      "area_type": "city",
+      "bounds": [
+        [
+          -88.06341572112323,
+          42.94180794885708
+        ],
+        [
+          -87.86703383977027,
+          43.172201678954195
+        ]
+      ],
+      "region_hint": "wi",
+      "coverage_status": "covered"
+    },
+    {
+      "id": "wi:oak-creek",
+      "country_id": "us",
+      "state_id": "wi",
+      "jurisdiction": "Oak Creek",
+      "display_name": "Oak Creek",
+      "area_type": "city",
+      "bounds": [
+        [
+          -87.94391512899873,
+          42.8907514960076
+        ],
+        [
+          -87.8761518005853,
+          42.92315186928471
+        ]
+      ],
+      "region_hint": "wi",
+      "coverage_status": "covered"
+    },
+    {
+      "id": "wi:shorewood",
+      "country_id": "us",
+      "state_id": "wi",
+      "jurisdiction": "Shorewood",
+      "display_name": "Shorewood",
+      "area_type": "city",
+      "bounds": [
+        [
+          -87.90690064394263,
+          43.09014991554395
+        ],
+        [
+          -87.89767701478601,
+          43.09915956242934
+        ]
+      ],
+      "region_hint": "wi",
+      "coverage_status": "covered"
+    },
+    {
+      "id": "wi:south-milwaukee",
+      "country_id": "us",
+      "state_id": "wi",
+      "jurisdiction": "South Milwaukee",
+      "display_name": "South Milwaukee",
+      "area_type": "city",
+      "bounds": [
+        [
+          -87.86546476094847,
+          42.90782917390442
+        ],
+        [
+          -87.84167736777376,
+          42.927352507350186
+        ]
+      ],
+      "region_hint": "wi",
+      "coverage_status": "covered"
+    },
+    {
+      "id": "wi:st-francis",
+      "country_id": "us",
+      "state_id": "wi",
+      "jurisdiction": "St. Francis",
+      "display_name": "St. Francis",
+      "area_type": "city",
+      "bounds": [
+        [
+          -87.86762505819253,
+          42.96653523144703
+        ],
+        [
+          -87.86598622743209,
+          42.96769714552067
+        ]
+      ],
+      "region_hint": "wi",
+      "coverage_status": "covered"
+    },
+    {
+      "id": "wi:wauwatosa",
+      "country_id": "us",
+      "state_id": "wi",
+      "jurisdiction": "Wauwatosa",
+      "display_name": "Wauwatosa",
+      "area_type": "city",
+      "bounds": [
+        [
+          -88.0604039156173,
+          43.03916084382377
+        ],
+        [
+          -87.99712479159406,
+          43.10290315548
+        ]
+      ],
+      "region_hint": "wi",
+      "coverage_status": "covered"
+    },
+    {
+      "id": "wi:west-allis",
+      "country_id": "us",
+      "state_id": "wi",
+      "jurisdiction": "West Allis",
+      "display_name": "West Allis",
+      "area_type": "city",
+      "bounds": [
+        [
+          -88.06527167548244,
+          42.989908646673875
+        ],
+        [
+          -87.98109322805736,
+          43.02331282009612
+        ]
+      ],
+      "region_hint": "wi",
+      "coverage_status": "covered"
+    },
+    {
+      "id": "wi:whitefish-bay",
+      "country_id": "us",
+      "state_id": "wi",
+      "jurisdiction": "Whitefish Bay",
+      "display_name": "Whitefish Bay",
+      "area_type": "city",
+      "bounds": [
+        [
+          -87.91365299967168,
+          43.098697000145684
+        ],
+        [
+          -87.87635000025615,
+          43.134638999786205
+        ]
+      ],
+      "region_hint": "wi",
       "coverage_status": "untracked"
     }
   ]
