@@ -1,6 +1,6 @@
 # City ETL Methods
 
-Last updated: 2026-03-07 (America/Los_Angeles)
+Last updated: 2026-03-12 (America/Los_Angeles)
 
 ## Purpose
 - Record how each covered city is ingested so future species expansion can reuse the same pipeline.
@@ -88,6 +88,17 @@ Last updated: 2026-03-07 (America/Los_Angeles)
   - `genus`
   - `species:en`
   - `genus:en`
+
+## Discovery And Recovery Tactics
+- When a source family lands, search for the next cities in this order:
+  1. sibling services inside the same ArcGIS org or contractor org
+  2. neighboring public sites on the same TreeKeeper or TreePlotter tenancy
+  3. shared county or metro layers that expose multiple `City` or `Jurisdiction` values
+  4. only then broader web search
+- Shared layers are often the fastest expansion path. Query distinct city-like field values first; one stable layer can unlock several municipalities with only boundary and mapping updates.
+- If a city appears in `data/normalized/trees_normalized.csv` but not in the published area index, assume a classification or publish-refresh issue before assuming the fetcher is broken.
+- PDF maps, campus guides, and visitor handouts are QA overlays and labeling aids. Do not treat them as direct production rows unless they expose stable structured per-tree data.
+- Supplemental sources such as UW OSM points stay explicitly scoped and labeled. They augment an official city source; they do not replace the canonical inventory.
 
 ## Integrated Cities And Extraction Notes
 | City | Source family | Key fields / parser | Geometry handling | Notes |

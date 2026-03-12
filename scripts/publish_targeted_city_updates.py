@@ -228,6 +228,12 @@ ARCADIA_TREES_LAYER = "https://services3.arcgis.com/XyWu1kJH1LHR1VkH/arcgis/rest
 ARCADIA_DATASET_PAGE = "https://www.arcgis.com/home/item.html?id=870dee983f2448f8a6438a6f1a8487f3"
 DANA_POINT_TREES_LAYER = "https://services7.arcgis.com/mRLEu9cKL0xMY05m/arcgis/rest/services/DP_Trees/FeatureServer/0"
 DANA_POINT_DATASET_PAGE = "https://www.cityofdanapoint.org/Home/Components/ServiceDirectory/ServiceDirectory/25/1743"
+PLEASANTON_TREES_LAYER = "https://services2.arcgis.com/yrktbS5Xw87hJQvs/ArcGIS/rest/services/TreeInvPleasanton_Public/FeatureServer/0"
+PLEASANTON_DATASET_PAGE = "https://www.cityofpleasantonca.gov/our-government/public-works/landscape-architecture/"
+LODI_TREES_LAYER = "https://services2.arcgis.com/yrktbS5Xw87hJQvs/ArcGIS/rest/services/TreeInvLodiElectric/FeatureServer/0"
+LODI_DATASET_PAGE = "https://www.lodi.gov/552/Trees"
+CITRUS_HEIGHTS_TREES_LAYER = "https://services2.arcgis.com/yrktbS5Xw87hJQvs/ArcGIS/rest/services/Citrus_Heights_iTree_Benefits/FeatureServer/0"
+CITRUS_HEIGHTS_DATASET_PAGE = "https://www.citrusheights.net/1416/Urban-Forestry"
 POWAY_TREES_LAYER = "https://powaygis.poway.org/powaygis/rest/services/Public/PowHUB_Environment_Hydrology_Parks_Layers/MapServer/2"
 POWAY_DATASET_PAGE = "https://poway.org/293/GIS-Maps"
 TORRANCE_TREES_LAYER = "https://services1.arcgis.com/38fAqAZVRCrVtPUU/arcgis/rest/services/Civic_Center_Master_Plan_Tree_Layer/FeatureServer/0"
@@ -476,6 +482,17 @@ BOTANICAL_BLOSSOM_WHERE = (
     "UPPER(BotanicalName) LIKE 'PRUNUS%' OR "
     "UPPER(BotanicalName) LIKE 'MALUS%' OR "
     "UPPER(BotanicalName) LIKE 'MAGNOLIA%'"
+)
+BOTANICAL_COMMON_BLOSSOM_WHERE = (
+    "UPPER(BotanicalName) LIKE 'PRUNUS%' OR "
+    "UPPER(BotanicalName) LIKE 'MALUS%' OR "
+    "UPPER(BotanicalName) LIKE 'MAGNOLIA%' OR "
+    "UPPER(CommonName) LIKE '%CHERRY%' OR "
+    "UPPER(CommonName) LIKE '%PLUM%' OR "
+    "UPPER(CommonName) LIKE '%PEACH%' OR "
+    "UPPER(CommonName) LIKE '%MAGNOLIA%' OR "
+    "UPPER(CommonName) LIKE '%CRABAPPLE%' OR "
+    "UPPER(CommonName) LIKE '%APPLE%'"
 )
 ESCONDIDO_BLOSSOM_WHERE = (
     "UPPER(BOTANICAL_NAME) LIKE 'PRUNUS%' OR "
@@ -1153,6 +1170,7 @@ SUPPORTED_CITIES = (
     "Camarillo",
     "Cambridge",
     "Chino",
+    "Citrus Heights",
     "Concord",
     "Corona",
     "Costa Mesa",
@@ -1205,6 +1223,7 @@ SUPPORTED_CITIES = (
     "Laguna Beach",
     "Las Vegas",
     "La Mesa",
+    "Lodi",
     "Lynwood",
     "Linden",
     "Los Angeles",
@@ -1238,13 +1257,16 @@ SUPPORTED_CITIES = (
     "Paramount",
     "Pasadena",
     "Philadelphia",
+    "Pleasanton",
     "Pittsburgh",
     "Pomona",
     "Princeton",
+    "Poway",
     "Ramsey",
     "Rancho Cucamonga",
     "Rancho Palos Verdes",
     "Redlands",
+    "Redondo Beach",
     "Ridgewood",
     "River Edge",
     "Riverside",
@@ -1967,6 +1989,25 @@ def recompute_unknown_items_from_path(path: Path) -> list[dict[str, Any]]:
             scientific = (row.get("scientific_normalized") or "").strip()
             if scientific:
                 counter[scientific] += 1
+    return [
+        {"scientific_name_normalized": name, "count": count}
+        for name, count in counter.most_common()
+    ]
+
+
+def merge_unknown_items(
+    existing_items: list[dict[str, Any]],
+    new_items: list[dict[str, Any]],
+) -> list[dict[str, Any]]:
+    counter: Counter[str] = Counter()
+    for item in existing_items:
+        scientific = str(item.get("scientific_name_normalized") or "").strip()
+        if scientific:
+            counter[scientific] += int(item.get("count") or 0)
+    for item in new_items:
+        scientific = str(item.get("scientific_name_normalized") or "").strip()
+        if scientific:
+            counter[scientific] += int(item.get("count") or 0)
     return [
         {"scientific_name_normalized": name, "count": count}
         for name, count in counter.most_common()
@@ -6299,6 +6340,101 @@ def fetch_glendora() -> dict[str, Any]:
     )
 
 
+def fetch_citrus_heights() -> dict[str, Any]:
+    return fetch_arcgis_inventory_city_result(
+        city="Citrus Heights",
+        region="ca",
+        layer_url=CITRUS_HEIGHTS_TREES_LAYER,
+        dataset_page=CITRUS_HEIGHTS_DATASET_PAGE,
+        where=BOTANICAL_COMMON_BLOSSOM_WHERE,
+        out_fields=["OBJECTID", "CommonName", "BotanicalName"],
+        object_id_field="OBJECTID",
+        source_name="Citrus Heights i-Tree Benefits",
+        source_department="City of Citrus Heights",
+        ownership_raw="City of Citrus Heights",
+        note="Integrated from the official City of Citrus Heights urban forestry tree inventory layer and official jurisdiction boundary.",
+        clip_to_boundary=True,
+        common_field="CommonName",
+        botanical_field="BotanicalName",
+    )
+
+
+def fetch_lodi() -> dict[str, Any]:
+    return fetch_arcgis_inventory_city_result(
+        city="Lodi",
+        region="ca",
+        layer_url=LODI_TREES_LAYER,
+        dataset_page=LODI_DATASET_PAGE,
+        where=BOTANICAL_COMMON_BLOSSOM_WHERE,
+        out_fields=["OBJECTID", "CustomerName", "Address", "Street", "CommonName", "BotanicalName"],
+        object_id_field="OBJECTID",
+        source_name="Tree Inventory",
+        source_department="City of Lodi",
+        ownership_raw="City of Lodi",
+        note="Integrated from the official City of Lodi public tree inventory and official jurisdiction boundary.",
+        clip_to_boundary=True,
+        common_field="CommonName",
+        botanical_field="BotanicalName",
+    )
+
+
+def fetch_pleasanton() -> dict[str, Any]:
+    return fetch_arcgis_inventory_city_result(
+        city="Pleasanton",
+        region="ca",
+        layer_url=PLEASANTON_TREES_LAYER,
+        dataset_page=PLEASANTON_DATASET_PAGE,
+        where=BOTANICAL_COMMON_BLOSSOM_WHERE,
+        out_fields=["OBJECTID", "CustomerName", "Address", "Street", "CommonName", "BotanicalName"],
+        object_id_field="OBJECTID",
+        source_name="Tree Inventory",
+        source_department="City of Pleasanton",
+        ownership_raw="City of Pleasanton",
+        note="Integrated from the official City of Pleasanton landscape architecture tree inventory map and official jurisdiction boundary.",
+        clip_to_boundary=True,
+        common_field="CommonName",
+        botanical_field="BotanicalName",
+    )
+
+
+def fetch_poway() -> dict[str, Any]:
+    return fetch_arcgis_inventory_city_result(
+        city="Poway",
+        region="ca",
+        layer_url=POWAY_TREES_LAYER,
+        dataset_page=POWAY_DATASET_PAGE,
+        where=REDLANDS_BLOSSOM_WHERE,
+        out_fields=["OBJECTID", "COMMONNAME", "BOTANICALN", "ADDRESS", "STREET"],
+        object_id_field="OBJECTID",
+        source_name="Tree",
+        source_department="City of Poway",
+        ownership_raw="City of Poway",
+        note="Integrated from the official City of Poway GIS tree inventory layer and official jurisdiction boundary.",
+        clip_to_boundary=True,
+        common_field="COMMONNAME",
+        botanical_field="BOTANICALN",
+    )
+
+
+def fetch_redondo_beach() -> dict[str, Any]:
+    return fetch_arcgis_inventory_city_result(
+        city="Redondo Beach",
+        region="ca",
+        layer_url=REDONDO_BEACH_TREES_LAYER,
+        dataset_page=REDONDO_BEACH_DATASET_PAGE,
+        where=REDLANDS_BLOSSOM_WHERE,
+        out_fields=["FID", "COMMONNAME", "BOTANICALN", "ADDRESS", "STREET"],
+        object_id_field="FID",
+        source_name="WCA Tree Inv Rendondo Beach",
+        source_department="City of Redondo Beach",
+        ownership_raw="City of Redondo Beach",
+        note="Integrated from the official City of Redondo Beach GIS tree inventory layer and official jurisdiction boundary.",
+        clip_to_boundary=True,
+        common_field="COMMONNAME",
+        botanical_field="BOTANICALN",
+    )
+
+
 def fetch_thousand_oaks() -> dict[str, Any]:
     return fetch_arcgis_inventory_city(
         city="Thousand Oaks",
@@ -6919,6 +7055,7 @@ CITY_FETCHERS = {
     "Camarillo": fetch_camarillo,
     "Cambridge": fetch_cambridge,
     "Chino": fetch_chino,
+    "Citrus Heights": fetch_citrus_heights,
     "Concord": fetch_concord,
     "Costa Mesa": fetch_costa_mesa,
     "Corona": fetch_corona,
@@ -6949,6 +7086,7 @@ CITY_FETCHERS = {
     "La Verne": fetch_la_verne,
     "Laguna Beach": fetch_laguna_beach,
     "Las Vegas": fetch_las_vegas,
+    "Lodi": fetch_lodi,
     "Lynwood": fetch_lynwood,
     "Los Angeles": fetch_los_angeles,
     "Los Gatos": fetch_los_gatos,
@@ -6960,10 +7098,13 @@ CITY_FETCHERS = {
     "Newport Beach": fetch_newport_beach,
     "Norwalk": fetch_norwalk,
     "Paramount": fetch_paramount,
+    "Pleasanton": fetch_pleasanton,
     "Pomona": fetch_pomona,
+    "Poway": fetch_poway,
     "Rancho Cucamonga": fetch_rancho_cucamonga,
     "Rancho Palos Verdes": fetch_rancho_palos_verdes,
     "Redlands": fetch_redlands,
+    "Redondo Beach": fetch_redondo_beach,
     "Riverside": fetch_riverside,
     "Sacramento": fetch_sacramento,
     "Salinas": fetch_salinas,
@@ -7026,19 +7167,43 @@ def main() -> int:
     target_regions = {result["region"] for result in results}
     target_city_set = set(target_cities)
     next_rows: list[dict[str, Any]] = []
+    normalized_path = NORMALIZED_DIR / "trees_normalized.csv"
+    has_normalized_baseline = normalized_path.exists()
+    existing_meta = load_meta()
+    existing_area_cities = {
+        str(area.get("jurisdiction") or "")
+        for region in existing_meta.get("regions", [])
+        for area in region.get("areas", [])
+        if area.get("jurisdiction")
+    }
+    if not has_normalized_baseline:
+        overlapping_cities = sorted(existing_area_cities & target_city_set)
+        if overlapping_cities:
+            raise RuntimeError(
+                "Missing data/normalized/trees_normalized.csv baseline; refusing to republish existing cities "
+                f"without full normalized context: {', '.join(overlapping_cities)}"
+            )
 
     for result in results:
         write_city_geojson(result["region"], result["city"], result["features"])
         next_rows.extend(result["normalized_rows"])
 
-    normalized_path = rewrite_normalized_rows(target_city_set, next_rows)
-    meta = load_meta()
+    if has_normalized_baseline:
+        normalized_path = rewrite_normalized_rows(target_city_set, next_rows)
+    meta = existing_meta
     meta["generated_at"] = dt.datetime.now(tz=dt.timezone.utc).isoformat()
     ensure_region_entries(meta, target_regions)
     save_meta(meta)
     refresh_publish_indexes(target_regions, skip_global_refresh=args.skip_global_refresh)
 
-    unknown_items = recompute_unknown_items_from_path(normalized_path)
+    if has_normalized_baseline:
+        unknown_items = recompute_unknown_items_from_path(normalized_path)
+    else:
+        existing_unknown_items = json.loads((PUBLIC_DATA_DIR / "unknown_scientific_names.v1.json").read_text(encoding="utf-8"))
+        unknown_items = merge_unknown_items(
+            existing_unknown_items,
+            recompute_unknown_items([normalize_row_for_csv(row) for row in next_rows]),
+        )
     write_json_atomic(PUBLIC_DATA_DIR / "unknown_scientific_names.v1.json", unknown_items)
 
     meta = load_meta()
@@ -7049,8 +7214,11 @@ def main() -> int:
     meta["sources"] = existing_sources
     meta["source_count"] = len(existing_sources)
 
-    latest_rows = load_normalized_rows()
-    meta["total_records"] = len(latest_rows)
+    if has_normalized_baseline:
+        latest_rows = load_normalized_rows()
+        meta["total_records"] = len(latest_rows)
+    else:
+        meta["total_records"] = int(existing_meta.get("total_records") or 0) + len(next_rows)
     meta["included_records"] = sum(int(region.get("tree_count", 0)) for region in meta.get("regions", []))
     meta["unknown_records"] = sum(item["count"] for item in unknown_items)
     save_meta(meta)

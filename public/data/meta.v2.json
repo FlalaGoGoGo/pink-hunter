@@ -1,6 +1,6 @@
 {
   "version": "v2",
-  "generated_at": "2026-03-12T05:35:52.872888+00:00",
+  "generated_at": "2026-03-12T18:57:33.551421+00:00",
   "default_region": "wa",
   "coverage_rule": "official_jurisdiction_boundary_only",
   "coverage_skipped_cities": [],
@@ -101,16 +101,16 @@
     "Yarrow Point"
   ],
   "coverage_official_unavailable_skipped_cities": [],
-  "source_count": 177,
-  "total_records": 2935657,
-  "included_records": 592253,
-  "unknown_records": 1296936,
+  "source_count": 182,
+  "total_records": 2938585,
+  "included_records": 595055,
+  "unknown_records": 1297062,
   "species_counts": {
-    "cherry": 193947,
-    "plum": 112010,
-    "peach": 7632,
-    "magnolia": 166160,
-    "crabapple": 95650
+    "cherry": 196833,
+    "plum": 113942,
+    "peach": 7847,
+    "magnolia": 169508,
+    "crabapple": 106925
   },
   "regions": [
     {
@@ -231,8 +231,8 @@
       ],
       "data_path": null,
       "coverage_path": "/data/coverage.ca.v1.geojson",
-      "tree_count": 203615,
-      "city_count": 78,
+      "tree_count": 206417,
+      "city_count": 83,
       "cities": [
         "Anaheim",
         "Azusa",
@@ -244,6 +244,7 @@
         "Burlingame",
         "Camarillo",
         "Chino",
+        "Citrus Heights",
         "Concord",
         "Corona",
         "Costa Mesa",
@@ -267,6 +268,7 @@
         "La Mirada",
         "La Verne",
         "Laguna Beach",
+        "Lodi",
         "Los Angeles",
         "Los Gatos",
         "Maywood",
@@ -280,10 +282,13 @@
         "Oxnard",
         "Palo Alto",
         "Pasadena",
+        "Pleasanton",
         "Pomona",
+        "Poway",
         "Rancho Cucamonga",
         "Rancho Palos Verdes",
         "Redlands",
+        "Redondo Beach",
         "Riverside",
         "Sacramento",
         "Salinas",
@@ -314,21 +319,21 @@
         "Yorba Linda"
       ],
       "species_counts": {
-        "cherry": 16879,
-        "plum": 46033,
-        "peach": 4875,
-        "magnolia": 131124,
-        "crabapple": 4704
+        "cherry": 16935,
+        "plum": 46428,
+        "peach": 4917,
+        "magnolia": 133334,
+        "crabapple": 4803
       },
       "ownership_groups": [
         "public",
         "private"
       ],
-      "raw_bytes": 105772779,
-      "gzip_bytes": 4389450,
+      "raw_bytes": 107320629,
+      "gzip_bytes": 4453642,
       "warning_level": "none",
-      "aggregate_raw_bytes": 105772779,
-      "aggregate_gzip_bytes": 4389450,
+      "aggregate_raw_bytes": 107320629,
+      "aggregate_gzip_bytes": 4453642,
       "aggregate_warning_level": "very_large",
       "largest_shard_raw_bytes": 10127602,
       "largest_shard_gzip_bytes": 389054,
@@ -338,8 +343,8 @@
       "area_split": {
         "strategy": "area_shard",
         "index_path": "/data/trees.ca.area-index.v2.json",
-        "area_count": 78,
-        "shard_count": 80,
+        "area_count": 83,
+        "shard_count": 85,
         "ready": true
       }
     },
@@ -1419,6 +1424,20 @@
   ],
   "areas": [
     {
+      "jurisdiction": "Tempe",
+      "region": "az",
+      "tree_count": 32,
+      "species_counts": {
+        "cherry": 0,
+        "plum": 2,
+        "peach": 18,
+        "magnolia": 0,
+        "crabapple": 12
+      },
+      "jurisdiction_type": "city",
+      "state_province": "AZ"
+    },
+    {
       "jurisdiction": "New Westminster",
       "region": "bc",
       "tree_count": 1786,
@@ -1601,6 +1620,20 @@
       "state_province": "CA"
     },
     {
+      "jurisdiction": "Citrus Heights",
+      "region": "ca",
+      "tree_count": 50,
+      "species_counts": {
+        "cherry": 2,
+        "plum": 43,
+        "peach": 0,
+        "magnolia": 4,
+        "crabapple": 1
+      },
+      "jurisdiction_type": "city",
+      "state_province": "CA"
+    },
+    {
       "jurisdiction": "Concord",
       "region": "ca",
       "tree_count": 4103,
@@ -1643,6 +1676,20 @@
       "state_province": "CA"
     },
     {
+      "jurisdiction": "Cudahy",
+      "region": "ca",
+      "tree_count": 48,
+      "species_counts": {
+        "cherry": 0,
+        "plum": 0,
+        "peach": 9,
+        "magnolia": 0,
+        "crabapple": 39
+      },
+      "jurisdiction_type": "city",
+      "state_province": "CA"
+    },
+    {
       "jurisdiction": "Cupertino",
       "region": "ca",
       "tree_count": 1299,
@@ -1652,6 +1699,20 @@
         "peach": 52,
         "magnolia": 732,
         "crabapple": 55
+      },
+      "jurisdiction_type": "city",
+      "state_province": "CA"
+    },
+    {
+      "jurisdiction": "Dana Point",
+      "region": "ca",
+      "tree_count": 112,
+      "species_counts": {
+        "cherry": 0,
+        "plum": 24,
+        "peach": 4,
+        "magnolia": 84,
+        "crabapple": 0
       },
       "jurisdiction_type": "city",
       "state_province": "CA"
@@ -1755,6 +1816,20 @@
       "state_province": "CA"
     },
     {
+      "jurisdiction": "Glendale",
+      "region": "ca",
+      "tree_count": 35,
+      "species_counts": {
+        "cherry": 0,
+        "plum": 0,
+        "peach": 0,
+        "magnolia": 35,
+        "crabapple": 0
+      },
+      "jurisdiction_type": "city",
+      "state_province": "CA"
+    },
+    {
       "jurisdiction": "Glendora",
       "region": "ca",
       "tree_count": 665,
@@ -1764,6 +1839,34 @@
         "peach": 0,
         "magnolia": 505,
         "crabapple": 0
+      },
+      "jurisdiction_type": "city",
+      "state_province": "CA"
+    },
+    {
+      "jurisdiction": "Goleta",
+      "region": "ca",
+      "tree_count": 206,
+      "species_counts": {
+        "cherry": 5,
+        "plum": 116,
+        "peach": 5,
+        "magnolia": 69,
+        "crabapple": 11
+      },
+      "jurisdiction_type": "city",
+      "state_province": "CA"
+    },
+    {
+      "jurisdiction": "Inglewood",
+      "region": "ca",
+      "tree_count": 159,
+      "species_counts": {
+        "cherry": 0,
+        "plum": 22,
+        "peach": 70,
+        "magnolia": 0,
+        "crabapple": 67
       },
       "jurisdiction_type": "city",
       "state_province": "CA"
@@ -1811,6 +1914,20 @@
       "state_province": "CA"
     },
     {
+      "jurisdiction": "La Mirada",
+      "region": "ca",
+      "tree_count": 55,
+      "species_counts": {
+        "cherry": 0,
+        "plum": 0,
+        "peach": 0,
+        "magnolia": 55,
+        "crabapple": 0
+      },
+      "jurisdiction_type": "city",
+      "state_province": "CA"
+    },
+    {
       "jurisdiction": "La Verne",
       "region": "ca",
       "tree_count": 226,
@@ -1834,6 +1951,20 @@
         "peach": 0,
         "magnolia": 7,
         "crabapple": 0
+      },
+      "jurisdiction_type": "city",
+      "state_province": "CA"
+    },
+    {
+      "jurisdiction": "Lodi",
+      "region": "ca",
+      "tree_count": 192,
+      "species_counts": {
+        "cherry": 25,
+        "plum": 67,
+        "peach": 29,
+        "magnolia": 62,
+        "crabapple": 9
       },
       "jurisdiction_type": "city",
       "state_province": "CA"
@@ -1951,6 +2082,20 @@
       "state_province": "CA"
     },
     {
+      "jurisdiction": "Norwalk",
+      "region": "ca",
+      "tree_count": 186,
+      "species_counts": {
+        "cherry": 0,
+        "plum": 0,
+        "peach": 0,
+        "magnolia": 186,
+        "crabapple": 0
+      },
+      "jurisdiction_type": "city",
+      "state_province": "CA"
+    },
+    {
       "jurisdiction": "Oakland",
       "region": "ca",
       "tree_count": 3977,
@@ -2007,6 +2152,20 @@
       "state_province": "CA"
     },
     {
+      "jurisdiction": "Pleasanton",
+      "region": "ca",
+      "tree_count": 537,
+      "species_counts": {
+        "cherry": 28,
+        "plum": 230,
+        "peach": 5,
+        "magnolia": 190,
+        "crabapple": 84
+      },
+      "jurisdiction_type": "city",
+      "state_province": "CA"
+    },
+    {
       "jurisdiction": "Pomona",
       "region": "ca",
       "tree_count": 475,
@@ -2016,6 +2175,20 @@
         "peach": 37,
         "magnolia": 331,
         "crabapple": 9
+      },
+      "jurisdiction_type": "city",
+      "state_province": "CA"
+    },
+    {
+      "jurisdiction": "Poway",
+      "region": "ca",
+      "tree_count": 27,
+      "species_counts": {
+        "cherry": 0,
+        "plum": 7,
+        "peach": 1,
+        "magnolia": 19,
+        "crabapple": 0
       },
       "jurisdiction_type": "city",
       "state_province": "CA"
@@ -2058,6 +2231,20 @@
         "peach": 65,
         "magnolia": 1081,
         "crabapple": 30
+      },
+      "jurisdiction_type": "city",
+      "state_province": "CA"
+    },
+    {
+      "jurisdiction": "Redondo Beach",
+      "region": "ca",
+      "tree_count": 1996,
+      "species_counts": {
+        "cherry": 1,
+        "plum": 48,
+        "peach": 7,
+        "magnolia": 1935,
+        "crabapple": 5
       },
       "jurisdiction_type": "city",
       "state_province": "CA"
@@ -2231,6 +2418,20 @@
       "state_province": "CA"
     },
     {
+      "jurisdiction": "Santa Fe Springs",
+      "region": "ca",
+      "tree_count": 10,
+      "species_counts": {
+        "cherry": 0,
+        "plum": 0,
+        "peach": 0,
+        "magnolia": 10,
+        "crabapple": 0
+      },
+      "jurisdiction_type": "city",
+      "state_province": "CA"
+    },
+    {
       "jurisdiction": "Santa Monica",
       "region": "ca",
       "tree_count": 2253,
@@ -2287,6 +2488,20 @@
       "state_province": "CA"
     },
     {
+      "jurisdiction": "South Gate",
+      "region": "ca",
+      "tree_count": 10,
+      "species_counts": {
+        "cherry": 0,
+        "plum": 0,
+        "peach": 0,
+        "magnolia": 10,
+        "crabapple": 0
+      },
+      "jurisdiction_type": "city",
+      "state_province": "CA"
+    },
+    {
       "jurisdiction": "South San Francisco",
       "region": "ca",
       "tree_count": 784,
@@ -2324,6 +2539,20 @@
         "peach": 8,
         "magnolia": 313,
         "crabapple": 8
+      },
+      "jurisdiction_type": "city",
+      "state_province": "CA"
+    },
+    {
+      "jurisdiction": "Torrance",
+      "region": "ca",
+      "tree_count": 24,
+      "species_counts": {
+        "cherry": 7,
+        "plum": 4,
+        "peach": 0,
+        "magnolia": 13,
+        "crabapple": 0
       },
       "jurisdiction_type": "city",
       "state_province": "CA"
@@ -2441,6 +2670,20 @@
       "state_province": "CT"
     },
     {
+      "jurisdiction": "Hartford",
+      "region": "ct",
+      "tree_count": 251,
+      "species_counts": {
+        "cherry": 11,
+        "plum": 201,
+        "peach": 23,
+        "magnolia": 16,
+        "crabapple": 0
+      },
+      "jurisdiction_type": "city",
+      "state_province": "CT"
+    },
+    {
       "jurisdiction": "New Haven",
       "region": "ct",
       "tree_count": 2424,
@@ -2469,6 +2712,20 @@
       "state_province": "CT"
     },
     {
+      "jurisdiction": "West Hartford",
+      "region": "ct",
+      "tree_count": 206,
+      "species_counts": {
+        "cherry": 109,
+        "plum": 3,
+        "peach": 0,
+        "magnolia": 22,
+        "crabapple": 72
+      },
+      "jurisdiction_type": "city",
+      "state_province": "CT"
+    },
+    {
       "jurisdiction": "Washington DC",
       "region": "dc",
       "tree_count": 16543,
@@ -2481,6 +2738,76 @@
       },
       "jurisdiction_type": "city",
       "state_province": "DC"
+    },
+    {
+      "jurisdiction": "Johns Creek",
+      "region": "ga",
+      "tree_count": 8,
+      "species_counts": {
+        "cherry": 0,
+        "plum": 0,
+        "peach": 0,
+        "magnolia": 8,
+        "crabapple": 0
+      },
+      "jurisdiction_type": "city",
+      "state_province": "GA"
+    },
+    {
+      "jurisdiction": "Danville",
+      "region": "il",
+      "tree_count": 351,
+      "species_counts": {
+        "cherry": 122,
+        "plum": 0,
+        "peach": 0,
+        "magnolia": 36,
+        "crabapple": 193
+      },
+      "jurisdiction_type": "city",
+      "state_province": "IL"
+    },
+    {
+      "jurisdiction": "Evanston",
+      "region": "il",
+      "tree_count": 1093,
+      "species_counts": {
+        "cherry": 12,
+        "plum": 121,
+        "peach": 0,
+        "magnolia": 96,
+        "crabapple": 864
+      },
+      "jurisdiction_type": "city",
+      "state_province": "IL"
+    },
+    {
+      "jurisdiction": "O'Fallon",
+      "region": "il",
+      "tree_count": 152,
+      "species_counts": {
+        "cherry": 15,
+        "plum": 1,
+        "peach": 0,
+        "magnolia": 20,
+        "crabapple": 116
+      },
+      "jurisdiction_type": "city",
+      "state_province": "IL"
+    },
+    {
+      "jurisdiction": "Belmont",
+      "region": "ma",
+      "tree_count": 221,
+      "species_counts": {
+        "cherry": 66,
+        "plum": 52,
+        "peach": 0,
+        "magnolia": 13,
+        "crabapple": 90
+      },
+      "jurisdiction_type": "city",
+      "state_province": "MA"
     },
     {
       "jurisdiction": "Boston",
@@ -2506,6 +2833,20 @@
         "peach": 4,
         "magnolia": 300,
         "crabapple": 675
+      },
+      "jurisdiction_type": "city",
+      "state_province": "MA"
+    },
+    {
+      "jurisdiction": "Newton",
+      "region": "ma",
+      "tree_count": 2471,
+      "species_counts": {
+        "cherry": 561,
+        "plum": 449,
+        "peach": 0,
+        "magnolia": 12,
+        "crabapple": 1449
       },
       "jurisdiction_type": "city",
       "state_province": "MA"
@@ -2567,6 +2908,20 @@
       "state_province": "MA"
     },
     {
+      "jurisdiction": "Annapolis",
+      "region": "md",
+      "tree_count": 260,
+      "species_counts": {
+        "cherry": 122,
+        "plum": 5,
+        "peach": 1,
+        "magnolia": 63,
+        "crabapple": 69
+      },
+      "jurisdiction_type": "city",
+      "state_province": "MD"
+    },
+    {
       "jurisdiction": "Baltimore",
       "region": "md",
       "tree_count": 1920,
@@ -2579,6 +2934,76 @@
       },
       "jurisdiction_type": "city",
       "state_province": "MD"
+    },
+    {
+      "jurisdiction": "Ann Arbor",
+      "region": "mi",
+      "tree_count": 3756,
+      "species_counts": {
+        "cherry": 521,
+        "plum": 427,
+        "peach": 9,
+        "magnolia": 64,
+        "crabapple": 2735
+      },
+      "jurisdiction_type": "city",
+      "state_province": "MI"
+    },
+    {
+      "jurisdiction": "Dearborn Heights",
+      "region": "mi",
+      "tree_count": 2,
+      "species_counts": {
+        "cherry": 1,
+        "plum": 0,
+        "peach": 0,
+        "magnolia": 0,
+        "crabapple": 1
+      },
+      "jurisdiction_type": "city",
+      "state_province": "MI"
+    },
+    {
+      "jurisdiction": "East Lansing",
+      "region": "mi",
+      "tree_count": 521,
+      "species_counts": {
+        "cherry": 32,
+        "plum": 0,
+        "peach": 0,
+        "magnolia": 13,
+        "crabapple": 476
+      },
+      "jurisdiction_type": "city",
+      "state_province": "MI"
+    },
+    {
+      "jurisdiction": "Grand Rapids",
+      "region": "mi",
+      "tree_count": 13,
+      "species_counts": {
+        "cherry": 2,
+        "plum": 0,
+        "peach": 0,
+        "magnolia": 1,
+        "crabapple": 10
+      },
+      "jurisdiction_type": "city",
+      "state_province": "MI"
+    },
+    {
+      "jurisdiction": "Novi",
+      "region": "mi",
+      "tree_count": 1556,
+      "species_counts": {
+        "cherry": 46,
+        "plum": 47,
+        "peach": 4,
+        "magnolia": 10,
+        "crabapple": 1449
+      },
+      "jurisdiction_type": "city",
+      "state_province": "MI"
     },
     {
       "jurisdiction": "Dumont",
@@ -2791,6 +3216,20 @@
       "state_province": "NY"
     },
     {
+      "jurisdiction": "Ithaca",
+      "region": "ny",
+      "tree_count": 1357,
+      "species_counts": {
+        "cherry": 413,
+        "plum": 12,
+        "peach": 5,
+        "magnolia": 39,
+        "crabapple": 888
+      },
+      "jurisdiction_type": "city",
+      "state_province": "NY"
+    },
+    {
       "jurisdiction": "New York City",
       "region": "ny",
       "tree_count": 40685,
@@ -2800,6 +3239,48 @@
         "peach": 0,
         "magnolia": 1000,
         "crabapple": 3527
+      },
+      "jurisdiction_type": "city",
+      "state_province": "NY"
+    },
+    {
+      "jurisdiction": "Saratoga Springs",
+      "region": "ny",
+      "tree_count": 586,
+      "species_counts": {
+        "cherry": 83,
+        "plum": 12,
+        "peach": 11,
+        "magnolia": 21,
+        "crabapple": 459
+      },
+      "jurisdiction_type": "city",
+      "state_province": "NY"
+    },
+    {
+      "jurisdiction": "Syracuse",
+      "region": "ny",
+      "tree_count": 697,
+      "species_counts": {
+        "cherry": 98,
+        "plum": 0,
+        "peach": 0,
+        "magnolia": 11,
+        "crabapple": 588
+      },
+      "jurisdiction_type": "city",
+      "state_province": "NY"
+    },
+    {
+      "jurisdiction": "Troy",
+      "region": "ny",
+      "tree_count": 716,
+      "species_counts": {
+        "cherry": 287,
+        "plum": 24,
+        "peach": 9,
+        "magnolia": 18,
+        "crabapple": 378
       },
       "jurisdiction_type": "city",
       "state_province": "NY"
@@ -2956,6 +3437,20 @@
         "crabapple": 80
       },
       "jurisdiction_type": "county",
+      "state_province": "VA"
+    },
+    {
+      "jurisdiction": "Fairfax",
+      "region": "va",
+      "tree_count": 481,
+      "species_counts": {
+        "cherry": 316,
+        "plum": 15,
+        "peach": 4,
+        "magnolia": 118,
+        "crabapple": 28
+      },
+      "jurisdiction_type": "city",
       "state_province": "VA"
     },
     {
@@ -3209,6 +3704,216 @@
       },
       "jurisdiction_type": "city",
       "state_province": "WA"
+    },
+    {
+      "jurisdiction": "Cudahy WI",
+      "region": "wi",
+      "tree_count": 30,
+      "species_counts": {
+        "cherry": 0,
+        "plum": 0,
+        "peach": 0,
+        "magnolia": 0,
+        "crabapple": 30
+      },
+      "jurisdiction_type": "city",
+      "state_province": "WI"
+    },
+    {
+      "jurisdiction": "Fox Point",
+      "region": "wi",
+      "tree_count": 3,
+      "species_counts": {
+        "cherry": 0,
+        "plum": 0,
+        "peach": 0,
+        "magnolia": 0,
+        "crabapple": 3
+      },
+      "jurisdiction_type": "city",
+      "state_province": "WI"
+    },
+    {
+      "jurisdiction": "Franklin",
+      "region": "wi",
+      "tree_count": 87,
+      "species_counts": {
+        "cherry": 0,
+        "plum": 0,
+        "peach": 0,
+        "magnolia": 63,
+        "crabapple": 24
+      },
+      "jurisdiction_type": "city",
+      "state_province": "WI"
+    },
+    {
+      "jurisdiction": "Glendale WI",
+      "region": "wi",
+      "tree_count": 31,
+      "species_counts": {
+        "cherry": 0,
+        "plum": 0,
+        "peach": 0,
+        "magnolia": 0,
+        "crabapple": 31
+      },
+      "jurisdiction_type": "city",
+      "state_province": "WI"
+    },
+    {
+      "jurisdiction": "Greendale",
+      "region": "wi",
+      "tree_count": 81,
+      "species_counts": {
+        "cherry": 0,
+        "plum": 0,
+        "peach": 0,
+        "magnolia": 0,
+        "crabapple": 81
+      },
+      "jurisdiction_type": "city",
+      "state_province": "WI"
+    },
+    {
+      "jurisdiction": "Greenfield",
+      "region": "wi",
+      "tree_count": 22,
+      "species_counts": {
+        "cherry": 0,
+        "plum": 0,
+        "peach": 0,
+        "magnolia": 0,
+        "crabapple": 22
+      },
+      "jurisdiction_type": "city",
+      "state_province": "WI"
+    },
+    {
+      "jurisdiction": "Hales Corners",
+      "region": "wi",
+      "tree_count": 48,
+      "species_counts": {
+        "cherry": 0,
+        "plum": 0,
+        "peach": 0,
+        "magnolia": 2,
+        "crabapple": 46
+      },
+      "jurisdiction_type": "city",
+      "state_province": "WI"
+    },
+    {
+      "jurisdiction": "Milwaukee",
+      "region": "wi",
+      "tree_count": 680,
+      "species_counts": {
+        "cherry": 1,
+        "plum": 0,
+        "peach": 1,
+        "magnolia": 28,
+        "crabapple": 650
+      },
+      "jurisdiction_type": "city",
+      "state_province": "WI"
+    },
+    {
+      "jurisdiction": "Oak Creek",
+      "region": "wi",
+      "tree_count": 15,
+      "species_counts": {
+        "cherry": 0,
+        "plum": 0,
+        "peach": 0,
+        "magnolia": 0,
+        "crabapple": 15
+      },
+      "jurisdiction_type": "city",
+      "state_province": "WI"
+    },
+    {
+      "jurisdiction": "Shorewood",
+      "region": "wi",
+      "tree_count": 26,
+      "species_counts": {
+        "cherry": 0,
+        "plum": 0,
+        "peach": 0,
+        "magnolia": 0,
+        "crabapple": 26
+      },
+      "jurisdiction_type": "city",
+      "state_province": "WI"
+    },
+    {
+      "jurisdiction": "South Milwaukee",
+      "region": "wi",
+      "tree_count": 28,
+      "species_counts": {
+        "cherry": 0,
+        "plum": 0,
+        "peach": 0,
+        "magnolia": 1,
+        "crabapple": 27
+      },
+      "jurisdiction_type": "city",
+      "state_province": "WI"
+    },
+    {
+      "jurisdiction": "St. Francis",
+      "region": "wi",
+      "tree_count": 14,
+      "species_counts": {
+        "cherry": 0,
+        "plum": 0,
+        "peach": 0,
+        "magnolia": 0,
+        "crabapple": 14
+      },
+      "jurisdiction_type": "city",
+      "state_province": "WI"
+    },
+    {
+      "jurisdiction": "Wauwatosa",
+      "region": "wi",
+      "tree_count": 77,
+      "species_counts": {
+        "cherry": 0,
+        "plum": 0,
+        "peach": 0,
+        "magnolia": 1,
+        "crabapple": 76
+      },
+      "jurisdiction_type": "city",
+      "state_province": "WI"
+    },
+    {
+      "jurisdiction": "West Allis",
+      "region": "wi",
+      "tree_count": 131,
+      "species_counts": {
+        "cherry": 0,
+        "plum": 0,
+        "peach": 0,
+        "magnolia": 0,
+        "crabapple": 131
+      },
+      "jurisdiction_type": "city",
+      "state_province": "WI"
+    },
+    {
+      "jurisdiction": "Whitefish Bay",
+      "region": "wi",
+      "tree_count": 6,
+      "species_counts": {
+        "cherry": 0,
+        "plum": 0,
+        "peach": 0,
+        "magnolia": 0,
+        "crabapple": 6
+      },
+      "jurisdiction_type": "city",
+      "state_province": "WI"
     }
   ],
   "sources": [
@@ -3405,6 +4110,15 @@
       "records_fetched": 580,
       "records_included": 580,
       "note": "Integrated from the official City of Chino public tree inventory layer and official jurisdiction boundary."
+    },
+    {
+      "name": "Citrus Heights i-Tree Benefits",
+      "city": "Citrus Heights",
+      "endpoint": "https://www.citrusheights.net/1416/Urban-Forestry",
+      "last_edit_at": "2025-05-16T14:45:15.856000+00:00",
+      "records_fetched": 50,
+      "records_included": 50,
+      "note": "Integrated from the official City of Citrus Heights urban forestry tree inventory layer and official jurisdiction boundary."
     },
     {
       "name": "Tree Inventory",
@@ -3870,6 +4584,15 @@
       "note": "Integrated from the official City of Las Vegas CLV_Tree_Sites ArcGIS layer."
     },
     {
+      "name": "Tree Inventory",
+      "city": "Lodi",
+      "endpoint": "https://www.lodi.gov/552/Trees",
+      "last_edit_at": "2026-02-27T14:56:47.507000+00:00",
+      "records_fetched": 238,
+      "records_included": 192,
+      "note": "Integrated from the official City of Lodi public tree inventory and official jurisdiction boundary."
+    },
+    {
       "name": "TreeKeeper Street Sites",
       "city": "Los Angeles",
       "endpoint": "https://streetsla.lacity.org/tree-inventory-and-maintenance",
@@ -4128,6 +4851,15 @@
       "note": "Integrated from the official public Pittsburgh TreeKeeper inventory domain."
     },
     {
+      "name": "Tree Inventory",
+      "city": "Pleasanton",
+      "endpoint": "https://www.cityofpleasantonca.gov/our-government/public-works/landscape-architecture/",
+      "last_edit_at": "2026-02-27T15:17:24.030000+00:00",
+      "records_fetched": 577,
+      "records_included": 537,
+      "note": "Integrated from the official City of Pleasanton landscape architecture tree inventory map and official jurisdiction boundary."
+    },
+    {
       "name": "CityOfPomona i-Tree Benefits Canopy Cover",
       "city": "Pomona",
       "endpoint": "https://services2.arcgis.com/yrktbS5Xw87hJQvs/arcgis/rest/services/CityOfPomona_iTreeBenefits_CanopyCover_WFL1/FeatureServer",
@@ -4143,6 +4875,15 @@
       "last_edit_at": "",
       "records_fetched": 252205,
       "records_included": 24775
+    },
+    {
+      "name": "Tree",
+      "city": "Poway",
+      "endpoint": "https://poway.org/293/GIS-Maps",
+      "last_edit_at": "",
+      "records_fetched": 44,
+      "records_included": 27,
+      "note": "Integrated from the official City of Poway GIS tree inventory layer and official jurisdiction boundary."
     },
     {
       "name": "TreeKeeper Inventory",
@@ -4195,6 +4936,15 @@
       "last_edit_at": "2022-06-16T16:52:12.890000+00:00",
       "records_fetched": 185,
       "records_included": 185
+    },
+    {
+      "name": "WCA Tree Inv Rendondo Beach",
+      "city": "Redondo Beach",
+      "endpoint": "https://www.redondo.org/depts/public_works/gis/default.asp",
+      "last_edit_at": "2025-10-22T20:07:27.428000+00:00",
+      "records_fetched": 2019,
+      "records_included": 1996,
+      "note": "Integrated from the official City of Redondo Beach GIS tree inventory layer and official jurisdiction boundary."
     },
     {
       "name": "Tree Sites",

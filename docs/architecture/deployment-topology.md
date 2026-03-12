@@ -13,11 +13,19 @@
   - Source of truth: same workspace and same `public/data` artifacts
   - Delivery path: local gate checks -> S3 sync -> CloudFront invalidation -> smoke check
 
+## Launch Sensitivity
+- Under traffic spikes, the first likely bottlenecks are third-party counter or basemap providers, not the static site host itself.
+- Counter failure should be non-blocking, and map-provider assumptions should be reviewed before publicity pushes.
+
 ## Data Model
 - Tree data: `public/data/trees.<region>.area-index.v2.json` and area shard GeoJSON files
 - Coverage data: `public/data/coverage.<region>.v1.geojson`
 - Compatibility fallback: `public/data/coverage.v1.geojson`
 - Predictions namespace: `public/data/predictions/*.v1.json`
+
+## Storage Boundary
+- `public/data` is the public distribution layer that can be pushed to GitHub Pages or an S3 data bucket.
+- `data/`, ETL intermediates, and normalization outputs remain internal workspace material; moving the site to AWS does not remove the need to manage those local files deliberately.
 
 ## Runtime Loading
 - Coverage loading is now configurable independently from runtime environment.

@@ -146,15 +146,20 @@ Live domain:
 - Anaheim
 - Azusa
 - Bell
-- Beverly Hills
 - Berkeley
+- Beverly Hills
+- Buena Park
 - Burbank
 - Burlingame
 - Camarillo
 - Chino
+- Citrus Heights
 - Concord
+- Corona
 - Costa Mesa
+- Cudahy
 - Cupertino
+- Dana Point
 - El Segundo
 - Encinitas
 - Escondido
@@ -162,50 +167,65 @@ Live domain:
 - Fremont
 - Fullerton
 - Gilroy
+- Glendale
 - Glendora
+- Goleta
+- Inglewood
 - Irvine
 - La Canada Flintridge
 - La Mesa
+- La Mirada
+- La Verne
 - Laguna Beach
+- Lodi
 - Los Angeles
 - Los Gatos
 - Maywood
-- Mountain View
 - Milpitas
 - Monterey Park
 - Morgan Hill
+- Mountain View
 - Newport Beach
+- Norwalk
 - Oakland
 - Oxnard
 - Palo Alto
 - Pasadena
+- Pleasanton
 - Pomona
+- Poway
 - Rancho Cucamonga
 - Rancho Palos Verdes
 - Redlands
+- Redondo Beach
 - Riverside
 - Sacramento
 - Salinas
-- San Dimas
-- Santa Clarita
-- Santa Barbara
-- Santa Monica
-- Santee
 - San Diego
+- San Dimas
 - San Fernando
 - San Francisco
 - San Jose
 - San Mateo
 - San Rafael
+- Santa Barbara
+- Santa Clarita
+- Santa Fe Springs
+- Santa Monica
+- Santee
 - Saratoga
 - Solana Beach
+- South Gate
 - South San Francisco
 - Sunnyvale
+- Thousand Oaks
+- Torrance
 - Ventura
 - Vista
-- West Sacramento
 - West Covina
 - West Hollywood
+- West Sacramento
+- Yorba Linda
 
 </details>
 

@@ -1,6 +1,6 @@
 # City Coverage Tracker
 
-Last updated: 2026-03-11 (America/Los_Angeles)
+Last updated: 2026-03-12 (America/Los_Angeles)
 
 ## Integrated (In Product)
 | Done | City | Included Trees | Boundary Rule | Notes |
@@ -81,6 +81,36 @@ Last updated: 2026-03-11 (America/Los_Angeles)
 | ✅ | West Covina | 1,052 | Official jurisdiction boundary | Official City of West Covina public `Tree Information` ArcGIS layer integrated from the city's GIS service and official jurisdiction boundary |
 | ✅ | Bell | 93 | Official jurisdiction boundary | Official City of Bell public tree-benefits inventory integrated from the city's ArcGIS service and official jurisdiction boundary |
 | ✅ | San Fernando | 11 | Official jurisdiction boundary | Official City of San Fernando CAL FIRE public tree layer integrated from the city's ArcGIS service and official jurisdiction boundary |
+| ✅ | Buena Park | 365 | Official jurisdiction boundary | Integrated from the official City of Buena Park public tree inventory layer and official jurisdiction boundary. |
+| ✅ | Citrus Heights | 50 | Official jurisdiction boundary | Integrated from the official City of Citrus Heights urban forestry tree inventory layer and official jurisdiction boundary. |
+| ✅ | Corona | 2,691 | Official jurisdiction boundary | Integrated from the official City of Corona public tree sites layer and official jurisdiction boundary. |
+| ✅ | Cudahy | 48 | Official jurisdiction boundary | Integrated from the public City of Cudahy tree layers and official jurisdiction boundary. |
+| ✅ | Dana Point | 112 | Official jurisdiction boundary | Integrated from the official City of Dana Point public tree inventory layer and official jurisdiction boundary. |
+| ✅ | Encinitas | 447 | Official jurisdiction boundary | Integrated from the official City of Encinitas public street and parks tree inventory layers and official jurisdiction boundary. |
+| ✅ | Glendale | 35 | Official jurisdiction boundary | Integrated from the public Glendale tree survey layer and official jurisdiction boundary. |
+| ✅ | Goleta | 206 | Official jurisdiction boundary | Integrated from the official City of Goleta public tree inventory layer and official jurisdiction boundary. |
+| ✅ | Inglewood | 159 | Official jurisdiction boundary | Integrated from the public City of Inglewood tree layers and official jurisdiction boundary. |
+| ✅ | La Mirada | 55 | Official jurisdiction boundary | Integrated from the public I-5 corridor tree sites layer filtered to La Mirada and clipped to the official jurisdiction boundary. |
+| ✅ | La Verne | 226 | Official jurisdiction boundary | Integrated from the official City of La Verne public tree inventory layer and official jurisdiction boundary. |
+| ✅ | Laguna Beach | 9 | Official jurisdiction boundary | Integrated from the official City of Laguna Beach maintained tree inventory layer and official jurisdiction boundary. |
+| ✅ | Lodi | 192 | Official jurisdiction boundary | Integrated from the official City of Lodi public tree inventory and official jurisdiction boundary. |
+| ✅ | Newport Beach | 2,286 | Official jurisdiction boundary | Integrated from the official City of Newport Beach public tree inventory dashboard layer and official jurisdiction boundary. |
+| ✅ | Norwalk | 186 | Official jurisdiction boundary | Integrated from the public I-5 corridor tree sites layer filtered to Norwalk and clipped to the official jurisdiction boundary. |
+| ✅ | Oxnard | 5,054 | Official jurisdiction boundary | Integrated from the official City of Oxnard public trees layer and official jurisdiction boundary. |
+| ✅ | Pleasanton | 537 | Official jurisdiction boundary | Integrated from the official City of Pleasanton landscape architecture tree inventory map and official jurisdiction boundary. |
+| ✅ | Poway | 27 | Official jurisdiction boundary | Integrated from the official City of Poway GIS tree inventory layer and official jurisdiction boundary. |
+| ✅ | Rancho Palos Verdes | 657 | Official jurisdiction boundary | Integrated from the official City of Rancho Palos Verdes public tree inventory layer and official jurisdiction boundary. |
+| ✅ | Redondo Beach | 1,996 | Official jurisdiction boundary | Integrated from the official City of Redondo Beach GIS tree inventory layer and official jurisdiction boundary. |
+| ✅ | San Dimas | 266 | Official jurisdiction boundary | Integrated from the official City of San Dimas public tree inventory layer and official jurisdiction boundary. |
+| ✅ | Santa Barbara | 1,249 | Official jurisdiction boundary | Integrated from the official City of Santa Barbara public tree inventory layer and official jurisdiction boundary. |
+| ✅ | Santa Fe Springs | 10 | Official jurisdiction boundary | Integrated from the public I-5 corridor tree sites layer filtered to Santa Fe Springs and clipped to the official jurisdiction boundary. |
+| ✅ | Santa Monica | 2,253 | Official jurisdiction boundary | Integrated from the official City of Santa Monica public trees feature service and official jurisdiction boundary. |
+| ✅ | Solana Beach | 11 | Official jurisdiction boundary | Integrated from the official City of Solana Beach tree inventory application layer and official jurisdiction boundary. |
+| ✅ | South Gate | 10 | Official jurisdiction boundary | Integrated from the public South Gate/Cudahy tree layer clipped to the official South Gate jurisdiction boundary. |
+| ✅ | Thousand Oaks | 636 | Official jurisdiction boundary | Integrated from the official City of Thousand Oaks landscape trees layer and official jurisdiction boundary. |
+| ✅ | Torrance | 24 | Official jurisdiction boundary | Integrated from the public City of Torrance tree layer and official jurisdiction boundary. |
+| ✅ | Ventura | 1,322 | Official jurisdiction boundary | Integrated from the official City of Ventura public tree inventory layer and official jurisdiction boundary. |
+| ✅ | Yorba Linda | 380 | Official jurisdiction boundary | Integrated from the official City of Yorba Linda public tree inventory layer and official jurisdiction boundary. |
 | ✅ | Washington DC | 16,533 | Official jurisdiction boundary | Urban Tree Canopy (DDOT); ornamental cherry cultivar mapping expanded |
 | ✅ | Vancouver BC | 34,369 | Official jurisdiction boundary | Official City of Vancouver `public-trees` ODS dataset integrated; boundary polygon derived from official city-boundary line dataset |
 | ✅ | New Westminster | 1,786 | Official jurisdiction boundary | Official ArcGIS `Tree Inventory (Active Trees)` integrated with the official Metro Vancouver administrative boundary for the City of New Westminster |
@@ -259,6 +289,7 @@ Last updated: 2026-03-11 (America/Los_Angeles)
 - Integrated `Oakland` from the official City of Oakland `Oakland Street Trees` open-data dataset.
 - Integrated `Mountain View` from the official City of Mountain View `Trees` ArcGIS layer published through the city Heritage Trees service.
 - Integrated `Sacramento` from the official City of Sacramento `City Maintained Trees` ArcGIS layer published through the city open-data portal.
+- Integrated `Pleasanton`, `Lodi`, `Poway`, `Redondo Beach`, and `Citrus Heights` from official public ArcGIS tree inventories by reusing the existing California ArcGIS single-tree publish path.
 - Integrated `Sunnyvale` from the official Santa Clara County public `Tree Inventories in Santa Clara County` service using the `City = Sunnyvale` subset and the official jurisdiction boundary.
 - Added gray coverage for `Santa Clara`, `Napa`, `Richmond`, `Santa Cruz`, `Santa Rosa`, and `Stockton` after city-site and official data portal review did not confirm a public citywide single-tree species dataset.
 - Fixed a bad legacy `Palo Alto` boundary cache by switching the city boundary back to the official Census place geometry; this removed the incorrect East Bay pink polygon that had been covering Hayward / Livermore / Fremont in the map UI.

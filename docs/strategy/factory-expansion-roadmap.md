@@ -20,5 +20,18 @@
 8. Smoke-check GitHub Pages.
 9. Smoke-check AWS if that path changed.
 
+## Discovery Heuristic
+- Once one city works in a cycle, look for neighboring cities that share the same source family, schema, vendor, or ArcGIS org before starting a fresh open-web search.
+- Prefer batches that reuse an existing boundary cache and parser shape, even if the first tree counts are smaller. Reusable throughput matters more than one-off wins.
+
+## Pilot Rule
+- Prediction work should launch as `Featured Areas` pilots, not as region-wide ML promises.
+- A pilot is ready when it has:
+  - reliable local tree completeness
+  - a clearly highlighted viewing area
+  - simple public forecast output (`start / peak / end`)
+  - weather context that is separate from the canonical tree inventory
+- Campus PDFs or seasonal guides can support manual QA and cultivar labeling for those pilots, but they are not the canonical training table.
+
 ## Capacity Rule
 - Any newly validated source family, classification trick, or boundary exception must be written back into the research docs before the cycle is considered complete.

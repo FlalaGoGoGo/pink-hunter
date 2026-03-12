@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-03-12T05:35:52.872888+00:00",
+  "generated_at": "2026-03-12T18:57:19.574732+00:00",
   "region": "ca",
   "strategy": "area_shard",
   "items": [
@@ -540,6 +540,58 @@
           "tree_count": 580,
           "raw_bytes": 286038,
           "gzip_bytes": 13344
+        }
+      ]
+    },
+    {
+      "jurisdiction": "Citrus Heights",
+      "slug": "citrus-heights",
+      "display_name": "Citrus Heights",
+      "jurisdiction_type": "city",
+      "state_province": "CA",
+      "country": "United States",
+      "bounds": [
+        [
+          -121.31535500000177,
+          38.67808469900091
+        ],
+        [
+          -121.25350556100173,
+          38.718212725000924
+        ]
+      ],
+      "tree_count": 50,
+      "zip_codes": [
+        "95610",
+        "95621"
+      ],
+      "species_counts": {
+        "cherry": 2,
+        "plum": 43,
+        "peach": 0,
+        "magnolia": 4,
+        "crabapple": 1
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "citrus-heights-001",
+          "bounds": [
+            [
+              -121.31535500000177,
+              38.67808469900091
+            ],
+            [
+              -121.25350556100173,
+              38.718212725000924
+            ]
+          ],
+          "data_path": "/data/trees.ca.area.citrus-heights.v2.geojson",
+          "tree_count": 50,
+          "raw_bytes": 28017,
+          "gzip_bytes": 1634
         }
       ]
     },
@@ -1762,6 +1814,58 @@
       ]
     },
     {
+      "jurisdiction": "Lodi",
+      "slug": "lodi",
+      "display_name": "Lodi",
+      "jurisdiction_type": "city",
+      "state_province": "CA",
+      "country": "United States",
+      "bounds": [
+        [
+          -121.30424439999996,
+          38.11160454600008
+        ],
+        [
+          -121.24759152499996,
+          38.14849923000003
+        ]
+      ],
+      "tree_count": 192,
+      "zip_codes": [
+        "95240",
+        "95242"
+      ],
+      "species_counts": {
+        "cherry": 25,
+        "plum": 67,
+        "peach": 29,
+        "magnolia": 62,
+        "crabapple": 9
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "lodi-001",
+          "bounds": [
+            [
+              -121.30424439999996,
+              38.11160454600008
+            ],
+            [
+              -121.24759152499996,
+              38.14849923000003
+            ]
+          ],
+          "data_path": "/data/trees.ca.area.lodi.v2.geojson",
+          "tree_count": 192,
+          "raw_bytes": 96181,
+          "gzip_bytes": 4825
+        }
+      ]
+    },
+    {
       "jurisdiction": "Los Angeles",
       "slug": "los-angeles",
       "display_name": "Los Angeles",
@@ -2575,6 +2679,58 @@
       ]
     },
     {
+      "jurisdiction": "Pleasanton",
+      "slug": "pleasanton",
+      "display_name": "Pleasanton",
+      "jurisdiction_type": "city",
+      "state_province": "CA",
+      "country": "United States",
+      "bounds": [
+        [
+          -121.92861799999997,
+          37.62718254400005
+        ],
+        [
+          -121.82294199999995,
+          37.70052300000003
+        ]
+      ],
+      "tree_count": 537,
+      "zip_codes": [
+        "94566",
+        "94588"
+      ],
+      "species_counts": {
+        "cherry": 28,
+        "plum": 230,
+        "peach": 5,
+        "magnolia": 190,
+        "crabapple": 84
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "pleasanton-001",
+          "bounds": [
+            [
+              -121.92861799999997,
+              37.62718254400005
+            ],
+            [
+              -121.82294199999995,
+              37.70052300000003
+            ]
+          ],
+          "data_path": "/data/trees.ca.area.pleasanton.v2.geojson",
+          "tree_count": 537,
+          "raw_bytes": 285939,
+          "gzip_bytes": 10004
+        }
+      ]
+    },
+    {
       "jurisdiction": "Pomona",
       "slug": "pomona",
       "display_name": "Pomona",
@@ -2624,6 +2780,57 @@
           "tree_count": 475,
           "raw_bytes": 259194,
           "gzip_bytes": 9661
+        }
+      ]
+    },
+    {
+      "jurisdiction": "Poway",
+      "slug": "poway",
+      "display_name": "Poway",
+      "jurisdiction_type": "city",
+      "state_province": "CA",
+      "country": "United States",
+      "bounds": [
+        [
+          -117.07163501817426,
+          32.94984091542107
+        ],
+        [
+          -116.99772589593371,
+          33.020460203213325
+        ]
+      ],
+      "tree_count": 27,
+      "zip_codes": [
+        "92064"
+      ],
+      "species_counts": {
+        "cherry": 0,
+        "plum": 7,
+        "peach": 1,
+        "magnolia": 19,
+        "crabapple": 0
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "poway-001",
+          "bounds": [
+            [
+              -117.07163501817426,
+              32.94984091542107
+            ],
+            [
+              -116.99772589593371,
+              33.020460203213325
+            ]
+          ],
+          "data_path": "/data/trees.ca.area.poway.v2.geojson",
+          "tree_count": 27,
+          "raw_bytes": 12785,
+          "gzip_bytes": 1021
         }
       ]
     },
@@ -2781,6 +2988,58 @@
           "tree_count": 1447,
           "raw_bytes": 759877,
           "gzip_bytes": 34752
+        }
+      ]
+    },
+    {
+      "jurisdiction": "Redondo Beach",
+      "slug": "redondo-beach",
+      "display_name": "Redondo Beach",
+      "jurisdiction_type": "city",
+      "state_province": "CA",
+      "country": "United States",
+      "bounds": [
+        [
+          -118.39148223308975,
+          33.81834536259484
+        ],
+        [
+          -118.35472153096099,
+          33.88932805106719
+        ]
+      ],
+      "tree_count": 1996,
+      "zip_codes": [
+        "90277",
+        "90278"
+      ],
+      "species_counts": {
+        "cherry": 1,
+        "plum": 48,
+        "peach": 7,
+        "magnolia": 1935,
+        "crabapple": 5
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "redondo-beach-001",
+          "bounds": [
+            [
+              -118.39148223308975,
+              33.81834536259484
+            ],
+            [
+              -118.35472153096099,
+              33.88932805106719
+            ]
+          ],
+          "data_path": "/data/trees.ca.area.redondo-beach.v2.geojson",
+          "tree_count": 1996,
+          "raw_bytes": 1124928,
+          "gzip_bytes": 46708
         }
       ]
     },

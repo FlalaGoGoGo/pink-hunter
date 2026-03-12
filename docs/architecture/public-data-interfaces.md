@@ -171,7 +171,7 @@ Public visitor counter read endpoint served by API Gateway + Lambda.
 - `updatedAt`
 
 ## `POST /api/v1/visitor-count/hit`
-Idempotent visitor-count update endpoint. The browser should send one stable `visitorId` per browser profile.
+Idempotent visitor-count update endpoint. The browser should send one stable `visitorId` per browser profile unless the browser advertises `Do Not Track` or `Global Privacy Control`, in which case this hit should be skipped.
 
 ### Request body
 - `visitorId`
