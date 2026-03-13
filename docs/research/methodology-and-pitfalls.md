@@ -15,6 +15,7 @@
 - When PMTiles is active, counts and filter availability should come from shard-level summary fields in the area index, not from loading viewport shards just to count them.
 - When PMTiles is active, click-to-detail should carry the exact shard `data_path` whenever possible, so detail fallback can load one shard first instead of sweeping a whole city.
 - PMTiles is not a free win by itself. If low-zoom clustering or aggregation disappears, the map can feel worse than the older GeoJSON path. Keep GitHub Pages on the clustered GeoJSON path until the PMTiles path has an equivalent low-zoom aggregation strategy.
+- GeoJSON cluster mode still needs a viewport budget. If the current view would pull too many shard bytes at once, defer tree autoload and ask the user to zoom in instead of brute-forcing the first render.
 - Methods are only reusable if they are written down in docs immediately after they work.
 
 ## Historical Thread Additions
@@ -54,3 +55,4 @@
 - `GitHub/` backup folders silently consume most local disk space.
 - `data/normalized/`, `data/tmp/`, and copied `* 2*` files create false clutter and accidental sync drift.
 - GitHub Pages can still feel slow if the runtime falls back to eager coverage loading or large single-city shards.
+- Single-region coverage should not pay the polygon-clipping cost on every first render. Keep clipping for multi-region overlap cases.

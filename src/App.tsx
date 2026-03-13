@@ -90,6 +90,8 @@ const POINT_LAYER_IDS = [
 const ALL_OWNERSHIP = ["public", "private", "unknown"] as const;
 const DEFAULT_CENTER: [number, number] = [-122.315, 47.55];
 const DEFAULT_ZOOM = 8.45;
+const MOBILE_VIEWPORT_TREE_LOAD_BUDGET_BYTES = 12 * 1024 * 1024;
+const DESKTOP_VIEWPORT_TREE_LOAD_BUDGET_BYTES = 24 * 1024 * 1024;
 const POSITRON_STYLE_URL = "https://basemaps.cartocdn.com/gl/positron-gl-style/style.json";
 const FALLBACK_STYLE_URL = "https://demotiles.maplibre.org/style.json";
 const ABOUT_SOURCES_PAGE_SIZE = 6;
@@ -975,6 +977,9 @@ const DISCOVERY_COPY: Record<
     untrackedCta: string;
     coveredEmptyTitle: string;
     coveredEmptyBody: string;
+    coveredDeferredTitle: string;
+    coveredDeferredBody: string;
+    coveredDeferredCta: string;
   }
 > = {
   "en-US": {
@@ -1010,7 +1015,11 @@ const DISCOVERY_COPY: Record<
     untrackedCta: "Request this area",
     coveredEmptyTitle: "No trees match the current filters here",
     coveredEmptyBody:
-      "This area is covered, but the current filters left no matching trees. Clear the filters or reload visible trees."
+      "This area is covered, but the current filters left no matching trees. Clear the filters or reload visible trees.",
+    coveredDeferredTitle: "Zoom in to load trees smoothly",
+    coveredDeferredBody:
+      "This view would load about {current} of tree data. Pink Hunter waits until the visible load drops under about {limit}. Zoom in a bit more or jump to a city first.",
+    coveredDeferredCta: "Zoom in"
   },
   "zh-CN": {
     areaSearchShow: "搜索城市 / 县",
@@ -1043,7 +1052,11 @@ const DISCOVERY_COPY: Record<
     untrackedBody: "这个地区目前还没有被 Pink Hunter 收录。如果你知道官方公开数据源，欢迎发给我们。",
     untrackedCta: "请求添加该地区",
     coveredEmptyTitle: "这个地区当前没有符合筛选条件的树",
-    coveredEmptyBody: "该地区已经覆盖，但当前筛选条件下没有匹配树木。你可以清空筛选，或重新显示当前视口的树木。"
+    coveredEmptyBody: "该地区已经覆盖，但当前筛选条件下没有匹配树木。你可以清空筛选，或重新显示当前视口的树木。",
+    coveredDeferredTitle: "请先放大地图再加载树木",
+    coveredDeferredBody:
+      "当前视图大约会加载 {current} 的树数据。为了保证流畅度，Pink Hunter 会等到可见数据降到约 {limit} 以下再自动加载。请再放大一点，或先跳到具体城市。",
+    coveredDeferredCta: "放大地图"
   },
   "zh-TW": {
     areaSearchShow: "搜尋城市 / 縣",
@@ -1076,7 +1089,11 @@ const DISCOVERY_COPY: Record<
     untrackedBody: "這個地區目前尚未被 Pink Hunter 收錄。如果你知道官方公開資料來源，歡迎提供給我們。",
     untrackedCta: "請求加入這個地區",
     coveredEmptyTitle: "這個地區目前沒有符合篩選條件的樹",
-    coveredEmptyBody: "這個地區已經覆蓋，但目前的篩選條件下沒有符合的樹木。你可以清空篩選，或重新顯示目前視窗內的樹木。"
+    coveredEmptyBody: "這個地區已經覆蓋，但目前的篩選條件下沒有符合的樹木。你可以清空篩選，或重新顯示目前視窗內的樹木。",
+    coveredDeferredTitle: "請先放大地圖再載入樹木",
+    coveredDeferredBody:
+      "目前這個視圖大約會載入 {current} 的樹資料。為了保持流暢，Pink Hunter 會等到可見資料降到約 {limit} 以下再自動載入。請再放大一點，或先跳到具體城市。",
+    coveredDeferredCta: "放大地圖"
   },
   "es-ES": {
     areaSearchShow: "Buscar ciudad / condado",
@@ -1110,7 +1127,11 @@ const DISCOVERY_COPY: Record<
     untrackedCta: "Solicitar esta zona",
     coveredEmptyTitle: "No hay árboles aquí que coincidan con los filtros actuales",
     coveredEmptyBody:
-      "Esta zona sí está cubierta, pero los filtros actuales no dejaron resultados. Borra los filtros o vuelve a cargar los árboles visibles."
+      "Esta zona sí está cubierta, pero los filtros actuales no dejaron resultados. Borra los filtros o vuelve a cargar los árboles visibles.",
+    coveredDeferredTitle: "Acerca el mapa para cargar árboles con fluidez",
+    coveredDeferredBody:
+      "Esta vista cargaría alrededor de {current} de datos de árboles. Pink Hunter espera hasta que la carga visible baje de unos {limit}. Acerca un poco más o salta primero a una ciudad.",
+    coveredDeferredCta: "Acercar mapa"
   },
   "ko-KR": {
     areaSearchShow: "시 / 카운티 검색",
@@ -1143,7 +1164,11 @@ const DISCOVERY_COPY: Record<
     untrackedBody: "이 지역은 아직 Pink Hunter에 통합되지 않았습니다. 공식 공개 데이터셋을 알고 있다면 보내 주세요.",
     untrackedCta: "이 지역 요청하기",
     coveredEmptyTitle: "현재 필터로는 이 지역에 맞는 나무가 없습니다",
-    coveredEmptyBody: "이 지역은 커버되어 있지만 현재 필터 조건에서는 결과가 없습니다. 필터를 지우거나 현재 화면의 나무를 다시 불러오세요."
+    coveredEmptyBody: "이 지역은 커버되어 있지만 현재 필터 조건에서는 결과가 없습니다. 필터를 지우거나 현재 화면의 나무를 다시 불러오세요.",
+    coveredDeferredTitle: "지도를 더 확대하면 나무를 부드럽게 불러올 수 있습니다",
+    coveredDeferredBody:
+      "현재 화면에서는 약 {current}의 나무 데이터를 불러오게 됩니다. 부드러운 동작을 위해 Pink Hunter는 보이는 데이터가 약 {limit} 이하가 될 때까지 기다립니다. 조금 더 확대하거나 먼저 도시로 이동하세요.",
+    coveredDeferredCta: "지도 확대"
   },
   "ja-JP": {
     areaSearchShow: "市 / 郡を検索",
@@ -1176,7 +1201,11 @@ const DISCOVERY_COPY: Record<
     untrackedBody: "この地域はまだ Pink Hunter に統合されていません。公開された公式データをご存じなら共有してください。",
     untrackedCta: "この地域を依頼する",
     coveredEmptyTitle: "現在の条件に一致する木がこの地域にはありません",
-    coveredEmptyBody: "この地域自体はカバー済みですが、現在のフィルター条件では一致する木がありません。フィルターを解除するか、表示中の木を再読み込みしてください。"
+    coveredEmptyBody: "この地域自体はカバー済みですが、現在のフィルター条件では一致する木がありません。フィルターを解除するか、表示中の木を再読み込みしてください。",
+    coveredDeferredTitle: "もう少し拡大すると木を軽く読み込めます",
+    coveredDeferredBody:
+      "この表示範囲では約 {current} の木データを読み込むことになります。動作を軽く保つため、Pink Hunter は表示データが約 {limit} 未満になるまで自動読込を待ちます。もう少し拡大するか、先に都市へ移動してください。",
+    coveredDeferredCta: "拡大する"
   },
   "fr-FR": {
     areaSearchShow: "Rechercher une ville / un comté",
@@ -1210,7 +1239,11 @@ const DISCOVERY_COPY: Record<
     untrackedCta: "Demander cette zone",
     coveredEmptyTitle: "Aucun arbre ici ne correspond aux filtres actuels",
     coveredEmptyBody:
-      "Cette zone est couverte, mais les filtres actuels ne laissent aucun résultat. Effacez les filtres ou rechargez les arbres visibles."
+      "Cette zone est couverte, mais les filtres actuels ne laissent aucun résultat. Effacez les filtres ou rechargez les arbres visibles.",
+    coveredDeferredTitle: "Zoomez pour charger les arbres plus fluidement",
+    coveredDeferredBody:
+      "Cette vue chargerait environ {current} de données d'arbres. Pink Hunter attend que la charge visible descende sous environ {limit}. Zoomez un peu plus ou allez d'abord vers une ville.",
+    coveredDeferredCta: "Zoomer"
   },
   "vi-VN": {
     areaSearchShow: "Tìm thành phố / quận hạt",
@@ -1243,7 +1276,11 @@ const DISCOVERY_COPY: Record<
     untrackedBody: "Khu vực này vẫn chưa được tích hợp vào Pink Hunter. Nếu bạn biết bộ dữ liệu công khai chính thức, hãy gửi cho chúng tôi.",
     untrackedCta: "Yêu cầu thêm khu vực này",
     coveredEmptyTitle: "Không có cây nào ở đây khớp với bộ lọc hiện tại",
-    coveredEmptyBody: "Khu vực này đã được phủ, nhưng bộ lọc hiện tại không còn kết quả nào. Hãy xóa bộ lọc hoặc tải lại các cây đang hiển thị."
+    coveredEmptyBody: "Khu vực này đã được phủ, nhưng bộ lọc hiện tại không còn kết quả nào. Hãy xóa bộ lọc hoặc tải lại các cây đang hiển thị.",
+    coveredDeferredTitle: "Hãy phóng to thêm để tải cây mượt hơn",
+    coveredDeferredBody:
+      "Khung nhìn này sẽ tải khoảng {current} dữ liệu cây. Để giữ trải nghiệm mượt hơn, Pink Hunter sẽ đợi đến khi dữ liệu đang thấy giảm xuống dưới khoảng {limit}. Hãy phóng to thêm hoặc nhảy tới một thành phố trước.",
+    coveredDeferredCta: "Phóng to bản đồ"
   }
 };
 
@@ -1746,6 +1783,21 @@ function normalizeSearchText(value: string): string {
 
 function formatDiscoveryCount(template: string, count: number, language: Language): string {
   return template.replace("{count}", count.toLocaleString(language));
+}
+
+function formatMegabytes(bytes: number, language: Language): string {
+  const value = bytes / 1024 / 1024;
+  const fractionDigits = value >= 10 ? 0 : 1;
+  return `${value.toLocaleString(language, {
+    maximumFractionDigits: fractionDigits,
+    minimumFractionDigits: fractionDigits === 0 ? 0 : 1
+  })} MB`;
+}
+
+function formatDiscoveryDataBudget(template: string, currentBytes: number, limitBytes: number, language: Language): string {
+  return template
+    .replace("{current}", formatMegabytes(currentBytes, language))
+    .replace("{limit}", formatMegabytes(limitBytes, language));
 }
 
 function mergeTreeCollections(collections: TreeCollection[]): TreeCollection {
@@ -2911,6 +2963,15 @@ export default function App(): JSX.Element {
     return next;
   }, [effectiveViewportBounds, viewportAreaEntries]);
 
+  const viewportShardRawBytes = useMemo(
+    () => viewportShardEntries.reduce((sum, { shard }) => sum + (shard.raw_bytes ?? 0), 0),
+    [viewportShardEntries]
+  );
+
+  const viewportTreeLoadBudgetBytes = isDesktop
+    ? DESKTOP_VIEWPORT_TREE_LOAD_BUDGET_BYTES
+    : MOBILE_VIEWPORT_TREE_LOAD_BUDGET_BYTES;
+
   const requiredAreaEntries = useMemo(() => {
     if (selectedSpecies.length === 0 || selectedOwnership.length === 0) {
       return [] as Array<{ region: CoverageRegion; item: AreaIndexItem }>;
@@ -2941,7 +3002,13 @@ export default function App(): JSX.Element {
     return next;
   }, [effectiveViewportBounds, requiredAreaEntries]);
 
-  const shouldAutoLoadViewportShards = !pmtilesEnabled || Boolean(selectedFeaturedAreaDetail);
+  const viewportTreeLoadDeferred =
+    selectedSpecies.length > 0 &&
+    selectedOwnership.length > 0 &&
+    !selectedFeaturedAreaDetail &&
+    viewportShardRawBytes > viewportTreeLoadBudgetBytes;
+
+  const shouldAutoLoadViewportShards = (!pmtilesEnabled || Boolean(selectedFeaturedAreaDetail)) && !viewportTreeLoadDeferred;
 
   const missingRequiredShardEntries = useMemo(
     () =>
@@ -3338,14 +3405,14 @@ export default function App(): JSX.Element {
   }, [data, regionCoverageCache, visibleRegionIds]);
 
   const displayCoverage = useMemo(() => {
-    if (!mapRuntime) {
+    if (!mapRuntime || visibleRegionIds.length <= 1) {
       return {
         type: "FeatureCollection",
         features: rawCoverageFeatures
       } as CoverageCollection;
     }
     return buildCoverageCollection(rawCoverageFeatures, mapRuntime.polygonClipping);
-  }, [mapRuntime, rawCoverageFeatures]);
+  }, [mapRuntime, rawCoverageFeatures, visibleRegionIds.length]);
 
   const filteredFeatures = useMemo(() => {
     if (selectedSpecies.length === 0 || selectedOwnership.length === 0) {
@@ -4929,6 +4996,17 @@ export default function App(): JSX.Element {
   }
 
   function refreshViewportTrees(): void {
+    if (viewportTreeLoadDeferred) {
+      const map = mapRef.current;
+      if (map && mapReady) {
+        map.easeTo({
+          zoom: Math.min(map.getMaxZoom(), map.getZoom() + (isDesktopRef.current ? 0.85 : 1.15)),
+          duration: 450
+        });
+      }
+      return;
+    }
+
     setSelectedSpecies([...ALL_SPECIES]);
     setSelectedOwnership([...allOwnershipOptions]);
     setSelectedTree(null);
@@ -5007,6 +5085,7 @@ export default function App(): JSX.Element {
   const locateButtonStyle = isDesktop
     ? { right: "446px", bottom: "4.9rem" }
     : { right: "0.88rem", bottom: `calc(${sheetHeight * 100}vh + 1rem)` };
+  const showViewportTreesLabel = viewportTreeLoadDeferred ? discoveryCopy.coveredDeferredCta : findPanelCopy.showButton;
 
   function renderStatusCard(): JSX.Element | null {
     if (locatingUser) {
@@ -5090,6 +5169,28 @@ export default function App(): JSX.Element {
           <h4>{title}</h4>
           <p>{body}</p>
           {action && <div className="status-card-actions">{action}</div>}
+        </article>
+      );
+    }
+
+    if (!activeRegionPending && viewportTreeLoadDeferred) {
+      return (
+        <article className="status-card covered_empty">
+          {selectedJumpAreaLabel && <p className="status-card-area">{selectedJumpAreaLabel}</p>}
+          <h4>{discoveryCopy.coveredDeferredTitle}</h4>
+          <p>
+            {formatDiscoveryDataBudget(
+              discoveryCopy.coveredDeferredBody,
+              viewportShardRawBytes,
+              viewportTreeLoadBudgetBytes,
+              language
+            )}
+          </p>
+          <div className="status-card-actions">
+            <button className="clear-btn" onClick={refreshViewportTrees} type="button">
+              {discoveryCopy.coveredDeferredCta}
+            </button>
+          </div>
         </article>
       );
     }
@@ -5413,10 +5514,10 @@ export default function App(): JSX.Element {
                   <div className="show-block-header">
                     <h3>{findPanelCopy.showTitle}</h3>
                     <button
-                      aria-label={findPanelCopy.showButton}
+                      aria-label={showViewportTreesLabel}
                       className="clear-btn show-all-btn"
                       onClick={refreshViewportTrees}
-                      title={findPanelCopy.showButton}
+                      title={showViewportTreesLabel}
                       type="button"
                     >
                       <svg aria-hidden="true" viewBox="0 0 24 24">
