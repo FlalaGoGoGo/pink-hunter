@@ -5000,7 +5000,7 @@ export default function App(): JSX.Element {
       const map = mapRef.current;
       if (map && mapReady) {
         map.easeTo({
-          zoom: Math.min(map.getMaxZoom(), map.getZoom() + (isDesktopRef.current ? 0.85 : 1.15)),
+          zoom: map.getZoom() + (isDesktopRef.current ? 0.85 : 1.15),
           duration: 450
         });
       }
