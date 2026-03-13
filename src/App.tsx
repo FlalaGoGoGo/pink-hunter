@@ -3361,18 +3361,17 @@ export default function App(): JSX.Element {
     });
   }, [currentTrees, selectedOwnership, selectedSpecies]);
 
-  const filteredTreeCountFromIndex = useMemo(() => {
+  const hasFilteredTreeMatchFromIndex = useMemo(() => {
     if (selectedSpecies.length === 0 || selectedOwnership.length === 0) {
-      return 0;
+      return false;
     }
 
-    return requiredShardEntries.reduce(
-      (sum, { shard }) => sum + shardFilteredTreeCount(shard, selectedSpecies, selectedOwnership),
-      0
+    return requiredShardEntries.some(
+      ({ shard }) => shardFilteredTreeCount(shard, selectedSpecies, selectedOwnership) > 0
     );
   }, [requiredShardEntries, selectedOwnership, selectedSpecies]);
 
-  const visibleFilteredTreeCount = pmtilesEnabled ? filteredTreeCountFromIndex : filteredFeatures.length;
+  const hasVisibleFilteredTrees = pmtilesEnabled ? hasFilteredTreeMatchFromIndex : filteredFeatures.length > 0;
 
   const ownershipOptions = useMemo(() => {
     if (pmtilesEnabled) {
@@ -5095,7 +5094,7 @@ export default function App(): JSX.Element {
       );
     }
 
-    if (!activeRegionPending && visibleFilteredTreeCount === 0) {
+    if (!activeRegionPending && !hasVisibleFilteredTrees) {
       const filtersCleared = selectedSpecies.length === 0 || selectedOwnership.length === 0;
       return (
         <article className="status-card covered_empty">
@@ -5309,9 +5308,6 @@ export default function App(): JSX.Element {
             >
               {t(language, "showAbout")}
             </button>
-            <div className="record-count">
-              {visibleFilteredTreeCount.toLocaleString()} {t(language, "records")}
-            </div>
           </div>
 
           {activePanel === "details" ? (
@@ -5691,7 +5687,7 @@ export default function App(): JSX.Element {
                   </div>
                 </section>
               </section>
-              {activeRegionPending ? null : visibleFilteredTreeCount > 0 ? (
+              {activeRegionPending ? null : hasVisibleFilteredTrees ? (
                 <p className="selection-hint">{t(language, "tapTreeHint")}</p>
               ) : null}
             </>
