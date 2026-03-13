@@ -73,7 +73,7 @@ function isAwsRuntime(env: RuntimeEnv): boolean {
 }
 
 const env = parseRuntimeEnv(import.meta.env.VITE_RUNTIME_ENV);
-const treeRenderMode = parseTreeRenderMode(import.meta.env.VITE_TREE_RENDER_MODE, "pmtiles");
+const treeRenderMode = parseTreeRenderMode(import.meta.env.VITE_TREE_RENDER_MODE, "geojson");
 
 export const runtimeConfig: AppRuntimeConfig = {
   env,

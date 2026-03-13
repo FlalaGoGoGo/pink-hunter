@@ -14,6 +14,7 @@
 - Lazy loading alone is not enough once the browser keeps merging and re-uploading large GeoJSON sources. The stronger path is PMTiles or vector-tile rendering with GeoJSON reserved for detail fallback.
 - When PMTiles is active, counts and filter availability should come from shard-level summary fields in the area index, not from loading viewport shards just to count them.
 - When PMTiles is active, click-to-detail should carry the exact shard `data_path` whenever possible, so detail fallback can load one shard first instead of sweeping a whole city.
+- PMTiles is not a free win by itself. If low-zoom clustering or aggregation disappears, the map can feel worse than the older GeoJSON path. Keep GitHub Pages on the clustered GeoJSON path until the PMTiles path has an equivalent low-zoom aggregation strategy.
 - Methods are only reusable if they are written down in docs immediately after they work.
 
 ## Historical Thread Additions
