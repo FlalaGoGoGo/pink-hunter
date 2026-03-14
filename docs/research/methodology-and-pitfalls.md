@@ -16,6 +16,7 @@
 - When PMTiles is active, click-to-detail should carry the exact shard `data_path` whenever possible, so detail fallback can load one shard first instead of sweeping a whole city.
 - PMTiles is not a free win by itself. If low-zoom clustering or aggregation disappears, the map can feel worse than the older GeoJSON path. Keep GitHub Pages on the clustered GeoJSON path until the PMTiles path has an equivalent low-zoom aggregation strategy.
 - GeoJSON cluster mode still needs a viewport budget. If the current view would pull too many shard bytes at once, defer tree autoload and ask the user to zoom in instead of brute-forcing the first render.
+- Default landing bounds should fit inside that budget too. If the homepage opens over-budget, narrow the default focus view instead of relying only on a warning card.
 - Methods are only reusable if they are written down in docs immediately after they work.
 
 ## Historical Thread Additions

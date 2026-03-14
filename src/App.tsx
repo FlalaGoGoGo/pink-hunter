@@ -1291,6 +1291,19 @@ const REGION_SWITCH_BOUNDS: Partial<Record<CoverageRegion, [[number, number], [n
   ]
 };
 
+const REGION_DEFAULT_FOCUS_BOUNDS: Partial<Record<CoverageRegion, Record<LayoutMode, BoundsTuple>>> = {
+  wa: {
+    desktop_split: [
+      [-122.37, 47.58],
+      [-122.31, 47.64]
+    ],
+    mobile_sheet: [
+      [-122.32, 47.55],
+      [-122.26, 47.63]
+    ]
+  }
+};
+
 const REGION_COUNTRY_EMOJIS: Record<CoverageRegion, string> = {
   wa: "🇺🇸",
   ca: "🇺🇸",
@@ -1711,8 +1724,13 @@ function boundsForRegion(regionMeta: RegionMeta | null): [[number, number], [num
 
 function preferredBoundsForRegion(
   region: CoverageRegion,
-  regionMeta: RegionMeta | null
+  regionMeta: RegionMeta | null,
+  layoutMode: LayoutMode
 ): [[number, number], [number, number]] | null {
+  const focusBounds = REGION_DEFAULT_FOCUS_BOUNDS[region];
+  if (focusBounds) {
+    return focusBounds[layoutMode];
+  }
   return REGION_SWITCH_BOUNDS[region] ?? boundsForRegion(regionMeta);
 }
 
@@ -2800,7 +2818,7 @@ export default function App(): JSX.Element {
     };
   }, [featuredAreaWeatherCache, featuredAreaWeatherErrors, selectedFeaturedAreaDetail]);
 
-  const effectiveViewportBounds = viewportBounds ?? preferredBoundsForRegion(activeRegion, activeRegionMeta);
+  const effectiveViewportBounds = viewportBounds ?? preferredBoundsForRegion(activeRegion, activeRegionMeta, layoutMode);
 
   const visibleRegions = useMemo(() => {
     if (!data) {
@@ -4285,7 +4303,11 @@ export default function App(): JSX.Element {
           const defaultBounds =
             initialFeaturedArea?.bounds ??
             initialJumpArea?.bounds ??
-            preferredBoundsForRegion(initialUrlState.region, regionMetaById.get(initialUrlState.region) ?? null);
+            preferredBoundsForRegion(
+              initialUrlState.region,
+              regionMetaById.get(initialUrlState.region) ?? null,
+              isDesktopRef.current ? "desktop_split" : "mobile_sheet"
+            );
           if (defaultBounds) {
             map.fitBounds(defaultBounds, {
               padding: isDesktopRef.current ? 80 : 48,
