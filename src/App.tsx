@@ -1866,19 +1866,6 @@ function boundsCenter(bounds: BoundsTuple): [number, number] {
   return [(minX + maxX) / 2, (minY + maxY) / 2];
 }
 
-function distanceKm(left: [number, number], right: [number, number]): number {
-  const toRadians = (value: number): number => (value * Math.PI) / 180;
-  const earthRadiusKm = 6371;
-  const deltaLat = toRadians(right[1] - left[1]);
-  const deltaLon = toRadians(right[0] - left[0]);
-  const lat1 = toRadians(left[1]);
-  const lat2 = toRadians(right[1]);
-  const a =
-    Math.sin(deltaLat / 2) ** 2 +
-    Math.cos(lat1) * Math.cos(lat2) * Math.sin(deltaLon / 2) ** 2;
-  return earthRadiusKm * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-}
-
 function normalizeSearchText(value: string): string {
   return value.toLowerCase().replace(/[^\p{L}\p{N}]+/gu, " ").trim();
 }
