@@ -27,8 +27,8 @@ const copy = {
     language: "Language",
     loading: "Loading map and tree data...",
     records: "trees",
-    coveredLegend: "Covered area",
-    officialUnavailableLegend: "Official data unavailable",
+    coveredLegend: "Covered Area",
+    officialUnavailableLegend: "Official Data Unavailable",
     officialUnavailablePopupTitle: "Researched, no official public data",
     officialUnavailablePopupBody:
       "This area has been researched, but no official public single-tree dataset is currently available.",

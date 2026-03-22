@@ -733,12 +733,13 @@ body {
 
 .filters-block {
   display: grid;
-  gap: 0.78rem;
+  gap: 0.92rem;
 }
 
 .filters-intro {
   display: grid;
-  gap: 0.42rem;
+  gap: 0.46rem;
+  margin-bottom: 0.18rem;
 }
 
 .filters-block.disabled .chip,
@@ -1121,12 +1122,12 @@ body {
 
 .filter-group {
   display: grid;
-  gap: 0.48rem;
+  gap: 0.54rem;
   margin-bottom: 0;
 }
 
 .filter-group + .filter-group {
-  margin-top: 0.1rem;
+  margin-top: 0.22rem;
 }
 
 .filter-group strong {
