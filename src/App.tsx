@@ -31,7 +31,6 @@ import {
   BLANK_MAP_STYLE,
   buildMapboxStyleProbeUrl,
   buildMapboxStyleUrl,
-  resolveDataUrl,
   runtimeConfig
 } from "./runtimeConfig";
 import {
@@ -48,6 +47,7 @@ import type {
   AreaIndexItem,
   AreaShard,
   AppMeta,
+  CityPinFeatureProps,
   CoverageCollection,
   CoverageFeatureProps,
   FeaturedAreaDetail,
@@ -79,6 +79,7 @@ import {
 const SNAP_POINTS = [0.4, 0.72, 1] as const;
 const SELECTED_MARKER_IMAGE_ID = "selected-bloom-marker";
 const FEATURED_AREA_PIN_IMAGE_ID = "featured-area-pin-marker";
+const CITY_PIN_IMAGE_ID = "city-area-pin-marker";
 const ALL_SPECIES = ["cherry", "plum", "peach", "magnolia", "crabapple"] as const;
 const POINT_LAYER_IDS = [
   "tree-cherry",
@@ -90,8 +91,6 @@ const POINT_LAYER_IDS = [
 const ALL_OWNERSHIP = ["public", "private", "unknown"] as const;
 const DEFAULT_CENTER: [number, number] = [-122.315, 47.55];
 const DEFAULT_ZOOM = 8.45;
-const MOBILE_VIEWPORT_TREE_LOAD_BUDGET_BYTES = 12 * 1024 * 1024;
-const DESKTOP_VIEWPORT_TREE_LOAD_BUDGET_BYTES = 24 * 1024 * 1024;
 const POSITRON_STYLE_URL = "https://basemaps.cartocdn.com/gl/positron-gl-style/style.json";
 const FALLBACK_STYLE_URL = "https://demotiles.maplibre.org/style.json";
 const ABOUT_SOURCES_PAGE_SIZE = 6;
@@ -778,6 +777,7 @@ const FIND_PANEL_COPY: Record<
     showTitle: string;
     showBody: string;
     showButton: string;
+    hideButton: string;
     jumpTitle: string;
     jumpBody: string;
     jumpCountry: string;
@@ -789,15 +789,17 @@ const FIND_PANEL_COPY: Record<
     searchState: string;
     searchProvince: string;
     filtersTitle: string;
+    filtersLockedBody: string;
     jumpUntrackedTitle: string;
     jumpUntrackedBody: string;
   }
 > = {
   "en-US": {
-    showTitle: "Show Trees",
+    showTitle: "Discover covered cities",
     showBody:
-      "Reload all covered tree data for the current visible map area. If the map does not refresh automatically after moving or jumping, try pressing the refresh button once.",
-    showButton: "Refresh visible trees",
+      "Pink Hunter now opens in coverage mode first. Tap a pink pin or pink covered area to open its city card, then choose when to load that city's trees.",
+    showButton: "Show trees in this city",
+    hideButton: "Hide trees",
     jumpTitle: "Jump to an area",
     jumpBody: "Choose an area, then press the Jump button below and the map will move there.",
     jumpCountry: "Country",
@@ -809,13 +811,15 @@ const FIND_PANEL_COPY: Record<
     searchState: "Search state",
     searchProvince: "Search province",
     filtersTitle: "Filters",
+    filtersLockedBody: "Choose a pink city first, then load that city's trees to unlock filters.",
     jumpUntrackedTitle: "Not added to Pink Hunter yet",
     jumpUntrackedBody: "Pink Hunter has not added tree data for this area yet."
   },
   "zh-CN": {
-    showTitle: "显示树木",
-    showBody: "会刷新重新加载当前屏幕地图区域的所有已覆盖树木的数据。如果地图在变换过程中没有自动刷新，请尝试点击旁边的刷新按钮。",
-    showButton: "刷新当前画面树木",
+    showTitle: "发现已覆盖城市",
+    showBody: "Pink Hunter 首页现在会先显示 coverage。请先点击粉色 pin 或粉色区域打开城市卡片，再决定是否加载该城市的树木数据。",
+    showButton: "显示这个城市的树木",
+    hideButton: "隐藏树木",
     jumpTitle: "跳转至指定区域",
     jumpBody: "选择一个区域，并点击下方「跳转」按钮，地图会跳转过去。",
     jumpCountry: "国家",
@@ -827,13 +831,15 @@ const FIND_PANEL_COPY: Record<
     searchState: "搜索州",
     searchProvince: "搜索省",
     filtersTitle: "筛选",
+    filtersLockedBody: "请先选择一个粉色城市，并加载该城市的树木后再使用筛选。",
     jumpUntrackedTitle: "Pink Hunter 暂未收录",
     jumpUntrackedBody: "Pink Hunter 目前还没有添加这个地区的树木数据。"
   },
   "zh-TW": {
-    showTitle: "顯示樹木",
-    showBody: "會重新整理並載入目前畫面地圖區域中的所有已覆蓋樹木資料。如果地圖在變換過程中沒有自動更新，請嘗試點擊旁邊的重新整理按鈕。",
-    showButton: "重新整理目前畫面樹木",
+    showTitle: "探索已覆蓋城市",
+    showBody: "Pink Hunter 首頁現在會先顯示 coverage。請先點擊粉色 pin 或粉色區域打開城市卡片，再決定是否載入該城市的樹木資料。",
+    showButton: "顯示這個城市的樹木",
+    hideButton: "隱藏樹木",
     jumpTitle: "跳轉至指定區域",
     jumpBody: "選擇一個區域，並點擊下方「跳轉」按鈕，地圖會跳轉過去。",
     jumpCountry: "國家",
@@ -845,14 +851,16 @@ const FIND_PANEL_COPY: Record<
     searchState: "搜尋州",
     searchProvince: "搜尋省",
     filtersTitle: "篩選",
+    filtersLockedBody: "請先選擇一個粉色城市，並載入該城市的樹木後再使用篩選。",
     jumpUntrackedTitle: "Pink Hunter 尚未收錄",
     jumpUntrackedBody: "Pink Hunter 目前還沒有加入這個地區的樹木資料。"
   },
   "es-ES": {
-    showTitle: "Mostrar árboles",
+    showTitle: "Descubrir ciudades cubiertas",
     showBody:
-      "Vuelve a cargar todos los datos de árboles cubiertos dentro del área visible del mapa. Si el mapa no se actualiza automáticamente después de moverlo o saltar a otra zona, prueba con el botón de recarga.",
-    showButton: "Recargar árboles visibles",
+      "Pink Hunter ahora abre primero en modo de cobertura. Toca un pin rosa o una zona rosa cubierta para abrir la tarjeta de la ciudad y luego decidir cuándo cargar sus árboles.",
+    showButton: "Mostrar árboles de esta ciudad",
+    hideButton: "Ocultar árboles",
     jumpTitle: "Ir a una zona",
     jumpBody: "Elige una zona y luego pulsa el botón de salto de abajo para mover el mapa hasta allí.",
     jumpCountry: "País",
@@ -864,14 +872,16 @@ const FIND_PANEL_COPY: Record<
     searchState: "Buscar estado",
     searchProvince: "Buscar provincia",
     filtersTitle: "Filtros",
+    filtersLockedBody: "Primero elige una ciudad rosa y carga sus árboles para desbloquear los filtros.",
     jumpUntrackedTitle: "Aún no se ha añadido a Pink Hunter",
     jumpUntrackedBody: "Pink Hunter todavía no ha añadido datos de árboles para esta zona."
   },
   "ko-KR": {
-    showTitle: "나무 표시",
+    showTitle: "커버된 도시 찾기",
     showBody:
-      "현재 화면에 보이는 지도 영역 안의 모든 커버된 나무 데이터를 다시 불러옵니다. 지도를 이동하거나 점프한 뒤 자동으로 새로고침되지 않으면 옆의 새로고침 버튼을 눌러 보세요.",
-    showButton: "현재 화면 나무 새로고침",
+      "Pink Hunter는 이제 먼저 coverage 화면으로 열립니다. 분홍 pin이나 분홍 커버 지역을 눌러 도시 카드를 연 뒤, 그 도시의 나무를 언제 불러올지 선택하세요.",
+    showButton: "이 도시의 나무 보기",
+    hideButton: "나무 숨기기",
     jumpTitle: "지정한 지역으로 이동",
     jumpBody: "지역을 선택한 뒤 아래의 이동 버튼을 누르면 지도가 그곳으로 이동합니다.",
     jumpCountry: "국가",
@@ -883,14 +893,16 @@ const FIND_PANEL_COPY: Record<
     searchState: "주 검색",
     searchProvince: "도 검색",
     filtersTitle: "필터",
+    filtersLockedBody: "먼저 분홍 도시를 선택하고 그 도시의 나무를 불러와야 필터를 사용할 수 있습니다.",
     jumpUntrackedTitle: "Pink Hunter에 아직 추가되지 않음",
     jumpUntrackedBody: "Pink Hunter는 아직 이 지역의 나무 데이터를 추가하지 않았습니다."
   },
   "ja-JP": {
-    showTitle: "木を表示",
+    showTitle: "カバー済みの都市を探す",
     showBody:
-      "現在画面に表示されている地図範囲の、すべての対象樹木データを再読み込みします。地図を移動したりジャンプしたあと自動更新されない場合は、横の更新ボタンを押してください。",
-    showButton: "表示中の木を更新",
+      "Pink Hunter はまず coverage 表示で開きます。ピンクのピンやピンクの対象エリアを押して都市カードを開き、その都市の木を読み込むかどうかを選んでください。",
+    showButton: "この都市の木を表示",
+    hideButton: "木を隠す",
     jumpTitle: "指定した地域へ移動",
     jumpBody: "地域を選び、下の移動ボタンを押すと地図がその場所へ移動します。",
     jumpCountry: "国",
@@ -902,14 +914,16 @@ const FIND_PANEL_COPY: Record<
     searchState: "州を検索",
     searchProvince: "県を検索",
     filtersTitle: "フィルター",
+    filtersLockedBody: "まずピンクの都市を選び、その都市の木を読み込むとフィルターが使えます。",
     jumpUntrackedTitle: "Pink Hunter に未追加",
     jumpUntrackedBody: "Pink Hunter はこの地域の樹木データをまだ追加していません。"
   },
   "fr-FR": {
-    showTitle: "Afficher les arbres",
+    showTitle: "Découvrir les villes couvertes",
     showBody:
-      "Recharge toutes les données d’arbres couvertes dans la zone actuellement visible sur la carte. Si la carte ne se met pas à jour automatiquement après un déplacement ou un saut, utilisez le bouton d’actualisation.",
-    showButton: "Actualiser les arbres visibles",
+      "Pink Hunter s’ouvre maintenant d’abord en mode couverture. Touchez une épingle rose ou une zone rose couverte pour ouvrir la carte de la ville, puis choisissez quand charger ses arbres.",
+    showButton: "Afficher les arbres de cette ville",
+    hideButton: "Masquer les arbres",
     jumpTitle: "Aller à une zone",
     jumpBody: "Choisissez une zone puis appuyez sur le bouton ci-dessous pour déplacer la carte vers cet endroit.",
     jumpCountry: "Pays",
@@ -921,14 +935,16 @@ const FIND_PANEL_COPY: Record<
     searchState: "Rechercher un état",
     searchProvince: "Rechercher une province",
     filtersTitle: "Filtres",
+    filtersLockedBody: "Choisissez d’abord une ville rose et chargez ses arbres pour activer les filtres.",
     jumpUntrackedTitle: "Pas encore ajouté à Pink Hunter",
     jumpUntrackedBody: "Pink Hunter n’a pas encore ajouté de données d’arbres pour cette zone."
   },
   "vi-VN": {
-    showTitle: "Hiển thị cây",
+    showTitle: "Khám phá các thành phố đã phủ",
     showBody:
-      "Tải lại toàn bộ dữ liệu cây đã được bao phủ trong vùng bản đồ hiện đang nhìn thấy. Nếu bản đồ không tự làm mới sau khi di chuyển hoặc nhảy tới vùng khác, hãy thử bấm nút làm mới bên cạnh.",
-    showButton: "Làm mới cây đang nhìn thấy",
+      "Pink Hunter giờ mở ở chế độ coverage trước. Hãy chạm vào pin màu hồng hoặc vùng màu hồng để mở thẻ thành phố, rồi chọn lúc nào mới tải cây của thành phố đó.",
+    showButton: "Hiển thị cây của thành phố này",
+    hideButton: "Ẩn cây",
     jumpTitle: "Nhảy tới khu vực cụ thể",
     jumpBody: "Chọn một khu vực rồi bấm nút nhảy bên dưới để đưa bản đồ tới đó.",
     jumpCountry: "Quốc gia",
@@ -940,6 +956,7 @@ const FIND_PANEL_COPY: Record<
     searchState: "Tìm tiểu bang",
     searchProvince: "Tìm tỉnh",
     filtersTitle: "Bộ lọc",
+    filtersLockedBody: "Hãy chọn một thành phố màu hồng và tải cây của thành phố đó trước khi dùng bộ lọc.",
     jumpUntrackedTitle: "Pink Hunter chưa thêm khu vực này",
     jumpUntrackedBody: "Pink Hunter hiện chưa thêm dữ liệu cây cho khu vực này."
   }
@@ -1533,6 +1550,12 @@ interface TreeRenderLookupHint {
   dataPath?: string;
 }
 
+interface AreaIndexEntry {
+  areaId: string;
+  region: CoverageRegion;
+  item: AreaIndexItem;
+}
+
 type StatusNoticeKind =
   | "city_level_coverage"
   | "official_unavailable"
@@ -1803,21 +1826,6 @@ function formatDiscoveryCount(template: string, count: number, language: Languag
   return template.replace("{count}", count.toLocaleString(language));
 }
 
-function formatMegabytes(bytes: number, language: Language): string {
-  const value = bytes / 1024 / 1024;
-  const fractionDigits = value >= 10 ? 0 : 1;
-  return `${value.toLocaleString(language, {
-    maximumFractionDigits: fractionDigits,
-    minimumFractionDigits: fractionDigits === 0 ? 0 : 1
-  })} MB`;
-}
-
-function formatDiscoveryDataBudget(template: string, currentBytes: number, limitBytes: number, language: Language): string {
-  return template
-    .replace("{current}", formatMegabytes(currentBytes, language))
-    .replace("{limit}", formatMegabytes(limitBytes, language));
-}
-
 function mergeTreeCollections(collections: TreeCollection[]): TreeCollection {
   return toTreeCollection(collections.flatMap((collection) => collection.features));
 }
@@ -1844,32 +1852,12 @@ function toTreeCollection(features: TreeCollection["features"]): TreeCollection 
 
 const EMPTY_TREE_COLLECTION = toTreeCollection([]);
 
-function shardFilteredTreeCount(
-  shard: AreaShard,
-  selectedSpecies: SpeciesGroup[],
-  selectedOwnership: OwnershipGroup[]
-): number {
-  const shardSpeciesOwnership = shard.species_ownership_counts;
-  if (shardSpeciesOwnership) {
-    return selectedSpecies.reduce((speciesTotal, species) => {
-      const ownershipCounts = shardSpeciesOwnership[species];
-      if (!ownershipCounts) {
-        return speciesTotal;
-      }
-      return (
-        speciesTotal +
-        selectedOwnership.reduce((ownershipTotal, ownership) => ownershipTotal + (ownershipCounts[ownership] ?? 0), 0)
-      );
-    }, 0);
-  }
+function buildAreaIndexEntryId(region: CoverageRegion, slug: string): string {
+  return `${region}:${slug}`;
+}
 
-  if (selectedSpecies.length === ALL_SPECIES.length) {
-    const ownershipCounts = shard.ownership_counts ?? EMPTY_OWNERSHIP_COUNTS;
-    return selectedOwnership.reduce((sum, ownership) => sum + (ownershipCounts[ownership] ?? 0), 0);
-  }
-
-  const speciesCounts = shard.species_counts ?? EMPTY_SPECIES_COUNTS;
-  return selectedSpecies.reduce((sum, species) => sum + (speciesCounts[species] ?? 0), 0);
+function coverageAreaLookupKey(region: CoverageRegion, jurisdiction: string): string {
+  return `${region}:${jurisdiction.trim().toLowerCase()}`;
 }
 
 function ownershipOptionsFromShards(shards: AreaShard[], fallback: OwnershipGroup[]): OwnershipGroup[] {
@@ -1887,22 +1875,6 @@ function ownershipOptionsFromShards(shards: AreaShard[], fallback: OwnershipGrou
 
   const narrowed = (ALL_OWNERSHIP as readonly OwnershipGroup[]).filter((ownership) => ownershipCounts[ownership] > 0);
   return narrowed.length > 0 ? [...narrowed] : fallback;
-}
-
-function buildTreeLayerFilter(
-  species: SpeciesGroup,
-  selectedSpecies: SpeciesGroup[],
-  selectedOwnership: OwnershipGroup[]
-) {
-  if (!selectedSpecies.includes(species) || selectedOwnership.length === 0) {
-    return ["==", 1, 0] as const;
-  }
-
-  return [
-    "all",
-    ["==", ["get", "species_group"], species],
-    ["match", ["get", "ownership"], selectedOwnership, true, false]
-  ] as const;
 }
 
 function buildFeaturedAreaBoundsCollection(items: FeaturedAreaIndexItem[]) {
@@ -1947,6 +1919,28 @@ function buildFeaturedAreaPinCollection(items: FeaturedAreaIndexItem[]) {
       properties: {
         id: item.id
       }
+    }))
+  };
+}
+
+function buildCityPinCollection(entries: AreaIndexEntry[]) {
+  return {
+    type: "FeatureCollection" as const,
+    features: entries.map(({ areaId, region, item }) => ({
+      type: "Feature" as const,
+      geometry: {
+        type: "Point" as const,
+        coordinates: boundsCenter(item.bounds)
+      },
+      properties: {
+        area_id: areaId,
+        region,
+        area_slug: item.slug,
+        jurisdiction: item.jurisdiction,
+        display_name: item.display_name,
+        jurisdiction_type: item.jurisdiction_type,
+        tree_count: item.tree_count
+      } satisfies CityPinFeatureProps
     }))
   };
 }
@@ -2384,6 +2378,52 @@ function createFeaturedAreaPinImageData(): ImageData {
   return ctx.getImageData(0, 0, size, size);
 }
 
+function createCityPinImageData(): ImageData {
+  const size = 112;
+  const canvas = document.createElement("canvas");
+  canvas.width = size;
+  canvas.height = size;
+  const context = canvas.getContext("2d");
+  if (!context) {
+    throw new Error("Canvas 2D context is unavailable.");
+  }
+  const ctx = context;
+
+  ctx.clearRect(0, 0, size, size);
+  ctx.translate(size / 2, size / 2 - 5);
+
+  ctx.shadowColor = "rgba(154, 73, 112, 0.28)";
+  ctx.shadowBlur = 16;
+  ctx.shadowOffsetY = 9;
+
+  ctx.beginPath();
+  ctx.moveTo(0, 37);
+  ctx.bezierCurveTo(21, 21, 30, 9, 30, -9);
+  ctx.arc(0, -9, 30, 0, Math.PI, true);
+  ctx.bezierCurveTo(-30, 9, -21, 21, 0, 37);
+  ctx.closePath();
+  ctx.fillStyle = "#e36b9e";
+  ctx.fill();
+
+  ctx.shadowBlur = 0;
+  ctx.shadowOffsetY = 0;
+  ctx.lineWidth = 5;
+  ctx.strokeStyle = "rgba(255,255,255,0.96)";
+  ctx.stroke();
+
+  ctx.beginPath();
+  ctx.arc(0, -10, 16, 0, Math.PI * 2);
+  ctx.fillStyle = "#fff8fb";
+  ctx.fill();
+
+  ctx.beginPath();
+  ctx.arc(0, -10, 7.5, 0, Math.PI * 2);
+  ctx.fillStyle = "#f3a5c4";
+  ctx.fill();
+
+  return ctx.getImageData(0, 0, size, size);
+}
+
 function isHttpUrl(value: string): boolean {
   return /^https?:\/\//i.test(value);
 }
@@ -2509,6 +2549,8 @@ export default function App(): JSX.Element {
   const [jumpCountry, setJumpCountry] = useState<JumpCountry["id"]>("us");
   const [jumpState, setJumpState] = useState<string>("");
   const [selectedJumpAreaId, setSelectedJumpAreaId] = useState<string | null>(initialUrlState.areaId);
+  const [selectedCityAreaId, setSelectedCityAreaId] = useState<string | null>(initialUrlState.areaId);
+  const [loadedCityAreaId, setLoadedCityAreaId] = useState<string | null>(null);
   const [jumpAreaQuery, setJumpAreaQuery] = useState("");
   const [jumpAreaExpanded, setJumpAreaExpanded] = useState(false);
   const [statusNotice, setStatusNotice] = useState<StatusNotice | null>(null);
@@ -2551,6 +2593,7 @@ export default function App(): JSX.Element {
   const openTreeDetailsRef = useRef<(treeId: string, hint?: TreeRenderLookupHint) => Promise<void>>(
     async () => undefined
   );
+  const openCityAreaRef = useRef<(areaId: string) => void>(() => undefined);
   const openFeaturedAreaRef = useRef<(area: FeaturedAreaIndexItem) => void>(() => undefined);
   const isDesktopRef = useRef(layoutMode === "desktop_split");
   const dragStateRef = useRef<{ startY: number; startHeight: number; dragging: boolean }>({
@@ -2572,7 +2615,6 @@ export default function App(): JSX.Element {
     activePanel === "about" && activeLegalDocumentResult
       ? activeLegalDocumentResult.content.summary
       : t(language, "browserDescription");
-  const pmtilesEnabled = runtimeConfig.treeRenderMode === "pmtiles" && Boolean(data?.treeTiles);
   const openAboutOverview = useCallback(() => {
     setActiveLegalDocument(null);
     setActivePanel("about");
@@ -2943,97 +2985,85 @@ export default function App(): JSX.Element {
   const visibleAreaEntries = useMemo(
     () =>
       visibleRegionIds.flatMap((regionId) =>
-        (regionAreaIndexCache[regionId]?.items ?? []).map((item) => ({ region: regionId, item }))
+        (regionAreaIndexCache[regionId]?.items ?? []).map((item) => ({
+          areaId: buildAreaIndexEntryId(regionId, item.slug),
+          region: regionId,
+          item
+        }))
       ),
     [regionAreaIndexCache, visibleRegionIds]
   );
 
-  const allOwnershipOptions = useMemo(() => {
-    const groups = visibleAreaEntries.flatMap(({ item }) => item.ownership_groups ?? []);
-    const ordered = (["public", "private", "unknown"] as const).filter((item) => groups.includes(item));
-    return ordered.length > 0 ? [...ordered] : (["public", "private"] as OwnershipGroup[]);
-  }, [visibleAreaEntries]);
+  const areaEntriesById = useMemo(() => {
+    const next = new Map<string, AreaIndexEntry>();
 
-  const viewportAreaEntries = useMemo(() => {
-    if (!effectiveViewportBounds) {
-      return visibleAreaEntries;
-    }
-    return visibleAreaEntries.filter(({ item }) => boundsIntersect(item.bounds, effectiveViewportBounds));
-  }, [effectiveViewportBounds, visibleAreaEntries]);
-
-  const viewportShardEntries = useMemo(() => {
-    const next: Array<{ region: CoverageRegion; shard: AreaShard }> = [];
-    const seen = new Set<string>();
-
-    viewportAreaEntries.forEach(({ region, item }) => {
-      const candidateShards = effectiveViewportBounds
-        ? item.shards.filter((shard) => boundsIntersect(shard.bounds, effectiveViewportBounds))
-        : item.shards;
-      candidateShards.forEach((shard) => {
-        const key = `${region}:${shard.data_path}`;
-        if (!seen.has(key)) {
-          seen.add(key);
-          next.push({ region, shard });
-        }
+    (Object.entries(regionAreaIndexCache) as Array<[CoverageRegion, AreaIndex | undefined]>).forEach(([region, index]) => {
+      index?.items.forEach((item) => {
+        const areaId = buildAreaIndexEntryId(region, item.slug);
+        next.set(areaId, {
+          areaId,
+          region,
+          item
+        });
       });
     });
 
     return next;
-  }, [effectiveViewportBounds, viewportAreaEntries]);
+  }, [regionAreaIndexCache]);
 
-  const viewportShardRawBytes = useMemo(
-    () => viewportShardEntries.reduce((sum, { shard }) => sum + (shard.raw_bytes ?? 0), 0),
-    [viewportShardEntries]
+  const areaEntriesByCoverageKey = useMemo(() => {
+    const next = new Map<string, AreaIndexEntry>();
+
+    areaEntriesById.forEach((entry) => {
+      next.set(coverageAreaLookupKey(entry.region, entry.item.jurisdiction), entry);
+      next.set(coverageAreaLookupKey(entry.region, entry.item.display_name), entry);
+    });
+
+    return next;
+  }, [areaEntriesById]);
+
+  const selectedCityArea = useMemo(
+    () => (selectedCityAreaId ? areaEntriesById.get(selectedCityAreaId) ?? null : null),
+    [areaEntriesById, selectedCityAreaId]
   );
 
-  const viewportTreeLoadBudgetBytes = isDesktop
-    ? DESKTOP_VIEWPORT_TREE_LOAD_BUDGET_BYTES
-    : MOBILE_VIEWPORT_TREE_LOAD_BUDGET_BYTES;
+  const loadedCityArea = useMemo(
+    () => (loadedCityAreaId ? areaEntriesById.get(loadedCityAreaId) ?? null : null),
+    [areaEntriesById, loadedCityAreaId]
+  );
 
-  const requiredAreaEntries = useMemo(() => {
-    if (selectedSpecies.length === 0 || selectedOwnership.length === 0) {
-      return [] as Array<{ region: CoverageRegion; item: AreaIndexItem }>;
-    }
-    if (!effectiveViewportBounds) {
-      return visibleAreaEntries;
-    }
-    return viewportAreaEntries;
-  }, [effectiveViewportBounds, selectedOwnership.length, selectedSpecies.length, viewportAreaEntries, visibleAreaEntries]);
-
-  const requiredShardEntries = useMemo(() => {
-    const next: Array<{ region: CoverageRegion; shard: AreaShard }> = [];
-    const seen = new Set<string>();
-
-    requiredAreaEntries.forEach(({ region, item }) => {
-      const candidateShards = effectiveViewportBounds
-        ? item.shards.filter((shard) => boundsIntersect(shard.bounds, effectiveViewportBounds))
-        : item.shards;
-      candidateShards.forEach((shard) => {
-        const key = `${region}:${shard.data_path}`;
-        if (!seen.has(key)) {
-          seen.add(key);
-          next.push({ region, shard });
-        }
-      });
-    });
-
-    return next;
-  }, [effectiveViewportBounds, requiredAreaEntries]);
-
-  const viewportTreeLoadDeferred =
-    selectedSpecies.length > 0 &&
-    selectedOwnership.length > 0 &&
-    !selectedFeaturedAreaDetail &&
-    viewportShardRawBytes > viewportTreeLoadBudgetBytes;
-
-  const shouldAutoLoadViewportShards = (!pmtilesEnabled || Boolean(selectedFeaturedAreaDetail)) && !viewportTreeLoadDeferred;
-
-  const missingRequiredShardEntries = useMemo(
+  const cityPinEntries = useMemo(
     () =>
-      shouldAutoLoadViewportShards
-        ? requiredShardEntries.filter(({ region, shard }) => !regionShardCache[region]?.[shard.data_path])
+      visibleAreaEntries.filter(
+        ({ item }) => item.tree_count > 0 && item.jurisdiction_type === "city"
+      ),
+    [visibleAreaEntries]
+  );
+
+  const cityPinCollection = useMemo(() => buildCityPinCollection(cityPinEntries), [cityPinEntries]);
+
+  const allOwnershipOptions = useMemo(() => {
+    const sourceEntries = loadedCityArea ? [loadedCityArea] : visibleAreaEntries;
+    const groups = sourceEntries.flatMap(({ item }) => item.ownership_groups ?? []);
+    const ordered = (["public", "private", "unknown"] as const).filter((item) => groups.includes(item));
+    return ordered.length > 0 ? [...ordered] : [...ALL_OWNERSHIP];
+  }, [loadedCityArea, visibleAreaEntries]);
+
+  const loadedCityShardEntries = useMemo(
+    () =>
+      loadedCityArea
+        ? loadedCityArea.item.shards.map((shard) => ({
+            region: loadedCityArea.region,
+            shard
+          }))
         : [],
-    [regionShardCache, requiredShardEntries, shouldAutoLoadViewportShards]
+    [loadedCityArea]
+  );
+
+  const missingLoadedCityShardEntries = useMemo(
+    () =>
+      loadedCityShardEntries.filter(({ region, shard }) => !regionShardCache[region]?.[shard.data_path]),
+    [loadedCityShardEntries, regionShardCache]
   );
 
   const activeRegionPending = Boolean(
@@ -3041,11 +3071,12 @@ export default function App(): JSX.Element {
       (loadingAreaIndexes ||
         loadingShards ||
         pendingAreaIndexRegions.length > 0 ||
-        (shouldAutoLoadViewportShards && missingRequiredShardEntries.length > 0))
+        missingLoadedCityShardEntries.length > 0)
   );
+  const loadingSelectedCityTrees = loadingShards || missingLoadedCityShardEntries.length > 0;
 
   useEffect(() => {
-    if (missingRequiredShardEntries.length === 0) {
+    if (missingLoadedCityShardEntries.length === 0) {
       return;
     }
 
@@ -3056,7 +3087,7 @@ export default function App(): JSX.Element {
     void (async () => {
       try {
         const loaded = await Promise.all(
-          missingRequiredShardEntries.map(async ({ region, shard }) => {
+          missingLoadedCityShardEntries.map(async ({ region, shard }) => {
             return [region, shard.data_path, await loadTreeCollection(shard.data_path)] as const;
           })
         );
@@ -3087,7 +3118,7 @@ export default function App(): JSX.Element {
     return () => {
       cancelled = true;
     };
-  }, [missingRequiredShardEntries]);
+  }, [missingLoadedCityShardEntries]);
 
   const loadedActiveRegionTrees = useMemo(
     () =>
@@ -3100,14 +3131,12 @@ export default function App(): JSX.Element {
   );
   const currentTrees = useMemo(
     () =>
-      pmtilesEnabled
-        ? loadedActiveRegionTrees
-        : mergeTreeCollections(
-            requiredShardEntries
-              .map(({ region, shard }) => regionShardCache[region]?.[shard.data_path])
-              .filter((collection): collection is TreeCollection => Boolean(collection))
-          ),
-    [loadedActiveRegionTrees, pmtilesEnabled, regionShardCache, requiredShardEntries]
+      mergeTreeCollections(
+        loadedCityShardEntries
+          .map(({ region, shard }) => regionShardCache[region]?.[shard.data_path])
+          .filter((collection): collection is TreeCollection => Boolean(collection))
+      ),
+    [loadedCityShardEntries, regionShardCache]
   );
   const loadedActiveRegionTreeById = useMemo(
     () => new Map(loadedActiveRegionTrees.features.map((feature) => [feature.properties.id, feature])),
@@ -3422,15 +3451,42 @@ export default function App(): JSX.Element {
     return visibleRegionIds.flatMap((regionId) => regionCoverageCache[regionId]?.features ?? []);
   }, [data, regionCoverageCache, visibleRegionIds]);
 
+  const coverageFeaturesWithAreaIds = useMemo(
+    () =>
+      rawCoverageFeatures.map((feature) => {
+        if (feature.properties.status !== "covered") {
+          return feature;
+        }
+
+        const region = feature.properties.state_id as CoverageRegion;
+        const matchedArea = areaEntriesByCoverageKey.get(
+          coverageAreaLookupKey(region, feature.properties.jurisdiction)
+        );
+
+        if (!matchedArea) {
+          return feature;
+        }
+
+        return {
+          ...feature,
+          properties: {
+            ...feature.properties,
+            area_id: matchedArea.areaId
+          }
+        };
+      }),
+    [areaEntriesByCoverageKey, rawCoverageFeatures]
+  );
+
   const displayCoverage = useMemo(() => {
     if (!mapRuntime || visibleRegionIds.length <= 1) {
       return {
         type: "FeatureCollection",
-        features: rawCoverageFeatures
+        features: coverageFeaturesWithAreaIds
       } as CoverageCollection;
     }
-    return buildCoverageCollection(rawCoverageFeatures, mapRuntime.polygonClipping);
-  }, [mapRuntime, rawCoverageFeatures, visibleRegionIds.length]);
+    return buildCoverageCollection(coverageFeaturesWithAreaIds, mapRuntime.polygonClipping);
+  }, [coverageFeaturesWithAreaIds, mapRuntime, visibleRegionIds.length]);
 
   const filteredFeatures = useMemo(() => {
     if (selectedSpecies.length === 0 || selectedOwnership.length === 0) {
@@ -3446,28 +3502,16 @@ export default function App(): JSX.Element {
     });
   }, [currentTrees, selectedOwnership, selectedSpecies]);
 
-  const hasFilteredTreeMatchFromIndex = useMemo(() => {
-    if (selectedSpecies.length === 0 || selectedOwnership.length === 0) {
-      return false;
-    }
-
-    return requiredShardEntries.some(
-      ({ shard }) => shardFilteredTreeCount(shard, selectedSpecies, selectedOwnership) > 0
-    );
-  }, [requiredShardEntries, selectedOwnership, selectedSpecies]);
-
-  const hasVisibleFilteredTrees = pmtilesEnabled ? hasFilteredTreeMatchFromIndex : filteredFeatures.length > 0;
+  const hasVisibleFilteredTrees = filteredFeatures.length > 0;
 
   const ownershipOptions = useMemo(() => {
-    if (pmtilesEnabled) {
-      return ownershipOptionsFromShards(
-        requiredShardEntries.map(({ shard }) => shard),
-        allOwnershipOptions
-      );
-    }
-
     if (currentTrees.features.length === 0) {
-      return allOwnershipOptions;
+      return loadedCityArea
+        ? ownershipOptionsFromShards(
+            loadedCityShardEntries.map(({ shard }) => shard),
+            allOwnershipOptions
+          )
+        : allOwnershipOptions;
     }
 
     const options = new Set<OwnershipGroup>();
@@ -3478,7 +3522,7 @@ export default function App(): JSX.Element {
 
     const narrowed = (["public", "private", "unknown"] as const).filter((item) => options.has(item));
     return narrowed.length > 0 ? [...narrowed] : allOwnershipOptions;
-  }, [allOwnershipOptions, currentTrees, pmtilesEnabled, requiredShardEntries]);
+  }, [allOwnershipOptions, currentTrees, loadedCityArea, loadedCityShardEntries]);
 
   const filteredCollection = useMemo(() => toTreeCollection(filteredFeatures), [filteredFeatures]);
   const showMapLoadingOverlay = false;
@@ -3889,6 +3933,56 @@ export default function App(): JSX.Element {
           }
         });
 
+        map.addLayer({
+          id: "coverage-outline-selected",
+          type: "line",
+          source: "coverage",
+          filter: ["==", ["get", "area_id"], "__none__"],
+          layout: {
+            "line-cap": "round",
+            "line-join": "round"
+          },
+          paint: {
+            "line-color": "#c44780",
+            "line-width": ["interpolate", ["linear"], ["zoom"], 8, 2.2, 14, 3.6]
+          }
+        });
+
+        map.addSource("city-pins", {
+          type: "geojson",
+          data: cityPinCollection
+        });
+
+        if (!map.hasImage(CITY_PIN_IMAGE_ID)) {
+          map.addImage(CITY_PIN_IMAGE_ID, createCityPinImageData());
+        }
+
+        map.addLayer({
+          id: "city-pins",
+          type: "symbol",
+          source: "city-pins",
+          filter: ["!=", ["get", "area_id"], "__selected__"],
+          layout: {
+            "icon-image": CITY_PIN_IMAGE_ID,
+            "icon-size": ["interpolate", ["linear"], ["zoom"], 7, 0.28, 11, 0.38, 15, 0.48],
+            "icon-allow-overlap": true,
+            "icon-ignore-placement": true
+          }
+        });
+
+        map.addLayer({
+          id: "city-pins-selected",
+          type: "symbol",
+          source: "city-pins",
+          filter: ["==", ["get", "area_id"], "__none__"],
+          layout: {
+            "icon-image": CITY_PIN_IMAGE_ID,
+            "icon-size": ["interpolate", ["linear"], ["zoom"], 7, 0.36, 11, 0.48, 15, 0.6],
+            "icon-allow-overlap": true,
+            "icon-ignore-placement": true
+          }
+        });
+
         map.addSource("featured-areas", {
           type: "geojson",
           data: featuredAreaBoundsCollection
@@ -3965,62 +4059,51 @@ export default function App(): JSX.Element {
           }
         });
 
-        const treeSourceConfig = pmtilesEnabled && data.treeTiles
-          ? {
-              type: "vector" as const,
-              url: `pmtiles://${resolveDataUrl(data.treeTiles.path)}`
-            }
-          : {
-              type: "geojson" as const,
-              data: filteredCollection,
-              cluster: true,
-              clusterMaxZoom: 11,
-              clusterRadius: 48
-            };
+        map.addSource("trees", {
+          type: "geojson",
+          data: filteredCollection,
+          cluster: true,
+          clusterMaxZoom: 11,
+          clusterRadius: 48
+        });
 
-        map.addSource("trees", treeSourceConfig);
+        map.addLayer({
+          id: "tree-clusters",
+          type: "circle",
+          source: "trees",
+          filter: ["has", "point_count"],
+          paint: {
+            "circle-color": "#f4a8c5",
+            "circle-radius": ["step", ["get", "point_count"], 13, 35, 17, 120, 21],
+            "circle-stroke-width": 1.5,
+            "circle-stroke-color": "#ffffff",
+            "circle-opacity": 0.95
+          }
+        });
 
-        if (!pmtilesEnabled) {
+        if (supportsClusterText) {
           map.addLayer({
-            id: "tree-clusters",
-            type: "circle",
+            id: "tree-cluster-count",
+            type: "symbol",
             source: "trees",
             filter: ["has", "point_count"],
+            layout: {
+              "text-field": ["get", "point_count_abbreviated"],
+              "text-size": 12,
+              "text-font": ["Open Sans Bold"]
+            },
             paint: {
-              "circle-color": "#f4a8c5",
-              "circle-radius": ["step", ["get", "point_count"], 13, 35, 17, 120, 21],
-              "circle-stroke-width": 1.5,
-              "circle-stroke-color": "#ffffff",
-              "circle-opacity": 0.95
+              "text-color": "#4f2d3d"
             }
           });
-
-          if (supportsClusterText) {
-            map.addLayer({
-              id: "tree-cluster-count",
-              type: "symbol",
-              source: "trees",
-              filter: ["has", "point_count"],
-              layout: {
-                "text-field": ["get", "point_count_abbreviated"],
-                "text-size": 12,
-                "text-font": ["Open Sans Bold"]
-              },
-              paint: {
-                "text-color": "#4f2d3d"
-              }
-            });
-          }
         }
 
         ALL_SPECIES.forEach((species) => {
-          const baseLayer = {
+          map.addLayer({
             id: `tree-${species}`,
-            type: "circle" as const,
+            type: "circle",
             source: "trees",
-            filter: pmtilesEnabled
-              ? buildTreeLayerFilter(species, selectedSpecies, selectedOwnership)
-              : ["all", ["!", ["has", "point_count"]], ["==", ["get", "species_group"], species]],
+            filter: ["all", ["!", ["has", "point_count"]], ["==", ["get", "species_group"], species]],
             paint: {
               "circle-color": POINT_COLORS[species],
               "circle-radius": ["interpolate", ["linear"], ["zoom"], 8, 1.8, 12, 3.4, 15, 5.6],
@@ -4028,17 +4111,7 @@ export default function App(): JSX.Element {
               "circle-stroke-color": "#ffffff",
               "circle-stroke-width": 0.75
             }
-          };
-
-          map.addLayer(
-            pmtilesEnabled && data.treeTiles
-              ? {
-                  ...baseLayer,
-                  "source-layer": data.treeTiles.vector_layer,
-                  minzoom: data.treeTiles.minzoom
-                }
-              : baseLayer
-          );
+          });
         });
 
         if (!map.hasImage(SELECTED_MARKER_IMAGE_ID)) {
@@ -4110,39 +4183,37 @@ export default function App(): JSX.Element {
           moveLayer?: (layerId: string, beforeId?: string) => void;
         }).moveLayer?.("featured-area-pins", "user-location-halo");
 
-        if (!pmtilesEnabled) {
-          map.on("click", "tree-clusters", (event: MapLayerMouseEvent) => {
-            const features = map.queryRenderedFeatures(event.point, { layers: ["tree-clusters"] });
-            if (features.length === 0) {
-              return;
-            }
+        map.on("click", "tree-clusters", (event: MapLayerMouseEvent) => {
+          const features = map.queryRenderedFeatures(event.point, { layers: ["tree-clusters"] });
+          if (features.length === 0) {
+            return;
+          }
 
-            const clusterId = features[0].properties?.cluster_id;
-            const source = map.getSource("trees") as GeoJSONSource;
-            if (clusterId == null || !source?.getClusterExpansionZoom) {
-              return;
-            }
+          const clusterId = features[0].properties?.cluster_id;
+          const source = map.getSource("trees") as GeoJSONSource;
+          if (clusterId == null || !source?.getClusterExpansionZoom) {
+            return;
+          }
 
-            void source
-              .getClusterExpansionZoom(Number(clusterId))
-              .then((zoom) => {
-                const geometry = features[0].geometry as
-                  | { type?: string; coordinates?: [number, number] }
-                  | undefined;
-                if (!geometry || geometry.type !== "Point" || !geometry.coordinates) {
-                  return;
-                }
+          void source
+            .getClusterExpansionZoom(Number(clusterId))
+            .then((zoom) => {
+              const geometry = features[0].geometry as
+                | { type?: string; coordinates?: [number, number] }
+                | undefined;
+              if (!geometry || geometry.type !== "Point" || !geometry.coordinates) {
+                return;
+              }
 
-                map.easeTo({
-                  center: geometry.coordinates,
-                  zoom
-                });
-              })
-              .catch(() => {
-                // Ignore cluster expansion failures.
+              map.easeTo({
+                center: geometry.coordinates,
+                zoom
               });
-          });
-        }
+            })
+            .catch(() => {
+              // Ignore cluster expansion failures.
+            });
+        });
 
         const openFeaturedAreaFromLayer = (event: MapLayerMouseEvent): void => {
           const id = map.queryRenderedFeatures(event.point, {
@@ -4159,6 +4230,19 @@ export default function App(): JSX.Element {
 
         ["featured-area-pins", "featured-area-fill-selected", "featured-area-outline-selected", "featured-area-fill", "featured-area-outline"].forEach((layerId) => {
           map.on("click", layerId, openFeaturedAreaFromLayer);
+        });
+
+        const openCityAreaFromLayer = (event: MapLayerMouseEvent): void => {
+          const areaId = map.queryRenderedFeatures(event.point, {
+            layers: ["city-pins-selected", "city-pins"]
+          })[0]?.properties?.area_id;
+          if (typeof areaId === "string" && areaId) {
+            openCityAreaRef.current(areaId);
+          }
+        };
+
+        ["city-pins-selected", "city-pins"].forEach((layerId) => {
+          map.on("click", layerId, openCityAreaFromLayer);
         });
 
         POINT_LAYER_IDS.forEach((layerId) => {
@@ -4184,17 +4268,22 @@ export default function App(): JSX.Element {
         });
 
         map.on("click", (event: MapLayerMouseEvent) => {
-          if (!pmtilesEnabled) {
-            const clusterFeatures = map.queryRenderedFeatures(event.point, { layers: ["tree-clusters"] });
-            if (clusterFeatures.length > 0) {
-              return;
-            }
+          const clusterFeatures = map.queryRenderedFeatures(event.point, { layers: ["tree-clusters"] });
+          if (clusterFeatures.length > 0) {
+            return;
           }
 
           const featuredAreaFeatures = map.queryRenderedFeatures(event.point, {
             layers: ["featured-area-pins", "featured-area-fill-selected", "featured-area-outline-selected", "featured-area-fill", "featured-area-outline"]
           });
           if (featuredAreaFeatures.length > 0) {
+            return;
+          }
+
+          const cityPinFeatures = map.queryRenderedFeatures(event.point, {
+            layers: ["city-pins-selected", "city-pins"]
+          });
+          if (cityPinFeatures.length > 0) {
             return;
           }
 
@@ -4227,8 +4316,13 @@ export default function App(): JSX.Element {
 
           const coverageStatus = String(coverageProperties.status ?? "official_unavailable");
           if (coverageStatus === "covered") {
-            setSelectedTree(null);
-            setSelectedCoverage(null);
+            const areaId = coverageProperties.area_id;
+            if (typeof areaId === "string" && areaId) {
+              openCityAreaRef.current(areaId);
+            } else {
+              setSelectedTree(null);
+              setSelectedCoverage(null);
+            }
             return;
           }
 
@@ -4265,6 +4359,16 @@ export default function App(): JSX.Element {
         });
 
         ["featured-area-pins", "featured-area-fill-selected", "featured-area-outline-selected", "featured-area-fill", "featured-area-outline"].forEach((layerId) => {
+          map.on("mouseenter", layerId, () => {
+            map.getCanvas().style.cursor = "pointer";
+          });
+
+          map.on("mouseleave", layerId, () => {
+            map.getCanvas().style.cursor = "";
+          });
+        });
+
+        ["city-pins-selected", "city-pins"].forEach((layerId) => {
           map.on("mouseenter", layerId, () => {
             map.getCanvas().style.cursor = "pointer";
           });
@@ -4362,7 +4466,6 @@ export default function App(): JSX.Element {
     initialFeaturedArea,
     initialJumpArea,
     mapRuntime,
-    pmtilesEnabled,
     regionMetaById,
     selectedOwnership,
     selectedSpecies
@@ -4373,12 +4476,6 @@ export default function App(): JSX.Element {
     if (!map || !mapRuntime) {
       return;
     }
-    if (pmtilesEnabled) {
-      if (selectedTree && !filteredFeatures.find((feature) => feature.properties.id === selectedTree.properties.id)) {
-        setSelectedTree(null);
-      }
-      return;
-    }
     const source = map.getSource("trees") as GeoJSONSource | undefined;
     if (source) {
       source.setData(filteredCollection);
@@ -4387,7 +4484,7 @@ export default function App(): JSX.Element {
     if (selectedTree && !filteredFeatures.find((feature) => feature.properties.id === selectedTree.properties.id)) {
       setSelectedTree(null);
     }
-  }, [filteredCollection, filteredFeatures, mapRuntime, pmtilesEnabled, selectedTree]);
+  }, [filteredCollection, filteredFeatures, mapRuntime, selectedTree]);
 
   useEffect(() => {
     const map = mapRef.current;
@@ -4399,7 +4496,32 @@ export default function App(): JSX.Element {
     if (source) {
       source.setData(displayCoverage);
     }
-  }, [displayCoverage]);
+
+    const selectedAreaId = selectedCityAreaId ?? "__none__";
+    if (map.getLayer("coverage-outline-selected")) {
+      map.setFilter("coverage-outline-selected", ["==", ["get", "area_id"], selectedAreaId]);
+    }
+  }, [displayCoverage, selectedCityAreaId]);
+
+  useEffect(() => {
+    const map = mapRef.current;
+    if (!map) {
+      return;
+    }
+
+    const source = map.getSource("city-pins") as GeoJSONSource | undefined;
+    if (source) {
+      source.setData(cityPinCollection);
+    }
+
+    const selectedAreaId = selectedCityAreaId ?? "__none__";
+    if (map.getLayer("city-pins")) {
+      map.setFilter("city-pins", ["!=", ["get", "area_id"], selectedAreaId]);
+    }
+    if (map.getLayer("city-pins-selected")) {
+      map.setFilter("city-pins-selected", ["==", ["get", "area_id"], selectedAreaId]);
+    }
+  }, [cityPinCollection, selectedCityAreaId]);
 
   useEffect(() => {
     const map = mapRef.current;
@@ -4477,20 +4599,6 @@ export default function App(): JSX.Element {
         : EMPTY_TREE_COLLECTION
     );
   }, [selectedTree]);
-
-  useEffect(() => {
-    const map = mapRef.current;
-    if (!map || !pmtilesEnabled) {
-      return;
-    }
-
-    ALL_SPECIES.forEach((species) => {
-      const layerId = `tree-${species}`;
-      if (map.getLayer(layerId)) {
-        map.setFilter(layerId, buildTreeLayerFilter(species, selectedSpecies, selectedOwnership));
-      }
-    });
-  }, [pmtilesEnabled, selectedOwnership, selectedSpecies]);
 
   useEffect(() => {
     const map = mapRef.current;
@@ -4676,6 +4784,10 @@ export default function App(): JSX.Element {
 
   function clearSelectedJumpArea(): void {
     setSelectedJumpAreaId(null);
+    setSelectedCityAreaId(null);
+    setLoadedCityAreaId(null);
+    setSelectedTree(null);
+    setSelectedCoverage(null);
     setJumpAreaQuery("");
     setStatusNotice(null);
   }
@@ -4809,6 +4921,21 @@ export default function App(): JSX.Element {
     loadedActiveRegionTreeById
   ]);
 
+  const openCityArea = useCallback((areaId: string): void => {
+    setSelectedJumpAreaId(areaId);
+    setSelectedCityAreaId(areaId);
+    setSelectedTree(null);
+    setSelectedCoverage(null);
+    setSelectedFeaturedAreaId(null);
+    setStatusNotice(null);
+    setJumpAreaExpanded(false);
+    setJumpAreaQuery("");
+    if (!isDesktopRef.current) {
+      setSheetHeight(0.72);
+    }
+    setActivePanel("filters");
+  }, []);
+
   function openFeaturedArea(area: FeaturedAreaIndexItem): void {
     setSelectedFeaturedAreaId(area.id);
     setSelectedTree(null);
@@ -4819,6 +4946,8 @@ export default function App(): JSX.Element {
     setJumpAreaQuery("");
     if (area.jump_area_id) {
       setSelectedJumpAreaId(area.jump_area_id);
+      setSelectedCityAreaId(area.jump_area_id);
+      setLoadedCityAreaId(area.jump_area_id);
     }
     setActiveRegion(area.region);
     if (
@@ -4839,6 +4968,7 @@ export default function App(): JSX.Element {
 
   useEffect(() => {
     openTreeDetailsRef.current = openTreeDetails;
+    openCityAreaRef.current = openCityArea;
     openFeaturedAreaRef.current = openFeaturedArea;
   });
 
@@ -4880,6 +5010,7 @@ export default function App(): JSX.Element {
     setSelectedTree(null);
     setSelectedCoverage(null);
     setSelectedFeaturedAreaId(null);
+    setLoadedCityAreaId(null);
     setStatusNotice(null);
     setUserLocation(null);
     setJumpAreaExpanded(false);
@@ -4895,27 +5026,35 @@ export default function App(): JSX.Element {
     if (selectedArea) {
       const areaName = formatJumpAreaLabel(selectedArea);
       const displayStatus = getJumpAreaDisplayStatus(selectedArea);
-      if (displayStatus.kind === "official_unavailable") {
+      if (displayStatus.kind === "covered") {
+        setSelectedCityAreaId(selectedArea.id);
+      } else if (displayStatus.kind === "official_unavailable") {
+        setSelectedCityAreaId(null);
         setStatusNotice({
           kind: "official_unavailable",
           areaName
         });
       } else if (displayStatus.kind === "city_level_coverage") {
+        setSelectedCityAreaId(null);
         setStatusNotice({
           kind: "city_level_coverage",
           areaName
         });
       } else if (displayStatus.kind === "untracked") {
+        setSelectedCityAreaId(null);
         setStatusNotice({
           kind: "untracked",
           areaName
         });
       }
     } else if (selectedJumpState && !selectedJumpState.region_hint) {
+      setSelectedCityAreaId(null);
       setStatusNotice({
         kind: "untracked",
         areaName: jumpStateDisplayLabel(language, selectedJumpState)
       });
+    } else if (!selectedArea) {
+      setSelectedCityAreaId(null);
     }
 
     if (!isDesktop) {
@@ -4953,6 +5092,8 @@ export default function App(): JSX.Element {
         setSelectedCoverage(null);
         setSelectedFeaturedAreaId(null);
         setSelectedJumpAreaId(null);
+        setSelectedCityAreaId(null);
+        setLoadedCityAreaId(null);
         setJumpAreaQuery("");
         setJumpAreaExpanded(false);
         setUserLocation(coordinates);
@@ -4960,6 +5101,7 @@ export default function App(): JSX.Element {
         if (matchedArea) {
           setJumpCountry(matchedArea.country_id);
           setJumpState(matchedArea.state_id);
+          setSelectedJumpAreaId(matchedArea.id);
         }
         if (matchedArea?.region_hint) {
           setActiveRegion(matchedArea.region_hint);
@@ -4982,6 +5124,8 @@ export default function App(): JSX.Element {
             kind: "untracked",
             areaName: formatJumpAreaLabel(matchedArea)
           });
+        } else if (matchedArea && getJumpAreaDisplayStatus(matchedArea).kind === "covered") {
+          setSelectedCityAreaId(matchedArea.id);
         }
 
         const map = mapRef.current;
@@ -5017,35 +5161,38 @@ export default function App(): JSX.Element {
     );
   }
 
-  function refreshViewportTrees(): void {
-    if (viewportTreeLoadDeferred) {
-      const map = mapRef.current;
-      if (map && mapReady) {
-        map.easeTo({
-          zoom: map.getZoom() + (isDesktopRef.current ? 0.85 : 1.15),
-          duration: 450
-        });
-      }
+  function showSelectedCityTrees(): void {
+    if (!selectedCityArea) {
       return;
     }
 
-    setSelectedSpecies([...ALL_SPECIES]);
-    setSelectedOwnership([...allOwnershipOptions]);
+    if (selectedSpecies.length === 0) {
+      setSelectedSpecies([...ALL_SPECIES]);
+    }
+
+    if (selectedOwnership.length === 0) {
+      const nextOwnership =
+        selectedCityArea.item.ownership_groups && selectedCityArea.item.ownership_groups.length > 0
+          ? [...selectedCityArea.item.ownership_groups]
+          : [...ALL_OWNERSHIP];
+      setSelectedOwnership(nextOwnership);
+    }
+
+    setActiveRegion(selectedCityArea.region);
+    setLoadedCityAreaId(selectedCityArea.areaId);
     setSelectedTree(null);
     setSelectedCoverage(null);
     setSelectedFeaturedAreaId(null);
-    setRegionShardCache((current) => {
-      const next = { ...current };
-      viewportShardEntries.forEach(({ region, shard }) => {
-        if (!next[region]?.[shard.data_path]) {
-          return;
-        }
-        const regionCache = { ...(next[region] ?? {}) };
-        delete regionCache[shard.data_path];
-        next[region] = regionCache;
-      });
-      return next;
-    });
+    setStatusNotice(null);
+    if (!isDesktopRef.current) {
+      setSheetHeight(0.72);
+    }
+  }
+
+  function hideLoadedCityTrees(): void {
+    setLoadedCityAreaId(null);
+    setSelectedTree(null);
+    setSelectedCoverage(null);
   }
 
   function clearAllFilters(): void {
@@ -5104,10 +5251,10 @@ export default function App(): JSX.Element {
       ? selectedFeaturedAreaDetail
       : null);
   const showDetailsTab = Boolean(selectedTree || selectedFeaturedAreaId);
+  const isLoadedCitySelected = Boolean(selectedCityArea && loadedCityAreaId === selectedCityArea.areaId);
   const locateButtonStyle = isDesktop
     ? { right: "446px", bottom: "4.9rem" }
-    : { right: "0.88rem", bottom: `calc(${sheetHeight * 100}vh + 1rem)` };
-  const showViewportTreesLabel = viewportTreeLoadDeferred ? discoveryCopy.coveredDeferredCta : findPanelCopy.showButton;
+      : { right: "0.88rem", bottom: `calc(${sheetHeight * 100}vh + 1rem)` };
 
   function renderStatusCard(): JSX.Element | null {
     if (locatingUser) {
@@ -5141,8 +5288,8 @@ export default function App(): JSX.Element {
         title = discoveryCopy.cityLevelCoverageTitle;
         body = discoveryCopy.cityLevelCoverageBody;
         action = (
-          <button className="clear-btn" onClick={refreshViewportTrees} type="button">
-            {discoveryCopy.cityLevelCoverageCta}
+          <button className="clear-btn" onClick={() => setJumpAreaExpanded(true)} type="button">
+            {discoveryCopy.areaSearchShow}
           </button>
         );
       } else if (statusNotice.kind === "untracked") {
@@ -5195,41 +5342,19 @@ export default function App(): JSX.Element {
       );
     }
 
-    if (!activeRegionPending && viewportTreeLoadDeferred) {
-      return (
-        <article className="status-card covered_empty">
-          {selectedJumpAreaLabel && <p className="status-card-area">{selectedJumpAreaLabel}</p>}
-          <h4>{discoveryCopy.coveredDeferredTitle}</h4>
-          <p>
-            {formatDiscoveryDataBudget(
-              discoveryCopy.coveredDeferredBody,
-              viewportShardRawBytes,
-              viewportTreeLoadBudgetBytes,
-              language
-            )}
-          </p>
-          <div className="status-card-actions">
-            <button className="clear-btn" onClick={refreshViewportTrees} type="button">
-              {discoveryCopy.coveredDeferredCta}
-            </button>
-          </div>
-        </article>
-      );
-    }
-
-    if (!activeRegionPending && !hasVisibleFilteredTrees) {
+    if (!activeRegionPending && isLoadedCitySelected && loadedCityArea && !hasVisibleFilteredTrees) {
       const filtersCleared = selectedSpecies.length === 0 || selectedOwnership.length === 0;
       return (
         <article className="status-card covered_empty">
-          {selectedJumpAreaLabel && <p className="status-card-area">{selectedJumpAreaLabel}</p>}
+          <p className="status-card-area">{formatAreaLabelResolved(loadedCityArea.item.jurisdiction)}</p>
           <h4>{discoveryCopy.coveredEmptyTitle}</h4>
           <p>{discoveryCopy.coveredEmptyBody}</p>
           <div className="status-card-actions">
             <button className="clear-btn" onClick={filtersCleared ? selectAllFilters : clearAllFilters} type="button">
               {filtersCleared ? t(language, "selectAll") : t(language, "clearFilters")}
             </button>
-            <button className="clear-btn" onClick={refreshViewportTrees} type="button">
-              {findPanelCopy.showButton}
+            <button className="clear-btn" onClick={hideLoadedCityTrees} type="button">
+              {findPanelCopy.hideButton}
             </button>
           </div>
         </article>
@@ -5257,6 +5382,59 @@ export default function App(): JSX.Element {
           </div>
         ))}
       </div>
+    );
+  }
+
+  function renderCityDiscoveryCard(): JSX.Element {
+    return (
+      <section className="show-block city-discovery-card">
+        <div className="show-block-header">
+          <h3>{findPanelCopy.showTitle}</h3>
+        </div>
+        <p className="show-block-copy">{findPanelCopy.showBody}</p>
+      </section>
+    );
+  }
+
+  function renderSelectedCityCard(): JSX.Element | null {
+    if (!selectedCityArea) {
+      return null;
+    }
+
+    return (
+      <section className="show-block city-selection-card">
+        <div className="city-selection-head">
+          <div>
+            <p className="status-card-area">{regionOptionLabel(language, selectedCityArea.region)}</p>
+            <h3>{formatAreaLabelResolved(selectedCityArea.item.jurisdiction)}</h3>
+          </div>
+          <span
+            className={`coverage-area-type-badge ${jurisdictionTypeClassName(selectedCityArea.item.jurisdiction_type)}`}
+          >
+            {jurisdictionTypeLabel(language, selectedCityArea.item.jurisdiction_type)}
+          </span>
+        </div>
+        <p className="show-block-copy">{findPanelCopy.showBody}</p>
+        <div className="city-selection-total">
+          <span>{aboutCopy.summaryTotalLabel}</span>
+          <strong>{formatCount(selectedCityArea.item.tree_count)}</strong>
+        </div>
+        {renderSpeciesCountRows(selectedCityArea.item.species_counts, true)}
+        <div className="status-card-actions">
+          <button
+            className="clear-btn city-selection-btn"
+            disabled={loadingSelectedCityTrees}
+            onClick={isLoadedCitySelected ? hideLoadedCityTrees : showSelectedCityTrees}
+            type="button"
+          >
+            {loadingSelectedCityTrees
+              ? t(language, "loading")
+              : isLoadedCitySelected
+                ? findPanelCopy.hideButton
+                : findPanelCopy.showButton}
+          </button>
+        </div>
+      </section>
     );
   }
 
@@ -5532,38 +5710,7 @@ export default function App(): JSX.Element {
           ) : activePanel === "filters" ? (
             <>
               <section className="filters show-panel">
-                <section className="show-block">
-                  <div className="show-block-header">
-                    <h3>{findPanelCopy.showTitle}</h3>
-                    <button
-                      aria-label={showViewportTreesLabel}
-                      className="clear-btn show-all-btn"
-                      onClick={refreshViewportTrees}
-                      title={showViewportTreesLabel}
-                      type="button"
-                    >
-                      <svg aria-hidden="true" viewBox="0 0 24 24">
-                        <path
-                          d="M20 12a8 8 0 1 1-2.34-5.66"
-                          fill="none"
-                          stroke="currentColor"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth="2"
-                        />
-                        <path
-                          d="M20 4v6h-6"
-                          fill="none"
-                          stroke="currentColor"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth="2"
-                        />
-                      </svg>
-                    </button>
-                  </div>
-                  <p className="show-block-copy">{findPanelCopy.showBody}</p>
-                </section>
+                {selectedCityArea ? renderSelectedCityCard() : renderCityDiscoveryCard()}
 
                 <section className="show-block featured-areas-block">
                   <div className="show-block-header">
@@ -5760,24 +5907,27 @@ export default function App(): JSX.Element {
                 </section>
                 {renderStatusCard()}
 
-                <section className="show-block">
+                <section className={isLoadedCitySelected ? "show-block" : "show-block filters-block disabled"}>
                   <div className="filters-heading">
                     <h3>{t(language, "filtersSectionTitle")}</h3>
                     <div className="filter-actions">
-                      <button className="clear-btn" onClick={selectAllFilters} type="button">
+                      <button className="clear-btn" disabled={!isLoadedCitySelected} onClick={selectAllFilters} type="button">
                         {t(language, "selectAll")}
                       </button>
-                      <button className="clear-btn" onClick={clearAllFilters} type="button">
+                      <button className="clear-btn" disabled={!isLoadedCitySelected} onClick={clearAllFilters} type="button">
                         {t(language, "clearAll")}
                       </button>
                     </div>
                   </div>
+
+                  {!isLoadedCitySelected ? <p className="show-block-copy">{findPanelCopy.filtersLockedBody}</p> : null}
 
                   <div className="filter-group">
                     <strong>{t(language, "speciesFilter")}</strong>
                     <div className="chip-wrap">
                       {ALL_SPECIES.map((species) => (
                         <button
+                          disabled={!isLoadedCitySelected}
                           key={species}
                           className={
                             selectedSpecies.includes(species)
@@ -5798,6 +5948,7 @@ export default function App(): JSX.Element {
                     <div className="chip-wrap">
                       {ownershipOptions.map((item) => (
                         <button
+                          disabled={!isLoadedCitySelected}
                           key={item}
                           className={selectedOwnership.includes(item) ? "chip active" : "chip"}
                           onClick={() => toggleOwnership(item)}
@@ -5810,7 +5961,7 @@ export default function App(): JSX.Element {
                   </div>
                 </section>
               </section>
-              {activeRegionPending ? null : hasVisibleFilteredTrees ? (
+              {activeRegionPending || !isLoadedCitySelected ? null : hasVisibleFilteredTrees ? (
                 <p className="selection-hint">{t(language, "tapTreeHint")}</p>
               ) : null}
             </>

@@ -23,5 +23,6 @@ Review this checklist before any formal operation. `scripts/ops_runner.sh` print
 
 ## Post Release
 - Smoke-check `https://pinkhunter.flalaz.com`.
+- Confirm the homepage no longer auto-requests `trees.<region>.area.*.geojson`; tree files should appear only after explicit city load.
 - For AWS work, smoke-check the target staging or production domain plus the visitor API if it changed.
 - Confirm `GitHub/pink-hunter` is clean and does not contain `node_modules`, `dist`, `data/normalized`, or `data/tmp`.

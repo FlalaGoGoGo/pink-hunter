@@ -31,5 +31,8 @@
 ## Runtime Loading
 - Coverage loading is now configurable independently from runtime environment.
 - GitHub Pages and AWS can both use `lazy_by_region`.
-- Tree rendering can run in `pmtiles` mode, which moves point drawing to vector tiles while keeping shard GeoJSON as the detail fallback path.
+- The stable homepage path is `coverage-first`: initial render loads only coverage plus visible-region area indexes.
+- Pink covered areas expose city pins and city cards first; area shard GeoJSON is requested only after the user explicitly loads one city.
+- Tree rendering on the stable site is single-city clustered GeoJSON, not auto-loaded viewport trees.
+- PMTiles remains available as an experimental render path, but it is not the default production mode until city-gated aggregation is ready.
 - Large hotspot cities should target roughly `12 MiB raw` per shard for better perceived performance.

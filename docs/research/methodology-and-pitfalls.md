@@ -11,12 +11,11 @@
 - The main source of local chaos was not missing logic; it was duplicated workspaces, duplicated backups, and duplicated intermediate files.
 - Official boundary reuse is a force multiplier. Prebuild the boundary layer first, then activate cities on top of it.
 - Size gates protect GitHub risk, but product performance also depends on shard granularity. Hotspot cities need tighter shard targets.
-- Lazy loading alone is not enough once the browser keeps merging and re-uploading large GeoJSON sources. The stronger path is PMTiles or vector-tile rendering with GeoJSON reserved for detail fallback.
-- When PMTiles is active, counts and filter availability should come from shard-level summary fields in the area index, not from loading viewport shards just to count them.
-- When PMTiles is active, click-to-detail should carry the exact shard `data_path` whenever possible, so detail fallback can load one shard first instead of sweeping a whole city.
-- PMTiles is not a free win by itself. If low-zoom clustering or aggregation disappears, the map can feel worse than the older GeoJSON path. Keep GitHub Pages on the clustered GeoJSON path until the PMTiles path has an equivalent low-zoom aggregation strategy.
-- GeoJSON cluster mode still needs a viewport budget. If the current view would pull too many shard bytes at once, defer tree autoload and ask the user to zoom in instead of brute-forcing the first render.
-- Default landing bounds should fit inside that budget too. If the homepage opens over-budget, narrow the default focus view instead of relying only on a warning card.
+- Lazy loading alone is not enough once the browser keeps merging and re-uploading large GeoJSON sources.
+- The current stable product rule is stronger than viewport lazy loading: homepage should be `coverage-first`, and trees should load only after the user explicitly chooses a city.
+- Keep `selectedCityAreaId` and `loadedCityAreaId` separate. Opening a city card must not silently trigger shard downloads.
+- The stable web path is now single-city GeoJSON loading with coverage polygons and city pins up front. This removes the heaviest first-render path without changing the public data contract.
+- PMTiles remains an experimental optimization path, not the current default. Do not reactivate it on the main site unless low-zoom aggregation and city-level gating are both solved.
 - Methods are only reusable if they are written down in docs immediately after they work.
 
 ## Historical Thread Additions
@@ -57,3 +56,4 @@
 - `data/normalized/`, `data/tmp/`, and copied `* 2*` files create false clutter and accidental sync drift.
 - GitHub Pages can still feel slow if the runtime falls back to eager coverage loading or large single-city shards.
 - Single-region coverage should not pay the polygon-clipping cost on every first render. Keep clipping for multi-region overlap cases.
+- Pink cities should behave like explicit loading units. Show the city card first, then let the user press the button that loads that city's trees.

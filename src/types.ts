@@ -130,6 +130,16 @@ export interface AreaIndexItem {
   shards: AreaShard[];
 }
 
+export interface CityPinFeatureProps {
+  area_id: string;
+  region: CoverageRegion;
+  area_slug: string;
+  jurisdiction: string;
+  display_name: string;
+  jurisdiction_type: JurisdictionType;
+  tree_count: number;
+}
+
 export interface AreaIndex {
   generated_at: string;
   region: CoverageRegion;
