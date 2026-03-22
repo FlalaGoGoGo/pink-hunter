@@ -2667,13 +2667,6 @@ export default function App(): JSX.Element {
   }, []);
 
   useEffect(() => {
-    if (!data || data.jumpIndex || !initialUrlState.areaId) {
-      return;
-    }
-    void ensureJumpIndexLoaded();
-  }, [data, ensureJumpIndexLoaded, initialUrlState.areaId]);
-
-  useEffect(() => {
     const mediaQuery = window.matchMedia("(min-width: 1024px)");
     const handleChange = (event: MediaQueryListEvent): void => {
       setLayoutMode(event.matches ? "desktop_split" : "mobile_sheet");
@@ -3330,11 +3323,6 @@ export default function App(): JSX.Element {
   const selectedJumpArea = useMemo(
     () => (selectedJumpAreaId ? jumpAreaById.get(selectedJumpAreaId) ?? null : null),
     [jumpAreaById, selectedJumpAreaId]
-  );
-
-  const initialJumpArea = useMemo(
-    () => (initialUrlState.areaId ? jumpAreaById.get(initialUrlState.areaId) ?? null : null),
-    [initialUrlState.areaId, jumpAreaById]
   );
 
   const formatJumpAreaLabel = useCallback(
@@ -4428,12 +4416,13 @@ export default function App(): JSX.Element {
         });
 
         if (!initialUrlState.hasViewportParam) {
+          const initialRegionMeta =
+            data.meta.regions.find((regionMeta) => regionMeta.id === initialUrlState.region) ?? null;
           const defaultBounds =
             initialFeaturedArea?.bounds ??
-            initialJumpArea?.bounds ??
             preferredBoundsForRegion(
               initialUrlState.region,
-              regionMetaById.get(initialUrlState.region) ?? null,
+              initialRegionMeta,
               isDesktopRef.current ? "desktop_split" : "mobile_sheet"
             );
           if (defaultBounds) {
@@ -4478,21 +4467,15 @@ export default function App(): JSX.Element {
       }
     };
   }, [
-    data,
-    featuredAreaBoundsCollection,
-    featuredAreaById,
-    featuredAreaPinCollection,
+    data?.featuredAreas,
+    data?.meta,
     initialUrlState.hasViewportParam,
     initialUrlState.lat,
     initialUrlState.lon,
     initialUrlState.region,
     initialUrlState.zoom,
     initialFeaturedArea,
-    initialJumpArea,
     mapRuntime,
-    regionMetaById,
-    selectedOwnership,
-    selectedSpecies
   ]);
 
   useEffect(() => {
@@ -4768,7 +4751,10 @@ export default function App(): JSX.Element {
     params.set("lon", mapView.lon.toString());
 
     const nextUrl = `${window.location.pathname}?${params.toString()}`;
-    window.history.replaceState(null, "", nextUrl);
+    const currentUrl = `${window.location.pathname}${window.location.search}`;
+    if (nextUrl !== currentUrl) {
+      window.history.replaceState(null, "", nextUrl);
+    }
   }, [
     activeLegalDocument,
     activePanel,
