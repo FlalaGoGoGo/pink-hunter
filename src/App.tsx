@@ -73,8 +73,6 @@ import type {
 import {
   featuredAreaCopy,
   featuredAreaMeta,
-  formatDistanceKm,
-  formatFeaturedPageLabel
 } from "./featuredAreaContent";
 
 const SNAP_POINTS = [0.4, 0.72, 1] as const;
@@ -97,7 +95,6 @@ const FALLBACK_STYLE_URL = "https://demotiles.maplibre.org/style.json";
 const ABOUT_SOURCES_PAGE_SIZE = 6;
 const ABOUT_REGION_SUMMARY_PAGE_SIZE = 3;
 const ABOUT_AREA_SUMMARY_PAGE_SIZE = 3;
-const FEATURED_AREA_PAGE_SIZE = 5;
 const BRAND_LOGO_PATH = "/assets/brand/pink-hunter-logo.png";
 const SORT_COLLATOR = new Intl.Collator("en", { sensitivity: "base" });
 const EMPTY_SPECIES_COUNTS: SpeciesCounts = {
@@ -779,6 +776,7 @@ const FIND_PANEL_COPY: Record<
     showBody: string;
     showButton: string;
     hideButton: string;
+    stepOptional: string;
     jumpTitle: string;
     jumpBody: string;
     jumpLoadBody: string;
@@ -793,17 +791,21 @@ const FIND_PANEL_COPY: Record<
     searchState: string;
     searchProvince: string;
     filtersTitle: string;
+    filtersGuideBody: string;
     filtersLockedBody: string;
+    detailsTitle: string;
+    detailsBody: string;
     jumpUntrackedTitle: string;
     jumpUntrackedBody: string;
   }
 > = {
   "en-US": {
-    showTitle: "Discover covered cities",
+    showTitle: "Open a city card",
     showBody:
-      "Pink Hunter now opens in coverage mode first. Tap a pink pin or pink covered area to open its city card, then choose when to load that city's trees.",
+      "Tap a pink city pin on the map. The selected city's card will appear here, then choose Show trees to load that city's data.",
     showButton: "Show trees in this city",
     hideButton: "Hide trees",
+    stepOptional: "Optional",
     jumpTitle: "Jump to an area",
     jumpBody: "Choose an area, then press the Jump button below and the map will move there.",
     jumpLoadBody: "To keep the home page fast, Pink Hunter loads the Jump browser only when you ask for it.",
@@ -818,15 +820,19 @@ const FIND_PANEL_COPY: Record<
     searchState: "Search state",
     searchProvince: "Search province",
     filtersTitle: "Filters",
+    filtersGuideBody: "After a city's trees are loaded, refine what you want to see by species or ownership.",
     filtersLockedBody: "Choose a pink city first, then load that city's trees to unlock filters.",
+    detailsTitle: "Inspect a single tree",
+    detailsBody: "After trees appear on the map, try tapping one tree pin to view its details or open directions.",
     jumpUntrackedTitle: "Not added to Pink Hunter yet",
     jumpUntrackedBody: "Pink Hunter has not added tree data for this area yet."
   },
   "zh-CN": {
-    showTitle: "发现已覆盖城市",
-    showBody: "Pink Hunter 首页现在会先显示 coverage。请先点击粉色 pin 或粉色区域打开城市卡片，再决定是否加载该城市的树木数据。",
+    showTitle: "打开城市卡片",
+    showBody: "请先点击地图上的粉色水滴 pin。对应城市的卡片会出现在这里，然后再点击「显示这个城市的树木」。",
     showButton: "显示这个城市的树木",
     hideButton: "隐藏树木",
+    stepOptional: "可选",
     jumpTitle: "跳转至指定区域",
     jumpBody: "选择一个区域，并点击下方「跳转」按钮，地图会跳转过去。",
     jumpLoadBody: "为了让首页更快，Pink Hunter 会在你需要时才加载跳转浏览器。",
@@ -841,15 +847,19 @@ const FIND_PANEL_COPY: Record<
     searchState: "搜索州",
     searchProvince: "搜索省",
     filtersTitle: "筛选",
+    filtersGuideBody: "加载城市树木后，你可以继续按树种或产权自由调整筛选条件。",
     filtersLockedBody: "请先选择一个粉色城市，并加载该城市的树木后再使用筛选。",
+    detailsTitle: "查看单棵树",
+    detailsBody: "当地图上出现树木后，你可以尝试点击某一棵树，查看它的详细信息，或者直接导航过去。",
     jumpUntrackedTitle: "Pink Hunter 暂未收录",
     jumpUntrackedBody: "Pink Hunter 目前还没有添加这个地区的树木数据。"
   },
   "zh-TW": {
-    showTitle: "探索已覆蓋城市",
-    showBody: "Pink Hunter 首頁現在會先顯示 coverage。請先點擊粉色 pin 或粉色區域打開城市卡片，再決定是否載入該城市的樹木資料。",
+    showTitle: "打開城市卡片",
+    showBody: "請先點擊地圖上的粉色水滴 pin。對應城市的卡片會出現在這裡，然後再點擊「顯示這個城市的樹木」。",
     showButton: "顯示這個城市的樹木",
     hideButton: "隱藏樹木",
+    stepOptional: "可選",
     jumpTitle: "跳轉至指定區域",
     jumpBody: "選擇一個區域，並點擊下方「跳轉」按鈕，地圖會跳轉過去。",
     jumpLoadBody: "為了讓首頁更快，Pink Hunter 會在你需要時才載入跳轉瀏覽器。",
@@ -864,16 +874,20 @@ const FIND_PANEL_COPY: Record<
     searchState: "搜尋州",
     searchProvince: "搜尋省",
     filtersTitle: "篩選",
+    filtersGuideBody: "載入城市樹木後，你可以再依樹種或產權自由調整篩選條件。",
     filtersLockedBody: "請先選擇一個粉色城市，並載入該城市的樹木後再使用篩選。",
+    detailsTitle: "查看單棵樹",
+    detailsBody: "當地圖上出現樹木後，你可以嘗試點擊某一棵樹，查看詳細資訊，或直接導航過去。",
     jumpUntrackedTitle: "Pink Hunter 尚未收錄",
     jumpUntrackedBody: "Pink Hunter 目前還沒有加入這個地區的樹木資料。"
   },
   "es-ES": {
-    showTitle: "Descubrir ciudades cubiertas",
+    showTitle: "Abrir una tarjeta de ciudad",
     showBody:
-      "Pink Hunter ahora abre primero en modo de cobertura. Toca un pin rosa o una zona rosa cubierta para abrir la tarjeta de la ciudad y luego decidir cuándo cargar sus árboles.",
+      "Toca un pin rosa en el mapa. La tarjeta de esa ciudad aparecerá aquí y luego podrás cargar sus árboles.",
     showButton: "Mostrar árboles de esta ciudad",
     hideButton: "Ocultar árboles",
+    stepOptional: "Opcional",
     jumpTitle: "Ir a una zona",
     jumpBody: "Elige una zona y luego pulsa el botón de salto de abajo para mover el mapa hasta allí.",
     jumpLoadBody: "Para que la página inicial siga siendo rápida, Pink Hunter solo carga el navegador de salto cuando lo pides.",
@@ -888,16 +902,20 @@ const FIND_PANEL_COPY: Record<
     searchState: "Buscar estado",
     searchProvince: "Buscar provincia",
     filtersTitle: "Filtros",
+    filtersGuideBody: "Cuando cargues los árboles de una ciudad, ajusta los filtros por especie o propiedad.",
     filtersLockedBody: "Primero elige una ciudad rosa y carga sus árboles para desbloquear los filtros.",
+    detailsTitle: "Explorar un árbol",
+    detailsBody: "Cuando los árboles aparezcan en el mapa, toca uno para ver sus detalles o abrir la ruta.",
     jumpUntrackedTitle: "Aún no se ha añadido a Pink Hunter",
     jumpUntrackedBody: "Pink Hunter todavía no ha añadido datos de árboles para esta zona."
   },
   "ko-KR": {
-    showTitle: "커버된 도시 찾기",
+    showTitle: "도시 카드 열기",
     showBody:
-      "Pink Hunter는 이제 먼저 coverage 화면으로 열립니다. 분홍 pin이나 분홍 커버 지역을 눌러 도시 카드를 연 뒤, 그 도시의 나무를 언제 불러올지 선택하세요.",
+      "지도에서 분홍 핀을 누르세요. 선택한 도시의 카드가 여기에 나타나고, 그 뒤에 나무를 불러올 수 있습니다.",
     showButton: "이 도시의 나무 보기",
     hideButton: "나무 숨기기",
+    stepOptional: "선택",
     jumpTitle: "지정한 지역으로 이동",
     jumpBody: "지역을 선택한 뒤 아래의 이동 버튼을 누르면 지도가 그곳으로 이동합니다.",
     jumpLoadBody: "홈페이지를 빠르게 유지하기 위해 Pink Hunter는 필요할 때만 점프 브라우저를 불러옵니다.",
@@ -912,16 +930,20 @@ const FIND_PANEL_COPY: Record<
     searchState: "주 검색",
     searchProvince: "도 검색",
     filtersTitle: "필터",
+    filtersGuideBody: "도시 나무를 불러온 뒤 종이나 소유권으로 원하는 결과만 남길 수 있습니다.",
     filtersLockedBody: "먼저 분홍 도시를 선택하고 그 도시의 나무를 불러와야 필터를 사용할 수 있습니다.",
+    detailsTitle: "한 그루 살펴보기",
+    detailsBody: "지도에 나무가 나타나면 나무 핀을 눌러 상세 정보를 보거나 길찾기를 열어보세요.",
     jumpUntrackedTitle: "Pink Hunter에 아직 추가되지 않음",
     jumpUntrackedBody: "Pink Hunter는 아직 이 지역의 나무 데이터를 추가하지 않았습니다."
   },
   "ja-JP": {
-    showTitle: "カバー済みの都市を探す",
+    showTitle: "都市カードを開く",
     showBody:
-      "Pink Hunter はまず coverage 表示で開きます。ピンクのピンやピンクの対象エリアを押して都市カードを開き、その都市の木を読み込むかどうかを選んでください。",
+      "地図上のピンクのピンを押してください。選んだ都市のカードがここに表示され、そのあと木を読み込めます。",
     showButton: "この都市の木を表示",
     hideButton: "木を隠す",
+    stepOptional: "任意",
     jumpTitle: "指定した地域へ移動",
     jumpBody: "地域を選び、下の移動ボタンを押すと地図がその場所へ移動します。",
     jumpLoadBody: "トップページを軽く保つため、Pink Hunter は必要になるまで Jump ブラウザを読み込みません。",
@@ -936,16 +958,20 @@ const FIND_PANEL_COPY: Record<
     searchState: "州を検索",
     searchProvince: "県を検索",
     filtersTitle: "フィルター",
+    filtersGuideBody: "都市の木を読み込んだあと、樹種や所有区分で表示を絞り込めます。",
     filtersLockedBody: "まずピンクの都市を選び、その都市の木を読み込むとフィルターが使えます。",
+    detailsTitle: "1 本の木を見る",
+    detailsBody: "木が地図に表示されたら、木のピンをタップして詳細やルートを確認してください。",
     jumpUntrackedTitle: "Pink Hunter に未追加",
     jumpUntrackedBody: "Pink Hunter はこの地域の樹木データをまだ追加していません。"
   },
   "fr-FR": {
-    showTitle: "Découvrir les villes couvertes",
+    showTitle: "Ouvrir une fiche de ville",
     showBody:
-      "Pink Hunter s’ouvre maintenant d’abord en mode couverture. Touchez une épingle rose ou une zone rose couverte pour ouvrir la carte de la ville, puis choisissez quand charger ses arbres.",
+      "Touchez une épingle rose sur la carte. La fiche de la ville apparaîtra ici, puis vous pourrez charger ses arbres.",
     showButton: "Afficher les arbres de cette ville",
     hideButton: "Masquer les arbres",
+    stepOptional: "Optionnel",
     jumpTitle: "Aller à une zone",
     jumpBody: "Choisissez une zone puis appuyez sur le bouton ci-dessous pour déplacer la carte vers cet endroit.",
     jumpLoadBody: "Pour garder la page d’accueil rapide, Pink Hunter ne charge le navigateur Jump que lorsque vous le demandez.",
@@ -960,16 +986,20 @@ const FIND_PANEL_COPY: Record<
     searchState: "Rechercher un état",
     searchProvince: "Rechercher une province",
     filtersTitle: "Filtres",
+    filtersGuideBody: "Après avoir chargé les arbres d’une ville, affinez l’affichage par espèce ou type de propriété.",
     filtersLockedBody: "Choisissez d’abord une ville rose et chargez ses arbres pour activer les filtres.",
+    detailsTitle: "Explorer un arbre",
+    detailsBody: "Quand les arbres apparaissent sur la carte, touchez-en un pour voir ses détails ou ouvrir l’itinéraire.",
     jumpUntrackedTitle: "Pas encore ajouté à Pink Hunter",
     jumpUntrackedBody: "Pink Hunter n’a pas encore ajouté de données d’arbres pour cette zone."
   },
   "vi-VN": {
-    showTitle: "Khám phá các thành phố đã phủ",
+    showTitle: "Mở thẻ thành phố",
     showBody:
-      "Pink Hunter giờ mở ở chế độ coverage trước. Hãy chạm vào pin màu hồng hoặc vùng màu hồng để mở thẻ thành phố, rồi chọn lúc nào mới tải cây của thành phố đó.",
+      "Hãy chạm vào pin màu hồng trên bản đồ. Thẻ của thành phố đó sẽ hiện ở đây, rồi bạn có thể tải cây của thành phố.",
     showButton: "Hiển thị cây của thành phố này",
     hideButton: "Ẩn cây",
+    stepOptional: "Tùy chọn",
     jumpTitle: "Nhảy tới khu vực cụ thể",
     jumpBody: "Chọn một khu vực rồi bấm nút nhảy bên dưới để đưa bản đồ tới đó.",
     jumpLoadBody: "Để trang chủ luôn nhẹ, Pink Hunter chỉ tải trình duyệt Jump khi bạn thật sự cần.",
@@ -984,7 +1014,10 @@ const FIND_PANEL_COPY: Record<
     searchState: "Tìm tiểu bang",
     searchProvince: "Tìm tỉnh",
     filtersTitle: "Bộ lọc",
+    filtersGuideBody: "Sau khi tải cây của một thành phố, bạn có thể lọc theo loài hoặc quyền sở hữu.",
     filtersLockedBody: "Hãy chọn một thành phố màu hồng và tải cây của thành phố đó trước khi dùng bộ lọc.",
+    detailsTitle: "Xem từng cây",
+    detailsBody: "Khi cây đã hiện trên bản đồ, hãy chạm vào một cây để xem chi tiết hoặc mở chỉ đường.",
     jumpUntrackedTitle: "Pink Hunter chưa thêm khu vực này",
     jumpUntrackedBody: "Pink Hunter hiện chưa thêm dữ liệu cây cho khu vực này."
   }
@@ -2522,7 +2555,6 @@ export default function App(): JSX.Element {
   const [selectedTree, setSelectedTree] = useState<SelectedTree | null>(null);
   const [selectedCoverage, setSelectedCoverage] = useState<SelectedCoverage | null>(null);
   const [selectedFeaturedAreaId, setSelectedFeaturedAreaId] = useState<string | null>(initialUrlState.featuredId);
-  const [featuredAreaPage, setFeaturedAreaPage] = useState(0);
   const [featuredAreaDetailCache, setFeaturedAreaDetailCache] = useState<Record<string, FeaturedAreaDetail>>({});
   const [loadingFeaturedAreaDetail, setLoadingFeaturedAreaDetail] = useState(false);
   const [featuredAreaWeatherCache, setFeaturedAreaWeatherCache] = useState<Record<string, WeatherSnapshot>>({});
@@ -3579,33 +3611,8 @@ export default function App(): JSX.Element {
   const findPanelCopy = FIND_PANEL_COPY[language];
   const discoveryCopy = DISCOVERY_COPY[language];
   const featuredAreaUiCopy = featuredAreaCopy(language);
-  const featuredAreaReferencePoint = userLocation ?? [mapView.lon, mapView.lat];
-  const sortedFeaturedAreas = useMemo(() => {
-    if (!data) {
-      return [] as Array<{ area: FeaturedAreaIndexItem; distanceKm: number }>;
-    }
-    return data.featuredAreas.items
-      .map((area) => ({
-        area,
-        distanceKm: distanceKm(featuredAreaReferencePoint, area.center)
-      }))
-      .sort((left, right) => left.distanceKm - right.distanceKm);
-  }, [data, featuredAreaReferencePoint]);
-  const featuredAreaPageCount = Math.max(1, Math.ceil(sortedFeaturedAreas.length / FEATURED_AREA_PAGE_SIZE));
-  const pagedFeaturedAreas = useMemo(
-    () =>
-      sortedFeaturedAreas.slice(
-        featuredAreaPage * FEATURED_AREA_PAGE_SIZE,
-        (featuredAreaPage + 1) * FEATURED_AREA_PAGE_SIZE
-      ),
-    [featuredAreaPage, sortedFeaturedAreas]
-  );
   const jumpSubnationalLabel = jumpCountry === "us" ? findPanelCopy.jumpState : findPanelCopy.jumpProvince;
   const jumpAnySubnationalLabel = jumpCountry === "us" ? findPanelCopy.jumpAnyState : findPanelCopy.jumpAnyProvince;
-
-  useEffect(() => {
-    setFeaturedAreaPage((current) => Math.min(current, featuredAreaPageCount - 1));
-  }, [featuredAreaPageCount]);
 
   const getJumpAreaDisplayStatus = useCallback(
     (area: JumpArea): JumpAreaDisplayStatusInfo =>
@@ -5267,9 +5274,20 @@ export default function App(): JSX.Element {
       : null);
   const showDetailsTab = Boolean(selectedTree || selectedFeaturedAreaId);
   const isLoadedCitySelected = Boolean(selectedCityArea && loadedCityAreaId === selectedCityArea.areaId);
-  const locateButtonStyle = isDesktop
-    ? { right: "446px", bottom: "4.9rem" }
-      : { right: "0.88rem", bottom: `calc(${sheetHeight * 100}vh + 1rem)` };
+
+  function renderFindStepHeader(step: number, title: string, optional = false): JSX.Element {
+    return (
+      <div className="show-block-step-head">
+        <div className="show-block-step-title">
+          <span className="show-block-step-badge" aria-hidden="true">
+            {step}
+          </span>
+          <h3>{title}</h3>
+        </div>
+        {optional ? <span className="show-block-step-optional">{findPanelCopy.stepOptional}</span> : null}
+      </div>
+    );
+  }
 
   function renderStatusCard(): JSX.Element | null {
     if (locatingUser) {
@@ -5413,23 +5431,8 @@ export default function App(): JSX.Element {
   }
 
   function renderCityDiscoveryCard(): JSX.Element {
-    return (
-      <section className="show-block city-discovery-card">
-        <div className="show-block-header">
-          <h3>{findPanelCopy.showTitle}</h3>
-        </div>
-        <p className="show-block-copy">{findPanelCopy.showBody}</p>
-      </section>
-    );
-  }
-
-  function renderSelectedCityCard(): JSX.Element | null {
-    if (!selectedCityArea) {
-      return null;
-    }
-
-    return (
-      <section className="show-block city-selection-card">
+    const cityCardBody = selectedCityArea ? (
+      <>
         <div className="city-selection-head">
           <div>
             <p className="status-card-area">{regionOptionLabel(language, selectedCityArea.region)}</p>
@@ -5441,12 +5444,18 @@ export default function App(): JSX.Element {
             {jurisdictionTypeLabel(language, selectedCityArea.item.jurisdiction_type)}
           </span>
         </div>
-        <p className="show-block-copy">{findPanelCopy.showBody}</p>
-        <div className="city-selection-total">
-          <span>{aboutCopy.summaryTotalLabel}</span>
-          <strong>{formatCount(selectedCityArea.item.tree_count)}</strong>
+        <div className="city-selection-summary">
+          <div className="about-summary-head">
+            <div>
+              <h4>{aboutCopy.summaryTotalLabel}</h4>
+            </div>
+            <strong className="about-summary-total-number city-selection-total-number">
+              {formatCount(selectedCityArea.item.tree_count)}
+            </strong>
+          </div>
+          <div className="about-summary-divider compact" />
+          {renderSpeciesCountRows(selectedCityArea.item.species_counts, true)}
         </div>
-        {renderSpeciesCountRows(selectedCityArea.item.species_counts, true)}
         <div className="status-card-actions">
           <button
             className="clear-btn city-selection-btn"
@@ -5461,6 +5470,14 @@ export default function App(): JSX.Element {
                 : findPanelCopy.showButton}
           </button>
         </div>
+      </>
+    ) : null;
+
+    return (
+      <section className="show-block city-selection-card">
+        {renderFindStepHeader(2, findPanelCopy.showTitle)}
+        {!selectedCityArea ? <p className="show-block-copy">{findPanelCopy.showBody}</p> : null}
+        {cityCardBody}
       </section>
     );
   }
@@ -5505,41 +5522,14 @@ export default function App(): JSX.Element {
           <span className="legend-dot official-unavailable" />
           <span>{t(language, "officialUnavailableLegend")}</span>
         </div>
+        <div className="legend-row">
+          <span className="legend-dot featured-area" />
+          <span>{featuredAreaUiCopy.sectionTitle}</span>
+        </div>
         {(mapStylePreset === "demotiles" || mapStylePreset === "blank_fallback") && (
           <p>{t(language, "fallbackBasemap")}</p>
         )}
       </section>
-      <button
-        aria-label={t(language, "locateNearby")}
-        className={locatingUser ? "map-locate-btn locating" : "map-locate-btn"}
-        disabled={locatingUser}
-        onClick={handleLocateNearby}
-        style={locateButtonStyle}
-        title={t(language, "locateNearby")}
-        type="button"
-      >
-        <svg aria-hidden="true" viewBox="0 0 24 24">
-          <path
-            d="M12 3.5v3.2M12 17.3v3.2M20.5 12h-3.2M6.7 12H3.5"
-            fill="none"
-            stroke="currentColor"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth="1.8"
-          />
-          <circle
-            cx="12"
-            cy="12"
-            fill="none"
-            r="5.25"
-            stroke="currentColor"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth="1.8"
-          />
-          <circle cx="12" cy="12" fill="currentColor" r="1.6" />
-        </svg>
-      </button>
 
       <section className="sheet" style={isDesktop ? undefined : { height: `${sheetHeight * 100}vh` }}>
         <button
@@ -5737,76 +5727,8 @@ export default function App(): JSX.Element {
           ) : activePanel === "filters" ? (
             <>
               <section className="filters show-panel">
-                {selectedCityArea ? renderSelectedCityCard() : renderCityDiscoveryCard()}
-
-                <section className="show-block featured-areas-block">
-                  <div className="show-block-header">
-                    <h3>{featuredAreaUiCopy.sectionTitle}</h3>
-                  </div>
-                  <p className="show-block-copy">{featuredAreaUiCopy.sectionBody}</p>
-                  <div className="featured-area-index-list">
-                    {pagedFeaturedAreas.map(({ area, distanceKm: areaDistanceKm }) => {
-                      const meta = featuredAreaMeta(language, area.id);
-                      return (
-                        <button
-                          className={
-                            area.id === selectedFeaturedAreaId
-                              ? "featured-area-index-card active"
-                              : "featured-area-index-card"
-                          }
-                          key={area.id}
-                          onClick={() => openFeaturedArea(area)}
-                          type="button"
-                        >
-                          <div className="featured-area-index-main">
-                            <div className="featured-area-index-text">
-                              <strong>{meta.label}</strong>
-                              <span>{formatDistanceKm(language, areaDistanceKm)}</span>
-                            </div>
-                            <span aria-hidden="true" className="featured-area-index-arrow">
-                              <svg viewBox="0 0 20 20">
-                                <path
-                                  d="M7 4.5 12.5 10 7 15.5"
-                                  fill="none"
-                                  stroke="currentColor"
-                                  strokeLinecap="round"
-                                  strokeLinejoin="round"
-                                  strokeWidth="2"
-                                />
-                              </svg>
-                            </span>
-                          </div>
-                        </button>
-                      );
-                    })}
-                  </div>
-                  {featuredAreaPageCount > 1 ? (
-                    <div className="featured-area-pagination">
-                      <button
-                        className="clear-btn featured-area-page-btn"
-                        disabled={featuredAreaPage === 0}
-                        onClick={() => setFeaturedAreaPage((current) => Math.max(0, current - 1))}
-                        type="button"
-                      >
-                        {featuredAreaUiCopy.previousPage}
-                      </button>
-                      <span>{formatFeaturedPageLabel(language, featuredAreaPage + 1, featuredAreaPageCount)}</span>
-                      <button
-                        className="clear-btn featured-area-page-btn"
-                        disabled={featuredAreaPage >= featuredAreaPageCount - 1}
-                        onClick={() => setFeaturedAreaPage((current) => Math.min(featuredAreaPageCount - 1, current + 1))}
-                        type="button"
-                      >
-                        {featuredAreaUiCopy.nextPage}
-                      </button>
-                    </div>
-                  ) : null}
-                </section>
-
                 <section className="show-block">
-                  <div className="show-block-header">
-                    <h3>{findPanelCopy.jumpTitle}</h3>
-                  </div>
+                  {renderFindStepHeader(1, findPanelCopy.jumpTitle)}
                   {!jumpIndex ? (
                     <>
                       <p className="show-block-copy">
@@ -5952,11 +5874,16 @@ export default function App(): JSX.Element {
                     </>
                   )}
                 </section>
+
+                {renderCityDiscoveryCard()}
                 {renderStatusCard()}
 
                 <section className={isLoadedCitySelected ? "show-block" : "show-block filters-block disabled"}>
                   <div className="filters-heading">
-                    <h3>{t(language, "filtersSectionTitle")}</h3>
+                    <div className="filters-heading-copy">
+                      {renderFindStepHeader(3, findPanelCopy.filtersTitle, true)}
+                      <p className="show-block-copy filters-guide-copy">{findPanelCopy.filtersGuideBody}</p>
+                    </div>
                     <div className="filter-actions">
                       <button className="clear-btn" disabled={!isLoadedCitySelected} onClick={selectAllFilters} type="button">
                         {t(language, "selectAll")}
@@ -6007,10 +5934,12 @@ export default function App(): JSX.Element {
                     </div>
                   </div>
                 </section>
+
+                <section className="show-block">
+                  {renderFindStepHeader(4, findPanelCopy.detailsTitle, true)}
+                  <p className="show-block-copy">{findPanelCopy.detailsBody}</p>
+                </section>
               </section>
-              {activeRegionPending || !isLoadedCitySelected ? null : hasVisibleFilteredTrees ? (
-                <p className="selection-hint">{t(language, "tapTreeHint")}</p>
-              ) : null}
             </>
           ) : activePanel === "guide" ? (
             <section className="guide-panel">

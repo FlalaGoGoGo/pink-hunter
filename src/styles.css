@@ -387,34 +387,6 @@ body {
   color: #674754;
 }
 
-.map-locate-btn {
-  position: fixed;
-  z-index: 20;
-  width: 52px;
-  height: 52px;
-  border: 1px solid rgba(96, 126, 184, 0.26);
-  border-radius: 999px;
-  background: rgba(255, 253, 254, 0.96);
-  color: #3f5f91;
-  box-shadow: 0 12px 28px rgba(67, 88, 130, 0.18);
-  display: grid;
-  place-items: center;
-}
-
-.map-locate-btn svg {
-  width: 22px;
-  height: 22px;
-}
-
-.map-locate-btn.locating svg {
-  animation: spin 1s linear infinite;
-}
-
-.map-locate-btn:disabled {
-  cursor: wait;
-  opacity: 0.92;
-}
-
 .legend-dot {
   width: 12px;
   height: 12px;
@@ -428,6 +400,10 @@ body {
 
 .legend-dot.official-unavailable {
   background: #d7dbe1;
+}
+
+.legend-dot.featured-area {
+  background: #6f5ce6;
 }
 
 .sheet {
@@ -464,6 +440,7 @@ body {
 .sheet-content {
   height: calc(100% - 34px);
   overflow-y: auto;
+  overflow-x: hidden;
   padding: 0 0.95rem 1.2rem;
 }
 
@@ -518,9 +495,18 @@ body {
 .filters-heading {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
   gap: 0.5rem;
   margin-bottom: 0.62rem;
+}
+
+.filters-heading-copy {
+  flex: 1;
+  min-width: 0;
+}
+
+.filters-guide-copy {
+  margin-top: 0.18rem;
 }
 
 .filter-actions {
@@ -583,6 +569,54 @@ body {
   font-weight: 800;
 }
 
+.show-block-step-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-bottom: 0.5rem;
+}
+
+.show-block-step-title {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  min-width: 0;
+}
+
+.show-block-step-title h3 {
+  margin: 0;
+  font-size: 0.96rem;
+  font-weight: 800;
+}
+
+.show-block-step-badge {
+  width: 1.7rem;
+  height: 1.7rem;
+  flex-shrink: 0;
+  border-radius: 999px;
+  display: inline-grid;
+  place-items: center;
+  background: linear-gradient(180deg, #ffe7f0, #ffd6e6);
+  color: #7a3b58;
+  font-size: 0.78rem;
+  font-weight: 900;
+}
+
+.show-block-step-optional {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 1.6rem;
+  padding: 0.16rem 0.5rem;
+  border-radius: 999px;
+  background: rgba(111, 92, 230, 0.1);
+  color: #5d4ab6;
+  font-size: 0.66rem;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
 .show-block-copy {
   margin: 0;
   color: #654958;
@@ -612,6 +646,22 @@ body {
   margin: 0.12rem 0 0;
   font-size: 1rem;
   line-height: 1.3;
+}
+
+.city-selection-placeholder {
+  margin: 0;
+  color: #654958;
+  font-size: 0.79rem;
+  line-height: 1.5;
+}
+
+.city-selection-summary {
+  display: grid;
+  gap: 0.2rem;
+}
+
+.city-selection-total-number {
+  font-size: 1.26rem;
 }
 
 .city-selection-total {
@@ -2573,6 +2623,7 @@ body {
   .app-root.desktop-mode .sheet-content {
     height: 100%;
     overflow-y: auto;
+    overflow-x: hidden;
     padding: 1rem 1rem 1.1rem;
   }
 
@@ -2720,6 +2771,8 @@ body {
 .featured-area-card {
   display: grid;
   gap: 0.86rem;
+  min-width: 0;
+  max-width: 100%;
   border-radius: 24px;
   border: 1px solid rgba(224, 97, 151, 0.16);
   background:
@@ -2770,11 +2823,14 @@ body {
 .featured-area-block {
   display: grid;
   gap: 0.64rem;
+  min-width: 0;
 }
 
 .featured-area-section {
   display: grid;
   gap: 0.62rem;
+  min-width: 0;
+  max-width: 100%;
   border-radius: 22px;
   border: 1px solid rgba(224, 97, 151, 0.12);
   background: rgba(255, 255, 255, 0.88);
@@ -2819,6 +2875,8 @@ body {
 
 .featured-area-chart-shell,
 .featured-area-weather-shell {
+  min-width: 0;
+  max-width: 100%;
   border-radius: 24px;
   border: 1px solid rgba(224, 97, 151, 0.12);
   background: rgba(255, 255, 255, 0.92);
@@ -2943,15 +3001,20 @@ body {
 .featured-area-weather-list {
   display: grid;
   gap: 0.18rem;
+  min-width: 0;
 }
 
 .featured-area-weather-row {
   display: grid;
-  grid-template-columns: 5rem 6.2rem 4.2rem 2.5rem minmax(116px, 1fr) 2.5rem;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.95fr) auto;
+  grid-template-areas:
+    "day icon rain"
+    "min track max";
   align-items: center;
-  gap: 0.58rem;
+  gap: 0.48rem 0.58rem;
   padding: 0.74rem 0;
   border-bottom: 1px solid rgba(224, 97, 151, 0.08);
+  min-width: 0;
 }
 
 .featured-area-weather-row:last-child {
@@ -2963,6 +3026,11 @@ body {
 .featured-area-weather-rain {
   display: grid;
   gap: 0.08rem;
+  min-width: 0;
+}
+
+.featured-area-weather-day {
+  grid-area: day;
 }
 
 .featured-area-weather-day strong,
@@ -2979,9 +3047,12 @@ body {
   color: #896877;
   font-size: 0.7rem;
   line-height: 1.2;
+  white-space: normal;
+  overflow-wrap: anywhere;
 }
 
 .featured-area-weather-icon-col {
+  grid-area: icon;
   grid-template-columns: 1.5rem minmax(0, 1fr);
   align-items: center;
 }
@@ -2991,17 +3062,30 @@ body {
 }
 
 .featured-area-weather-rain {
-  text-align: left;
+  grid-area: rain;
+  justify-self: end;
+  text-align: right;
   color: #5b8fd2;
   font-size: 0.76rem;
   font-weight: 800;
 }
 
+.featured-area-weather-temp-min {
+  grid-area: min;
+}
+
 .featured-area-weather-track {
+  grid-area: track;
   position: relative;
   height: 0.42rem;
   border-radius: 999px;
   background: rgba(239, 121, 173, 0.12);
+  min-width: 0;
+}
+
+.featured-area-weather-temp-max {
+  grid-area: max;
+  justify-self: end;
 }
 
 .featured-area-weather-range {
@@ -3119,6 +3203,7 @@ body {
   display: inline-flex;
   align-items: center;
   gap: 0.38rem;
+  max-width: 100%;
   padding: 0.44rem 0.62rem;
   border-radius: 999px;
   background: rgba(255, 246, 250, 0.96);
@@ -3127,6 +3212,8 @@ body {
   font-size: 0.72rem;
   font-weight: 700;
   text-decoration: none;
+  white-space: normal;
+  overflow-wrap: anywhere;
 }
 
 .featured-area-source-pill strong {
@@ -3166,8 +3253,12 @@ body {
   }
 
   .featured-area-weather-row {
-    grid-template-columns: 3.9rem 4.9rem 3.5rem 2rem minmax(68px, 1fr) 2rem;
-    gap: 0.34rem;
+    grid-template-columns: minmax(0, 1fr) auto;
+    grid-template-areas:
+      "day rain"
+      "icon icon"
+      "min track max";
+    gap: 0.36rem 0.42rem;
   }
 
   .featured-area-tree-summary-meta {
