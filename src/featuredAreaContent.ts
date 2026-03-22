@@ -1,5 +1,6 @@
 import type {
   BloomForecast,
+  FeaturedAreaSource,
   FeaturedAreaSourceKind,
   Language,
   TreeCoordSource,
@@ -15,6 +16,13 @@ export type FeaturedWeatherBucket =
   | "rain"
   | "snow"
   | "storm";
+
+export type FeaturedAreaQuickLink = {
+  id: string;
+  label: string;
+  description: string;
+  href: string;
+};
 
 type FeaturedAreaCopy = {
   sectionTitle: string;
@@ -52,6 +60,10 @@ type FeaturedAreaCopy = {
   rainChanceShort: string;
   tempRangeLabel: string;
   notesCoverageTemplate: string;
+  openMapLabel: string;
+  openMapBody: string;
+  watchLiveLabel: string;
+  watchLiveBody: string;
   distanceUnit: string;
 };
 
@@ -93,6 +105,10 @@ const FEATURED_AREA_COPY: Record<Language, FeaturedAreaCopy> = {
     tempRangeLabel: "Range",
     notesCoverageTemplate:
       "The official UW map shows {official} coded cherry locations; the current Pink Hunter pilot has precise points for {mapped} of them.",
+    openMapLabel: "View official map",
+    openMapBody: "Open the UW blossom map PDF.",
+    watchLiveLabel: "Watch live",
+    watchLiveBody: "Open UW cherry blossom live webcams.",
     distanceUnit: "km"
   },
   "zh-CN": {
@@ -132,6 +148,10 @@ const FEATURED_AREA_COPY: Record<Language, FeaturedAreaCopy> = {
     tempRangeLabel: "温度带",
     notesCoverageTemplate:
       "UW 官方地图目前可读出的樱花编码点位至少有 {official} 处；Pink Hunter 这期试点目前已经补到其中的精确点位 {mapped} 处。",
+    openMapLabel: "查看官方地图",
+    openMapBody: "打开 UW 校园赏樱地图 PDF。",
+    watchLiveLabel: "观看实时直播",
+    watchLiveBody: "打开 UW 樱花实时直播。",
     distanceUnit: "公里"
   },
   "zh-TW": {
@@ -171,6 +191,10 @@ const FEATURED_AREA_COPY: Record<Language, FeaturedAreaCopy> = {
     tempRangeLabel: "溫度帶",
     notesCoverageTemplate:
       "UW 官方地圖目前可讀出的櫻花編碼點位至少有 {official} 處；Pink Hunter 這期試點目前已補到其中的精確點位 {mapped} 處。",
+    openMapLabel: "查看官方地圖",
+    openMapBody: "打開 UW 校園賞櫻地圖 PDF。",
+    watchLiveLabel: "觀看即時直播",
+    watchLiveBody: "打開 UW 櫻花即時直播。",
     distanceUnit: "公里"
   },
   "es-ES": {
@@ -210,6 +234,10 @@ const FEATURED_AREA_COPY: Record<Language, FeaturedAreaCopy> = {
     tempRangeLabel: "Rango",
     notesCoverageTemplate:
       "El mapa oficial de UW muestra {official} ubicaciones codificadas; el piloto actual de Pink Hunter tiene puntos precisos para {mapped} de ellas.",
+    openMapLabel: "Ver mapa oficial",
+    openMapBody: "Abrir el PDF del mapa floral de UW.",
+    watchLiveLabel: "Ver en vivo",
+    watchLiveBody: "Abrir las cámaras en vivo de los cerezos de UW.",
     distanceUnit: "km"
   },
   "ko-KR": {
@@ -249,6 +277,10 @@ const FEATURED_AREA_COPY: Record<Language, FeaturedAreaCopy> = {
     tempRangeLabel: "범위",
     notesCoverageTemplate:
       "UW 공식 지도에는 코드 위치가 {official}개 보이며, 현재 Pink Hunter 시범판은 그중 정밀 점 {mapped}개를 담고 있습니다.",
+    openMapLabel: "공식 지도 보기",
+    openMapBody: "UW 캠퍼스 꽃 지도 PDF 열기.",
+    watchLiveLabel: "라이브 보기",
+    watchLiveBody: "UW 벚꽃 라이브 웹캠 열기.",
     distanceUnit: "km"
   },
   "ja-JP": {
@@ -288,6 +320,10 @@ const FEATURED_AREA_COPY: Record<Language, FeaturedAreaCopy> = {
     tempRangeLabel: "幅",
     notesCoverageTemplate:
       "UW の公式マップでは少なくとも {official} 件のコード付き位置が確認でき、Pink Hunter の現行試験版ではそのうち精密ポイント {mapped} 件を掲載しています。",
+    openMapLabel: "公式マップを見る",
+    openMapBody: "UW 桜マップの PDF を開きます。",
+    watchLiveLabel: "ライブを見る",
+    watchLiveBody: "UW 桜ライブ配信を開きます。",
     distanceUnit: "km"
   },
   "fr-FR": {
@@ -327,6 +363,10 @@ const FEATURED_AREA_COPY: Record<Language, FeaturedAreaCopy> = {
     tempRangeLabel: "Plage",
     notesCoverageTemplate:
       "La carte officielle de l'UW montre {official} emplacements codés ; le pilote Pink Hunter dispose de points précis pour {mapped} d'entre eux.",
+    openMapLabel: "Voir la carte officielle",
+    openMapBody: "Ouvrir le PDF de la carte florale UW.",
+    watchLiveLabel: "Voir en direct",
+    watchLiveBody: "Ouvrir les webcams florales UW.",
     distanceUnit: "km"
   },
   "vi-VN": {
@@ -366,6 +406,10 @@ const FEATURED_AREA_COPY: Record<Language, FeaturedAreaCopy> = {
     tempRangeLabel: "Khoảng",
     notesCoverageTemplate:
       "Bản đồ chính thức của UW cho thấy {official} điểm được mã hóa; Pink Hunter hiện có điểm chính xác cho {mapped} trong số đó.",
+    openMapLabel: "Xem bản đồ chính thức",
+    openMapBody: "Mở PDF bản đồ hoa của UW.",
+    watchLiveLabel: "Xem trực tiếp",
+    watchLiveBody: "Mở webcam hoa anh đào trực tiếp của UW.",
     distanceUnit: "km"
   }
 };
@@ -656,6 +700,36 @@ export function featuredAreaInventoryCoverageNote(
 
 export function featuredAreaSourceKindLabel(language: Language, kind: FeaturedAreaSourceKind): string {
   return SOURCE_KIND_LABELS[kind][language];
+}
+
+export function featuredAreaQuickLinks(
+  language: Language,
+  areaId: string,
+  sources: FeaturedAreaSource[]
+): FeaturedAreaQuickLink[] {
+  const copy = featuredAreaCopy(language);
+  if (areaId !== "uw-seattle-quad") {
+    return [];
+  }
+
+  const sourceById = new Map(sources.map((source) => [source.id, source]));
+  const mapHref =
+    sourceById.get("uw_cherry_map")?.href ?? "https://facilities.uw.edu/blog/files/media/uw-cherry-trees-map-2022-web.pdf";
+
+  return [
+    {
+      id: "official_map",
+      label: copy.openMapLabel,
+      description: copy.openMapBody,
+      href: mapHref
+    },
+    {
+      id: "live_webcams",
+      label: copy.watchLiveLabel,
+      description: copy.watchLiveBody,
+      href: "https://www.washington.edu/video/campus-webcams/#cherryblossoms"
+    }
+  ];
 }
 
 export function featuredAreaCoordSourceLabel(

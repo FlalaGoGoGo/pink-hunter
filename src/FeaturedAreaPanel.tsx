@@ -6,6 +6,7 @@ import {
   featuredAreaConfidenceNote,
   featuredAreaCoordSourceLabel,
   featuredAreaCopy,
+  featuredAreaQuickLinks,
   featuredAreaInventoryCoverageNote,
   featuredAreaMeta,
   featuredAreaSourceKindLabel,
@@ -365,6 +366,7 @@ export function FeaturedAreaPanel({
     [area, weather]
   );
   const weatherDays = useMemo(() => futureWeatherDays(weather), [weather]);
+  const quickLinks = useMemo(() => featuredAreaQuickLinks(language, area.id, area.sources), [area.id, area.sources, language]);
 
   const inventoryGroups = useMemo(() => {
     const groups = new Map<
@@ -415,13 +417,29 @@ export function FeaturedAreaPanel({
           <p className="featured-area-eyebrow">{meta.eyebrow}</p>
           <h3>{meta.label}</h3>
           <p>{meta.description}</p>
+          {quickLinks.length > 0 ? (
+            <div className="featured-area-quick-links">
+              {quickLinks.map((link) => (
+                <a
+                  className="featured-area-quick-link"
+                  href={link.href}
+                  key={link.id}
+                  rel="noreferrer"
+                  target="_blank"
+                >
+                  <span className="featured-area-quick-link-label">{link.label}</span>
+                  <span className="featured-area-quick-link-body">{link.description}</span>
+                </a>
+              ))}
+            </div>
+          ) : null}
           <div className="featured-area-mode-badge">
             {adjustedForecast.mode === "ml" ? copy.forecastModeMl : copy.forecastModeFallback}
           </div>
         </div>
       </header>
 
-      <section className="featured-area-block featured-area-forecast-shell">
+      <section className="featured-area-block featured-area-plain-section featured-area-forecast-shell">
         <div className="featured-area-block-head">
           <h4>{copy.chartTitle}</h4>
           <p className="featured-area-section-copy">
@@ -483,7 +501,7 @@ export function FeaturedAreaPanel({
         ) : null}
       </section>
 
-      <section className="featured-area-section featured-area-tree-summary">
+      <section className="featured-area-block featured-area-plain-section featured-area-tree-summary">
         <div className="featured-area-section-head">
           <h4>{copy.treesTitle}</h4>
         </div>
@@ -537,7 +555,7 @@ export function FeaturedAreaPanel({
         )}
       </section>
 
-      <section className="featured-area-section featured-area-confidence">
+      <section className="featured-area-block featured-area-plain-section featured-area-confidence">
         <div className="featured-area-section-head">
           <h4>{copy.confidenceTitle}</h4>
         </div>
@@ -548,7 +566,7 @@ export function FeaturedAreaPanel({
         </ul>
       </section>
 
-      <section className="featured-area-section featured-area-sources">
+      <section className="featured-area-block featured-area-plain-section featured-area-sources">
         <div className="featured-area-section-head">
           <h4>{copy.sourcesTitle}</h4>
         </div>

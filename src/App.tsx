@@ -5421,7 +5421,7 @@ export default function App(): JSX.Element {
     const cityCardBody = selectedCityArea ? (
       <>
         <div className="city-selection-head">
-          <div>
+          <div className="city-selection-title-wrap">
             <p className="status-card-area">{regionOptionLabel(language, selectedCityArea.region)}</p>
             <h3>{formatAreaLabelResolved(selectedCityArea.item.jurisdiction)}</h3>
           </div>
@@ -5866,22 +5866,19 @@ export default function App(): JSX.Element {
                 {renderStatusCard()}
 
                 <section className={isLoadedCitySelected ? "show-block" : "show-block filters-block disabled"}>
-                  <div className="filters-heading">
-                    <div className="filters-heading-copy">
-                      {renderFindStepHeader(3, findPanelCopy.filtersTitle, true)}
-                      <p className="show-block-copy filters-guide-copy">{findPanelCopy.filtersGuideBody}</p>
-                    </div>
-                    <div className="filter-actions">
-                      <button className="clear-btn" disabled={!isLoadedCitySelected} onClick={selectAllFilters} type="button">
-                        {t(language, "selectAll")}
-                      </button>
-                      <button className="clear-btn" disabled={!isLoadedCitySelected} onClick={clearAllFilters} type="button">
-                        {t(language, "clearAll")}
-                      </button>
-                    </div>
+                  {renderFindStepHeader(3, findPanelCopy.filtersTitle)}
+                  <div className="filters-intro">
+                    <p className="show-block-copy filters-guide-copy">{findPanelCopy.filtersGuideBody}</p>
+                    {!isLoadedCitySelected ? <p className="show-block-copy">{findPanelCopy.filtersLockedBody}</p> : null}
                   </div>
-
-                  {!isLoadedCitySelected ? <p className="show-block-copy">{findPanelCopy.filtersLockedBody}</p> : null}
+                  <div className="filter-actions filter-actions-row">
+                    <button className="clear-btn" disabled={!isLoadedCitySelected} onClick={selectAllFilters} type="button">
+                      {t(language, "selectAll")}
+                    </button>
+                    <button className="clear-btn" disabled={!isLoadedCitySelected} onClick={clearAllFilters} type="button">
+                      {t(language, "clearAll")}
+                    </button>
+                  </div>
 
                   <div className="filter-group">
                     <strong>{t(language, "speciesFilter")}</strong>
@@ -5923,7 +5920,7 @@ export default function App(): JSX.Element {
                 </section>
 
                 <section className="show-block">
-                  {renderFindStepHeader(4, findPanelCopy.detailsTitle, true)}
+                  {renderFindStepHeader(4, findPanelCopy.detailsTitle)}
                   <p className="show-block-copy">{findPanelCopy.detailsBody}</p>
                 </section>
               </section>
