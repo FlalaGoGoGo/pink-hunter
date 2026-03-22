@@ -4,9 +4,9 @@ import type {
   FeaturedAreaDetail,
   FeaturedAreaIndex,
   RegionMeta,
-  JumpIndex,
   SpeciesGuide,
   AppMeta,
+  JumpIndex,
   StaticAppData,
   TreeRenderTilesManifest,
   TreeCollection,
@@ -37,11 +37,10 @@ const WEATHER_SESSION_PREFIX = "pink-hunter-featured-weather:";
 const WEATHER_CACHE_TTL_MS = 30 * 60 * 1000;
 
 export async function loadStaticAppData(): Promise<StaticAppData> {
-  const [featuredAreas, guide, meta, jumpIndex, treeTiles] = await Promise.all([
+  const [featuredAreas, guide, meta, treeTiles] = await Promise.all([
     loadJson<FeaturedAreaIndex>("/data/featured-areas.v1.json"),
     loadJson<SpeciesGuide>("/data/species-guide.v1.json"),
     loadJson<AppMeta>("/data/meta.v2.json"),
-    loadJson<JumpIndex>("/data/jump-index.v1.json"),
     runtimeConfig.treeRenderMode === "pmtiles"
       ? loadJson<TreeRenderTilesManifest>("/data/trees.render.v1.json").catch(() => null)
       : Promise.resolve(null)
@@ -52,7 +51,11 @@ export async function loadStaticAppData(): Promise<StaticAppData> {
       ? await loadJson<CoverageCollection>("/data/coverage.v1.geojson")
       : null;
 
-  return { coverage, featuredAreas, guide, meta, jumpIndex, treeTiles };
+  return { coverage, featuredAreas, guide, meta, jumpIndex: null, treeTiles };
+}
+
+export async function loadJumpIndex(): Promise<JumpIndex> {
+  return loadJson<JumpIndex>("/data/jump-index.v1.json");
 }
 
 export async function loadTreeCollection(path: string): Promise<TreeCollection> {

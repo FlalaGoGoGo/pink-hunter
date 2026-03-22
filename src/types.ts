@@ -343,6 +343,6 @@ export interface StaticAppData {
   featuredAreas: FeaturedAreaIndex;
   guide: SpeciesGuide;
   meta: AppMeta;
-  jumpIndex: JumpIndex;
+  jumpIndex: JumpIndex | null;
   treeTiles: TreeRenderTilesManifest | null;
 }

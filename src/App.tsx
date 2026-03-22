@@ -12,6 +12,7 @@ import {
   loadCoverageRegion,
   loadFeaturedAreaDetail,
   loadFeaturedAreaWeather,
+  loadJumpIndex,
   loadStaticAppData,
   loadTreeCollection,
   loadVisitorCount
@@ -35,7 +36,6 @@ import {
 } from "./runtimeConfig";
 import {
   loadMapRuntimeDeps,
-  type ClipMultiPolygon,
   type GeoJSONSource,
   type MapLayerMouseEvent,
   type MapEngineMap,
@@ -55,6 +55,7 @@ import type {
   JumpArea,
   CoverageRegion,
   JumpCountry,
+  JumpIndex,
   JumpState,
   JurisdictionType,
   Language,
@@ -780,6 +781,9 @@ const FIND_PANEL_COPY: Record<
     hideButton: string;
     jumpTitle: string;
     jumpBody: string;
+    jumpLoadBody: string;
+    jumpLoadButton: string;
+    jumpLoadingBody: string;
     jumpCountry: string;
     jumpState: string;
     jumpProvince: string;
@@ -802,6 +806,9 @@ const FIND_PANEL_COPY: Record<
     hideButton: "Hide trees",
     jumpTitle: "Jump to an area",
     jumpBody: "Choose an area, then press the Jump button below and the map will move there.",
+    jumpLoadBody: "To keep the home page fast, Pink Hunter loads the Jump browser only when you ask for it.",
+    jumpLoadButton: "Load states and cities",
+    jumpLoadingBody: "Loading states and cities...",
     jumpCountry: "Country",
     jumpState: "State",
     jumpProvince: "Province",
@@ -822,6 +829,9 @@ const FIND_PANEL_COPY: Record<
     hideButton: "隐藏树木",
     jumpTitle: "跳转至指定区域",
     jumpBody: "选择一个区域，并点击下方「跳转」按钮，地图会跳转过去。",
+    jumpLoadBody: "为了让首页更快，Pink Hunter 会在你需要时才加载跳转浏览器。",
+    jumpLoadButton: "加载州和城市列表",
+    jumpLoadingBody: "正在加载州和城市列表...",
     jumpCountry: "国家",
     jumpState: "州",
     jumpProvince: "省",
@@ -842,6 +852,9 @@ const FIND_PANEL_COPY: Record<
     hideButton: "隱藏樹木",
     jumpTitle: "跳轉至指定區域",
     jumpBody: "選擇一個區域，並點擊下方「跳轉」按鈕，地圖會跳轉過去。",
+    jumpLoadBody: "為了讓首頁更快，Pink Hunter 會在你需要時才載入跳轉瀏覽器。",
+    jumpLoadButton: "載入州與城市列表",
+    jumpLoadingBody: "正在載入州與城市列表...",
     jumpCountry: "國家",
     jumpState: "州",
     jumpProvince: "省",
@@ -863,6 +876,9 @@ const FIND_PANEL_COPY: Record<
     hideButton: "Ocultar árboles",
     jumpTitle: "Ir a una zona",
     jumpBody: "Elige una zona y luego pulsa el botón de salto de abajo para mover el mapa hasta allí.",
+    jumpLoadBody: "Para que la página inicial siga siendo rápida, Pink Hunter solo carga el navegador de salto cuando lo pides.",
+    jumpLoadButton: "Cargar estados y ciudades",
+    jumpLoadingBody: "Cargando estados y ciudades...",
     jumpCountry: "País",
     jumpState: "Estado",
     jumpProvince: "Provincia",
@@ -884,6 +900,9 @@ const FIND_PANEL_COPY: Record<
     hideButton: "나무 숨기기",
     jumpTitle: "지정한 지역으로 이동",
     jumpBody: "지역을 선택한 뒤 아래의 이동 버튼을 누르면 지도가 그곳으로 이동합니다.",
+    jumpLoadBody: "홈페이지를 빠르게 유지하기 위해 Pink Hunter는 필요할 때만 점프 브라우저를 불러옵니다.",
+    jumpLoadButton: "주와 도시 불러오기",
+    jumpLoadingBody: "주와 도시를 불러오는 중...",
     jumpCountry: "국가",
     jumpState: "주",
     jumpProvince: "도",
@@ -905,6 +924,9 @@ const FIND_PANEL_COPY: Record<
     hideButton: "木を隠す",
     jumpTitle: "指定した地域へ移動",
     jumpBody: "地域を選び、下の移動ボタンを押すと地図がその場所へ移動します。",
+    jumpLoadBody: "トップページを軽く保つため、Pink Hunter は必要になるまで Jump ブラウザを読み込みません。",
+    jumpLoadButton: "州と都市を読み込む",
+    jumpLoadingBody: "州と都市を読み込み中...",
     jumpCountry: "国",
     jumpState: "州",
     jumpProvince: "県",
@@ -926,6 +948,9 @@ const FIND_PANEL_COPY: Record<
     hideButton: "Masquer les arbres",
     jumpTitle: "Aller à une zone",
     jumpBody: "Choisissez une zone puis appuyez sur le bouton ci-dessous pour déplacer la carte vers cet endroit.",
+    jumpLoadBody: "Pour garder la page d’accueil rapide, Pink Hunter ne charge le navigateur Jump que lorsque vous le demandez.",
+    jumpLoadButton: "Charger états et villes",
+    jumpLoadingBody: "Chargement des états et des villes...",
     jumpCountry: "Pays",
     jumpState: "État",
     jumpProvince: "Province",
@@ -947,6 +972,9 @@ const FIND_PANEL_COPY: Record<
     hideButton: "Ẩn cây",
     jumpTitle: "Nhảy tới khu vực cụ thể",
     jumpBody: "Chọn một khu vực rồi bấm nút nhảy bên dưới để đưa bản đồ tới đó.",
+    jumpLoadBody: "Để trang chủ luôn nhẹ, Pink Hunter chỉ tải trình duyệt Jump khi bạn thật sự cần.",
+    jumpLoadButton: "Tải tiểu bang và thành phố",
+    jumpLoadingBody: "Đang tải tiểu bang và thành phố...",
     jumpCountry: "Quốc gia",
     jumpState: "Tiểu bang",
     jumpProvince: "Tỉnh",
@@ -1967,84 +1995,6 @@ function getTreeCoordinates(feature: TreeCollection["features"][number]): [numbe
   return [lon, lat];
 }
 
-function buildCoverageCollection(
-  coverageFeatures: CoverageCollection["features"],
-  polygonClippingModule: MapRuntimeDeps["polygonClipping"]
-): CoverageCollection {
-  const occupied: ClipMultiPolygon[] = [];
-  const sortedFeatures = [...coverageFeatures].sort(
-    (left, right) => geometryAreaApprox(left.geometry) - geometryAreaApprox(right.geometry)
-  );
-
-  const features = sortedFeatures
-    .map((feature) => {
-      const subject = geometryToClipMultiPolygon(feature.geometry);
-      const clipped =
-        occupied.length > 0
-          ? (polygonClippingModule.difference(subject, ...occupied) as ClipMultiPolygon | null)
-          : subject;
-      const geometry = clipMultiPolygonToGeometry(clipped);
-      if (!geometry) {
-        return null;
-      }
-      occupied.push(geometryToClipMultiPolygon(geometry));
-      return {
-        ...feature,
-        geometry
-      };
-    })
-    .filter((feature): feature is CoverageCollection["features"][number] => feature !== null);
-
-  return {
-    type: "FeatureCollection",
-    features
-  };
-}
-
-function ringAreaApprox(ring: number[][]): number {
-  let area = 0;
-  for (let index = 0; index < ring.length - 1; index += 1) {
-    const [x1, y1] = ring[index];
-    const [x2, y2] = ring[index + 1];
-    area += x1 * y2 - x2 * y1;
-  }
-  return Math.abs(area) / 2;
-}
-
-function geometryAreaApprox(geometry: CoverageCollection["features"][number]["geometry"]): number {
-  if (geometry.type === "Polygon") {
-    return geometry.coordinates.reduce((sum, ring, index) => sum + (index === 0 ? ringAreaApprox(ring) : 0), 0);
-  }
-  return geometry.coordinates.reduce(
-    (sum, polygon) => sum + polygon.reduce((polySum, ring, index) => polySum + (index === 0 ? ringAreaApprox(ring) : 0), 0),
-    0
-  );
-}
-
-function geometryToClipMultiPolygon(
-  geometry: CoverageCollection["features"][number]["geometry"]
-): ClipMultiPolygon {
-  return (geometry.type === "Polygon" ? [geometry.coordinates] : geometry.coordinates) as unknown as ClipMultiPolygon;
-}
-
-function clipMultiPolygonToGeometry(
-  geometry: ClipMultiPolygon | null
-): CoverageCollection["features"][number]["geometry"] | null {
-  if (!geometry || geometry.length === 0) {
-    return null;
-  }
-  if (geometry.length === 1) {
-    return {
-      type: "Polygon",
-      coordinates: geometry[0]
-    };
-  }
-  return {
-    type: "MultiPolygon",
-    coordinates: geometry
-  };
-}
-
 function parseRegion(raw: string | null, cities: string[]): CoverageRegion {
   if (
     raw === "wa" ||
@@ -2538,8 +2488,10 @@ export default function App(): JSX.Element {
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
   const [loadingAreaIndexes, setLoadingAreaIndexes] = useState(false);
+  const [loadingJumpIndex, setLoadingJumpIndex] = useState(false);
   const [loadingShards, setLoadingShards] = useState(false);
   const [mapReady, setMapReady] = useState(false);
+  const [showDiscoveryOverlays, setShowDiscoveryOverlays] = useState(false);
   const [visitorCount, setVisitorCount] = useState<number | null>(null);
 
   const [activeRegion, setActiveRegion] = useState<CoverageRegion>(initialUrlState.region);
@@ -2589,6 +2541,7 @@ export default function App(): JSX.Element {
   const languageMenuRef = useRef<HTMLDivElement | null>(null);
   const mapRef = useRef<MapEngineMap | null>(null);
   const popupRef = useRef<MapEnginePopup | null>(null);
+  const jumpIndexLoadRef = useRef<Promise<JumpIndex | null> | null>(null);
   const filteredFeaturesRef = useRef<TreeCollection["features"]>([]);
   const openTreeDetailsRef = useRef<(treeId: string, hint?: TreeRenderLookupHint) => Promise<void>>(
     async () => undefined
@@ -2623,6 +2576,47 @@ export default function App(): JSX.Element {
     setActiveLegalDocument(documentId);
     setActivePanel("about");
   }, []);
+  const ensureJumpIndexLoaded = useCallback(async (): Promise<JumpIndex | null> => {
+    if (!data) {
+      return null;
+    }
+
+    if (data.jumpIndex) {
+      return data.jumpIndex;
+    }
+
+    if (jumpIndexLoadRef.current) {
+      return jumpIndexLoadRef.current;
+    }
+
+    setLoadingJumpIndex(true);
+    setError(null);
+
+    const request = loadJumpIndex()
+      .then((loadedJumpIndex) => {
+        setData((current) => {
+          if (!current || current.jumpIndex) {
+            return current;
+          }
+          return {
+            ...current,
+            jumpIndex: loadedJumpIndex
+          };
+        });
+        return loadedJumpIndex;
+      })
+      .catch((loadError) => {
+        setError(loadError instanceof Error ? loadError.message : "Unknown jump index loading error");
+        return null;
+      })
+      .finally(() => {
+        jumpIndexLoadRef.current = null;
+        setLoadingJumpIndex(false);
+      });
+
+    jumpIndexLoadRef.current = request;
+    return request;
+  }, [data]);
 
   useEffect(() => {
     let cancelled = false;
@@ -2653,21 +2647,31 @@ export default function App(): JSX.Element {
 
   useEffect(() => {
     let cancelled = false;
-    void (async () => {
-      try {
-        const count = await loadVisitorCount();
-        if (!cancelled && count !== null) {
-          setVisitorCount(count);
+    const timeoutId = window.setTimeout(() => {
+      void (async () => {
+        try {
+          const count = await loadVisitorCount();
+          if (!cancelled && count !== null) {
+            setVisitorCount(count);
+          }
+        } catch (loadError) {
+          console.warn("visitor-count-unavailable", loadError);
         }
-      } catch (loadError) {
-        console.warn("visitor-count-unavailable", loadError);
-      }
-    })();
+      })();
+    }, 1200);
 
     return () => {
       cancelled = true;
+      window.clearTimeout(timeoutId);
     };
   }, []);
+
+  useEffect(() => {
+    if (!data || data.jumpIndex || !initialUrlState.areaId) {
+      return;
+    }
+    void ensureJumpIndexLoaded();
+  }, [data, ensureJumpIndexLoaded, initialUrlState.areaId]);
 
   useEffect(() => {
     const mediaQuery = window.matchMedia("(min-width: 1024px)");
@@ -2688,6 +2692,20 @@ export default function App(): JSX.Element {
   }, [isDesktop]);
 
   useEffect(() => {
+    if (!data || !mapReady || showDiscoveryOverlays) {
+      return;
+    }
+
+    const timeoutId = window.setTimeout(() => {
+      setShowDiscoveryOverlays(true);
+    }, 450);
+
+    return () => {
+      window.clearTimeout(timeoutId);
+    };
+  }, [data, mapReady, showDiscoveryOverlays]);
+
+  useEffect(() => {
     if (activePanel !== "about" && activeLegalDocument !== null) {
       setActiveLegalDocument(null);
     }
@@ -2697,6 +2715,7 @@ export default function App(): JSX.Element {
     const entries = (data?.meta.regions ?? []).map((regionMeta) => [regionMeta.id, regionMeta]);
     return new Map(entries as Array<[CoverageRegion, RegionMeta]>);
   }, [data]);
+  const jumpIndex = data?.jumpIndex ?? null;
   const featuredAreaById = useMemo(() => {
     if (!data) {
       return new Map<string, FeaturedAreaIndexItem>();
@@ -2716,12 +2735,18 @@ export default function App(): JSX.Element {
   const selectedFeaturedAreaDetail = selectedFeaturedAreaId ? featuredAreaDetailCache[selectedFeaturedAreaId] ?? null : null;
   const selectedFeaturedAreaWeather = selectedFeaturedAreaId ? featuredAreaWeatherCache[selectedFeaturedAreaId] ?? null : null;
   const featuredAreaBoundsCollection = useMemo(
-    () => (data ? buildFeaturedAreaBoundsCollection(data.featuredAreas.items) : buildFeaturedAreaBoundsCollection([])),
-    [data]
+    () =>
+      data && showDiscoveryOverlays
+        ? buildFeaturedAreaBoundsCollection(data.featuredAreas.items)
+        : buildFeaturedAreaBoundsCollection([]),
+    [data, showDiscoveryOverlays]
   );
   const featuredAreaPinCollection = useMemo(
-    () => (data ? buildFeaturedAreaPinCollection(data.featuredAreas.items) : buildFeaturedAreaPinCollection([])),
-    [data]
+    () =>
+      data && showDiscoveryOverlays
+        ? buildFeaturedAreaPinCollection(data.featuredAreas.items)
+        : buildFeaturedAreaPinCollection([]),
+    [data, showDiscoveryOverlays]
   );
   const activeLanguageOption = LANGUAGE_OPTIONS.find((option) => option.id === language) ?? LANGUAGE_OPTIONS[0];
 
@@ -3034,10 +3059,12 @@ export default function App(): JSX.Element {
 
   const cityPinEntries = useMemo(
     () =>
-      visibleAreaEntries.filter(
+      showDiscoveryOverlays
+        ? visibleAreaEntries.filter(
         ({ item }) => item.tree_count > 0 && item.jurisdiction_type === "city"
-      ),
-    [visibleAreaEntries]
+      )
+        : [],
+    [showDiscoveryOverlays, visibleAreaEntries]
   );
 
   const cityPinCollection = useMemo(() => buildCityPinCollection(cityPinEntries), [cityPinEntries]);
@@ -3156,38 +3183,38 @@ export default function App(): JSX.Element {
   }, [loadedActiveRegionTreeById, selectedFeaturedAreaDetail]);
 
   const jumpCountries = useMemo(() => {
-    if (!data) {
+    if (!jumpIndex) {
       return [] as JumpCountry[];
     }
     const collator = new Intl.Collator(language, { sensitivity: "base" });
-    return [...data.jumpIndex.countries].sort((left, right) =>
+    return [...jumpIndex.countries].sort((left, right) =>
       collator.compare(COUNTRY_LABELS[language][left.id], COUNTRY_LABELS[language][right.id])
     );
-  }, [data, language]);
+  }, [jumpIndex, language]);
 
   const jumpStates = useMemo(() => {
-    if (!data) {
+    if (!jumpIndex) {
       return [] as JumpState[];
     }
     const collator = new Intl.Collator(language, { sensitivity: "base" });
-    return [...data.jumpIndex.states]
+    return [...jumpIndex.states]
       .filter((item) => item.country_id === jumpCountry)
       .sort((left, right) =>
         collator.compare(jumpStateDisplayLabel(language, left), jumpStateDisplayLabel(language, right))
       );
-  }, [data, jumpCountry, language]);
+  }, [jumpCountry, jumpIndex, language]);
 
   const jumpStateById = useMemo(() => {
-    if (!data) {
+    if (!jumpIndex) {
       return new Map<string, JumpState>();
     }
-    return new Map(data.jumpIndex.states.map((state) => [state.id, state]));
-  }, [data]);
+    return new Map(jumpIndex.states.map((state) => [state.id, state]));
+  }, [jumpIndex]);
 
   const areaStateCodeByName = useMemo(() => {
     const next = new Map<string, string>();
 
-    data?.jumpIndex.areas.forEach((area) => {
+    jumpIndex?.areas.forEach((area) => {
       const state = jumpStateById.get(area.state_id);
       if (!state) {
         return;
@@ -3213,7 +3240,7 @@ export default function App(): JSX.Element {
     });
 
     return next;
-  }, [data, jumpStateById, regionAreaIndexCache]);
+  }, [data, jumpIndex, jumpStateById, regionAreaIndexCache]);
 
   const resolvedStateCodeForArea = useCallback(
     (city: string) => {
@@ -3243,25 +3270,25 @@ export default function App(): JSX.Element {
   );
 
   const jumpAreaById = useMemo(() => {
-    if (!data) {
+    if (!jumpIndex) {
       return new Map<string, JumpArea>();
     }
-    return new Map(data.jumpIndex.areas.map((area) => [area.id, area]));
-  }, [data]);
+    return new Map(jumpIndex.areas.map((area) => [area.id, area]));
+  }, [jumpIndex]);
 
   const jumpAreaDisplayStatusById = useMemo(() => {
     const next = new Map<string, JumpAreaDisplayStatusInfo>();
-    if (!data) {
+    if (!jumpIndex) {
       return next;
     }
 
     const cityCenters = new Map(
-      data.jumpIndex.areas
+      jumpIndex.areas
         .filter((area) => area.area_type === "city")
         .map((area) => [area.id, boundsCenter(area.bounds)])
     );
 
-    data.jumpIndex.areas.forEach((area) => {
+    jumpIndex.areas.forEach((area) => {
       if (area.coverage_status === "covered") {
         next.set(area.id, { kind: "covered", coveredCityCount: 0 });
         return;
@@ -3273,7 +3300,7 @@ export default function App(): JSX.Element {
       }
 
       if (area.area_type === "county") {
-        const coveredCityCount = data.jumpIndex.areas.reduce((count, candidate) => {
+        const coveredCityCount = jumpIndex.areas.reduce((count, candidate) => {
           if (
             candidate.id === area.id ||
             candidate.country_id !== area.country_id ||
@@ -3298,7 +3325,7 @@ export default function App(): JSX.Element {
     });
 
     return next;
-  }, [data]);
+  }, [jumpIndex]);
 
   const selectedJumpArea = useMemo(
     () => (selectedJumpAreaId ? jumpAreaById.get(selectedJumpAreaId) ?? null : null),
@@ -3328,14 +3355,14 @@ export default function App(): JSX.Element {
   const normalizedJumpAreaQuery = normalizeSearchText(jumpAreaQuery);
 
   const jumpAreaMatches = useMemo(() => {
-    if (!data || !normalizedJumpAreaQuery) {
+    if (!jumpIndex || !normalizedJumpAreaQuery) {
       return [] as JumpArea[];
     }
 
     const collator = new Intl.Collator(language, { sensitivity: "base" });
     const queryTokens = normalizedJumpAreaQuery.split(/\s+/).filter(Boolean);
 
-    return data.jumpIndex.areas
+    return jumpIndex.areas
       .map((area) => {
         const state = jumpStateById.get(area.state_id);
         const displayStatus = jumpAreaDisplayStatusById.get(area.id);
@@ -3396,10 +3423,10 @@ export default function App(): JSX.Element {
       .slice(0, 20)
       .map((item) => item.area);
   }, [
-    data,
     formatJumpAreaLabel,
     jumpCountry,
     jumpAreaDisplayStatusById,
+    jumpIndex,
     jumpState,
     jumpStateById,
     language,
@@ -3407,18 +3434,18 @@ export default function App(): JSX.Element {
   ]);
 
   useEffect(() => {
-    if (!data) {
+    if (!jumpIndex) {
       return;
     }
     const fallbackCountry = REGION_COUNTRY_KEYS[initialUrlState.region];
     setJumpCountry((current) =>
-      current && data.jumpIndex.countries.some((item) => item.id === current) ? current : fallbackCountry
+      current && jumpIndex.countries.some((item) => item.id === current) ? current : fallbackCountry
     );
-    setJumpState((current) => (current && data.jumpIndex.states.some((item) => item.id === current) ? current : ""));
-  }, [data, initialUrlState.region]);
+    setJumpState((current) => (current && jumpIndex.states.some((item) => item.id === current) ? current : ""));
+  }, [initialUrlState.region, jumpIndex]);
 
   useEffect(() => {
-    if (!selectedJumpAreaId) {
+    if (!selectedJumpAreaId || !jumpIndex) {
       return;
     }
     const area = jumpAreaById.get(selectedJumpAreaId);
@@ -3428,7 +3455,7 @@ export default function App(): JSX.Element {
     }
     setJumpCountry(area.country_id);
     setJumpState(area.state_id);
-  }, [jumpAreaById, selectedJumpAreaId]);
+  }, [jumpAreaById, jumpIndex, selectedJumpAreaId]);
 
   useEffect(() => {
     if (!jumpState) {
@@ -3479,14 +3506,11 @@ export default function App(): JSX.Element {
   );
 
   const displayCoverage = useMemo(() => {
-    if (!mapRuntime || visibleRegionIds.length <= 1) {
-      return {
-        type: "FeatureCollection",
-        features: coverageFeaturesWithAreaIds
-      } as CoverageCollection;
-    }
-    return buildCoverageCollection(coverageFeaturesWithAreaIds, mapRuntime.polygonClipping);
-  }, [coverageFeaturesWithAreaIds, mapRuntime, visibleRegionIds.length]);
+    return {
+      type: "FeatureCollection",
+      features: coverageFeaturesWithAreaIds
+    } as CoverageCollection;
+  }, [coverageFeaturesWithAreaIds]);
 
   const filteredFeatures = useMemo(() => {
     if (selectedSpecies.length === 0 || selectedOwnership.length === 0) {
@@ -5075,71 +5099,76 @@ export default function App(): JSX.Element {
     setLocatingUser(true);
     navigator.geolocation.getCurrentPosition(
       (position) => {
-        const coordinates: [number, number] = [position.coords.longitude, position.coords.latitude];
-        const matchedArea =
-          [...data.jumpIndex.areas]
-            .filter((area) => boundsContainCoordinate(area.bounds, coordinates))
-            .sort(
-              (left, right) =>
-                (left.bounds[1][0] - left.bounds[0][0]) * (left.bounds[1][1] - left.bounds[0][1]) -
-                (right.bounds[1][0] - right.bounds[0][0]) * (right.bounds[1][1] - right.bounds[0][1])
-            )[0] ?? null;
-        const matchedRegion =
-          data.meta.regions.find((region) => boundsContainCoordinate(region.bounds, coordinates)) ?? null;
+        void (async () => {
+          const coordinates: [number, number] = [position.coords.longitude, position.coords.latitude];
+          const loadedJumpIndex = data.jumpIndex ?? (await ensureJumpIndexLoaded());
+          const matchedArea =
+            loadedJumpIndex
+              ? [...loadedJumpIndex.areas]
+                  .filter((area) => boundsContainCoordinate(area.bounds, coordinates))
+                  .sort(
+                    (left, right) =>
+                      (left.bounds[1][0] - left.bounds[0][0]) * (left.bounds[1][1] - left.bounds[0][1]) -
+                      (right.bounds[1][0] - right.bounds[0][0]) * (right.bounds[1][1] - right.bounds[0][1])
+                  )[0] ?? null
+              : null;
+          const matchedRegion =
+            data.meta.regions.find((region) => boundsContainCoordinate(region.bounds, coordinates)) ?? null;
 
-        setLocatingUser(false);
-        setSelectedTree(null);
-        setSelectedCoverage(null);
-        setSelectedFeaturedAreaId(null);
-        setSelectedJumpAreaId(null);
-        setSelectedCityAreaId(null);
-        setLoadedCityAreaId(null);
-        setJumpAreaQuery("");
-        setJumpAreaExpanded(false);
-        setUserLocation(coordinates);
-        setStatusNotice(null);
-        if (matchedArea) {
-          setJumpCountry(matchedArea.country_id);
-          setJumpState(matchedArea.state_id);
-          setSelectedJumpAreaId(matchedArea.id);
-        }
-        if (matchedArea?.region_hint) {
-          setActiveRegion(matchedArea.region_hint);
-        } else if (matchedRegion?.id) {
-          setActiveRegion(matchedRegion.id);
-        }
+          setLocatingUser(false);
+          setSelectedTree(null);
+          setSelectedCoverage(null);
+          setSelectedFeaturedAreaId(null);
+          setSelectedJumpAreaId(null);
+          setSelectedCityAreaId(null);
+          setLoadedCityAreaId(null);
+          setJumpAreaQuery("");
+          setJumpAreaExpanded(false);
+          setUserLocation(coordinates);
+          setStatusNotice(null);
+          if (matchedArea) {
+            setJumpCountry(matchedArea.country_id);
+            setJumpState(matchedArea.state_id);
+            setSelectedJumpAreaId(matchedArea.id);
+          }
+          if (matchedArea?.region_hint) {
+            setActiveRegion(matchedArea.region_hint);
+          } else if (matchedRegion?.id) {
+            setActiveRegion(matchedRegion.id);
+          }
 
-        if (matchedArea && getJumpAreaDisplayStatus(matchedArea).kind === "official_unavailable") {
-          setStatusNotice({
-            kind: "official_unavailable",
-            areaName: formatJumpAreaLabel(matchedArea)
-          });
-        } else if (matchedArea && getJumpAreaDisplayStatus(matchedArea).kind === "city_level_coverage") {
-          setStatusNotice({
-            kind: "city_level_coverage",
-            areaName: formatJumpAreaLabel(matchedArea)
-          });
-        } else if (matchedArea && getJumpAreaDisplayStatus(matchedArea).kind === "untracked") {
-          setStatusNotice({
-            kind: "untracked",
-            areaName: formatJumpAreaLabel(matchedArea)
-          });
-        } else if (matchedArea && getJumpAreaDisplayStatus(matchedArea).kind === "covered") {
-          setSelectedCityAreaId(matchedArea.id);
-        }
+          if (matchedArea && getJumpAreaDisplayStatus(matchedArea).kind === "official_unavailable") {
+            setStatusNotice({
+              kind: "official_unavailable",
+              areaName: formatJumpAreaLabel(matchedArea)
+            });
+          } else if (matchedArea && getJumpAreaDisplayStatus(matchedArea).kind === "city_level_coverage") {
+            setStatusNotice({
+              kind: "city_level_coverage",
+              areaName: formatJumpAreaLabel(matchedArea)
+            });
+          } else if (matchedArea && getJumpAreaDisplayStatus(matchedArea).kind === "untracked") {
+            setStatusNotice({
+              kind: "untracked",
+              areaName: formatJumpAreaLabel(matchedArea)
+            });
+          } else if (matchedArea && getJumpAreaDisplayStatus(matchedArea).kind === "covered") {
+            setSelectedCityAreaId(matchedArea.id);
+          }
 
-        const map = mapRef.current;
-        if (map && mapReady) {
-          map.easeTo({
-            center: coordinates,
-            zoom: Math.max(13, map.getZoom()),
-            duration: 700
-          });
-        }
+          const map = mapRef.current;
+          if (map && mapReady) {
+            map.easeTo({
+              center: coordinates,
+              zoom: Math.max(13, map.getZoom()),
+              duration: 700
+            });
+          }
 
-        if (!isDesktopRef.current) {
-          setActivePanel("filters");
-        }
+          if (!isDesktopRef.current) {
+            setActivePanel("filters");
+          }
+        })();
       },
       (positionError) => {
         setLocatingUser(false);
@@ -5288,7 +5317,19 @@ export default function App(): JSX.Element {
         title = discoveryCopy.cityLevelCoverageTitle;
         body = discoveryCopy.cityLevelCoverageBody;
         action = (
-          <button className="clear-btn" onClick={() => setJumpAreaExpanded(true)} type="button">
+          <button
+            className="clear-btn"
+            onClick={() => {
+              if (jumpIndex) {
+                setJumpAreaExpanded(true);
+                return;
+              }
+              void ensureJumpIndexLoaded().then(() => {
+                setJumpAreaExpanded(true);
+              });
+            }}
+            type="button"
+          >
             {discoveryCopy.areaSearchShow}
           </button>
         );
@@ -5780,130 +5821,150 @@ export default function App(): JSX.Element {
                   <div className="show-block-header">
                     <h3>{findPanelCopy.jumpTitle}</h3>
                   </div>
-                  <p className="show-block-copy">{findPanelCopy.jumpBody}</p>
-                  <div className="jump-grid">
-                    <label className="jump-field">
-                      <span>{findPanelCopy.jumpCountry}</span>
-                      <select
-                        className="jump-select"
-                        onChange={(event) => {
-                          const nextCountry = event.target.value as JumpCountry["id"];
-                          setJumpCountry(nextCountry);
-                          setJumpState("");
-                          clearSelectedJumpArea();
-                          setJumpAreaExpanded(false);
-                          setStatusNotice(null);
-                          setUserLocation(null);
-                        }}
-                        value={jumpCountry}
-                      >
-                        {jumpCountries.map((country) => (
-                          <option key={country.id} value={country.id}>
-                            {country.emoji} {COUNTRY_LABELS[language][country.id]}
-                          </option>
-                        ))}
-                      </select>
-                    </label>
-
-                    <label className="jump-field">
-                      <span>{jumpSubnationalLabel}</span>
-                      <select
-                        className="jump-select"
-                        onChange={(event) => {
-                          const nextState = event.target.value;
-                          setJumpState(nextState);
-                          clearSelectedJumpArea();
-                          setStatusNotice(null);
-                          setUserLocation(null);
-                        }}
-                        value={jumpState}
-                      >
-                        <option value="">{jumpAnySubnationalLabel}</option>
-                        {jumpStates.map((state) => (
-                          <option key={state.id} value={state.id}>
-                            {jumpStateDisplayLabel(language, state)}
-                          </option>
-                        ))}
-                      </select>
-                    </label>
-                  </div>
-                  <div className="jump-area-tools">
-                    <button
-                      className="jump-area-toggle"
-                      onClick={() => setJumpAreaExpanded((current) => !current)}
-                      type="button"
-                    >
-                      {jumpAreaExpanded ? discoveryCopy.areaSearchHide : discoveryCopy.areaSearchShow}
-                    </button>
-                    {selectedJumpAreaLabel && (
-                      <div className="jump-selected-area">
-                        <span>{selectedJumpAreaLabel}</span>
+                  {!jumpIndex ? (
+                    <>
+                      <p className="show-block-copy">
+                        {loadingJumpIndex ? findPanelCopy.jumpLoadingBody : findPanelCopy.jumpLoadBody}
+                      </p>
+                      <div className="jump-actions">
                         <button
-                          aria-label={t(language, "clearAll")}
-                          className="jump-selected-area-clear"
-                          onClick={clearSelectedJumpArea}
+                          className="clear-btn jump-btn"
+                          disabled={loadingJumpIndex}
+                          onClick={() => void ensureJumpIndexLoaded()}
                           type="button"
                         >
-                          ×
+                          {loadingJumpIndex ? t(language, "loading") : findPanelCopy.jumpLoadButton}
                         </button>
                       </div>
-                    )}
-                  </div>
-                  {jumpAreaExpanded && (
-                    <div className="jump-area-search-shell">
-                      <input
-                        className="filter-search-input jump-area-search-input"
-                        onChange={(event) => setJumpAreaQuery(event.target.value)}
-                        placeholder={t(language, "searchCityPlaceholder")}
-                        type="search"
-                        value={jumpAreaQuery}
-                      />
-                      {normalizedJumpAreaQuery ? (
-                        jumpAreaMatches.length > 0 ? (
-                          <div className="jump-area-results">
-                            {jumpAreaMatches.map((area) => {
-                              const areaDisplayStatus = getJumpAreaDisplayStatus(area);
-                              return (
-                                <button
-                                  className={
-                                    area.id === selectedJumpAreaId
-                                      ? "jump-area-result active"
-                                      : "jump-area-result"
-                                  }
-                                  key={area.id}
-                                  onClick={() => handleSelectJumpArea(area)}
-                                  type="button"
-                                >
-                                  <div className="jump-area-result-head">
-                                    <strong>{formatJumpAreaLabel(area)}</strong>
-                                  </div>
-                                  <div className="jump-area-result-meta">
-                                    <span
-                                      className={`coverage-area-type-badge ${jurisdictionTypeClassName(
-                                        area.area_type
-                                      )}`}
-                                    >
-                                      {jurisdictionTypeLabel(language, area.area_type)}
-                                    </span>
-                                    <span className={`jump-area-status-badge ${areaDisplayStatus.kind}`}>
-                                      {jumpAreaStatusLabel(areaDisplayStatus)}
-                                    </span>
-                                  </div>
-                                </button>
-                              );
-                            })}
+                    </>
+                  ) : (
+                    <>
+                      <p className="show-block-copy">{findPanelCopy.jumpBody}</p>
+                      <div className="jump-grid">
+                        <label className="jump-field">
+                          <span>{findPanelCopy.jumpCountry}</span>
+                          <select
+                            className="jump-select"
+                            onChange={(event) => {
+                              const nextCountry = event.target.value as JumpCountry["id"];
+                              setJumpCountry(nextCountry);
+                              setJumpState("");
+                              clearSelectedJumpArea();
+                              setJumpAreaExpanded(false);
+                              setStatusNotice(null);
+                              setUserLocation(null);
+                            }}
+                            value={jumpCountry}
+                          >
+                            {jumpCountries.map((country) => (
+                              <option key={country.id} value={country.id}>
+                                {country.emoji} {COUNTRY_LABELS[language][country.id]}
+                              </option>
+                            ))}
+                          </select>
+                        </label>
+
+                        <label className="jump-field">
+                          <span>{jumpSubnationalLabel}</span>
+                          <select
+                            className="jump-select"
+                            onChange={(event) => {
+                              const nextState = event.target.value;
+                              setJumpState(nextState);
+                              clearSelectedJumpArea();
+                              setStatusNotice(null);
+                              setUserLocation(null);
+                            }}
+                            value={jumpState}
+                          >
+                            <option value="">{jumpAnySubnationalLabel}</option>
+                            {jumpStates.map((state) => (
+                              <option key={state.id} value={state.id}>
+                                {jumpStateDisplayLabel(language, state)}
+                              </option>
+                            ))}
+                          </select>
+                        </label>
+                      </div>
+                      <div className="jump-area-tools">
+                        <button
+                          className="jump-area-toggle"
+                          onClick={() => setJumpAreaExpanded((current) => !current)}
+                          type="button"
+                        >
+                          {jumpAreaExpanded ? discoveryCopy.areaSearchHide : discoveryCopy.areaSearchShow}
+                        </button>
+                        {selectedJumpAreaLabel && (
+                          <div className="jump-selected-area">
+                            <span>{selectedJumpAreaLabel}</span>
+                            <button
+                              aria-label={t(language, "clearAll")}
+                              className="jump-selected-area-clear"
+                              onClick={clearSelectedJumpArea}
+                              type="button"
+                            >
+                              ×
+                            </button>
                           </div>
-                        ) : (
-                          <p className="filter-empty jump-area-empty">{discoveryCopy.areaSearchEmpty}</p>
-                        )
-                      ) : null}
-                    </div>
+                        )}
+                      </div>
+                      {jumpAreaExpanded && (
+                        <div className="jump-area-search-shell">
+                          <input
+                            className="filter-search-input jump-area-search-input"
+                            onChange={(event) => setJumpAreaQuery(event.target.value)}
+                            placeholder={t(language, "searchCityPlaceholder")}
+                            type="search"
+                            value={jumpAreaQuery}
+                          />
+                          {normalizedJumpAreaQuery ? (
+                            jumpAreaMatches.length > 0 ? (
+                              <div className="jump-area-results">
+                                {jumpAreaMatches.map((area) => {
+                                  const areaDisplayStatus = getJumpAreaDisplayStatus(area);
+                                  return (
+                                    <button
+                                      className={
+                                        area.id === selectedJumpAreaId
+                                          ? "jump-area-result active"
+                                          : "jump-area-result"
+                                      }
+                                      key={area.id}
+                                      onClick={() => handleSelectJumpArea(area)}
+                                      type="button"
+                                    >
+                                      <div className="jump-area-result-head">
+                                        <strong>{formatJumpAreaLabel(area)}</strong>
+                                      </div>
+                                      <div className="jump-area-result-meta">
+                                        <span
+                                          className={`coverage-area-type-badge ${jurisdictionTypeClassName(
+                                            area.area_type
+                                          )}`}
+                                        >
+                                          {jurisdictionTypeLabel(language, area.area_type)}
+                                        </span>
+                                        <span className={`jump-area-status-badge ${areaDisplayStatus.kind}`}>
+                                          {jumpAreaStatusLabel(areaDisplayStatus)}
+                                        </span>
+                                      </div>
+                                    </button>
+                                  );
+                                })}
+                              </div>
+                            ) : (
+                              <p className="filter-empty jump-area-empty">{discoveryCopy.areaSearchEmpty}</p>
+                            )
+                          ) : null}
+                        </div>
+                      )}
+                      <div className="jump-actions">
+                        <button className="clear-btn jump-btn" onClick={handleJump} type="button">
+                          {findPanelCopy.jumpButton}
+                        </button>
+                      </div>
+                    </>
                   )}
-                  <div className="jump-actions">
-                    <button className="clear-btn jump-btn" onClick={handleJump} type="button">
-                      {findPanelCopy.jumpButton}
-                    </button>
-                  </div>
                 </section>
                 {renderStatusCard()}
 
