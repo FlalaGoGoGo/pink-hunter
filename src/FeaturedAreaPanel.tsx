@@ -45,6 +45,44 @@ type InventoryGroupSummary = {
   variants: Array<{ label: string; count: number }>;
 };
 
+function QuickLinkIcon({ linkId }: { linkId: string }): JSX.Element {
+  if (linkId === "official_map") {
+    return (
+      <svg aria-hidden="true" className="featured-area-quick-link-icon" viewBox="0 0 24 24">
+        <path
+          d="M4.5 6.2 9 4.5l6 2.2 4.5-1.7v12.8L15 19.5l-6-2.2-4.5 1.7Z"
+          fill="none"
+          stroke="currentColor"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth="1.7"
+        />
+        <path d="M9 4.5v12.8M15 6.7v12.8" fill="none" stroke="currentColor" strokeWidth="1.7" />
+      </svg>
+    );
+  }
+
+  return (
+    <svg aria-hidden="true" className="featured-area-quick-link-icon" viewBox="0 0 24 24">
+      <path
+        d="M6 7.2h7.6c2.9 0 5.2 2.3 5.2 5.2s-2.3 5.2-5.2 5.2H6"
+        fill="none"
+        stroke="currentColor"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth="1.8"
+      />
+      <path
+        d="m10.2 9.3 4.6 3.1-4.6 3.1Z"
+        fill="none"
+        stroke="currentColor"
+        strokeLinejoin="round"
+        strokeWidth="1.8"
+      />
+    </svg>
+  );
+}
+
 const SVG_WIDTH = 1200;
 const SVG_HEIGHT = 376;
 const CHART_LEFT = 72;
@@ -427,15 +465,15 @@ export function FeaturedAreaPanel({
                   rel="noreferrer"
                   target="_blank"
                 >
-                  <span className="featured-area-quick-link-label">{link.label}</span>
+                  <span className="featured-area-quick-link-head">
+                    <QuickLinkIcon linkId={link.id} />
+                    <span className="featured-area-quick-link-label">{link.label}</span>
+                  </span>
                   <span className="featured-area-quick-link-body">{link.description}</span>
                 </a>
               ))}
             </div>
           ) : null}
-          <div className="featured-area-mode-badge">
-            {adjustedForecast.mode === "ml" ? copy.forecastModeMl : copy.forecastModeFallback}
-          </div>
         </div>
       </header>
 

@@ -79,7 +79,7 @@ const FEATURED_AREA_COPY: Record<Language, FeaturedAreaCopy> = {
     startLabel: "Start",
     peakLabel: "Peak",
     endLabel: "End",
-    weatherTitle: "10-day weather",
+    weatherTitle: "7-day weather",
     weatherLoading: "Loading live weather...",
     weatherUnavailable: "Live weather is temporarily unavailable. The static forecast is still shown.",
     weatherStable: "Live weather keeps the forecast unchanged today.",
@@ -122,7 +122,7 @@ const FEATURED_AREA_COPY: Record<Language, FeaturedAreaCopy> = {
     startLabel: "开始",
     peakLabel: "顶峰",
     endLabel: "结束",
-    weatherTitle: "未来十天天气",
+    weatherTitle: "未来七天天气",
     weatherLoading: "正在加载实时天气...",
     weatherUnavailable: "实时天气暂时不可用，静态预测仍然可看。",
     weatherStable: "实时天气今天没有改变这条预测。",
@@ -165,7 +165,7 @@ const FEATURED_AREA_COPY: Record<Language, FeaturedAreaCopy> = {
     startLabel: "開始",
     peakLabel: "高峰",
     endLabel: "結束",
-    weatherTitle: "未來十天天氣",
+    weatherTitle: "未來七天天氣",
     weatherLoading: "正在載入即時天氣...",
     weatherUnavailable: "即時天氣暫時不可用，靜態預測仍可查看。",
     weatherStable: "即時天氣今天沒有改變這條預測。",
@@ -208,7 +208,7 @@ const FEATURED_AREA_COPY: Record<Language, FeaturedAreaCopy> = {
     startLabel: "Inicio",
     peakLabel: "Pico",
     endLabel: "Fin",
-    weatherTitle: "Tiempo a 10 días",
+    weatherTitle: "Tiempo a 7 días",
     weatherLoading: "Cargando tiempo en vivo...",
     weatherUnavailable: "El tiempo en vivo no está disponible por ahora. El pronóstico estático sigue visible.",
     weatherStable: "El tiempo en vivo no mueve el pronóstico hoy.",
@@ -251,7 +251,7 @@ const FEATURED_AREA_COPY: Record<Language, FeaturedAreaCopy> = {
     startLabel: "시작",
     peakLabel: "절정",
     endLabel: "종료",
-    weatherTitle: "10일 날씨",
+    weatherTitle: "7일 날씨",
     weatherLoading: "실시간 날씨 불러오는 중...",
     weatherUnavailable: "실시간 날씨를 지금 불러올 수 없습니다. 정적 예측은 계속 표시됩니다.",
     weatherStable: "실시간 날씨가 오늘 예측을 바꾸지 않았습니다.",
@@ -294,7 +294,7 @@ const FEATURED_AREA_COPY: Record<Language, FeaturedAreaCopy> = {
     startLabel: "咲き始め",
     peakLabel: "ピーク",
     endLabel: "見頃終了",
-    weatherTitle: "10日間の天気",
+    weatherTitle: "7日間の天気",
     weatherLoading: "最新の天気を読み込み中...",
     weatherUnavailable: "最新の天気は今利用できません。静的な予測は表示されます。",
     weatherStable: "最新の天気による予測の移動は今日はありません。",
@@ -337,7 +337,7 @@ const FEATURED_AREA_COPY: Record<Language, FeaturedAreaCopy> = {
     startLabel: "Début",
     peakLabel: "Pic",
     endLabel: "Fin",
-    weatherTitle: "Météo sur 10 jours",
+    weatherTitle: "Météo sur 7 jours",
     weatherLoading: "Chargement de la météo en direct...",
     weatherUnavailable: "La météo en direct est indisponible pour le moment. La prévision statique reste visible.",
     weatherStable: "La météo en direct ne décale pas la prévision aujourd'hui.",
@@ -380,7 +380,7 @@ const FEATURED_AREA_COPY: Record<Language, FeaturedAreaCopy> = {
     startLabel: "Bắt đầu",
     peakLabel: "Đỉnh",
     endLabel: "Kết thúc",
-    weatherTitle: "Thời tiết 10 ngày",
+    weatherTitle: "Thời tiết 7 ngày",
     weatherLoading: "Đang tải thời tiết trực tiếp...",
     weatherUnavailable: "Thời tiết trực tiếp hiện không khả dụng. Dự báo tĩnh vẫn được hiển thị.",
     weatherStable: "Thời tiết trực tiếp hôm nay không làm thay đổi dự báo.",
@@ -830,5 +830,5 @@ export function futureWeatherDays(weather: WeatherSnapshot | null): WeatherDaySu
     return [];
   }
   const today = new Date().toISOString().slice(0, 10);
-  return weather.days.filter((day) => day.date >= today).slice(0, 10);
+  return weather.days.filter((day) => day.date >= today).slice(0, 7);
 }

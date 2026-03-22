@@ -1929,18 +1929,8 @@ function buildFeaturedAreaBoundsCollection(items: FeaturedAreaIndexItem[]) {
   return {
     type: "FeatureCollection" as const,
     features: items.map((item) => {
-      const outline = item.outline && item.outline.length >= 3
-        ? [...item.outline, item.outline[0]]
-        : (() => {
-            const [[minLon, minLat], [maxLon, maxLat]] = normalizeBounds(item.bounds);
-            return [
-              [minLon, minLat],
-              [maxLon, minLat],
-              [maxLon, maxLat],
-              [minLon, maxLat],
-              [minLon, minLat]
-            ] as [number, number][];
-          })();
+      const rawOutline = featuredAreaOutlineCoordinates(item);
+      const outline = [...rawOutline, rawOutline[0]];
       return {
         type: "Feature" as const,
         geometry: {
@@ -1953,6 +1943,36 @@ function buildFeaturedAreaBoundsCollection(items: FeaturedAreaIndexItem[]) {
       };
     })
   };
+}
+
+function featuredAreaOutlineCoordinates(item: FeaturedAreaIndexItem): [number, number][] {
+  if (item.id === "uw-seattle-quad") {
+    const [[minLon, minLat], [maxLon, maxLat]] = normalizeBounds(item.bounds);
+    const [centerLon, centerLat] = item.center;
+    const metersPerDegreeLat = 111_320;
+    const metersPerDegreeLon = Math.max(111_320 * Math.cos((centerLat * Math.PI) / 180), 1);
+    const halfWidthMeters = ((maxLon - minLon) * metersPerDegreeLon) / 2;
+    const halfHeightMeters = ((maxLat - minLat) * metersPerDegreeLat) / 2;
+    const radiusMeters = Math.max(halfWidthMeters, halfHeightMeters) * 0.82;
+    const latRadius = radiusMeters / metersPerDegreeLat;
+    const lonRadius = radiusMeters / metersPerDegreeLon;
+    return Array.from({ length: 48 }, (_, index) => {
+      const angle = (index / 48) * Math.PI * 2;
+      return [centerLon + Math.cos(angle) * lonRadius, centerLat + Math.sin(angle) * latRadius] as [number, number];
+    });
+  }
+
+  if (item.outline && item.outline.length >= 3) {
+    return item.outline;
+  }
+
+  const [[minLon, minLat], [maxLon, maxLat]] = normalizeBounds(item.bounds);
+  return [
+    [minLon, minLat],
+    [maxLon, minLat],
+    [maxLon, maxLat],
+    [minLon, maxLat]
+  ] as [number, number][];
 }
 
 function buildFeaturedAreaPinCollection(items: FeaturedAreaIndexItem[]) {
@@ -2768,11 +2788,9 @@ export default function App(): JSX.Element {
         return null;
       }
       for (const area of data.featuredAreas.items) {
-        if (area.outline && area.outline.length >= 3) {
-          if (pointInPolygon(coordinate, area.outline)) {
-            return area.id;
-          }
-          continue;
+        const outline = featuredAreaOutlineCoordinates(area);
+        if (outline.length >= 3 && pointInPolygon(coordinate, outline)) {
+          return area.id;
         }
         if (boundsContainCoordinate(area.bounds, coordinate)) {
           return area.id;
@@ -5866,20 +5884,23 @@ export default function App(): JSX.Element {
                 {renderStatusCard()}
 
                 <section className={isLoadedCitySelected ? "show-block" : "show-block filters-block disabled"}>
-                  {renderFindStepHeader(3, findPanelCopy.filtersTitle)}
+                  <div className="filters-heading">
+                    <div className="filters-heading-copy">
+                      {renderFindStepHeader(3, findPanelCopy.filtersTitle)}
+                    </div>
+                    <div className="filter-actions filters-header-actions">
+                      <button className="clear-btn" disabled={!isLoadedCitySelected} onClick={selectAllFilters} type="button">
+                        {t(language, "selectAll")}
+                      </button>
+                      <button className="clear-btn" disabled={!isLoadedCitySelected} onClick={clearAllFilters} type="button">
+                        {t(language, "clearAll")}
+                      </button>
+                    </div>
+                  </div>
                   <div className="filters-intro">
                     <p className="show-block-copy filters-guide-copy">{findPanelCopy.filtersGuideBody}</p>
                     {!isLoadedCitySelected ? <p className="show-block-copy">{findPanelCopy.filtersLockedBody}</p> : null}
                   </div>
-                  <div className="filter-actions filter-actions-row">
-                    <button className="clear-btn" disabled={!isLoadedCitySelected} onClick={selectAllFilters} type="button">
-                      {t(language, "selectAll")}
-                    </button>
-                    <button className="clear-btn" disabled={!isLoadedCitySelected} onClick={clearAllFilters} type="button">
-                      {t(language, "clearAll")}
-                    </button>
-                  </div>
-
                   <div className="filter-group">
                     <strong>{t(language, "speciesFilter")}</strong>
                     <div className="chip-wrap">
