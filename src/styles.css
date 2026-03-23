@@ -828,6 +828,10 @@ body {
   white-space: nowrap;
 }
 
+.jump-picker-trigger-placeholder {
+  color: #8c7682;
+}
+
 .jump-picker-menu {
   position: absolute;
   top: calc(100% + 0.4rem);
@@ -845,6 +849,12 @@ body {
 
 .jump-picker-menu-tall {
   max-height: 18rem;
+}
+
+.jump-area-picker-menu {
+  display: grid;
+  gap: 0.52rem;
+  overflow: hidden;
 }
 
 .jump-picker-option {
@@ -940,12 +950,20 @@ body {
   margin-bottom: 0;
 }
 
+.jump-area-picker-menu .jump-area-search-input {
+  margin-bottom: 0;
+}
+
 .jump-area-results {
   display: grid;
   gap: 0.48rem;
   max-height: 21.5rem;
   overflow-y: auto;
   padding-right: 0.08rem;
+}
+
+.jump-area-results-inline {
+  max-height: 16.5rem;
 }
 
 .jump-area-result {
@@ -2335,17 +2353,11 @@ body {
   fill: currentColor;
 }
 
-.about-legal-actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.65rem;
-  margin-top: 0.7rem;
-}
-
-.about-legal-btn {
-  border: none;
-  cursor: pointer;
-  min-height: 40px;
+.about-inline-legal-link {
+  color: #7f4261;
+  text-decoration: underline;
+  text-decoration-thickness: 1.6px;
+  text-underline-offset: 0.14em;
 }
 
 .legal-panel {
@@ -2452,16 +2464,15 @@ body {
   border-radius: 14px;
   border: 1px solid rgba(153, 83, 116, 0.24);
   background: rgba(255, 255, 255, 0.94);
-  padding: 0.75rem;
+  overflow: hidden;
 }
 
 .guide-card-hero {
-  margin-bottom: 0.65rem;
-  border-radius: 12px;
+  margin-bottom: 0;
+  border-radius: 0;
   background:
     radial-gradient(circle at 22% 25%, rgba(255, 198, 220, 0.3) 0%, rgba(255, 198, 220, 0) 38%),
     linear-gradient(180deg, rgba(255, 247, 251, 0.92), rgba(255, 242, 247, 0.84));
-  border: 1px solid rgba(153, 83, 116, 0.12);
   min-height: 8.6rem;
   display: grid;
   place-items: center;
@@ -2472,6 +2483,10 @@ body {
   width: min(100%, 12rem);
   height: auto;
   display: block;
+}
+
+.guide-card-body {
+  padding: 0.75rem;
 }
 
 .guide-card header h4 {

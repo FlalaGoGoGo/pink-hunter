@@ -2471,6 +2471,16 @@ function buildContactMailtoHref(kind: "official_unavailable" | "untracked", area
   return `mailto:flalaz@uw.edu?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(lines.join("\n"))}`;
 }
 
+function buildLegalDocumentHref(documentId: LegalDocumentId): string {
+  if (typeof window === "undefined") {
+    return `?legal=${documentId}`;
+  }
+
+  const url = new URL(window.location.href);
+  url.searchParams.set("legal", documentId);
+  return `${url.pathname}${url.search}${url.hash}`;
+}
+
 interface ResolvedMapStyle {
   style: string | typeof BLANK_MAP_STYLE;
   preset: MapStylePreset;
@@ -2556,6 +2566,7 @@ export default function App(): JSX.Element {
   const [jumpState, setJumpState] = useState<string>("");
   const [jumpCountryMenuOpen, setJumpCountryMenuOpen] = useState(false);
   const [jumpStateMenuOpen, setJumpStateMenuOpen] = useState(false);
+  const [jumpAreaMenuOpen, setJumpAreaMenuOpen] = useState(false);
   const [selectedJumpAreaId, setSelectedJumpAreaId] = useState<string | null>(initialUrlState.areaId);
   const [selectedCityAreaId, setSelectedCityAreaId] = useState<string | null>(initialUrlState.areaId);
   const [loadedCityAreaId, setLoadedCityAreaId] = useState<string | null>(null);
@@ -2595,6 +2606,7 @@ export default function App(): JSX.Element {
   const languageMenuRef = useRef<HTMLDivElement | null>(null);
   const jumpCountryMenuRef = useRef<HTMLDivElement | null>(null);
   const jumpStateMenuRef = useRef<HTMLDivElement | null>(null);
+  const jumpAreaMenuRef = useRef<HTMLDivElement | null>(null);
   const mapRef = useRef<MapEngineMap | null>(null);
   const popupRef = useRef<MapEnginePopup | null>(null);
   const jumpIndexLoadRef = useRef<Promise<JumpIndex | null> | null>(null);
@@ -3416,6 +3428,21 @@ export default function App(): JSX.Element {
     () => (selectedJumpAreaId ? jumpAreaById.get(selectedJumpAreaId) ?? null : null),
     [jumpAreaById, selectedJumpAreaId]
   );
+  const selectedJumpAreaStatus = useMemo(
+    () =>
+      selectedJumpArea
+        ? jumpAreaDisplayStatusById.get(selectedJumpArea.id) ?? {
+            kind:
+              selectedJumpArea.coverage_status === "covered"
+                ? "covered"
+                : selectedJumpArea.coverage_status === "official_unavailable"
+                  ? "official_unavailable"
+                  : "untracked",
+            coveredCityCount: 0
+          }
+        : null,
+    [jumpAreaDisplayStatusById, selectedJumpArea]
+  );
   const selectedJumpState = useMemo(
     () => (jumpState ? jumpStateById.get(jumpState) ?? null : null),
     [jumpState, jumpStateById]
@@ -3443,14 +3470,15 @@ export default function App(): JSX.Element {
   const normalizedJumpAreaQuery = normalizeSearchText(jumpAreaQuery);
 
   const jumpAreaMatches = useMemo(() => {
-    if (!jumpIndex || !normalizedJumpAreaQuery) {
+    if (!jumpIndex) {
       return [] as JumpArea[];
     }
 
     const collator = new Intl.Collator(language, { sensitivity: "base" });
-    const queryTokens = normalizedJumpAreaQuery.split(/\s+/).filter(Boolean);
+    const queryTokens = normalizedJumpAreaQuery ? normalizedJumpAreaQuery.split(/\s+/).filter(Boolean) : [];
 
     return jumpIndex.areas
+      .filter((area) => area.country_id === jumpCountry && (!jumpState || area.state_id === jumpState))
       .map((area) => {
         const state = jumpStateById.get(area.state_id);
         const displayStatus = jumpAreaDisplayStatusById.get(area.id);
@@ -3465,34 +3493,35 @@ export default function App(): JSX.Element {
         const normalizedJurisdiction = normalizeSearchText(area.jurisdiction);
         const normalizedLabel = normalizeSearchText(formattedLabel);
 
-        if (!queryTokens.every((token) => searchHaystack.includes(token))) {
+        if (queryTokens.length > 0 && !queryTokens.every((token) => searchHaystack.includes(token))) {
           return null;
         }
 
         const startsWithMatch =
-          normalizedLabel.startsWith(normalizedJumpAreaQuery) ||
-          normalizedDisplayName.startsWith(normalizedJumpAreaQuery) ||
-          normalizedJurisdiction.startsWith(normalizedJumpAreaQuery);
+          queryTokens.length > 0 &&
+          (normalizedLabel.startsWith(normalizedJumpAreaQuery) ||
+            normalizedDisplayName.startsWith(normalizedJumpAreaQuery) ||
+            normalizedJurisdiction.startsWith(normalizedJumpAreaQuery));
 
         let score = startsWithMatch ? 20 : 0;
-        if (queryTokens.includes(stateCode.toLowerCase())) {
+        if (queryTokens.length > 0 && queryTokens.includes(stateCode.toLowerCase())) {
           score += 6;
         }
-        if (queryTokens.some((token) => normalizeSearchText(stateLabel).includes(token))) {
+        if (queryTokens.length > 0 && queryTokens.some((token) => normalizeSearchText(stateLabel).includes(token))) {
           score += 4;
         }
         if (
-          normalizedDisplayName === normalizedJumpAreaQuery ||
-          normalizedJurisdiction === normalizedJumpAreaQuery ||
-          normalizedLabel === normalizedJumpAreaQuery
+          queryTokens.length > 0 &&
+          (
+            normalizedDisplayName === normalizedJumpAreaQuery ||
+            normalizedJurisdiction === normalizedJumpAreaQuery ||
+            normalizedLabel === normalizedJumpAreaQuery
+          )
         ) {
           score += 10;
         }
-        if (area.country_id === jumpCountry) {
-          score += 12;
-        }
-        if (jumpState && area.state_id === jumpState) {
-          score += 8;
+        if (area.id === selectedJumpAreaId) {
+          score += 10;
         }
         if (displayStatus?.kind === "covered") {
           score += 4;
@@ -3508,13 +3537,14 @@ export default function App(): JSX.Element {
       })
       .filter((item): item is { area: JumpArea; label: string; score: number } => item !== null)
       .sort((left, right) => right.score - left.score || collator.compare(left.label, right.label))
-      .slice(0, 20)
+      .slice(0, queryTokens.length > 0 ? 20 : 24)
       .map((item) => item.area);
   }, [
     formatJumpAreaLabel,
     jumpCountry,
     jumpAreaDisplayStatusById,
     jumpIndex,
+    selectedJumpAreaId,
     jumpState,
     jumpStateById,
     language,
@@ -3601,18 +3631,18 @@ export default function App(): JSX.Element {
   }, [coverageFeaturesWithAreaIds]);
 
   const filteredFeatures = useMemo(() => {
-    if (selectedSpecies.length === 0 || selectedOwnership.length === 0) {
-      return [] as TreeCollection["features"];
-    }
-
-    const speciesSet = new Set(selectedSpecies);
-    const ownershipSet = new Set(selectedOwnership);
+    const speciesSet =
+      selectedSpecies.length === 0 ? new Set<SpeciesGroup>(ALL_SPECIES) : new Set<SpeciesGroup>(selectedSpecies);
+    const ownershipSet =
+      selectedOwnership.length === 0
+        ? new Set<OwnershipGroup>(allOwnershipOptions)
+        : new Set<OwnershipGroup>(selectedOwnership);
 
     return currentTrees.features.filter((feature) => {
       const props = feature.properties;
       return speciesSet.has(props.species_group) && ownershipSet.has(props.ownership);
     });
-  }, [currentTrees, selectedOwnership, selectedSpecies]);
+  }, [allOwnershipOptions, currentTrees, selectedOwnership, selectedSpecies]);
 
   const hasVisibleFilteredTrees = filteredFeatures.length > 0;
 
@@ -3672,6 +3702,9 @@ export default function App(): JSX.Element {
       }
       if (!jumpStateMenuRef.current?.contains(target)) {
         setJumpStateMenuOpen(false);
+      }
+      if (!jumpAreaMenuRef.current?.contains(target)) {
+        setJumpAreaMenuOpen(false);
       }
     };
 
@@ -4895,6 +4928,7 @@ export default function App(): JSX.Element {
     setSelectedCoverage(null);
     setJumpCountryMenuOpen(false);
     setJumpStateMenuOpen(false);
+    setJumpAreaMenuOpen(false);
     setJumpAreaQuery("");
     setStatusNotice(null);
   }
@@ -5035,6 +5069,7 @@ export default function App(): JSX.Element {
     setSelectedCoverage(null);
     setSelectedFeaturedAreaId(null);
     setStatusNotice(null);
+    setJumpAreaMenuOpen(false);
     setJumpAreaQuery("");
     if (!isDesktopRef.current) {
       setSheetHeight(0.72);
@@ -5048,6 +5083,7 @@ export default function App(): JSX.Element {
     setSelectedCoverage(null);
     setStatusNotice(null);
     setUserLocation(null);
+    setJumpAreaMenuOpen(false);
     setJumpAreaQuery("");
     if (area.jump_area_id) {
       setSelectedJumpAreaId(area.jump_area_id);
@@ -5082,6 +5118,7 @@ export default function App(): JSX.Element {
     setJumpState(area.state_id);
     setJumpCountryMenuOpen(false);
     setJumpStateMenuOpen(false);
+    setJumpAreaMenuOpen(false);
     setSelectedJumpAreaId(area.id);
     setJumpAreaQuery("");
     setStatusNotice(null);
@@ -5119,6 +5156,7 @@ export default function App(): JSX.Element {
     setLoadedCityAreaId(null);
     setStatusNotice(null);
     setUserLocation(null);
+    setJumpAreaMenuOpen(false);
 
     if (selectedArea?.region_hint) {
       setActiveRegion(selectedArea.region_hint);
@@ -5203,6 +5241,7 @@ export default function App(): JSX.Element {
           setSelectedJumpAreaId(null);
           setSelectedCityAreaId(null);
           setLoadedCityAreaId(null);
+          setJumpAreaMenuOpen(false);
           setJumpAreaQuery("");
           setUserLocation(coordinates);
           setStatusNotice(null);
@@ -5828,6 +5867,7 @@ export default function App(): JSX.Element {
                               onClick={() => {
                                 setJumpCountryMenuOpen((current) => !current);
                                 setJumpStateMenuOpen(false);
+                                setJumpAreaMenuOpen(false);
                               }}
                               type="button"
                             >
@@ -5883,6 +5923,7 @@ export default function App(): JSX.Element {
                               onClick={() => {
                                 setJumpStateMenuOpen((current) => !current);
                                 setJumpCountryMenuOpen(false);
+                                setJumpAreaMenuOpen(false);
                               }}
                               type="button"
                             >
@@ -5949,68 +5990,86 @@ export default function App(): JSX.Element {
                           </div>
                         </div>
                       </div>
-                      {selectedJumpAreaLabel ? (
-                        <div className="jump-area-tools">
-                          <div className="jump-selected-area">
-                            <span>{selectedJumpAreaLabel}</span>
-                            <button
-                              aria-label={t(language, "clearAll")}
-                              className="jump-selected-area-clear"
-                              onClick={clearSelectedJumpArea}
-                              type="button"
-                            >
-                              ×
-                            </button>
-                          </div>
-                        </div>
-                      ) : null}
-                      <div className="jump-area-search-shell">
-                        <input
-                          className="filter-search-input jump-area-search-input"
-                          onChange={(event) => setJumpAreaQuery(event.target.value)}
-                          placeholder={t(language, "searchCityPlaceholder")}
-                          type="search"
-                          value={jumpAreaQuery}
-                        />
-                        {normalizedJumpAreaQuery ? (
-                          jumpAreaMatches.length > 0 ? (
-                            <div className="jump-area-results">
-                              {jumpAreaMatches.map((area) => {
-                                const areaDisplayStatus = getJumpAreaDisplayStatus(area);
-                                return (
-                                  <button
-                                    className={
-                                      area.id === selectedJumpAreaId
-                                        ? "jump-area-result active"
-                                        : "jump-area-result"
-                                    }
-                                    key={area.id}
-                                    onClick={() => handleSelectJumpArea(area)}
-                                    type="button"
-                                  >
-                                    <div className="jump-area-result-head">
-                                      <strong>{formatJumpAreaLabel(area)}</strong>
-                                    </div>
-                                    <div className="jump-area-result-meta">
-                                      <span
-                                        className={`coverage-area-type-badge ${jurisdictionTypeClassName(
-                                          area.area_type
-                                        )}`}
+                      <div className="jump-field">
+                        <span>{t(language, "jumpArea")}</span>
+                        <div className="jump-picker" ref={jumpAreaMenuRef}>
+                          <button
+                            aria-expanded={jumpAreaMenuOpen}
+                            className="jump-picker-trigger jump-picker-trigger-with-badge"
+                            onClick={() => {
+                              setJumpAreaMenuOpen((current) => !current);
+                              setJumpCountryMenuOpen(false);
+                              setJumpStateMenuOpen(false);
+                            }}
+                            type="button"
+                          >
+                            <span className="jump-picker-trigger-main">
+                              <span
+                                className={
+                                  selectedJumpAreaLabel
+                                    ? "jump-picker-trigger-copy"
+                                    : "jump-picker-trigger-copy jump-picker-trigger-placeholder"
+                                }
+                              >
+                                {selectedJumpAreaLabel ?? t(language, "searchCityPlaceholder")}
+                              </span>
+                              {selectedJumpAreaStatus ? (
+                                <span className={`jump-area-status-badge ${selectedJumpAreaStatus.kind}`}>
+                                  {jumpAreaStatusLabel(selectedJumpAreaStatus)}
+                                </span>
+                              ) : null}
+                            </span>
+                            <span className={jumpAreaMenuOpen ? "caret open" : "caret"} />
+                          </button>
+                          {jumpAreaMenuOpen ? (
+                            <div className="jump-picker-menu jump-picker-menu-tall jump-area-picker-menu">
+                              <input
+                                className="filter-search-input jump-area-search-input"
+                                onChange={(event) => setJumpAreaQuery(event.target.value)}
+                                placeholder={t(language, "searchCityPlaceholder")}
+                                type="search"
+                                value={jumpAreaQuery}
+                              />
+                              {jumpAreaMatches.length > 0 ? (
+                                <div className="jump-area-results jump-area-results-inline">
+                                  {jumpAreaMatches.map((area) => {
+                                    const areaDisplayStatus = getJumpAreaDisplayStatus(area);
+                                    return (
+                                      <button
+                                        className={
+                                          area.id === selectedJumpAreaId
+                                            ? "jump-area-result active"
+                                            : "jump-area-result"
+                                        }
+                                        key={area.id}
+                                        onClick={() => handleSelectJumpArea(area)}
+                                        type="button"
                                       >
-                                        {jurisdictionTypeLabel(language, area.area_type)}
-                                      </span>
-                                      <span className={`jump-area-status-badge ${areaDisplayStatus.kind}`}>
-                                        {jumpAreaStatusLabel(areaDisplayStatus)}
-                                      </span>
-                                    </div>
-                                  </button>
-                                );
-                              })}
+                                        <div className="jump-area-result-head">
+                                          <strong>{formatJumpAreaLabel(area)}</strong>
+                                        </div>
+                                        <div className="jump-area-result-meta">
+                                          <span
+                                            className={`coverage-area-type-badge ${jurisdictionTypeClassName(
+                                              area.area_type
+                                            )}`}
+                                          >
+                                            {jurisdictionTypeLabel(language, area.area_type)}
+                                          </span>
+                                          <span className={`jump-area-status-badge ${areaDisplayStatus.kind}`}>
+                                            {jumpAreaStatusLabel(areaDisplayStatus)}
+                                          </span>
+                                        </div>
+                                      </button>
+                                    );
+                                  })}
+                                </div>
+                              ) : (
+                                <p className="filter-empty jump-area-empty">{discoveryCopy.areaSearchEmpty}</p>
+                              )}
                             </div>
-                          ) : (
-                            <p className="filter-empty jump-area-empty">{discoveryCopy.areaSearchEmpty}</p>
-                          )
-                        ) : null}
+                          ) : null}
+                        </div>
                       </div>
                       <div className="jump-actions">
                         <button className="clear-btn jump-btn" onClick={handleJump} type="button">
@@ -6100,21 +6159,23 @@ export default function App(): JSX.Element {
                       src={GUIDE_FLOWER_ART[entry.id]}
                     />
                   </div>
-                  <header>
-                    <h4>{entry.title[language]}</h4>
-                    <p>{entry.subtitle[language]}</p>
-                  </header>
-                  <ul>
-                    {entry.bullets[language].map((bullet) => (
-                      <li key={bullet}>{bullet}</li>
-                    ))}
-                  </ul>
-                  <p className="tips-title">{t(language, "tipsTitle")}</p>
-                  <ul>
-                    {entry.confusionTips[language].map((tip) => (
-                      <li key={tip}>{tip}</li>
-                    ))}
-                  </ul>
+                  <div className="guide-card-body">
+                    <header>
+                      <h4>{entry.title[language]}</h4>
+                      <p>{entry.subtitle[language]}</p>
+                    </header>
+                    <ul>
+                      {entry.bullets[language].map((bullet) => (
+                        <li key={bullet}>{bullet}</li>
+                      ))}
+                    </ul>
+                    <p className="tips-title">{t(language, "tipsTitle")}</p>
+                    <ul>
+                      {entry.confusionTips[language].map((tip) => (
+                        <li key={tip}>{tip}</li>
+                      ))}
+                    </ul>
+                  </div>
                 </article>
               ))}
               <section className="guide-compare-section">
@@ -6441,23 +6502,30 @@ export default function App(): JSX.Element {
                   <div className="about-section">
                     <h3 className="about-section-title">{legalUiCopy.sectionTitle}</h3>
                     <div className="about-copy-block">
-                      <p>{legalUiCopy.lead}</p>
-                      <div className="about-legal-actions">
-                        <button
-                          className="detail-route-btn about-legal-btn"
-                          onClick={() => openLegalDocument("privacy")}
-                          type="button"
+                      <p>
+                        {legalUiCopy.lead}{" "}
+                        <a
+                          className="about-inline-legal-link"
+                          href={buildLegalDocumentHref("privacy")}
+                          onClick={(event) => {
+                            event.preventDefault();
+                            openLegalDocument("privacy");
+                          }}
                         >
-                          {legalUiCopy.privacyLinkLabel}
-                        </button>
-                        <button
-                          className="detail-route-btn about-legal-btn"
-                          onClick={() => openLegalDocument("terms")}
-                          type="button"
+                          <strong>{legalUiCopy.privacyLinkLabel}</strong>
+                        </a>{" "}
+                        ·{" "}
+                        <a
+                          className="about-inline-legal-link"
+                          href={buildLegalDocumentHref("terms")}
+                          onClick={(event) => {
+                            event.preventDefault();
+                            openLegalDocument("terms");
+                          }}
                         >
-                          {legalUiCopy.termsLinkLabel}
-                        </button>
-                      </div>
+                          <strong>{legalUiCopy.termsLinkLabel}</strong>
+                        </a>
+                      </p>
                     </div>
                   </div>
 
