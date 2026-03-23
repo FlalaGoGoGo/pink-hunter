@@ -787,6 +787,7 @@ const FIND_PANEL_COPY: Record<
     jumpProvince: string;
     jumpAnyState: string;
     jumpAnyProvince: string;
+    jumpCoveredAreaCount: string;
     jumpButton: string;
     searchState: string;
     searchProvince: string;
@@ -816,6 +817,7 @@ const FIND_PANEL_COPY: Record<
     jumpProvince: "Province",
     jumpAnyState: "Any state",
     jumpAnyProvince: "Any province",
+    jumpCoveredAreaCount: "{count} covered areas",
     jumpButton: "Jump",
     searchState: "Search state",
     searchProvince: "Search province",
@@ -843,6 +845,7 @@ const FIND_PANEL_COPY: Record<
     jumpProvince: "省",
     jumpAnyState: "任意州",
     jumpAnyProvince: "任意省",
+    jumpCoveredAreaCount: "{count} 个已覆盖区域",
     jumpButton: "跳转",
     searchState: "搜索州",
     searchProvince: "搜索省",
@@ -870,6 +873,7 @@ const FIND_PANEL_COPY: Record<
     jumpProvince: "省",
     jumpAnyState: "任意州",
     jumpAnyProvince: "任意省",
+    jumpCoveredAreaCount: "{count} 個已覆蓋區域",
     jumpButton: "跳轉",
     searchState: "搜尋州",
     searchProvince: "搜尋省",
@@ -898,6 +902,7 @@ const FIND_PANEL_COPY: Record<
     jumpProvince: "Provincia",
     jumpAnyState: "Cualquier estado",
     jumpAnyProvince: "Cualquier provincia",
+    jumpCoveredAreaCount: "{count} zonas cubiertas",
     jumpButton: "Saltar",
     searchState: "Buscar estado",
     searchProvince: "Buscar provincia",
@@ -926,6 +931,7 @@ const FIND_PANEL_COPY: Record<
     jumpProvince: "도",
     jumpAnyState: "모든 주",
     jumpAnyProvince: "모든 도",
+    jumpCoveredAreaCount: "커버된 구역 {count}곳",
     jumpButton: "이동",
     searchState: "주 검색",
     searchProvince: "도 검색",
@@ -954,6 +960,7 @@ const FIND_PANEL_COPY: Record<
     jumpProvince: "県",
     jumpAnyState: "すべての州",
     jumpAnyProvince: "すべての県",
+    jumpCoveredAreaCount: "カバー済みエリア {count}件",
     jumpButton: "移動",
     searchState: "州を検索",
     searchProvince: "県を検索",
@@ -982,6 +989,7 @@ const FIND_PANEL_COPY: Record<
     jumpProvince: "Province",
     jumpAnyState: "Tout état",
     jumpAnyProvince: "Toute province",
+    jumpCoveredAreaCount: "{count} zones couvertes",
     jumpButton: "Aller",
     searchState: "Rechercher un état",
     searchProvince: "Rechercher une province",
@@ -1010,6 +1018,7 @@ const FIND_PANEL_COPY: Record<
     jumpProvince: "Tỉnh",
     jumpAnyState: "Mọi tiểu bang",
     jumpAnyProvince: "Mọi tỉnh",
+    jumpCoveredAreaCount: "{count} khu vực đã phủ",
     jumpButton: "Nhảy",
     searchState: "Tìm tiểu bang",
     searchProvince: "Tìm tỉnh",
@@ -1636,6 +1645,11 @@ type JumpAreaDisplayStatus = "covered" | "city_level_coverage" | "official_unava
 interface JumpAreaDisplayStatusInfo {
   kind: JumpAreaDisplayStatus;
   coveredCityCount: number;
+}
+
+interface JumpStateDisplayStatusInfo {
+  kind: "covered" | "official_unavailable" | "untracked";
+  coveredAreaCount: number;
 }
 
 type AboutSummaryMode = "region" | "area";
@@ -2540,11 +2554,12 @@ export default function App(): JSX.Element {
   const [selectedOwnership, setSelectedOwnership] = useState<OwnershipGroup[]>(initialUrlState.ownership);
   const [jumpCountry, setJumpCountry] = useState<JumpCountry["id"]>("us");
   const [jumpState, setJumpState] = useState<string>("");
+  const [jumpCountryMenuOpen, setJumpCountryMenuOpen] = useState(false);
+  const [jumpStateMenuOpen, setJumpStateMenuOpen] = useState(false);
   const [selectedJumpAreaId, setSelectedJumpAreaId] = useState<string | null>(initialUrlState.areaId);
   const [selectedCityAreaId, setSelectedCityAreaId] = useState<string | null>(initialUrlState.areaId);
   const [loadedCityAreaId, setLoadedCityAreaId] = useState<string | null>(null);
   const [jumpAreaQuery, setJumpAreaQuery] = useState("");
-  const [jumpAreaExpanded, setJumpAreaExpanded] = useState(false);
   const [statusNotice, setStatusNotice] = useState<StatusNotice | null>(null);
   const [locatingUser, setLocatingUser] = useState(false);
   const [userLocation, setUserLocation] = useState<[number, number] | null>(null);
@@ -2578,6 +2593,8 @@ export default function App(): JSX.Element {
 
   const mapContainerRef = useRef<HTMLDivElement | null>(null);
   const languageMenuRef = useRef<HTMLDivElement | null>(null);
+  const jumpCountryMenuRef = useRef<HTMLDivElement | null>(null);
+  const jumpStateMenuRef = useRef<HTMLDivElement | null>(null);
   const mapRef = useRef<MapEngineMap | null>(null);
   const popupRef = useRef<MapEnginePopup | null>(null);
   const jumpIndexLoadRef = useRef<Promise<JumpIndex | null> | null>(null);
@@ -2656,6 +2673,14 @@ export default function App(): JSX.Element {
     jumpIndexLoadRef.current = request;
     return request;
   }, [data]);
+
+  useEffect(() => {
+    if (!data || data.jumpIndex || loadingJumpIndex) {
+      return;
+    }
+
+    void ensureJumpIndexLoaded();
+  }, [data, ensureJumpIndexLoaded, loadingJumpIndex]);
 
   useEffect(() => {
     let cancelled = false;
@@ -3357,9 +3382,47 @@ export default function App(): JSX.Element {
     return next;
   }, [jumpIndex]);
 
+  const jumpStateDisplayStatusById = useMemo(() => {
+    const next = new Map<string, JumpStateDisplayStatusInfo>();
+    if (!jumpIndex) {
+      return next;
+    }
+
+    jumpIndex.states.forEach((state) => {
+      const stateAreas = jumpIndex.areas.filter((area) => area.state_id === state.id);
+      const coveredAreaCount = stateAreas.reduce((count, area) => {
+        const kind = jumpAreaDisplayStatusById.get(area.id)?.kind;
+        return kind === "covered" ? count + 1 : count;
+      }, 0);
+      const hasOfficialUnavailable = stateAreas.some(
+        (area) => jumpAreaDisplayStatusById.get(area.id)?.kind === "official_unavailable"
+      );
+
+      if (coveredAreaCount > 0) {
+        next.set(state.id, { kind: "covered", coveredAreaCount });
+        return;
+      }
+      if (hasOfficialUnavailable) {
+        next.set(state.id, { kind: "official_unavailable", coveredAreaCount: 0 });
+        return;
+      }
+      next.set(state.id, { kind: "untracked", coveredAreaCount: 0 });
+    });
+
+    return next;
+  }, [jumpAreaDisplayStatusById, jumpIndex]);
+
   const selectedJumpArea = useMemo(
     () => (selectedJumpAreaId ? jumpAreaById.get(selectedJumpAreaId) ?? null : null),
     [jumpAreaById, selectedJumpAreaId]
+  );
+  const selectedJumpState = useMemo(
+    () => (jumpState ? jumpStateById.get(jumpState) ?? null : null),
+    [jumpState, jumpStateById]
+  );
+  const selectedJumpStateStatus = useMemo(
+    () => (selectedJumpState ? jumpStateDisplayStatusById.get(selectedJumpState.id) ?? null : null),
+    [jumpStateDisplayStatusById, selectedJumpState]
   );
 
   const formatJumpAreaLabel = useCallback(
@@ -3600,8 +3663,15 @@ export default function App(): JSX.Element {
 
   useEffect(() => {
     const handlePointerDown = (event: PointerEvent): void => {
-      if (!languageMenuRef.current?.contains(event.target as Node)) {
+      const target = event.target as Node;
+      if (!languageMenuRef.current?.contains(target)) {
         setLanguageMenuOpen(false);
+      }
+      if (!jumpCountryMenuRef.current?.contains(target)) {
+        setJumpCountryMenuOpen(false);
+      }
+      if (!jumpStateMenuRef.current?.contains(target)) {
+        setJumpStateMenuOpen(false);
       }
     };
 
@@ -3649,6 +3719,19 @@ export default function App(): JSX.Element {
       return discoveryCopy.areaStatusUntracked;
     },
     [discoveryCopy, language]
+  );
+
+  const jumpStateStatusLabel = useCallback(
+    (statusInfo: JumpStateDisplayStatusInfo): string => {
+      if (statusInfo.kind === "covered") {
+        return formatDiscoveryCount(findPanelCopy.jumpCoveredAreaCount, statusInfo.coveredAreaCount, language);
+      }
+      if (statusInfo.kind === "official_unavailable") {
+        return discoveryCopy.areaStatusOfficialUnavailable;
+      }
+      return discoveryCopy.areaStatusUntracked;
+    },
+    [discoveryCopy, findPanelCopy.jumpCoveredAreaCount, language]
   );
 
   useEffect(() => {
@@ -4810,6 +4893,8 @@ export default function App(): JSX.Element {
     setLoadedCityAreaId(null);
     setSelectedTree(null);
     setSelectedCoverage(null);
+    setJumpCountryMenuOpen(false);
+    setJumpStateMenuOpen(false);
     setJumpAreaQuery("");
     setStatusNotice(null);
   }
@@ -4950,7 +5035,6 @@ export default function App(): JSX.Element {
     setSelectedCoverage(null);
     setSelectedFeaturedAreaId(null);
     setStatusNotice(null);
-    setJumpAreaExpanded(false);
     setJumpAreaQuery("");
     if (!isDesktopRef.current) {
       setSheetHeight(0.72);
@@ -4964,7 +5048,6 @@ export default function App(): JSX.Element {
     setSelectedCoverage(null);
     setStatusNotice(null);
     setUserLocation(null);
-    setJumpAreaExpanded(false);
     setJumpAreaQuery("");
     if (area.jump_area_id) {
       setSelectedJumpAreaId(area.jump_area_id);
@@ -4997,8 +5080,9 @@ export default function App(): JSX.Element {
   function handleSelectJumpArea(area: JumpArea): void {
     setJumpCountry(area.country_id);
     setJumpState(area.state_id);
+    setJumpCountryMenuOpen(false);
+    setJumpStateMenuOpen(false);
     setSelectedJumpAreaId(area.id);
-    setJumpAreaExpanded(false);
     setJumpAreaQuery("");
     setStatusNotice(null);
   }
@@ -5035,7 +5119,6 @@ export default function App(): JSX.Element {
     setLoadedCityAreaId(null);
     setStatusNotice(null);
     setUserLocation(null);
-    setJumpAreaExpanded(false);
 
     if (selectedArea?.region_hint) {
       setActiveRegion(selectedArea.region_hint);
@@ -5121,7 +5204,6 @@ export default function App(): JSX.Element {
           setSelectedCityAreaId(null);
           setLoadedCityAreaId(null);
           setJumpAreaQuery("");
-          setJumpAreaExpanded(false);
           setUserLocation(coordinates);
           setStatusNotice(null);
           if (matchedArea) {
@@ -5329,13 +5411,10 @@ export default function App(): JSX.Element {
           <button
             className="clear-btn"
             onClick={() => {
-              if (jumpIndex) {
-                setJumpAreaExpanded(true);
-                return;
+              setActivePanel("filters");
+              if (!isDesktopRef.current) {
+                setSheetHeight(0.72);
               }
-              void ensureJumpIndexLoaded().then(() => {
-                setJumpAreaExpanded(true);
-              });
             }}
             type="button"
           >
@@ -5735,79 +5814,143 @@ export default function App(): JSX.Element {
                 <section className="show-block">
                   {renderFindStepHeader(1, findPanelCopy.jumpTitle)}
                   {!jumpIndex ? (
-                    <>
-                      <p className="show-block-copy">
-                        {loadingJumpIndex ? findPanelCopy.jumpLoadingBody : findPanelCopy.jumpLoadBody}
-                      </p>
-                      <div className="jump-actions">
-                        <button
-                          className="clear-btn jump-btn"
-                          disabled={loadingJumpIndex}
-                          onClick={() => void ensureJumpIndexLoaded()}
-                          type="button"
-                        >
-                          {loadingJumpIndex ? t(language, "loading") : findPanelCopy.jumpLoadButton}
-                        </button>
-                      </div>
-                    </>
+                    <p className="show-block-copy">{findPanelCopy.jumpLoadingBody}</p>
                   ) : (
                     <>
                       <p className="show-block-copy">{findPanelCopy.jumpBody}</p>
                       <div className="jump-grid">
-                        <label className="jump-field">
+                        <div className="jump-field">
                           <span>{findPanelCopy.jumpCountry}</span>
-                          <select
-                            className="jump-select"
-                            onChange={(event) => {
-                              const nextCountry = event.target.value as JumpCountry["id"];
-                              setJumpCountry(nextCountry);
-                              setJumpState("");
-                              clearSelectedJumpArea();
-                              setJumpAreaExpanded(false);
-                              setStatusNotice(null);
-                              setUserLocation(null);
-                            }}
-                            value={jumpCountry}
-                          >
-                            {jumpCountries.map((country) => (
-                              <option key={country.id} value={country.id}>
-                                {country.emoji} {COUNTRY_LABELS[language][country.id]}
-                              </option>
-                            ))}
-                          </select>
-                        </label>
+                          <div className="jump-picker" ref={jumpCountryMenuRef}>
+                            <button
+                              aria-expanded={jumpCountryMenuOpen}
+                              className="jump-picker-trigger"
+                              onClick={() => {
+                                setJumpCountryMenuOpen((current) => !current);
+                                setJumpStateMenuOpen(false);
+                              }}
+                              type="button"
+                            >
+                              <span className="jump-picker-trigger-copy">
+                                {(() => {
+                                  const selectedCountry = jumpCountries.find((item) => item.id === jumpCountry);
+                                  return selectedCountry
+                                    ? `${selectedCountry.emoji} ${COUNTRY_LABELS[language][selectedCountry.id]}`
+                                    : "";
+                                })()}
+                              </span>
+                              <span className={jumpCountryMenuOpen ? "caret open" : "caret"} />
+                            </button>
+                            {jumpCountryMenuOpen ? (
+                              <div className="jump-picker-menu">
+                                {jumpCountries.map((country) => (
+                                  <button
+                                    className={
+                                      country.id === jumpCountry
+                                        ? "jump-picker-option active"
+                                        : "jump-picker-option"
+                                    }
+                                    key={country.id}
+                                    onClick={() => {
+                                      setJumpCountry(country.id);
+                                      setJumpState("");
+                                      setJumpCountryMenuOpen(false);
+                                      setJumpStateMenuOpen(false);
+                                      clearSelectedJumpArea();
+                                      setStatusNotice(null);
+                                      setUserLocation(null);
+                                    }}
+                                    type="button"
+                                  >
+                                    <div className="jump-picker-option-main">
+                                      <strong>
+                                        {country.emoji} {COUNTRY_LABELS[language][country.id]}
+                                      </strong>
+                                    </div>
+                                  </button>
+                                ))}
+                              </div>
+                            ) : null}
+                          </div>
+                        </div>
 
-                        <label className="jump-field">
+                        <div className="jump-field">
                           <span>{jumpSubnationalLabel}</span>
-                          <select
-                            className="jump-select"
-                            onChange={(event) => {
-                              const nextState = event.target.value;
-                              setJumpState(nextState);
-                              clearSelectedJumpArea();
-                              setStatusNotice(null);
-                              setUserLocation(null);
-                            }}
-                            value={jumpState}
-                          >
-                            <option value="">{jumpAnySubnationalLabel}</option>
-                            {jumpStates.map((state) => (
-                              <option key={state.id} value={state.id}>
-                                {jumpStateDisplayLabel(language, state)}
-                              </option>
-                            ))}
-                          </select>
-                        </label>
+                          <div className="jump-picker" ref={jumpStateMenuRef}>
+                            <button
+                              aria-expanded={jumpStateMenuOpen}
+                              className="jump-picker-trigger jump-picker-trigger-with-badge"
+                              onClick={() => {
+                                setJumpStateMenuOpen((current) => !current);
+                                setJumpCountryMenuOpen(false);
+                              }}
+                              type="button"
+                            >
+                              <span className="jump-picker-trigger-main">
+                                <span className="jump-picker-trigger-copy">
+                                  {selectedJumpState ? jumpStateDisplayLabel(language, selectedJumpState) : jumpAnySubnationalLabel}
+                                </span>
+                                {selectedJumpStateStatus ? (
+                                  <span className={`jump-area-status-badge ${selectedJumpStateStatus.kind}`}>
+                                    {jumpStateStatusLabel(selectedJumpStateStatus)}
+                                  </span>
+                                ) : null}
+                              </span>
+                              <span className={jumpStateMenuOpen ? "caret open" : "caret"} />
+                            </button>
+                            {jumpStateMenuOpen ? (
+                              <div className="jump-picker-menu jump-picker-menu-tall">
+                                <button
+                                  className={jumpState === "" ? "jump-picker-option active" : "jump-picker-option"}
+                                  onClick={() => {
+                                    setJumpState("");
+                                    setJumpStateMenuOpen(false);
+                                    clearSelectedJumpArea();
+                                    setStatusNotice(null);
+                                    setUserLocation(null);
+                                  }}
+                                  type="button"
+                                >
+                                  <div className="jump-picker-option-main">
+                                    <strong>{jumpAnySubnationalLabel}</strong>
+                                  </div>
+                                </button>
+                                {jumpStates.map((state) => {
+                                  const stateDisplayStatus = jumpStateDisplayStatusById.get(state.id) ?? {
+                                    kind: "untracked",
+                                    coveredAreaCount: 0
+                                  };
+                                  return (
+                                    <button
+                                      className={
+                                        state.id === jumpState ? "jump-picker-option active" : "jump-picker-option"
+                                      }
+                                      key={state.id}
+                                      onClick={() => {
+                                        setJumpState(state.id);
+                                        setJumpStateMenuOpen(false);
+                                        clearSelectedJumpArea();
+                                        setStatusNotice(null);
+                                        setUserLocation(null);
+                                      }}
+                                      type="button"
+                                    >
+                                      <div className="jump-picker-option-main">
+                                        <strong>{jumpStateDisplayLabel(language, state)}</strong>
+                                        <span className={`jump-area-status-badge ${stateDisplayStatus.kind}`}>
+                                          {jumpStateStatusLabel(stateDisplayStatus)}
+                                        </span>
+                                      </div>
+                                    </button>
+                                  );
+                                })}
+                              </div>
+                            ) : null}
+                          </div>
+                        </div>
                       </div>
-                      <div className="jump-area-tools">
-                        <button
-                          className="jump-area-toggle"
-                          onClick={() => setJumpAreaExpanded((current) => !current)}
-                          type="button"
-                        >
-                          {jumpAreaExpanded ? discoveryCopy.areaSearchHide : discoveryCopy.areaSearchShow}
-                        </button>
-                        {selectedJumpAreaLabel && (
+                      {selectedJumpAreaLabel ? (
+                        <div className="jump-area-tools">
                           <div className="jump-selected-area">
                             <span>{selectedJumpAreaLabel}</span>
                             <button
@@ -5819,58 +5962,56 @@ export default function App(): JSX.Element {
                               ×
                             </button>
                           </div>
-                        )}
-                      </div>
-                      {jumpAreaExpanded && (
-                        <div className="jump-area-search-shell">
-                          <input
-                            className="filter-search-input jump-area-search-input"
-                            onChange={(event) => setJumpAreaQuery(event.target.value)}
-                            placeholder={t(language, "searchCityPlaceholder")}
-                            type="search"
-                            value={jumpAreaQuery}
-                          />
-                          {normalizedJumpAreaQuery ? (
-                            jumpAreaMatches.length > 0 ? (
-                              <div className="jump-area-results">
-                                {jumpAreaMatches.map((area) => {
-                                  const areaDisplayStatus = getJumpAreaDisplayStatus(area);
-                                  return (
-                                    <button
-                                      className={
-                                        area.id === selectedJumpAreaId
-                                          ? "jump-area-result active"
-                                          : "jump-area-result"
-                                      }
-                                      key={area.id}
-                                      onClick={() => handleSelectJumpArea(area)}
-                                      type="button"
-                                    >
-                                      <div className="jump-area-result-head">
-                                        <strong>{formatJumpAreaLabel(area)}</strong>
-                                      </div>
-                                      <div className="jump-area-result-meta">
-                                        <span
-                                          className={`coverage-area-type-badge ${jurisdictionTypeClassName(
-                                            area.area_type
-                                          )}`}
-                                        >
-                                          {jurisdictionTypeLabel(language, area.area_type)}
-                                        </span>
-                                        <span className={`jump-area-status-badge ${areaDisplayStatus.kind}`}>
-                                          {jumpAreaStatusLabel(areaDisplayStatus)}
-                                        </span>
-                                      </div>
-                                    </button>
-                                  );
-                                })}
-                              </div>
-                            ) : (
-                              <p className="filter-empty jump-area-empty">{discoveryCopy.areaSearchEmpty}</p>
-                            )
-                          ) : null}
                         </div>
-                      )}
+                      ) : null}
+                      <div className="jump-area-search-shell">
+                        <input
+                          className="filter-search-input jump-area-search-input"
+                          onChange={(event) => setJumpAreaQuery(event.target.value)}
+                          placeholder={t(language, "searchCityPlaceholder")}
+                          type="search"
+                          value={jumpAreaQuery}
+                        />
+                        {normalizedJumpAreaQuery ? (
+                          jumpAreaMatches.length > 0 ? (
+                            <div className="jump-area-results">
+                              {jumpAreaMatches.map((area) => {
+                                const areaDisplayStatus = getJumpAreaDisplayStatus(area);
+                                return (
+                                  <button
+                                    className={
+                                      area.id === selectedJumpAreaId
+                                        ? "jump-area-result active"
+                                        : "jump-area-result"
+                                    }
+                                    key={area.id}
+                                    onClick={() => handleSelectJumpArea(area)}
+                                    type="button"
+                                  >
+                                    <div className="jump-area-result-head">
+                                      <strong>{formatJumpAreaLabel(area)}</strong>
+                                    </div>
+                                    <div className="jump-area-result-meta">
+                                      <span
+                                        className={`coverage-area-type-badge ${jurisdictionTypeClassName(
+                                          area.area_type
+                                        )}`}
+                                      >
+                                        {jurisdictionTypeLabel(language, area.area_type)}
+                                      </span>
+                                      <span className={`jump-area-status-badge ${areaDisplayStatus.kind}`}>
+                                        {jumpAreaStatusLabel(areaDisplayStatus)}
+                                      </span>
+                                    </div>
+                                  </button>
+                                );
+                              })}
+                            </div>
+                          ) : (
+                            <p className="filter-empty jump-area-empty">{discoveryCopy.areaSearchEmpty}</p>
+                          )
+                        ) : null}
+                      </div>
                       <div className="jump-actions">
                         <button className="clear-btn jump-btn" onClick={handleJump} type="button">
                           {findPanelCopy.jumpButton}
