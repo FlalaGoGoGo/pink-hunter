@@ -764,7 +764,7 @@ body {
   position: relative;
 }
 
-.jump-field span {
+.jump-field > span {
   font-size: 0.76rem;
   font-weight: 800;
   color: #5b3d4b;
@@ -853,7 +853,7 @@ body {
 
 .jump-area-picker-menu {
   display: grid;
-  gap: 0.52rem;
+  gap: 0.42rem;
   overflow: hidden;
 }
 
@@ -954,6 +954,14 @@ body {
   margin-bottom: 0;
 }
 
+.jump-picker-option-badges {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  gap: 0.42rem;
+}
+
 .jump-area-results {
   display: grid;
   gap: 0.48rem;
@@ -964,6 +972,14 @@ body {
 
 .jump-area-results-inline {
   max-height: 16.5rem;
+}
+
+.jump-area-options {
+  gap: 0.26rem;
+}
+
+.jump-area-options .jump-picker-option + .jump-picker-option {
+  margin-top: 0;
 }
 
 .jump-area-result {

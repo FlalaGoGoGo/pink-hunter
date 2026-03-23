@@ -5989,86 +5989,86 @@ export default function App(): JSX.Element {
                             ) : null}
                           </div>
                         </div>
-                      </div>
-                      <div className="jump-field">
-                        <span>{t(language, "jumpArea")}</span>
-                        <div className="jump-picker" ref={jumpAreaMenuRef}>
-                          <button
-                            aria-expanded={jumpAreaMenuOpen}
-                            className="jump-picker-trigger jump-picker-trigger-with-badge"
-                            onClick={() => {
-                              setJumpAreaMenuOpen((current) => !current);
-                              setJumpCountryMenuOpen(false);
-                              setJumpStateMenuOpen(false);
-                            }}
-                            type="button"
-                          >
-                            <span className="jump-picker-trigger-main">
-                              <span
-                                className={
-                                  selectedJumpAreaLabel
-                                    ? "jump-picker-trigger-copy"
-                                    : "jump-picker-trigger-copy jump-picker-trigger-placeholder"
-                                }
-                              >
-                                {selectedJumpAreaLabel ?? t(language, "searchCityPlaceholder")}
-                              </span>
-                              {selectedJumpAreaStatus ? (
-                                <span className={`jump-area-status-badge ${selectedJumpAreaStatus.kind}`}>
-                                  {jumpAreaStatusLabel(selectedJumpAreaStatus)}
+                        <div className="jump-field">
+                          <span>{t(language, "jumpArea")}</span>
+                          <div className="jump-picker" ref={jumpAreaMenuRef}>
+                            <button
+                              aria-expanded={jumpAreaMenuOpen}
+                              className="jump-picker-trigger jump-picker-trigger-with-badge"
+                              onClick={() => {
+                                setJumpAreaMenuOpen((current) => !current);
+                                setJumpCountryMenuOpen(false);
+                                setJumpStateMenuOpen(false);
+                              }}
+                              type="button"
+                            >
+                              <span className="jump-picker-trigger-main">
+                                <span
+                                  className={
+                                    selectedJumpAreaLabel
+                                      ? "jump-picker-trigger-copy"
+                                      : "jump-picker-trigger-copy jump-picker-trigger-placeholder"
+                                  }
+                                >
+                                  {selectedJumpAreaLabel ?? t(language, "searchCityPlaceholder")}
                                 </span>
-                              ) : null}
-                            </span>
-                            <span className={jumpAreaMenuOpen ? "caret open" : "caret"} />
-                          </button>
-                          {jumpAreaMenuOpen ? (
-                            <div className="jump-picker-menu jump-picker-menu-tall jump-area-picker-menu">
-                              <input
-                                className="filter-search-input jump-area-search-input"
-                                onChange={(event) => setJumpAreaQuery(event.target.value)}
-                                placeholder={t(language, "searchCityPlaceholder")}
-                                type="search"
-                                value={jumpAreaQuery}
-                              />
-                              {jumpAreaMatches.length > 0 ? (
-                                <div className="jump-area-results jump-area-results-inline">
-                                  {jumpAreaMatches.map((area) => {
-                                    const areaDisplayStatus = getJumpAreaDisplayStatus(area);
-                                    return (
-                                      <button
-                                        className={
-                                          area.id === selectedJumpAreaId
-                                            ? "jump-area-result active"
-                                            : "jump-area-result"
-                                        }
-                                        key={area.id}
-                                        onClick={() => handleSelectJumpArea(area)}
-                                        type="button"
-                                      >
-                                        <div className="jump-area-result-head">
-                                          <strong>{formatJumpAreaLabel(area)}</strong>
-                                        </div>
-                                        <div className="jump-area-result-meta">
-                                          <span
-                                            className={`coverage-area-type-badge ${jurisdictionTypeClassName(
-                                              area.area_type
-                                            )}`}
-                                          >
-                                            {jurisdictionTypeLabel(language, area.area_type)}
-                                          </span>
-                                          <span className={`jump-area-status-badge ${areaDisplayStatus.kind}`}>
-                                            {jumpAreaStatusLabel(areaDisplayStatus)}
-                                          </span>
-                                        </div>
-                                      </button>
-                                    );
-                                  })}
-                                </div>
-                              ) : (
-                                <p className="filter-empty jump-area-empty">{discoveryCopy.areaSearchEmpty}</p>
-                              )}
-                            </div>
-                          ) : null}
+                                {selectedJumpAreaStatus ? (
+                                  <span className={`jump-area-status-badge ${selectedJumpAreaStatus.kind}`}>
+                                    {jumpAreaStatusLabel(selectedJumpAreaStatus)}
+                                  </span>
+                                ) : null}
+                              </span>
+                              <span className={jumpAreaMenuOpen ? "caret open" : "caret"} />
+                            </button>
+                            {jumpAreaMenuOpen ? (
+                              <div className="jump-picker-menu jump-picker-menu-tall jump-area-picker-menu">
+                                <input
+                                  className="filter-search-input jump-area-search-input"
+                                  onChange={(event) => setJumpAreaQuery(event.target.value)}
+                                  placeholder={t(language, "searchCityPlaceholder")}
+                                  type="search"
+                                  value={jumpAreaQuery}
+                                />
+                                {jumpAreaMatches.length > 0 ? (
+                                  <div className="jump-area-results jump-area-results-inline jump-area-options">
+                                    {jumpAreaMatches.map((area) => {
+                                      const areaDisplayStatus = getJumpAreaDisplayStatus(area);
+                                      return (
+                                        <button
+                                          className={
+                                            area.id === selectedJumpAreaId
+                                              ? "jump-picker-option active"
+                                              : "jump-picker-option"
+                                          }
+                                          key={area.id}
+                                          onClick={() => handleSelectJumpArea(area)}
+                                          type="button"
+                                        >
+                                          <div className="jump-picker-option-main">
+                                            <strong>{formatJumpAreaLabel(area)}</strong>
+                                            <div className="jump-picker-option-badges">
+                                              <span
+                                                className={`coverage-area-type-badge ${jurisdictionTypeClassName(
+                                                  area.area_type
+                                                )}`}
+                                              >
+                                                {jurisdictionTypeLabel(language, area.area_type)}
+                                              </span>
+                                              <span className={`jump-area-status-badge ${areaDisplayStatus.kind}`}>
+                                                {jumpAreaStatusLabel(areaDisplayStatus)}
+                                              </span>
+                                            </div>
+                                          </div>
+                                        </button>
+                                      );
+                                    })}
+                                  </div>
+                                ) : (
+                                  <p className="filter-empty jump-area-empty">{discoveryCopy.areaSearchEmpty}</p>
+                                )}
+                              </div>
+                            ) : null}
+                          </div>
                         </div>
                       </div>
                       <div className="jump-actions">
@@ -6503,7 +6503,7 @@ export default function App(): JSX.Element {
                     <h3 className="about-section-title">{legalUiCopy.sectionTitle}</h3>
                     <div className="about-copy-block">
                       <p>
-                        {legalUiCopy.lead}{" "}
+                        Pink Hunter now includes a site{" "}
                         <a
                           className="about-inline-legal-link"
                           href={buildLegalDocumentHref("privacy")}
@@ -6514,7 +6514,7 @@ export default function App(): JSX.Element {
                         >
                           <strong>{legalUiCopy.privacyLinkLabel}</strong>
                         </a>{" "}
-                        ·{" "}
+                        and a plain-language{" "}
                         <a
                           className="about-inline-legal-link"
                           href={buildLegalDocumentHref("terms")}
@@ -6524,7 +6524,8 @@ export default function App(): JSX.Element {
                           }}
                         >
                           <strong>{legalUiCopy.termsLinkLabel}</strong>
-                        </a>
+                        </a>{" "}
+                        page.
                       </p>
                     </div>
                   </div>
