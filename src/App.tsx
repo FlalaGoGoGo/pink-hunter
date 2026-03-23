@@ -3428,7 +3428,7 @@ export default function App(): JSX.Element {
     () => (selectedJumpAreaId ? jumpAreaById.get(selectedJumpAreaId) ?? null : null),
     [jumpAreaById, selectedJumpAreaId]
   );
-  const selectedJumpAreaStatus = useMemo(
+  const selectedJumpAreaStatus = useMemo<JumpAreaDisplayStatusInfo | null>(
     () =>
       selectedJumpArea
         ? jumpAreaDisplayStatusById.get(selectedJumpArea.id) ?? {
