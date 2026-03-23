@@ -6103,7 +6103,7 @@ export default function App(): JSX.Element {
                   </div>
                   <div className="filter-group">
                     <strong>{t(language, "speciesFilter")}</strong>
-                    <div className="chip-wrap">
+                    <div className="chip-wrap chip-wrap-species">
                       {ALL_SPECIES.map((species) => (
                         <button
                           disabled={!isLoadedCitySelected}
