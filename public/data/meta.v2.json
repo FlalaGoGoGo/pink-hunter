@@ -1,6 +1,6 @@
 {
   "version": "v2",
-  "generated_at": "2026-03-12T19:38:26.573144+00:00",
+  "generated_at": "2026-03-26T18:04:50.787333+00:00",
   "default_region": "wa",
   "coverage_rule": "official_jurisdiction_boundary_only",
   "coverage_skipped_cities": [
@@ -120,14 +120,14 @@
   "coverage_official_unavailable_skipped_cities": [],
   "source_count": 187,
   "total_records": 2945948,
-  "included_records": 599318,
+  "included_records": 602396,
   "unknown_records": 1300148,
   "species_counts": {
-    "cherry": 197952,
-    "plum": 114271,
-    "peach": 7860,
-    "magnolia": 171691,
-    "crabapple": 107544
+    "cherry": 199764,
+    "plum": 114538,
+    "peach": 7864,
+    "magnolia": 171742,
+    "crabapple": 108488
   },
   "regions": [
     {
@@ -629,22 +629,25 @@
       "bounds": [
         [
           -72.6188,
-          42.0672000009
+          41.59379928000004
         ],
         [
-          -70.99723874199998,
-          42.415663606303
+          -70.90213626999997,
+          42.44014358520508
         ]
       ],
       "data_path": null,
       "coverage_path": "/data/coverage.ma.v1.geojson",
-      "tree_count": 11850,
-      "city_count": 9,
+      "tree_count": 13842,
+      "city_count": 12,
       "cities": [
         "Belmont",
         "Boston",
+        "Brookline",
         "Cambridge",
         "Dedham",
+        "Medford",
+        "New Bedford",
         "Newton",
         "Somerville",
         "Springfield",
@@ -652,21 +655,21 @@
         "Worcester"
       ],
       "species_counts": {
-        "cherry": 5531,
-        "plum": 740,
+        "cherry": 6488,
+        "plum": 987,
         "peach": 23,
-        "magnolia": 464,
-        "crabapple": 5092
+        "magnolia": 472,
+        "crabapple": 5872
       },
       "ownership_groups": [
         "public",
         "private"
       ],
-      "raw_bytes": 5801917,
-      "gzip_bytes": 240297,
+      "raw_bytes": 6818781,
+      "gzip_bytes": 286049,
       "warning_level": "none",
-      "aggregate_raw_bytes": 5801917,
-      "aggregate_gzip_bytes": 240297,
+      "aggregate_raw_bytes": 6818781,
+      "aggregate_gzip_bytes": 286049,
       "aggregate_warning_level": "none",
       "largest_shard_raw_bytes": 2246062,
       "largest_shard_gzip_bytes": 87894,
@@ -676,8 +679,8 @@
       "area_split": {
         "strategy": "area_shard",
         "index_path": "/data/trees.ma.area-index.v2.json",
-        "area_count": 9,
-        "shard_count": 9,
+        "area_count": 12,
+        "shard_count": 12,
         "ready": true
       }
     },
@@ -687,7 +690,7 @@
       "available": true,
       "bounds": [
         [
-          -76.71078953837228,
+          -77.24685854463718,
           38.94855573426864
         ],
         [
@@ -697,27 +700,28 @@
       ],
       "data_path": null,
       "coverage_path": "/data/coverage.md.v1.geojson",
-      "tree_count": 2180,
-      "city_count": 2,
+      "tree_count": 3231,
+      "city_count": 3,
       "cities": [
         "Annapolis",
-        "Baltimore"
+        "Baltimore",
+        "Gaithersburg"
       ],
       "species_counts": {
-        "cherry": 296,
-        "plum": 167,
-        "peach": 21,
-        "magnolia": 737,
-        "crabapple": 959
+        "cherry": 1140,
+        "plum": 187,
+        "peach": 25,
+        "magnolia": 756,
+        "crabapple": 1123
       },
       "ownership_groups": [
         "public"
       ],
-      "raw_bytes": 1064658,
-      "gzip_bytes": 57329,
+      "raw_bytes": 1646797,
+      "gzip_bytes": 81924,
       "warning_level": "none",
-      "aggregate_raw_bytes": 1064658,
-      "aggregate_gzip_bytes": 57329,
+      "aggregate_raw_bytes": 1646797,
+      "aggregate_gzip_bytes": 81924,
       "aggregate_warning_level": "none",
       "largest_shard_raw_bytes": 933719,
       "largest_shard_gzip_bytes": 50460,
@@ -727,8 +731,8 @@
       "area_split": {
         "strategy": "area_shard",
         "index_path": "/data/trees.md.area-index.v2.json",
-        "area_count": 2,
-        "shard_count": 2,
+        "area_count": 3,
+        "shard_count": 3,
         "ready": true
       }
     },
@@ -1274,31 +1278,32 @@
       ],
       "data_path": null,
       "coverage_path": "/data/coverage.va.v1.geojson",
-      "tree_count": 7003,
-      "city_count": 5,
+      "tree_count": 7038,
+      "city_count": 6,
       "cities": [
         "Arlington",
         "Fairfax",
         "Falls Church",
+        "Newport News",
         "Richmond",
         "Virginia Beach"
       ],
       "species_counts": {
-        "cherry": 3287,
+        "cherry": 3298,
         "plum": 391,
         "peach": 10,
-        "magnolia": 2864,
+        "magnolia": 2888,
         "crabapple": 451
       },
       "ownership_groups": [
         "public",
         "private"
       ],
-      "raw_bytes": 3509273,
-      "gzip_bytes": 172279,
+      "raw_bytes": 3528761,
+      "gzip_bytes": 173574,
       "warning_level": "none",
-      "aggregate_raw_bytes": 3509273,
-      "aggregate_gzip_bytes": 172279,
+      "aggregate_raw_bytes": 3528761,
+      "aggregate_gzip_bytes": 173574,
       "aggregate_warning_level": "none",
       "largest_shard_raw_bytes": 1064202,
       "largest_shard_gzip_bytes": 51981,
@@ -1308,8 +1313,8 @@
       "area_split": {
         "strategy": "area_shard",
         "index_path": "/data/trees.va.area-index.v2.json",
-        "area_count": 5,
-        "shard_count": 5,
+        "area_count": 6,
+        "shard_count": 6,
         "ready": true
       }
     },
@@ -2860,6 +2865,20 @@
       "state_province": "MA"
     },
     {
+      "jurisdiction": "Brookline",
+      "region": "ma",
+      "tree_count": 1064,
+      "species_counts": {
+        "cherry": 517,
+        "plum": 0,
+        "peach": 0,
+        "magnolia": 0,
+        "crabapple": 547
+      },
+      "jurisdiction_type": "city",
+      "state_province": "MA"
+    },
+    {
       "jurisdiction": "Cambridge",
       "region": "ma",
       "tree_count": 1954,
@@ -2883,6 +2902,34 @@
         "peach": 7,
         "magnolia": 15,
         "crabapple": 261
+      },
+      "jurisdiction_type": "city",
+      "state_province": "MA"
+    },
+    {
+      "jurisdiction": "Medford",
+      "region": "ma",
+      "tree_count": 250,
+      "species_counts": {
+        "cherry": 5,
+        "plum": 162,
+        "peach": 0,
+        "magnolia": 5,
+        "crabapple": 78
+      },
+      "jurisdiction_type": "city",
+      "state_province": "MA"
+    },
+    {
+      "jurisdiction": "New Bedford",
+      "region": "ma",
+      "tree_count": 678,
+      "species_counts": {
+        "cherry": 435,
+        "plum": 85,
+        "peach": 0,
+        "magnolia": 3,
+        "crabapple": 155
       },
       "jurisdiction_type": "city",
       "state_province": "MA"
@@ -2981,6 +3028,20 @@
         "peach": 20,
         "magnolia": 674,
         "crabapple": 890
+      },
+      "jurisdiction_type": "city",
+      "state_province": "MD"
+    },
+    {
+      "jurisdiction": "Gaithersburg",
+      "region": "md",
+      "tree_count": 1051,
+      "species_counts": {
+        "cherry": 844,
+        "plum": 20,
+        "peach": 4,
+        "magnolia": 19,
+        "crabapple": 164
       },
       "jurisdiction_type": "city",
       "state_province": "MD"
@@ -3527,6 +3588,20 @@
         "peach": 0,
         "magnolia": 300,
         "crabapple": 37
+      },
+      "jurisdiction_type": "city",
+      "state_province": "VA"
+    },
+    {
+      "jurisdiction": "Newport News",
+      "region": "va",
+      "tree_count": 35,
+      "species_counts": {
+        "cherry": 11,
+        "plum": 0,
+        "peach": 0,
+        "magnolia": 24,
+        "crabapple": 0
       },
       "jurisdiction_type": "city",
       "state_province": "VA"

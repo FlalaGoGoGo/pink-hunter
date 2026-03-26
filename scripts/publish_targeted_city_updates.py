@@ -194,6 +194,16 @@ HOBOKEN_TREES_LAYER = "https://services8.arcgis.com/LDmC4ZVHdfKcEzxl/arcgis/rest
 HOBOKEN_DATASET_PAGE = "https://services8.arcgis.com/LDmC4ZVHdfKcEzxl/arcgis/rest/services/2023_Tree_Inventory_/FeatureServer"
 MORRISTOWN_TREES_LAYER = "https://services.arcgis.com/xhDV83hFoiDFnMbw/arcgis/rest/services/Legacy_Trees_2021/FeatureServer/0"
 MORRISTOWN_DATASET_PAGE = "https://services.arcgis.com/xhDV83hFoiDFnMbw/arcgis/rest/services/Legacy_Trees_2021/FeatureServer"
+BROOKLINE_TREES_LAYER = "https://services1.arcgis.com/Oknk0tvfHOElpgGU/arcgis/rest/services/Brookline_Tree_Viewer_Web_WFL1/FeatureServer/0"
+BROOKLINE_DATASET_PAGE = "https://www.arcgis.com/home/item.html?id=4500c14f85d846d6924c7f8cb532763f"
+GAITHERSBURG_TREES_LAYER = "https://services1.arcgis.com/oYaMaMY9WlGtyT0U/arcgis/rest/services/Street_Trees_View/FeatureServer/0"
+GAITHERSBURG_DATASET_PAGE = "https://www.arcgis.com/home/item.html?id=8450e6c3992d4e8e9d0f3df4fd2722dd"
+NEW_BEDFORD_TREES_LAYER = "https://services2.arcgis.com/n2knWtl5p0fT9O6L/arcgis/rest/services/NewBedfordTreeInventory2023/FeatureServer/0"
+NEW_BEDFORD_DATASET_PAGE = "https://www.arcgis.com/home/item.html?id=c80392f7b4bf4a2ebd5617776d508721"
+MEDFORD_TREES_LAYER = "https://services5.arcgis.com/txpD9IdWgscHqSgF/arcgis/rest/services/Medford_tree_inventory_2024_1/FeatureServer/0"
+MEDFORD_DATASET_PAGE = "https://www.medfordma.org/departments/forestry"
+NEWPORT_NEWS_TREES_LAYER = "https://services6.arcgis.com/SiUAoHzWN11AIADA/arcgis/rest/services/Trees_Public_View/FeatureServer/1"
+NEWPORT_NEWS_DATASET_PAGE = "https://www.arcgis.com/home/item.html?id=9d10ce6b9f0e4d29ac48285037193138"
 LINDEN_TREES_LAYER = "https://services.arcgis.com/VgmyyKiMPvUPgldo/arcgis/rest/services/Linden_Tree_Survey/FeatureServer/0"
 LINDEN_DATASET_PAGE = "https://services.arcgis.com/VgmyyKiMPvUPgldo/arcgis/rest/services/Linden_Tree_Survey/FeatureServer"
 MONTCLAIR_TREES_LAYER = "https://services9.arcgis.com/QHXEWAb0pE2rvfbb/arcgis/rest/services/Montclair_Trees_2017_WFL1/FeatureServer/0"
@@ -908,6 +918,32 @@ EAST_COAST_TREEPLOTTER_CONFIGS: dict[str, dict[str, Any]] = {
 }
 
 UNCOVERED_STATE_ARCGIS_CONFIGS: dict[str, dict[str, Any]] = {
+    "Brookline": {
+        "region": "ma",
+        "layer_url": BROOKLINE_TREES_LAYER,
+        "dataset_page": BROOKLINE_DATASET_PAGE,
+        "object_id_field": "OBJECTID",
+        "common_field": "CommonName",
+        "scientific_field": "ScientificName",
+        "source_name": "Tree Inventory",
+        "source_department": "Town of Brookline",
+        "ownership_raw": "Town of Brookline",
+        "note": "Integrated from the official Town of Brookline public tree inventory ArcGIS layer.",
+        "clip_to_boundary": True,
+    },
+    "Gaithersburg": {
+        "region": "md",
+        "layer_url": GAITHERSBURG_TREES_LAYER,
+        "dataset_page": GAITHERSBURG_DATASET_PAGE,
+        "object_id_field": "OBJECTID",
+        "common_field": "Common_Name",
+        "scientific_field": "Botanical_Name",
+        "source_name": "Street Trees View",
+        "source_department": "City of Gaithersburg",
+        "ownership_raw": "City of Gaithersburg",
+        "note": "Integrated from the official City of Gaithersburg public street-tree ArcGIS layer.",
+        "clip_to_boundary": True,
+    },
     "Ann Arbor": {
         "region": "mi",
         "layer_url": "https://a2maps.a2gov.org/a2arcgis/rest/services/TreeInventory/FeatureServer/0",
@@ -1014,6 +1050,48 @@ UNCOVERED_STATE_ARCGIS_CONFIGS: dict[str, dict[str, Any]] = {
         "source_department": "Town of Groton",
         "ownership_raw": "Town of Groton",
         "note": "Integrated from the official Town of Groton public tree inventory ArcGIS experience and service.",
+        "clip_to_boundary": True,
+    },
+    "Medford": {
+        "region": "ma",
+        "layer_url": MEDFORD_TREES_LAYER,
+        "dataset_page": MEDFORD_DATASET_PAGE,
+        "object_id_field": "FID",
+        "common_field": "SPP_com",
+        "scientific_field": "SPP_bot",
+        "source_name": "Tree Inventory",
+        "source_department": "City of Medford",
+        "ownership_raw": "City of Medford",
+        "note": "Integrated from the public Medford tree inventory ArcGIS layer referenced by the official City of Medford Forestry materials.",
+        "clip_to_boundary": True,
+    },
+    "New Bedford": {
+        "region": "ma",
+        "layer_url": NEW_BEDFORD_TREES_LAYER,
+        "dataset_page": NEW_BEDFORD_DATASET_PAGE,
+        "object_id_field": "OBJECTID",
+        "common_field": "CommonName",
+        "scientific_field": "ScientName",
+        "lon_field": "Longitude",
+        "lat_field": "Latitude",
+        "source_name": "Tree Inventory",
+        "source_department": "City of New Bedford",
+        "ownership_raw": "City of New Bedford",
+        "note": "Integrated from the public New Bedford 2023 tree inventory ArcGIS layer published for the city's Bartlett inventory.",
+        "clip_to_boundary": True,
+    },
+    "Newport News": {
+        "region": "va",
+        "layer_url": NEWPORT_NEWS_TREES_LAYER,
+        "dataset_page": NEWPORT_NEWS_DATASET_PAGE,
+        "object_id_field": "OBJECTID",
+        "common_field": "commonname",
+        "genus_field": "genus",
+        "species_field": "species",
+        "source_name": "Newport News Tree Inventory",
+        "source_department": "City of Newport News",
+        "ownership_raw": "City of Newport News",
+        "note": "Integrated from the official City of Newport News public reviewed-tree inventory ArcGIS layer.",
         "clip_to_boundary": True,
     },
     "Johns Creek": {
@@ -1266,6 +1344,7 @@ SUPPORTED_CITIES = (
     "Bell",
     "Beverly Hills",
     "Boston",
+    "Brookline",
     "Buffalo",
     "Burbank",
     "Buena Park",
@@ -1291,6 +1370,7 @@ SUPPORTED_CITIES = (
     "Evanston",
     "Fairfax",
     "Falls Church",
+    "Gaithersburg",
     "Fox Point",
     "Franklin",
     "Fontana",
@@ -1334,6 +1414,7 @@ SUPPORTED_CITIES = (
     "Los Gatos",
     "Mahwah",
     "Maywood",
+    "Medford",
     "Millburn",
     "Milpitas",
     "Milwaukee",
@@ -1345,11 +1426,13 @@ SUPPORTED_CITIES = (
     "Morristown",
     "Mountain View",
     "New Haven",
+    "New Bedford",
     "New Milford",
     "New Westminster",
     "New York City",
     "Newark",
     "Newton",
+    "Newport News",
     "Novi",
     "Newport Beach",
     "Norwalk",

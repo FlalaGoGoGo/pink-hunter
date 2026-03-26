@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-03-12T19:38:26.573144+00:00",
+  "generated_at": "2026-03-26T18:04:50.787333+00:00",
   "region": "md",
   "strategy": "area_shard",
   "items": [
@@ -272,6 +272,131 @@
           },
           "raw_bytes": 933719,
           "gzip_bytes": 50460
+        }
+      ]
+    },
+    {
+      "jurisdiction": "Gaithersburg",
+      "slug": "gaithersburg",
+      "display_name": "Gaithersburg",
+      "jurisdiction_type": "city",
+      "state_province": "MD",
+      "country": "United States",
+      "bounds": [
+        [
+          -77.24685854463718,
+          39.10377764110062
+        ],
+        [
+          -77.17180994951612,
+          39.16514132407252
+        ]
+      ],
+      "tree_count": 1051,
+      "zip_codes": [
+        "20877",
+        "20878",
+        "20879",
+        "20899"
+      ],
+      "species_counts": {
+        "cherry": 844,
+        "plum": 20,
+        "peach": 4,
+        "magnolia": 19,
+        "crabapple": 164
+      },
+      "ownership_counts": {
+        "public": 1051,
+        "private": 0,
+        "unknown": 0
+      },
+      "species_ownership_counts": {
+        "cherry": {
+          "public": 844,
+          "private": 0,
+          "unknown": 0
+        },
+        "plum": {
+          "public": 20,
+          "private": 0,
+          "unknown": 0
+        },
+        "peach": {
+          "public": 4,
+          "private": 0,
+          "unknown": 0
+        },
+        "magnolia": {
+          "public": 19,
+          "private": 0,
+          "unknown": 0
+        },
+        "crabapple": {
+          "public": 164,
+          "private": 0,
+          "unknown": 0
+        }
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "gaithersburg-001",
+          "bounds": [
+            [
+              -77.24685854463718,
+              39.10377764110062
+            ],
+            [
+              -77.17180994951612,
+              39.16514132407252
+            ]
+          ],
+          "data_path": "/data/trees.md.area.gaithersburg.v2.geojson",
+          "tree_count": 1051,
+          "ownership_counts": {
+            "public": 1051,
+            "private": 0,
+            "unknown": 0
+          },
+          "species_counts": {
+            "cherry": 844,
+            "plum": 20,
+            "peach": 4,
+            "magnolia": 19,
+            "crabapple": 164
+          },
+          "species_ownership_counts": {
+            "cherry": {
+              "public": 844,
+              "private": 0,
+              "unknown": 0
+            },
+            "plum": {
+              "public": 20,
+              "private": 0,
+              "unknown": 0
+            },
+            "peach": {
+              "public": 4,
+              "private": 0,
+              "unknown": 0
+            },
+            "magnolia": {
+              "public": 19,
+              "private": 0,
+              "unknown": 0
+            },
+            "crabapple": {
+              "public": 164,
+              "private": 0,
+              "unknown": 0
+            }
+          },
+          "raw_bytes": 582139,
+          "gzip_bytes": 24595
         }
       ]
     }

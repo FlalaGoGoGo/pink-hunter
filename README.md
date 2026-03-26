@@ -47,7 +47,13 @@ Live domain:
 <details>
 <summary>New York</summary>
 
+- Albany
+- Buffalo
+- Ithaca
 - New York City
+- Saratoga Springs
+- Syracuse
+- Troy
 
 </details>
 
@@ -69,6 +75,7 @@ Live domain:
 - Arlington
 - Fairfax
 - Falls Church
+- Newport News
 - Richmond
 - Virginia Beach
 
@@ -77,7 +84,9 @@ Live domain:
 <details>
 <summary>Maryland</summary>
 
+- Annapolis
 - Baltimore
+- Gaithersburg
 
 </details>
 
@@ -113,8 +122,11 @@ Live domain:
 
 - Belmont
 - Boston
+- Brookline
 - Cambridge
 - Dedham
+- Medford
+- New Bedford
 - Newton
 - Somerville
 - Springfield
@@ -327,6 +339,7 @@ Live domain:
 <summary>Virginia</summary>
 
 - Arlington: [Open Data Portal](https://www.arlingtonva.us/About-Arlington/Data-and-Research/Open-Data-Portal)
+- Newport News: [Newport News Tree Inventory](https://www.arcgis.com/home/item.html?id=9d10ce6b9f0e4d29ac48285037193138)
 - Richmond: [Tree Inventory, City of Richmond, Virginia](https://cor.maps.arcgis.com/apps/webappviewer/index.html?id=3dda2aa7521941d8a48dc91f5014a5c8)
 - Virginia Beach: [VBTrees](https://geo.vbgov.com/mapservices/rest/services/Parks_and_Recreation/VBTrees/MapServer)
 
@@ -336,6 +349,7 @@ Live domain:
 <summary>Maryland</summary>
 
 - Baltimore: [Open Baltimore](https://data.baltimorecity.gov/)
+- Gaithersburg: [Street Trees View](https://www.arcgis.com/home/item.html?id=8450e6c3992d4e8e9d0f3df4fd2722dd)
 
 </details>
 
@@ -359,8 +373,11 @@ Live domain:
 <summary>Massachusetts</summary>
 
 - Boston: [BPRD Trees](https://data.boston.gov/dataset/bprd-trees)
+- Brookline: [Brookline Tree Inventory](https://www.arcgis.com/home/item.html?id=4500c14f85d846d6924c7f8cb532763f)
 - Cambridge: [Street Trees](https://www.cambridgema.gov/GIS/gisdatadictionary/Environmental/ENVIRONMENTAL_StreetTrees)
 - Dedham: [Tree Inventory](https://gis.dedham-ma.gov/arcgis/rest/services/public/TreeInventory/MapServer)
+- Medford: [Forestry](https://www.medfordma.org/departments/forestry)
+- New Bedford: [NewBedfordTreeInventory2023](https://www.arcgis.com/home/item.html?id=c80392f7b4bf4a2ebd5617776d508721)
 
 </details>
 

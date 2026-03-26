@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-03-12T19:38:26.573144+00:00",
+  "generated_at": "2026-03-26T18:04:50.787333+00:00",
   "region": "va",
   "strategy": "area_shard",
   "items": [
@@ -369,6 +369,131 @@
           },
           "raw_bytes": 473964,
           "gzip_bytes": 20690
+        }
+      ]
+    },
+    {
+      "jurisdiction": "Newport News",
+      "slug": "newport-news",
+      "display_name": "Newport News",
+      "jurisdiction_type": "city",
+      "state_province": "VA",
+      "country": "United States",
+      "bounds": [
+        [
+          -76.53184679999995,
+          36.97626271062383
+        ],
+        [
+          -76.4283401162653,
+          37.1068214563549
+        ]
+      ],
+      "tree_count": 35,
+      "zip_codes": [
+        "23601",
+        "23602",
+        "23606",
+        "23607"
+      ],
+      "species_counts": {
+        "cherry": 11,
+        "plum": 0,
+        "peach": 0,
+        "magnolia": 24,
+        "crabapple": 0
+      },
+      "ownership_counts": {
+        "public": 35,
+        "private": 0,
+        "unknown": 0
+      },
+      "species_ownership_counts": {
+        "cherry": {
+          "public": 11,
+          "private": 0,
+          "unknown": 0
+        },
+        "plum": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        },
+        "peach": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        },
+        "magnolia": {
+          "public": 24,
+          "private": 0,
+          "unknown": 0
+        },
+        "crabapple": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        }
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "newport-news-001",
+          "bounds": [
+            [
+              -76.53184679999995,
+              36.97626271062383
+            ],
+            [
+              -76.4283401162653,
+              37.1068214563549
+            ]
+          ],
+          "data_path": "/data/trees.va.area.newport-news.v2.geojson",
+          "tree_count": 35,
+          "ownership_counts": {
+            "public": 35,
+            "private": 0,
+            "unknown": 0
+          },
+          "species_counts": {
+            "cherry": 11,
+            "plum": 0,
+            "peach": 0,
+            "magnolia": 24,
+            "crabapple": 0
+          },
+          "species_ownership_counts": {
+            "cherry": {
+              "public": 11,
+              "private": 0,
+              "unknown": 0
+            },
+            "plum": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            },
+            "peach": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            },
+            "magnolia": {
+              "public": 24,
+              "private": 0,
+              "unknown": 0
+            },
+            "crabapple": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            }
+          },
+          "raw_bytes": 19488,
+          "gzip_bytes": 1295
         }
       ]
     },

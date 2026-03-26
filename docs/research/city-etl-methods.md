@@ -1,6 +1,6 @@
 # City ETL Methods
 
-Last updated: 2026-03-12 (America/Los_Angeles)
+Last updated: 2026-03-26 (America/Los_Angeles)
 
 ## Purpose
 - Record how each covered city is ingested so future species expansion can reuse the same pipeline.
@@ -147,10 +147,15 @@ Last updated: 2026-03-12 (America/Los_Angeles)
 | Philadelphia | ArcGIS FeatureServer | `tree_name` parsed by `parse_dash_species()` | ArcGIS point geometry | Official Philadelphia Parks & Recreation tree inventory layer; botanical/common names are packed into one uppercase text field |
 | Pittsburgh | TreeKeeper | `SITE_ATTR6` parsed by `parse_species_text()` | direct lon/lat or `SITE_GEOMETRY` JSON | Official public Pittsburgh TreeKeeper inventory domain; no public ownership field is published, so ownership is normalized to public |
 | Cambridge | Downloaded Shapefile | `Scientific`, `CommonName`, `Cultivar`, `SiteType` | shapefile points transformed to WGS84 | Official City of Cambridge street-tree shapefile; only current `SiteType = Tree` rows are published into the product |
+| Brookline | ArcGIS FeatureServer | `ScientificName`, `CommonName` | ArcGIS point geometry | Official Town of Brookline public tree inventory ArcGIS layer |
 | Dedham | ArcGIS MapServer | `Species_bot`, `Species_com` | ArcGIS point geometry | Official Town of Dedham public tree inventory; blossom rows are filtered server-side against the public botanical/common fields |
+| Medford | ArcGIS FeatureServer | `SPP_bot`, `SPP_com` | ArcGIS point geometry | Public Medford tree inventory ArcGIS layer referenced by the official City of Medford Forestry page / urban-forest plan materials |
+| New Bedford | ArcGIS FeatureServer | `ScientName`, `CommonName` | ArcGIS point geometry with `Longitude` / `Latitude` fallback | Public 2023 New Bedford Bartlett tree inventory ArcGIS layer |
 | Groton | ArcGIS FeatureServer | `Genus` + `Species`, `CommonName` | ArcGIS point geometry with `Longitude` / `Latitude` fallback | Official Town of Groton public tree inventory; the official town boundary is resolved from the Census county subdivision rather than the smaller Groton city place |
+| Gaithersburg | ArcGIS FeatureServer | `Botanical_Name`, `Common_Name` | ArcGIS point geometry | Official City of Gaithersburg `Street Trees View`; the public layer includes street trees plus a small number of park trees |
 | Morristown | ArcGIS FeatureServer | `GENUS` + `SPECIES` | ArcGIS point geometry | Official Morristown public tree inventory layer |
 | Richmond | ArcGIS FeatureServer | `SPP`, `Status` | ArcGIS point geometry | Official City of Richmond, Virginia public tree inventory; rows are restricted to `Status = In Service` and filtered server-side on `SPP` |
+| Newport News | ArcGIS FeatureServer | `genus` + `species`, `commonname` | ArcGIS point geometry | Official City of Newport News public reviewed-tree inventory; the public layer only exposes reviewed trees |
 | Virginia Beach | ArcGIS MapServer | `ScientificName`, `CommonName`, `Status` | ArcGIS point geometry with `Latitude` / `Longitude` fallback | Official City of Virginia Beach `VBTrees` service; rows are restricted to `Status in ('Existing', 'Planted')` before blossom classification |
 | Boston | Downloaded GeoJSON | `spp_bot`, `spp_com` | GeoJSON lon/lat coordinates from Analyze Boston | Official Analyze Boston `BPRD Trees` download; includes both street and park trees, so ownership is normalized to public city inventory |
 | Ottawa | ArcGIS MapServer | common-name classification from `SPECIES`, ownership from `OWNERSHIP` | ArcGIS point geometry already requested in `outSR=4326` | Official City of Ottawa tree layer is large, so ETL filters blossom-like common names (`cherry`, `plum`, `peach`, `magnolia`, `crabapple`, `apple`) server-side before classification |

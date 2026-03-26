@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-03-12T19:38:26.573144+00:00",
+  "generated_at": "2026-03-26T18:04:50.787333+00:00",
   "region": "ma",
   "strategy": "area_shard",
   "items": [
@@ -277,6 +277,130 @@
       ]
     },
     {
+      "jurisdiction": "Brookline",
+      "slug": "brookline",
+      "display_name": "Brookline",
+      "jurisdiction_type": "city",
+      "state_province": "MA",
+      "country": "United States",
+      "bounds": [
+        [
+          -71.16996725328013,
+          42.29822205309396
+        ],
+        [
+          -71.10646122014913,
+          42.351088050854045
+        ]
+      ],
+      "tree_count": 1064,
+      "zip_codes": [
+        "02445",
+        "02446",
+        "02467"
+      ],
+      "species_counts": {
+        "cherry": 517,
+        "plum": 0,
+        "peach": 0,
+        "magnolia": 0,
+        "crabapple": 547
+      },
+      "ownership_counts": {
+        "public": 1064,
+        "private": 0,
+        "unknown": 0
+      },
+      "species_ownership_counts": {
+        "cherry": {
+          "public": 517,
+          "private": 0,
+          "unknown": 0
+        },
+        "plum": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        },
+        "peach": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        },
+        "magnolia": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        },
+        "crabapple": {
+          "public": 547,
+          "private": 0,
+          "unknown": 0
+        }
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "brookline-001",
+          "bounds": [
+            [
+              -71.16996725328013,
+              42.29822205309396
+            ],
+            [
+              -71.10646122014913,
+              42.351088050854045
+            ]
+          ],
+          "data_path": "/data/trees.ma.area.brookline.v2.geojson",
+          "tree_count": 1064,
+          "ownership_counts": {
+            "public": 1064,
+            "private": 0,
+            "unknown": 0
+          },
+          "species_counts": {
+            "cherry": 517,
+            "plum": 0,
+            "peach": 0,
+            "magnolia": 0,
+            "crabapple": 547
+          },
+          "species_ownership_counts": {
+            "cherry": {
+              "public": 517,
+              "private": 0,
+              "unknown": 0
+            },
+            "plum": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            },
+            "peach": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            },
+            "magnolia": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            },
+            "crabapple": {
+              "public": 547,
+              "private": 0,
+              "unknown": 0
+            }
+          },
+          "raw_bytes": 537498,
+          "gzip_bytes": 25610
+        }
+      ]
+    },
+    {
       "jurisdiction": "Cambridge",
       "slug": "cambridge",
       "display_name": "Cambridge",
@@ -524,6 +648,255 @@
           },
           "raw_bytes": 194555,
           "gzip_bytes": 10493
+        }
+      ]
+    },
+    {
+      "jurisdiction": "Medford",
+      "slug": "medford",
+      "display_name": "Medford",
+      "jurisdiction_type": "city",
+      "state_province": "MA",
+      "country": "United States",
+      "bounds": [
+        [
+          -71.12887573242188,
+          42.40544128417969
+        ],
+        [
+          -71.07764434814453,
+          42.44014358520508
+        ]
+      ],
+      "tree_count": 250,
+      "zip_codes": [
+        "02155"
+      ],
+      "species_counts": {
+        "cherry": 5,
+        "plum": 162,
+        "peach": 0,
+        "magnolia": 5,
+        "crabapple": 78
+      },
+      "ownership_counts": {
+        "public": 250,
+        "private": 0,
+        "unknown": 0
+      },
+      "species_ownership_counts": {
+        "cherry": {
+          "public": 5,
+          "private": 0,
+          "unknown": 0
+        },
+        "plum": {
+          "public": 162,
+          "private": 0,
+          "unknown": 0
+        },
+        "peach": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        },
+        "magnolia": {
+          "public": 5,
+          "private": 0,
+          "unknown": 0
+        },
+        "crabapple": {
+          "public": 78,
+          "private": 0,
+          "unknown": 0
+        }
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "medford-001",
+          "bounds": [
+            [
+              -71.12887573242188,
+              42.40544128417969
+            ],
+            [
+              -71.07764434814453,
+              42.44014358520508
+            ]
+          ],
+          "data_path": "/data/trees.ma.area.medford.v2.geojson",
+          "tree_count": 250,
+          "ownership_counts": {
+            "public": 250,
+            "private": 0,
+            "unknown": 0
+          },
+          "species_counts": {
+            "cherry": 5,
+            "plum": 162,
+            "peach": 0,
+            "magnolia": 5,
+            "crabapple": 78
+          },
+          "species_ownership_counts": {
+            "cherry": {
+              "public": 5,
+              "private": 0,
+              "unknown": 0
+            },
+            "plum": {
+              "public": 162,
+              "private": 0,
+              "unknown": 0
+            },
+            "peach": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            },
+            "magnolia": {
+              "public": 5,
+              "private": 0,
+              "unknown": 0
+            },
+            "crabapple": {
+              "public": 78,
+              "private": 0,
+              "unknown": 0
+            }
+          },
+          "raw_bytes": 122871,
+          "gzip_bytes": 6186
+        }
+      ]
+    },
+    {
+      "jurisdiction": "New Bedford",
+      "slug": "new-bedford",
+      "display_name": "New Bedford",
+      "jurisdiction_type": "city",
+      "state_province": "MA",
+      "country": "United States",
+      "bounds": [
+        [
+          -70.97140241999995,
+          41.59379928000004
+        ],
+        [
+          -70.90213626999997,
+          41.73849267000003
+        ]
+      ],
+      "tree_count": 678,
+      "zip_codes": [
+        "02740",
+        "02744",
+        "02745",
+        "02746",
+        "02747",
+        "02748"
+      ],
+      "species_counts": {
+        "cherry": 435,
+        "plum": 85,
+        "peach": 0,
+        "magnolia": 3,
+        "crabapple": 155
+      },
+      "ownership_counts": {
+        "public": 678,
+        "private": 0,
+        "unknown": 0
+      },
+      "species_ownership_counts": {
+        "cherry": {
+          "public": 435,
+          "private": 0,
+          "unknown": 0
+        },
+        "plum": {
+          "public": 85,
+          "private": 0,
+          "unknown": 0
+        },
+        "peach": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        },
+        "magnolia": {
+          "public": 3,
+          "private": 0,
+          "unknown": 0
+        },
+        "crabapple": {
+          "public": 155,
+          "private": 0,
+          "unknown": 0
+        }
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "new-bedford-001",
+          "bounds": [
+            [
+              -70.97140241999995,
+              41.59379928000004
+            ],
+            [
+              -70.90213626999997,
+              41.73849267000003
+            ]
+          ],
+          "data_path": "/data/trees.ma.area.new-bedford.v2.geojson",
+          "tree_count": 678,
+          "ownership_counts": {
+            "public": 678,
+            "private": 0,
+            "unknown": 0
+          },
+          "species_counts": {
+            "cherry": 435,
+            "plum": 85,
+            "peach": 0,
+            "magnolia": 3,
+            "crabapple": 155
+          },
+          "species_ownership_counts": {
+            "cherry": {
+              "public": 435,
+              "private": 0,
+              "unknown": 0
+            },
+            "plum": {
+              "public": 85,
+              "private": 0,
+              "unknown": 0
+            },
+            "peach": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            },
+            "magnolia": {
+              "public": 3,
+              "private": 0,
+              "unknown": 0
+            },
+            "crabapple": {
+              "public": 155,
+              "private": 0,
+              "unknown": 0
+            }
+          },
+          "raw_bytes": 356495,
+          "gzip_bytes": 13956
         }
       ]
     },
