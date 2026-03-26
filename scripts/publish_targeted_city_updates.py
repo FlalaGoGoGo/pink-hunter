@@ -89,6 +89,7 @@ from etl.build_data import (
     load_zipped_shapefile,
     load_subtype_mapping,
     normalize_scientific_name,
+    parse_floatish,
     point_in_geometry,
     post_form_with_curl,
     slugify_token,
@@ -204,6 +205,33 @@ MEDFORD_TREES_LAYER = "https://services5.arcgis.com/txpD9IdWgscHqSgF/arcgis/rest
 MEDFORD_DATASET_PAGE = "https://www.medfordma.org/departments/forestry"
 NEWPORT_NEWS_TREES_LAYER = "https://services6.arcgis.com/SiUAoHzWN11AIADA/arcgis/rest/services/Trees_Public_View/FeatureServer/1"
 NEWPORT_NEWS_DATASET_PAGE = "https://www.arcgis.com/home/item.html?id=9d10ce6b9f0e4d29ac48285037193138"
+LONGMEADOW_TREES_LAYER = "https://services8.arcgis.com/N4Zyuaihnt51kZnl/arcgis/rest/services/Tree_Inv_noedit/FeatureServer/0"
+LONGMEADOW_DATASET_PAGE = "https://www.arcgis.com/home/item.html?id=202e5932c7d544288e2970b9f321948e"
+LYNN_TREES_LAYER = "https://services8.arcgis.com/vFKGBS59j3zLGs8e/arcgis/rest/services/Tree_Inventory_WFL_VIEW/FeatureServer/13"
+LYNN_DATASET_PAGE = "https://www.arcgis.com/home/item.html?id=c1d88b9e29594016898fb9d2699067cc"
+FREDERICKSBURG_TREES_LAYER = "https://services2.arcgis.com/Cp5mSUK6iwpkVD8N/arcgis/rest/services/Trees_public_ca14faf095dd4d27810e38056701370c/FeatureServer/0"
+FREDERICKSBURG_DATASET_PAGE = "https://experience.arcgis.com/experience/367d494216d844179620057d78c168d7"
+CHARLOTTESVILLE_TREES_LAYER = "https://gisweb.charlottesville.org/cvgisweb/rest/services/OpenData_1/MapServer/79"
+CHARLOTTESVILLE_DATASET_PAGE = "https://www.arcgis.com/home/item.html?id=e7c856379492408e9543a25d684b8311"
+MEADVILLE_TREES_LAYER = "https://services8.arcgis.com/JYI5bRktyankquaD/arcgis/rest/services/Trees_view/FeatureServer/0"
+MEADVILLE_DATASET_PAGE = "https://www.arcgis.com/home/item.html?id=90b39f1a1a044eec9ea590ff48339e64"
+NORFOLK_DATASET_PAGE = "https://data.norfolk.gov/Government/City-Tree-Inventory/cmvv-agyb"
+NORFOLK_API = "https://data.norfolk.gov/resource/cmvv-agyb.json"
+NORFOLK_METADATA = "https://data.norfolk.gov/api/views/cmvv-agyb"
+PROVIDENCE_DATASET_PAGE = "https://data.providenceri.gov/Neighborhoods/Providence-Tree-Dataset/b77h-59tz"
+PROVIDENCE_API = "https://data.providenceri.gov/resource/b77h-59tz.json"
+PROVIDENCE_METADATA = "https://data.providenceri.gov/api/views/b77h-59tz"
+MANCHESTER_TREES_LAYER = "https://maps.kimley-horn.com/server/rest/services/Hosted/Manchester_Trees_2022/FeatureServer/0"
+MANCHESTER_DATASET_PAGE = "https://www.arcgis.com/home/item.html?id=880d1fd2f9404a0381814565f5ee4cd7"
+DURHAM_TREES_LAYER = "https://webgis2.durhamnc.gov/server/rest/services/PublicServices/Environmental/FeatureServer/11"
+DURHAM_DATASET_PAGE = "https://experience.arcgis.com/experience/b3e98203c9fe458896f3699042d17617/"
+SALISBURY_TREES_LAYER = "https://services.arcgis.com/FKrJWv8CWiYT6Rsn/arcgis/rest/services/Tree_Inventory_2018/FeatureServer/0"
+SALISBURY_DATASET_PAGE = "https://www.arcgis.com/home/item.html?id=bf7d5c118eb2465da4102b4ca402b71a"
+FAYETTEVILLE_TREES_LAYER = "https://services.arcgis.com/j3zNT485kmwrBtMJ/arcgis/rest/services/Tree_Inventory_Phase_1/FeatureServer/0"
+FAYETTEVILLE_DATASET_PAGE = "https://www.arcgis.com/home/item.html?id=9c90a47d321d4b539edfd71cf3ea9b03"
+GARRETT_PARK_WEBMAP_ITEM = "https://www.arcgis.com/home/item.html?id=f487ba0469f74cc098e8dc6f37736073"
+GARRETT_PARK_WEBMAP_DATA = "https://www.arcgis.com/sharing/rest/content/items/f487ba0469f74cc098e8dc6f37736073/data"
+GARRETT_PARK_WEBMAP_METADATA = "https://www.arcgis.com/sharing/rest/content/items/f487ba0469f74cc098e8dc6f37736073"
 LINDEN_TREES_LAYER = "https://services.arcgis.com/VgmyyKiMPvUPgldo/arcgis/rest/services/Linden_Tree_Survey/FeatureServer/0"
 LINDEN_DATASET_PAGE = "https://services.arcgis.com/VgmyyKiMPvUPgldo/arcgis/rest/services/Linden_Tree_Survey/FeatureServer"
 MONTCLAIR_TREES_LAYER = "https://services9.arcgis.com/QHXEWAb0pE2rvfbb/arcgis/rest/services/Montclair_Trees_2017_WFL1/FeatureServer/0"
@@ -1350,6 +1378,7 @@ SUPPORTED_CITIES = (
     "Buena Park",
     "Camarillo",
     "Cambridge",
+    "Charlottesville",
     "Chino",
     "Citrus Heights",
     "Concord",
@@ -1363,6 +1392,7 @@ SUPPORTED_CITIES = (
     "Dearborn Heights",
     "Dedham",
     "Denver",
+    "Durham",
     "East Lansing",
     "El Segundo",
     "Encinitas",
@@ -1375,6 +1405,8 @@ SUPPORTED_CITIES = (
     "Franklin",
     "Fontana",
     "Fort Lee",
+    "Fredericksburg",
+    "Garrett Park",
     "Greenfield",
     "Greenwich",
     "Groton",
@@ -1407,17 +1439,21 @@ SUPPORTED_CITIES = (
     "Laguna Beach",
     "Las Vegas",
     "La Mesa",
+    "Longmeadow",
     "Lodi",
     "Lynwood",
     "Linden",
+    "Lynn",
     "Los Angeles",
     "Los Gatos",
     "Mahwah",
     "Maywood",
     "Medford",
+    "Meadville",
     "Millburn",
     "Milpitas",
     "Milwaukee",
+    "Manchester",
     "Monterey Park",
     "Montclair",
     "Montreal",
@@ -1435,6 +1471,7 @@ SUPPORTED_CITIES = (
     "Newport News",
     "Novi",
     "Newport Beach",
+    "Norfolk",
     "Norwalk",
     "Oradell",
     "Ottawa",
@@ -1449,6 +1486,7 @@ SUPPORTED_CITIES = (
     "Pomona",
     "Princeton",
     "Poway",
+    "Providence",
     "Ramsey",
     "Rancho Cucamonga",
     "Rancho Palos Verdes",
@@ -1741,6 +1779,8 @@ def fetch_arcgis_inventory_city(
 
 def clip_features_to_city_boundary(city: str, region: str, features: list[dict[str, Any]]) -> list[dict[str, Any]]:
     boundary = load_city_boundary_geometry(city, state_id=region)
+    if not boundary:
+        raise RuntimeError(f"Official jurisdiction boundary is missing for {city}, {region.upper()}.")
     clipped: list[dict[str, Any]] = []
     for feature in features:
         geom = feature.get("geometry", {})
@@ -7230,6 +7270,618 @@ def fetch_encinitas() -> dict[str, Any]:
     )
 
 
+def fetch_longmeadow() -> dict[str, Any]:
+    return fetch_arcgis_inventory_city_result(
+        city="Longmeadow",
+        region="ma",
+        layer_url=LONGMEADOW_TREES_LAYER,
+        dataset_page=LONGMEADOW_DATASET_PAGE,
+        where="1=1",
+        out_fields=["OBJECTID_1", "Tree_Type", "Genus", "Species"],
+        object_id_field="OBJECTID_1",
+        source_name="Tree Inv noedit",
+        source_department="Town of Longmeadow",
+        ownership_raw="Town of Longmeadow",
+        note="Integrated from the official Town of Longmeadow public tree inventory ArcGIS layer and official jurisdiction boundary.",
+        clip_to_boundary=True,
+        common_field="Tree_Type",
+        genus_field="Genus",
+        species_field="Species",
+    )
+
+
+def fetch_lynn() -> dict[str, Any]:
+    blossom_where = (
+        "STATUS = 'alive' AND ("
+        "UPPER(LATIN) LIKE 'PRUNUS%' OR "
+        "UPPER(LATIN) LIKE 'MALUS%' OR "
+        "UPPER(LATIN) LIKE 'MAGNOLIA%'"
+        ")"
+    )
+    return fetch_arcgis_inventory_city_result(
+        city="Lynn",
+        region="ma",
+        layer_url=LYNN_TREES_LAYER,
+        dataset_page=LYNN_DATASET_PAGE,
+        where=blossom_where,
+        out_fields=["OBJECTID", "COMMON", "LATIN", "STATUS", "X", "Y"],
+        object_id_field="OBJECTID",
+        source_name="Tree Inventory",
+        source_department="City of Lynn",
+        ownership_raw="City of Lynn",
+        note="Integrated from the official City of Lynn public tree inventory ArcGIS layer and official jurisdiction boundary.",
+        clip_to_boundary=True,
+        common_field="COMMON",
+        scientific_field="LATIN",
+        lon_field="X",
+        lat_field="Y",
+    )
+
+
+def fetch_fredericksburg() -> dict[str, Any]:
+    blossom_where = (
+        "spacestatus = 'Planted' AND ("
+        "UPPER(genus) LIKE 'PRUNUS%' OR "
+        "UPPER(genus) LIKE 'MALUS%' OR "
+        "UPPER(genus) LIKE 'MAGNOLIA%'"
+        ")"
+    )
+    return fetch_arcgis_inventory_city_result(
+        city="Fredericksburg",
+        region="va",
+        layer_url=FREDERICKSBURG_TREES_LAYER,
+        dataset_page=FREDERICKSBURG_DATASET_PAGE,
+        where=blossom_where,
+        out_fields=["OBJECTID", "commonname", "genus", "species", "spacestatus"],
+        object_id_field="OBJECTID",
+        source_name="Trees Public",
+        source_department="City of Fredericksburg",
+        ownership_raw="City of Fredericksburg",
+        note="Integrated from the official City of Fredericksburg public tree inventory ArcGIS layer and official jurisdiction boundary.",
+        clip_to_boundary=True,
+        common_field="commonname",
+        genus_field="genus",
+        species_field="species",
+    )
+
+
+def fetch_charlottesville() -> dict[str, Any]:
+    blossom_where = (
+        "UPPER(Genus) LIKE 'PRUNUS%' OR "
+        "UPPER(Genus) LIKE 'MALUS%' OR "
+        "UPPER(Genus) LIKE 'MAGNOLIA%'"
+    )
+    return fetch_arcgis_inventory_city_result(
+        city="Charlottesville",
+        region="va",
+        layer_url=CHARLOTTESVILLE_TREES_LAYER,
+        dataset_page=CHARLOTTESVILLE_DATASET_PAGE,
+        where=blossom_where,
+        out_fields=["OBJECTID", "Common_Name", "Genus", "Species", "Agency"],
+        object_id_field="OBJECTID",
+        source_name="OpenData Trees",
+        source_department="City of Charlottesville",
+        ownership_raw="City of Charlottesville",
+        note="Integrated from the official City of Charlottesville open-data tree inventory layer and official jurisdiction boundary.",
+        clip_to_boundary=True,
+        common_field="Common_Name",
+        genus_field="Genus",
+        species_field="Species",
+    )
+
+
+def fetch_meadville() -> dict[str, Any]:
+    blossom_where = (
+        "Tree_Status = 'Live' AND ("
+        "UPPER(GENUS) LIKE 'PRUNUS%' OR "
+        "UPPER(GENUS) LIKE 'MALUS%' OR "
+        "UPPER(GENUS) LIKE 'MAGNOLIA%'"
+        ")"
+    )
+    return fetch_arcgis_inventory_city_result(
+        city="Meadville",
+        region="pa",
+        layer_url=MEADVILLE_TREES_LAYER,
+        dataset_page=MEADVILLE_DATASET_PAGE,
+        where=blossom_where,
+        out_fields=["OBJECTID", "NAME", "GENUS", "SPECIES", "Tree_Status"],
+        object_id_field="OBJECTID",
+        source_name="Trees View",
+        source_department="City of Meadville",
+        ownership_raw="City of Meadville",
+        note="Integrated from the official City of Meadville public tree inventory ArcGIS layer and official jurisdiction boundary.",
+        clip_to_boundary=True,
+        common_field="NAME",
+        genus_field="GENUS",
+        species_field="SPECIES",
+    )
+
+
+def fetch_norfolk() -> dict[str, Any]:
+    where = (
+        "lower(genus) in ('prunus','malus','magnolia') OR "
+        "lower(common_name) like '%cherry%' OR "
+        "lower(common_name) like '%plum%' OR "
+        "lower(common_name) like '%peach%' OR "
+        "lower(common_name) like '%magnolia%' OR "
+        "lower(common_name) like '%crabapple%' OR "
+        "lower(common_name) like '%apple%'"
+    )
+    metadata = fetch_json(NORFOLK_METADATA)
+    rows = fetch_soda_rows(NORFOLK_API, where=where, order="tree_id")
+    total_records = fetch_soda_count(NORFOLK_API, where=where)
+    last_edit_at = iso_from_epoch(metadata.get("rowsUpdatedAt") or metadata.get("viewLastModified"))
+    zip_index = fetch_us_city_zip_index("Norfolk", state_id="va")
+    mapping_rows = load_mapping(MAPPING_PATH)
+    subtype_rows = load_subtype_mapping(SUBTYPE_MAPPING_PATH)
+    boundary_geometry = load_city_boundary_geometry("Norfolk", state_id="va")
+
+    output_features: list[dict[str, Any]] = []
+    normalized_rows: list[dict[str, Any]] = []
+    for row in rows:
+        lon = parse_floatish(row.get("longitude"))
+        lat = parse_floatish(row.get("latitude"))
+        if lon is None or lat is None:
+            point = row.get("latitude_longitude_point") or {}
+            coordinates = point.get("coordinates") if isinstance(point, dict) else None
+            if isinstance(coordinates, list) and len(coordinates) >= 2:
+                lon = parse_floatish(coordinates[0])
+                lat = parse_floatish(coordinates[1])
+        if lon is None or lat is None:
+            continue
+        if boundary_geometry and not point_in_geometry(lon, lat, boundary_geometry):
+            continue
+
+        common_name = clean_common_name(row.get("common_name"))
+        scientific_raw = format_scientific_display_name(
+            f"{row.get('genus') or ''} {row.get('species') or ''}",
+            common_name,
+        )
+        if not scientific_raw:
+            scientific_raw = generic_scientific_name_for_common_hint(common_name)
+        scientific_normalized = normalize_scientific_name(scientific_raw)
+        species_group, subtype_name = classify_tree_record(scientific_raw, common_name, mapping_rows, subtype_rows)
+        zip_code = assign_zip_code(lon, lat, zip_index)
+        row_id = f"norfolk-{row.get('tree_id')}"
+        ownership_raw = "City of Norfolk"
+
+        normalized_rows.append(
+            {
+                "id": row_id,
+                "city": "Norfolk",
+                "source_dataset": "City Tree Inventory",
+                "scientific_raw": scientific_raw,
+                "scientific_normalized": scientific_normalized,
+                "common_name": common_name or "",
+                "subtype_name": subtype_name or "",
+                "zip_code": zip_code or "",
+                "species_group": species_group or "",
+                "ownership": canonical_ownership(ownership_raw),
+                "ownership_raw": ownership_raw,
+                "lat": lat,
+                "lon": lon,
+                "included": "1" if species_group else "0",
+            }
+        )
+        if not species_group:
+            continue
+        output_features.append(
+            {
+                "type": "Feature",
+                "geometry": {"type": "Point", "coordinates": [lon, lat]},
+                "properties": {
+                    "id": row_id,
+                    "species_group": species_group,
+                    "scientific_name": scientific_raw,
+                    "common_name": common_name,
+                    "subtype_name": subtype_name,
+                    "zip_code": zip_code,
+                    "ownership": canonical_ownership(ownership_raw),
+                    "ownership_raw": ownership_raw,
+                    "city": "Norfolk",
+                    "source_dataset": "City Tree Inventory",
+                    "source_department": "City of Norfolk Parks & Recreation",
+                    "source_last_edit_at": last_edit_at,
+                },
+            }
+        )
+
+    return {
+        "city": "Norfolk",
+        "region": "va",
+        "features": output_features,
+        "normalized_rows": normalized_rows,
+        "source": {
+            "name": "City Tree Inventory",
+            "city": "Norfolk",
+            "endpoint": NORFOLK_DATASET_PAGE,
+            "last_edit_at": last_edit_at,
+            "records_fetched": total_records,
+            "records_included": len(output_features),
+            "note": "Integrated from the official City of Norfolk open-data tree inventory and official jurisdiction boundary.",
+        },
+    }
+
+
+def fetch_providence() -> dict[str, Any]:
+    where = (
+        "lower(spp) like 'prunus%' OR "
+        "lower(spp) like 'malus%' OR "
+        "lower(spp) like 'magnolia%'"
+    )
+    metadata = fetch_json(PROVIDENCE_METADATA)
+    rows = fetch_soda_rows(PROVIDENCE_API, where=where, order="spp")
+    total_records = fetch_soda_count(PROVIDENCE_API, where=where)
+    last_edit_at = iso_from_epoch(metadata.get("rowsUpdatedAt") or metadata.get("viewLastModified"))
+    zip_index = fetch_us_city_zip_index("Providence", state_id="ri")
+    mapping_rows = load_mapping(MAPPING_PATH)
+    subtype_rows = load_subtype_mapping(SUBTYPE_MAPPING_PATH)
+    boundary_geometry = load_city_boundary_geometry("Providence", state_id="ri")
+
+    output_features: list[dict[str, Any]] = []
+    normalized_rows: list[dict[str, Any]] = []
+    for row in rows:
+        geometry = row.get("the_geom") or {}
+        coordinates = geometry.get("coordinates") if isinstance(geometry, dict) else None
+        if not isinstance(coordinates, list) or len(coordinates) < 2:
+            continue
+        lon = parse_floatish(coordinates[0])
+        lat = parse_floatish(coordinates[1])
+        if lon is None or lat is None:
+            continue
+        if boundary_geometry and not point_in_geometry(lon, lat, boundary_geometry):
+            continue
+
+        scientific_raw = format_scientific_display_name(row.get("spp"), None)
+        scientific_normalized = normalize_scientific_name(scientific_raw)
+        species_group, subtype_name = classify_tree_record(scientific_raw, None, mapping_rows, subtype_rows)
+        zip_code = assign_zip_code(lon, lat, zip_index)
+        row_seed = f"{row.get('address') or ''}|{row.get('street') or ''}|{scientific_raw}|{lat:.6f}|{lon:.6f}"
+        row_id = f"providence-{hashlib.md5(row_seed.encode('utf-8')).hexdigest()[:12]}"
+        ownership_raw = "City of Providence"
+
+        normalized_rows.append(
+            {
+                "id": row_id,
+                "city": "Providence",
+                "source_dataset": "Providence Tree Dataset",
+                "scientific_raw": scientific_raw,
+                "scientific_normalized": scientific_normalized,
+                "common_name": "",
+                "subtype_name": subtype_name or "",
+                "zip_code": zip_code or "",
+                "species_group": species_group or "",
+                "ownership": canonical_ownership(ownership_raw),
+                "ownership_raw": ownership_raw,
+                "lat": lat,
+                "lon": lon,
+                "included": "1" if species_group else "0",
+            }
+        )
+        if not species_group:
+            continue
+        output_features.append(
+            {
+                "type": "Feature",
+                "geometry": {"type": "Point", "coordinates": [lon, lat]},
+                "properties": {
+                    "id": row_id,
+                    "species_group": species_group,
+                    "scientific_name": scientific_raw,
+                    "common_name": "",
+                    "subtype_name": subtype_name,
+                    "zip_code": zip_code,
+                    "ownership": canonical_ownership(ownership_raw),
+                    "ownership_raw": ownership_raw,
+                    "city": "Providence",
+                    "source_dataset": "Providence Tree Dataset",
+                    "source_department": "City of Providence Forestry Division",
+                    "source_last_edit_at": last_edit_at,
+                },
+            }
+        )
+
+    return {
+        "city": "Providence",
+        "region": "ri",
+        "features": output_features,
+        "normalized_rows": normalized_rows,
+        "source": {
+            "name": "Providence Tree Dataset",
+            "city": "Providence",
+            "endpoint": PROVIDENCE_DATASET_PAGE,
+            "last_edit_at": last_edit_at,
+            "records_fetched": total_records,
+            "records_included": len(output_features),
+            "note": "Integrated from the official City of Providence open-data tree inventory and official jurisdiction boundary.",
+        },
+    }
+
+
+def fetch_durham() -> dict[str, Any]:
+    blossom_where = (
+        "present = 'Tree' AND ("
+        "UPPER(genus) LIKE 'PRUNUS%' OR "
+        "UPPER(genus) LIKE 'MALUS%' OR "
+        "UPPER(genus) LIKE 'MAGNOLIA%'"
+        ")"
+    )
+    return fetch_arcgis_inventory_city_result(
+        city="Durham",
+        region="nc",
+        layer_url=DURHAM_TREES_LAYER,
+        dataset_page=DURHAM_DATASET_PAGE,
+        where=blossom_where,
+        out_fields=["OBJECTID", "present", "genus", "species", "commonname"],
+        object_id_field="OBJECTID",
+        source_name="Trees & Planting Sites",
+        source_department="City of Durham",
+        ownership_raw="City of Durham",
+        note="Integrated from the official City of Durham public tree inventory ArcGIS layer and official jurisdiction boundary.",
+        clip_to_boundary=True,
+        common_field="commonname",
+        genus_field="genus",
+        species_field="species",
+    )
+
+
+def fetch_salisbury() -> dict[str, Any]:
+    blossom_where = (
+        "UPPER(GENUS_SPEC) LIKE '%CHERRY%' OR "
+        "UPPER(GENUS_SPEC) LIKE '%PLUM%' OR "
+        "UPPER(GENUS_SPEC) LIKE '%PEACH%' OR "
+        "UPPER(GENUS_SPEC) LIKE '%MAGNOLIA%' OR "
+        "UPPER(GENUS_SPEC) LIKE '%CRABAPPLE%' OR "
+        "UPPER(GENUS_SPEC) LIKE '%APPLE%'"
+    )
+    return fetch_arcgis_inventory_city_result(
+        city="Salisbury",
+        region="nc",
+        layer_url=SALISBURY_TREES_LAYER,
+        dataset_page=SALISBURY_DATASET_PAGE,
+        where=blossom_where,
+        out_fields=["OBJECTID", "GENUS_SPEC", "X", "Y"],
+        object_id_field="OBJECTID",
+        source_name="Tree Inventory",
+        source_department="City of Salisbury",
+        ownership_raw="City of Salisbury",
+        note="Integrated from the official City of Salisbury public tree inventory ArcGIS layer and official jurisdiction boundary.",
+        clip_to_boundary=True,
+        common_field="GENUS_SPEC",
+        lon_field="X",
+        lat_field="Y",
+    )
+
+
+def fetch_fayetteville() -> dict[str, Any]:
+    blossom_where = (
+        "F5 = 'Tree' AND ("
+        "UPPER(F15) LIKE 'PRUNUS%' OR "
+        "UPPER(F15) LIKE 'MALUS%' OR "
+        "UPPER(F15) LIKE 'MAGNOLIA%' OR "
+        "UPPER(F15) LIKE '%CHERRY%' OR "
+        "UPPER(F15) LIKE '%PLUM%' OR "
+        "UPPER(F15) LIKE '%PEACH%' OR "
+        "UPPER(F15) LIKE '%MAGNOLIA%' OR "
+        "UPPER(F15) LIKE '%CRABAPPLE%' OR "
+        "UPPER(F15) LIKE '%APPLE%'"
+        ")"
+    )
+    layer_info = fetch_json(FAYETTEVILLE_TREES_LAYER, {"f": "pjson"})
+    total_payload = fetch_json(
+        f"{FAYETTEVILLE_TREES_LAYER}/query",
+        {"where": blossom_where, "returnCountOnly": "true", "f": "json"},
+    )
+    features = fetch_arcgis_features_by_object_ids(
+        FAYETTEVILLE_TREES_LAYER,
+        where=blossom_where,
+        out_fields=["FID", "F5", "F15", "F16", "F17"],
+        object_id_field="FID",
+    )
+    boundary_geometry = load_city_boundary_geometry("Fayetteville", state_id="nc")
+    zip_index = fetch_us_city_zip_index("Fayetteville", state_id="nc")
+    mapping_rows = load_mapping(MAPPING_PATH)
+    subtype_rows = load_subtype_mapping(SUBTYPE_MAPPING_PATH)
+    last_edit_at = iso_from_epoch((layer_info.get("editingInfo") or {}).get("lastEditDate"))
+
+    output_features: list[dict[str, Any]] = []
+    normalized_rows: list[dict[str, Any]] = []
+    for feature in features:
+        attrs = feature.get("attributes", {})
+        geom = feature.get("geometry", {})
+        lon = parse_floatish(geom.get("x"))
+        lat = parse_floatish(geom.get("y"))
+        if lon is None or lat is None:
+            lon = parse_floatish(attrs.get("F17"))
+            lat = parse_floatish(attrs.get("F16"))
+        if lon is None or lat is None:
+            continue
+        if boundary_geometry and not point_in_geometry(lon, lat, boundary_geometry):
+            continue
+
+        scientific_raw, common_name = parse_species_text(attrs.get("F15"))
+        scientific_normalized = normalize_scientific_name(scientific_raw)
+        species_group, subtype_name = classify_tree_record(scientific_raw, common_name, mapping_rows, subtype_rows)
+        zip_code = assign_zip_code(lon, lat, zip_index)
+        row_id = f"fayetteville-{attrs.get('FID')}"
+        ownership_raw = "City of Fayetteville"
+
+        normalized_rows.append(
+            {
+                "id": row_id,
+                "city": "Fayetteville",
+                "source_dataset": "Tree Inventory Phase 1",
+                "scientific_raw": scientific_raw,
+                "scientific_normalized": scientific_normalized,
+                "common_name": common_name or "",
+                "subtype_name": subtype_name or "",
+                "zip_code": zip_code or "",
+                "species_group": species_group or "",
+                "ownership": canonical_ownership(ownership_raw),
+                "ownership_raw": ownership_raw,
+                "lat": lat,
+                "lon": lon,
+                "included": "1" if species_group else "0",
+            }
+        )
+        if not species_group:
+            continue
+        output_features.append(
+            {
+                "type": "Feature",
+                "geometry": {"type": "Point", "coordinates": [lon, lat]},
+                "properties": {
+                    "id": row_id,
+                    "species_group": species_group,
+                    "scientific_name": scientific_raw,
+                    "common_name": common_name,
+                    "subtype_name": subtype_name,
+                    "zip_code": zip_code,
+                    "ownership": canonical_ownership(ownership_raw),
+                    "ownership_raw": ownership_raw,
+                    "city": "Fayetteville",
+                    "source_dataset": "Tree Inventory Phase 1",
+                    "source_department": "City of Fayetteville",
+                    "source_last_edit_at": last_edit_at,
+                },
+            }
+        )
+
+    return {
+        "city": "Fayetteville",
+        "region": "nc",
+        "features": output_features,
+        "normalized_rows": normalized_rows,
+        "source": {
+            "name": "Tree Inventory Phase 1",
+            "city": "Fayetteville",
+            "endpoint": FAYETTEVILLE_DATASET_PAGE,
+            "last_edit_at": last_edit_at,
+            "records_fetched": int(total_payload.get("count") or len(features)),
+            "records_included": len(output_features),
+            "note": "Integrated from the official City of Fayetteville public tree inventory ArcGIS layer and official jurisdiction boundary.",
+        },
+    }
+
+
+def fetch_manchester() -> dict[str, Any]:
+    blossom_where = (
+        "UPPER(species) LIKE '%CHERRY%' OR "
+        "UPPER(species) LIKE '%PLUM%' OR "
+        "UPPER(species) LIKE '%PEACH%' OR "
+        "UPPER(species) LIKE '%MAGNOLIA%' OR "
+        "UPPER(species) LIKE '%CRABAPPLE%' OR "
+        "UPPER(species) LIKE '%APPLE%' OR "
+        "UPPER(species) LIKE 'PRUNUS%' OR "
+        "UPPER(species) LIKE 'MALUS%'"
+    )
+    return fetch_arcgis_inventory_city_result(
+        city="Manchester",
+        region="nh",
+        layer_url=MANCHESTER_TREES_LAYER,
+        dataset_page=MANCHESTER_DATASET_PAGE,
+        where=blossom_where,
+        out_fields=["objectid", "species", "species_other"],
+        object_id_field="objectid",
+        source_name="Manchester Trees 2022",
+        source_department="City of Manchester",
+        ownership_raw="City of Manchester",
+        note="Integrated from the official City of Manchester public Parks and Recreation tree inventory ArcGIS layer and official jurisdiction boundary.",
+        clip_to_boundary=True,
+        common_field="species",
+    )
+
+
+def fetch_garrett_park() -> dict[str, Any]:
+    webmap_data = fetch_json(GARRETT_PARK_WEBMAP_DATA, {"f": "json"})
+    webmap_metadata = fetch_json(GARRETT_PARK_WEBMAP_METADATA, {"f": "json"})
+    layer = (
+        ((webmap_data.get("operationalLayers") or [])[0].get("featureCollection") or {}).get("layers") or [{}]
+    )[0]
+    features = (layer.get("featureSet") or {}).get("features") or []
+    boundary_geometry = load_city_boundary_geometry("Garrett Park", state_id="md")
+    zip_index = fetch_us_city_zip_index("Garrett Park", state_id="md")
+    mapping_rows = load_mapping(MAPPING_PATH)
+    subtype_rows = load_subtype_mapping(SUBTYPE_MAPPING_PATH)
+    last_edit_at = iso_from_epoch(webmap_metadata.get("modified"))
+
+    output_features: list[dict[str, Any]] = []
+    normalized_rows: list[dict[str, Any]] = []
+    for feature in features:
+        attrs = feature.get("attributes", {})
+        lon = parse_floatish(attrs.get("Longitude"))
+        lat = parse_floatish(attrs.get("Latitude"))
+        if lon is None or lat is None:
+            continue
+        if boundary_geometry and not point_in_geometry(lon, lat, boundary_geometry):
+            continue
+
+        common_name = clean_common_name(attrs.get("Common_Name"))
+        scientific_raw = format_scientific_display_name(attrs.get("Latin_Name"), common_name)
+        scientific_normalized = normalize_scientific_name(scientific_raw)
+        species_group, subtype_name = classify_tree_record(scientific_raw, common_name, mapping_rows, subtype_rows)
+        zip_code = assign_zip_code(lon, lat, zip_index)
+        row_id = f"garrett-park-{attrs.get('Tree_ID') or attrs.get('__OBJECTID')}"
+        ownership_raw = "Town of Garrett Park"
+
+        normalized_rows.append(
+            {
+                "id": row_id,
+                "city": "Garrett Park",
+                "source_dataset": "Garrett Park Tree Inventory",
+                "scientific_raw": scientific_raw,
+                "scientific_normalized": scientific_normalized,
+                "common_name": common_name or "",
+                "subtype_name": subtype_name or "",
+                "zip_code": zip_code or "",
+                "species_group": species_group or "",
+                "ownership": canonical_ownership(ownership_raw),
+                "ownership_raw": ownership_raw,
+                "lat": lat,
+                "lon": lon,
+                "included": "1" if species_group else "0",
+            }
+        )
+        if not species_group:
+            continue
+        output_features.append(
+            {
+                "type": "Feature",
+                "geometry": {"type": "Point", "coordinates": [lon, lat]},
+                "properties": {
+                    "id": row_id,
+                    "species_group": species_group,
+                    "scientific_name": scientific_raw,
+                    "common_name": common_name,
+                    "subtype_name": subtype_name,
+                    "zip_code": zip_code,
+                    "ownership": canonical_ownership(ownership_raw),
+                    "ownership_raw": ownership_raw,
+                    "city": "Garrett Park",
+                    "source_dataset": "Garrett Park Tree Inventory",
+                    "source_department": "Town of Garrett Park",
+                    "source_last_edit_at": last_edit_at,
+                },
+            }
+        )
+
+    return {
+        "city": "Garrett Park",
+        "region": "md",
+        "features": output_features,
+        "normalized_rows": normalized_rows,
+        "source": {
+            "name": "Garrett Park Tree Inventory",
+            "city": "Garrett Park",
+            "endpoint": GARRETT_PARK_WEBMAP_ITEM,
+            "last_edit_at": last_edit_at,
+            "records_fetched": len(features),
+            "records_included": len(output_features),
+            "note": "Integrated from the Garrett Park Tree Inventory ArcGIS web map referenced by the Town of Garrett Park and the official jurisdiction boundary.",
+        },
+    }
+
+
 CITY_FETCHERS = {
     "Anaheim": fetch_anaheim,
     "Arlington": fetch_arlington,
@@ -7243,6 +7895,7 @@ CITY_FETCHERS = {
     "Buena Park": fetch_buena_park,
     "Camarillo": fetch_camarillo,
     "Cambridge": fetch_cambridge,
+    "Charlottesville": fetch_charlottesville,
     "Chino": fetch_chino,
     "Citrus Heights": fetch_citrus_heights,
     "Concord": fetch_concord,
@@ -7254,12 +7907,16 @@ CITY_FETCHERS = {
     "Dallas": fetch_dallas,
     "Denver": fetch_denver,
     "Downey": fetch_downey,
+    "Durham": fetch_durham,
     "Encinitas": fetch_encinitas,
     "El Segundo": fetch_el_segundo,
     "Escondido": fetch_escondido,
+    "Fayetteville": fetch_fayetteville,
     "Fontana": fetch_fontana,
+    "Fredericksburg": fetch_fredericksburg,
     "Fremont": fetch_fremont,
     "Fullerton": fetch_fullerton,
+    "Garrett Park": fetch_garrett_park,
     "Gilroy": fetch_gilroy,
     "Glendale": fetch_glendale,
     "Glendora": fetch_glendora,
@@ -7275,21 +7932,27 @@ CITY_FETCHERS = {
     "La Verne": fetch_la_verne,
     "Laguna Beach": fetch_laguna_beach,
     "Las Vegas": fetch_las_vegas,
+    "Longmeadow": fetch_longmeadow,
     "Lodi": fetch_lodi,
+    "Lynn": fetch_lynn,
     "Lynwood": fetch_lynwood,
     "Los Angeles": fetch_los_angeles,
     "Los Gatos": fetch_los_gatos,
+    "Meadville": fetch_meadville,
     "Maywood": fetch_maywood,
+    "Manchester": fetch_manchester,
     "Milpitas": fetch_milpitas,
     "Monterey Park": fetch_monterey_park,
     "Mountain View": fetch_mountain_view,
     "Morgan Hill": fetch_morgan_hill,
     "Newport Beach": fetch_newport_beach,
     "Norwalk": fetch_norwalk,
+    "Norfolk": fetch_norfolk,
     "Paramount": fetch_paramount,
     "Pleasanton": fetch_pleasanton,
     "Pomona": fetch_pomona,
     "Poway": fetch_poway,
+    "Providence": fetch_providence,
     "Rancho Cucamonga": fetch_rancho_cucamonga,
     "Rancho Palos Verdes": fetch_rancho_palos_verdes,
     "Redlands": fetch_redlands,
@@ -7297,6 +7960,7 @@ CITY_FETCHERS = {
     "Riverside": fetch_riverside,
     "Sacramento": fetch_sacramento,
     "Salinas": fetch_salinas,
+    "Salisbury": fetch_salisbury,
     "San Dimas": fetch_san_dimas,
     "San Diego": fetch_san_diego,
     "San Fernando": fetch_san_fernando,

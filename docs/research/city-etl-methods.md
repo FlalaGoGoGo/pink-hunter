@@ -48,7 +48,7 @@ Last updated: 2026-03-26 (America/Los_Angeles)
 - Boundary data may be published as a legal boundary line; when that happens, the official line is converted into a polygon without manual redraw.
 
 ### Socrata / SODA
-- Used for `San Francisco`, `Oakland`, and `New York City`.
+- Used for `San Francisco`, `Oakland`, `New York City`, `Norfolk`, and `Providence`.
 - Metadata comes from the dataset view endpoint (`/api/views/...`).
 - Filtered row pulls use the dataset resource endpoint with SoQL parameters such as:
   - `$where`
@@ -83,6 +83,11 @@ Last updated: 2026-03-26 (America/Los_Angeles)
 - Data retrieval goes through `retrieveDataAlias` on `db.php`.
 - Geometry is WKB point hex in Web Mercator and must be decoded then converted to lon/lat.
 - Scientific names may be abbreviated and need genus expansion from common-name hints.
+
+### ArcGIS Web Map featureCollection
+- Used for `Garrett Park`.
+- Fetch the published web map item JSON from ArcGIS sharing endpoints, then extract features from the embedded `featureCollection`.
+- Prefer explicit lon/lat attribute fields when the embedded point geometry is still stored in Web Mercator.
 
 ### OSM Supplemental
 - Used only for supplemental UW cherry points inside Seattle.
@@ -149,14 +154,24 @@ Last updated: 2026-03-26 (America/Los_Angeles)
 | Cambridge | Downloaded Shapefile | `Scientific`, `CommonName`, `Cultivar`, `SiteType` | shapefile points transformed to WGS84 | Official City of Cambridge street-tree shapefile; only current `SiteType = Tree` rows are published into the product |
 | Brookline | ArcGIS FeatureServer | `ScientificName`, `CommonName` | ArcGIS point geometry | Official Town of Brookline public tree inventory ArcGIS layer |
 | Dedham | ArcGIS MapServer | `Species_bot`, `Species_com` | ArcGIS point geometry | Official Town of Dedham public tree inventory; blossom rows are filtered server-side against the public botanical/common fields |
+| Longmeadow | ArcGIS FeatureServer | `Genus` + `Species`, `Tree_Type` | ArcGIS point geometry | Official Town of Longmeadow public tree inventory ArcGIS layer |
+| Lynn | ArcGIS FeatureServer | `LATIN`, `COMMON`, `STATUS` | ArcGIS point geometry with `X` / `Y` fallback | Official City of Lynn public tree inventory; rows are restricted to `STATUS = 'alive'` before blossom classification |
 | Medford | ArcGIS FeatureServer | `SPP_bot`, `SPP_com` | ArcGIS point geometry | Public Medford tree inventory ArcGIS layer referenced by the official City of Medford Forestry page / urban-forest plan materials |
 | New Bedford | ArcGIS FeatureServer | `ScientName`, `CommonName` | ArcGIS point geometry with `Longitude` / `Latitude` fallback | Public 2023 New Bedford Bartlett tree inventory ArcGIS layer |
 | Groton | ArcGIS FeatureServer | `Genus` + `Species`, `CommonName` | ArcGIS point geometry with `Longitude` / `Latitude` fallback | Official Town of Groton public tree inventory; the official town boundary is resolved from the Census county subdivision rather than the smaller Groton city place |
 | Gaithersburg | ArcGIS FeatureServer | `Botanical_Name`, `Common_Name` | ArcGIS point geometry | Official City of Gaithersburg `Street Trees View`; the public layer includes street trees plus a small number of park trees |
+| Garrett Park | ArcGIS Web Map featureCollection | `Latin_Name`, `Common_Name`, `Longitude`, `Latitude` | direct lon/lat from published attribute fields | Official Town of Garrett Park tree inventory is published as an ArcGIS web map featureCollection; ETL ignores the embedded Web Mercator point geometry and uses the explicit `Longitude` / `Latitude` attributes instead |
+| Manchester | ArcGIS FeatureServer | `species`, `species_other` | ArcGIS point geometry | Official City of Manchester public Parks and Recreation tree inventory; the public layer is mostly common-name text, so classification relies on controlled common-name fallback |
 | Morristown | ArcGIS FeatureServer | `GENUS` + `SPECIES` | ArcGIS point geometry | Official Morristown public tree inventory layer |
+| Charlottesville | ArcGIS MapServer | `Genus` + `Species`, `Common_Name`, `Agency` | ArcGIS point geometry | Official City of Charlottesville open-data tree inventory |
+| Fredericksburg | ArcGIS FeatureServer | `genus` + `species`, `commonname`, `spacestatus` | ArcGIS point geometry | Official City of Fredericksburg public tree inventory; rows are restricted to `spacestatus = 'Planted'` before blossom classification |
 | Richmond | ArcGIS FeatureServer | `SPP`, `Status` | ArcGIS point geometry | Official City of Richmond, Virginia public tree inventory; rows are restricted to `Status = In Service` and filtered server-side on `SPP` |
+| Norfolk | SODA | `genus`, `species`, `common_name` | numeric `longitude` / `latitude` with `latitude_longitude_point` fallback | Official City of Norfolk `City Tree Inventory` dataset |
 | Newport News | ArcGIS FeatureServer | `genus` + `species`, `commonname` | ArcGIS point geometry | Official City of Newport News public reviewed-tree inventory; the public layer only exposes reviewed trees |
 | Virginia Beach | ArcGIS MapServer | `ScientificName`, `CommonName`, `Status` | ArcGIS point geometry with `Latitude` / `Longitude` fallback | Official City of Virginia Beach `VBTrees` service; rows are restricted to `Status in ('Existing', 'Planted')` before blossom classification |
+| Meadville | ArcGIS FeatureServer | `GENUS` + `SPECIES`, `NAME`, `Tree_Status` | ArcGIS point geometry | Official City of Meadville public tree inventory; rows are restricted to `Tree_Status = 'Live'` before blossom classification |
+| Durham | ArcGIS FeatureServer | `genus` + `species`, `commonname`, `present` | ArcGIS point geometry | Official City of Durham `Trees & Planting Sites`; rows are restricted to `present = 'Tree'` before blossom classification |
+| Providence | SODA | `spp`, `the_geom` | GeoJSON point coordinates from `the_geom` | Official City of Providence `Providence Tree Dataset`; ETL synthesizes stable row ids from address/species/coordinates because the public export does not expose a single durable primary key |
 | Boston | Downloaded GeoJSON | `spp_bot`, `spp_com` | GeoJSON lon/lat coordinates from Analyze Boston | Official Analyze Boston `BPRD Trees` download; includes both street and park trees, so ownership is normalized to public city inventory |
 | Ottawa | ArcGIS MapServer | common-name classification from `SPECIES`, ownership from `OWNERSHIP` | ArcGIS point geometry already requested in `outSR=4326` | Official City of Ottawa tree layer is large, so ETL filters blossom-like common names (`cherry`, `plum`, `peach`, `magnolia`, `crabapple`, `apple`) server-side before classification |
 | Toronto | Downloaded CSV | `COMMON_NAME` from the official alternate WGS84 CSV | point geometry parsed from serialized `geometry` text | Official Toronto Open Data CSV is very large; ETL uses the smaller alternate CSV export and classifies by controlled common-name fallback rather than requiring botanical names |

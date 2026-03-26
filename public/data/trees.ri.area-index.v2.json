@@ -1,0 +1,137 @@
+{
+  "generated_at": "2026-03-26T19:17:51.135183+00:00",
+  "region": "ri",
+  "strategy": "area_shard",
+  "items": [
+    {
+      "jurisdiction": "Providence",
+      "slug": "providence",
+      "display_name": "Providence",
+      "jurisdiction_type": "city",
+      "state_province": "RI",
+      "country": "United States",
+      "bounds": [
+        [
+          -71.46388525341672,
+          41.77865831232057
+        ],
+        [
+          -71.38055447328865,
+          41.85700172892363
+        ]
+      ],
+      "tree_count": 1567,
+      "zip_codes": [
+        "02903",
+        "02904",
+        "02905",
+        "02906",
+        "02907",
+        "02908",
+        "02909",
+        "02910",
+        "02912"
+      ],
+      "species_counts": {
+        "cherry": 743,
+        "plum": 152,
+        "peach": 13,
+        "magnolia": 20,
+        "crabapple": 639
+      },
+      "ownership_counts": {
+        "public": 1567,
+        "private": 0,
+        "unknown": 0
+      },
+      "species_ownership_counts": {
+        "cherry": {
+          "public": 743,
+          "private": 0,
+          "unknown": 0
+        },
+        "plum": {
+          "public": 152,
+          "private": 0,
+          "unknown": 0
+        },
+        "peach": {
+          "public": 13,
+          "private": 0,
+          "unknown": 0
+        },
+        "magnolia": {
+          "public": 20,
+          "private": 0,
+          "unknown": 0
+        },
+        "crabapple": {
+          "public": 639,
+          "private": 0,
+          "unknown": 0
+        }
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "providence-001",
+          "bounds": [
+            [
+              -71.46388525341672,
+              41.77865831232057
+            ],
+            [
+              -71.38055447328865,
+              41.85700172892363
+            ]
+          ],
+          "data_path": "/data/trees.ri.area.providence.v2.geojson",
+          "tree_count": 1567,
+          "ownership_counts": {
+            "public": 1567,
+            "private": 0,
+            "unknown": 0
+          },
+          "species_counts": {
+            "cherry": 743,
+            "plum": 152,
+            "peach": 13,
+            "magnolia": 20,
+            "crabapple": 639
+          },
+          "species_ownership_counts": {
+            "cherry": {
+              "public": 743,
+              "private": 0,
+              "unknown": 0
+            },
+            "plum": {
+              "public": 152,
+              "private": 0,
+              "unknown": 0
+            },
+            "peach": {
+              "public": 13,
+              "private": 0,
+              "unknown": 0
+            },
+            "magnolia": {
+              "public": 20,
+              "private": 0,
+              "unknown": 0
+            },
+            "crabapple": {
+              "public": 639,
+              "private": 0,
+              "unknown": 0
+            }
+          },
+          "raw_bytes": 840375,
+          "gzip_bytes": 49502
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,134 @@
+{
+  "generated_at": "2026-03-26T19:17:51.135183+00:00",
+  "region": "nc",
+  "strategy": "area_shard",
+  "items": [
+    {
+      "jurisdiction": "Durham",
+      "slug": "durham",
+      "display_name": "Durham",
+      "jurisdiction_type": "city",
+      "state_province": "NC",
+      "country": "United States",
+      "bounds": [
+        [
+          -78.97154245028693,
+          35.886739856253044
+        ],
+        [
+          -78.79298062332671,
+          36.05155437992958
+        ]
+      ],
+      "tree_count": 1301,
+      "zip_codes": [
+        "27701",
+        "27703",
+        "27704",
+        "27705",
+        "27707",
+        "27713"
+      ],
+      "species_counts": {
+        "cherry": 646,
+        "plum": 16,
+        "peach": 14,
+        "magnolia": 615,
+        "crabapple": 10
+      },
+      "ownership_counts": {
+        "public": 1301,
+        "private": 0,
+        "unknown": 0
+      },
+      "species_ownership_counts": {
+        "cherry": {
+          "public": 646,
+          "private": 0,
+          "unknown": 0
+        },
+        "plum": {
+          "public": 16,
+          "private": 0,
+          "unknown": 0
+        },
+        "peach": {
+          "public": 14,
+          "private": 0,
+          "unknown": 0
+        },
+        "magnolia": {
+          "public": 615,
+          "private": 0,
+          "unknown": 0
+        },
+        "crabapple": {
+          "public": 10,
+          "private": 0,
+          "unknown": 0
+        }
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "durham-001",
+          "bounds": [
+            [
+              -78.97154245028693,
+              35.886739856253044
+            ],
+            [
+              -78.79298062332671,
+              36.05155437992958
+            ]
+          ],
+          "data_path": "/data/trees.nc.area.durham.v2.geojson",
+          "tree_count": 1301,
+          "ownership_counts": {
+            "public": 1301,
+            "private": 0,
+            "unknown": 0
+          },
+          "species_counts": {
+            "cherry": 646,
+            "plum": 16,
+            "peach": 14,
+            "magnolia": 615,
+            "crabapple": 10
+          },
+          "species_ownership_counts": {
+            "cherry": {
+              "public": 646,
+              "private": 0,
+              "unknown": 0
+            },
+            "plum": {
+              "public": 16,
+              "private": 0,
+              "unknown": 0
+            },
+            "peach": {
+              "public": 14,
+              "private": 0,
+              "unknown": 0
+            },
+            "magnolia": {
+              "public": 615,
+              "private": 0,
+              "unknown": 0
+            },
+            "crabapple": {
+              "public": 10,
+              "private": 0,
+              "unknown": 0
+            }
+          },
+          "raw_bytes": 629360,
+          "gzip_bytes": 34629
+        }
+      ]
+    }
+  ]
+}

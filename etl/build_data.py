@@ -212,10 +212,13 @@ REGION_LABELS: dict[str, str] = {
     "qc": "QC",
     "va": "VA",
     "md": "MD",
+    "nh": "NH",
     "nj": "NJ",
+    "nc": "NC",
     "ny": "NY",
     "pa": "PA",
     "ma": "MA",
+    "ri": "RI",
 }
 SPECIES_GROUPS: list[str] = ["cherry", "plum", "peach", "magnolia", "crabapple"]
 REGION_CITY_OVERRIDES: dict[str, str] = {
@@ -293,9 +296,15 @@ REGION_CITY_OVERRIDES: dict[str, str] = {
     "Dedham": "ma",
     "Medford": "ma",
     "New Bedford": "ma",
+    "Longmeadow": "ma",
+    "Lynn": "ma",
+    "Garrett Park": "md",
     "Annapolis": "md",
     "Gaithersburg": "md",
+    "Manchester": "nh",
+    "Charlottesville": "va",
     "Fairfax": "va",
+    "Fredericksburg": "va",
     "Hartford": "ct",
     "Groton": "ct",
     "Ithaca": "ny",
@@ -318,8 +327,14 @@ REGION_CITY_OVERRIDES: dict[str, str] = {
     "Greenwich": "ct",
     "New Haven": "ct",
     "Newport News": "va",
+    "Norfolk": "va",
     "Stamford": "ct",
     "Virginia Beach": "va",
+    "Meadville": "pa",
+    "Durham": "nc",
+    "Fayetteville": "nc",
+    "Providence": "ri",
+    "Salisbury": "nc",
     "Ottawa": "on",
     "Toronto": "on",
     "Montreal": "qc",
@@ -575,9 +590,15 @@ CITY_BOUNDARY_HINTS: dict[str, dict[str, str]] = {
     "Dedham": {"state": "25"},
     "Medford": {"state": "25"},
     "New Bedford": {"state": "25"},
+    "Longmeadow": {"state": "25"},
+    "Lynn": {"state": "25"},
+    "Garrett Park": {"state": "24"},
     "Annapolis": {"state": "24"},
     "Gaithersburg": {"state": "24"},
+    "Manchester": {"state": "33"},
+    "Charlottesville": {"state": "51"},
     "Fairfax": {"state": "51"},
+    "Fredericksburg": {"state": "51"},
     "Hartford": {"state": "09"},
     "Groton": {"state": "09", "preferred_lsadc": "43"},
     "Ithaca": {"state": "36"},
@@ -600,8 +621,14 @@ CITY_BOUNDARY_HINTS: dict[str, dict[str, str]] = {
     "Greenwich": {"state": "09"},
     "New Haven": {"state": "09"},
     "Newport News": {"state": "51"},
+    "Norfolk": {"state": "51"},
     "Stamford": {"state": "09"},
     "Virginia Beach": {"state": "51"},
+    "Meadville": {"state": "42"},
+    "Durham": {"state": "37"},
+    "Fayetteville": {"state": "37"},
+    "Providence": {"state": "44"},
+    "Salisbury": {"state": "37"},
     "Ottawa": {"boundary_source": "ottawa_arcgis"},
     "Toronto": {"boundary_source": "toronto_zip"},
     "Montreal": {"boundary_source": "montreal_arrondissements_geojson"},
@@ -2784,11 +2811,14 @@ REGION_TO_STATE_FIPS: dict[str, str] = {
     "ma": "25",
     "md": "24",
     "mi": "26",
+    "nh": "33",
+    "nc": "37",
     "nj": "34",
     "nv": "32",
     "ny": "36",
     "or": "41",
     "pa": "42",
+    "ri": "44",
     "tx": "48",
     "ut": "49",
     "va": "51",
@@ -2842,6 +2872,12 @@ def region_for_city(city: str) -> str:
         return "pa"
     if state == "25":
         return "ma"
+    if state == "33":
+        return "nh"
+    if state == "37":
+        return "nc"
+    if state == "44":
+        return "ri"
     if state == "04":
         return "az"
     if state == "13":
@@ -2862,10 +2898,16 @@ def region_for_city(city: str) -> str:
         return "nj"
     if city.endswith(" NY") or city.endswith(", NY"):
         return "ny"
+    if city.endswith(" NH") or city.endswith(", NH"):
+        return "nh"
+    if city.endswith(" NC") or city.endswith(", NC"):
+        return "nc"
     if city.endswith(" PA") or city.endswith(", PA"):
         return "pa"
     if city.endswith(" MA") or city.endswith(", MA"):
         return "ma"
+    if city.endswith(" RI") or city.endswith(", RI"):
+        return "ri"
     if city.endswith(" CA") or city.endswith(", CA"):
         return "ca"
     if city.endswith(" OR") or city.endswith(", OR"):

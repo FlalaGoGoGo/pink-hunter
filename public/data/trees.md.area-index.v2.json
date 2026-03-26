@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-03-26T18:04:50.787333+00:00",
+  "generated_at": "2026-03-26T19:17:51.135183+00:00",
   "region": "md",
   "strategy": "area_shard",
   "items": [
@@ -397,6 +397,128 @@
           },
           "raw_bytes": 582139,
           "gzip_bytes": 24595
+        }
+      ]
+    },
+    {
+      "jurisdiction": "Garrett Park",
+      "slug": "garrett-park",
+      "display_name": "Garrett Park",
+      "jurisdiction_type": "city",
+      "state_province": "MD",
+      "country": "United States",
+      "bounds": [
+        [
+          -77.09925227976225,
+          39.03162487171958
+        ],
+        [
+          -77.08719840245556,
+          39.042793890719494
+        ]
+      ],
+      "tree_count": 109,
+      "zip_codes": [
+        "20896"
+      ],
+      "species_counts": {
+        "cherry": 62,
+        "plum": 0,
+        "peach": 0,
+        "magnolia": 39,
+        "crabapple": 8
+      },
+      "ownership_counts": {
+        "public": 109,
+        "private": 0,
+        "unknown": 0
+      },
+      "species_ownership_counts": {
+        "cherry": {
+          "public": 62,
+          "private": 0,
+          "unknown": 0
+        },
+        "plum": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        },
+        "peach": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        },
+        "magnolia": {
+          "public": 39,
+          "private": 0,
+          "unknown": 0
+        },
+        "crabapple": {
+          "public": 8,
+          "private": 0,
+          "unknown": 0
+        }
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "garrett-park-001",
+          "bounds": [
+            [
+              -77.09925227976225,
+              39.03162487171958
+            ],
+            [
+              -77.08719840245556,
+              39.042793890719494
+            ]
+          ],
+          "data_path": "/data/trees.md.area.garrett-park.v2.geojson",
+          "tree_count": 109,
+          "ownership_counts": {
+            "public": 109,
+            "private": 0,
+            "unknown": 0
+          },
+          "species_counts": {
+            "cherry": 62,
+            "plum": 0,
+            "peach": 0,
+            "magnolia": 39,
+            "crabapple": 8
+          },
+          "species_ownership_counts": {
+            "cherry": {
+              "public": 62,
+              "private": 0,
+              "unknown": 0
+            },
+            "plum": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            },
+            "peach": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            },
+            "magnolia": {
+              "public": 39,
+              "private": 0,
+              "unknown": 0
+            },
+            "crabapple": {
+              "public": 8,
+              "private": 0,
+              "unknown": 0
+            }
+          },
+          "raw_bytes": 58155,
+          "gzip_bytes": 3613
         }
       ]
     }

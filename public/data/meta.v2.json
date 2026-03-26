@@ -1,6 +1,6 @@
 {
   "version": "v2",
-  "generated_at": "2026-03-26T18:04:50.787333+00:00",
+  "generated_at": "2026-03-26T19:18:53.603558+00:00",
   "default_region": "wa",
   "coverage_rule": "official_jurisdiction_boundary_only",
   "coverage_skipped_cities": [
@@ -118,16 +118,16 @@
     "Yarrow Point"
   ],
   "coverage_official_unavailable_skipped_cities": [],
-  "source_count": 187,
-  "total_records": 2945948,
-  "included_records": 602396,
-  "unknown_records": 1300148,
+  "source_count": 197,
+  "total_records": 2997286,
+  "included_records": 609186,
+  "unknown_records": 1341624,
   "species_counts": {
-    "cherry": 199764,
-    "plum": 114538,
-    "peach": 7864,
-    "magnolia": 171742,
-    "crabapple": 108488
+    "cherry": 202590,
+    "plum": 114816,
+    "peach": 7918,
+    "magnolia": 173438,
+    "crabapple": 110424
   },
   "regions": [
     {
@@ -633,19 +633,21 @@
         ],
         [
           -70.90213626999997,
-          42.44014358520508
+          42.46299417251137
         ]
       ],
       "data_path": null,
       "coverage_path": "/data/coverage.ma.v1.geojson",
-      "tree_count": 13842,
-      "city_count": 12,
+      "tree_count": 14250,
+      "city_count": 14,
       "cities": [
         "Belmont",
         "Boston",
         "Brookline",
         "Cambridge",
         "Dedham",
+        "Longmeadow",
+        "Lynn",
         "Medford",
         "New Bedford",
         "Newton",
@@ -655,21 +657,21 @@
         "Worcester"
       ],
       "species_counts": {
-        "cherry": 6488,
-        "plum": 987,
-        "peach": 23,
-        "magnolia": 472,
-        "crabapple": 5872
+        "cherry": 6605,
+        "plum": 988,
+        "peach": 25,
+        "magnolia": 474,
+        "crabapple": 6158
       },
       "ownership_groups": [
         "public",
         "private"
       ],
-      "raw_bytes": 6818781,
-      "gzip_bytes": 286049,
+      "raw_bytes": 7027677,
+      "gzip_bytes": 296448,
       "warning_level": "none",
-      "aggregate_raw_bytes": 6818781,
-      "aggregate_gzip_bytes": 286049,
+      "aggregate_raw_bytes": 7027677,
+      "aggregate_gzip_bytes": 296448,
       "aggregate_warning_level": "none",
       "largest_shard_raw_bytes": 2246062,
       "largest_shard_gzip_bytes": 87894,
@@ -679,8 +681,8 @@
       "area_split": {
         "strategy": "area_shard",
         "index_path": "/data/trees.ma.area-index.v2.json",
-        "area_count": 12,
-        "shard_count": 12,
+        "area_count": 14,
+        "shard_count": 14,
         "ready": true
       }
     },
@@ -700,28 +702,29 @@
       ],
       "data_path": null,
       "coverage_path": "/data/coverage.md.v1.geojson",
-      "tree_count": 3231,
-      "city_count": 3,
+      "tree_count": 3340,
+      "city_count": 4,
       "cities": [
         "Annapolis",
         "Baltimore",
-        "Gaithersburg"
+        "Gaithersburg",
+        "Garrett Park"
       ],
       "species_counts": {
-        "cherry": 1140,
+        "cherry": 1202,
         "plum": 187,
         "peach": 25,
-        "magnolia": 756,
-        "crabapple": 1123
+        "magnolia": 795,
+        "crabapple": 1131
       },
       "ownership_groups": [
         "public"
       ],
-      "raw_bytes": 1646797,
-      "gzip_bytes": 81924,
+      "raw_bytes": 1704952,
+      "gzip_bytes": 85537,
       "warning_level": "none",
-      "aggregate_raw_bytes": 1646797,
-      "aggregate_gzip_bytes": 81924,
+      "aggregate_raw_bytes": 1704952,
+      "aggregate_gzip_bytes": 85537,
       "aggregate_warning_level": "none",
       "largest_shard_raw_bytes": 933719,
       "largest_shard_gzip_bytes": 50460,
@@ -731,8 +734,8 @@
       "area_split": {
         "strategy": "area_shard",
         "index_path": "/data/trees.md.area-index.v2.json",
-        "area_count": 3,
-        "shard_count": 3,
+        "area_count": 4,
+        "shard_count": 4,
         "ready": true
       }
     },
@@ -789,6 +792,104 @@
         "shard_count": 5,
         "ready": true
       }
+    },
+    {
+      "id": "nc",
+      "label": "NC",
+      "available": true,
+      "bounds": [
+        [
+          -78.97154245028693,
+          35.886739856253044
+        ],
+        [
+          -78.79298062332671,
+          36.05155437992958
+        ]
+      ],
+      "data_path": null,
+      "tree_count": 1301,
+      "city_count": 1,
+      "cities": [
+        "Durham"
+      ],
+      "species_counts": {
+        "cherry": 646,
+        "plum": 16,
+        "peach": 14,
+        "magnolia": 615,
+        "crabapple": 10
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "raw_bytes": 629360,
+      "gzip_bytes": 34629,
+      "warning_level": "none",
+      "aggregate_raw_bytes": 629360,
+      "aggregate_gzip_bytes": 34629,
+      "aggregate_warning_level": "none",
+      "largest_shard_raw_bytes": 629360,
+      "largest_shard_gzip_bytes": 34629,
+      "largest_shard_area": "Durham",
+      "area_split": {
+        "strategy": "area_shard",
+        "index_path": "/data/trees.nc.area-index.v2.json",
+        "area_count": 1,
+        "shard_count": 1,
+        "ready": true
+      },
+      "largest_shard_warning_level": "none",
+      "coverage_path": "/data/coverage.nc.v1.geojson"
+    },
+    {
+      "id": "nh",
+      "label": "NH",
+      "available": true,
+      "bounds": [
+        [
+          -71.4268902879363,
+          42.98898889672505
+        ],
+        [
+          -71.4268902879363,
+          42.98898889672505
+        ]
+      ],
+      "data_path": null,
+      "tree_count": 1,
+      "city_count": 1,
+      "cities": [
+        "Manchester"
+      ],
+      "species_counts": {
+        "cherry": 1,
+        "plum": 0,
+        "peach": 0,
+        "magnolia": 0,
+        "crabapple": 0
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "raw_bytes": 540,
+      "gzip_bytes": 302,
+      "warning_level": "none",
+      "aggregate_raw_bytes": 540,
+      "aggregate_gzip_bytes": 302,
+      "aggregate_warning_level": "none",
+      "largest_shard_raw_bytes": 540,
+      "largest_shard_gzip_bytes": 302,
+      "largest_shard_area": "Manchester",
+      "area_split": {
+        "strategy": "area_shard",
+        "index_path": "/data/trees.nh.area-index.v2.json",
+        "area_count": 1,
+        "shard_count": 1,
+        "ready": true
+      },
+      "largest_shard_warning_level": "none",
+      "coverage_path": "/data/coverage.nh.v1.geojson"
     },
     {
       "id": "nj",
@@ -1065,37 +1166,38 @@
       "available": true,
       "bounds": [
         [
-          -80.085186635915,
+          -80.16328343049888,
           39.88700382151612
         ],
         [
           -74.96522626391625,
-          40.499279674576
+          41.67172542676276
         ]
       ],
       "data_path": null,
       "coverage_path": "/data/coverage.pa.v1.geojson",
-      "tree_count": 21408,
-      "city_count": 2,
+      "tree_count": 21912,
+      "city_count": 3,
       "cities": [
+        "Meadville",
         "Philadelphia",
         "Pittsburgh"
       ],
       "species_counts": {
-        "cherry": 15652,
-        "plum": 1001,
+        "cherry": 15669,
+        "plum": 1004,
         "peach": 128,
-        "magnolia": 1048,
-        "crabapple": 3579
+        "magnolia": 1051,
+        "crabapple": 4060
       },
       "ownership_groups": [
         "public"
       ],
-      "raw_bytes": 11895231,
-      "gzip_bytes": 536437,
+      "raw_bytes": 12147821,
+      "gzip_bytes": 548616,
       "warning_level": "none",
-      "aggregate_raw_bytes": 11895231,
-      "aggregate_gzip_bytes": 536437,
+      "aggregate_raw_bytes": 12147821,
+      "aggregate_gzip_bytes": 548616,
       "aggregate_warning_level": "none",
       "largest_shard_raw_bytes": 9956244,
       "largest_shard_gzip_bytes": 449127,
@@ -1105,8 +1207,8 @@
       "area_split": {
         "strategy": "area_shard",
         "index_path": "/data/trees.pa.area-index.v2.json",
-        "area_count": 2,
-        "shard_count": 2,
+        "area_count": 3,
+        "shard_count": 3,
         "ready": true
       }
     },
@@ -1159,6 +1261,55 @@
         "shard_count": 1,
         "ready": true
       }
+    },
+    {
+      "id": "ri",
+      "label": "RI",
+      "available": true,
+      "bounds": [
+        [
+          -71.46388525341672,
+          41.77865831232057
+        ],
+        [
+          -71.38055447328865,
+          41.85700172892363
+        ]
+      ],
+      "data_path": null,
+      "tree_count": 1567,
+      "city_count": 1,
+      "cities": [
+        "Providence"
+      ],
+      "species_counts": {
+        "cherry": 743,
+        "plum": 152,
+        "peach": 13,
+        "magnolia": 20,
+        "crabapple": 639
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "raw_bytes": 840375,
+      "gzip_bytes": 49502,
+      "warning_level": "none",
+      "aggregate_raw_bytes": 840375,
+      "aggregate_gzip_bytes": 49502,
+      "aggregate_warning_level": "none",
+      "largest_shard_raw_bytes": 840375,
+      "largest_shard_gzip_bytes": 49502,
+      "largest_shard_area": "Providence",
+      "area_split": {
+        "strategy": "area_shard",
+        "index_path": "/data/trees.ri.area-index.v2.json",
+        "area_count": 1,
+        "shard_count": 1,
+        "ready": true
+      },
+      "largest_shard_warning_level": "none",
+      "coverage_path": "/data/coverage.ri.v1.geojson"
     },
     {
       "id": "tx",
@@ -1268,7 +1419,7 @@
       "available": true,
       "bounds": [
         [
-          -77.58617926015197,
+          -78.51758942434148,
           36.580621332813884
         ],
         [
@@ -1278,32 +1429,35 @@
       ],
       "data_path": null,
       "coverage_path": "/data/coverage.va.v1.geojson",
-      "tree_count": 7038,
-      "city_count": 6,
+      "tree_count": 9938,
+      "city_count": 9,
       "cities": [
         "Arlington",
+        "Charlottesville",
         "Fairfax",
         "Falls Church",
+        "Fredericksburg",
         "Newport News",
+        "Norfolk",
         "Richmond",
         "Virginia Beach"
       ],
       "species_counts": {
-        "cherry": 3298,
-        "plum": 391,
-        "peach": 10,
-        "magnolia": 2888,
-        "crabapple": 451
+        "cherry": 4538,
+        "plum": 497,
+        "peach": 35,
+        "magnolia": 3905,
+        "crabapple": 963
       },
       "ownership_groups": [
         "public",
         "private"
       ],
-      "raw_bytes": 3528761,
-      "gzip_bytes": 173574,
+      "raw_bytes": 5084166,
+      "gzip_bytes": 253533,
       "warning_level": "none",
-      "aggregate_raw_bytes": 3528761,
-      "aggregate_gzip_bytes": 173574,
+      "aggregate_raw_bytes": 5084166,
+      "aggregate_gzip_bytes": 253533,
       "aggregate_warning_level": "none",
       "largest_shard_raw_bytes": 1064202,
       "largest_shard_gzip_bytes": 51981,
@@ -1313,8 +1467,8 @@
       "area_split": {
         "strategy": "area_shard",
         "index_path": "/data/trees.va.area-index.v2.json",
-        "area_count": 6,
-        "shard_count": 6,
+        "area_count": 9,
+        "shard_count": 9,
         "ready": true
       }
     },
@@ -2907,6 +3061,34 @@
       "state_province": "MA"
     },
     {
+      "jurisdiction": "Longmeadow",
+      "region": "ma",
+      "tree_count": 404,
+      "species_counts": {
+        "cherry": 115,
+        "plum": 1,
+        "peach": 2,
+        "magnolia": 2,
+        "crabapple": 284
+      },
+      "jurisdiction_type": "city",
+      "state_province": "MA"
+    },
+    {
+      "jurisdiction": "Lynn",
+      "region": "ma",
+      "tree_count": 4,
+      "species_counts": {
+        "cherry": 2,
+        "plum": 0,
+        "peach": 0,
+        "magnolia": 0,
+        "crabapple": 2
+      },
+      "jurisdiction_type": "city",
+      "state_province": "MA"
+    },
+    {
       "jurisdiction": "Medford",
       "region": "ma",
       "tree_count": 250,
@@ -3047,6 +3229,20 @@
       "state_province": "MD"
     },
     {
+      "jurisdiction": "Garrett Park",
+      "region": "md",
+      "tree_count": 109,
+      "species_counts": {
+        "cherry": 62,
+        "plum": 0,
+        "peach": 0,
+        "magnolia": 39,
+        "crabapple": 8
+      },
+      "jurisdiction_type": "city",
+      "state_province": "MD"
+    },
+    {
       "jurisdiction": "Ann Arbor",
       "region": "mi",
       "tree_count": 3756,
@@ -3115,6 +3311,34 @@
       },
       "jurisdiction_type": "city",
       "state_province": "MI"
+    },
+    {
+      "jurisdiction": "Durham",
+      "region": "nc",
+      "tree_count": 1301,
+      "species_counts": {
+        "cherry": 646,
+        "plum": 16,
+        "peach": 14,
+        "magnolia": 615,
+        "crabapple": 10
+      },
+      "jurisdiction_type": "city",
+      "state_province": "NC"
+    },
+    {
+      "jurisdiction": "Manchester",
+      "region": "nh",
+      "tree_count": 1,
+      "species_counts": {
+        "cherry": 1,
+        "plum": 0,
+        "peach": 0,
+        "magnolia": 0,
+        "crabapple": 0
+      },
+      "jurisdiction_type": "city",
+      "state_province": "NH"
     },
     {
       "jurisdiction": "Dumont",
@@ -3453,6 +3677,20 @@
       "state_province": "OR"
     },
     {
+      "jurisdiction": "Meadville",
+      "region": "pa",
+      "tree_count": 504,
+      "species_counts": {
+        "cherry": 17,
+        "plum": 3,
+        "peach": 0,
+        "magnolia": 3,
+        "crabapple": 481
+      },
+      "jurisdiction_type": "city",
+      "state_province": "PA"
+    },
+    {
       "jurisdiction": "Philadelphia",
       "region": "pa",
       "tree_count": 17717,
@@ -3493,6 +3731,20 @@
       },
       "jurisdiction_type": "city",
       "state_province": "QC"
+    },
+    {
+      "jurisdiction": "Providence",
+      "region": "ri",
+      "tree_count": 1567,
+      "species_counts": {
+        "cherry": 743,
+        "plum": 152,
+        "peach": 13,
+        "magnolia": 20,
+        "crabapple": 639
+      },
+      "jurisdiction_type": "city",
+      "state_province": "RI"
     },
     {
       "jurisdiction": "Austin",
@@ -3565,6 +3817,20 @@
       "state_province": "VA"
     },
     {
+      "jurisdiction": "Charlottesville",
+      "region": "va",
+      "tree_count": 310,
+      "species_counts": {
+        "cherry": 200,
+        "plum": 4,
+        "peach": 0,
+        "magnolia": 61,
+        "crabapple": 45
+      },
+      "jurisdiction_type": "city",
+      "state_province": "VA"
+    },
+    {
       "jurisdiction": "Fairfax",
       "region": "va",
       "tree_count": 481,
@@ -3593,6 +3859,20 @@
       "state_province": "VA"
     },
     {
+      "jurisdiction": "Fredericksburg",
+      "region": "va",
+      "tree_count": 975,
+      "species_counts": {
+        "cherry": 817,
+        "plum": 0,
+        "peach": 0,
+        "magnolia": 158,
+        "crabapple": 0
+      },
+      "jurisdiction_type": "city",
+      "state_province": "VA"
+    },
+    {
       "jurisdiction": "Newport News",
       "region": "va",
       "tree_count": 35,
@@ -3602,6 +3882,20 @@
         "peach": 0,
         "magnolia": 24,
         "crabapple": 0
+      },
+      "jurisdiction_type": "city",
+      "state_province": "VA"
+    },
+    {
+      "jurisdiction": "Norfolk",
+      "region": "va",
+      "tree_count": 1615,
+      "species_counts": {
+        "cherry": 223,
+        "plum": 102,
+        "peach": 25,
+        "magnolia": 798,
+        "crabapple": 467
       },
       "jurisdiction_type": "city",
       "state_province": "VA"
@@ -4270,6 +4564,15 @@
       "note": "Integrated from the official City of Cambridge street-tree shapefile download."
     },
     {
+      "name": "OpenData Trees",
+      "city": "Charlottesville",
+      "endpoint": "https://www.arcgis.com/home/item.html?id=e7c856379492408e9543a25d684b8311",
+      "last_edit_at": "",
+      "records_fetched": 421,
+      "records_included": 310,
+      "note": "Integrated from the official City of Charlottesville open-data tree inventory layer and official jurisdiction boundary."
+    },
+    {
       "name": "City Trees",
       "city": "Chino",
       "endpoint": "https://services2.arcgis.com/6f07Mm2LapX6mneF/arcgis/rest/services/CityTrees_ResCityMaintSpecIden/FeatureServer",
@@ -4395,6 +4698,15 @@
       "note": "Integrated from the official Dumont public TreeKeeper inventory and jurisdiction boundary."
     },
     {
+      "name": "Trees & Planting Sites",
+      "city": "Durham",
+      "endpoint": "https://experience.arcgis.com/experience/b3e98203c9fe458896f3699042d17617/",
+      "last_edit_at": "",
+      "records_fetched": 1332,
+      "records_included": 1301,
+      "note": "Integrated from the official City of Durham public tree inventory ArcGIS layer and official jurisdiction boundary."
+    },
+    {
       "name": "TREES - CURRENT STATUS",
       "city": "East Lansing",
       "endpoint": "https://www.arcgis.com/home/item.html?id=0166cb5e3a124abfa845e26a15a10a13",
@@ -4493,6 +4805,15 @@
       "note": "Integrated from the official Milwaukee County public tree viewer and official jurisdiction boundary clipping."
     },
     {
+      "name": "Trees Public",
+      "city": "Fredericksburg",
+      "endpoint": "https://experience.arcgis.com/experience/367d494216d844179620057d78c168d7",
+      "last_edit_at": "2026-03-26T11:32:36.796000+00:00",
+      "records_fetched": 1235,
+      "records_included": 975,
+      "note": "Integrated from the official City of Fredericksburg public tree inventory ArcGIS layer and official jurisdiction boundary."
+    },
+    {
       "name": "Tree Inventory",
       "city": "Fremont",
       "endpoint": "https://www.fremont.gov/government/departments/maintenance-operations/urban-forestry/tree-inventory-tree-value",
@@ -4509,6 +4830,15 @@
       "records_fetched": 4536,
       "records_included": 4399,
       "note": "Integrated from the City of Fullerton public tree inventory layer and official jurisdiction boundary."
+    },
+    {
+      "name": "Garrett Park Tree Inventory",
+      "city": "Garrett Park",
+      "endpoint": "https://www.arcgis.com/home/item.html?id=f487ba0469f74cc098e8dc6f37736073",
+      "last_edit_at": "2019-01-10T17:01:27+00:00",
+      "records_fetched": 1521,
+      "records_included": 109,
+      "note": "Integrated from the Garrett Park Tree Inventory ArcGIS web map referenced by the Town of Garrett Park and the official jurisdiction boundary."
     },
     {
       "name": "PW Trees Public Viewer",
@@ -4778,6 +5108,15 @@
       "note": "Integrated from the official City of Lodi public tree inventory and official jurisdiction boundary."
     },
     {
+      "name": "Tree Inv noedit",
+      "city": "Longmeadow",
+      "endpoint": "https://www.arcgis.com/home/item.html?id=202e5932c7d544288e2970b9f321948e",
+      "last_edit_at": "2020-03-27T01:30:14.466000+00:00",
+      "records_fetched": 6178,
+      "records_included": 404,
+      "note": "Integrated from the official Town of Longmeadow public tree inventory ArcGIS layer and official jurisdiction boundary."
+    },
+    {
       "name": "TreeKeeper Street Sites",
       "city": "Los Angeles",
       "endpoint": "https://streetsla.lacity.org/tree-inventory-and-maintenance",
@@ -4796,6 +5135,24 @@
       "note": "Integrated from the official Santa Clara County public tree inventory service using the City = Los Gatos subset and official jurisdiction boundary."
     },
     {
+      "name": "Tree Inventory",
+      "city": "Lynn",
+      "endpoint": "https://www.arcgis.com/home/item.html?id=c1d88b9e29594016898fb9d2699067cc",
+      "last_edit_at": "2024-11-25T20:00:33.726000+00:00",
+      "records_fetched": 4,
+      "records_included": 4,
+      "note": "Integrated from the official City of Lynn public tree inventory ArcGIS layer and official jurisdiction boundary."
+    },
+    {
+      "name": "Manchester Trees 2022",
+      "city": "Manchester",
+      "endpoint": "https://www.arcgis.com/home/item.html?id=880d1fd2f9404a0381814565f5ee4cd7",
+      "last_edit_at": "",
+      "records_fetched": 1,
+      "records_included": 1,
+      "note": "Integrated from the official City of Manchester public Parks and Recreation tree inventory ArcGIS layer and official jurisdiction boundary."
+    },
+    {
       "name": "Maywood i-Tree Inventory",
       "city": "Maywood",
       "endpoint": "https://services2.arcgis.com/yrktbS5Xw87hJQvs/arcgis/rest/services/Maywood_iTree_Inventory_WFL1/FeatureServer",
@@ -4803,6 +5160,15 @@
       "records_fetched": 83,
       "records_included": 71,
       "note": "Integrated from the official City of Maywood public i-Tree inventory layer and official jurisdiction boundary."
+    },
+    {
+      "name": "Trees View",
+      "city": "Meadville",
+      "endpoint": "https://www.arcgis.com/home/item.html?id=90b39f1a1a044eec9ea590ff48339e64",
+      "last_edit_at": "2026-03-24T13:03:55.910000+00:00",
+      "records_fetched": 552,
+      "records_included": 504,
+      "note": "Integrated from the official City of Meadville public tree inventory ArcGIS layer and official jurisdiction boundary."
     },
     {
       "name": "TreeKeeper Inventory",
@@ -4937,6 +5303,15 @@
       "records_fetched": 24490,
       "records_included": 2471,
       "note": "Integrated from the official City of Newton public TreeKeeper inventory."
+    },
+    {
+      "name": "City Tree Inventory",
+      "city": "Norfolk",
+      "endpoint": "https://data.norfolk.gov/Government/City-Tree-Inventory/cmvv-agyb",
+      "last_edit_at": "2026-03-26T11:42:32+00:00",
+      "records_fetched": 3011,
+      "records_included": 1615,
+      "note": "Integrated from the official City of Norfolk open-data tree inventory and official jurisdiction boundary."
     },
     {
       "name": "I-5 Project Data Tree Sites",
@@ -5087,6 +5462,15 @@
       "records_fetched": 19256,
       "records_included": 1310,
       "note": "Integrated from the official Princeton public TreeKeeper inventory and jurisdiction boundary."
+    },
+    {
+      "name": "Providence Tree Dataset",
+      "city": "Providence",
+      "endpoint": "https://data.providenceri.gov/Neighborhoods/Providence-Tree-Dataset/b77h-59tz",
+      "last_edit_at": "2021-04-28T17:29:57+00:00",
+      "records_fetched": 2448,
+      "records_included": 1567,
+      "note": "Integrated from the official City of Providence open-data tree inventory and official jurisdiction boundary."
     },
     {
       "name": "City Maintained Street Trees",

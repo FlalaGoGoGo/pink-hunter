@@ -1,8 +1,130 @@
 {
-  "generated_at": "2026-03-12T19:38:26.573144+00:00",
+  "generated_at": "2026-03-26T19:17:51.135183+00:00",
   "region": "pa",
   "strategy": "area_shard",
   "items": [
+    {
+      "jurisdiction": "Meadville",
+      "slug": "meadville",
+      "display_name": "Meadville",
+      "jurisdiction_type": "city",
+      "state_province": "PA",
+      "country": "United States",
+      "bounds": [
+        [
+          -80.16328343049888,
+          41.62566895025056
+        ],
+        [
+          -80.12549252730643,
+          41.67172542676276
+        ]
+      ],
+      "tree_count": 504,
+      "zip_codes": [
+        "16335"
+      ],
+      "species_counts": {
+        "cherry": 17,
+        "plum": 3,
+        "peach": 0,
+        "magnolia": 3,
+        "crabapple": 481
+      },
+      "ownership_counts": {
+        "public": 504,
+        "private": 0,
+        "unknown": 0
+      },
+      "species_ownership_counts": {
+        "cherry": {
+          "public": 17,
+          "private": 0,
+          "unknown": 0
+        },
+        "plum": {
+          "public": 3,
+          "private": 0,
+          "unknown": 0
+        },
+        "peach": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        },
+        "magnolia": {
+          "public": 3,
+          "private": 0,
+          "unknown": 0
+        },
+        "crabapple": {
+          "public": 481,
+          "private": 0,
+          "unknown": 0
+        }
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "meadville-001",
+          "bounds": [
+            [
+              -80.16328343049888,
+              41.62566895025056
+            ],
+            [
+              -80.12549252730643,
+              41.67172542676276
+            ]
+          ],
+          "data_path": "/data/trees.pa.area.meadville.v2.geojson",
+          "tree_count": 504,
+          "ownership_counts": {
+            "public": 504,
+            "private": 0,
+            "unknown": 0
+          },
+          "species_counts": {
+            "cherry": 17,
+            "plum": 3,
+            "peach": 0,
+            "magnolia": 3,
+            "crabapple": 481
+          },
+          "species_ownership_counts": {
+            "cherry": {
+              "public": 17,
+              "private": 0,
+              "unknown": 0
+            },
+            "plum": {
+              "public": 3,
+              "private": 0,
+              "unknown": 0
+            },
+            "peach": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            },
+            "magnolia": {
+              "public": 3,
+              "private": 0,
+              "unknown": 0
+            },
+            "crabapple": {
+              "public": 481,
+              "private": 0,
+              "unknown": 0
+            }
+          },
+          "raw_bytes": 252590,
+          "gzip_bytes": 12179
+        }
+      ]
+    },
     {
       "jurisdiction": "Philadelphia",
       "slug": "philadelphia",

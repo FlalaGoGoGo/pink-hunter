@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-03-26T18:04:50.787333+00:00",
+  "generated_at": "2026-03-26T19:17:51.135183+00:00",
   "region": "ma",
   "strategy": "area_shard",
   "items": [
@@ -648,6 +648,251 @@
           },
           "raw_bytes": 194555,
           "gzip_bytes": 10493
+        }
+      ]
+    },
+    {
+      "jurisdiction": "Longmeadow",
+      "slug": "longmeadow",
+      "display_name": "Longmeadow",
+      "jurisdiction_type": "city",
+      "state_province": "MA",
+      "country": "United States",
+      "bounds": [
+        [
+          -72.58887354188174,
+          42.02554348094508
+        ],
+        [
+          -72.53862689489767,
+          42.06910131502372
+        ]
+      ],
+      "tree_count": 404,
+      "zip_codes": [
+        "01106"
+      ],
+      "species_counts": {
+        "cherry": 115,
+        "plum": 1,
+        "peach": 2,
+        "magnolia": 2,
+        "crabapple": 284
+      },
+      "ownership_counts": {
+        "public": 404,
+        "private": 0,
+        "unknown": 0
+      },
+      "species_ownership_counts": {
+        "cherry": {
+          "public": 115,
+          "private": 0,
+          "unknown": 0
+        },
+        "plum": {
+          "public": 1,
+          "private": 0,
+          "unknown": 0
+        },
+        "peach": {
+          "public": 2,
+          "private": 0,
+          "unknown": 0
+        },
+        "magnolia": {
+          "public": 2,
+          "private": 0,
+          "unknown": 0
+        },
+        "crabapple": {
+          "public": 284,
+          "private": 0,
+          "unknown": 0
+        }
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "longmeadow-001",
+          "bounds": [
+            [
+              -72.58887354188174,
+              42.02554348094508
+            ],
+            [
+              -72.53862689489767,
+              42.06910131502372
+            ]
+          ],
+          "data_path": "/data/trees.ma.area.longmeadow.v2.geojson",
+          "tree_count": 404,
+          "ownership_counts": {
+            "public": 404,
+            "private": 0,
+            "unknown": 0
+          },
+          "species_counts": {
+            "cherry": 115,
+            "plum": 1,
+            "peach": 2,
+            "magnolia": 2,
+            "crabapple": 284
+          },
+          "species_ownership_counts": {
+            "cherry": {
+              "public": 115,
+              "private": 0,
+              "unknown": 0
+            },
+            "plum": {
+              "public": 1,
+              "private": 0,
+              "unknown": 0
+            },
+            "peach": {
+              "public": 2,
+              "private": 0,
+              "unknown": 0
+            },
+            "magnolia": {
+              "public": 2,
+              "private": 0,
+              "unknown": 0
+            },
+            "crabapple": {
+              "public": 284,
+              "private": 0,
+              "unknown": 0
+            }
+          },
+          "raw_bytes": 206836,
+          "gzip_bytes": 9934
+        }
+      ]
+    },
+    {
+      "jurisdiction": "Lynn",
+      "slug": "lynn",
+      "display_name": "Lynn",
+      "jurisdiction_type": "city",
+      "state_province": "MA",
+      "country": "United States",
+      "bounds": [
+        [
+          -70.96635143679035,
+          42.4579772401132
+        ],
+        [
+          -70.93345695197097,
+          42.46299417251137
+        ]
+      ],
+      "tree_count": 4,
+      "zip_codes": [
+        "01902",
+        "01905"
+      ],
+      "species_counts": {
+        "cherry": 2,
+        "plum": 0,
+        "peach": 0,
+        "magnolia": 0,
+        "crabapple": 2
+      },
+      "ownership_counts": {
+        "public": 4,
+        "private": 0,
+        "unknown": 0
+      },
+      "species_ownership_counts": {
+        "cherry": {
+          "public": 2,
+          "private": 0,
+          "unknown": 0
+        },
+        "plum": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        },
+        "peach": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        },
+        "magnolia": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        },
+        "crabapple": {
+          "public": 2,
+          "private": 0,
+          "unknown": 0
+        }
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "lynn-001",
+          "bounds": [
+            [
+              -70.96635143679035,
+              42.4579772401132
+            ],
+            [
+              -70.93345695197097,
+              42.46299417251137
+            ]
+          ],
+          "data_path": "/data/trees.ma.area.lynn.v2.geojson",
+          "tree_count": 4,
+          "ownership_counts": {
+            "public": 4,
+            "private": 0,
+            "unknown": 0
+          },
+          "species_counts": {
+            "cherry": 2,
+            "plum": 0,
+            "peach": 0,
+            "magnolia": 0,
+            "crabapple": 2
+          },
+          "species_ownership_counts": {
+            "cherry": {
+              "public": 2,
+              "private": 0,
+              "unknown": 0
+            },
+            "plum": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            },
+            "peach": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            },
+            "magnolia": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            },
+            "crabapple": {
+              "public": 2,
+              "private": 0,
+              "unknown": 0
+            }
+          },
+          "raw_bytes": 2060,
+          "gzip_bytes": 465
         }
       ]
     },

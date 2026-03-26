@@ -32,23 +32,33 @@ Current state: no cities are parked in `A2` right now.
 | ✅ | Boston | 4,488 | Official jurisdiction boundary | Official Analyze Boston `BPRD Trees` download integrated; includes both street and park trees published by Boston Parks and Recreation |
 | ✅ | Brookline | 1,064 | Official jurisdiction boundary | Official Town of Brookline public tree inventory ArcGIS layer integrated with the official jurisdiction boundary |
 | ✅ | Dedham | 425 | Official jurisdiction boundary | Official Town of Dedham public tree inventory ArcGIS layer integrated with server-side blossom filtering on `Species_bot` / `Species_com` |
+| ✅ | Longmeadow | 404 | Official jurisdiction boundary | Official Town of Longmeadow public tree inventory ArcGIS layer integrated with the official jurisdiction boundary |
 | ✅ | Pittsburgh | 3,691 | Official jurisdiction boundary | Official public Pittsburgh TreeKeeper inventory domain integrated; blossom names are parsed from `SITE_ATTR6` |
 | ✅ | Jersey City | 2,148 | Official jurisdiction boundary | Public Jersey City tree inventory service integrated from the city-referenced Urban Forests materials and official jurisdiction boundary |
 | ✅ | Cambridge | 1,954 | Official jurisdiction boundary | Official City of Cambridge `Street Trees` shapefile integrated; only current `SiteType = Tree` rows are included |
 | ✅ | Groton | 100 | Official jurisdiction boundary | Official Town of Groton public tree inventory ArcGIS service integrated using the official town boundary from the Census county subdivision rather than the smaller Groton city place |
 | ✅ | Gaithersburg | 1,051 | Official jurisdiction boundary | Official City of Gaithersburg `Street Trees View` ArcGIS layer integrated with the official jurisdiction boundary |
+| ✅ | Garrett Park | 109 | Official jurisdiction boundary | Official Town of Garrett Park tree inventory integrated from the published ArcGIS web map featureCollection and clipped to the official jurisdiction boundary |
 | ✅ | Baltimore | 1,920 | Official jurisdiction boundary | Official Baltimore city forestry tree layer integrated from `gis.baltimorecity.gov`; botanical names come from `SPP` |
 | ✅ | Arlington | 1,882 | Official jurisdiction boundary | Official Arlington County `DPR Trees` layer integrated using the official county-equivalent jurisdiction boundary |
+| ✅ | Norfolk | 1,615 | Official jurisdiction boundary | Official City of Norfolk open-data `City Tree Inventory` integrated with the official jurisdiction boundary and coordinate fallback from `latitude_longitude_point` |
+| ✅ | Providence | 1,567 | Official jurisdiction boundary | Official City of Providence open-data `Providence Tree Dataset` integrated with the official jurisdiction boundary |
+| ✅ | Durham | 1,301 | Official jurisdiction boundary | Official City of Durham `Trees & Planting Sites` ArcGIS layer integrated after restricting to `present = Tree` and clipping to the official jurisdiction boundary |
+| ✅ | Fredericksburg | 975 | Official jurisdiction boundary | Official City of Fredericksburg public tree inventory ArcGIS layer integrated after restricting to `spacestatus = Planted` |
 | ✅ | Richmond | 2,099 | Official jurisdiction boundary | Official City of Richmond, Virginia public tree inventory ArcGIS layer integrated with `Status = In Service` and server-side botanical blossom filtering on `SPP` |
 | ✅ | Virginia Beach | 1,629 | Official jurisdiction boundary | Official City of Virginia Beach `VBTrees` inventory integrated after excluding `Removed`, `Proposed`, `Schedule`, and `Hold` rows |
+| ✅ | Meadville | 504 | Official jurisdiction boundary | Official City of Meadville public tree inventory ArcGIS layer integrated after restricting to live trees and clipping to the official jurisdiction boundary |
+| ✅ | Charlottesville | 310 | Official jurisdiction boundary | Official City of Charlottesville open-data tree inventory ArcGIS layer integrated with the official jurisdiction boundary |
 | ✅ | Newport News | 35 | Official jurisdiction boundary | Official City of Newport News public reviewed-tree ArcGIS inventory integrated from the `Public Trees` layer |
 | ✅ | Princeton | 1,310 | Official jurisdiction boundary | Official Princeton public TreeKeeper inventory integrated with the official jurisdiction boundary |
 | ✅ | Millburn | 1,133 | Official jurisdiction boundary | Official Millburn public TreeKeeper inventory integrated with the official jurisdiction boundary |
 | ✅ | Hoboken | 397 | Official jurisdiction boundary | Official City of Hoboken public tree inventory ArcGIS layer integrated with the official jurisdiction boundary |
 | ✅ | Morristown | 10 | Official jurisdiction boundary | Official Morristown public tree inventory ArcGIS layer integrated with the official jurisdiction boundary |
 | ✅ | Dumont | 284 | Official jurisdiction boundary | Official Dumont public TreeKeeper inventory integrated with the official jurisdiction boundary |
+| ✅ | Lynn | 4 | Official jurisdiction boundary | Official City of Lynn public tree inventory ArcGIS layer integrated after restricting to `STATUS = 'alive'` and clipping to the official jurisdiction boundary |
 | ✅ | New Bedford | 678 | Official jurisdiction boundary | Public New Bedford 2023 tree inventory ArcGIS layer integrated with the official jurisdiction boundary and `Longitude` / `Latitude` fallback |
 | ✅ | Medford | 250 | Official jurisdiction boundary | Public Medford tree inventory ArcGIS layer referenced by the official City of Medford Forestry materials and clipped to the official jurisdiction boundary |
+| ✅ | Manchester | 1 | Official jurisdiction boundary | Official City of Manchester public Parks and Recreation tree inventory ArcGIS layer integrated with the official jurisdiction boundary; current official source publishes one in-scope blossom tree |
 | ✅ | Westwood | 192 | Official jurisdiction boundary | Official Westwood public TreeKeeper inventory integrated with the official jurisdiction boundary |
 | ✅ | Rutherford | 126 | Official jurisdiction boundary | Official Rutherford public TreeKeeper inventory integrated with the official jurisdiction boundary |
 | ✅ | River Edge | 62 | Official jurisdiction boundary | Official River Edge public TreeKeeper inventory integrated with the official jurisdiction boundary |
@@ -173,6 +183,8 @@ These cities are not in `A2` yet because the official point-tree source is still
 | ⏳ | Poulsbo | 75 | Partial-only | Official `Historic Trees of Poulsbo` feature service is public, but it is a curated historic-tree layer, not a citywide public inventory |
 | ⏳ | Pasco | Unknown | Partial-only | Official city content found in this round was a `Volunteer Park Tree Walk` map, not a citywide public single-tree inventory |
 | ⏳ | Harrisburg | Unknown | Blocked species codes | Official City of Harrisburg `Street Trees` layer is public, but species values are internal short codes (for example `PRPE2`, `PRSE1`) and this round did not confirm a public mapping table |
+| ⏳ | Salisbury | 0 | Zero in-scope rows | Official City of Salisbury public tree inventory layer is citywide, but the current blossom-filtered official source returned no in-scope rows inside the official jurisdiction boundary |
+| ⏳ | Fayetteville | 0 | Zero in-scope rows | Official City of Fayetteville `Tree Inventory Phase 1` public layer is citywide, but the current blossom-filtered official source returned no in-scope rows inside the official jurisdiction boundary |
 
 ## C — No Verified Official Public Point-Tree Dataset Or Outside Current Workflow
 
@@ -411,6 +423,17 @@ These cities are not in `A2` yet because the official point-tree source is still
 - Integrated `New Bedford` from the public 2023 New Bedford Bartlett tree inventory ArcGIS layer.
 - Integrated `Medford` from the public tree inventory ArcGIS layer referenced by the official City of Medford Forestry urban-forest materials.
 - Rechecked `Harrisburg`; the official public `Street Trees` layer remains blocked from product publish because species values are short internal codes without a confirmed public lookup table.
+
+## March 2026 East Coast 10-City Expansion
+- Integrated `Longmeadow` and `Lynn` from official Massachusetts public tree inventory ArcGIS layers.
+- Integrated `Manchester` from the official City of Manchester public Parks and Recreation tree inventory ArcGIS layer.
+- Integrated `Providence` from the official City of Providence open-data `Providence Tree Dataset`.
+- Integrated `Garrett Park` by parsing the official town-published ArcGIS web map featureCollection and using the explicit `Longitude` / `Latitude` attributes.
+- Integrated `Charlottesville`, `Fredericksburg`, and `Norfolk` from official Virginia public tree inventories.
+- Integrated `Meadville` from the official City of Meadville public tree inventory ArcGIS layer.
+- Integrated `Durham` from the official City of Durham `Trees & Planting Sites` ArcGIS layer after restricting to `present = Tree` rows.
+- Rechecked `Salisbury`; the official citywide source is public, but the blossom-filter path returned zero in-scope rows inside the official jurisdiction boundary.
+- Rechecked `Fayetteville`; the official citywide `Tree Inventory Phase 1` layer is public, but the blossom-filter path returned zero in-scope rows inside the official jurisdiction boundary.
 
 ## March 2026 Texas / Large-City Follow-up
 - Integrated `Los Angeles` after implementing the city-scale blossom-filter path against the official public StreetsLA TreeKeeper inventory.

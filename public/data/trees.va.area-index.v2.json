@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-03-26T18:04:50.787333+00:00",
+  "generated_at": "2026-03-26T19:17:51.135183+00:00",
   "region": "va",
   "strategy": "area_shard",
   "items": [
@@ -123,6 +123,130 @@
           },
           "raw_bytes": 892680,
           "gzip_bytes": 45013
+        }
+      ]
+    },
+    {
+      "jurisdiction": "Charlottesville",
+      "slug": "charlottesville",
+      "display_name": "Charlottesville",
+      "jurisdiction_type": "city",
+      "state_province": "VA",
+      "country": "United States",
+      "bounds": [
+        [
+          -78.51758942434148,
+          38.01059792000341
+        ],
+        [
+          -78.45080542625097,
+          38.064415533974625
+        ]
+      ],
+      "tree_count": 310,
+      "zip_codes": [
+        "22901",
+        "22902",
+        "22903"
+      ],
+      "species_counts": {
+        "cherry": 200,
+        "plum": 4,
+        "peach": 0,
+        "magnolia": 61,
+        "crabapple": 45
+      },
+      "ownership_counts": {
+        "public": 310,
+        "private": 0,
+        "unknown": 0
+      },
+      "species_ownership_counts": {
+        "cherry": {
+          "public": 200,
+          "private": 0,
+          "unknown": 0
+        },
+        "plum": {
+          "public": 4,
+          "private": 0,
+          "unknown": 0
+        },
+        "peach": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        },
+        "magnolia": {
+          "public": 61,
+          "private": 0,
+          "unknown": 0
+        },
+        "crabapple": {
+          "public": 45,
+          "private": 0,
+          "unknown": 0
+        }
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "charlottesville-001",
+          "bounds": [
+            [
+              -78.51758942434148,
+              38.01059792000341
+            ],
+            [
+              -78.45080542625097,
+              38.064415533974625
+            ]
+          ],
+          "data_path": "/data/trees.va.area.charlottesville.v2.geojson",
+          "tree_count": 310,
+          "ownership_counts": {
+            "public": 310,
+            "private": 0,
+            "unknown": 0
+          },
+          "species_counts": {
+            "cherry": 200,
+            "plum": 4,
+            "peach": 0,
+            "magnolia": 61,
+            "crabapple": 45
+          },
+          "species_ownership_counts": {
+            "cherry": {
+              "public": 200,
+              "private": 0,
+              "unknown": 0
+            },
+            "plum": {
+              "public": 4,
+              "private": 0,
+              "unknown": 0
+            },
+            "peach": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            },
+            "magnolia": {
+              "public": 61,
+              "private": 0,
+              "unknown": 0
+            },
+            "crabapple": {
+              "public": 45,
+              "private": 0,
+              "unknown": 0
+            }
+          },
+          "raw_bytes": 157891,
+          "gzip_bytes": 8448
         }
       ]
     },
@@ -373,6 +497,128 @@
       ]
     },
     {
+      "jurisdiction": "Fredericksburg",
+      "slug": "fredericksburg",
+      "display_name": "Fredericksburg",
+      "jurisdiction_type": "city",
+      "state_province": "VA",
+      "country": "United States",
+      "bounds": [
+        [
+          -77.50811487112328,
+          38.273814736694334
+        ],
+        [
+          -77.45312110447584,
+          38.32009992325866
+        ]
+      ],
+      "tree_count": 975,
+      "zip_codes": [
+        "22401"
+      ],
+      "species_counts": {
+        "cherry": 817,
+        "plum": 0,
+        "peach": 0,
+        "magnolia": 158,
+        "crabapple": 0
+      },
+      "ownership_counts": {
+        "public": 975,
+        "private": 0,
+        "unknown": 0
+      },
+      "species_ownership_counts": {
+        "cherry": {
+          "public": 817,
+          "private": 0,
+          "unknown": 0
+        },
+        "plum": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        },
+        "peach": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        },
+        "magnolia": {
+          "public": 158,
+          "private": 0,
+          "unknown": 0
+        },
+        "crabapple": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        }
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "fredericksburg-001",
+          "bounds": [
+            [
+              -77.50811487112328,
+              38.273814736694334
+            ],
+            [
+              -77.45312110447584,
+              38.32009992325866
+            ]
+          ],
+          "data_path": "/data/trees.va.area.fredericksburg.v2.geojson",
+          "tree_count": 975,
+          "ownership_counts": {
+            "public": 975,
+            "private": 0,
+            "unknown": 0
+          },
+          "species_counts": {
+            "cherry": 817,
+            "plum": 0,
+            "peach": 0,
+            "magnolia": 158,
+            "crabapple": 0
+          },
+          "species_ownership_counts": {
+            "cherry": {
+              "public": 817,
+              "private": 0,
+              "unknown": 0
+            },
+            "plum": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            },
+            "peach": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            },
+            "magnolia": {
+              "public": 158,
+              "private": 0,
+              "unknown": 0
+            },
+            "crabapple": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            }
+          },
+          "raw_bytes": 522666,
+          "gzip_bytes": 23789
+        }
+      ]
+    },
+    {
       "jurisdiction": "Newport News",
       "slug": "newport-news",
       "display_name": "Newport News",
@@ -494,6 +740,139 @@
           },
           "raw_bytes": 19488,
           "gzip_bytes": 1295
+        }
+      ]
+    },
+    {
+      "jurisdiction": "Norfolk",
+      "slug": "norfolk",
+      "display_name": "Norfolk",
+      "jurisdiction_type": "city",
+      "state_province": "VA",
+      "country": "United States",
+      "bounds": [
+        [
+          -76.31756728473854,
+          36.82264556951087
+        ],
+        [
+          -76.17986746426328,
+          36.96598449441516
+        ]
+      ],
+      "tree_count": 1615,
+      "zip_codes": [
+        "23502",
+        "23503",
+        "23504",
+        "23505",
+        "23507",
+        "23508",
+        "23509",
+        "23510",
+        "23513",
+        "23517",
+        "23518",
+        "23523"
+      ],
+      "species_counts": {
+        "cherry": 223,
+        "plum": 102,
+        "peach": 25,
+        "magnolia": 798,
+        "crabapple": 467
+      },
+      "ownership_counts": {
+        "public": 1615,
+        "private": 0,
+        "unknown": 0
+      },
+      "species_ownership_counts": {
+        "cherry": {
+          "public": 223,
+          "private": 0,
+          "unknown": 0
+        },
+        "plum": {
+          "public": 102,
+          "private": 0,
+          "unknown": 0
+        },
+        "peach": {
+          "public": 25,
+          "private": 0,
+          "unknown": 0
+        },
+        "magnolia": {
+          "public": 798,
+          "private": 0,
+          "unknown": 0
+        },
+        "crabapple": {
+          "public": 467,
+          "private": 0,
+          "unknown": 0
+        }
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "norfolk-001",
+          "bounds": [
+            [
+              -76.31756728473854,
+              36.82264556951087
+            ],
+            [
+              -76.17986746426328,
+              36.96598449441516
+            ]
+          ],
+          "data_path": "/data/trees.va.area.norfolk.v2.geojson",
+          "tree_count": 1615,
+          "ownership_counts": {
+            "public": 1615,
+            "private": 0,
+            "unknown": 0
+          },
+          "species_counts": {
+            "cherry": 223,
+            "plum": 102,
+            "peach": 25,
+            "magnolia": 798,
+            "crabapple": 467
+          },
+          "species_ownership_counts": {
+            "cherry": {
+              "public": 223,
+              "private": 0,
+              "unknown": 0
+            },
+            "plum": {
+              "public": 102,
+              "private": 0,
+              "unknown": 0
+            },
+            "peach": {
+              "public": 25,
+              "private": 0,
+              "unknown": 0
+            },
+            "magnolia": {
+              "public": 798,
+              "private": 0,
+              "unknown": 0
+            },
+            "crabapple": {
+              "public": 467,
+              "private": 0,
+              "unknown": 0
+            }
+          },
+          "raw_bytes": 874848,
+          "gzip_bytes": 47722
         }
       ]
     },

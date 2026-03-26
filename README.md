@@ -73,9 +73,12 @@ Live domain:
 <summary>Virginia</summary>
 
 - Arlington
+- Charlottesville
 - Fairfax
 - Falls Church
+- Fredericksburg
 - Newport News
+- Norfolk
 - Richmond
 - Virginia Beach
 
@@ -87,6 +90,14 @@ Live domain:
 - Annapolis
 - Baltimore
 - Gaithersburg
+- Garrett Park
+
+</details>
+
+<details>
+<summary>North Carolina</summary>
+
+- Durham
 
 </details>
 
@@ -112,6 +123,7 @@ Live domain:
 <details>
 <summary>Pennsylvania</summary>
 
+- Meadville
 - Philadelphia
 - Pittsburgh
 
@@ -125,6 +137,8 @@ Live domain:
 - Brookline
 - Cambridge
 - Dedham
+- Longmeadow
+- Lynn
 - Medford
 - New Bedford
 - Newton
@@ -132,6 +146,20 @@ Live domain:
 - Springfield
 - Waltham
 - Worcester
+
+</details>
+
+<details>
+<summary>New Hampshire</summary>
+
+- Manchester
+
+</details>
+
+<details>
+<summary>Rhode Island</summary>
+
+- Providence
 
 </details>
 
@@ -339,7 +367,10 @@ Live domain:
 <summary>Virginia</summary>
 
 - Arlington: [Open Data Portal](https://www.arlingtonva.us/About-Arlington/Data-and-Research/Open-Data-Portal)
+- Charlottesville: [OpenData Trees](https://www.arcgis.com/home/item.html?id=e7c856379492408e9543a25d684b8311)
+- Fredericksburg: [Trees Public](https://experience.arcgis.com/experience/367d494216d844179620057d78c168d7)
 - Newport News: [Newport News Tree Inventory](https://www.arcgis.com/home/item.html?id=9d10ce6b9f0e4d29ac48285037193138)
+- Norfolk: [City Tree Inventory](https://data.norfolk.gov/Government/City-Tree-Inventory/cmvv-agyb)
 - Richmond: [Tree Inventory, City of Richmond, Virginia](https://cor.maps.arcgis.com/apps/webappviewer/index.html?id=3dda2aa7521941d8a48dc91f5014a5c8)
 - Virginia Beach: [VBTrees](https://geo.vbgov.com/mapservices/rest/services/Parks_and_Recreation/VBTrees/MapServer)
 
@@ -350,6 +381,14 @@ Live domain:
 
 - Baltimore: [Open Baltimore](https://data.baltimorecity.gov/)
 - Gaithersburg: [Street Trees View](https://www.arcgis.com/home/item.html?id=8450e6c3992d4e8e9d0f3df4fd2722dd)
+- Garrett Park: [Garrett Park Tree Inventory](https://www.arcgis.com/home/item.html?id=f487ba0469f74cc098e8dc6f37736073)
+
+</details>
+
+<details>
+<summary>North Carolina</summary>
+
+- Durham: [Trees & Planting Sites](https://experience.arcgis.com/experience/b3e98203c9fe458896f3699042d17617/)
 
 </details>
 
@@ -364,6 +403,7 @@ Live domain:
 <details>
 <summary>Pennsylvania</summary>
 
+- Meadville: [Trees View](https://www.arcgis.com/home/item.html?id=90b39f1a1a044eec9ea590ff48339e64)
 - Philadelphia: [PPR Tree Inventory 2025](https://metadata.phila.gov/#home/datasetdetails/57a0e1d5aa8882104134830e/representationdetails/690a4183ef9cba032bd11d00/)
 - Pittsburgh: [TreeKeeper Inventory](https://pittsburghpa.treekeepersoftware.com/)
 
@@ -376,8 +416,24 @@ Live domain:
 - Brookline: [Brookline Tree Inventory](https://www.arcgis.com/home/item.html?id=4500c14f85d846d6924c7f8cb532763f)
 - Cambridge: [Street Trees](https://www.cambridgema.gov/GIS/gisdatadictionary/Environmental/ENVIRONMENTAL_StreetTrees)
 - Dedham: [Tree Inventory](https://gis.dedham-ma.gov/arcgis/rest/services/public/TreeInventory/MapServer)
+- Longmeadow: [Tree Inv noedit](https://www.arcgis.com/home/item.html?id=202e5932c7d544288e2970b9f321948e)
+- Lynn: [Tree Inventory](https://www.arcgis.com/home/item.html?id=c1d88b9e29594016898fb9d2699067cc)
 - Medford: [Forestry](https://www.medfordma.org/departments/forestry)
 - New Bedford: [NewBedfordTreeInventory2023](https://www.arcgis.com/home/item.html?id=c80392f7b4bf4a2ebd5617776d508721)
+
+</details>
+
+<details>
+<summary>New Hampshire</summary>
+
+- Manchester: [Manchester Trees 2022](https://www.arcgis.com/home/item.html?id=880d1fd2f9404a0381814565f5ee4cd7)
+
+</details>
+
+<details>
+<summary>Rhode Island</summary>
+
+- Providence: [Providence Tree Dataset](https://data.providenceri.gov/Neighborhoods/Providence-Tree-Dataset/b77h-59tz)
 
 </details>
 
