@@ -68,6 +68,16 @@ Current state: no cities are parked in `A2` right now.
 | ✅ | Fairfax | 481 | Official jurisdiction boundary | Official City of Fairfax public TreePlotter inventory integrated via the public TreePlotter page and official jurisdiction boundary clipping |
 | ✅ | Norfolk | 1,615 | Official jurisdiction boundary | Official City of Norfolk open-data `City Tree Inventory` integrated with the official jurisdiction boundary and coordinate fallback from `latitude_longitude_point` |
 | ✅ | Providence | 1,567 | Official jurisdiction boundary | Official City of Providence open-data `Providence Tree Dataset` integrated with the official jurisdiction boundary |
+| ✅ | Shelburne | 232 | Official jurisdiction boundary | Official Vermont ANR `Municipal Tree Inventory` ArcGIS layer integrated with `TOWN = 'SHELBURNE'` and clipped to the official jurisdiction boundary |
+| ✅ | Middlebury | 155 | Official jurisdiction boundary | Official Vermont ANR `Municipal Tree Inventory` ArcGIS layer integrated with `TOWN = 'MIDDLEBURY'` and clipped to the official jurisdiction boundary |
+| ✅ | Winooski | 99 | Official jurisdiction boundary | Official Vermont ANR `Municipal Tree Inventory` ArcGIS layer integrated with `TOWN = 'WINOOSKI'` and clipped to the official jurisdiction boundary |
+| ✅ | Northfield | 85 | Official jurisdiction boundary | Official Vermont ANR `Municipal Tree Inventory` ArcGIS layer integrated with `TOWN = 'NORTHFIELD'` and clipped to the official jurisdiction boundary |
+| ✅ | Milton | 70 | Official jurisdiction boundary | Official Vermont ANR `Municipal Tree Inventory` ArcGIS layer integrated with `TOWN = 'MILTON'` and clipped to the official jurisdiction boundary |
+| ✅ | Hinesburg | 68 | Official jurisdiction boundary | Official Vermont ANR `Municipal Tree Inventory` ArcGIS layer integrated with `TOWN = 'HINESBURG'` and clipped to the official jurisdiction boundary |
+| ✅ | Essex | 57 | Official jurisdiction boundary | Official Vermont ANR `Municipal Tree Inventory` ArcGIS layer integrated with `TOWN = 'ESSEX'` and clipped to the official jurisdiction boundary |
+| ✅ | South Burlington | 56 | Official jurisdiction boundary | Official Vermont ANR `Municipal Tree Inventory` ArcGIS layer integrated with `TOWN = 'SOUTH BURLINGTON'` and clipped to the official jurisdiction boundary |
+| ✅ | Colchester | 51 | Official jurisdiction boundary | Official Vermont ANR `Municipal Tree Inventory` ArcGIS layer integrated with `TOWN = 'COLCHESTER'` and clipped to the official jurisdiction boundary |
+| ✅ | Randolph | 37 | Official jurisdiction boundary | Official Vermont ANR `Municipal Tree Inventory` ArcGIS layer integrated with `TOWN = 'RANDOLPH'` and clipped to the official jurisdiction boundary |
 | ✅ | Durham | 1,301 | Official jurisdiction boundary | Official City of Durham `Trees & Planting Sites` ArcGIS layer integrated after restricting to `present = Tree` and clipping to the official jurisdiction boundary |
 | ✅ | Fredericksburg | 975 | Official jurisdiction boundary | Official City of Fredericksburg public tree inventory ArcGIS layer integrated after restricting to `spacestatus = Planted` |
 | ✅ | Richmond | 2,099 | Official jurisdiction boundary | Official City of Richmond, Virginia public tree inventory ArcGIS layer integrated with `Status = In Service` and server-side botanical blossom filtering on `SPP` |
@@ -475,6 +485,11 @@ These cities are not in `A2` yet because the official point-tree source is still
 - Integrated `Albany`, `Belmont`, `Newton`, `Somerville`, and `Worcester` from official public TreeKeeper inventories using the existing jurisdiction-boundary clipping path.
 - Integrated `Annapolis`, `Fairfax`, `Saratoga Springs`, `Troy`, and `West Hartford` from official public TreePlotter inventories and clipped the resulting blossom rows to official jurisdiction boundaries.
 - Reused the existing `ma`, `md`, `ny`, `ct`, and `va` publish flows without database or schema changes.
+
+## March 2026 Vermont Municipal Inventory Expansion
+- Integrated `Shelburne`, `Middlebury`, `Winooski`, `Northfield`, `Milton`, `Hinesburg`, `Essex`, `South Burlington`, `Colchester`, and `Randolph` from the official Vermont ANR `Municipal Tree Inventory` ArcGIS layer.
+- Added `VT` region and state-FIPS routing so Vermont municipalities can reuse the existing ArcGIS jurisdiction-boundary clipping flow without database changes.
+- Reused one statewide official source with municipality-level `TOWN` filters as the fastest east-region expansion path under the current official-source rules.
 
 ## March 2026 Texas / Large-City Follow-up
 - Integrated `Los Angeles` after implementing the city-scale blossom-filter path against the official public StreetsLA TreeKeeper inventory.

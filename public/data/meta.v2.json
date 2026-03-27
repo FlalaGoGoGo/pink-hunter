@@ -1,6 +1,6 @@
 {
   "version": "v2",
-  "generated_at": "2026-03-27T05:26:35.364910+00:00",
+  "generated_at": "2026-03-27T06:19:00.446427+00:00",
   "default_region": "wa",
   "coverage_rule": "official_jurisdiction_boundary_only",
   "coverage_skipped_cities": [
@@ -118,16 +118,16 @@
     "Yarrow Point"
   ],
   "coverage_official_unavailable_skipped_cities": [],
-  "source_count": 212,
-  "total_records": 3067893,
-  "included_records": 654495,
+  "source_count": 222,
+  "total_records": 3068829,
+  "included_records": 655405,
   "unknown_records": 1355645,
   "species_counts": {
-    "cherry": 213728,
-    "plum": 115539,
+    "cherry": 213783,
+    "plum": 115547,
     "peach": 7921,
     "magnolia": 176655,
-    "crabapple": 140652
+    "crabapple": 141499
   },
   "regions": [
     {
@@ -1630,6 +1630,64 @@
         "shard_count": 9,
         "ready": true
       }
+    },
+    {
+      "id": "vt",
+      "label": "VT",
+      "available": true,
+      "bounds": [
+        [
+          -73.27979999999997,
+          43.93730165300008
+        ],
+        [
+          -72.60276371299994,
+          44.641573685000026
+        ]
+      ],
+      "data_path": null,
+      "tree_count": 910,
+      "city_count": 10,
+      "cities": [
+        "Colchester",
+        "Essex",
+        "Hinesburg",
+        "Middlebury",
+        "Milton",
+        "Northfield",
+        "Randolph",
+        "Shelburne",
+        "South Burlington",
+        "Winooski"
+      ],
+      "species_counts": {
+        "cherry": 55,
+        "plum": 8,
+        "peach": 0,
+        "magnolia": 0,
+        "crabapple": 847
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "raw_bytes": 441143,
+      "gzip_bytes": 22091,
+      "warning_level": "none",
+      "aggregate_raw_bytes": 441143,
+      "aggregate_gzip_bytes": 22091,
+      "aggregate_warning_level": "none",
+      "largest_shard_raw_bytes": 112080,
+      "largest_shard_gzip_bytes": 4955,
+      "largest_shard_area": "Shelburne",
+      "area_split": {
+        "strategy": "area_shard",
+        "index_path": "/data/trees.vt.area-index.v2.json",
+        "area_count": 10,
+        "shard_count": 10,
+        "ready": true
+      },
+      "largest_shard_warning_level": "none",
+      "coverage_path": "/data/coverage.vt.v1.geojson"
     },
     {
       "id": "wa",
@@ -4298,6 +4356,146 @@
       "state_province": "VA"
     },
     {
+      "jurisdiction": "Colchester",
+      "region": "vt",
+      "tree_count": 51,
+      "species_counts": {
+        "cherry": 0,
+        "plum": 3,
+        "peach": 0,
+        "magnolia": 0,
+        "crabapple": 48
+      },
+      "jurisdiction_type": "city",
+      "state_province": "VT"
+    },
+    {
+      "jurisdiction": "Essex",
+      "region": "vt",
+      "tree_count": 57,
+      "species_counts": {
+        "cherry": 5,
+        "plum": 0,
+        "peach": 0,
+        "magnolia": 0,
+        "crabapple": 52
+      },
+      "jurisdiction_type": "city",
+      "state_province": "VT"
+    },
+    {
+      "jurisdiction": "Hinesburg",
+      "region": "vt",
+      "tree_count": 68,
+      "species_counts": {
+        "cherry": 0,
+        "plum": 0,
+        "peach": 0,
+        "magnolia": 0,
+        "crabapple": 68
+      },
+      "jurisdiction_type": "city",
+      "state_province": "VT"
+    },
+    {
+      "jurisdiction": "Middlebury",
+      "region": "vt",
+      "tree_count": 155,
+      "species_counts": {
+        "cherry": 7,
+        "plum": 1,
+        "peach": 0,
+        "magnolia": 0,
+        "crabapple": 147
+      },
+      "jurisdiction_type": "city",
+      "state_province": "VT"
+    },
+    {
+      "jurisdiction": "Milton",
+      "region": "vt",
+      "tree_count": 70,
+      "species_counts": {
+        "cherry": 5,
+        "plum": 2,
+        "peach": 0,
+        "magnolia": 0,
+        "crabapple": 63
+      },
+      "jurisdiction_type": "city",
+      "state_province": "VT"
+    },
+    {
+      "jurisdiction": "Northfield",
+      "region": "vt",
+      "tree_count": 85,
+      "species_counts": {
+        "cherry": 4,
+        "plum": 1,
+        "peach": 0,
+        "magnolia": 0,
+        "crabapple": 80
+      },
+      "jurisdiction_type": "city",
+      "state_province": "VT"
+    },
+    {
+      "jurisdiction": "Randolph",
+      "region": "vt",
+      "tree_count": 37,
+      "species_counts": {
+        "cherry": 1,
+        "plum": 1,
+        "peach": 0,
+        "magnolia": 0,
+        "crabapple": 35
+      },
+      "jurisdiction_type": "city",
+      "state_province": "VT"
+    },
+    {
+      "jurisdiction": "Shelburne",
+      "region": "vt",
+      "tree_count": 232,
+      "species_counts": {
+        "cherry": 0,
+        "plum": 0,
+        "peach": 0,
+        "magnolia": 0,
+        "crabapple": 232
+      },
+      "jurisdiction_type": "city",
+      "state_province": "VT"
+    },
+    {
+      "jurisdiction": "South Burlington",
+      "region": "vt",
+      "tree_count": 56,
+      "species_counts": {
+        "cherry": 8,
+        "plum": 0,
+        "peach": 0,
+        "magnolia": 0,
+        "crabapple": 48
+      },
+      "jurisdiction_type": "city",
+      "state_province": "VT"
+    },
+    {
+      "jurisdiction": "Winooski",
+      "region": "vt",
+      "tree_count": 99,
+      "species_counts": {
+        "cherry": 25,
+        "plum": 0,
+        "peach": 0,
+        "magnolia": 0,
+        "crabapple": 74
+      },
+      "jurisdiction_type": "city",
+      "state_province": "VT"
+    },
+    {
       "jurisdiction": "Bellevue",
       "region": "wa",
       "tree_count": 342,
@@ -4978,6 +5176,15 @@
       "note": "Integrated from the official City of Citrus Heights urban forestry tree inventory layer and official jurisdiction boundary."
     },
     {
+      "name": "Municipal Tree Inventory",
+      "city": "Colchester",
+      "endpoint": "https://www.arcgis.com/home/item.html?id=2d0401a0ac9d449784ed9b31daabed60",
+      "last_edit_at": "",
+      "records_fetched": 56,
+      "records_included": 51,
+      "note": "Integrated from the official Vermont Municipal Tree Inventory rows for the Town of Colchester."
+    },
+    {
       "name": "Tree Inventory",
       "city": "Concord",
       "endpoint": "https://www.cityofconcord.org/1249/Tree-Inventory",
@@ -5128,6 +5335,15 @@
       "records_fetched": 1716,
       "records_included": 1570,
       "note": "Integrated from the official City of Escondido public tree inventory layer and official jurisdiction boundary."
+    },
+    {
+      "name": "Municipal Tree Inventory",
+      "city": "Essex",
+      "endpoint": "https://www.arcgis.com/home/item.html?id=2d0401a0ac9d449784ed9b31daabed60",
+      "last_edit_at": "",
+      "records_fetched": 57,
+      "records_included": 57,
+      "note": "Integrated from the official Vermont Municipal Tree Inventory rows for the Town of Essex."
     },
     {
       "name": "Trees",
@@ -5371,6 +5587,15 @@
       "note": "Integrated from the official City of Hartford public TreeKeeper inventory."
     },
     {
+      "name": "Municipal Tree Inventory",
+      "city": "Hinesburg",
+      "endpoint": "https://www.arcgis.com/home/item.html?id=2d0401a0ac9d449784ed9b31daabed60",
+      "last_edit_at": "",
+      "records_fetched": 68,
+      "records_included": 68,
+      "note": "Integrated from the official Vermont Municipal Tree Inventory rows for the Town of Hinesburg."
+    },
+    {
       "name": "TreeKeeper Inventory",
       "city": "Ho-Ho-Kus",
       "endpoint": "https://hohokusnj.treekeepersoftware.com",
@@ -5603,6 +5828,15 @@
       "note": "Integrated from the official City of Meadville public tree inventory ArcGIS layer and official jurisdiction boundary."
     },
     {
+      "name": "Municipal Tree Inventory",
+      "city": "Middlebury",
+      "endpoint": "https://www.arcgis.com/home/item.html?id=2d0401a0ac9d449784ed9b31daabed60",
+      "last_edit_at": "",
+      "records_fetched": 155,
+      "records_included": 155,
+      "note": "Integrated from the official Vermont Municipal Tree Inventory rows for the Town of Middlebury."
+    },
+    {
       "name": "TreeKeeper Inventory",
       "city": "Millburn",
       "endpoint": "https://millburnnj.treekeepersoftware.com",
@@ -5618,6 +5852,15 @@
       "last_edit_at": "2021-01-04T19:17:35.381000+00:00",
       "records_fetched": 17904,
       "records_included": 1696
+    },
+    {
+      "name": "Municipal Tree Inventory",
+      "city": "Milton",
+      "endpoint": "https://www.arcgis.com/home/item.html?id=2d0401a0ac9d449784ed9b31daabed60",
+      "last_edit_at": "",
+      "records_fetched": 70,
+      "records_included": 70,
+      "note": "Integrated from the official Vermont Municipal Tree Inventory rows for the Town of Milton."
     },
     {
       "name": "Tree Points - All (view)",
@@ -5753,6 +5996,15 @@
       "records_fetched": 3011,
       "records_included": 1615,
       "note": "Integrated from the official City of Norfolk open-data tree inventory and official jurisdiction boundary."
+    },
+    {
+      "name": "Municipal Tree Inventory",
+      "city": "Northfield",
+      "endpoint": "https://www.arcgis.com/home/item.html?id=2d0401a0ac9d449784ed9b31daabed60",
+      "last_edit_at": "",
+      "records_fetched": 89,
+      "records_included": 85,
+      "note": "Integrated from the official Vermont Municipal Tree Inventory rows for the Town of Northfield."
     },
     {
       "name": "I-5 Project Data Tree Sites",
@@ -5956,6 +6208,15 @@
       "records_fetched": 771,
       "records_included": 657,
       "note": "Integrated from the official City of Rancho Palos Verdes public tree inventory layer and official jurisdiction boundary."
+    },
+    {
+      "name": "Municipal Tree Inventory",
+      "city": "Randolph",
+      "endpoint": "https://www.arcgis.com/home/item.html?id=2d0401a0ac9d449784ed9b31daabed60",
+      "last_edit_at": "",
+      "records_fetched": 52,
+      "records_included": 37,
+      "note": "Integrated from the official Vermont Municipal Tree Inventory rows for the Town of Randolph."
     },
     {
       "name": "Street Trees",
@@ -6236,6 +6497,15 @@
       "records_included": 30
     },
     {
+      "name": "Municipal Tree Inventory",
+      "city": "Shelburne",
+      "endpoint": "https://www.arcgis.com/home/item.html?id=2d0401a0ac9d449784ed9b31daabed60",
+      "last_edit_at": "",
+      "records_fetched": 232,
+      "records_included": 232,
+      "note": "Integrated from the official Vermont Municipal Tree Inventory rows for the Town of Shelburne."
+    },
+    {
       "name": "Public Tree Inventory",
       "city": "Shoreline",
       "endpoint": "https://gis.shorelinewa.gov/server/rest/services/PublicFacing/Parks/MapServer/7",
@@ -6277,6 +6547,15 @@
       "records_fetched": 9980,
       "records_included": 338,
       "note": "Integrated from the official City of Somerville public TreeKeeper inventory."
+    },
+    {
+      "name": "Municipal Tree Inventory",
+      "city": "South Burlington",
+      "endpoint": "https://www.arcgis.com/home/item.html?id=2d0401a0ac9d449784ed9b31daabed60",
+      "last_edit_at": "",
+      "records_fetched": 56,
+      "records_included": 56,
+      "note": "Integrated from the official Vermont Municipal Tree Inventory rows for the City of South Burlington."
     },
     {
       "name": "South Gate Cudahy Public Tree Layer",
@@ -6596,6 +6875,15 @@
       "records_fetched": 15654,
       "records_included": 12444,
       "note": "Integrated from the official City of Winnipeg open-data tree inventory and official jurisdiction boundary."
+    },
+    {
+      "name": "Municipal Tree Inventory",
+      "city": "Winooski",
+      "endpoint": "https://www.arcgis.com/home/item.html?id=2d0401a0ac9d449784ed9b31daabed60",
+      "last_edit_at": "",
+      "records_fetched": 101,
+      "records_included": 99,
+      "note": "Integrated from the official Vermont Municipal Tree Inventory rows for the City of Winooski."
     },
     {
       "name": "TreeKeeper Inventory",

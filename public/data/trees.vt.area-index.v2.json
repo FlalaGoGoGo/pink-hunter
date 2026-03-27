@@ -1,0 +1,1229 @@
+{
+  "generated_at": "2026-03-27T06:13:00.334567+00:00",
+  "region": "vt",
+  "strategy": "area_shard",
+  "items": [
+    {
+      "jurisdiction": "Colchester",
+      "slug": "colchester",
+      "display_name": "Colchester",
+      "jurisdiction_type": "city",
+      "state_province": "VT",
+      "country": "United States",
+      "bounds": [
+        [
+          -73.27979999999997,
+          44.493488127000035
+        ],
+        [
+          -73.15499999999997,
+          44.551000000000045
+        ]
+      ],
+      "tree_count": 51,
+      "zip_codes": [
+        "05439",
+        "05446"
+      ],
+      "species_counts": {
+        "cherry": 0,
+        "plum": 3,
+        "peach": 0,
+        "magnolia": 0,
+        "crabapple": 48
+      },
+      "ownership_counts": {
+        "public": 51,
+        "private": 0,
+        "unknown": 0
+      },
+      "species_ownership_counts": {
+        "cherry": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        },
+        "plum": {
+          "public": 3,
+          "private": 0,
+          "unknown": 0
+        },
+        "peach": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        },
+        "magnolia": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        },
+        "crabapple": {
+          "public": 48,
+          "private": 0,
+          "unknown": 0
+        }
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "colchester-001",
+          "bounds": [
+            [
+              -73.27979999999997,
+              44.493488127000035
+            ],
+            [
+              -73.15499999999997,
+              44.551000000000045
+            ]
+          ],
+          "data_path": "/data/trees.vt.area.colchester.v2.geojson",
+          "tree_count": 51,
+          "ownership_counts": {
+            "public": 51,
+            "private": 0,
+            "unknown": 0
+          },
+          "species_counts": {
+            "cherry": 0,
+            "plum": 3,
+            "peach": 0,
+            "magnolia": 0,
+            "crabapple": 48
+          },
+          "species_ownership_counts": {
+            "cherry": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            },
+            "plum": {
+              "public": 3,
+              "private": 0,
+              "unknown": 0
+            },
+            "peach": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            },
+            "magnolia": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            },
+            "crabapple": {
+              "public": 48,
+              "private": 0,
+              "unknown": 0
+            }
+          },
+          "raw_bytes": 24858,
+          "gzip_bytes": 1107
+        }
+      ]
+    },
+    {
+      "jurisdiction": "Essex",
+      "slug": "essex",
+      "display_name": "Essex",
+      "jurisdiction_type": "city",
+      "state_province": "VT",
+      "country": "United States",
+      "bounds": [
+        [
+          -73.14671851699995,
+          44.485086780000074
+        ],
+        [
+          -73.05436436099995,
+          44.51815472900006
+        ]
+      ],
+      "tree_count": 57,
+      "zip_codes": [
+        "05446",
+        "05452"
+      ],
+      "species_counts": {
+        "cherry": 5,
+        "plum": 0,
+        "peach": 0,
+        "magnolia": 0,
+        "crabapple": 52
+      },
+      "ownership_counts": {
+        "public": 57,
+        "private": 0,
+        "unknown": 0
+      },
+      "species_ownership_counts": {
+        "cherry": {
+          "public": 5,
+          "private": 0,
+          "unknown": 0
+        },
+        "plum": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        },
+        "peach": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        },
+        "magnolia": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        },
+        "crabapple": {
+          "public": 52,
+          "private": 0,
+          "unknown": 0
+        }
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "essex-001",
+          "bounds": [
+            [
+              -73.14671851699995,
+              44.485086780000074
+            ],
+            [
+              -73.05436436099995,
+              44.51815472900006
+            ]
+          ],
+          "data_path": "/data/trees.vt.area.essex.v2.geojson",
+          "tree_count": 57,
+          "ownership_counts": {
+            "public": 57,
+            "private": 0,
+            "unknown": 0
+          },
+          "species_counts": {
+            "cherry": 5,
+            "plum": 0,
+            "peach": 0,
+            "magnolia": 0,
+            "crabapple": 52
+          },
+          "species_ownership_counts": {
+            "cherry": {
+              "public": 5,
+              "private": 0,
+              "unknown": 0
+            },
+            "plum": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            },
+            "peach": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            },
+            "magnolia": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            },
+            "crabapple": {
+              "public": 52,
+              "private": 0,
+              "unknown": 0
+            }
+          },
+          "raw_bytes": 26734,
+          "gzip_bytes": 1598
+        }
+      ]
+    },
+    {
+      "jurisdiction": "Hinesburg",
+      "slug": "hinesburg",
+      "display_name": "Hinesburg",
+      "jurisdiction_type": "city",
+      "state_province": "VT",
+      "country": "United States",
+      "bounds": [
+        [
+          -73.11863486699997,
+          44.32587549400006
+        ],
+        [
+          -73.10141022299996,
+          44.343418349000046
+        ]
+      ],
+      "tree_count": 68,
+      "zip_codes": [
+        "05461"
+      ],
+      "species_counts": {
+        "cherry": 0,
+        "plum": 0,
+        "peach": 0,
+        "magnolia": 0,
+        "crabapple": 68
+      },
+      "ownership_counts": {
+        "public": 68,
+        "private": 0,
+        "unknown": 0
+      },
+      "species_ownership_counts": {
+        "cherry": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        },
+        "plum": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        },
+        "peach": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        },
+        "magnolia": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        },
+        "crabapple": {
+          "public": 68,
+          "private": 0,
+          "unknown": 0
+        }
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "hinesburg-001",
+          "bounds": [
+            [
+              -73.11863486699997,
+              44.32587549400006
+            ],
+            [
+              -73.10141022299996,
+              44.343418349000046
+            ]
+          ],
+          "data_path": "/data/trees.vt.area.hinesburg.v2.geojson",
+          "tree_count": 68,
+          "ownership_counts": {
+            "public": 68,
+            "private": 0,
+            "unknown": 0
+          },
+          "species_counts": {
+            "cherry": 0,
+            "plum": 0,
+            "peach": 0,
+            "magnolia": 0,
+            "crabapple": 68
+          },
+          "species_ownership_counts": {
+            "cherry": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            },
+            "plum": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            },
+            "peach": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            },
+            "magnolia": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            },
+            "crabapple": {
+              "public": 68,
+              "private": 0,
+              "unknown": 0
+            }
+          },
+          "raw_bytes": 32876,
+          "gzip_bytes": 1749
+        }
+      ]
+    },
+    {
+      "jurisdiction": "Middlebury",
+      "slug": "middlebury",
+      "display_name": "Middlebury",
+      "jurisdiction_type": "city",
+      "state_province": "VT",
+      "country": "United States",
+      "bounds": [
+        [
+          -73.17983290199999,
+          43.971190662000026
+        ],
+        [
+          -73.09306663299998,
+          44.02103095700005
+        ]
+      ],
+      "tree_count": 155,
+      "zip_codes": [
+        "05753"
+      ],
+      "species_counts": {
+        "cherry": 7,
+        "plum": 1,
+        "peach": 0,
+        "magnolia": 0,
+        "crabapple": 147
+      },
+      "ownership_counts": {
+        "public": 155,
+        "private": 0,
+        "unknown": 0
+      },
+      "species_ownership_counts": {
+        "cherry": {
+          "public": 7,
+          "private": 0,
+          "unknown": 0
+        },
+        "plum": {
+          "public": 1,
+          "private": 0,
+          "unknown": 0
+        },
+        "peach": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        },
+        "magnolia": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        },
+        "crabapple": {
+          "public": 147,
+          "private": 0,
+          "unknown": 0
+        }
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "middlebury-001",
+          "bounds": [
+            [
+              -73.17983290199999,
+              43.971190662000026
+            ],
+            [
+              -73.09306663299998,
+              44.02103095700005
+            ]
+          ],
+          "data_path": "/data/trees.vt.area.middlebury.v2.geojson",
+          "tree_count": 155,
+          "ownership_counts": {
+            "public": 155,
+            "private": 0,
+            "unknown": 0
+          },
+          "species_counts": {
+            "cherry": 7,
+            "plum": 1,
+            "peach": 0,
+            "magnolia": 0,
+            "crabapple": 147
+          },
+          "species_ownership_counts": {
+            "cherry": {
+              "public": 7,
+              "private": 0,
+              "unknown": 0
+            },
+            "plum": {
+              "public": 1,
+              "private": 0,
+              "unknown": 0
+            },
+            "peach": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            },
+            "magnolia": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            },
+            "crabapple": {
+              "public": 147,
+              "private": 0,
+              "unknown": 0
+            }
+          },
+          "raw_bytes": 75583,
+          "gzip_bytes": 3565
+        }
+      ]
+    },
+    {
+      "jurisdiction": "Milton",
+      "slug": "milton",
+      "display_name": "Milton",
+      "jurisdiction_type": "city",
+      "state_province": "VT",
+      "country": "United States",
+      "bounds": [
+        [
+          -73.12442818699998,
+          44.612084012000025
+        ],
+        [
+          -73.10576860899994,
+          44.641573685000026
+        ]
+      ],
+      "tree_count": 70,
+      "zip_codes": [
+        "05468"
+      ],
+      "species_counts": {
+        "cherry": 5,
+        "plum": 2,
+        "peach": 0,
+        "magnolia": 0,
+        "crabapple": 63
+      },
+      "ownership_counts": {
+        "public": 70,
+        "private": 0,
+        "unknown": 0
+      },
+      "species_ownership_counts": {
+        "cherry": {
+          "public": 5,
+          "private": 0,
+          "unknown": 0
+        },
+        "plum": {
+          "public": 2,
+          "private": 0,
+          "unknown": 0
+        },
+        "peach": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        },
+        "magnolia": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        },
+        "crabapple": {
+          "public": 63,
+          "private": 0,
+          "unknown": 0
+        }
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "milton-001",
+          "bounds": [
+            [
+              -73.12442818699998,
+              44.612084012000025
+            ],
+            [
+              -73.10576860899994,
+              44.641573685000026
+            ]
+          ],
+          "data_path": "/data/trees.vt.area.milton.v2.geojson",
+          "tree_count": 70,
+          "ownership_counts": {
+            "public": 70,
+            "private": 0,
+            "unknown": 0
+          },
+          "species_counts": {
+            "cherry": 5,
+            "plum": 2,
+            "peach": 0,
+            "magnolia": 0,
+            "crabapple": 63
+          },
+          "species_ownership_counts": {
+            "cherry": {
+              "public": 5,
+              "private": 0,
+              "unknown": 0
+            },
+            "plum": {
+              "public": 2,
+              "private": 0,
+              "unknown": 0
+            },
+            "peach": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            },
+            "magnolia": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            },
+            "crabapple": {
+              "public": 63,
+              "private": 0,
+              "unknown": 0
+            }
+          },
+          "raw_bytes": 33053,
+          "gzip_bytes": 1859
+        }
+      ]
+    },
+    {
+      "jurisdiction": "Northfield",
+      "slug": "northfield",
+      "display_name": "Northfield",
+      "jurisdiction_type": "city",
+      "state_province": "VT",
+      "country": "United States",
+      "bounds": [
+        [
+          -72.66486327199993,
+          44.13463366700006
+        ],
+        [
+          -72.65197399999994,
+          44.16051914800005
+        ]
+      ],
+      "tree_count": 85,
+      "zip_codes": [
+        "05663"
+      ],
+      "species_counts": {
+        "cherry": 4,
+        "plum": 1,
+        "peach": 0,
+        "magnolia": 0,
+        "crabapple": 80
+      },
+      "ownership_counts": {
+        "public": 85,
+        "private": 0,
+        "unknown": 0
+      },
+      "species_ownership_counts": {
+        "cherry": {
+          "public": 4,
+          "private": 0,
+          "unknown": 0
+        },
+        "plum": {
+          "public": 1,
+          "private": 0,
+          "unknown": 0
+        },
+        "peach": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        },
+        "magnolia": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        },
+        "crabapple": {
+          "public": 80,
+          "private": 0,
+          "unknown": 0
+        }
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "northfield-001",
+          "bounds": [
+            [
+              -72.66486327199993,
+              44.13463366700006
+            ],
+            [
+              -72.65197399999994,
+              44.16051914800005
+            ]
+          ],
+          "data_path": "/data/trees.vt.area.northfield.v2.geojson",
+          "tree_count": 85,
+          "ownership_counts": {
+            "public": 85,
+            "private": 0,
+            "unknown": 0
+          },
+          "species_counts": {
+            "cherry": 4,
+            "plum": 1,
+            "peach": 0,
+            "magnolia": 0,
+            "crabapple": 80
+          },
+          "species_ownership_counts": {
+            "cherry": {
+              "public": 4,
+              "private": 0,
+              "unknown": 0
+            },
+            "plum": {
+              "public": 1,
+              "private": 0,
+              "unknown": 0
+            },
+            "peach": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            },
+            "magnolia": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            },
+            "crabapple": {
+              "public": 80,
+              "private": 0,
+              "unknown": 0
+            }
+          },
+          "raw_bytes": 41520,
+          "gzip_bytes": 2147
+        }
+      ]
+    },
+    {
+      "jurisdiction": "Randolph",
+      "slug": "randolph",
+      "display_name": "Randolph",
+      "jurisdiction_type": "city",
+      "state_province": "VT",
+      "country": "United States",
+      "bounds": [
+        [
+          -72.60552438899998,
+          43.93730165300008
+        ],
+        [
+          -72.60276371299994,
+          43.93991588800003
+        ]
+      ],
+      "tree_count": 37,
+      "zip_codes": [
+        "05061"
+      ],
+      "species_counts": {
+        "cherry": 1,
+        "plum": 1,
+        "peach": 0,
+        "magnolia": 0,
+        "crabapple": 35
+      },
+      "ownership_counts": {
+        "public": 37,
+        "private": 0,
+        "unknown": 0
+      },
+      "species_ownership_counts": {
+        "cherry": {
+          "public": 1,
+          "private": 0,
+          "unknown": 0
+        },
+        "plum": {
+          "public": 1,
+          "private": 0,
+          "unknown": 0
+        },
+        "peach": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        },
+        "magnolia": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        },
+        "crabapple": {
+          "public": 35,
+          "private": 0,
+          "unknown": 0
+        }
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "randolph-001",
+          "bounds": [
+            [
+              -72.60552438899998,
+              43.93730165300008
+            ],
+            [
+              -72.60276371299994,
+              43.93991588800003
+            ]
+          ],
+          "data_path": "/data/trees.vt.area.randolph.v2.geojson",
+          "tree_count": 37,
+          "ownership_counts": {
+            "public": 37,
+            "private": 0,
+            "unknown": 0
+          },
+          "species_counts": {
+            "cherry": 1,
+            "plum": 1,
+            "peach": 0,
+            "magnolia": 0,
+            "crabapple": 35
+          },
+          "species_ownership_counts": {
+            "cherry": {
+              "public": 1,
+              "private": 0,
+              "unknown": 0
+            },
+            "plum": {
+              "public": 1,
+              "private": 0,
+              "unknown": 0
+            },
+            "peach": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            },
+            "magnolia": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            },
+            "crabapple": {
+              "public": 35,
+              "private": 0,
+              "unknown": 0
+            }
+          },
+          "raw_bytes": 17767,
+          "gzip_bytes": 1120
+        }
+      ]
+    },
+    {
+      "jurisdiction": "Shelburne",
+      "slug": "shelburne",
+      "display_name": "Shelburne",
+      "jurisdiction_type": "city",
+      "state_province": "VT",
+      "country": "United States",
+      "bounds": [
+        [
+          -73.24071118599994,
+          44.36656139400003
+        ],
+        [
+          -73.20867014999999,
+          44.42032220300007
+        ]
+      ],
+      "tree_count": 232,
+      "zip_codes": [
+        "05482"
+      ],
+      "species_counts": {
+        "cherry": 0,
+        "plum": 0,
+        "peach": 0,
+        "magnolia": 0,
+        "crabapple": 232
+      },
+      "ownership_counts": {
+        "public": 232,
+        "private": 0,
+        "unknown": 0
+      },
+      "species_ownership_counts": {
+        "cherry": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        },
+        "plum": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        },
+        "peach": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        },
+        "magnolia": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        },
+        "crabapple": {
+          "public": 232,
+          "private": 0,
+          "unknown": 0
+        }
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "shelburne-001",
+          "bounds": [
+            [
+              -73.24071118599994,
+              44.36656139400003
+            ],
+            [
+              -73.20867014999999,
+              44.42032220300007
+            ]
+          ],
+          "data_path": "/data/trees.vt.area.shelburne.v2.geojson",
+          "tree_count": 232,
+          "ownership_counts": {
+            "public": 232,
+            "private": 0,
+            "unknown": 0
+          },
+          "species_counts": {
+            "cherry": 0,
+            "plum": 0,
+            "peach": 0,
+            "magnolia": 0,
+            "crabapple": 232
+          },
+          "species_ownership_counts": {
+            "cherry": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            },
+            "plum": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            },
+            "peach": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            },
+            "magnolia": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            },
+            "crabapple": {
+              "public": 232,
+              "private": 0,
+              "unknown": 0
+            }
+          },
+          "raw_bytes": 112080,
+          "gzip_bytes": 4955
+        }
+      ]
+    },
+    {
+      "jurisdiction": "South Burlington",
+      "slug": "south-burlington",
+      "display_name": "South Burlington",
+      "jurisdiction_type": "city",
+      "state_province": "VT",
+      "country": "United States",
+      "bounds": [
+        [
+          -73.21475086299995,
+          44.42564546600005
+        ],
+        [
+          -73.17045187599996,
+          44.44284328700007
+        ]
+      ],
+      "tree_count": 56,
+      "zip_codes": [
+        "05403"
+      ],
+      "species_counts": {
+        "cherry": 8,
+        "plum": 0,
+        "peach": 0,
+        "magnolia": 0,
+        "crabapple": 48
+      },
+      "ownership_counts": {
+        "public": 56,
+        "private": 0,
+        "unknown": 0
+      },
+      "species_ownership_counts": {
+        "cherry": {
+          "public": 8,
+          "private": 0,
+          "unknown": 0
+        },
+        "plum": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        },
+        "peach": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        },
+        "magnolia": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        },
+        "crabapple": {
+          "public": 48,
+          "private": 0,
+          "unknown": 0
+        }
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "south-burlington-001",
+          "bounds": [
+            [
+              -73.21475086299995,
+              44.42564546600005
+            ],
+            [
+              -73.17045187599996,
+              44.44284328700007
+            ]
+          ],
+          "data_path": "/data/trees.vt.area.south-burlington.v2.geojson",
+          "tree_count": 56,
+          "ownership_counts": {
+            "public": 56,
+            "private": 0,
+            "unknown": 0
+          },
+          "species_counts": {
+            "cherry": 8,
+            "plum": 0,
+            "peach": 0,
+            "magnolia": 0,
+            "crabapple": 48
+          },
+          "species_ownership_counts": {
+            "cherry": {
+              "public": 8,
+              "private": 0,
+              "unknown": 0
+            },
+            "plum": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            },
+            "peach": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            },
+            "magnolia": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            },
+            "crabapple": {
+              "public": 48,
+              "private": 0,
+              "unknown": 0
+            }
+          },
+          "raw_bytes": 28830,
+          "gzip_bytes": 1548
+        }
+      ]
+    },
+    {
+      "jurisdiction": "Winooski",
+      "slug": "winooski",
+      "display_name": "Winooski",
+      "jurisdiction_type": "city",
+      "state_province": "VT",
+      "country": "United States",
+      "bounds": [
+        [
+          -73.19329795999994,
+          44.48801585900003
+        ],
+        [
+          -73.16866434299999,
+          44.501952836000044
+        ]
+      ],
+      "tree_count": 99,
+      "zip_codes": [
+        "05404"
+      ],
+      "species_counts": {
+        "cherry": 25,
+        "plum": 0,
+        "peach": 0,
+        "magnolia": 0,
+        "crabapple": 74
+      },
+      "ownership_counts": {
+        "public": 99,
+        "private": 0,
+        "unknown": 0
+      },
+      "species_ownership_counts": {
+        "cherry": {
+          "public": 25,
+          "private": 0,
+          "unknown": 0
+        },
+        "plum": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        },
+        "peach": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        },
+        "magnolia": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        },
+        "crabapple": {
+          "public": 74,
+          "private": 0,
+          "unknown": 0
+        }
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "winooski-001",
+          "bounds": [
+            [
+              -73.19329795999994,
+              44.48801585900003
+            ],
+            [
+              -73.16866434299999,
+              44.501952836000044
+            ]
+          ],
+          "data_path": "/data/trees.vt.area.winooski.v2.geojson",
+          "tree_count": 99,
+          "ownership_counts": {
+            "public": 99,
+            "private": 0,
+            "unknown": 0
+          },
+          "species_counts": {
+            "cherry": 25,
+            "plum": 0,
+            "peach": 0,
+            "magnolia": 0,
+            "crabapple": 74
+          },
+          "species_ownership_counts": {
+            "cherry": {
+              "public": 25,
+              "private": 0,
+              "unknown": 0
+            },
+            "plum": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            },
+            "peach": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            },
+            "magnolia": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            },
+            "crabapple": {
+              "public": 74,
+              "private": 0,
+              "unknown": 0
+            }
+          },
+          "raw_bytes": 47842,
+          "gzip_bytes": 2443
+        }
+      ]
+    }
+  ]
+}

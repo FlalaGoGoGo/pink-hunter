@@ -272,6 +272,10 @@ LINDEN_TREES_LAYER = "https://services.arcgis.com/VgmyyKiMPvUPgldo/arcgis/rest/s
 LINDEN_DATASET_PAGE = "https://services.arcgis.com/VgmyyKiMPvUPgldo/arcgis/rest/services/Linden_Tree_Survey/FeatureServer"
 MONTCLAIR_TREES_LAYER = "https://services9.arcgis.com/QHXEWAb0pE2rvfbb/arcgis/rest/services/Montclair_Trees_2017_WFL1/FeatureServer/0"
 MONTCLAIR_DATASET_PAGE = "https://services9.arcgis.com/QHXEWAb0pE2rvfbb/arcgis/rest/services/Montclair_Trees_2017_WFL1/FeatureServer"
+VERMONT_MUNICIPAL_TREES_LAYER = (
+    "https://anrmaps.vermont.gov/arcgis/rest/services/Open_Data/OPENDATA_ANR_ECOLOGIC_SP_NOCACHE_v1/MapServer/40"
+)
+VERMONT_MUNICIPAL_TREES_DATASET_PAGE = "https://www.arcgis.com/home/item.html?id=2d0401a0ac9d449784ed9b31daabed60"
 NEWPORT_BEACH_TREES_LAYER = "https://nbgis.newportbeachca.gov/arcgis/rest/services/DashBuildingPermits/MapServer/58"
 NEWPORT_BEACH_DATASET_PAGE = "https://nbgis.newportbeachca.gov/gispub/Dashboards/TreeInventoryDash.htm"
 THOUSAND_OAKS_TREES_LAYER = "https://gis.toaks.gov/server/rest/services/Landscape/MSLandscapeAssets/MapServer/3"
@@ -609,6 +613,14 @@ VIRGINIA_BEACH_BLOSSOM_WHERE = (
     "UPPER(CommonName) LIKE '%CRABAPPLE%' OR "
     "UPPER(CommonName) LIKE '%APPLE%'"
     ")"
+)
+VERMONT_MUNICIPAL_BLOSSOM_WHERE = (
+    "UPPER(SPECIES) LIKE '%CHERRY%' OR "
+    "UPPER(SPECIES) LIKE '%PLUM%' OR "
+    "UPPER(SPECIES) LIKE '%PEACH%' OR "
+    "UPPER(SPECIES) LIKE '%MAGNOLIA%' OR "
+    "UPPER(SPECIES) LIKE '%CRABAPPLE%' OR "
+    "UPPER(SPECIES) LIKE '%APPLE%'"
 )
 ESCONDIDO_BLOSSOM_WHERE = (
     "UPPER(BOTANICAL_NAME) LIKE 'PRUNUS%' OR "
@@ -1294,6 +1306,136 @@ UNCOVERED_STATE_ARCGIS_CONFIGS: dict[str, dict[str, Any]] = {
         "source_department": "Town of Groton",
         "ownership_raw": "Town of Groton",
         "note": "Integrated from the official Town of Groton public tree inventory ArcGIS experience and service.",
+        "clip_to_boundary": True,
+    },
+    "Shelburne": {
+        "region": "vt",
+        "layer_url": VERMONT_MUNICIPAL_TREES_LAYER,
+        "dataset_page": VERMONT_MUNICIPAL_TREES_DATASET_PAGE,
+        "where": f"UPPER(TOWN) = 'SHELBURNE' AND ({VERMONT_MUNICIPAL_BLOSSOM_WHERE})",
+        "object_id_field": "OBJECTID",
+        "common_field": "SPECIES",
+        "source_name": "Municipal Tree Inventory",
+        "source_department": "Town of Shelburne",
+        "ownership_raw": "Town of Shelburne",
+        "note": "Integrated from the official Vermont Municipal Tree Inventory rows for the Town of Shelburne.",
+        "clip_to_boundary": True,
+    },
+    "Middlebury": {
+        "region": "vt",
+        "layer_url": VERMONT_MUNICIPAL_TREES_LAYER,
+        "dataset_page": VERMONT_MUNICIPAL_TREES_DATASET_PAGE,
+        "where": f"UPPER(TOWN) = 'MIDDLEBURY' AND ({VERMONT_MUNICIPAL_BLOSSOM_WHERE})",
+        "object_id_field": "OBJECTID",
+        "common_field": "SPECIES",
+        "source_name": "Municipal Tree Inventory",
+        "source_department": "Town of Middlebury",
+        "ownership_raw": "Town of Middlebury",
+        "note": "Integrated from the official Vermont Municipal Tree Inventory rows for the Town of Middlebury.",
+        "clip_to_boundary": True,
+    },
+    "Winooski": {
+        "region": "vt",
+        "layer_url": VERMONT_MUNICIPAL_TREES_LAYER,
+        "dataset_page": VERMONT_MUNICIPAL_TREES_DATASET_PAGE,
+        "where": f"UPPER(TOWN) = 'WINOOSKI' AND ({VERMONT_MUNICIPAL_BLOSSOM_WHERE})",
+        "object_id_field": "OBJECTID",
+        "common_field": "SPECIES",
+        "source_name": "Municipal Tree Inventory",
+        "source_department": "City of Winooski",
+        "ownership_raw": "City of Winooski",
+        "note": "Integrated from the official Vermont Municipal Tree Inventory rows for the City of Winooski.",
+        "clip_to_boundary": True,
+    },
+    "Northfield": {
+        "region": "vt",
+        "layer_url": VERMONT_MUNICIPAL_TREES_LAYER,
+        "dataset_page": VERMONT_MUNICIPAL_TREES_DATASET_PAGE,
+        "where": f"UPPER(TOWN) = 'NORTHFIELD' AND ({VERMONT_MUNICIPAL_BLOSSOM_WHERE})",
+        "object_id_field": "OBJECTID",
+        "common_field": "SPECIES",
+        "source_name": "Municipal Tree Inventory",
+        "source_department": "Town of Northfield",
+        "ownership_raw": "Town of Northfield",
+        "note": "Integrated from the official Vermont Municipal Tree Inventory rows for the Town of Northfield.",
+        "clip_to_boundary": True,
+    },
+    "Milton": {
+        "region": "vt",
+        "layer_url": VERMONT_MUNICIPAL_TREES_LAYER,
+        "dataset_page": VERMONT_MUNICIPAL_TREES_DATASET_PAGE,
+        "where": f"UPPER(TOWN) = 'MILTON' AND ({VERMONT_MUNICIPAL_BLOSSOM_WHERE})",
+        "object_id_field": "OBJECTID",
+        "common_field": "SPECIES",
+        "source_name": "Municipal Tree Inventory",
+        "source_department": "Town of Milton",
+        "ownership_raw": "Town of Milton",
+        "note": "Integrated from the official Vermont Municipal Tree Inventory rows for the Town of Milton.",
+        "clip_to_boundary": True,
+    },
+    "Hinesburg": {
+        "region": "vt",
+        "layer_url": VERMONT_MUNICIPAL_TREES_LAYER,
+        "dataset_page": VERMONT_MUNICIPAL_TREES_DATASET_PAGE,
+        "where": f"UPPER(TOWN) = 'HINESBURG' AND ({VERMONT_MUNICIPAL_BLOSSOM_WHERE})",
+        "object_id_field": "OBJECTID",
+        "common_field": "SPECIES",
+        "source_name": "Municipal Tree Inventory",
+        "source_department": "Town of Hinesburg",
+        "ownership_raw": "Town of Hinesburg",
+        "note": "Integrated from the official Vermont Municipal Tree Inventory rows for the Town of Hinesburg.",
+        "clip_to_boundary": True,
+    },
+    "Essex": {
+        "region": "vt",
+        "layer_url": VERMONT_MUNICIPAL_TREES_LAYER,
+        "dataset_page": VERMONT_MUNICIPAL_TREES_DATASET_PAGE,
+        "where": f"UPPER(TOWN) = 'ESSEX' AND ({VERMONT_MUNICIPAL_BLOSSOM_WHERE})",
+        "object_id_field": "OBJECTID",
+        "common_field": "SPECIES",
+        "source_name": "Municipal Tree Inventory",
+        "source_department": "Town of Essex",
+        "ownership_raw": "Town of Essex",
+        "note": "Integrated from the official Vermont Municipal Tree Inventory rows for the Town of Essex.",
+        "clip_to_boundary": True,
+    },
+    "South Burlington": {
+        "region": "vt",
+        "layer_url": VERMONT_MUNICIPAL_TREES_LAYER,
+        "dataset_page": VERMONT_MUNICIPAL_TREES_DATASET_PAGE,
+        "where": f"UPPER(TOWN) = 'SOUTH BURLINGTON' AND ({VERMONT_MUNICIPAL_BLOSSOM_WHERE})",
+        "object_id_field": "OBJECTID",
+        "common_field": "SPECIES",
+        "source_name": "Municipal Tree Inventory",
+        "source_department": "City of South Burlington",
+        "ownership_raw": "City of South Burlington",
+        "note": "Integrated from the official Vermont Municipal Tree Inventory rows for the City of South Burlington.",
+        "clip_to_boundary": True,
+    },
+    "Colchester": {
+        "region": "vt",
+        "layer_url": VERMONT_MUNICIPAL_TREES_LAYER,
+        "dataset_page": VERMONT_MUNICIPAL_TREES_DATASET_PAGE,
+        "where": f"UPPER(TOWN) = 'COLCHESTER' AND ({VERMONT_MUNICIPAL_BLOSSOM_WHERE})",
+        "object_id_field": "OBJECTID",
+        "common_field": "SPECIES",
+        "source_name": "Municipal Tree Inventory",
+        "source_department": "Town of Colchester",
+        "ownership_raw": "Town of Colchester",
+        "note": "Integrated from the official Vermont Municipal Tree Inventory rows for the Town of Colchester.",
+        "clip_to_boundary": True,
+    },
+    "Randolph": {
+        "region": "vt",
+        "layer_url": VERMONT_MUNICIPAL_TREES_LAYER,
+        "dataset_page": VERMONT_MUNICIPAL_TREES_DATASET_PAGE,
+        "where": f"UPPER(TOWN) = 'RANDOLPH' AND ({VERMONT_MUNICIPAL_BLOSSOM_WHERE})",
+        "object_id_field": "OBJECTID",
+        "common_field": "SPECIES",
+        "source_name": "Municipal Tree Inventory",
+        "source_department": "Town of Randolph",
+        "ownership_raw": "Town of Randolph",
+        "note": "Integrated from the official Vermont Municipal Tree Inventory rows for the Town of Randolph.",
         "clip_to_boundary": True,
     },
     "Burlington": {
@@ -8634,8 +8776,9 @@ CITY_FETCHERS.update({city: build_milwaukee_county_fetcher(city) for city in MIL
 
 
 def main() -> int:
+    supported_cities = tuple(sorted(CITY_FETCHERS))
     parser = argparse.ArgumentParser(description="Publish targeted city updates into existing city-split public data.")
-    parser.add_argument("--city", action="append", choices=SUPPORTED_CITIES, help="City to refresh. Repeat for multiple cities.")
+    parser.add_argument("--city", action="append", choices=supported_cities, help="City to refresh. Repeat for multiple cities.")
     parser.add_argument(
         "--skip-global-refresh",
         action="store_true",
@@ -8643,7 +8786,7 @@ def main() -> int:
     )
     args = parser.parse_args()
 
-    target_cities = args.city or list(SUPPORTED_CITIES)
+    target_cities = args.city or list(supported_cities)
     results = [CITY_FETCHERS[city]() for city in target_cities]
     target_regions = {result["region"] for result in results}
     target_city_set = set(target_cities)

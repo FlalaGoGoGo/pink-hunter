@@ -164,6 +164,22 @@ Live domain:
 </details>
 
 <details>
+<summary>Vermont</summary>
+
+- Shelburne
+- Middlebury
+- Winooski
+- Northfield
+- Milton
+- Hinesburg
+- Essex
+- South Burlington
+- Colchester
+- Randolph
+
+</details>
+
+<details>
 <summary>Texas</summary>
 
 - Austin
@@ -477,6 +493,22 @@ Live domain:
 <summary>Rhode Island</summary>
 
 - Providence: [Providence Tree Dataset](https://data.providenceri.gov/Neighborhoods/Providence-Tree-Dataset/b77h-59tz)
+
+</details>
+
+<details>
+<summary>Vermont</summary>
+
+- Shelburne: [Municipal Tree Inventory](https://www.arcgis.com/home/item.html?id=2d0401a0ac9d449784ed9b31daabed60)
+- Middlebury: [Municipal Tree Inventory](https://www.arcgis.com/home/item.html?id=2d0401a0ac9d449784ed9b31daabed60)
+- Winooski: [Municipal Tree Inventory](https://www.arcgis.com/home/item.html?id=2d0401a0ac9d449784ed9b31daabed60)
+- Northfield: [Municipal Tree Inventory](https://www.arcgis.com/home/item.html?id=2d0401a0ac9d449784ed9b31daabed60)
+- Milton: [Municipal Tree Inventory](https://www.arcgis.com/home/item.html?id=2d0401a0ac9d449784ed9b31daabed60)
+- Hinesburg: [Municipal Tree Inventory](https://www.arcgis.com/home/item.html?id=2d0401a0ac9d449784ed9b31daabed60)
+- Essex: [Municipal Tree Inventory](https://www.arcgis.com/home/item.html?id=2d0401a0ac9d449784ed9b31daabed60)
+- South Burlington: [Municipal Tree Inventory](https://www.arcgis.com/home/item.html?id=2d0401a0ac9d449784ed9b31daabed60)
+- Colchester: [Municipal Tree Inventory](https://www.arcgis.com/home/item.html?id=2d0401a0ac9d449784ed9b31daabed60)
+- Randolph: [Municipal Tree Inventory](https://www.arcgis.com/home/item.html?id=2d0401a0ac9d449784ed9b31daabed60)
 
 </details>
 

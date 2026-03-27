@@ -224,6 +224,7 @@ REGION_LABELS: dict[str, str] = {
     "tx": "TX",
     "ut": "UT",
     "va": "VA",
+    "vt": "VT",
     "wa": "WA",
     "wi": "WI",
 }
@@ -305,6 +306,16 @@ REGION_CITY_OVERRIDES: dict[str, str] = {
     "New Bedford": "ma",
     "Longmeadow": "ma",
     "Lynn": "ma",
+    "Shelburne": "vt",
+    "Middlebury": "vt",
+    "Winooski": "vt",
+    "Northfield": "vt",
+    "Milton": "vt",
+    "Hinesburg": "vt",
+    "Essex": "vt",
+    "South Burlington": "vt",
+    "Colchester": "vt",
+    "Randolph": "vt",
     "Garrett Park": "md",
     "Annapolis": "md",
     "Gaithersburg": "md",
@@ -2878,6 +2889,7 @@ REGION_TO_STATE_FIPS: dict[str, str] = {
     "tx": "48",
     "ut": "49",
     "va": "51",
+    "vt": "50",
     "wa": "53",
 }
 
@@ -2912,6 +2924,8 @@ def region_for_city(city: str) -> str:
         return "tx"
     if state == "49":
         return "ut"
+    if state == "50":
+        return "vt"
     if state == "11":
         return "dc"
     if state == "09":
