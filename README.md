@@ -210,20 +210,38 @@ Live domain:
 </details>
 
 <details>
+<summary>Alberta</summary>
+
+- Calgary
+- St. Albert
+- Chestermere
+- Okotoks
+- Lethbridge
+- Airdrie
+
+</details>
+
+<details>
 <summary>Ontario</summary>
 
+- Ajax
+- Barrie
 - Burlington
 - Cambridge ON
 - Guelph
 - Hamilton
+- Kingston
 - Kitchener
 - London
 - Mississauga
+- Niagara Falls
 - Oakville
 - Ottawa
 - Peterborough
+- Thunder Bay
 - Toronto
 - Waterloo
+- Welland
 - Whitby
 - Windsor
 
@@ -232,6 +250,7 @@ Live domain:
 <details>
 <summary>Quebec</summary>
 
+- Gatineau
 - Montreal
 
 </details>
@@ -240,6 +259,14 @@ Live domain:
 <summary>Manitoba</summary>
 
 - Winnipeg
+
+</details>
+
+<details>
+<summary>New Brunswick</summary>
+
+- Fredericton
+- Moncton
 
 </details>
 
@@ -363,7 +390,12 @@ Live domain:
 <details>
 <summary>British Columbia</summary>
 
+- Kamloops
+- Kelowna
+- Maple Ridge
 - New Westminster
+- Penticton
+- Prince George
 - Vancouver BC
 - Victoria BC
 
@@ -543,20 +575,38 @@ Live domain:
 </details>
 
 <details>
+<summary>Alberta</summary>
+
+- Calgary: [Public Trees](https://services1.arcgis.com/AVP60cs0Q9PEA8rH/arcgis/rest/services/Public_Trees/FeatureServer/0)
+- St. Albert: [Tree Inventory](https://services1.arcgis.com/fyyY0cNXvmUWvX1x/arcgis/rest/services/Tree_Inventory/FeatureServer/0)
+- Chestermere: [Trees Open](https://gis.chestermere.ca/serversite/rest/services/Trees_Open/FeatureServer/0)
+- Okotoks: [Tree Inventory](https://services3.arcgis.com/Fl5sQFvYY7w7mPQj/arcgis/rest/services/Tree_Inventory/FeatureServer)
+- Lethbridge: [Trees](https://gis.lethbridge.ca/gisopendata/rest/services/OpenData/odl_trees/MapServer/0)
+- Airdrie: [Edible Trees](https://map.airdrie.ca:6443/arcgis/rest/services/pk_EdibleTrees_ap/MapServer/0)
+
+</details>
+
+<details>
 <summary>Ontario</summary>
 
+- Ajax: [Town Owned Trees](https://ajaxmaps.ajax.ca/gisernie/rest/services/Public/Ajax_Open_Data/MapServer/8)
+- Barrie: [Tree](https://gispublic.barrie.ca/arcgis/rest/services/Open_Data/FacilitiesStreets/MapServer/37)
 - Burlington: [City Owned Trees](https://www.arcgis.com/home/item.html?id=41412ef3188942c7abbe14035004273d)
 - Cambridge ON: [Street Trees](https://www.arcgis.com/home/item.html?id=93f699f0aeba49f1acb582cf26b90ed7)
 - Guelph: [TreeInventory](https://servicesdev.arcgis.com/LkFyxb9zDq7vAOAm/ArcGIS/rest/services/TreeInventory_Guelph/FeatureServer)
 - Hamilton: [Public Tree Inventory](https://open.hamilton.ca/datasets/08e50c6cbb2545b4897d613a817fa4d4_0/explore)
+- Kingston: [City Owned Trees](https://utility.arcgis.com/usrsvcs/servers/511fd5299053486daf48c6466332320c/rest/services/Eng/City_Owned_Trees/FeatureServer/0)
 - Kitchener: [Forestry Gallery](https://open-kitchenergis.opendata.arcgis.com/pages/forestry-gallery)
 - London: [Public_TreeInventory](https://maps.london.ca/arcgisa/rest/services/Public_TreeInventory/MapServer)
 - Mississauga: [City trees](https://mississauga.ca/services-and-programs/forestry-and-environment/trees/)
+- Niagara Falls: [Niagara Falls Trees Inventory](https://open.niagarafalls.ca/datasets/niagarafalls::niagara-falls-trees-inventory)
 - Oakville: [Public tree inventory](https://www.oakville.ca/home-environment/trees-woodlands/public-tree-inventory/)
 - Ottawa: [Canopy cover and tree inventory](https://ottawa.ca/en/canopy-cover-and-tree-inventory)
 - Peterborough: [Tree Inventory & EAB Status in the City of Peterborough](https://ptbo.maps.arcgis.com/apps/webappviewer/index.html?id=be8a9500cdca44af86860046e651cb96)
+- Thunder Bay: [City of Thunder Bay Trees](https://services5.arcgis.com/h9xShea49ZANgOtx/arcgis/rest/services/City_of_Thunder_Bay_Trees/FeatureServer)
 - Toronto: [Street Tree Data](https://open.toronto.ca/dataset/street-tree-data/)
 - Waterloo: [Waterloo Street Trees](https://services1.arcgis.com/DwLTn0u9VBSZvUPe/ArcGIS/rest/services/Waterloo_Street_Trees/FeatureServer)
+- Welland: [Welland Trees](https://open.welland.ca/datasets/welland-trees)
 - Whitby: [Whitby Tree Inventory](https://whitby.maps.arcgis.com/apps/instant/sidebar/index.html?appid=3e192ad13b7940b98684e8dadaa94c54)
 - Windsor: [City Trees In Park](https://mappmycity.ca/arcgis/rest/services/OpenDataServices/ParksEnvironment/MapServer/0), [City Trees In Right Of Way](https://mappmycity.ca/arcgis/rest/services/OpenDataServices/ParksEnvironment/MapServer/1)
 
@@ -565,6 +615,7 @@ Live domain:
 <details>
 <summary>Quebec</summary>
 
+- Gatineau: [Remarkable Trees](https://ncc-ccn.gc.ca/places/remarkable-trees)
 - Montreal: [Arbres publics sur le territoire de la Ville](https://donnees.montreal.ca/fr/dataset/arbres)
 
 </details>
@@ -573,6 +624,14 @@ Live domain:
 <summary>Manitoba</summary>
 
 - Winnipeg: [Tree Inventory](https://data.winnipeg.ca/Parks/Tree-Inventory-Map/hfwk-jp4h)
+
+</details>
+
+<details>
+<summary>New Brunswick</summary>
+
+- Fredericton: [Tree Inventory](https://services2.arcgis.com/iLWAxhpxafhOza2U/arcgis/rest/services/Fredericton__FREDERICTON_SCHIFKEE__TreeInventory/FeatureServer/1)
+- Moncton: [Trees](https://services1.arcgis.com/E26PuSoie2Y7bbyI/arcgis/rest/services/Trees/FeatureServer/0)
 
 </details>
 
@@ -661,7 +720,12 @@ Live domain:
 <details>
 <summary>British Columbia</summary>
 
+- Kamloops: [TreeSite](https://maps.kamloops.ca/arcgis/rest/services/OpenData/OpenDataParks/MapServer/12)
+- Kelowna: [Tree Inventory](https://geoportal.kelowna.ca/arcgis/rest/services/ArcGISOnline/OpenData_Environment/MapServer/17)
+- Maple Ridge: [Street Tree](https://geoservices.mapleridge.ca/server/rest/services/DataCatalog/Environment/MapServer/5)
 - New Westminster: [Tree Inventory (Active Trees)](https://services3.arcgis.com/A7O8YnTNtzRPIn7T/arcgis/rest/services/Tree_Inventory_(PROD)_4_view/FeatureServer)
+- Penticton: [Trees](https://services1.arcgis.com/ZMQyarkhNAnn8lip/ArcGIS/rest/services/Parks_PRD/FeatureServer/1355)
+- Prince George: [Trees](https://services2.arcgis.com/CnkB6jCzAsyli34z/arcgis/rest/services/OpenData_ParkData/FeatureServer/0)
 - Vancouver BC: [Public trees](https://opendata.vancouver.ca/api/explore/v2.1/catalog/datasets/public-trees)
 - Victoria BC: [Tree Species (Parks trees database)](https://maps.victoria.ca/server/rest/services/OpenData/OpenData_Parks/MapServer/15)
 
@@ -703,6 +767,7 @@ Live domain:
 ## Region Publishing
 - Tree points are now published by `area + shard` for every region, not as region-wide GeoJSON files.
 - Current regional groups:
+  - `AB`
   - `AZ`
   - `BC`
   - `CA`
@@ -715,6 +780,7 @@ Live domain:
   - `MB`
   - `MD`
   - `MI`
+  - `NB`
   - `NC`
   - `NH`
   - `NJ`

@@ -154,6 +154,62 @@ PETERBOROUGH_TREES_LAYER = "https://citymaps.peterborough.ca/arcgis/rest/service
 PETERBOROUGH_DATASET_PAGE = (
     "https://ptbo.maps.arcgis.com/apps/webappviewer/index.html?id=be8a9500cdca44af86860046e651cb96"
 )
+AJAX_TREES_LAYER = "https://ajaxmaps.ajax.ca/gisernie/rest/services/Public/Ajax_Open_Data/MapServer/8"
+AJAX_DATASET_PAGE = "https://ajaxmaps.ajax.ca/gisernie/rest/services/Public/Ajax_Open_Data/MapServer/8"
+BARRIE_TREES_LAYER = "https://gispublic.barrie.ca/arcgis/rest/services/Open_Data/FacilitiesStreets/MapServer/37"
+BARRIE_DATASET_PAGE = "https://gispublic.barrie.ca/arcgis/rest/services/Open_Data/FacilitiesStreets/MapServer/37"
+KINGSTON_TREES_LAYER = (
+    "https://utility.arcgis.com/usrsvcs/servers/511fd5299053486daf48c6466332320c/rest/services/Eng/City_Owned_Trees/FeatureServer/0"
+)
+KINGSTON_DATASET_PAGE = (
+    "https://utility.arcgis.com/usrsvcs/servers/511fd5299053486daf48c6466332320c/rest/services/Eng/City_Owned_Trees/FeatureServer/0"
+)
+NIAGARA_FALLS_TREES_LAYER = (
+    "https://services9.arcgis.com/oMFQlUUrLd1Uh1bd/arcgis/rest/services/Niagara_Falls_Trees_Inventory/FeatureServer/0"
+)
+NIAGARA_FALLS_DATASET_PAGE = "https://open.niagarafalls.ca/datasets/niagarafalls::niagara-falls-trees-inventory"
+WELLAND_TREES_LAYER = "https://arcgisweb.welland.ca/serverprodpub/rest/services/OpenData/OPENDATA_Active_Trees/MapServer/0"
+WELLAND_DATASET_PAGE = "https://open.welland.ca/datasets/welland-trees"
+THUNDER_BAY_TREES_LAYER = (
+    "https://services5.arcgis.com/h9xShea49ZANgOtx/arcgis/rest/services/City_of_Thunder_Bay_Trees/FeatureServer/2"
+)
+THUNDER_BAY_DATASET_PAGE = "https://services5.arcgis.com/h9xShea49ZANgOtx/arcgis/rest/services/City_of_Thunder_Bay_Trees/FeatureServer"
+CALGARY_TREES_LAYER = "https://services1.arcgis.com/AVP60cs0Q9PEA8rH/arcgis/rest/services/Public_Trees/FeatureServer/0"
+CALGARY_DATASET_PAGE = "https://services1.arcgis.com/AVP60cs0Q9PEA8rH/arcgis/rest/services/Public_Trees/FeatureServer/0"
+ST_ALBERT_TREES_LAYER = "https://services1.arcgis.com/fyyY0cNXvmUWvX1x/arcgis/rest/services/Tree_Inventory/FeatureServer/0"
+ST_ALBERT_DATASET_PAGE = "https://services1.arcgis.com/fyyY0cNXvmUWvX1x/arcgis/rest/services/Tree_Inventory/FeatureServer/0"
+CHESTERMERE_TREES_LAYER = "https://gis.chestermere.ca/serversite/rest/services/Trees_Open/FeatureServer/0"
+CHESTERMERE_DATASET_PAGE = "https://gis.chestermere.ca/serversite/rest/services/Trees_Open/FeatureServer/0"
+OKOTOKS_TREES_LAYER = "https://services3.arcgis.com/Fl5sQFvYY7w7mPQj/arcgis/rest/services/Tree_Inventory/FeatureServer/48"
+OKOTOKS_DATASET_PAGE = "https://services3.arcgis.com/Fl5sQFvYY7w7mPQj/arcgis/rest/services/Tree_Inventory/FeatureServer"
+LETHBRIDGE_TREES_LAYER = "https://gis.lethbridge.ca/gisopendata/rest/services/OpenData/odl_trees/MapServer/0"
+LETHBRIDGE_DATASET_PAGE = "https://gis.lethbridge.ca/gisopendata/rest/services/OpenData/odl_trees/MapServer/0"
+AIRDRIE_TREES_LAYER = "https://map.airdrie.ca:6443/arcgis/rest/services/pk_EdibleTrees_ap/MapServer/0"
+AIRDRIE_DATASET_PAGE = "https://map.airdrie.ca:6443/arcgis/rest/services/pk_EdibleTrees_ap/MapServer/0"
+KELOWNA_TREES_LAYER = "https://geoportal.kelowna.ca/arcgis/rest/services/ArcGISOnline/OpenData_Environment/MapServer/17"
+KELOWNA_DATASET_PAGE = "https://geoportal.kelowna.ca/arcgis/rest/services/ArcGISOnline/OpenData_Environment/MapServer/17"
+KAMLOOPS_TREES_LAYER = "https://maps.kamloops.ca/arcgis/rest/services/OpenData/OpenDataParks/MapServer/12"
+KAMLOOPS_DATASET_PAGE = "https://maps.kamloops.ca/arcgis/rest/services/OpenData/OpenDataParks/MapServer/12"
+PRINCE_GEORGE_TREES_LAYER = (
+    "https://services2.arcgis.com/CnkB6jCzAsyli34z/arcgis/rest/services/OpenData_ParkData/FeatureServer/0"
+)
+PRINCE_GEORGE_DATASET_PAGE = (
+    "https://services2.arcgis.com/CnkB6jCzAsyli34z/arcgis/rest/services/OpenData_ParkData/FeatureServer/0"
+)
+PENTICTON_TREES_LAYER = "https://services1.arcgis.com/ZMQyarkhNAnn8lip/ArcGIS/rest/services/Parks_PRD/FeatureServer/1355"
+PENTICTON_DATASET_PAGE = "https://services1.arcgis.com/ZMQyarkhNAnn8lip/ArcGIS/rest/services/Parks_PRD/FeatureServer/1355"
+MAPLE_RIDGE_TREES_LAYER = "https://geoservices.mapleridge.ca/server/rest/services/DataCatalog/Environment/MapServer/5"
+MAPLE_RIDGE_DATASET_PAGE = "https://geoservices.mapleridge.ca/server/rest/services/DataCatalog/Environment/MapServer/5"
+MONCTON_TREES_LAYER = "https://services1.arcgis.com/E26PuSoie2Y7bbyI/arcgis/rest/services/Trees/FeatureServer/0"
+MONCTON_DATASET_PAGE = "https://services1.arcgis.com/E26PuSoie2Y7bbyI/arcgis/rest/services/Trees/FeatureServer/0"
+FREDERICTON_TREES_LAYER = (
+    "https://services2.arcgis.com/iLWAxhpxafhOza2U/arcgis/rest/services/Fredericton__FREDERICTON_SCHIFKEE__TreeInventory/FeatureServer/1"
+)
+FREDERICTON_DATASET_PAGE = (
+    "https://services2.arcgis.com/iLWAxhpxafhOza2U/arcgis/rest/services/Fredericton__FREDERICTON_SCHIFKEE__TreeInventory/FeatureServer/1"
+)
+GATINEAU_TREES_LAYER = "https://services2.arcgis.com/WLyMuW006nKOfa5Z/arcgis/rest/services/Remarkable_Trees_view2/FeatureServer/0"
+GATINEAU_DATASET_PAGE = "https://ncc-ccn.gc.ca/places/remarkable-trees"
 SASKATOON_TREES_LAYER = "https://gisext.saskatoon.ca/arcgis/rest/services/AGOL/TreeInventoryPublic/MapServer/1"
 SASKATOON_DATASET_PAGE = "https://www.saskatoon.ca/treeinventory"
 HALIFAX_TREES_LAYER = "https://services2.arcgis.com/11XBiaBYA9Ep0yNJ/arcgis/rest/services/Public_Trees/FeatureServer/0"
@@ -930,6 +986,258 @@ WINNIPEG_BLOSSOM_WHERE = (
     "upper(common_name) like '%CRABAPPLE%' OR "
     "upper(common_name) like '%APPLE%'"
 )
+AJAX_BLOSSOM_WHERE = (
+    "STATUS = 'TREE' AND ("
+    "UPPER(TYPE) LIKE '%CHERRY%' OR "
+    "UPPER(TYPE) LIKE '%PLUM%' OR "
+    "UPPER(TYPE) LIKE '%PEACH%' OR "
+    "UPPER(TYPE) LIKE '%MAGNOLIA%' OR "
+    "UPPER(TYPE) LIKE '%CRABAPPLE%' OR "
+    "UPPER(TYPE) LIKE '%APPLE%'"
+    ")"
+)
+BARRIE_BLOSSOM_WHERE = (
+    "TREE_STATUS = 'ACTIVE' AND ("
+    "UPPER(GENUS) LIKE 'PRUNUS%' OR "
+    "UPPER(GENUS) LIKE 'MALUS%' OR "
+    "UPPER(GENUS) LIKE 'MAGNOLIA%' OR "
+    "UPPER(COMMONNAME) LIKE '%CHERRY%' OR "
+    "UPPER(COMMONNAME) LIKE '%PLUM%' OR "
+    "UPPER(COMMONNAME) LIKE '%PEACH%' OR "
+    "UPPER(COMMONNAME) LIKE '%MAGNOLIA%' OR "
+    "UPPER(COMMONNAME) LIKE '%CRABAPPLE%' OR "
+    "UPPER(COMMONNAME) LIKE '%APPLE%'"
+    ")"
+)
+KINGSTON_BLOSSOM_WHERE = (
+    "OWNERSHIP = 'Municipal' AND ("
+    "UPPER(SCIENTIFIC_NAME) LIKE 'PRUNUS%' OR "
+    "UPPER(SCIENTIFIC_NAME) LIKE 'MALUS%' OR "
+    "UPPER(SCIENTIFIC_NAME) LIKE 'MAGNOLIA%' OR "
+    "UPPER(COMMON_NAME) LIKE '%CHERRY%' OR "
+    "UPPER(COMMON_NAME) LIKE '%PLUM%' OR "
+    "UPPER(COMMON_NAME) LIKE '%PEACH%' OR "
+    "UPPER(COMMON_NAME) LIKE '%MAGNOLIA%' OR "
+    "UPPER(COMMON_NAME) LIKE '%CRABAPPLE%' OR "
+    "UPPER(COMMON_NAME) LIKE '%APPLE%'"
+    ")"
+)
+NIAGARA_FALLS_BLOSSOM_WHERE = (
+    "AssetOwnership = 'CITY OF NIAGARA FALLS' AND ("
+    "UPPER(TreeSpecies) LIKE 'PRUNUS%' OR "
+    "UPPER(TreeSpecies) LIKE 'MALUS%' OR "
+    "UPPER(TreeSpecies) LIKE 'MAGNOLIA%' OR "
+    "UPPER(TreeSpecies) LIKE '%CHERRY%' OR "
+    "UPPER(TreeSpecies) LIKE '%PLUM%' OR "
+    "UPPER(TreeSpecies) LIKE '%PEACH%' OR "
+    "UPPER(TreeSpecies) LIKE '%MAGNOLIA%' OR "
+    "UPPER(TreeSpecies) LIKE '%CRABAPPLE%' OR "
+    "UPPER(TreeSpecies) LIKE '%APPLE%'"
+    ")"
+)
+WELLAND_BLOSSOM_WHERE = (
+    "UPPER(Genus) LIKE 'PRUNUS%' OR "
+    "UPPER(Genus) LIKE 'MALUS%' OR "
+    "UPPER(Genus) LIKE 'MAGNOLIA%' OR "
+    "UPPER(Species) LIKE '%CHERRY%' OR "
+    "UPPER(Species) LIKE '%PLUM%' OR "
+    "UPPER(Species) LIKE '%PEACH%' OR "
+    "UPPER(Species) LIKE '%MAGNOLIA%' OR "
+    "UPPER(Species) LIKE '%CRABAPPLE%' OR "
+    "UPPER(Species) LIKE '%APPLE%'"
+)
+THUNDER_BAY_BLOSSOM_WHERE = (
+    "TREE_CYCLE = 'TREE' AND ("
+    "UPPER(BOTANICAL) LIKE 'PRUNUS%' OR "
+    "UPPER(BOTANICAL) LIKE 'MALUS%' OR "
+    "UPPER(BOTANICAL) LIKE 'MAGNOLIA%' OR "
+    "UPPER(COMMON) LIKE '%CHERRY%' OR "
+    "UPPER(COMMON) LIKE '%PLUM%' OR "
+    "UPPER(COMMON) LIKE '%PEACH%' OR "
+    "UPPER(COMMON) LIKE '%MAGNOLIA%' OR "
+    "UPPER(COMMON) LIKE '%CRABAPPLE%' OR "
+    "UPPER(COMMON) LIKE '%APPLE%'"
+    ")"
+)
+CALGARY_BLOSSOM_WHERE = (
+    "LIFE_CYCLE_STATUS = 'ACTIVE' AND ("
+    "UPPER(GENUS) LIKE 'PRUNUS%' OR "
+    "UPPER(GENUS) LIKE 'MALUS%' OR "
+    "UPPER(GENUS) LIKE 'MAGNOLIA%' OR "
+    "UPPER(COMMON_NAME) LIKE '%CHERRY%' OR "
+    "UPPER(COMMON_NAME) LIKE '%PLUM%' OR "
+    "UPPER(COMMON_NAME) LIKE '%PEACH%' OR "
+    "UPPER(COMMON_NAME) LIKE '%MAGNOLIA%' OR "
+    "UPPER(COMMON_NAME) LIKE '%CRABAPPLE%' OR "
+    "UPPER(COMMON_NAME) LIKE '%APPLE%'"
+    ")"
+)
+ST_ALBERT_BLOSSOM_WHERE = (
+    "UPPER(LatinName) LIKE 'PRUNUS%' OR "
+    "UPPER(LatinName) LIKE 'MALUS%' OR "
+    "UPPER(LatinName) LIKE 'MAGNOLIA%' OR "
+    "UPPER(SpeciesCommon) LIKE '%CHERRY%' OR "
+    "UPPER(SpeciesCommon) LIKE '%PLUM%' OR "
+    "UPPER(SpeciesCommon) LIKE '%PEACH%' OR "
+    "UPPER(SpeciesCommon) LIKE '%MAGNOLIA%' OR "
+    "UPPER(SpeciesCommon) LIKE '%CRABAPPLE%' OR "
+    "UPPER(SpeciesCommon) LIKE '%APPLE%'"
+)
+CHESTERMERE_BLOSSOM_WHERE = (
+    "TreeStatus = 'Active' AND ("
+    "UPPER(Species_Scientific) LIKE 'PRUNUS%' OR "
+    "UPPER(Species_Scientific) LIKE 'MALUS%' OR "
+    "UPPER(Species_Scientific) LIKE 'MAGNOLIA%' OR "
+    "UPPER(Species) LIKE '%CHERRY%' OR "
+    "UPPER(Species) LIKE '%PLUM%' OR "
+    "UPPER(Species) LIKE '%PEACH%' OR "
+    "UPPER(Species) LIKE '%MAGNOLIA%' OR "
+    "UPPER(Species) LIKE '%CRABAPPLE%' OR "
+    "UPPER(Species) LIKE '%APPLE%'"
+    ")"
+)
+OKOTOKS_BLOSSOM_WHERE = (
+    "Tree_XXXX = 'Established' AND ("
+    "UPPER(Tree_Speci) LIKE 'PRUNUS%' OR "
+    "UPPER(Tree_Speci) LIKE 'MALUS%' OR "
+    "UPPER(Tree_Speci) LIKE 'MAGNOLIA%' OR "
+    "UPPER(Tree_Speci) LIKE '%CHERRY%' OR "
+    "UPPER(Tree_Speci) LIKE '%PLUM%' OR "
+    "UPPER(Tree_Speci) LIKE '%PEACH%' OR "
+    "UPPER(Tree_Speci) LIKE '%MAGNOLIA%' OR "
+    "UPPER(Tree_Speci) LIKE '%CRABAPPLE%' OR "
+    "UPPER(Tree_Speci) LIKE '%APPLE%'"
+    ")"
+)
+LETHBRIDGE_BLOSSOM_WHERE = (
+    "status = 'Active' AND ("
+    "UPPER(genus) LIKE 'PRUNUS%' OR "
+    "UPPER(genus) LIKE 'MALUS%' OR "
+    "UPPER(genus) LIKE 'MAGNOLIA%' OR "
+    "UPPER(cultivar) LIKE '%CHERRY%' OR "
+    "UPPER(cultivar) LIKE '%PLUM%' OR "
+    "UPPER(cultivar) LIKE '%PEACH%' OR "
+    "UPPER(cultivar) LIKE '%MAGNOLIA%' OR "
+    "UPPER(cultivar) LIKE '%CRABAPPLE%' OR "
+    "UPPER(cultivar) LIKE '%APPLE%'"
+    ")"
+)
+AIRDRIE_BLOSSOM_WHERE = (
+    "ASSETSTATUS = 'Active' AND ("
+    "UPPER(COMMON_NAME) LIKE '%APPLE%' OR "
+    "UPPER(COMMON_NAME) LIKE '%CHERRY%' OR "
+    "UPPER(COMMON_NAME) LIKE '%CRABAPPLE%' OR "
+    "UPPER(COMMON_NAME) LIKE '%PLUM%' OR "
+    "UPPER(COMMON_NAME) LIKE '%PEACH%' OR "
+    "UPPER(COMMON_NAME) LIKE '%MAGNOLIA%' OR "
+    "UPPER(COMMENTS_1) LIKE '%APPLE%' OR "
+    "UPPER(COMMENTS_1) LIKE '%CHERRY%' OR "
+    "UPPER(COMMENTS_1) LIKE '%CRABAPPLE%' OR "
+    "UPPER(COMMENTS_1) LIKE '%PLUM%' OR "
+    "UPPER(COMMENTS_1) LIKE '%PEACH%' OR "
+    "UPPER(COMMENTS_1) LIKE '%MAGNOLIA%'"
+    ")"
+)
+KELOWNA_BLOSSOM_WHERE = (
+    "Status = 'A' AND ("
+    "UPPER(Genus) LIKE 'PRUNUS%' OR "
+    "UPPER(Genus) LIKE 'MALUS%' OR "
+    "UPPER(Genus) LIKE 'MAGNOLIA%' OR "
+    "UPPER(CommonName) LIKE '%CHERRY%' OR "
+    "UPPER(CommonName) LIKE '%PLUM%' OR "
+    "UPPER(CommonName) LIKE '%PEACH%' OR "
+    "UPPER(CommonName) LIKE '%MAGNOLIA%' OR "
+    "UPPER(CommonName) LIKE '%CRABAPPLE%' OR "
+    "UPPER(CommonName) LIKE '%APPLE%'"
+    ")"
+)
+KAMLOOPS_BLOSSOM_WHERE = (
+    "OWNERTYPE = 'PUBLIC' AND ("
+    "UPPER(COMMONFULLNAME) LIKE '%CHERRY%' OR "
+    "UPPER(COMMONFULLNAME) LIKE '%PLUM%' OR "
+    "UPPER(COMMONFULLNAME) LIKE '%PEACH%' OR "
+    "UPPER(COMMONFULLNAME) LIKE '%MAGNOLIA%' OR "
+    "UPPER(COMMONFULLNAME) LIKE '%CRABAPPLE%' OR "
+    "UPPER(COMMONFULLNAME) LIKE '%APPLE%'"
+    ")"
+)
+PRINCE_GEORGE_BLOSSOM_WHERE = (
+    "LifeCycleStatus = 'ACT' AND AssetOwner = 1 AND ("
+    "UPPER(GenusName) LIKE 'PRUNUS%' OR "
+    "UPPER(GenusName) LIKE 'MALUS%' OR "
+    "UPPER(GenusName) LIKE 'MAGNOLIA%' OR "
+    "UPPER(CommonName) LIKE '%CHERRY%' OR "
+    "UPPER(CommonName) LIKE '%PLUM%' OR "
+    "UPPER(CommonName) LIKE '%PEACH%' OR "
+    "UPPER(CommonName) LIKE '%MAGNOLIA%' OR "
+    "UPPER(CommonName) LIKE '%CRABAPPLE%' OR "
+    "UPPER(CommonName) LIKE '%APPLE%'"
+    ")"
+)
+PENTICTON_BLOSSOM_WHERE = (
+    "Status = 'ACT' AND ("
+    "UPPER(GENUS) LIKE 'PRUNUS%' OR "
+    "UPPER(GENUS) LIKE 'MALUS%' OR "
+    "UPPER(GENUS) LIKE 'MAGNOLIA%' OR "
+    "UPPER(SPECIES) LIKE '%CHERRY%' OR "
+    "UPPER(SPECIES) LIKE '%PLUM%' OR "
+    "UPPER(SPECIES) LIKE '%PEACH%' OR "
+    "UPPER(SPECIES) LIKE '%MAGNOLIA%' OR "
+    "UPPER(SPECIES) LIKE '%CRABAPPLE%' OR "
+    "UPPER(SPECIES) LIKE '%APPLE%'"
+    ")"
+)
+MAPLE_RIDGE_BLOSSOM_WHERE = (
+    "Status = 'Existing' AND ("
+    "UPPER(Genus) LIKE 'PRUNUS%' OR "
+    "UPPER(Genus) LIKE 'MALUS%' OR "
+    "UPPER(Genus) LIKE 'MAGNOLIA%' OR "
+    "UPPER(CommonName) LIKE '%CHERRY%' OR "
+    "UPPER(CommonName) LIKE '%PLUM%' OR "
+    "UPPER(CommonName) LIKE '%PEACH%' OR "
+    "UPPER(CommonName) LIKE '%MAGNOLIA%' OR "
+    "UPPER(CommonName) LIKE '%CRABAPPLE%' OR "
+    "UPPER(CommonName) LIKE '%APPLE%'"
+    ")"
+)
+MONCTON_BLOSSOM_WHERE = "UPPER(BOTNAME) IN ('APPCRA','APPLE','CHEBI','CHEBLA','CHECHO','CHEFLO','CHEMA','CHEPIN','CHESTE','MAGSAU')"
+FREDERICTON_BLOSSOM_WHERE = (
+    "UPPER(Genus_Spec) LIKE 'PRUNUS%' OR "
+    "UPPER(Genus_Spec) LIKE 'MALUS%' OR "
+    "UPPER(Genus_Spec) LIKE 'MAGNOLIA%' OR "
+    "UPPER(COMMON_NAM) LIKE '%CHERRY%' OR "
+    "UPPER(COMMON_NAM) LIKE '%PLUM%' OR "
+    "UPPER(COMMON_NAM) LIKE '%PEACH%' OR "
+    "UPPER(COMMON_NAM) LIKE '%MAGNOLIA%' OR "
+    "UPPER(COMMON_NAM) LIKE '%CRABAPPLE%' OR "
+    "UPPER(COMMON_NAM) LIKE '%APPLE%'"
+)
+GATINEAU_BLOSSOM_WHERE = (
+    "UPPER(SPECIES) LIKE 'PRUNUS%' OR "
+    "UPPER(SPECIES) LIKE 'MALUS%' OR "
+    "UPPER(SPECIES) LIKE 'MAGNOLIA%' OR "
+    "UPPER(NAME_EN) LIKE '%CHERRY%' OR "
+    "UPPER(NAME_EN) LIKE '%PLUM%' OR "
+    "UPPER(NAME_EN) LIKE '%PEACH%' OR "
+    "UPPER(NAME_EN) LIKE '%MAGNOLIA%' OR "
+    "UPPER(NAME_EN) LIKE '%CRABAPPLE%' OR "
+    "UPPER(NAME_EN) LIKE '%APPLE%' OR "
+    "UPPER(NAME_FR) LIKE '%CERISIER%' OR "
+    "UPPER(NAME_FR) LIKE '%POMMIER%' OR "
+    "UPPER(NAME_FR) LIKE '%MAGNOLIA%'"
+)
+MONCTON_BOTNAME_MAPPING = {
+    "APPCRA": {"common_name": "Crabapple", "scientific_name": "Malus species"},
+    "APPLE": {"common_name": "Apple", "scientific_name": "Malus domestica"},
+    "CHEBI": {"common_name": "Cherry", "scientific_name": "Prunus species"},
+    "CHEBLA": {"common_name": "Black Cherry", "scientific_name": "Prunus serotina"},
+    "CHECHO": {"common_name": "Chokecherry", "scientific_name": "Prunus virginiana"},
+    "CHEFLO": {"common_name": "Flowering Cherry", "scientific_name": "Prunus serrulata"},
+    "CHEMA": {"common_name": "Mayday Cherry", "scientific_name": "Prunus padus"},
+    "CHEPIN": {"common_name": "Pin Cherry", "scientific_name": "Prunus pensylvanica"},
+    "CHESTE": {"common_name": "Steeplechase Cherry", "scientific_name": "Prunus species"},
+    "MAGSAU": {"common_name": "Saucer Magnolia", "scientific_name": "Magnolia x soulangeana"},
+}
 LOS_ANGELES_TREEKEEPER_TERMS = ("%cherry%", "%plum%", "%peach%", "%magnolia%", "%crabapple%", "%apple%")
 SPECIES_TEXT_PATTERN = re.compile(r"^\s*(?P<common>.+?)\s*\((?P<scientific>[^()]+)\)\s*$")
 DISPLAY_NAME_REPLACEMENTS = {
@@ -1438,6 +1746,34 @@ UNCOVERED_STATE_ARCGIS_CONFIGS: dict[str, dict[str, Any]] = {
         "note": "Integrated from the official Vermont Municipal Tree Inventory rows for the Town of Randolph.",
         "clip_to_boundary": True,
     },
+    "Ajax": {
+        "region": "on",
+        "layer_url": AJAX_TREES_LAYER,
+        "dataset_page": AJAX_DATASET_PAGE,
+        "where": AJAX_BLOSSOM_WHERE,
+        "object_id_field": "OBJECTID",
+        "common_field": "TYPE",
+        "source_name": "Town Owned Trees",
+        "source_department": "Town of Ajax",
+        "ownership_raw": "Town of Ajax",
+        "note": "Integrated from the official Town of Ajax public town-owned trees ArcGIS layer after restricting to `STATUS = 'TREE'`.",
+        "clip_to_boundary": True,
+    },
+    "Barrie": {
+        "region": "on",
+        "layer_url": BARRIE_TREES_LAYER,
+        "dataset_page": BARRIE_DATASET_PAGE,
+        "where": BARRIE_BLOSSOM_WHERE,
+        "object_id_field": "OBJECTID",
+        "common_field": "COMMONNAME",
+        "genus_field": "GENUS",
+        "species_field": "SPECIES",
+        "source_name": "Tree",
+        "source_department": "City of Barrie",
+        "ownership_raw": "City of Barrie",
+        "note": "Integrated from the official City of Barrie public tree ArcGIS layer after restricting to `TREE_STATUS = 'ACTIVE'`.",
+        "clip_to_boundary": True,
+    },
     "Burlington": {
         "region": "on",
         "layer_url": BURLINGTON_ON_TREES_LAYER,
@@ -1490,6 +1826,20 @@ UNCOVERED_STATE_ARCGIS_CONFIGS: dict[str, dict[str, Any]] = {
         "source_department": "City of Hamilton",
         "ownership_raw": "City of Hamilton",
         "note": "Integrated from the official City of Hamilton public tree inventory ArcGIS layer after restricting to `STATUS = 'Existing'`.",
+        "clip_to_boundary": True,
+    },
+    "Kingston": {
+        "region": "on",
+        "layer_url": KINGSTON_TREES_LAYER,
+        "dataset_page": KINGSTON_DATASET_PAGE,
+        "where": KINGSTON_BLOSSOM_WHERE,
+        "object_id_field": "OBJECTID",
+        "common_field": "COMMON_NAME",
+        "scientific_field": "SCIENTIFIC_NAME",
+        "source_name": "City Owned Trees",
+        "source_department": "City of Kingston",
+        "ownership_raw": "City of Kingston",
+        "note": "Integrated from the official City of Kingston public city-owned trees ArcGIS layer after restricting to municipal trees.",
         "clip_to_boundary": True,
     },
     "Kitchener": {
@@ -1575,6 +1925,47 @@ UNCOVERED_STATE_ARCGIS_CONFIGS: dict[str, dict[str, Any]] = {
         "note": "Integrated from the official City of Peterborough public tree inventory ArcGIS application layer.",
         "clip_to_boundary": True,
     },
+    "Niagara Falls": {
+        "region": "on",
+        "layer_url": NIAGARA_FALLS_TREES_LAYER,
+        "dataset_page": NIAGARA_FALLS_DATASET_PAGE,
+        "where": NIAGARA_FALLS_BLOSSOM_WHERE,
+        "object_id_field": "OBJECTID",
+        "common_field": "TreeSpecies",
+        "source_name": "Niagara Falls Trees Inventory",
+        "source_department": "City of Niagara Falls",
+        "ownership_raw": "City of Niagara Falls",
+        "note": "Integrated from the official City of Niagara Falls public tree inventory ArcGIS layer after restricting to city-owned rows.",
+        "clip_to_boundary": True,
+    },
+    "Welland": {
+        "region": "on",
+        "layer_url": WELLAND_TREES_LAYER,
+        "dataset_page": WELLAND_DATASET_PAGE,
+        "where": WELLAND_BLOSSOM_WHERE,
+        "object_id_field": "OBJECTID",
+        "common_field": "Species",
+        "genus_field": "Genus",
+        "species_field": "Species",
+        "source_name": "Welland Trees",
+        "source_department": "City of Welland",
+        "ownership_raw": "City of Welland",
+        "note": "Integrated from the official City of Welland public trees ArcGIS layer.",
+        "clip_to_boundary": True,
+    },
+    "Thunder Bay": {
+        "region": "on",
+        "layer_url": THUNDER_BAY_TREES_LAYER,
+        "dataset_page": THUNDER_BAY_DATASET_PAGE,
+        "where": THUNDER_BAY_BLOSSOM_WHERE,
+        "object_id_field": "OBJECTID",
+        "common_field": "COMMON",
+        "source_name": "City of Thunder Bay Trees",
+        "source_department": "City of Thunder Bay",
+        "ownership_raw": "City of Thunder Bay",
+        "note": "Integrated from the official City of Thunder Bay public trees ArcGIS layer after restricting to `TREE_CYCLE = 'TREE'`.",
+        "clip_to_boundary": True,
+    },
     "Saskatoon": {
         "region": "sk",
         "layer_url": SASKATOON_TREES_LAYER,
@@ -1601,6 +1992,190 @@ UNCOVERED_STATE_ARCGIS_CONFIGS: dict[str, dict[str, Any]] = {
         "source_department": "Halifax Regional Municipality",
         "ownership_raw": "Halifax Regional Municipality",
         "note": "Integrated from the official Halifax Regional Municipality public trees ArcGIS layer.",
+        "clip_to_boundary": True,
+    },
+    "Calgary": {
+        "region": "ab",
+        "layer_url": CALGARY_TREES_LAYER,
+        "dataset_page": CALGARY_DATASET_PAGE,
+        "where": CALGARY_BLOSSOM_WHERE,
+        "object_id_field": "OBJECTID",
+        "common_field": "COMMON_NAME",
+        "genus_field": "GENUS",
+        "species_field": "SPECIES",
+        "source_name": "Public Trees",
+        "source_department": "City of Calgary",
+        "ownership_raw": "City of Calgary",
+        "note": "Integrated from the official City of Calgary public trees ArcGIS layer after restricting to `LIFE_CYCLE_STATUS = 'ACTIVE'`.",
+        "clip_to_boundary": True,
+    },
+    "St. Albert": {
+        "region": "ab",
+        "layer_url": ST_ALBERT_TREES_LAYER,
+        "dataset_page": ST_ALBERT_DATASET_PAGE,
+        "where": ST_ALBERT_BLOSSOM_WHERE,
+        "object_id_field": "OBJECTID",
+        "common_field": "SpeciesCommon",
+        "scientific_field": "LatinName",
+        "source_name": "Tree Inventory",
+        "source_department": "City of St. Albert",
+        "ownership_raw": "City of St. Albert",
+        "note": "Integrated from the official City of St. Albert public tree inventory ArcGIS layer.",
+        "clip_to_boundary": True,
+    },
+    "Chestermere": {
+        "region": "ab",
+        "layer_url": CHESTERMERE_TREES_LAYER,
+        "dataset_page": CHESTERMERE_DATASET_PAGE,
+        "where": CHESTERMERE_BLOSSOM_WHERE,
+        "object_id_field": "OBJECTID",
+        "common_field": "Species",
+        "scientific_field": "Species_Scientific",
+        "source_name": "Trees Open",
+        "source_department": "City of Chestermere",
+        "ownership_raw": "City of Chestermere",
+        "note": "Integrated from the official City of Chestermere public trees ArcGIS layer after restricting to active rows.",
+        "clip_to_boundary": True,
+    },
+    "Okotoks": {
+        "region": "ab",
+        "layer_url": OKOTOKS_TREES_LAYER,
+        "dataset_page": OKOTOKS_DATASET_PAGE,
+        "where": OKOTOKS_BLOSSOM_WHERE,
+        "object_id_field": "OBJECTID",
+        "scientific_field": "Tree_Speci",
+        "source_name": "Tree Inventory",
+        "source_department": "Town of Okotoks",
+        "ownership_raw": "Town of Okotoks",
+        "note": "Integrated from the official Town of Okotoks public tree inventory ArcGIS layer after restricting to established trees.",
+        "clip_to_boundary": True,
+    },
+    "Lethbridge": {
+        "region": "ab",
+        "layer_url": LETHBRIDGE_TREES_LAYER,
+        "dataset_page": LETHBRIDGE_DATASET_PAGE,
+        "where": LETHBRIDGE_BLOSSOM_WHERE,
+        "object_id_field": "OBJECTID",
+        "genus_field": "genus",
+        "species_field": "species",
+        "common_field": "cultivar",
+        "source_name": "Trees",
+        "source_department": "City of Lethbridge",
+        "ownership_raw": "City of Lethbridge",
+        "note": "Integrated from the official City of Lethbridge public trees ArcGIS layer after restricting to active rows.",
+        "clip_to_boundary": True,
+    },
+    "Airdrie": {
+        "region": "ab",
+        "layer_url": AIRDRIE_TREES_LAYER,
+        "dataset_page": AIRDRIE_DATASET_PAGE,
+        "where": AIRDRIE_BLOSSOM_WHERE,
+        "object_id_field": "OBJECTID",
+        "common_field": "COMMENTS_1",
+        "source_name": "Edible Trees",
+        "source_department": "City of Airdrie",
+        "ownership_raw": "City of Airdrie",
+        "note": "Integrated from the official City of Airdrie public edible trees ArcGIS layer after restricting to active blossom rows.",
+        "clip_to_boundary": True,
+    },
+    "Kelowna": {
+        "region": "bc",
+        "layer_url": KELOWNA_TREES_LAYER,
+        "dataset_page": KELOWNA_DATASET_PAGE,
+        "where": KELOWNA_BLOSSOM_WHERE,
+        "object_id_field": "OBJECTID",
+        "common_field": "CommonName",
+        "genus_field": "Genus",
+        "species_field": "Species",
+        "source_name": "Tree Inventory",
+        "source_department": "City of Kelowna",
+        "ownership_raw": "City of Kelowna",
+        "note": "Integrated from the official City of Kelowna public tree inventory ArcGIS layer after restricting to active rows.",
+        "clip_to_boundary": True,
+    },
+    "Kamloops": {
+        "region": "bc",
+        "layer_url": KAMLOOPS_TREES_LAYER,
+        "dataset_page": KAMLOOPS_DATASET_PAGE,
+        "where": KAMLOOPS_BLOSSOM_WHERE,
+        "object_id_field": "OBJECTID",
+        "common_field": "COMMONFULLNAME",
+        "source_name": "TreeSite",
+        "source_department": "City of Kamloops",
+        "ownership_raw": "City of Kamloops",
+        "note": "Integrated from the official City of Kamloops public parks tree ArcGIS layer after restricting to public rows.",
+        "clip_to_boundary": True,
+    },
+    "Prince George": {
+        "region": "bc",
+        "layer_url": PRINCE_GEORGE_TREES_LAYER,
+        "dataset_page": PRINCE_GEORGE_DATASET_PAGE,
+        "where": PRINCE_GEORGE_BLOSSOM_WHERE,
+        "object_id_field": "OBJECTID",
+        "common_field": "CommonName",
+        "genus_field": "GenusName",
+        "species_field": "SpeciesName",
+        "source_name": "Trees",
+        "source_department": "City of Prince George",
+        "ownership_raw": "City of Prince George",
+        "note": "Integrated from the official City of Prince George public trees ArcGIS layer after restricting to active city-owned rows.",
+        "clip_to_boundary": True,
+    },
+    "Penticton": {
+        "region": "bc",
+        "layer_url": PENTICTON_TREES_LAYER,
+        "dataset_page": PENTICTON_DATASET_PAGE,
+        "where": PENTICTON_BLOSSOM_WHERE,
+        "object_id_field": "OBJECTID",
+        "genus_field": "GENUS",
+        "species_field": "SPECIES",
+        "source_name": "Trees",
+        "source_department": "City of Penticton",
+        "ownership_raw": "City of Penticton",
+        "note": "Integrated from the official City of Penticton public trees ArcGIS layer after restricting to active rows.",
+        "clip_to_boundary": True,
+    },
+    "Maple Ridge": {
+        "region": "bc",
+        "layer_url": MAPLE_RIDGE_TREES_LAYER,
+        "dataset_page": MAPLE_RIDGE_DATASET_PAGE,
+        "where": MAPLE_RIDGE_BLOSSOM_WHERE,
+        "object_id_field": "OBJECTID",
+        "common_field": "CommonName",
+        "genus_field": "Genus",
+        "species_field": "Species",
+        "source_name": "Street Tree",
+        "source_department": "City of Maple Ridge",
+        "ownership_raw": "City of Maple Ridge",
+        "note": "Integrated from the official City of Maple Ridge public street-tree ArcGIS layer after restricting to existing rows.",
+        "clip_to_boundary": True,
+    },
+    "Fredericton": {
+        "region": "nb",
+        "layer_url": FREDERICTON_TREES_LAYER,
+        "dataset_page": FREDERICTON_DATASET_PAGE,
+        "where": FREDERICTON_BLOSSOM_WHERE,
+        "object_id_field": "OBJECTID",
+        "common_field": "COMMON_NAM",
+        "scientific_field": "Genus_Spec",
+        "source_name": "Tree Inventory",
+        "source_department": "City of Fredericton",
+        "ownership_raw": "City of Fredericton",
+        "note": "Integrated from the official City of Fredericton public tree inventory ArcGIS layer.",
+        "clip_to_boundary": True,
+    },
+    "Gatineau": {
+        "region": "qc",
+        "layer_url": GATINEAU_TREES_LAYER,
+        "dataset_page": GATINEAU_DATASET_PAGE,
+        "where": GATINEAU_BLOSSOM_WHERE,
+        "object_id_field": "OBJECTID",
+        "common_field": "NAME_EN",
+        "scientific_field": "SPECIES",
+        "source_name": "Remarkable Trees",
+        "source_department": "National Capital Commission",
+        "ownership_raw": "National Capital Commission",
+        "note": "Integrated from the official National Capital Commission remarkable trees ArcGIS layer after clipping to the official Gatineau boundary.",
         "clip_to_boundary": True,
     },
     "Medford": {
@@ -2518,30 +3093,31 @@ def fetch_arcgis_features_by_object_ids(
     object_id_field: str,
     chunk_size: int = 250,
 ) -> list[dict[str, Any]]:
-    ids_payload = requests.get(
+    ids_payload = post_form_with_curl(
         f"{layer_url}/query",
-        params={"where": where, "returnIdsOnly": "true", "f": "pjson"},
-        timeout=60,
-    ).json()
+        [
+            ("where", where),
+            ("returnIdsOnly", "true"),
+            ("f", "pjson"),
+        ],
+    )
     if "error" in ids_payload:
         raise RuntimeError(f"ArcGIS error for {layer_url}: {ids_payload['error']}")
     object_ids = ids_payload.get("objectIds") or []
     features: list[dict[str, Any]] = []
     for start in range(0, len(object_ids), chunk_size):
         chunk = object_ids[start : start + chunk_size]
-        response = requests.post(
+        payload = post_form_with_curl(
             f"{layer_url}/query",
-            data={
-                "where": where,
-                "objectIds": ",".join(str(value) for value in chunk),
-                "outFields": ",".join(out_fields),
-                "returnGeometry": "true",
-                "outSR": "4326",
-                "f": "pjson",
-            },
-            timeout=60,
+            [
+                ("where", where),
+                ("objectIds", ",".join(str(value) for value in chunk)),
+                ("outFields", ",".join(out_fields)),
+                ("returnGeometry", "true"),
+                ("outSR", "4326"),
+                ("f", "pjson"),
+            ],
         )
-        payload = response.json()
         if "error" in payload:
             raise RuntimeError(f"ArcGIS error for {layer_url}: {payload['error']}")
         features.extend(payload.get("features") or [])
@@ -8365,6 +8941,38 @@ def fetch_winnipeg() -> dict[str, Any]:
     }
 
 
+def fetch_moncton() -> dict[str, Any]:
+    layer_info = fetch_json(MONCTON_TREES_LAYER, {"f": "pjson"})
+    features = fetch_arcgis_features_by_object_ids(
+        MONCTON_TREES_LAYER,
+        where=MONCTON_BLOSSOM_WHERE,
+        out_fields=["OBJECTID", "BOTNAME"],
+        object_id_field="OBJECTID",
+    )
+    features = clip_features_to_city_boundary("Moncton", "nb", features)
+    for feature in features:
+        attrs = feature.setdefault("attributes", {})
+        botname = (clean_display_name(attrs.get("BOTNAME")) or "").upper()
+        mapped = MONCTON_BOTNAME_MAPPING.get(botname, {})
+        attrs["PH_COMMON_NAME"] = mapped.get("common_name", "")
+        attrs["PH_SCIENTIFIC_NAME"] = mapped.get("scientific_name", "")
+    return build_arcgis_inventory_result(
+        city="Moncton",
+        region="nb",
+        features=features,
+        total_records=len(features),
+        last_edit_at=iso_from_epoch((layer_info.get("editingInfo") or {}).get("lastEditDate")),
+        source_name="Trees",
+        source_department="City of Moncton",
+        dataset_page=MONCTON_DATASET_PAGE,
+        ownership_raw="City of Moncton",
+        note="Integrated from the official City of Moncton public trees ArcGIS layer after applying the public BOTNAME blossom-code mapping and official boundary clipping.",
+        object_id_field="OBJECTID",
+        common_field="PH_COMMON_NAME",
+        scientific_field="PH_SCIENTIFIC_NAME",
+    )
+
+
 def fetch_durham() -> dict[str, Any]:
     blossom_where = (
         "present = 'Tree' AND ("
@@ -8710,6 +9318,7 @@ CITY_FETCHERS = {
     "Manchester": fetch_manchester,
     "Milpitas": fetch_milpitas,
     "Monterey Park": fetch_monterey_park,
+    "Moncton": fetch_moncton,
     "Mountain View": fetch_mountain_view,
     "Morgan Hill": fetch_morgan_hill,
     "Newport Beach": fetch_newport_beach,

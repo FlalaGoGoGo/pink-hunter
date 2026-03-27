@@ -197,6 +197,7 @@ PUBLISH_TARGET_SPLIT_BYTES = 20 * 1024 * 1024
 PUBLISH_MUST_SPLIT_BYTES = 25 * 1024 * 1024
 PUBLISH_HARD_FAIL_BYTES = 30 * 1024 * 1024
 REGION_LABELS: dict[str, str] = {
+    "ab": "AB",
     "az": "AZ",
     "bc": "BC",
     "ca": "CA",
@@ -209,6 +210,7 @@ REGION_LABELS: dict[str, str] = {
     "ma": "MA",
     "mb": "MB",
     "md": "MD",
+    "nb": "NB",
     "nc": "NC",
     "nh": "NH",
     "nj": "NJ",
@@ -353,6 +355,12 @@ REGION_CITY_OVERRIDES: dict[str, str] = {
     "Fayetteville": "nc",
     "Providence": "ri",
     "Salisbury": "nc",
+    "Ajax": "on",
+    "Barrie": "on",
+    "Kingston": "on",
+    "Niagara Falls": "on",
+    "Thunder Bay": "on",
+    "Welland": "on",
     "Ottawa": "on",
     "Toronto": "on",
     "Burlington": "on",
@@ -368,10 +376,24 @@ REGION_CITY_OVERRIDES: dict[str, str] = {
     "Whitby": "on",
     "Windsor": "on",
     "Montreal": "qc",
+    "Gatineau": "qc",
+    "Calgary": "ab",
+    "St. Albert": "ab",
+    "Chestermere": "ab",
+    "Okotoks": "ab",
+    "Lethbridge": "ab",
+    "Airdrie": "ab",
     "Halifax": "ns",
+    "Fredericton": "nb",
+    "Moncton": "nb",
     "Winnipeg": "mb",
     "Saskatoon": "sk",
     "Washington DC": "dc",
+    "Kelowna": "bc",
+    "Kamloops": "bc",
+    "Prince George": "bc",
+    "Penticton": "bc",
+    "Maple Ridge": "bc",
     "Burnaby": "bc",
     "Coquitlam": "bc",
     "Delta": "bc",
@@ -662,10 +684,13 @@ CITY_BOUNDARY_HINTS: dict[str, dict[str, str]] = {
     "Fayetteville": {"state": "37"},
     "Providence": {"state": "44"},
     "Salisbury": {"state": "37"},
+    "Ajax": {"boundary_source": "statcan_csd", "csd_name": "Ajax", "prname": "Ontario", "csd_uid": "3518005"},
+    "Barrie": {"boundary_source": "statcan_csd", "csd_name": "Barrie", "prname": "Ontario", "csd_uid": "3543042"},
     "Burlington": {"boundary_source": "statcan_csd", "csd_name": "Burlington", "prname": "Ontario", "csd_uid": "3524002"},
     "Cambridge ON": {"boundary_source": "statcan_csd", "csd_name": "Cambridge", "prname": "Ontario", "csd_uid": "3530010"},
     "Guelph": {"boundary_source": "statcan_csd", "csd_name": "Guelph", "prname": "Ontario", "csd_uid": "3523008"},
     "Hamilton": {"boundary_source": "statcan_csd", "csd_name": "Hamilton", "prname": "Ontario", "csd_uid": "3525005"},
+    "Kingston": {"boundary_source": "statcan_csd", "csd_name": "Kingston", "prname": "Ontario", "csd_uid": "3510010"},
     "Kitchener": {"boundary_source": "statcan_csd", "csd_name": "Kitchener", "prname": "Ontario", "csd_uid": "3530013"},
     "London": {"boundary_source": "statcan_csd", "csd_name": "London", "prname": "Ontario", "csd_uid": "3539036"},
     "Mississauga": {
@@ -673,6 +698,12 @@ CITY_BOUNDARY_HINTS: dict[str, dict[str, str]] = {
         "csd_name": "Mississauga",
         "prname": "Ontario",
         "csd_uid": "3521005",
+    },
+    "Niagara Falls": {
+        "boundary_source": "statcan_csd",
+        "csd_name": "Niagara Falls",
+        "prname": "Ontario",
+        "csd_uid": "3526043",
     },
     "Oakville": {"boundary_source": "statcan_csd", "csd_name": "Oakville", "prname": "Ontario", "csd_uid": "3524001"},
     "Ottawa": {"boundary_source": "ottawa_arcgis"},
@@ -682,12 +713,43 @@ CITY_BOUNDARY_HINTS: dict[str, dict[str, str]] = {
         "prname": "Ontario",
         "csd_uid": "3515014",
     },
+    "Thunder Bay": {"boundary_source": "statcan_csd", "csd_name": "Thunder Bay", "prname": "Ontario", "csd_uid": "3558004"},
     "Toronto": {"boundary_source": "toronto_zip"},
     "Waterloo": {"boundary_source": "statcan_csd", "csd_name": "Waterloo", "prname": "Ontario", "csd_uid": "3530016"},
+    "Welland": {"boundary_source": "statcan_csd", "csd_name": "Welland", "prname": "Ontario", "csd_uid": "3526032"},
     "Whitby": {"boundary_source": "statcan_csd", "csd_name": "Whitby", "prname": "Ontario", "csd_uid": "3518009"},
     "Windsor": {"boundary_source": "statcan_csd", "csd_name": "Windsor", "prname": "Ontario", "csd_uid": "3537039"},
     "Montreal": {"boundary_source": "montreal_arrondissements_geojson"},
+    "Gatineau": {
+        "boundary_source": "statcan_csd",
+        "csd_name": "Gatineau",
+        "prname": "Quebec / Québec",
+        "csd_uid": "2481017",
+    },
+    "Calgary": {"boundary_source": "statcan_csd", "csd_name": "Calgary", "prname": "Alberta", "csd_uid": "4806016"},
+    "St. Albert": {"boundary_source": "statcan_csd", "csd_name": "St. Albert", "prname": "Alberta", "csd_uid": "4811062"},
+    "Chestermere": {
+        "boundary_source": "statcan_csd",
+        "csd_name": "Chestermere",
+        "prname": "Alberta",
+        "csd_uid": "4806017",
+    },
+    "Okotoks": {"boundary_source": "statcan_csd", "csd_name": "Okotoks", "prname": "Alberta", "csd_uid": "4806012"},
+    "Lethbridge": {"boundary_source": "statcan_csd", "csd_name": "Lethbridge", "prname": "Alberta", "csd_uid": "4802012"},
+    "Airdrie": {"boundary_source": "statcan_csd", "csd_name": "Airdrie", "prname": "Alberta", "csd_uid": "4806021"},
     "Halifax": {"boundary_source": "halifax_hrm_arcgis"},
+    "Fredericton": {
+        "boundary_source": "statcan_csd",
+        "csd_name": "Fredericton",
+        "prname": "New Brunswick / Nouveau-Brunswick",
+        "csd_uid": "1331069",
+    },
+    "Moncton": {
+        "boundary_source": "statcan_csd",
+        "csd_name": "Moncton",
+        "prname": "New Brunswick / Nouveau-Brunswick",
+        "csd_uid": "1327034",
+    },
     "Winnipeg": {"boundary_source": "statcan_csd", "csd_name": "Winnipeg", "prname": "Manitoba", "csd_uid": "4611040"},
     "Saskatoon": {
         "boundary_source": "statcan_csd",
@@ -769,6 +831,36 @@ CITY_BOUNDARY_HINTS: dict[str, dict[str, str]] = {
     "Santa Ana": {"state": "06"},
     "Salt Lake City": {"state": "49"},
     "South San Francisco": {"state": "06", "boundary_source": "south_sf_arcgis"},
+    "Kelowna": {
+        "boundary_source": "statcan_csd",
+        "csd_name": "Kelowna",
+        "prname": "British Columbia / Colombie-Britannique",
+        "csd_uid": "5935010",
+    },
+    "Kamloops": {
+        "boundary_source": "statcan_csd",
+        "csd_name": "Kamloops",
+        "prname": "British Columbia / Colombie-Britannique",
+        "csd_uid": "5933042",
+    },
+    "Prince George": {
+        "boundary_source": "statcan_csd",
+        "csd_name": "Prince George",
+        "prname": "British Columbia / Colombie-Britannique",
+        "csd_uid": "5953023",
+    },
+    "Penticton": {
+        "boundary_source": "statcan_csd",
+        "csd_name": "Penticton",
+        "prname": "British Columbia / Colombie-Britannique",
+        "csd_uid": "5907041",
+    },
+    "Maple Ridge": {
+        "boundary_source": "statcan_csd",
+        "csd_name": "Maple Ridge",
+        "prname": "British Columbia / Colombie-Britannique",
+        "csd_uid": "5915075",
+    },
     "Vancouver BC": {"boundary_source": "vancouver_bc_ods"},
     "Richmond BC": {"boundary_source": "richmond_bc_arcgis"},
     "Vancouver WA": {"state": "53", "basename": "Vancouver"},
@@ -889,7 +981,7 @@ OFFICIAL_DATA_UNAVAILABLE_CITIES: dict[str, str] = {
 BOUNDARY_CACHE_ROOT = REFERENCE_DIR / "boundaries"
 BOUNDARY_CATALOG_PATH = REFERENCE_DIR / "boundary_catalog.v1.json"
 COVERAGE_STATUS_REGISTRY_PATH = REFERENCE_DIR / "coverage_status_registry.v1.json"
-CANADIAN_REGION_IDS = {"bc", "mb", "ns", "on", "qc", "sk"}
+CANADIAN_REGION_IDS = {"ab", "bc", "mb", "nb", "ns", "on", "qc", "sk"}
 
 UW_SUPPLEMENTAL_PATH = SUPPLEMENTAL_DIR / "uw_prunus_overpass.json"
 UW_FEATURED_AREA_REFERENCE_PATH = REFERENCE_DIR / "uw_featured_area_reference.v1.json"
@@ -2487,6 +2579,7 @@ def classify_with_common_hint(
         return None
 
     hint = normalize_lookup_text(common_name)
+    has_apple_token = hint == "apple" or hint.startswith("apple ") or hint.endswith(" apple") or " apple " in hint
     if "cherry" in hint:
         return "cherry"
     if "plum" in hint:
@@ -2495,13 +2588,14 @@ def classify_with_common_hint(
         return "peach"
     if "magnolia" in hint:
         return "magnolia"
-    if "crabapple" in hint or "crab apple" in hint:
+    if "crabapple" in hint or "crab apple" in hint or has_apple_token:
         return "crabapple"
     return None
 
 
 def tree_hint_species_group(common_name: str | None) -> str | None:
     hint = normalize_lookup_text(common_name)
+    has_apple_token = hint == "apple" or hint.startswith("apple ") or hint.endswith(" apple") or " apple " in hint
     if "cherry" in hint:
         return "cherry"
     if "plum" in hint:
@@ -2510,7 +2604,7 @@ def tree_hint_species_group(common_name: str | None) -> str | None:
         return "peach"
     if "magnolia" in hint:
         return "magnolia"
-    if "crabapple" in hint or "crab apple" in hint:
+    if "crabapple" in hint or "crab apple" in hint or has_apple_token:
         return "crabapple"
     return None
 
@@ -6779,9 +6873,14 @@ def main() -> int:
     region_size_summary: list[dict[str, Any]] = []
     extra_output_names: list[str] = []
     country_by_region = {
+        "ab": "Canada",
         "bc": "Canada",
+        "mb": "Canada",
+        "nb": "Canada",
+        "ns": "Canada",
         "on": "Canada",
         "qc": "Canada",
+        "sk": "Canada",
     }
     display_name_overrides = {
         "Arlington": "Arlington County",

@@ -1,6 +1,6 @@
 # City Coverage Tracker
 
-Last updated: 2026-03-26 (America/Los_Angeles)
+Last updated: 2026-03-27 (America/Los_Angeles)
 
 ## Review Order Before Any City Task
 1. Review `A2` first. Those cities are the highest publish priority.
@@ -46,6 +46,26 @@ Current state: no cities are parked in `A2` right now.
 | ✅ | Peterborough | 531 | Official jurisdiction boundary | Official City of Peterborough public tree inventory ArcGIS app layer integrated after restricting to `STATUS = 'Active'` and `OWNERSHIP = 'City'` and clipping to the official Statistics Canada CSD boundary |
 | ✅ | Whitby | 468 | Official jurisdiction boundary | Official Town of Whitby public tree inventory ArcGIS layer integrated with the official Statistics Canada CSD boundary |
 | ✅ | Waterloo | 378 | Official jurisdiction boundary | Official City of Waterloo public street-tree ArcGIS layer integrated after restricting to `STATUS = 'Existing'` |
+| ✅ | Calgary | 41,914 | Official jurisdiction boundary | Official City of Calgary `Public Trees` ArcGIS layer integrated after restricting to `LIFE_CYCLE_STATUS = 'ACTIVE'` and clipping to the official Statistics Canada CSD boundary |
+| ✅ | St. Albert | 2,948 | Official jurisdiction boundary | Official City of St. Albert public tree inventory ArcGIS layer integrated with the official Statistics Canada CSD boundary |
+| ✅ | Thunder Bay | 2,746 | Official jurisdiction boundary | Official City of Thunder Bay public trees ArcGIS layer integrated after restricting to `TREE_CYCLE = 'TREE'` and clipping to the official Statistics Canada CSD boundary |
+| ✅ | Lethbridge | 2,119 | Official jurisdiction boundary | Official City of Lethbridge public trees ArcGIS layer integrated after restricting to active rows and clipping to the official Statistics Canada CSD boundary |
+| ✅ | Maple Ridge | 1,905 | Official jurisdiction boundary | Official City of Maple Ridge public street-tree ArcGIS layer integrated after restricting to `Status = 'Existing'` and clipping to the official Statistics Canada CSD boundary |
+| ✅ | Kamloops | 1,453 | Official jurisdiction boundary | Official City of Kamloops public parks tree ArcGIS layer integrated after restricting to `OWNERTYPE = 'PUBLIC'` and clipping to the official Statistics Canada CSD boundary |
+| ✅ | Kingston | 1,067 | Official jurisdiction boundary | Official City of Kingston `City Owned Trees` ArcGIS layer integrated after restricting to `OWNERSHIP = 'Municipal'` and clipping to the official Statistics Canada CSD boundary |
+| ✅ | Chestermere | 973 | Official jurisdiction boundary | Official City of Chestermere public trees ArcGIS layer integrated after restricting to active rows and clipping to the official Statistics Canada CSD boundary |
+| ✅ | Okotoks | 940 | Official jurisdiction boundary | Official Town of Okotoks public tree inventory ArcGIS layer integrated after restricting to established rows and clipping to the official Statistics Canada CSD boundary |
+| ✅ | Ajax | 793 | Official jurisdiction boundary | Official Town of Ajax public town-owned trees ArcGIS layer integrated after restricting to `STATUS = 'TREE'` and clipping to the official Statistics Canada CSD boundary |
+| ✅ | Niagara Falls | 622 | Official jurisdiction boundary | Official City of Niagara Falls public tree inventory ArcGIS layer integrated after restricting to `AssetOwnership = 'CITY OF NIAGARA FALLS'` and clipping to the official Statistics Canada CSD boundary |
+| ✅ | Barrie | 417 | Official jurisdiction boundary | Official City of Barrie public tree ArcGIS layer integrated after restricting to `TREE_STATUS = 'ACTIVE'` and clipping to the official Statistics Canada CSD boundary |
+| ✅ | Fredericton | 391 | Official jurisdiction boundary | Official City of Fredericton public tree inventory ArcGIS layer integrated with the official Statistics Canada CSD boundary |
+| ✅ | Moncton | 354 | Official jurisdiction boundary | Official City of Moncton public trees ArcGIS layer integrated using the public `BOTNAME` blossom-code mapping and clipped to the official Statistics Canada CSD boundary |
+| ✅ | Prince George | 350 | Official jurisdiction boundary | Official City of Prince George public trees ArcGIS layer integrated after restricting to active city-owned rows and clipping to the official Statistics Canada CSD boundary |
+| ✅ | Welland | 209 | Official jurisdiction boundary | Official City of Welland public trees ArcGIS layer integrated with the official Statistics Canada CSD boundary |
+| ✅ | Kelowna | 146 | Official jurisdiction boundary | Official City of Kelowna public tree inventory ArcGIS layer integrated after restricting to active rows and clipping to the official Statistics Canada CSD boundary |
+| ✅ | Airdrie | 73 | Official jurisdiction boundary | Official City of Airdrie public edible trees ArcGIS layer integrated after restricting to active blossom rows and clipping to the official Statistics Canada CSD boundary |
+| ✅ | Penticton | 69 | Official jurisdiction boundary | Official City of Penticton public trees ArcGIS layer integrated after restricting to active rows and clipping to the official Statistics Canada CSD boundary |
+| ✅ | Gatineau | 1 | Official jurisdiction boundary | Official National Capital Commission `Remarkable Trees` ArcGIS layer clipped to the official Gatineau Statistics Canada CSD boundary |
 | ✅ | Denver | 19,900 | Official jurisdiction boundary | Official City and County of Denver `Public Tree Inventory` ArcGIS layer integrated from the city open-data portal and official jurisdiction boundary |
 | ✅ | Boston | 4,488 | Official jurisdiction boundary | Official Analyze Boston `BPRD Trees` download integrated; includes both street and park trees published by Boston Parks and Recreation |
 | ✅ | Belmont | 221 | Official jurisdiction boundary | Official Town of Belmont public TreeKeeper inventory integrated with the official jurisdiction boundary |
@@ -449,6 +469,14 @@ These cities are not in `A2` yet because the official point-tree source is still
 - Integrated `Saskatoon` from the official City of Saskatoon public tree inventory ArcGIS layer after restricting to the active city-owned `Trees` sublayer rows.
 - Integrated `Halifax` from the official Halifax Regional Municipality `Public Trees` ArcGIS layer and added a reusable official HRM polygon path through the published `NSPW HRM Service Exchange Boundary (2022)` service.
 - Integrated `Winnipeg` from the official City of Winnipeg `Tree Inventory` SODA dataset and clipped the resulting blossom rows to the official Statistics Canada CSD boundary.
+
+## March 2026 Canada 20-City Expansion
+- Integrated `Ajax`, `Barrie`, `Kingston`, `Niagara Falls`, `Thunder Bay`, and `Welland` from official Ontario ArcGIS tree inventories and clipped them to the official Statistics Canada CSD boundaries.
+- Added reusable `AB` and `NB` region publishing support plus Statistics Canada 2024 Census Subdivision boundary hints so Alberta and New Brunswick ArcGIS cities can reuse the same official-jurisdiction clipping path.
+- Integrated `Calgary`, `St. Albert`, `Chestermere`, `Okotoks`, `Lethbridge`, and `Airdrie` from official Alberta public ArcGIS tree layers.
+- Integrated `Kelowna`, `Kamloops`, `Prince George`, `Penticton`, and `Maple Ridge` from official British Columbia public ArcGIS tree layers and clipped them to official Statistics Canada CSD boundaries.
+- Integrated `Fredericton` and `Moncton` from official New Brunswick ArcGIS tree inventories; `Moncton` required a small public `BOTNAME` blossom-code mapping because the public layer does not expose readable species text.
+- Integrated `Gatineau` from the official National Capital Commission `Remarkable Trees` ArcGIS layer after clipping to the official Gatineau Statistics Canada CSD boundary.
 
 ## March 2026 East Coast / Southern California Follow-up
 - Rechecked `Alexandria, VA`; official city urban-forestry and GIS materials still do not expose a verified public single-tree inventory, so it remains gray coverage.

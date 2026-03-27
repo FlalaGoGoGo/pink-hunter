@@ -1,6 +1,6 @@
 # City ETL Methods
 
-Last updated: 2026-03-26 (America/Los_Angeles)
+Last updated: 2026-03-27 (America/Los_Angeles)
 
 ## Purpose
 - Record how each covered city is ingested so future species expansion can reuse the same pipeline.
@@ -207,6 +207,26 @@ Last updated: 2026-03-26 (America/Los_Angeles)
 | Waterloo | ArcGIS FeatureServer | `LATIN_NAME`, `COM_NAME`, `STATUS` | ArcGIS point geometry | Official City of Waterloo public street-tree ArcGIS layer; rows are restricted to `STATUS = 'Existing'` before blossom classification |
 | Whitby | ArcGIS FeatureServer | `LATIN_NAME`, `COMMON_NAME` | ArcGIS point geometry | Official Town of Whitby public tree inventory ArcGIS layer |
 | Windsor | ArcGIS MapServer | `species`, `status` | ArcGIS point geometry | Official City of Windsor `City Trees In Park` and `City Trees In Right Of Way` layers are loaded separately, restricted to `status = 'ACTIVE'`, and then merged into one city result |
+| Ajax | ArcGIS MapServer | `TYPE`, `STATUS` | ArcGIS point geometry | Official Town of Ajax `Town Owned Trees` layer; rows are restricted to `STATUS = 'TREE'` before blossom classification |
+| Barrie | ArcGIS MapServer | `GENUS` + `SPECIES`, `COMMONNAME`, `TREE_STATUS` | ArcGIS point geometry | Official City of Barrie public tree layer; rows are restricted to `TREE_STATUS = 'ACTIVE'` before blossom classification |
+| Kingston | ArcGIS FeatureServer | `SCIENTIFIC_NAME`, `COMMON_NAME`, `OWNERSHIP` | ArcGIS point geometry | Official City of Kingston `City Owned Trees` layer; rows are restricted to `OWNERSHIP = 'Municipal'` before blossom classification |
+| Niagara Falls | ArcGIS FeatureServer | `TreeSpecies`, `AssetOwnership` | ArcGIS point geometry | Official City of Niagara Falls trees inventory; rows are restricted to `AssetOwnership = 'CITY OF NIAGARA FALLS'` before blossom classification |
+| Welland | ArcGIS MapServer | `Genus` + `Species`, `Species` | ArcGIS point geometry | Official City of Welland public trees layer; classification uses both the public genus and species text |
+| Thunder Bay | ArcGIS FeatureServer | `COMMON`, `TREE_CYCLE` | ArcGIS point geometry | Official City of Thunder Bay public trees layer; rows are restricted to `TREE_CYCLE = 'TREE'`, and classification relies on the public common-name field because the public botanical abbreviations are not consistently expanded |
+| Calgary | ArcGIS FeatureServer | `GENUS` + `SPECIES`, `COMMON_NAME`, `LIFE_CYCLE_STATUS` | ArcGIS point geometry | Official City of Calgary `Public Trees` layer; rows are restricted to `LIFE_CYCLE_STATUS = 'ACTIVE'` before blossom classification |
+| St. Albert | ArcGIS FeatureServer | `LatinName`, `SpeciesCommon` | ArcGIS point geometry | Official City of St. Albert public tree inventory ArcGIS layer |
+| Chestermere | ArcGIS FeatureServer | `Species_Scientific`, `Species`, `TreeStatus` | ArcGIS point geometry | Official City of Chestermere public trees ArcGIS layer; rows are restricted to `TreeStatus = 'Active'` before blossom classification |
+| Okotoks | ArcGIS FeatureServer | `Tree_Speci`, `Tree_XXXX` | ArcGIS point geometry | Official Town of Okotoks public tree inventory ArcGIS layer; rows are restricted to `Tree_XXXX = 'Established'` before blossom classification |
+| Lethbridge | ArcGIS MapServer | `genus` + `species`, `cultivar`, `status` | ArcGIS point geometry | Official City of Lethbridge public trees layer; rows are restricted to `status = 'Active'`, and cultivar text is retained as the common-name fallback for ornamental selections |
+| Airdrie | ArcGIS MapServer | `COMMENTS_1`, `COMMON_NAME`, `ASSETSTATUS` | ArcGIS point geometry | Official City of Airdrie public edible-trees layer; rows are restricted to `ASSETSTATUS = 'Active'`, and classification relies on the published cultivar/common text because no cleaner public scientific field is exposed |
+| Kelowna | ArcGIS MapServer | `Genus` + `Species`, `CommonName`, `Status` | ArcGIS point geometry | Official City of Kelowna public tree inventory ArcGIS layer; rows are restricted to `Status = 'A'` before blossom classification |
+| Kamloops | ArcGIS MapServer | `COMMONFULLNAME`, `OWNERTYPE` | ArcGIS point geometry | Official City of Kamloops public parks tree layer; rows are restricted to `OWNERTYPE = 'PUBLIC'` before blossom classification |
+| Prince George | ArcGIS FeatureServer | `GenusName` + `SpeciesName`, `CommonName`, `LifeCycleStatus`, `AssetOwner` | ArcGIS point geometry | Official City of Prince George public trees ArcGIS layer; rows are restricted to active city-owned trees before blossom classification |
+| Penticton | ArcGIS FeatureServer | `GENUS` + `SPECIES`, `Status` | ArcGIS point geometry | Official City of Penticton public trees ArcGIS layer; rows are restricted to `Status = 'ACT'` before blossom classification |
+| Maple Ridge | ArcGIS MapServer | `Genus` + `Species`, `CommonName`, `Status` | ArcGIS point geometry | Official City of Maple Ridge public street-tree ArcGIS layer; rows are restricted to `Status = 'Existing'` before blossom classification |
+| Fredericton | ArcGIS FeatureServer | `Genus_Spec`, `COMMON_NAM` | ArcGIS point geometry | Official City of Fredericton public tree inventory ArcGIS layer |
+| Moncton | ArcGIS FeatureServer | public `BOTNAME` codes mapped into synthetic `PH_SCIENTIFIC_NAME` / `PH_COMMON_NAME` fields | ArcGIS point geometry | Official City of Moncton public trees ArcGIS layer; ETL applies a small public blossom-code mapping because the published layer exposes only short species codes |
+| Gatineau | ArcGIS FeatureServer | `SPECIES`, `NAME_EN`, `NAME_FR` | ArcGIS point geometry | Official National Capital Commission `Remarkable Trees` layer; blossom rows are clipped to the official Gatineau Statistics Canada CSD boundary before publish |
 | Montreal | Downloaded CSV | `Essence_latin`, `Essence_ang`, `Essence_fr` | direct `Longitude` / `Latitude` columns | Official Ville de Montréal tree CSV; boundary is assembled by merging arrondissement polygons from the official administrative-limits dataset |
 | Halifax | ArcGIS FeatureServer | `SP_SCIEN`, `SP_COMM`, `OWNER` | ArcGIS point geometry | Official Halifax Regional Municipality `Public Trees` layer; rows are restricted to `OWNER = 'HRM'`, and the jurisdiction boundary comes from the official `NSPW HRM Service Exchange Boundary (2022)` polygon |
 | Saskatoon | ArcGIS MapServer | `Latin_Name`, `Common_Name`, `Status`, `Ownership` | ArcGIS point geometry | Official City of Saskatoon public tree inventory layer; rows are restricted to `Status = 1` and `Ownership = 1` before blossom classification |

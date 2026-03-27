@@ -1,8 +1,130 @@
 {
-  "generated_at": "2026-03-12T19:38:26.573144+00:00",
+  "generated_at": "2026-03-27T18:20:28.682878+00:00",
   "region": "qc",
   "strategy": "area_shard",
   "items": [
+    {
+      "jurisdiction": "Gatineau",
+      "slug": "gatineau",
+      "display_name": "Gatineau",
+      "jurisdiction_type": "city",
+      "state_province": "QC",
+      "country": "Canada",
+      "bounds": [
+        [
+          -75.76182248015238,
+          45.439658927302986
+        ],
+        [
+          -75.76182248015238,
+          45.439658927302986
+        ]
+      ],
+      "tree_count": 1,
+      "zip_codes": [
+        "None"
+      ],
+      "species_counts": {
+        "cherry": 0,
+        "plum": 0,
+        "peach": 0,
+        "magnolia": 0,
+        "crabapple": 1
+      },
+      "ownership_counts": {
+        "public": 1,
+        "private": 0,
+        "unknown": 0
+      },
+      "species_ownership_counts": {
+        "cherry": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        },
+        "plum": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        },
+        "peach": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        },
+        "magnolia": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        },
+        "crabapple": {
+          "public": 1,
+          "private": 0,
+          "unknown": 0
+        }
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "gatineau-001",
+          "bounds": [
+            [
+              -75.76182248015238,
+              45.439658927302986
+            ],
+            [
+              -75.76182248015238,
+              45.439658927302986
+            ]
+          ],
+          "data_path": "/data/trees.qc.area.gatineau.v2.geojson",
+          "tree_count": 1,
+          "ownership_counts": {
+            "public": 1,
+            "private": 0,
+            "unknown": 0
+          },
+          "species_counts": {
+            "cherry": 0,
+            "plum": 0,
+            "peach": 0,
+            "magnolia": 0,
+            "crabapple": 1
+          },
+          "species_ownership_counts": {
+            "cherry": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            },
+            "plum": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            },
+            "peach": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            },
+            "magnolia": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            },
+            "crabapple": {
+              "public": 1,
+              "private": 0,
+              "unknown": 0
+            }
+          },
+          "raw_bytes": 606,
+          "gzip_bytes": 357
+        }
+      ]
+    },
     {
       "jurisdiction": "Montreal",
       "slug": "montreal",

@@ -1,0 +1,251 @@
+{
+  "generated_at": "2026-03-27T18:20:28.682878+00:00",
+  "region": "nb",
+  "strategy": "area_shard",
+  "items": [
+    {
+      "jurisdiction": "Fredericton",
+      "slug": "fredericton",
+      "display_name": "Fredericton",
+      "jurisdiction_type": "city",
+      "state_province": "NB",
+      "country": "Canada",
+      "bounds": [
+        [
+          -66.76831006347986,
+          45.901164837531596
+        ],
+        [
+          -66.57422264458177,
+          46.016667179762685
+        ]
+      ],
+      "tree_count": 391,
+      "zip_codes": [
+        "None"
+      ],
+      "species_counts": {
+        "cherry": 1,
+        "plum": 2,
+        "peach": 0,
+        "magnolia": 1,
+        "crabapple": 387
+      },
+      "ownership_counts": {
+        "public": 391,
+        "private": 0,
+        "unknown": 0
+      },
+      "species_ownership_counts": {
+        "cherry": {
+          "public": 1,
+          "private": 0,
+          "unknown": 0
+        },
+        "plum": {
+          "public": 2,
+          "private": 0,
+          "unknown": 0
+        },
+        "peach": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        },
+        "magnolia": {
+          "public": 1,
+          "private": 0,
+          "unknown": 0
+        },
+        "crabapple": {
+          "public": 387,
+          "private": 0,
+          "unknown": 0
+        }
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "fredericton-001",
+          "bounds": [
+            [
+              -66.76831006347986,
+              45.901164837531596
+            ],
+            [
+              -66.57422264458177,
+              46.016667179762685
+            ]
+          ],
+          "data_path": "/data/trees.nb.area.fredericton.v2.geojson",
+          "tree_count": 391,
+          "ownership_counts": {
+            "public": 391,
+            "private": 0,
+            "unknown": 0
+          },
+          "species_counts": {
+            "cherry": 1,
+            "plum": 2,
+            "peach": 0,
+            "magnolia": 1,
+            "crabapple": 387
+          },
+          "species_ownership_counts": {
+            "cherry": {
+              "public": 1,
+              "private": 0,
+              "unknown": 0
+            },
+            "plum": {
+              "public": 2,
+              "private": 0,
+              "unknown": 0
+            },
+            "peach": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            },
+            "magnolia": {
+              "public": 1,
+              "private": 0,
+              "unknown": 0
+            },
+            "crabapple": {
+              "public": 387,
+              "private": 0,
+              "unknown": 0
+            }
+          },
+          "raw_bytes": 200854,
+          "gzip_bytes": 9911
+        }
+      ]
+    },
+    {
+      "jurisdiction": "Moncton",
+      "slug": "moncton",
+      "display_name": "Moncton",
+      "jurisdiction_type": "city",
+      "state_province": "NB",
+      "country": "Canada",
+      "bounds": [
+        [
+          -64.8830168436148,
+          46.05745948964553
+        ],
+        [
+          -64.70829517552106,
+          46.15091913632983
+        ]
+      ],
+      "tree_count": 354,
+      "zip_codes": [
+        "None"
+      ],
+      "species_counts": {
+        "cherry": 60,
+        "plum": 0,
+        "peach": 0,
+        "magnolia": 2,
+        "crabapple": 292
+      },
+      "ownership_counts": {
+        "public": 354,
+        "private": 0,
+        "unknown": 0
+      },
+      "species_ownership_counts": {
+        "cherry": {
+          "public": 60,
+          "private": 0,
+          "unknown": 0
+        },
+        "plum": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        },
+        "peach": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        },
+        "magnolia": {
+          "public": 2,
+          "private": 0,
+          "unknown": 0
+        },
+        "crabapple": {
+          "public": 292,
+          "private": 0,
+          "unknown": 0
+        }
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "moncton-001",
+          "bounds": [
+            [
+              -64.8830168436148,
+              46.05745948964553
+            ],
+            [
+              -64.70829517552106,
+              46.15091913632983
+            ]
+          ],
+          "data_path": "/data/trees.nb.area.moncton.v2.geojson",
+          "tree_count": 354,
+          "ownership_counts": {
+            "public": 354,
+            "private": 0,
+            "unknown": 0
+          },
+          "species_counts": {
+            "cherry": 60,
+            "plum": 0,
+            "peach": 0,
+            "magnolia": 2,
+            "crabapple": 292
+          },
+          "species_ownership_counts": {
+            "cherry": {
+              "public": 60,
+              "private": 0,
+              "unknown": 0
+            },
+            "plum": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            },
+            "peach": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            },
+            "magnolia": {
+              "public": 2,
+              "private": 0,
+              "unknown": 0
+            },
+            "crabapple": {
+              "public": 292,
+              "private": 0,
+              "unknown": 0
+            }
+          },
+          "raw_bytes": 172580,
+          "gzip_bytes": 9182
+        }
+      ]
+    }
+  ]
+}
