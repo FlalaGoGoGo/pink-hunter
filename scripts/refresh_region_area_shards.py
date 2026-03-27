@@ -29,6 +29,18 @@ from etl.build_data import (  # noqa: E402
 )
 
 
+DISPLAY_NAME_OVERRIDES = {
+    "Arlington": "Arlington County",
+    "Cambridge ON": "Cambridge",
+    "Richmond BC": "Richmond",
+    "Vancouver WA": "Vancouver",
+}
+
+
+def display_name_for_jurisdiction(jurisdiction: str) -> str:
+    return DISPLAY_NAME_OVERRIDES.get(jurisdiction, jurisdiction)
+
+
 def normalize_publish_area_filenames(data_dir: Path, region_id: str) -> None:
     bad_name_pattern = re.compile(
         rf"^(trees\.{re.escape(region_id)}\.area\.[a-z0-9-]+(?:\.shard-\d{{3}})?\.v2) (?P<copy_num>\d+)\.geojson$"
@@ -140,7 +152,7 @@ def write_region_area_shards(data_dir: Path, region_entry: dict[str, object], ge
             {
                 "jurisdiction": jurisdiction,
                 "slug": area_slug,
-                "display_name": "Arlington County" if jurisdiction == "Arlington" else ("Richmond" if jurisdiction == "Richmond BC" else ("Vancouver" if jurisdiction == "Vancouver WA" else jurisdiction)),
+                "display_name": display_name_for_jurisdiction(jurisdiction),
                 "jurisdiction_type": "county" if jurisdiction == "Arlington" or jurisdiction.endswith(" County") else "city",
                 "state_province": region_id.upper(),
                 "country": "Canada" if region_id in {"bc", "on", "qc"} else "United States",

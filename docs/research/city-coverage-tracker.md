@@ -28,6 +28,16 @@ Current state: no cities are parked in `A2` right now.
 | ✅ | Philadelphia | 17,717 | Official jurisdiction boundary | Official Philadelphia Parks & Recreation `PPR Tree Inventory 2025` layer integrated from the city's ArcGIS/metadata catalog |
 | ✅ | Montreal | 16,258 | Official jurisdiction boundary | Official Ville de Montréal `Arbres publics sur le territoire de la Ville` CSV integrated; official boundary is assembled from arrondissement polygons |
 | ✅ | Ottawa | 12,913 | Official jurisdiction boundary | Official City of Ottawa `Tree Inventory / Inventaire des arbres` ArcGIS layer integrated with blossom-side server filtering and official city boundary |
+| ✅ | Hamilton | 7,288 | Official jurisdiction boundary | Official City of Hamilton `Public Tree Inventory` ArcGIS layer integrated after restricting to `STATUS = 'Existing'` and clipping to the official Statistics Canada CSD boundary |
+| ✅ | London | 4,708 | Official jurisdiction boundary | Official City of London `Status Active` tree inventory ArcGIS layer integrated with the official Statistics Canada CSD boundary |
+| ✅ | Windsor | 3,045 | Official jurisdiction boundary | Official City of Windsor `City Trees In Park` + `City Trees In Right Of Way` ArcGIS layers integrated and clipped to the official Statistics Canada CSD boundary |
+| ✅ | Cambridge ON | 1,940 | Official jurisdiction boundary | Official City of Cambridge, Ontario `Street Trees` open-data layer integrated after restricting to `STATUS = 'EXISTING'` |
+| ✅ | Guelph | 1,706 | Official jurisdiction boundary | Official City of Guelph public tree inventory ArcGIS layer integrated with common-name blossom filtering and the official Statistics Canada CSD boundary |
+| ✅ | Burlington | 1,621 | Official jurisdiction boundary | Official City of Burlington `City Owned Trees` ArcGIS layer integrated after restricting to `STATUS = 'Alive'` |
+| ✅ | Oakville | 1,487 | Official jurisdiction boundary | Official Town of Oakville forestry ArcGIS layer integrated after parsing mixed common/scientific `SPECIES` text and restricting to `STATUS = 'EXISTING'` |
+| ✅ | Kitchener | 1,213 | Official jurisdiction boundary | Official City of Kitchener tree inventory ArcGIS layer integrated after restricting to `STATUS = 'ACTIVE'` |
+| ✅ | Whitby | 468 | Official jurisdiction boundary | Official Town of Whitby public tree inventory ArcGIS layer integrated with the official Statistics Canada CSD boundary |
+| ✅ | Waterloo | 378 | Official jurisdiction boundary | Official City of Waterloo public street-tree ArcGIS layer integrated after restricting to `STATUS = 'Existing'` |
 | ✅ | Denver | 19,900 | Official jurisdiction boundary | Official City and County of Denver `Public Tree Inventory` ArcGIS layer integrated from the city open-data portal and official jurisdiction boundary |
 | ✅ | Boston | 4,488 | Official jurisdiction boundary | Official Analyze Boston `BPRD Trees` download integrated; includes both street and park trees published by Boston Parks and Recreation |
 | ✅ | Brookline | 1,064 | Official jurisdiction boundary | Official Town of Brookline public tree inventory ArcGIS layer integrated with the official jurisdiction boundary |
@@ -35,7 +45,7 @@ Current state: no cities are parked in `A2` right now.
 | ✅ | Longmeadow | 404 | Official jurisdiction boundary | Official Town of Longmeadow public tree inventory ArcGIS layer integrated with the official jurisdiction boundary |
 | ✅ | Pittsburgh | 3,691 | Official jurisdiction boundary | Official public Pittsburgh TreeKeeper inventory domain integrated; blossom names are parsed from `SITE_ATTR6` |
 | ✅ | Jersey City | 2,148 | Official jurisdiction boundary | Public Jersey City tree inventory service integrated from the city-referenced Urban Forests materials and official jurisdiction boundary |
-| ✅ | Cambridge | 1,954 | Official jurisdiction boundary | Official City of Cambridge `Street Trees` shapefile integrated; only current `SiteType = Tree` rows are included |
+| ✅ | Cambridge (MA) | 1,954 | Official jurisdiction boundary | Official City of Cambridge `Street Trees` shapefile integrated; only current `SiteType = Tree` rows are included |
 | ✅ | Groton | 100 | Official jurisdiction boundary | Official Town of Groton public tree inventory ArcGIS service integrated using the official town boundary from the Census county subdivision rather than the smaller Groton city place |
 | ✅ | Gaithersburg | 1,051 | Official jurisdiction boundary | Official City of Gaithersburg `Street Trees View` ArcGIS layer integrated with the official jurisdiction boundary |
 | ✅ | Garrett Park | 109 | Official jurisdiction boundary | Official Town of Garrett Park tree inventory integrated from the published ArcGIS web map featureCollection and clipped to the official jurisdiction boundary |
@@ -241,7 +251,7 @@ These cities are not in `A2` yet because the official point-tree source is still
 | ⚠️ | Burien | Not usable | Species values are internal codes (e.g. `ULFR`) without public mapping table |
 | ⚠️ | Lynnwood | Not usable yet | Official ArcGIS content found in this round was a South Lynnwood urban-forest project web map, not a citywide single-tree species inventory |
 | ⚠️ | Olympia | Not usable yet | Search turned up a 2007 street-tree layer owned by a non-city account; no current official city single-tree species layer was confirmed |
-| ⚠️ | Ontario | Not found yet | Official city site and GIS entry points reviewed in this round did not confirm a public citywide single-tree species inventory |
+| ⚠️ | Ontario (CA) | Not found yet | Official city site and GIS entry points reviewed in this round did not confirm a public citywide single-tree species inventory |
 | ⚠️ | Chicago | Official unavailable (gray coverage) | Official City of Chicago open-data and ArcGIS entry points reviewed in this round did not confirm a public citywide single-tree species inventory |
 | ⚠️ | Phoenix | Official unavailable (gray coverage) | Official City of Phoenix open-data CKAN catalog, ArcGIS entries, and urban-forest materials reviewed in this round did not confirm a public citywide single-tree species inventory |
 | ⚠️ | Detroit | Official unavailable (gray coverage) | Official Detroit open-data and ArcGIS Hub searches reviewed in this round did not confirm a public citywide single-tree species inventory |
@@ -368,7 +378,7 @@ These cities are not in `A2` yet because the official point-tree source is still
 - Integrated `New York City` from the official NYC Parks `2015 Street Tree Census - Tree Data` dataset on NYC Open Data.
 - Integrated `Philadelphia` from the official Philadelphia Parks & Recreation `PPR Tree Inventory 2025` layer.
 - Integrated `Pittsburgh` from the official public Pittsburgh TreeKeeper inventory domain.
-- Integrated `Cambridge` from the official City of Cambridge `Street Trees` shapefile download.
+- Integrated `Cambridge (MA)` from the official City of Cambridge `Street Trees` shapefile download.
 - Integrated `Boston` from the official Analyze Boston `BPRD Trees` download.
 - Integrated `Baltimore` from the official city forestry tree layer on `gis.baltimorecity.gov`.
 - Integrated `Jersey City` from the public tree inventory service referenced by the city's Urban Forests materials.
@@ -403,6 +413,11 @@ These cities are not in `A2` yet because the official point-tree source is still
 - Integrated `Montreal` from the official Ville de Montréal `Arbres publics sur le territoire de la Ville` CSV; the official jurisdiction boundary is assembled from arrondissement polygons.
 - Confirmed `Montgomery County, MD` should remain gray coverage because the official public `Tree Planting Locations` layer is a planting-program dataset, not a countywide single-tree inventory.
 - Added gray coverage for `Richmond BC` after confirming the official City of Richmond boundary but not a public citywide single-tree species inventory.
+
+## March 2026 Ontario ArcGIS Expansion
+- Integrated `Burlington`, `Cambridge ON`, `Guelph`, `Hamilton`, `Kitchener`, `London`, `Oakville`, `Waterloo`, `Whitby`, and `Windsor` from official Ontario ArcGIS tree inventories.
+- Added a reusable Statistics Canada 2024 Census Subdivision boundary path for Ontario municipalities so new Canadian ArcGIS cities can reuse the same official-jurisdiction clipping flow.
+- `Oakville` required parsing mixed common/scientific `SPECIES` text, and `Windsor` merges the official `City Trees In Park` and `City Trees In Right Of Way` layers into one city publish result.
 
 ## March 2026 East Coast / Southern California Follow-up
 - Rechecked `Alexandria, VA`; official city urban-forestry and GIS materials still do not expose a verified public single-tree inventory, so it remains gray coverage.

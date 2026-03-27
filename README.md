@@ -196,8 +196,18 @@ Live domain:
 <details>
 <summary>Ontario</summary>
 
+- Burlington
+- Cambridge ON
+- Guelph
+- Hamilton
+- Kitchener
+- London
+- Oakville
 - Ottawa
 - Toronto
+- Waterloo
+- Whitby
+- Windsor
 
 </details>
 
@@ -470,8 +480,18 @@ Live domain:
 <details>
 <summary>Ontario</summary>
 
+- Burlington: [City Owned Trees](https://www.arcgis.com/home/item.html?id=41412ef3188942c7abbe14035004273d)
+- Cambridge ON: [Street Trees](https://www.arcgis.com/home/item.html?id=93f699f0aeba49f1acb582cf26b90ed7)
+- Guelph: [TreeInventory](https://servicesdev.arcgis.com/LkFyxb9zDq7vAOAm/ArcGIS/rest/services/TreeInventory_Guelph/FeatureServer)
+- Hamilton: [Public Tree Inventory](https://open.hamilton.ca/datasets/08e50c6cbb2545b4897d613a817fa4d4_0/explore)
+- Kitchener: [Forestry Gallery](https://open-kitchenergis.opendata.arcgis.com/pages/forestry-gallery)
+- London: [Public_TreeInventory](https://maps.london.ca/arcgisa/rest/services/Public_TreeInventory/MapServer)
+- Oakville: [Public tree inventory](https://www.oakville.ca/home-environment/trees-woodlands/public-tree-inventory/)
 - Ottawa: [Canopy cover and tree inventory](https://ottawa.ca/en/canopy-cover-and-tree-inventory)
 - Toronto: [Street Tree Data](https://open.toronto.ca/dataset/street-tree-data/)
+- Waterloo: [Waterloo Street Trees](https://services1.arcgis.com/DwLTn0u9VBSZvUPe/ArcGIS/rest/services/Waterloo_Street_Trees/FeatureServer)
+- Whitby: [Whitby Tree Inventory](https://whitby.maps.arcgis.com/apps/instant/sidebar/index.html?appid=3e192ad13b7940b98684e8dadaa94c54)
+- Windsor: [City Trees In Park](https://mappmycity.ca/arcgis/rest/services/OpenDataServices/ParksEnvironment/MapServer/0), [City Trees In Right Of Way](https://mappmycity.ca/arcgis/rest/services/OpenDataServices/ParksEnvironment/MapServer/1)
 
 </details>
 

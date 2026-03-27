@@ -166,6 +166,7 @@ MONTREAL_DATASET_PAGE = "https://donnees.montreal.ca/fr/dataset/arbres"
 TORONTO_STREET_TREE_CSV = "https://ckan0.cf.opendata.inter.prod-toronto.ca/dataset/6ac4569e-fd37-4cbc-ac63-db3624c5f6a2/resource/b65cd31d-fabc-4222-83ef-8ddd11295d2b/download/street-tree-data-4326.csv"
 TORONTO_BOUNDARY_ZIP = "https://ckan0.cf.opendata.inter.prod-toronto.ca/dataset/841fb820-46d0-46ac-8dcb-d20f27e57bcc/resource/41bf97f0-da1a-46a9-ac25-5ce0078d6760/download/toronto-boundary-wgs84.zip"
 TORONTO_DATASET_PAGE = "https://open.toronto.ca/dataset/street-tree-data/"
+STATCAN_CSD_2024_LAYER = "https://geo.statcan.gc.ca/geo_wa/rest/services/2024/lcsd000a24s_e/MapServer/0"
 ZIP_LAYER = "https://services.arcgis.com/Ej0PsM5Aw677QF1W/arcgis/rest/services/ZIPCODE_AREA_113/FeatureServer/0"
 US_CENSUS_CITIES_LAYER = (
     "https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/Places_CouSub_ConCity_SubMCD/MapServer/18"
@@ -337,6 +338,16 @@ REGION_CITY_OVERRIDES: dict[str, str] = {
     "Salisbury": "nc",
     "Ottawa": "on",
     "Toronto": "on",
+    "Burlington": "on",
+    "Cambridge ON": "on",
+    "Guelph": "on",
+    "Hamilton": "on",
+    "Kitchener": "on",
+    "London": "on",
+    "Oakville": "on",
+    "Waterloo": "on",
+    "Whitby": "on",
+    "Windsor": "on",
     "Montreal": "qc",
     "Washington DC": "dc",
     "Burnaby": "bc",
@@ -629,8 +640,18 @@ CITY_BOUNDARY_HINTS: dict[str, dict[str, str]] = {
     "Fayetteville": {"state": "37"},
     "Providence": {"state": "44"},
     "Salisbury": {"state": "37"},
+    "Burlington": {"boundary_source": "statcan_csd", "csd_name": "Burlington", "prname": "Ontario", "csd_uid": "3524002"},
+    "Cambridge ON": {"boundary_source": "statcan_csd", "csd_name": "Cambridge", "prname": "Ontario", "csd_uid": "3530010"},
+    "Guelph": {"boundary_source": "statcan_csd", "csd_name": "Guelph", "prname": "Ontario", "csd_uid": "3523008"},
+    "Hamilton": {"boundary_source": "statcan_csd", "csd_name": "Hamilton", "prname": "Ontario", "csd_uid": "3525005"},
+    "Kitchener": {"boundary_source": "statcan_csd", "csd_name": "Kitchener", "prname": "Ontario", "csd_uid": "3530013"},
+    "London": {"boundary_source": "statcan_csd", "csd_name": "London", "prname": "Ontario", "csd_uid": "3539036"},
+    "Oakville": {"boundary_source": "statcan_csd", "csd_name": "Oakville", "prname": "Ontario", "csd_uid": "3524001"},
     "Ottawa": {"boundary_source": "ottawa_arcgis"},
     "Toronto": {"boundary_source": "toronto_zip"},
+    "Waterloo": {"boundary_source": "statcan_csd", "csd_name": "Waterloo", "prname": "Ontario", "csd_uid": "3530016"},
+    "Whitby": {"boundary_source": "statcan_csd", "csd_name": "Whitby", "prname": "Ontario", "csd_uid": "3518009"},
+    "Windsor": {"boundary_source": "statcan_csd", "csd_name": "Windsor", "prname": "Ontario", "csd_uid": "3537039"},
     "Montreal": {"boundary_source": "montreal_arrondissements_geojson"},
     "Washington DC": {"state": "11", "basename": "Washington"},
     "Portland": {"boundary_source": "portland_or_arcgis"},
@@ -2257,6 +2278,10 @@ def build_zip_index(
 
 
 def fetch_us_city_zip_index(city: str, *, state_id: str | None = None) -> list[dict[str, Any]]:
+    resolved_state_id = state_id or region_for_city(city)
+    if country_for_region(resolved_state_id) != "us":
+        return []
+
     geometry = load_city_boundary_geometry(city, state_id=state_id)
     if not geometry:
         return []
@@ -3428,6 +3453,42 @@ def fetch_special_city_boundary_feature(city: str) -> dict[str, Any] | None:
             city,
             {"type": "MultiPolygon", "coordinates": polygons},
             source="Ville de Montréal Données ouvertes",
+        )
+
+    if boundary_source == "statcan_csd":
+        csd_name = str(hint.get("csd_name", city)).strip()
+        prname = str(hint.get("prname", "")).strip()
+        csd_uid = str(hint.get("csd_uid", "")).strip()
+        where_parts: list[str] = []
+        if csd_uid:
+            escaped_csd_uid = csd_uid.replace("'", "''")
+            where_parts.append(f"CSDUID = '{escaped_csd_uid}'")
+        else:
+            escaped_csd_name = csd_name.replace("'", "''")
+            where_parts.append(f"CSDNAME = '{escaped_csd_name}'")
+        if prname:
+            escaped_prname = prname.replace("'", "''")
+            where_parts.append(f"PRNAME = '{escaped_prname}'")
+        payload = fetch_json(
+            f"{STATCAN_CSD_2024_LAYER}/query",
+            {
+                "where": " AND ".join(where_parts),
+                "outFields": "CSDNAME,CSDTYPE,PRNAME,CSDUID",
+                "returnGeometry": "true",
+                "outSR": "4326",
+                "f": "geojson",
+            },
+        )
+        features = payload.get("features", [])
+        if not features:
+            return None
+        geometry = features[0].get("geometry") or {}
+        if not geometry:
+            return None
+        return make_city_boundary_feature(
+            city,
+            geometry,
+            source="Statistics Canada 2024 Census Subdivision boundaries",
         )
 
     if boundary_source == "us_census_place":
@@ -6672,6 +6733,7 @@ def main() -> int:
     }
     display_name_overrides = {
         "Arlington": "Arlington County",
+        "Cambridge ON": "Cambridge",
         "Richmond BC": "Richmond",
         "Vancouver WA": "Vancouver",
     }

@@ -1,6 +1,6 @@
 {
   "version": "v2",
-  "generated_at": "2026-03-26T19:18:53.603558+00:00",
+  "generated_at": "2026-03-27T03:41:53.455511+00:00",
   "default_region": "wa",
   "coverage_rule": "official_jurisdiction_boundary_only",
   "coverage_skipped_cities": [
@@ -118,16 +118,16 @@
     "Yarrow Point"
   ],
   "coverage_official_unavailable_skipped_cities": [],
-  "source_count": 197,
-  "total_records": 2997286,
-  "included_records": 609186,
+  "source_count": 207,
+  "total_records": 3030850,
+  "included_records": 633040,
   "unknown_records": 1341624,
   "species_counts": {
-    "cherry": 202590,
-    "plum": 114816,
+    "cherry": 208660,
+    "plum": 115390,
     "peach": 7918,
-    "magnolia": 173438,
-    "crabapple": 110424
+    "magnolia": 176372,
+    "crabapple": 124700
   },
   "regions": [
     {
@@ -1065,8 +1065,8 @@
       "available": true,
       "bounds": [
         [
-          -79.6378558902,
-          43.5866509121
+          -83.1000680190438,
+          42.23479157060771
         ],
         [
           -75.26063675999347,
@@ -1075,27 +1075,37 @@
       ],
       "data_path": null,
       "coverage_path": "/data/coverage.on.v1.geojson",
-      "tree_count": 49215,
-      "city_count": 2,
+      "tree_count": 73069,
+      "city_count": 12,
       "cities": [
+        "Burlington",
+        "Cambridge ON",
+        "Guelph",
+        "Hamilton",
+        "Kitchener",
+        "London",
+        "Oakville",
         "Ottawa",
-        "Toronto"
+        "Toronto",
+        "Waterloo",
+        "Whitby",
+        "Windsor"
       ],
       "species_counts": {
-        "cherry": 33450,
-        "plum": 2281,
+        "cherry": 39520,
+        "plum": 2855,
         "peach": 470,
-        "magnolia": 2882,
-        "crabapple": 10132
+        "magnolia": 5816,
+        "crabapple": 24408
       },
       "ownership_groups": [
         "public"
       ],
-      "raw_bytes": 23542186,
-      "gzip_bytes": 1035181,
+      "raw_bytes": 35512911,
+      "gzip_bytes": 1615589,
       "warning_level": "none",
-      "aggregate_raw_bytes": 23542186,
-      "aggregate_gzip_bytes": 1035181,
+      "aggregate_raw_bytes": 35512911,
+      "aggregate_gzip_bytes": 1615589,
       "aggregate_warning_level": "none",
       "largest_shard_raw_bytes": 8587256,
       "largest_shard_gzip_bytes": 333237,
@@ -1105,8 +1115,8 @@
       "area_split": {
         "strategy": "area_shard",
         "index_path": "/data/trees.on.area-index.v2.json",
-        "area_count": 2,
-        "shard_count": 3,
+        "area_count": 12,
+        "shard_count": 13,
         "ready": true
       }
     },
@@ -3635,6 +3645,104 @@
       "state_province": "NY"
     },
     {
+      "jurisdiction": "Burlington",
+      "region": "on",
+      "tree_count": 1621,
+      "species_counts": {
+        "cherry": 776,
+        "plum": 6,
+        "peach": 0,
+        "magnolia": 120,
+        "crabapple": 719
+      },
+      "jurisdiction_type": "city",
+      "state_province": "ON"
+    },
+    {
+      "jurisdiction": "Cambridge ON",
+      "region": "on",
+      "tree_count": 1940,
+      "species_counts": {
+        "cherry": 99,
+        "plum": 427,
+        "peach": 0,
+        "magnolia": 156,
+        "crabapple": 1258
+      },
+      "jurisdiction_type": "city",
+      "state_province": "ON"
+    },
+    {
+      "jurisdiction": "Guelph",
+      "region": "on",
+      "tree_count": 1706,
+      "species_counts": {
+        "cherry": 530,
+        "plum": 59,
+        "peach": 0,
+        "magnolia": 70,
+        "crabapple": 1047
+      },
+      "jurisdiction_type": "city",
+      "state_province": "ON"
+    },
+    {
+      "jurisdiction": "Hamilton",
+      "region": "on",
+      "tree_count": 7288,
+      "species_counts": {
+        "cherry": 2307,
+        "plum": 12,
+        "peach": 0,
+        "magnolia": 1405,
+        "crabapple": 3564
+      },
+      "jurisdiction_type": "city",
+      "state_province": "ON"
+    },
+    {
+      "jurisdiction": "Kitchener",
+      "region": "on",
+      "tree_count": 1213,
+      "species_counts": {
+        "cherry": 59,
+        "plum": 25,
+        "peach": 0,
+        "magnolia": 29,
+        "crabapple": 1100
+      },
+      "jurisdiction_type": "city",
+      "state_province": "ON"
+    },
+    {
+      "jurisdiction": "London",
+      "region": "on",
+      "tree_count": 4708,
+      "species_counts": {
+        "cherry": 626,
+        "plum": 0,
+        "peach": 0,
+        "magnolia": 467,
+        "crabapple": 3615
+      },
+      "jurisdiction_type": "city",
+      "state_province": "ON"
+    },
+    {
+      "jurisdiction": "Oakville",
+      "region": "on",
+      "tree_count": 1487,
+      "species_counts": {
+        "cherry": 66,
+        "plum": 3,
+        "peach": 0,
+        "magnolia": 251,
+        "crabapple": 1167
+      },
+      "jurisdiction_type": "city",
+      "state_province": "ON"
+    },
+    {
       "jurisdiction": "Ottawa",
       "region": "on",
       "tree_count": 12913,
@@ -3658,6 +3766,48 @@
         "peach": 470,
         "magnolia": 2728,
         "crabapple": 42
+      },
+      "jurisdiction_type": "city",
+      "state_province": "ON"
+    },
+    {
+      "jurisdiction": "Waterloo",
+      "region": "on",
+      "tree_count": 378,
+      "species_counts": {
+        "cherry": 0,
+        "plum": 0,
+        "peach": 0,
+        "magnolia": 1,
+        "crabapple": 377
+      },
+      "jurisdiction_type": "city",
+      "state_province": "ON"
+    },
+    {
+      "jurisdiction": "Whitby",
+      "region": "on",
+      "tree_count": 468,
+      "species_counts": {
+        "cherry": 41,
+        "plum": 1,
+        "peach": 0,
+        "magnolia": 59,
+        "crabapple": 367
+      },
+      "jurisdiction_type": "city",
+      "state_province": "ON"
+    },
+    {
+      "jurisdiction": "Windsor",
+      "region": "on",
+      "tree_count": 3045,
+      "species_counts": {
+        "cherry": 1566,
+        "plum": 41,
+        "peach": 0,
+        "magnolia": 376,
+        "crabapple": 1062
       },
       "jurisdiction_type": "city",
       "state_province": "ON"
@@ -4546,6 +4696,15 @@
       "records_included": 1997
     },
     {
+      "name": "City Owned Trees",
+      "city": "Burlington",
+      "endpoint": "https://www.arcgis.com/home/item.html?id=41412ef3188942c7abbe14035004273d",
+      "last_edit_at": "",
+      "records_fetched": 1737,
+      "records_included": 1621,
+      "note": "Integrated from the official City of Burlington public urban-forestry tree layer after restricting to living trees."
+    },
+    {
       "name": "Trees",
       "city": "Camarillo",
       "endpoint": "https://services3.arcgis.com/EKquOdzev2aNwKyB/arcgis/rest/services/Trees/FeatureServer",
@@ -4562,6 +4721,15 @@
       "records_fetched": 42712,
       "records_included": 1954,
       "note": "Integrated from the official City of Cambridge street-tree shapefile download."
+    },
+    {
+      "name": "Street Trees",
+      "city": "Cambridge ON",
+      "endpoint": "https://www.arcgis.com/home/item.html?id=93f699f0aeba49f1acb582cf26b90ed7",
+      "last_edit_at": "",
+      "records_fetched": 2304,
+      "records_included": 1940,
+      "note": "Integrated from the official City of Cambridge, Ontario `Street Trees` open-data layer after restricting to `STATUS = 'EXISTING'`."
     },
     {
       "name": "OpenData Trees",
@@ -4939,6 +5107,15 @@
       "note": "Integrated from the official Town of Groton public tree inventory ArcGIS experience and service."
     },
     {
+      "name": "TreeInventory",
+      "city": "Guelph",
+      "endpoint": "https://servicesdev.arcgis.com/LkFyxb9zDq7vAOAm/ArcGIS/rest/services/TreeInventory_Guelph/FeatureServer",
+      "last_edit_at": "2022-08-31T18:12:08.238000+00:00",
+      "records_fetched": 1725,
+      "records_included": 1706,
+      "note": "Integrated from the official City of Guelph public tree inventory ArcGIS layer."
+    },
+    {
       "name": "Tree Points - All (view)",
       "city": "Hales Corners",
       "endpoint": "https://experience.arcgis.com/experience/b1d9ccfd3a2949728e5b445bfdc78935",
@@ -4946,6 +5123,15 @@
       "records_fetched": 1073,
       "records_included": 48,
       "note": "Integrated from the official Milwaukee County public tree viewer and official jurisdiction boundary clipping."
+    },
+    {
+      "name": "Public Tree Inventory",
+      "city": "Hamilton",
+      "endpoint": "https://open.hamilton.ca/datasets/08e50c6cbb2545b4897d613a817fa4d4_0/explore",
+      "last_edit_at": "2026-03-26T18:01:07.168000+00:00",
+      "records_fetched": 11600,
+      "records_included": 7288,
+      "note": "Integrated from the official City of Hamilton public tree inventory ArcGIS layer after restricting to `STATUS = 'Existing'`."
     },
     {
       "name": "TreeKeeper Inventory",
@@ -5045,6 +5231,15 @@
       "records_included": 3122
     },
     {
+      "name": "Tree Inventory",
+      "city": "Kitchener",
+      "endpoint": "https://open-kitchenergis.opendata.arcgis.com/pages/forestry-gallery",
+      "last_edit_at": "2026-03-14T09:14:32.285000+00:00",
+      "records_fetched": 1408,
+      "records_included": 1213,
+      "note": "Integrated from the official City of Kitchener tree inventory ArcGIS layer after restricting to `STATUS = 'ACTIVE'`."
+    },
+    {
       "name": "La Canada Flintridge Homepage Inventory",
       "city": "La Canada Flintridge",
       "endpoint": "https://services2.arcgis.com/yrktbS5Xw87hJQvs/arcgis/rest/services/LaCanadaFlintrid_Homepage_Inventory/FeatureServer",
@@ -5106,6 +5301,15 @@
       "records_fetched": 238,
       "records_included": 192,
       "note": "Integrated from the official City of Lodi public tree inventory and official jurisdiction boundary."
+    },
+    {
+      "name": "Status Active",
+      "city": "London",
+      "endpoint": "https://maps.london.ca/arcgisa/rest/services/Public_TreeInventory/MapServer",
+      "last_edit_at": "",
+      "records_fetched": 5596,
+      "records_included": 4708,
+      "note": "Integrated from the official City of London `Status Active` tree inventory ArcGIS layer."
     },
     {
       "name": "Tree Inv noedit",
@@ -5356,6 +5560,15 @@
       "last_edit_at": "2013-01-22T20:50:21+00:00",
       "records_fetched": 38613,
       "records_included": 3977
+    },
+    {
+      "name": "Parks Tree Forestry",
+      "city": "Oakville",
+      "endpoint": "https://www.oakville.ca/home-environment/trees-woodlands/public-tree-inventory/",
+      "last_edit_at": "",
+      "records_fetched": 4807,
+      "records_included": 1487,
+      "note": "Integrated from the official Town of Oakville forestry ArcGIS layer after restricting to `STATUS = 'EXISTING'` and parsing mixed common/scientific `SPECIES` text."
     },
     {
       "name": "TreeKeeper Inventory",
@@ -6022,6 +6235,15 @@
       "records_included": 16543
     },
     {
+      "name": "Waterloo Street Trees",
+      "city": "Waterloo",
+      "endpoint": "https://services1.arcgis.com/DwLTn0u9VBSZvUPe/ArcGIS/rest/services/Waterloo_Street_Trees/FeatureServer",
+      "last_edit_at": "2021-05-30T21:19:00.846000+00:00",
+      "records_fetched": 426,
+      "records_included": 378,
+      "note": "Integrated from the official City of Waterloo public street-tree ArcGIS layer after restricting to `STATUS = 'Existing'`."
+    },
+    {
       "name": "Tree Points - All (view)",
       "city": "Wauwatosa",
       "endpoint": "https://experience.arcgis.com/experience/b1d9ccfd3a2949728e5b445bfdc78935",
@@ -6085,6 +6307,15 @@
       "note": "Integrated from the official Westwood public TreeKeeper inventory and jurisdiction boundary."
     },
     {
+      "name": "Trees",
+      "city": "Whitby",
+      "endpoint": "https://whitby.maps.arcgis.com/apps/instant/sidebar/index.html?appid=3e192ad13b7940b98684e8dadaa94c54",
+      "last_edit_at": "2025-12-18T15:29:56.613000+00:00",
+      "records_fetched": 580,
+      "records_included": 468,
+      "note": "Integrated from the official Town of Whitby public tree inventory ArcGIS layer."
+    },
+    {
       "name": "Tree Points - All (view)",
       "city": "Whitefish Bay",
       "endpoint": "https://experience.arcgis.com/experience/b1d9ccfd3a2949728e5b445bfdc78935",
@@ -6092,6 +6323,15 @@
       "records_fetched": 156,
       "records_included": 6,
       "note": "Integrated from the official Milwaukee County public tree viewer and official jurisdiction boundary clipping."
+    },
+    {
+      "name": "City Trees In Park / City Trees In Right Of Way",
+      "city": "Windsor",
+      "endpoint": "https://citywindsor.ca/visitors/Maps/MappMyCity",
+      "last_edit_at": "",
+      "records_fetched": 3381,
+      "records_included": 3045,
+      "note": "Integrated from the official City of Windsor open-data tree layers and official jurisdiction boundary."
     },
     {
       "name": "TreeKeeper Inventory",

@@ -151,7 +151,7 @@ Last updated: 2026-03-26 (America/Los_Angeles)
 | New York City | SODA | `spc_latin`, `spc_common`, `zipcode`, `status` | lat/lon columns in dataset rows | Official NYC Parks street-tree census dataset; rows are restricted to `status = Alive` before blossom classification |
 | Philadelphia | ArcGIS FeatureServer | `tree_name` parsed by `parse_dash_species()` | ArcGIS point geometry | Official Philadelphia Parks & Recreation tree inventory layer; botanical/common names are packed into one uppercase text field |
 | Pittsburgh | TreeKeeper | `SITE_ATTR6` parsed by `parse_species_text()` | direct lon/lat or `SITE_GEOMETRY` JSON | Official public Pittsburgh TreeKeeper inventory domain; no public ownership field is published, so ownership is normalized to public |
-| Cambridge | Downloaded Shapefile | `Scientific`, `CommonName`, `Cultivar`, `SiteType` | shapefile points transformed to WGS84 | Official City of Cambridge street-tree shapefile; only current `SiteType = Tree` rows are published into the product |
+| Cambridge (MA) | Downloaded Shapefile | `Scientific`, `CommonName`, `Cultivar`, `SiteType` | shapefile points transformed to WGS84 | Official City of Cambridge street-tree shapefile; only current `SiteType = Tree` rows are published into the product |
 | Brookline | ArcGIS FeatureServer | `ScientificName`, `CommonName` | ArcGIS point geometry | Official Town of Brookline public tree inventory ArcGIS layer |
 | Dedham | ArcGIS MapServer | `Species_bot`, `Species_com` | ArcGIS point geometry | Official Town of Dedham public tree inventory; blossom rows are filtered server-side against the public botanical/common fields |
 | Longmeadow | ArcGIS FeatureServer | `Genus` + `Species`, `Tree_Type` | ArcGIS point geometry | Official Town of Longmeadow public tree inventory ArcGIS layer |
@@ -173,8 +173,18 @@ Last updated: 2026-03-26 (America/Los_Angeles)
 | Durham | ArcGIS FeatureServer | `genus` + `species`, `commonname`, `present` | ArcGIS point geometry | Official City of Durham `Trees & Planting Sites`; rows are restricted to `present = 'Tree'` before blossom classification |
 | Providence | SODA | `spp`, `the_geom` | GeoJSON point coordinates from `the_geom` | Official City of Providence `Providence Tree Dataset`; ETL synthesizes stable row ids from address/species/coordinates because the public export does not expose a single durable primary key |
 | Boston | Downloaded GeoJSON | `spp_bot`, `spp_com` | GeoJSON lon/lat coordinates from Analyze Boston | Official Analyze Boston `BPRD Trees` download; includes both street and park trees, so ownership is normalized to public city inventory |
+| Burlington | ArcGIS MapServer | `SPECIES_COMMONNAME`, `STATUS` | ArcGIS point geometry | Official City of Burlington `City Owned Trees` layer; rows are restricted to `STATUS = 'Alive'` before blossom classification |
+| Cambridge ON | ArcGIS MapServer | `BOTANICAL_NAME`, `COMMON_NAME`, `STATUS` | ArcGIS point geometry | Official City of Cambridge, Ontario `Street Trees` open-data layer; rows are restricted to `STATUS = 'EXISTING'` before blossom classification |
+| Guelph | ArcGIS FeatureServer | `SPECIES` | ArcGIS point geometry | Official City of Guelph public tree inventory ArcGIS layer; classification relies on common-name blossom filtering because the public layer does not expose a cleaner scientific field |
+| Hamilton | ArcGIS FeatureServer | `SPECIES_SCIENTIFIC`, `SPECIES_COMMON`, `STATUS` | ArcGIS point geometry | Official City of Hamilton `Public Tree Inventory`; rows are restricted to `STATUS = 'Existing'` before blossom classification |
+| Kitchener | ArcGIS FeatureServer | `SPECIES_LATIN`, `SPECIES_NAME`, `STATUS` | ArcGIS point geometry | Official City of Kitchener tree inventory ArcGIS layer; rows are restricted to `STATUS = 'ACTIVE'` before blossom classification |
+| London | ArcGIS MapServer | `Botanical`, `CommonName` | ArcGIS point geometry | Official City of London `Status Active` tree inventory sublayer; blossom rows are filtered server-side against the published botanical/common fields |
+| Oakville | ArcGIS MapServer | `SPECIES` parsed by `parse_dash_species()`, `STATUS` | ArcGIS point geometry | Official Town of Oakville forestry ArcGIS layer; the public `SPECIES` field packs common and scientific text together, so ETL parses the dash-delimited value and restricts rows to `STATUS = 'EXISTING'` |
 | Ottawa | ArcGIS MapServer | common-name classification from `SPECIES`, ownership from `OWNERSHIP` | ArcGIS point geometry already requested in `outSR=4326` | Official City of Ottawa tree layer is large, so ETL filters blossom-like common names (`cherry`, `plum`, `peach`, `magnolia`, `crabapple`, `apple`) server-side before classification |
 | Toronto | Downloaded CSV | `COMMON_NAME` from the official alternate WGS84 CSV | point geometry parsed from serialized `geometry` text | Official Toronto Open Data CSV is very large; ETL uses the smaller alternate CSV export and classifies by controlled common-name fallback rather than requiring botanical names |
+| Waterloo | ArcGIS FeatureServer | `LATIN_NAME`, `COM_NAME`, `STATUS` | ArcGIS point geometry | Official City of Waterloo public street-tree ArcGIS layer; rows are restricted to `STATUS = 'Existing'` before blossom classification |
+| Whitby | ArcGIS FeatureServer | `LATIN_NAME`, `COMMON_NAME` | ArcGIS point geometry | Official Town of Whitby public tree inventory ArcGIS layer |
+| Windsor | ArcGIS MapServer | `species`, `status` | ArcGIS point geometry | Official City of Windsor `City Trees In Park` and `City Trees In Right Of Way` layers are loaded separately, restricted to `status = 'ACTIVE'`, and then merged into one city result |
 | Montreal | Downloaded CSV | `Essence_latin`, `Essence_ang`, `Essence_fr` | direct `Longitude` / `Latitude` columns | Official Ville de Montréal tree CSV; boundary is assembled by merging arrondissement polygons from the official administrative-limits dataset |
 | Austin | SODA | `species`, `longtitude`, `latitude` with GeoJSON `geometry` fallback | numeric lon/lat when valid; otherwise point from the row `geometry` object | Official City of Austin `Tree Inventory` dataset; some blossom rows expose projected numeric coordinates, so ETL validates WGS84 ranges and falls back to the GeoJSON point when necessary |
 | Dallas | TreeKeeper | `SITE_ATTR1` parsed by `parse_species_text()` | direct `LONGITUDE` / `LATITUDE` with `SITE_GEOMETRY` fallback | Official City of Dallas public TreeKeeper inventory linked from the city forestry page |
@@ -194,7 +204,7 @@ Last updated: 2026-03-26 (America/Los_Angeles)
 3. Classify into one of the 5 product groups with `config/prunus_mapping.csv`.
 4. Recover missed ornamentals and derive card-ready detail labels with `config/blossom_subtypes.csv`.
 5. Canonicalize ownership into `public / private / unknown`.
-6. Assign ZIP by point-in-polygon lookup.
+6. Assign ZIP by point-in-polygon lookup for US cities only; Canadian cities currently publish blank ZIP fields.
 7. Emit:
    - GeoJSON feature for included rows
    - normalized CSV row for every fetched record

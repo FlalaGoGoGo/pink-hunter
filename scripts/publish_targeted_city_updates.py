@@ -125,6 +125,27 @@ PITTSBURGH_GRIDS_ENDPOINT = f"{PITTSBURGH_BASE}/cffiles/grids.cfc"
 TORONTO_STREET_TREE_ALT_CSV = "https://ckan0.cf.opendata.inter.prod-toronto.ca/dataset/6ac4569e-fd37-4cbc-ac63-db3624c5f6a2/resource/5930412c-408e-4ee3-b473-56a790c9dfb7/download/street-tree-data_csv.csv"
 NEW_WESTMINSTER_TREES_LAYER = "https://services3.arcgis.com/A7O8YnTNtzRPIn7T/arcgis/rest/services/Tree_Inventory_(PROD)_4_view/FeatureServer/0"
 NEW_WESTMINSTER_DATASET_PAGE = "https://services3.arcgis.com/A7O8YnTNtzRPIn7T/arcgis/rest/services/Tree_Inventory_(PROD)_4_view/FeatureServer"
+BURLINGTON_ON_TREES_LAYER = "https://mapping.burlington.ca/arcgisweb/rest/services/COB/Urban_Forestry/MapServer/0"
+BURLINGTON_ON_DATASET_PAGE = "https://www.arcgis.com/home/item.html?id=41412ef3188942c7abbe14035004273d"
+CAMBRIDGE_ON_TREES_LAYER = "https://maps.cambridge.ca/arcgispub03/rest/services/OpenData1/MapServer/7"
+CAMBRIDGE_ON_DATASET_PAGE = "https://www.arcgis.com/home/item.html?id=93f699f0aeba49f1acb582cf26b90ed7"
+GUELPH_TREES_LAYER = "https://servicesdev.arcgis.com/LkFyxb9zDq7vAOAm/ArcGIS/rest/services/TreeInventory_Guelph/FeatureServer/0"
+GUELPH_DATASET_PAGE = "https://servicesdev.arcgis.com/LkFyxb9zDq7vAOAm/ArcGIS/rest/services/TreeInventory_Guelph/FeatureServer"
+HAMILTON_ON_TREES_LAYER = "https://services.arcgis.com/rYz782eMbySr2srL/arcgis/rest/services/Public_Tree_Inventory/FeatureServer/0"
+HAMILTON_ON_DATASET_PAGE = "https://open.hamilton.ca/datasets/08e50c6cbb2545b4897d613a817fa4d4_0/explore"
+KITCHENER_TREES_LAYER = "https://services1.arcgis.com/qAo1OsXi67t7XgmS/ArcGIS/rest/services/Tree_Inventory/FeatureServer/0"
+KITCHENER_DATASET_PAGE = "https://open-kitchenergis.opendata.arcgis.com/pages/forestry-gallery"
+LONDON_ON_TREES_LAYER = "https://maps.london.ca/arcgisa/rest/services/Public_TreeInventory/MapServer/1"
+LONDON_ON_DATASET_PAGE = "https://maps.london.ca/arcgisa/rest/services/Public_TreeInventory/MapServer"
+OAKVILLE_ON_TREES_LAYER = "https://maps.oakville.ca/oakgis/rest/services/ArcGISOnline/AGO_Oakville_Forestry/MapServer/0"
+OAKVILLE_ON_DATASET_PAGE = "https://www.oakville.ca/home-environment/trees-woodlands/public-tree-inventory/"
+WATERLOO_TREES_LAYER = "https://services1.arcgis.com/DwLTn0u9VBSZvUPe/ArcGIS/rest/services/Waterloo_Street_Trees/FeatureServer/0"
+WATERLOO_DATASET_PAGE = "https://services1.arcgis.com/DwLTn0u9VBSZvUPe/ArcGIS/rest/services/Waterloo_Street_Trees/FeatureServer"
+WHITBY_TREES_LAYER = "https://services5.arcgis.com/ATdLnvuMRJk8AGkQ/arcgis/rest/services/Trees/FeatureServer/0"
+WHITBY_DATASET_PAGE = "https://whitby.maps.arcgis.com/apps/instant/sidebar/index.html?appid=3e192ad13b7940b98684e8dadaa94c54"
+WINDSOR_PARK_TREES_LAYER = "https://mappmycity.ca/arcgis/rest/services/OpenDataServices/ParksEnvironment/MapServer/0"
+WINDSOR_ROW_TREES_LAYER = "https://mappmycity.ca/arcgis/rest/services/OpenDataServices/ParksEnvironment/MapServer/1"
+WINDSOR_DATASET_PAGE = "https://citywindsor.ca/visitors/Maps/MappMyCity"
 SAN_DIEGO_TREES_LAYER = "https://webmaps.sandiego.gov/arcgis/rest/services/DSD/Environment/MapServer/20"
 SAN_DIEGO_DATASET_PAGE = "https://webmaps.sandiego.gov/arcgis/rest/services/DSD/Environment/MapServer/20"
 HOUSTON_TREES_LAYER = "https://services.arcgis.com/NummVBqZSIJKUeVR/arcgis/rest/services/COH_UrbanForestry_Trees_VIEW_ONLY/FeatureServer/0"
@@ -702,6 +723,120 @@ CHINO_BLOSSOM_WHERE = (
     "UPPER(Species) LIKE '%APPLE%'"
 )
 GLENDORA_BLOSSOM_WHERE = CAMARILLO_BLOSSOM_WHERE
+BURLINGTON_ON_BLOSSOM_WHERE = (
+    "STATUS = 'Alive' AND ("
+    "UPPER(SPECIES_COMMONNAME) LIKE '%CHERRY%' OR "
+    "UPPER(SPECIES_COMMONNAME) LIKE '%PLUM%' OR "
+    "UPPER(SPECIES_COMMONNAME) LIKE '%PEACH%' OR "
+    "UPPER(SPECIES_COMMONNAME) LIKE '%MAGNOLIA%' OR "
+    "UPPER(SPECIES_COMMONNAME) LIKE '%CRABAPPLE%' OR "
+    "UPPER(SPECIES_COMMONNAME) LIKE '%APPLE%'"
+    ")"
+)
+CAMBRIDGE_ON_BLOSSOM_WHERE = (
+    "STATUS = 'EXISTING' AND ("
+    "UPPER(BOTANICAL_NAME) LIKE 'PRUNUS%' OR "
+    "UPPER(BOTANICAL_NAME) LIKE 'MALUS%' OR "
+    "UPPER(BOTANICAL_NAME) LIKE 'MAGNOLIA%' OR "
+    "UPPER(COMMON_NAME) LIKE '%CHERRY%' OR "
+    "UPPER(COMMON_NAME) LIKE '%PLUM%' OR "
+    "UPPER(COMMON_NAME) LIKE '%PEACH%' OR "
+    "UPPER(COMMON_NAME) LIKE '%MAGNOLIA%' OR "
+    "UPPER(COMMON_NAME) LIKE '%CRABAPPLE%' OR "
+    "UPPER(COMMON_NAME) LIKE '%APPLE%'"
+    ")"
+)
+GUELPH_BLOSSOM_WHERE = (
+    "UPPER(SPECIES) LIKE '%CHERRY%' OR "
+    "UPPER(SPECIES) LIKE '%PLUM%' OR "
+    "UPPER(SPECIES) LIKE '%PEACH%' OR "
+    "UPPER(SPECIES) LIKE '%MAGNOLIA%' OR "
+    "UPPER(SPECIES) LIKE '%CRABAPPLE%' OR "
+    "UPPER(SPECIES) LIKE '%APPLE%'"
+)
+HAMILTON_ON_BLOSSOM_WHERE = (
+    "STATUS = 'Existing' AND ("
+    "UPPER(SPECIES_SCIENTIFIC) LIKE 'PRUNUS%' OR "
+    "UPPER(SPECIES_SCIENTIFIC) LIKE 'MALUS%' OR "
+    "UPPER(SPECIES_SCIENTIFIC) LIKE 'MAGNOLIA%' OR "
+    "UPPER(SPECIES_COMMON) LIKE '%CHERRY%' OR "
+    "UPPER(SPECIES_COMMON) LIKE '%PLUM%' OR "
+    "UPPER(SPECIES_COMMON) LIKE '%PEACH%' OR "
+    "UPPER(SPECIES_COMMON) LIKE '%MAGNOLIA%' OR "
+    "UPPER(SPECIES_COMMON) LIKE '%CRABAPPLE%' OR "
+    "UPPER(SPECIES_COMMON) LIKE '%APPLE%'"
+    ")"
+)
+KITCHENER_BLOSSOM_WHERE = (
+    "STATUS = 'ACTIVE' AND ("
+    "UPPER(SPECIES_LATIN) LIKE 'PRUNUS%' OR "
+    "UPPER(SPECIES_LATIN) LIKE 'MALUS%' OR "
+    "UPPER(SPECIES_LATIN) LIKE 'MAGNOLIA%' OR "
+    "UPPER(SPECIES_NAME) LIKE '%CHERRY%' OR "
+    "UPPER(SPECIES_NAME) LIKE '%PLUM%' OR "
+    "UPPER(SPECIES_NAME) LIKE '%PEACH%' OR "
+    "UPPER(SPECIES_NAME) LIKE '%MAGNOLIA%' OR "
+    "UPPER(SPECIES_NAME) LIKE '%CRABAPPLE%' OR "
+    "UPPER(SPECIES_NAME) LIKE '%APPLE%'"
+    ")"
+)
+LONDON_ON_BLOSSOM_WHERE = (
+    "UPPER(Botanical) LIKE 'PRUNUS%' OR "
+    "UPPER(Botanical) LIKE 'MALUS%' OR "
+    "UPPER(Botanical) LIKE 'MAGNOLIA%' OR "
+    "UPPER(CommonName) LIKE '%CHERRY%' OR "
+    "UPPER(CommonName) LIKE '%PLUM%' OR "
+    "UPPER(CommonName) LIKE '%PEACH%' OR "
+    "UPPER(CommonName) LIKE '%MAGNOLIA%' OR "
+    "UPPER(CommonName) LIKE '%CRABAPPLE%' OR "
+    "UPPER(CommonName) LIKE '%APPLE%'"
+)
+OAKVILLE_ON_BLOSSOM_WHERE = (
+    "STATUS = 'EXISTING' AND ("
+    "UPPER(SPECIES) LIKE '%PRUNUS%' OR "
+    "UPPER(SPECIES) LIKE '%MALUS%' OR "
+    "UPPER(SPECIES) LIKE '%MAGNOLIA%' OR "
+    "UPPER(SPECIES) LIKE '%CHERRY%' OR "
+    "UPPER(SPECIES) LIKE '%PLUM%' OR "
+    "UPPER(SPECIES) LIKE '%PEACH%' OR "
+    "UPPER(SPECIES) LIKE '%CRABAPPLE%' OR "
+    "UPPER(SPECIES) LIKE '%APPLE%'"
+    ")"
+)
+WATERLOO_BLOSSOM_WHERE = (
+    "STATUS = 'Existing' AND ("
+    "UPPER(LATIN_NAME) LIKE 'PRUNUS%' OR "
+    "UPPER(LATIN_NAME) LIKE 'MALUS%' OR "
+    "UPPER(LATIN_NAME) LIKE 'MAGNOLIA%' OR "
+    "UPPER(COM_NAME) LIKE '%CHERRY%' OR "
+    "UPPER(COM_NAME) LIKE '%PLUM%' OR "
+    "UPPER(COM_NAME) LIKE '%PEACH%' OR "
+    "UPPER(COM_NAME) LIKE '%MAGNOLIA%' OR "
+    "UPPER(COM_NAME) LIKE '%CRABAPPLE%' OR "
+    "UPPER(COM_NAME) LIKE '%APPLE%'"
+    ")"
+)
+WHITBY_BLOSSOM_WHERE = (
+    "UPPER(LATIN_NAME) LIKE 'PRUNUS%' OR "
+    "UPPER(LATIN_NAME) LIKE 'MALUS%' OR "
+    "UPPER(LATIN_NAME) LIKE 'MAGNOLIA%' OR "
+    "UPPER(COMMON_NAME) LIKE '%CHERRY%' OR "
+    "UPPER(COMMON_NAME) LIKE '%PLUM%' OR "
+    "UPPER(COMMON_NAME) LIKE '%PEACH%' OR "
+    "UPPER(COMMON_NAME) LIKE '%MAGNOLIA%' OR "
+    "UPPER(COMMON_NAME) LIKE '%CRABAPPLE%' OR "
+    "UPPER(COMMON_NAME) LIKE '%APPLE%'"
+)
+WINDSOR_BLOSSOM_WHERE = (
+    "status = 'ACTIVE' AND ("
+    "UPPER(species) LIKE '%CHERRY%' OR "
+    "UPPER(species) LIKE '%PLUM%' OR "
+    "UPPER(species) LIKE '%PEACH%' OR "
+    "UPPER(species) LIKE '%MAGNOLIA%' OR "
+    "UPPER(species) LIKE '%CRABAPPLE%' OR "
+    "UPPER(species) LIKE '%APPLE%'"
+    ")"
+)
 LOS_ANGELES_TREEKEEPER_TERMS = ("%cherry%", "%plum%", "%peach%", "%magnolia%", "%crabapple%", "%apple%")
 SPECIES_TEXT_PATTERN = re.compile(r"^\s*(?P<common>.+?)\s*\((?P<scientific>[^()]+)\)\s*$")
 DISPLAY_NAME_REPLACEMENTS = {
@@ -1080,6 +1215,116 @@ UNCOVERED_STATE_ARCGIS_CONFIGS: dict[str, dict[str, Any]] = {
         "note": "Integrated from the official Town of Groton public tree inventory ArcGIS experience and service.",
         "clip_to_boundary": True,
     },
+    "Burlington": {
+        "region": "on",
+        "layer_url": BURLINGTON_ON_TREES_LAYER,
+        "dataset_page": BURLINGTON_ON_DATASET_PAGE,
+        "where": BURLINGTON_ON_BLOSSOM_WHERE,
+        "object_id_field": "OBJECTID",
+        "common_field": "SPECIES_COMMONNAME",
+        "source_name": "City Owned Trees",
+        "source_department": "City of Burlington",
+        "ownership_raw": "City of Burlington",
+        "note": "Integrated from the official City of Burlington public urban-forestry tree layer after restricting to living trees.",
+        "clip_to_boundary": True,
+    },
+    "Cambridge ON": {
+        "region": "on",
+        "layer_url": CAMBRIDGE_ON_TREES_LAYER,
+        "dataset_page": CAMBRIDGE_ON_DATASET_PAGE,
+        "where": CAMBRIDGE_ON_BLOSSOM_WHERE,
+        "object_id_field": "OBJECTID",
+        "common_field": "COMMON_NAME",
+        "scientific_field": "BOTANICAL_NAME",
+        "source_name": "Street Trees",
+        "source_department": "City of Cambridge",
+        "ownership_raw": "City of Cambridge",
+        "note": "Integrated from the official City of Cambridge, Ontario `Street Trees` open-data layer after restricting to `STATUS = 'EXISTING'`.",
+        "clip_to_boundary": True,
+    },
+    "Guelph": {
+        "region": "on",
+        "layer_url": GUELPH_TREES_LAYER,
+        "dataset_page": GUELPH_DATASET_PAGE,
+        "where": GUELPH_BLOSSOM_WHERE,
+        "object_id_field": "FID",
+        "common_field": "SPECIES",
+        "source_name": "TreeInventory",
+        "source_department": "City of Guelph",
+        "ownership_raw": "City of Guelph",
+        "note": "Integrated from the official City of Guelph public tree inventory ArcGIS layer.",
+        "clip_to_boundary": True,
+    },
+    "Hamilton": {
+        "region": "on",
+        "layer_url": HAMILTON_ON_TREES_LAYER,
+        "dataset_page": HAMILTON_ON_DATASET_PAGE,
+        "where": HAMILTON_ON_BLOSSOM_WHERE,
+        "object_id_field": "OBJECTID",
+        "common_field": "SPECIES_COMMON",
+        "scientific_field": "SPECIES_SCIENTIFIC",
+        "source_name": "Public Tree Inventory",
+        "source_department": "City of Hamilton",
+        "ownership_raw": "City of Hamilton",
+        "note": "Integrated from the official City of Hamilton public tree inventory ArcGIS layer after restricting to `STATUS = 'Existing'`.",
+        "clip_to_boundary": True,
+    },
+    "Kitchener": {
+        "region": "on",
+        "layer_url": KITCHENER_TREES_LAYER,
+        "dataset_page": KITCHENER_DATASET_PAGE,
+        "where": KITCHENER_BLOSSOM_WHERE,
+        "object_id_field": "OBJECTID",
+        "common_field": "SPECIES_NAME",
+        "scientific_field": "SPECIES_LATIN",
+        "source_name": "Tree Inventory",
+        "source_department": "City of Kitchener",
+        "ownership_raw": "City of Kitchener",
+        "note": "Integrated from the official City of Kitchener tree inventory ArcGIS layer after restricting to `STATUS = 'ACTIVE'`.",
+        "clip_to_boundary": True,
+    },
+    "London": {
+        "region": "on",
+        "layer_url": LONDON_ON_TREES_LAYER,
+        "dataset_page": LONDON_ON_DATASET_PAGE,
+        "where": LONDON_ON_BLOSSOM_WHERE,
+        "object_id_field": "OBJECTID",
+        "common_field": "CommonName",
+        "scientific_field": "Botanical",
+        "source_name": "Status Active",
+        "source_department": "City of London",
+        "ownership_raw": "City of London",
+        "note": "Integrated from the official City of London `Status Active` tree inventory ArcGIS layer.",
+        "clip_to_boundary": True,
+    },
+    "Waterloo": {
+        "region": "on",
+        "layer_url": WATERLOO_TREES_LAYER,
+        "dataset_page": WATERLOO_DATASET_PAGE,
+        "where": WATERLOO_BLOSSOM_WHERE,
+        "object_id_field": "FID",
+        "common_field": "COM_NAME",
+        "scientific_field": "LATIN_NAME",
+        "source_name": "Waterloo Street Trees",
+        "source_department": "City of Waterloo",
+        "ownership_raw": "City of Waterloo",
+        "note": "Integrated from the official City of Waterloo public street-tree ArcGIS layer after restricting to `STATUS = 'Existing'`.",
+        "clip_to_boundary": True,
+    },
+    "Whitby": {
+        "region": "on",
+        "layer_url": WHITBY_TREES_LAYER,
+        "dataset_page": WHITBY_DATASET_PAGE,
+        "where": WHITBY_BLOSSOM_WHERE,
+        "object_id_field": "OBJECTID",
+        "common_field": "COMMON_NAME",
+        "scientific_field": "LATIN_NAME",
+        "source_name": "Trees",
+        "source_department": "Town of Whitby",
+        "ownership_raw": "Town of Whitby",
+        "note": "Integrated from the official Town of Whitby public tree inventory ArcGIS layer.",
+        "clip_to_boundary": True,
+    },
     "Medford": {
         "region": "ma",
         "layer_url": MEDFORD_TREES_LAYER,
@@ -1375,9 +1620,11 @@ SUPPORTED_CITIES = (
     "Brookline",
     "Buffalo",
     "Burbank",
+    "Burlington",
     "Buena Park",
     "Camarillo",
     "Cambridge",
+    "Cambridge ON",
     "Charlottesville",
     "Chino",
     "Citrus Heights",
@@ -1410,6 +1657,7 @@ SUPPORTED_CITIES = (
     "Greenfield",
     "Greenwich",
     "Groton",
+    "Guelph",
     "Glendale",
     "Glendale WI",
     "Greendale",
@@ -1424,6 +1672,7 @@ SUPPORTED_CITIES = (
     "Haworth",
     "Hales Corners",
     "Hartford",
+    "Hamilton",
     "Ho-Ho-Kus",
     "Hoboken",
     "Houston",
@@ -1433,6 +1682,7 @@ SUPPORTED_CITIES = (
     "Ithaca",
     "Johns Creek",
     "Jersey City",
+    "Kitchener",
     "La Mirada",
     "La Canada Flintridge",
     "La Verne",
@@ -1441,6 +1691,7 @@ SUPPORTED_CITIES = (
     "La Mesa",
     "Longmeadow",
     "Lodi",
+    "London",
     "Lynwood",
     "Linden",
     "Lynn",
@@ -1474,6 +1725,7 @@ SUPPORTED_CITIES = (
     "Norfolk",
     "Norwalk",
     "Oradell",
+    "Oakville",
     "Ottawa",
     "O'Fallon",
     "Oak Creek",
@@ -1529,9 +1781,12 @@ SUPPORTED_CITIES = (
     "Thousand Oaks",
     "Torrance",
     "Toronto",
+    "Waterloo",
     "Troy",
     "Ventura",
     "Vista",
+    "Whitby",
+    "Windsor",
     "Virginia Beach",
     "Wauwatosa",
     "Waltham",
@@ -4734,6 +4989,138 @@ def fetch_new_westminster() -> dict[str, Any]:
             "note": "Integrated from the official City of New Westminster Tree Inventory ArcGIS layer and official Metro Vancouver administrative boundary.",
         },
     }
+
+
+def fetch_oakville() -> dict[str, Any]:
+    layer_info = fetch_json(OAKVILLE_ON_TREES_LAYER, {"f": "pjson"})
+    features = fetch_arcgis_features_by_object_ids(
+        OAKVILLE_ON_TREES_LAYER,
+        where=OAKVILLE_ON_BLOSSOM_WHERE,
+        out_fields=["OBJECTID", "SPECIES", "STATUS"],
+        object_id_field="OBJECTID",
+    )
+    features = clip_features_to_city_boundary("Oakville", "on", features)
+    mapping_rows = load_mapping(MAPPING_PATH)
+    subtype_rows = load_subtype_mapping(SUBTYPE_MAPPING_PATH)
+    last_edit_at = iso_from_epoch((layer_info.get("editingInfo") or {}).get("lastEditDate"))
+
+    output_features: list[dict[str, Any]] = []
+    normalized_rows: list[dict[str, Any]] = []
+    for feature in features:
+        attrs = feature.get("attributes", {})
+        geom = feature.get("geometry", {})
+        lon_raw = geom.get("x")
+        lat_raw = geom.get("y")
+        lon = float(lon_raw) if lon_raw is not None else None
+        lat = float(lat_raw) if lat_raw is not None else None
+        if lon is None or lat is None:
+            continue
+
+        scientific_raw, common_name = parse_dash_species(clean_display_name(attrs.get("SPECIES")))
+        if not scientific_raw:
+            scientific_raw = generic_scientific_name_for_common_hint(common_name)
+        scientific_normalized = normalize_scientific_name(scientific_raw)
+        species_group, subtype_name = classify_tree_record(scientific_raw, common_name, mapping_rows, subtype_rows)
+        row_id = f"oakville-{attrs.get('OBJECTID')}"
+
+        normalized_rows.append(
+            {
+                "id": row_id,
+                "city": "Oakville",
+                "source_dataset": "Parks Tree Forestry",
+                "scientific_raw": scientific_raw,
+                "scientific_normalized": scientific_normalized,
+                "common_name": common_name or "",
+                "subtype_name": subtype_name or "",
+                "zip_code": "",
+                "species_group": species_group or "",
+                "ownership": canonical_ownership("Town of Oakville"),
+                "ownership_raw": "Town of Oakville",
+                "lat": lat,
+                "lon": lon,
+                "included": "1" if species_group else "0",
+            }
+        )
+        if not species_group:
+            continue
+        output_features.append(
+            {
+                "type": "Feature",
+                "geometry": {"type": "Point", "coordinates": [lon, lat]},
+                "properties": {
+                    "id": row_id,
+                    "species_group": species_group,
+                    "scientific_name": scientific_raw,
+                    "common_name": common_name,
+                    "subtype_name": subtype_name,
+                    "zip_code": None,
+                    "ownership": canonical_ownership("Town of Oakville"),
+                    "ownership_raw": "Town of Oakville",
+                    "city": "Oakville",
+                    "source_dataset": "Parks Tree Forestry",
+                    "source_department": "Town of Oakville",
+                    "source_last_edit_at": last_edit_at,
+                },
+            }
+        )
+
+    return {
+        "city": "Oakville",
+        "region": "on",
+        "features": output_features,
+        "normalized_rows": normalized_rows,
+        "source": {
+            "name": "Parks Tree Forestry",
+            "city": "Oakville",
+            "endpoint": OAKVILLE_ON_DATASET_PAGE,
+            "last_edit_at": last_edit_at,
+            "records_fetched": len(features),
+            "records_included": len(output_features),
+            "note": "Integrated from the official Town of Oakville forestry ArcGIS layer after restricting to `STATUS = 'EXISTING'` and parsing mixed common/scientific `SPECIES` text.",
+        },
+    }
+
+
+def fetch_windsor() -> dict[str, Any]:
+    park_result = fetch_arcgis_inventory_city_result(
+        city="Windsor",
+        region="on",
+        layer_url=WINDSOR_PARK_TREES_LAYER,
+        dataset_page=WINDSOR_DATASET_PAGE,
+        where=WINDSOR_BLOSSOM_WHERE,
+        out_fields=["OBJECTID", "species", "status"],
+        object_id_field="OBJECTID",
+        source_name="City Trees In Park",
+        source_department="City of Windsor",
+        ownership_raw="City of Windsor",
+        note="Integrated from the official City of Windsor `City Trees In Park` open-data layer and official jurisdiction boundary.",
+        clip_to_boundary=True,
+        common_field="species",
+    )
+    row_result = fetch_arcgis_inventory_city_result(
+        city="Windsor",
+        region="on",
+        layer_url=WINDSOR_ROW_TREES_LAYER,
+        dataset_page=WINDSOR_DATASET_PAGE,
+        where=WINDSOR_BLOSSOM_WHERE,
+        out_fields=["OBJECTID", "species", "status"],
+        object_id_field="OBJECTID",
+        source_name="City Trees In Right Of Way",
+        source_department="City of Windsor",
+        ownership_raw="City of Windsor",
+        note="Integrated from the official City of Windsor `City Trees In Right Of Way` open-data layer and official jurisdiction boundary.",
+        clip_to_boundary=True,
+        common_field="species",
+    )
+    return merge_city_results(
+        city="Windsor",
+        region="on",
+        dataset_page=WINDSOR_DATASET_PAGE,
+        source_name="City Trees In Park / City Trees In Right Of Way",
+        source_department="City of Windsor",
+        note="Integrated from the official City of Windsor open-data tree layers and official jurisdiction boundary.",
+        results=[park_result, row_result],
+    )
 
 
 def fetch_las_vegas() -> dict[str, Any]:
@@ -7949,6 +8336,7 @@ CITY_FETCHERS = {
     "Norwalk": fetch_norwalk,
     "Norfolk": fetch_norfolk,
     "Paramount": fetch_paramount,
+    "Oakville": fetch_oakville,
     "Pleasanton": fetch_pleasanton,
     "Pomona": fetch_pomona,
     "Poway": fetch_poway,
@@ -7980,6 +8368,7 @@ CITY_FETCHERS = {
     "Torrance": fetch_torrance,
     "Ventura": fetch_ventura,
     "Vista": fetch_vista,
+    "Windsor": fetch_windsor,
     "West Covina": fetch_west_covina,
     "West Hollywood": fetch_west_hollywood,
     "West Sacramento": fetch_west_sacramento,
