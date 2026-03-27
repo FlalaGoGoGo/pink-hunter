@@ -1,13 +1,13 @@
 {
-  "generated_at": "2026-03-27T18:30:09+00:00",
+  "generated_at": "2026-03-27T19:45:23+00:00",
   "path": "/data/trees.render.v1.pmtiles",
   "vector_layer": "trees",
   "minzoom": 8,
   "maxzoom": 15,
-  "tree_count": 714895,
+  "tree_count": 758116,
   "bounds": [
     [
-      -123.39426089582695,
+      -124.04983075280423,
       5.088887490341627e-14
     ],
     [

@@ -213,10 +213,13 @@ Live domain:
 <summary>Alberta</summary>
 
 - Calgary
+- Edmonton
 - St. Albert
 - Chestermere
 - Okotoks
 - Lethbridge
+- Medicine Hat
+- Red Deer
 - Airdrie
 
 </details>
@@ -229,6 +232,7 @@ Live domain:
 - Burlington
 - Cambridge ON
 - Guelph
+- Halton Hills
 - Hamilton
 - Kingston
 - Kitchener
@@ -238,6 +242,7 @@ Live domain:
 - Oakville
 - Ottawa
 - Peterborough
+- Tecumseh
 - Thunder Bay
 - Toronto
 - Waterloo
@@ -280,6 +285,7 @@ Live domain:
 <details>
 <summary>Saskatchewan</summary>
 
+- Regina
 - Saskatoon
 
 </details>
@@ -390,10 +396,14 @@ Live domain:
 <details>
 <summary>British Columbia</summary>
 
+- Abbotsford
 - Kamloops
 - Kelowna
 - Maple Ridge
+- Nanaimo
 - New Westminster
+- North Vancouver City
+- North Vancouver District
 - Penticton
 - Prince George
 - Vancouver BC
@@ -403,7 +413,7 @@ Live domain:
 
 ### Gray Coverage
 - Gray coverage marks cities whose official boundary is public but whose official public single-tree dataset is not available yet.
-- Current gray-coverage examples include `Alexandria`, `Montgomery County`, `Newark`, `Santa Clara`, `Monterey`, `Napa`, `Richmond (CA)`, `Santa Cruz`, `Santa Rosa`, `Stockton`, `Redwood City`, `Alameda`, `Hayward`, `Daly City`, `Long Beach`, `Santa Ana`, `Beaverton`, `Gresham`, `Hillsboro`, `Salem`, `Tigard`, `Burnaby`, `Coquitlam`, `Delta`, `Langley City`, `North Vancouver City`, `North Vancouver District`, `Richmond BC`, `Saanich`, `Surrey`, `West Vancouver`, and `White Rock`.
+- Current gray-coverage examples include `Alexandria`, `Montgomery County`, `Newark`, `Santa Clara`, `Monterey`, `Napa`, `Richmond (CA)`, `Santa Cruz`, `Santa Rosa`, `Stockton`, `Redwood City`, `Alameda`, `Hayward`, `Daly City`, `Long Beach`, `Santa Ana`, `Beaverton`, `Gresham`, `Hillsboro`, `Salem`, `Tigard`, `Burnaby`, `Coquitlam`, `Delta`, `Langley City`, `Richmond BC`, `Saanich`, `Surrey`, `West Vancouver`, and `White Rock`.
 - Tracking details: [docs/research/city-coverage-tracker.md](docs/research/city-coverage-tracker.md)
 
 ## Official Data Sources
@@ -578,10 +588,13 @@ Live domain:
 <summary>Alberta</summary>
 
 - Calgary: [Public Trees](https://services1.arcgis.com/AVP60cs0Q9PEA8rH/arcgis/rest/services/Public_Trees/FeatureServer/0)
+- Edmonton: [Boulevard & Open Space Trees](https://data.edmonton.ca/Environmental-Services/Boulevard-Open-Space-Trees/eecg-fc54)
 - St. Albert: [Tree Inventory](https://services1.arcgis.com/fyyY0cNXvmUWvX1x/arcgis/rest/services/Tree_Inventory/FeatureServer/0)
 - Chestermere: [Trees Open](https://gis.chestermere.ca/serversite/rest/services/Trees_Open/FeatureServer/0)
 - Okotoks: [Tree Inventory](https://services3.arcgis.com/Fl5sQFvYY7w7mPQj/arcgis/rest/services/Tree_Inventory/FeatureServer)
 - Lethbridge: [Trees](https://gis.lethbridge.ca/gisopendata/rest/services/OpenData/odl_trees/MapServer/0)
+- Medicine Hat: [Tree Inventory](https://gis.medicinehat.ca/arcgis/rest/services/Parks/Trees_RFP_Tree_Inventory_Collection_FS4/MapServer)
+- Red Deer: [PARK_Trees_inservice](https://arcgis.reddeer.ca/arcgis/rest/services/CoRD_View_Layers/PARK_Trees_inservice/MapServer)
 - Airdrie: [Edible Trees](https://map.airdrie.ca:6443/arcgis/rest/services/pk_EdibleTrees_ap/MapServer/0)
 
 </details>
@@ -594,6 +607,7 @@ Live domain:
 - Burlington: [City Owned Trees](https://www.arcgis.com/home/item.html?id=41412ef3188942c7abbe14035004273d)
 - Cambridge ON: [Street Trees](https://www.arcgis.com/home/item.html?id=93f699f0aeba49f1acb582cf26b90ed7)
 - Guelph: [TreeInventory](https://servicesdev.arcgis.com/LkFyxb9zDq7vAOAm/ArcGIS/rest/services/TreeInventory_Guelph/FeatureServer)
+- Halton Hills: [Tree](https://map.haltonhills.ca/awse/rest/services/eP/MapServer/5)
 - Hamilton: [Public Tree Inventory](https://open.hamilton.ca/datasets/08e50c6cbb2545b4897d613a817fa4d4_0/explore)
 - Kingston: [City Owned Trees](https://utility.arcgis.com/usrsvcs/servers/511fd5299053486daf48c6466332320c/rest/services/Eng/City_Owned_Trees/FeatureServer/0)
 - Kitchener: [Forestry Gallery](https://open-kitchenergis.opendata.arcgis.com/pages/forestry-gallery)
@@ -603,6 +617,7 @@ Live domain:
 - Oakville: [Public tree inventory](https://www.oakville.ca/home-environment/trees-woodlands/public-tree-inventory/)
 - Ottawa: [Canopy cover and tree inventory](https://ottawa.ca/en/canopy-cover-and-tree-inventory)
 - Peterborough: [Tree Inventory & EAB Status in the City of Peterborough](https://ptbo.maps.arcgis.com/apps/webappviewer/index.html?id=be8a9500cdca44af86860046e651cb96)
+- Tecumseh: [Trees Municipal](https://gisweb.tecumseh.ca/arcgis/rest/services/GeocortexEssentialsMapping/MapServer/75)
 - Thunder Bay: [City of Thunder Bay Trees](https://services5.arcgis.com/h9xShea49ZANgOtx/arcgis/rest/services/City_of_Thunder_Bay_Trees/FeatureServer)
 - Toronto: [Street Tree Data](https://open.toronto.ca/dataset/street-tree-data/)
 - Waterloo: [Waterloo Street Trees](https://services1.arcgis.com/DwLTn0u9VBSZvUPe/ArcGIS/rest/services/Waterloo_Street_Trees/FeatureServer)
@@ -645,6 +660,7 @@ Live domain:
 <details>
 <summary>Saskatchewan</summary>
 
+- Regina: [TreeWebApp](https://opengis.regina.ca/arcgis/rest/services/CGISViewer/TreeWebApp/MapServer)
 - Saskatoon: [Tree Inventory](https://www.saskatoon.ca/treeinventory)
 
 </details>
@@ -720,10 +736,14 @@ Live domain:
 <details>
 <summary>British Columbia</summary>
 
+- Abbotsford: [Tree Management](https://www.abbotsford.ca/tree-management)
 - Kamloops: [TreeSite](https://maps.kamloops.ca/arcgis/rest/services/OpenData/OpenDataParks/MapServer/12)
 - Kelowna: [Tree Inventory](https://geoportal.kelowna.ca/arcgis/rest/services/ArcGISOnline/OpenData_Environment/MapServer/17)
 - Maple Ridge: [Street Tree](https://geoservices.mapleridge.ca/server/rest/services/DataCatalog/Environment/MapServer/5)
+- Nanaimo: [Urban Trees](https://nanmap.nanaimo.ca/Geocortex/Essentials/REST/sites/Nanaimo_Map/map/mapservices)
 - New Westminster: [Tree Inventory (Active Trees)](https://services3.arcgis.com/A7O8YnTNtzRPIn7T/arcgis/rest/services/Tree_Inventory_(PROD)_4_view/FeatureServer)
+- North Vancouver City: [Public Trees](https://www.cnv.org/Community-Environment/Trees/Public-Trees)
+- North Vancouver District: [Street Trees](https://geoweb.dnv.org/data/)
 - Penticton: [Trees](https://services1.arcgis.com/ZMQyarkhNAnn8lip/ArcGIS/rest/services/Parks_PRD/FeatureServer/1355)
 - Prince George: [Trees](https://services2.arcgis.com/CnkB6jCzAsyli34z/arcgis/rest/services/OpenData_ParkData/FeatureServer/0)
 - Vancouver BC: [Public trees](https://opendata.vancouver.ca/api/explore/v2.1/catalog/datasets/public-trees)

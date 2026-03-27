@@ -1,6 +1,6 @@
 {
   "version": "v2",
-  "generated_at": "2026-03-27T18:22:26.122948+00:00",
+  "generated_at": "2026-03-27T19:43:52.885772+00:00",
   "default_region": "wa",
   "coverage_rule": "official_jurisdiction_boundary_only",
   "coverage_skipped_cities": [
@@ -27,8 +27,6 @@
     "Coquitlam",
     "Delta",
     "Langley City",
-    "North Vancouver City",
-    "North Vancouver District",
     "Richmond BC",
     "Saanich",
     "Surrey",
@@ -118,16 +116,16 @@
     "Yarrow Point"
   ],
   "coverage_official_unavailable_skipped_cities": [],
-  "source_count": 242,
-  "total_records": 3163683,
-  "included_records": 714895,
-  "unknown_records": 1390750,
+  "source_count": 252,
+  "total_records": 3223211,
+  "included_records": 758116,
+  "unknown_records": 1407008,
   "species_counts": {
-    "cherry": 227763,
-    "plum": 115806,
+    "cherry": 238948,
+    "plum": 116454,
     "peach": 7924,
-    "magnolia": 177145,
-    "crabapple": 186257
+    "magnolia": 178165,
+    "crabapple": 216625
   },
   "regions": [
     {
@@ -140,45 +138,48 @@
           49.647501986536064
         ],
         [
-          -112.7729263487146,
+          -110.62389608993884,
           53.675566611773576
         ]
       ],
       "data_path": null,
-      "tree_count": 48967,
-      "city_count": 6,
+      "tree_count": 82513,
+      "city_count": 9,
       "cities": [
         "Airdrie",
         "Calgary",
         "Chestermere",
+        "Edmonton",
         "Lethbridge",
+        "Medicine Hat",
         "Okotoks",
+        "Red Deer",
         "St. Albert"
       ],
       "species_counts": {
-        "cherry": 11058,
-        "plum": 130,
+        "cherry": 16963,
+        "plum": 255,
         "peach": 2,
         "magnolia": 0,
-        "crabapple": 37777
+        "crabapple": 65293
       },
       "ownership_groups": [
         "public"
       ],
-      "raw_bytes": 24633474,
-      "gzip_bytes": 1209791,
+      "raw_bytes": 42252893,
+      "gzip_bytes": 1976719,
       "warning_level": "none",
-      "aggregate_raw_bytes": 24633474,
-      "aggregate_gzip_bytes": 1209791,
-      "aggregate_warning_level": "none",
+      "aggregate_raw_bytes": 42252893,
+      "aggregate_gzip_bytes": 1976719,
+      "aggregate_warning_level": "watch",
       "largest_shard_raw_bytes": 10601635,
       "largest_shard_gzip_bytes": 523220,
       "largest_shard_area": "Calgary",
       "area_split": {
         "strategy": "area_shard",
         "index_path": "/data/trees.ab.area-index.v2.json",
-        "area_count": 6,
-        "shard_count": 7,
+        "area_count": 9,
+        "shard_count": 11,
         "ready": true
       },
       "largest_shard_warning_level": "none",
@@ -240,7 +241,7 @@
       "available": true,
       "bounds": [
         [
-          -123.39426089582695,
+          -124.04983075280423,
           48.406498105122765
         ],
         [
@@ -250,33 +251,37 @@
       ],
       "data_path": null,
       "coverage_path": "/data/coverage.bc.v1.geojson",
-      "tree_count": 50392,
-      "city_count": 8,
+      "tree_count": 53467,
+      "city_count": 12,
       "cities": [
+        "Abbotsford",
         "Kamloops",
         "Kelowna",
         "Maple Ridge",
+        "Nanaimo",
         "New Westminster",
+        "North Vancouver City",
+        "North Vancouver District",
         "Penticton",
         "Prince George",
         "Vancouver BC",
         "Victoria BC"
       ],
       "species_counts": {
-        "cherry": 24007,
-        "plum": 13555,
+        "cherry": 25497,
+        "plum": 14017,
         "peach": 1,
-        "magnolia": 6070,
-        "crabapple": 6759
+        "magnolia": 7030,
+        "crabapple": 6922
       },
       "ownership_groups": [
         "public"
       ],
-      "raw_bytes": 26470493,
-      "gzip_bytes": 1216310,
+      "raw_bytes": 28046527,
+      "gzip_bytes": 1292232,
       "warning_level": "none",
-      "aggregate_raw_bytes": 26470493,
-      "aggregate_gzip_bytes": 1216310,
+      "aggregate_raw_bytes": 28046527,
+      "aggregate_gzip_bytes": 1292232,
       "aggregate_warning_level": "none",
       "largest_shard_raw_bytes": 10061104,
       "largest_shard_gzip_bytes": 466494,
@@ -286,8 +291,8 @@
       "area_split": {
         "strategy": "area_shard",
         "index_path": "/data/trees.bc.area-index.v2.json",
-        "area_count": 8,
-        "shard_count": 9,
+        "area_count": 12,
+        "shard_count": 13,
         "ready": true
       }
     },
@@ -1282,14 +1287,15 @@
       ],
       "data_path": null,
       "coverage_path": "/data/coverage.on.v1.geojson",
-      "tree_count": 82631,
-      "city_count": 20,
+      "tree_count": 83249,
+      "city_count": 22,
       "cities": [
         "Ajax",
         "Barrie",
         "Burlington",
         "Cambridge ON",
         "Guelph",
+        "Halton Hills",
         "Hamilton",
         "Kingston",
         "Kitchener",
@@ -1299,6 +1305,7 @@
         "Oakville",
         "Ottawa",
         "Peterborough",
+        "Tecumseh",
         "Thunder Bay",
         "Toronto",
         "Waterloo",
@@ -1307,20 +1314,20 @@
         "Windsor"
       ],
       "species_counts": {
-        "cherry": 43134,
+        "cherry": 43219,
         "plum": 2893,
         "peach": 470,
-        "magnolia": 6121,
-        "crabapple": 30013
+        "magnolia": 6181,
+        "crabapple": 30486
       },
       "ownership_groups": [
         "public"
       ],
-      "raw_bytes": 40453822,
-      "gzip_bytes": 1846355,
+      "raw_bytes": 40750238,
+      "gzip_bytes": 1861614,
       "warning_level": "none",
-      "aggregate_raw_bytes": 40453822,
-      "aggregate_gzip_bytes": 1846355,
+      "aggregate_raw_bytes": 40750238,
+      "aggregate_gzip_bytes": 1861614,
       "aggregate_warning_level": "watch",
       "largest_shard_raw_bytes": 8587256,
       "largest_shard_gzip_bytes": 333237,
@@ -1330,8 +1337,8 @@
       "area_split": {
         "strategy": "area_shard",
         "index_path": "/data/trees.on.area-index.v2.json",
-        "area_count": 20,
-        "shard_count": 21,
+        "area_count": 22,
+        "shard_count": 23,
         "ready": true
       }
     },
@@ -1544,43 +1551,44 @@
       "bounds": [
         [
           -106.76346823573829,
-          52.072808927345925
+          50.397266974655054
         ],
         [
-          -106.54002689986774,
+          -104.49972076685202,
           52.19829963178364
         ]
       ],
       "data_path": null,
-      "tree_count": 4279,
-      "city_count": 1,
+      "tree_count": 10261,
+      "city_count": 2,
       "cities": [
+        "Regina",
         "Saskatoon"
       ],
       "species_counts": {
-        "cherry": 450,
-        "plum": 81,
+        "cherry": 4155,
+        "plum": 142,
         "peach": 0,
         "magnolia": 0,
-        "crabapple": 3748
+        "crabapple": 5964
       },
       "ownership_groups": [
         "public"
       ],
-      "raw_bytes": 2186972,
-      "gzip_bytes": 114258,
+      "raw_bytes": 5048488,
+      "gzip_bytes": 248694,
       "warning_level": "none",
-      "aggregate_raw_bytes": 2186972,
-      "aggregate_gzip_bytes": 114258,
+      "aggregate_raw_bytes": 5048488,
+      "aggregate_gzip_bytes": 248694,
       "aggregate_warning_level": "none",
-      "largest_shard_raw_bytes": 2186972,
-      "largest_shard_gzip_bytes": 114258,
-      "largest_shard_area": "Saskatoon",
+      "largest_shard_raw_bytes": 2861516,
+      "largest_shard_gzip_bytes": 134436,
+      "largest_shard_area": "Regina",
       "area_split": {
         "strategy": "area_shard",
         "index_path": "/data/trees.sk.area-index.v2.json",
-        "area_count": 1,
-        "shard_count": 1,
+        "area_count": 2,
+        "shard_count": 2,
         "ready": true
       },
       "largest_shard_warning_level": "none",
@@ -1980,6 +1988,20 @@
       "state_province": "AB"
     },
     {
+      "jurisdiction": "Edmonton",
+      "region": "ab",
+      "tree_count": 30304,
+      "species_counts": {
+        "cherry": 5151,
+        "plum": 100,
+        "peach": 0,
+        "magnolia": 0,
+        "crabapple": 25053
+      },
+      "jurisdiction_type": "city",
+      "state_province": "AB"
+    },
+    {
       "jurisdiction": "Lethbridge",
       "region": "ab",
       "tree_count": 2119,
@@ -1994,6 +2016,20 @@
       "state_province": "AB"
     },
     {
+      "jurisdiction": "Medicine Hat",
+      "region": "ab",
+      "tree_count": 677,
+      "species_counts": {
+        "cherry": 109,
+        "plum": 0,
+        "peach": 0,
+        "magnolia": 0,
+        "crabapple": 568
+      },
+      "jurisdiction_type": "city",
+      "state_province": "AB"
+    },
+    {
       "jurisdiction": "Okotoks",
       "region": "ab",
       "tree_count": 940,
@@ -2003,6 +2039,20 @@
         "peach": 0,
         "magnolia": 0,
         "crabapple": 797
+      },
+      "jurisdiction_type": "city",
+      "state_province": "AB"
+    },
+    {
+      "jurisdiction": "Red Deer",
+      "region": "ab",
+      "tree_count": 2565,
+      "species_counts": {
+        "cherry": 645,
+        "plum": 25,
+        "peach": 0,
+        "magnolia": 0,
+        "crabapple": 1895
       },
       "jurisdiction_type": "city",
       "state_province": "AB"
@@ -2034,6 +2084,20 @@
       },
       "jurisdiction_type": "city",
       "state_province": "AZ"
+    },
+    {
+      "jurisdiction": "Abbotsford",
+      "region": "bc",
+      "tree_count": 938,
+      "species_counts": {
+        "cherry": 169,
+        "plum": 151,
+        "peach": 0,
+        "magnolia": 586,
+        "crabapple": 32
+      },
+      "jurisdiction_type": "city",
+      "state_province": "BC"
     },
     {
       "jurisdiction": "Kamloops",
@@ -2078,6 +2142,20 @@
       "state_province": "BC"
     },
     {
+      "jurisdiction": "Nanaimo",
+      "region": "bc",
+      "tree_count": 645,
+      "species_counts": {
+        "cherry": 478,
+        "plum": 107,
+        "peach": 0,
+        "magnolia": 17,
+        "crabapple": 43
+      },
+      "jurisdiction_type": "city",
+      "state_province": "BC"
+    },
+    {
       "jurisdiction": "New Westminster",
       "region": "bc",
       "tree_count": 1786,
@@ -2087,6 +2165,34 @@
         "peach": 0,
         "magnolia": 610,
         "crabapple": 159
+      },
+      "jurisdiction_type": "city",
+      "state_province": "BC"
+    },
+    {
+      "jurisdiction": "North Vancouver City",
+      "region": "bc",
+      "tree_count": 1098,
+      "species_counts": {
+        "cherry": 620,
+        "plum": 144,
+        "peach": 0,
+        "magnolia": 287,
+        "crabapple": 47
+      },
+      "jurisdiction_type": "city",
+      "state_province": "BC"
+    },
+    {
+      "jurisdiction": "North Vancouver District",
+      "region": "bc",
+      "tree_count": 394,
+      "species_counts": {
+        "cherry": 223,
+        "plum": 60,
+        "peach": 0,
+        "magnolia": 70,
+        "crabapple": 41
       },
       "jurisdiction_type": "city",
       "state_province": "BC"
@@ -4248,6 +4354,20 @@
       "state_province": "ON"
     },
     {
+      "jurisdiction": "Halton Hills",
+      "region": "on",
+      "tree_count": 376,
+      "species_counts": {
+        "cherry": 53,
+        "plum": 0,
+        "peach": 0,
+        "magnolia": 15,
+        "crabapple": 308
+      },
+      "jurisdiction_type": "city",
+      "state_province": "ON"
+    },
+    {
       "jurisdiction": "Hamilton",
       "region": "on",
       "tree_count": 7288,
@@ -4369,6 +4489,20 @@
         "peach": 0,
         "magnolia": 9,
         "crabapple": 507
+      },
+      "jurisdiction_type": "city",
+      "state_province": "ON"
+    },
+    {
+      "jurisdiction": "Tecumseh",
+      "region": "on",
+      "tree_count": 242,
+      "species_counts": {
+        "cherry": 32,
+        "plum": 0,
+        "peach": 0,
+        "magnolia": 45,
+        "crabapple": 165
       },
       "jurisdiction_type": "city",
       "state_province": "ON"
@@ -4554,6 +4688,20 @@
       },
       "jurisdiction_type": "city",
       "state_province": "RI"
+    },
+    {
+      "jurisdiction": "Regina",
+      "region": "sk",
+      "tree_count": 5982,
+      "species_counts": {
+        "cherry": 3705,
+        "plum": 61,
+        "peach": 0,
+        "magnolia": 0,
+        "crabapple": 2216
+      },
+      "jurisdiction_type": "city",
+      "state_province": "SK"
     },
     {
       "jurisdiction": "Saskatoon",
@@ -5342,6 +5490,15 @@
   ],
   "sources": [
     {
+      "name": "Tree Inventory 2019",
+      "city": "Abbotsford",
+      "endpoint": "https://www.abbotsford.ca/tree-management",
+      "last_edit_at": "2021-06-09T20:35:19.636000+00:00",
+      "records_fetched": 972,
+      "records_included": 938,
+      "note": "Integrated from the public Tree Inventory 2019 ArcGIS service referenced by City of Abbotsford tree-management materials and official jurisdiction boundary."
+    },
+    {
       "name": "Edible Trees",
       "city": "Airdrie",
       "endpoint": "https://map.airdrie.ca:6443/arcgis/rest/services/pk_EdibleTrees_ap/MapServer/0",
@@ -5751,6 +5908,15 @@
       "note": "Integrated from the official City of East Lansing public tree status ArcGIS service."
     },
     {
+      "name": "Boulevard / Open Space Trees",
+      "city": "Edmonton",
+      "endpoint": "https://data.edmonton.ca/Environmental-Services/Boulevard-Open-Space-Trees/eecg-fc54",
+      "last_edit_at": "2026-03-23T09:14:03+00:00",
+      "records_fetched": 39927,
+      "records_included": 30304,
+      "note": "Integrated from the official City of Edmonton boulevard / open space trees open-data dataset and official jurisdiction boundary."
+    },
+    {
       "name": "Tree Inventory Public",
       "city": "El Segundo",
       "endpoint": "https://services2.arcgis.com/yrktbS5Xw87hJQvs/arcgis/rest/services/TreeInvElSegundo_Public/FeatureServer",
@@ -6026,6 +6192,15 @@
       "records_fetched": 1302,
       "records_included": 1022,
       "note": "Integrated from the official Halifax Regional Municipality public trees ArcGIS layer."
+    },
+    {
+      "name": "Tree",
+      "city": "Halton Hills",
+      "endpoint": "https://map.haltonhills.ca/awse/rest/services/eP/MapServer/5",
+      "last_edit_at": "",
+      "records_fetched": 440,
+      "records_included": 376,
+      "note": "Integrated from the official Town of Halton Hills public tree ArcGIS layer after restricting to in-service rows."
     },
     {
       "name": "Public Tree Inventory",
@@ -6332,6 +6507,15 @@
       "note": "Integrated from the official City of Meadville public tree inventory ArcGIS layer and official jurisdiction boundary."
     },
     {
+      "name": "Tree Inventory",
+      "city": "Medicine Hat",
+      "endpoint": "https://gis.medicinehat.ca/arcgis/rest/services/Parks/Trees_RFP_Tree_Inventory_Collection_FS4/MapServer",
+      "last_edit_at": "",
+      "records_fetched": 1362,
+      "records_included": 677,
+      "note": "Integrated from the official City of Medicine Hat public tree inventory ArcGIS layer after restricting to living rows."
+    },
+    {
       "name": "Municipal Tree Inventory",
       "city": "Middlebury",
       "endpoint": "https://www.arcgis.com/home/item.html?id=2d0401a0ac9d449784ed9b31daabed60",
@@ -6448,6 +6632,15 @@
       "note": "Integrated from the official City of Mountain View Trees ArcGIS layer and official city boundary."
     },
     {
+      "name": "Urban Trees",
+      "city": "Nanaimo",
+      "endpoint": "https://nanmap.nanaimo.ca/Geocortex/Essentials/REST/sites/Nanaimo_Map/map/mapservices",
+      "last_edit_at": "",
+      "records_fetched": 818,
+      "records_included": 645,
+      "note": "Integrated from the official City of Nanaimo public urban trees ArcGIS layer."
+    },
+    {
       "name": "TreeKeeper Inventory",
       "city": "New Haven",
       "endpoint": "https://newhavenct.treekeepersoftware.com",
@@ -6518,6 +6711,24 @@
       "records_fetched": 3011,
       "records_included": 1615,
       "note": "Integrated from the official City of Norfolk open-data tree inventory and official jurisdiction boundary."
+    },
+    {
+      "name": "City Trees",
+      "city": "North Vancouver City",
+      "endpoint": "https://www.cnv.org/Community-Environment/Trees/Public-Trees",
+      "last_edit_at": "",
+      "records_fetched": 1393,
+      "records_included": 1098,
+      "note": "Integrated from the official City of North Vancouver public City Trees layer and official jurisdiction boundary."
+    },
+    {
+      "name": "Street Trees",
+      "city": "North Vancouver District",
+      "endpoint": "https://geoweb.dnv.org/data/",
+      "last_edit_at": "2026-03-19T14:41:34",
+      "records_fetched": 3683,
+      "records_included": 394,
+      "note": "Integrated from the official District of North Vancouver open-data Street Trees shapefile and official jurisdiction boundary."
     },
     {
       "name": "Municipal Tree Inventory",
@@ -6768,6 +6979,15 @@
       "note": "Integrated from the official Vermont Municipal Tree Inventory rows for the Town of Randolph."
     },
     {
+      "name": "PARK_Trees_inservice",
+      "city": "Red Deer",
+      "endpoint": "https://arcgis.reddeer.ca/arcgis/rest/services/CoRD_View_Layers/PARK_Trees_inservice/MapServer",
+      "last_edit_at": "",
+      "records_fetched": 4700,
+      "records_included": 2565,
+      "note": "Integrated from the official City of Red Deer public in-service trees ArcGIS layer after restricting to city-owned in-service rows."
+    },
+    {
       "name": "Street Trees",
       "city": "Redlands",
       "endpoint": "https://services.arcgis.com/FLM8UAw9y5MmuVTV/arcgis/rest/services/Street_Trees/FeatureServer",
@@ -6792,6 +7012,15 @@
       "records_fetched": 2019,
       "records_included": 1996,
       "note": "Integrated from the official City of Redondo Beach GIS tree inventory layer and official jurisdiction boundary."
+    },
+    {
+      "name": "City Trees",
+      "city": "Regina",
+      "endpoint": "https://opengis.regina.ca/arcgis/rest/services/CGISViewer/TreeWebApp/MapServer",
+      "last_edit_at": "",
+      "records_fetched": 5982,
+      "records_included": 5982,
+      "note": "Integrated from the official City of Regina public city-trees ArcGIS layer."
     },
     {
       "name": "Tree Sites",
@@ -7203,6 +7432,15 @@
       "records_fetched": 7614,
       "records_included": 0,
       "note": "Integrated from the official Teaneck public TreeKeeper inventory and jurisdiction boundary."
+    },
+    {
+      "name": "Trees Municipal",
+      "city": "Tecumseh",
+      "endpoint": "https://gisweb.tecumseh.ca/arcgis/rest/services/GeocortexEssentialsMapping/MapServer",
+      "last_edit_at": "",
+      "records_fetched": 287,
+      "records_included": 242,
+      "note": "Integrated from the official Town of Tecumseh municipal trees ArcGIS layer after excluding boundary-only rows."
     },
     {
       "name": "Tree Inventory",

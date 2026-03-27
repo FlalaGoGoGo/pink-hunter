@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-03-27T18:20:28.682878+00:00",
+  "generated_at": "2026-03-27T19:42:49.217976+00:00",
   "region": "ab",
   "strategy": "area_shard",
   "items": [
@@ -426,6 +426,184 @@
       ]
     },
     {
+      "jurisdiction": "Edmonton",
+      "slug": "edmonton",
+      "display_name": "Edmonton",
+      "jurisdiction_type": "city",
+      "state_province": "AB",
+      "country": "Canada",
+      "bounds": [
+        [
+          -113.71306700431387,
+          53.396006028528745
+        ],
+        [
+          -113.3016626677673,
+          53.64567564842268
+        ]
+      ],
+      "tree_count": 30304,
+      "zip_codes": [
+        "None"
+      ],
+      "species_counts": {
+        "cherry": 5151,
+        "plum": 100,
+        "peach": 0,
+        "magnolia": 0,
+        "crabapple": 25053
+      },
+      "ownership_counts": {
+        "public": 30304,
+        "private": 0,
+        "unknown": 0
+      },
+      "species_ownership_counts": {
+        "cherry": {
+          "public": 5151,
+          "private": 0,
+          "unknown": 0
+        },
+        "plum": {
+          "public": 100,
+          "private": 0,
+          "unknown": 0
+        },
+        "peach": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        },
+        "magnolia": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        },
+        "crabapple": {
+          "public": 25053,
+          "private": 0,
+          "unknown": 0
+        }
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "edmonton-001",
+          "bounds": [
+            [
+              -113.71306700431387,
+              53.39602314459704
+            ],
+            [
+              -113.52604053092236,
+              53.64567564842268
+            ]
+          ],
+          "data_path": "/data/trees.ab.area.edmonton.shard-001.v2.geojson",
+          "tree_count": 15152,
+          "ownership_counts": {
+            "public": 15152,
+            "private": 0,
+            "unknown": 0
+          },
+          "species_counts": {
+            "cherry": 2489,
+            "plum": 46,
+            "peach": 0,
+            "magnolia": 0,
+            "crabapple": 12617
+          },
+          "species_ownership_counts": {
+            "cherry": {
+              "public": 2489,
+              "private": 0,
+              "unknown": 0
+            },
+            "plum": {
+              "public": 46,
+              "private": 0,
+              "unknown": 0
+            },
+            "peach": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            },
+            "magnolia": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            },
+            "crabapple": {
+              "public": 12617,
+              "private": 0,
+              "unknown": 0
+            }
+          },
+          "raw_bytes": 8005623,
+          "gzip_bytes": 343205
+        },
+        {
+          "id": "edmonton-002",
+          "bounds": [
+            [
+              -113.52603991396593,
+              53.396006028528745
+            ],
+            [
+              -113.3016626677673,
+              53.64488186041291
+            ]
+          ],
+          "data_path": "/data/trees.ab.area.edmonton.shard-002.v2.geojson",
+          "tree_count": 15152,
+          "ownership_counts": {
+            "public": 15152,
+            "private": 0,
+            "unknown": 0
+          },
+          "species_counts": {
+            "cherry": 2662,
+            "plum": 54,
+            "peach": 0,
+            "magnolia": 0,
+            "crabapple": 12436
+          },
+          "species_ownership_counts": {
+            "cherry": {
+              "public": 2662,
+              "private": 0,
+              "unknown": 0
+            },
+            "plum": {
+              "public": 54,
+              "private": 0,
+              "unknown": 0
+            },
+            "peach": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            },
+            "magnolia": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            },
+            "crabapple": {
+              "public": 12436,
+              "private": 0,
+              "unknown": 0
+            }
+          },
+          "raw_bytes": 8003487,
+          "gzip_bytes": 345823
+        }
+      ]
+    },
+    {
       "jurisdiction": "Lethbridge",
       "slug": "lethbridge",
       "display_name": "Lethbridge",
@@ -548,6 +726,128 @@
       ]
     },
     {
+      "jurisdiction": "Medicine Hat",
+      "slug": "medicine-hat",
+      "display_name": "Medicine Hat",
+      "jurisdiction_type": "city",
+      "state_province": "AB",
+      "country": "Canada",
+      "bounds": [
+        [
+          -110.78568338856606,
+          49.990536525423416
+        ],
+        [
+          -110.62389608993884,
+          50.06791898952813
+        ]
+      ],
+      "tree_count": 677,
+      "zip_codes": [
+        "None"
+      ],
+      "species_counts": {
+        "cherry": 109,
+        "plum": 0,
+        "peach": 0,
+        "magnolia": 0,
+        "crabapple": 568
+      },
+      "ownership_counts": {
+        "public": 677,
+        "private": 0,
+        "unknown": 0
+      },
+      "species_ownership_counts": {
+        "cherry": {
+          "public": 109,
+          "private": 0,
+          "unknown": 0
+        },
+        "plum": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        },
+        "peach": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        },
+        "magnolia": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        },
+        "crabapple": {
+          "public": 568,
+          "private": 0,
+          "unknown": 0
+        }
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "medicine-hat-001",
+          "bounds": [
+            [
+              -110.78568338856606,
+              49.990536525423416
+            ],
+            [
+              -110.62389608993884,
+              50.06791898952813
+            ]
+          ],
+          "data_path": "/data/trees.ab.area.medicine-hat.v2.geojson",
+          "tree_count": 677,
+          "ownership_counts": {
+            "public": 677,
+            "private": 0,
+            "unknown": 0
+          },
+          "species_counts": {
+            "cherry": 109,
+            "plum": 0,
+            "peach": 0,
+            "magnolia": 0,
+            "crabapple": 568
+          },
+          "species_ownership_counts": {
+            "cherry": {
+              "public": 109,
+              "private": 0,
+              "unknown": 0
+            },
+            "plum": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            },
+            "peach": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            },
+            "magnolia": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            },
+            "crabapple": {
+              "public": 568,
+              "private": 0,
+              "unknown": 0
+            }
+          },
+          "raw_bytes": 347153,
+          "gzip_bytes": 16225
+        }
+      ]
+    },
+    {
       "jurisdiction": "Okotoks",
       "slug": "okotoks",
       "display_name": "Okotoks",
@@ -666,6 +966,128 @@
           },
           "raw_bytes": 468962,
           "gzip_bytes": 21545
+        }
+      ]
+    },
+    {
+      "jurisdiction": "Red Deer",
+      "slug": "red-deer",
+      "display_name": "Red Deer",
+      "jurisdiction_type": "city",
+      "state_province": "AB",
+      "country": "Canada",
+      "bounds": [
+        [
+          -113.8791799248696,
+          52.22499242176938
+        ],
+        [
+          -113.7428612154118,
+          52.31576649458747
+        ]
+      ],
+      "tree_count": 2565,
+      "zip_codes": [
+        "None"
+      ],
+      "species_counts": {
+        "cherry": 645,
+        "plum": 25,
+        "peach": 0,
+        "magnolia": 0,
+        "crabapple": 1895
+      },
+      "ownership_counts": {
+        "public": 2565,
+        "private": 0,
+        "unknown": 0
+      },
+      "species_ownership_counts": {
+        "cherry": {
+          "public": 645,
+          "private": 0,
+          "unknown": 0
+        },
+        "plum": {
+          "public": 25,
+          "private": 0,
+          "unknown": 0
+        },
+        "peach": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        },
+        "magnolia": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        },
+        "crabapple": {
+          "public": 1895,
+          "private": 0,
+          "unknown": 0
+        }
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "red-deer-001",
+          "bounds": [
+            [
+              -113.8791799248696,
+              52.22499242176938
+            ],
+            [
+              -113.7428612154118,
+              52.31576649458747
+            ]
+          ],
+          "data_path": "/data/trees.ab.area.red-deer.v2.geojson",
+          "tree_count": 2565,
+          "ownership_counts": {
+            "public": 2565,
+            "private": 0,
+            "unknown": 0
+          },
+          "species_counts": {
+            "cherry": 645,
+            "plum": 25,
+            "peach": 0,
+            "magnolia": 0,
+            "crabapple": 1895
+          },
+          "species_ownership_counts": {
+            "cherry": {
+              "public": 645,
+              "private": 0,
+              "unknown": 0
+            },
+            "plum": {
+              "public": 25,
+              "private": 0,
+              "unknown": 0
+            },
+            "peach": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            },
+            "magnolia": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            },
+            "crabapple": {
+              "public": 1895,
+              "private": 0,
+              "unknown": 0
+            }
+          },
+          "raw_bytes": 1263156,
+          "gzip_bytes": 61675
         }
       ]
     },

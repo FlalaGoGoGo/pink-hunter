@@ -214,6 +214,38 @@ SASKATOON_TREES_LAYER = "https://gisext.saskatoon.ca/arcgis/rest/services/AGOL/T
 SASKATOON_DATASET_PAGE = "https://www.saskatoon.ca/treeinventory"
 HALIFAX_TREES_LAYER = "https://services2.arcgis.com/11XBiaBYA9Ep0yNJ/arcgis/rest/services/Public_Trees/FeatureServer/0"
 HALIFAX_DATASET_PAGE = "https://www.halifax.ca/home-property/urban-forestry"
+EDMONTON_API = "https://data.edmonton.ca/resource/eecg-fc54.json"
+EDMONTON_METADATA = "https://data.edmonton.ca/api/views/eecg-fc54"
+EDMONTON_DATASET_PAGE = "https://data.edmonton.ca/Environmental-Services/Boulevard-Open-Space-Trees/eecg-fc54"
+REGINA_TREES_LAYER = "https://opengis.regina.ca/arcgis/rest/services/CGISViewer/TreeWebApp/MapServer/0"
+REGINA_DATASET_PAGE = "https://opengis.regina.ca/arcgis/rest/services/CGISViewer/TreeWebApp/MapServer"
+MEDICINE_HAT_TREES_LAYER = (
+    "https://gis.medicinehat.ca/arcgis/rest/services/Parks/Trees_RFP_Tree_Inventory_Collection_FS4/MapServer/0"
+)
+MEDICINE_HAT_DATASET_PAGE = (
+    "https://gis.medicinehat.ca/arcgis/rest/services/Parks/Trees_RFP_Tree_Inventory_Collection_FS4/MapServer"
+)
+HALTON_HILLS_TREES_LAYER = "https://map.haltonhills.ca/awse/rest/services/eP/MapServer/5"
+HALTON_HILLS_DATASET_PAGE = "https://map.haltonhills.ca/awse/rest/services/eP/MapServer/5"
+TECUMSEH_TREES_LAYER = "https://gisweb.tecumseh.ca/arcgis/rest/services/GeocortexEssentialsMapping/MapServer/75"
+TECUMSEH_DATASET_PAGE = "https://gisweb.tecumseh.ca/arcgis/rest/services/GeocortexEssentialsMapping/MapServer"
+NANAIMO_TREES_LAYER = "https://nanmap.nanaimo.ca/arcgis/rest/services/NanMap/Points/MapServer/77"
+NANAIMO_DATASET_PAGE = "https://nanmap.nanaimo.ca/Geocortex/Essentials/REST/sites/Nanaimo_Map/map/mapservices"
+ABBOTSFORD_PARK_TREES_LAYER = "https://services8.arcgis.com/ZYlQy38aWlfDG1Qh/arcgis/rest/services/Tree_Inventory_2019/FeatureServer/0"
+ABBOTSFORD_STREET_TREES_LAYER = "https://services8.arcgis.com/ZYlQy38aWlfDG1Qh/arcgis/rest/services/Tree_Inventory_2019/FeatureServer/1"
+ABBOTSFORD_DATASET_PAGE = "https://www.abbotsford.ca/tree-management"
+RED_DEER_TREES_LAYER = "https://arcgis.reddeer.ca/arcgis/rest/services/CoRD_View_Layers/PARK_Trees_inservice/MapServer/0"
+RED_DEER_DATASET_PAGE = "https://arcgis.reddeer.ca/arcgis/rest/services/CoRD_View_Layers/PARK_Trees_inservice/MapServer"
+NORTH_VANCOUVER_CITY_TREES_LAYER = "https://gisext2.cnv.org/ArcGIS/rest/services/BaseMapServices/CityMapPro/MapServer/5"
+NORTH_VANCOUVER_CITY_DATASET_PAGE = "https://www.cnv.org/Community-Environment/Trees/Public-Trees"
+NORTH_VANCOUVER_DISTRICT_STREET_TREES_ZIP = "https://geoweb.dnv.org/Products/Data/SHP/EnvStreetTree_shp.zip"
+NORTH_VANCOUVER_DISTRICT_DATASET_PAGE = "https://geoweb.dnv.org/data/"
+SURREY_IMPORTANT_TREES_LAYER = (
+    "https://services5.arcgis.com/YRpe0VKTJytZSSIB/arcgis/rest/services/Important%20Trees/FeatureServer/0"
+)
+SURREY_IMPORTANT_TREES_DATASET_PAGE = (
+    "https://www.surrey.ca/services-payments/water-drainage-sewer/trees/heritage-trees-and-significant-trees"
+)
 WINNIPEG_API = "https://data.winnipeg.ca/resource/hfwk-jp4h.json"
 WINNIPEG_METADATA = "https://data.winnipeg.ca/api/views/hfwk-jp4h"
 WINNIPEG_DATASET_PAGE = "https://data.winnipeg.ca/Parks/Tree-Inventory-Map/hfwk-jp4h"
@@ -975,6 +1007,17 @@ HALIFAX_BLOSSOM_WHERE = (
     "UPPER(SP_COMM) LIKE '%APPLE%'"
     ")"
 )
+EDMONTON_BLOSSOM_WHERE = (
+    "lower(species_botanical) like 'prunus%' OR "
+    "lower(species_botanical) like 'malus%' OR "
+    "lower(species_botanical) like 'magnolia%' OR "
+    "lower(species) like '%cherry%' OR "
+    "lower(species) like '%plum%' OR "
+    "lower(species) like '%peach%' OR "
+    "lower(species) like '%magnolia%' OR "
+    "lower(species) like '%crabapple%' OR "
+    "lower(species) like '%apple%'"
+)
 WINNIPEG_BLOSSOM_WHERE = (
     "upper(botanical_name) like 'PRUNUS%' OR "
     "upper(botanical_name) like 'MALUS%' OR "
@@ -985,6 +1028,43 @@ WINNIPEG_BLOSSOM_WHERE = (
     "upper(common_name) like '%MAGNOLIA%' OR "
     "upper(common_name) like '%CRABAPPLE%' OR "
     "upper(common_name) like '%APPLE%'"
+)
+REGINA_BLOSSOM_WHERE = (
+    "UPPER(SPECIES) LIKE 'PRUNUS%' OR "
+    "UPPER(SPECIES) LIKE 'MALUS%' OR "
+    "UPPER(SPECIES) LIKE 'MAGNOLIA%' OR "
+    "UPPER(SPECIES) LIKE '%CHERRY%' OR "
+    "UPPER(SPECIES) LIKE '%PLUM%' OR "
+    "UPPER(SPECIES) LIKE '%PEACH%' OR "
+    "UPPER(SPECIES) LIKE '%MAGNOLIA%' OR "
+    "UPPER(SPECIES) LIKE '%CRABAPPLE%' OR "
+    "UPPER(SPECIES) LIKE '%APPLE%'"
+)
+MEDICINE_HAT_BLOSSOM_WHERE = (
+    "TREE_ALIVE_DEAD LIKE 'Alive%' AND ("
+    "UPPER(SPECIES) LIKE 'PRUNUS%' OR "
+    "UPPER(SPECIES) LIKE 'MALUS%' OR "
+    "UPPER(SPECIES) LIKE 'MAGNOLIA%' OR "
+    "UPPER(SPECIES) LIKE '%CHERRY%' OR "
+    "UPPER(SPECIES) LIKE '%PLUM%' OR "
+    "UPPER(SPECIES) LIKE '%PEACH%' OR "
+    "UPPER(SPECIES) LIKE '%MAGNOLIA%' OR "
+    "UPPER(SPECIES) LIKE '%CRABAPPLE%' OR "
+    "UPPER(SPECIES) LIKE '%APPLE%'"
+    ")"
+)
+HALTON_HILLS_BLOSSOM_WHERE = (
+    "LC_Status = 'In Service' AND ("
+    "UPPER(A_MAKE) LIKE 'PRUNUS%' OR "
+    "UPPER(A_MAKE) LIKE 'MALUS%' OR "
+    "UPPER(A_MAKE) LIKE 'MAGNOLIA%' OR "
+    "UPPER(A_COMPONENT) LIKE '%CHERRY%' OR "
+    "UPPER(A_COMPONENT) LIKE '%PLUM%' OR "
+    "UPPER(A_COMPONENT) LIKE '%PEACH%' OR "
+    "UPPER(A_COMPONENT) LIKE '%MAGNOLIA%' OR "
+    "UPPER(A_COMPONENT) LIKE '%CRABAPPLE%' OR "
+    "UPPER(A_COMPONENT) LIKE '%APPLE%'"
+    ")"
 )
 AJAX_BLOSSOM_WHERE = (
     "STATUS = 'TREE' AND ("
@@ -1122,6 +1202,57 @@ LETHBRIDGE_BLOSSOM_WHERE = (
     "UPPER(cultivar) LIKE '%APPLE%'"
     ")"
 )
+NANAIMO_BLOSSOM_WHERE = (
+    "UPPER(Species) LIKE 'PRUNUS%' OR "
+    "UPPER(Species) LIKE 'MALUS%' OR "
+    "UPPER(Species) LIKE 'MAGNOLIA%' OR "
+    "UPPER(Species) LIKE '%CHERRY%' OR "
+    "UPPER(Species) LIKE '%PLUM%' OR "
+    "UPPER(Species) LIKE '%PEACH%' OR "
+    "UPPER(Species) LIKE '%MAGNOLIA%' OR "
+    "UPPER(Species) LIKE '%CRABAPPLE%' OR "
+    "UPPER(Species) LIKE '%APPLE%'"
+)
+ABBOTSFORD_BLOSSOM_WHERE = (
+    "UPPER(SPP) LIKE 'PRUNUS%' OR "
+    "UPPER(SPP) LIKE 'MALUS%' OR "
+    "UPPER(SPP) LIKE 'MAGNOLIA%' OR "
+    "UPPER(SPP) LIKE '%CHERRY%' OR "
+    "UPPER(SPP) LIKE '%PLUM%' OR "
+    "UPPER(SPP) LIKE '%PEACH%' OR "
+    "UPPER(SPP) LIKE '%MAGNOLIA%' OR "
+    "UPPER(SPP) LIKE '%CRABAPPLE%' OR "
+    "UPPER(SPP) LIKE '%APPLE%'"
+)
+TECUMSEH_BLOSSOM_WHERE = (
+    "ACTIVE = 1 AND OWNERSHIP <> 'Boundary' AND ("
+    "UPPER(SPECIES_BO) LIKE 'PRUNUS%' OR "
+    "UPPER(SPECIES_BO) LIKE 'MALUS%' OR "
+    "UPPER(SPECIES_BO) LIKE 'MAGNOLIA%' OR "
+    "UPPER(SPECIES_CO) LIKE '%CHERRY%' OR "
+    "UPPER(SPECIES_CO) LIKE '%PLUM%' OR "
+    "UPPER(SPECIES_CO) LIKE '%PEACH%' OR "
+    "UPPER(SPECIES_CO) LIKE '%MAGNOLIA%' OR "
+    "UPPER(SPECIES_CO) LIKE '%CRABAPPLE%' OR "
+    "UPPER(SPECIES_CO) LIKE '%APPLE%'"
+    ")"
+)
+RED_DEER_BLOSSOM_WHERE = (
+    "("
+    "UPPER(CmnNameSpecies) LIKE '%CHERRY%' OR "
+    "UPPER(CmnNameSpecies) LIKE '%PLUM%' OR "
+    "UPPER(CmnNameSpecies) LIKE '%PEACH%' OR "
+    "UPPER(CmnNameSpecies) LIKE '%MAGNOLIA%' OR "
+    "UPPER(CmnNameSpecies) LIKE '%CRABAPPLE%' OR "
+    "UPPER(CmnNameSpecies) LIKE '%APPLE%' OR "
+    "UPPER(Species) LIKE '%CHERRY%' OR "
+    "UPPER(Species) LIKE '%PLUM%' OR "
+    "UPPER(Species) LIKE '%PEACH%' OR "
+    "UPPER(Species) LIKE '%MAGNOLIA%' OR "
+    "UPPER(Species) LIKE '%CRABAPPLE%' OR "
+    "UPPER(Species) LIKE '%APPLE%'"
+    ")"
+)
 AIRDRIE_BLOSSOM_WHERE = (
     "ASSETSTATUS = 'Active' AND ("
     "UPPER(COMMON_NAME) LIKE '%APPLE%' OR "
@@ -1198,6 +1329,24 @@ MAPLE_RIDGE_BLOSSOM_WHERE = (
     "UPPER(CommonName) LIKE '%MAGNOLIA%' OR "
     "UPPER(CommonName) LIKE '%CRABAPPLE%' OR "
     "UPPER(CommonName) LIKE '%APPLE%'"
+    ")"
+)
+NORTH_VANCOUVER_CITY_BLOSSOM_WHERE = (
+    "UPPER(GENUS) LIKE 'PRUNUS%' OR "
+    "UPPER(GENUS) LIKE 'MALUS%' OR "
+    "UPPER(GENUS) LIKE 'MAGNOLIA%'"
+)
+SURREY_IMPORTANT_TREES_BLOSSOM_WHERE = (
+    "TREE_STATUS = 'Operating' AND ("
+    "UPPER(TREE_SPECIES) LIKE 'PRUNUS%' OR "
+    "UPPER(TREE_SPECIES) LIKE 'MALUS%' OR "
+    "UPPER(TREE_SPECIES) LIKE 'MAGNOLIA%' OR "
+    "UPPER(TREE_SPECIES) LIKE '%CHERRY%' OR "
+    "UPPER(TREE_SPECIES) LIKE '%PLUM%' OR "
+    "UPPER(TREE_SPECIES) LIKE '%PEACH%' OR "
+    "UPPER(TREE_SPECIES) LIKE '%MAGNOLIA%' OR "
+    "UPPER(TREE_SPECIES) LIKE '%CRABAPPLE%' OR "
+    "UPPER(TREE_SPECIES) LIKE '%APPLE%'"
     ")"
 )
 MONCTON_BLOSSOM_WHERE = "UPPER(BOTNAME) IN ('APPCRA','APPLE','CHEBI','CHEBLA','CHECHO','CHEFLO','CHEMA','CHEPIN','CHESTE','MAGSAU')"
@@ -1994,6 +2143,19 @@ UNCOVERED_STATE_ARCGIS_CONFIGS: dict[str, dict[str, Any]] = {
         "note": "Integrated from the official Halifax Regional Municipality public trees ArcGIS layer.",
         "clip_to_boundary": True,
     },
+    "Regina": {
+        "region": "sk",
+        "layer_url": REGINA_TREES_LAYER,
+        "dataset_page": REGINA_DATASET_PAGE,
+        "where": REGINA_BLOSSOM_WHERE,
+        "object_id_field": "OBJECTID",
+        "common_field": "SPECIES",
+        "source_name": "City Trees",
+        "source_department": "City of Regina",
+        "ownership_raw": "City of Regina",
+        "note": "Integrated from the official City of Regina public city-trees ArcGIS layer.",
+        "clip_to_boundary": True,
+    },
     "Calgary": {
         "region": "ab",
         "layer_url": CALGARY_TREES_LAYER,
@@ -2063,6 +2225,34 @@ UNCOVERED_STATE_ARCGIS_CONFIGS: dict[str, dict[str, Any]] = {
         "source_department": "City of Lethbridge",
         "ownership_raw": "City of Lethbridge",
         "note": "Integrated from the official City of Lethbridge public trees ArcGIS layer after restricting to active rows.",
+        "clip_to_boundary": True,
+    },
+    "Halton Hills": {
+        "region": "on",
+        "layer_url": HALTON_HILLS_TREES_LAYER,
+        "dataset_page": HALTON_HILLS_DATASET_PAGE,
+        "where": HALTON_HILLS_BLOSSOM_WHERE,
+        "object_id_field": "OBJECTID",
+        "common_field": "A_Component",
+        "scientific_field": "A_Make",
+        "source_name": "Tree",
+        "source_department": "Town of Halton Hills",
+        "ownership_raw": "Town of Halton Hills",
+        "note": "Integrated from the official Town of Halton Hills public tree ArcGIS layer after restricting to in-service rows.",
+        "clip_to_boundary": True,
+    },
+    "Tecumseh": {
+        "region": "on",
+        "layer_url": TECUMSEH_TREES_LAYER,
+        "dataset_page": TECUMSEH_DATASET_PAGE,
+        "where": TECUMSEH_BLOSSOM_WHERE,
+        "object_id_field": "OBJECTID",
+        "common_field": "SPECIES_CO",
+        "scientific_field": "SPECIES_BO",
+        "source_name": "Trees Municipal",
+        "source_department": "Town of Tecumseh",
+        "ownership_raw": "Town of Tecumseh",
+        "note": "Integrated from the official Town of Tecumseh municipal trees ArcGIS layer after excluding boundary-only rows.",
         "clip_to_boundary": True,
     },
     "Airdrie": {
@@ -2148,6 +2338,33 @@ UNCOVERED_STATE_ARCGIS_CONFIGS: dict[str, dict[str, Any]] = {
         "source_department": "City of Maple Ridge",
         "ownership_raw": "City of Maple Ridge",
         "note": "Integrated from the official City of Maple Ridge public street-tree ArcGIS layer after restricting to existing rows.",
+        "clip_to_boundary": True,
+    },
+    "Nanaimo": {
+        "region": "bc",
+        "layer_url": NANAIMO_TREES_LAYER,
+        "dataset_page": NANAIMO_DATASET_PAGE,
+        "where": NANAIMO_BLOSSOM_WHERE,
+        "object_id_field": "OBJECTID",
+        "scientific_field": "Species",
+        "source_name": "Urban Trees",
+        "source_department": "City of Nanaimo",
+        "ownership_raw": "City of Nanaimo",
+        "note": "Integrated from the official City of Nanaimo public urban trees ArcGIS layer.",
+        "clip_to_boundary": True,
+    },
+    "North Vancouver City": {
+        "region": "bc",
+        "layer_url": NORTH_VANCOUVER_CITY_TREES_LAYER,
+        "dataset_page": NORTH_VANCOUVER_CITY_DATASET_PAGE,
+        "where": NORTH_VANCOUVER_CITY_BLOSSOM_WHERE,
+        "object_id_field": "OBJECTID",
+        "genus_field": "GENUS",
+        "species_field": "SPECIES",
+        "source_name": "City Trees",
+        "source_department": "City of North Vancouver",
+        "ownership_raw": "City of North Vancouver",
+        "note": "Integrated from the official City of North Vancouver public City Trees layer and official jurisdiction boundary.",
         "clip_to_boundary": True,
     },
     "Fredericton": {
@@ -3108,6 +3325,101 @@ def fetch_arcgis_features_by_object_ids(
     for start in range(0, len(object_ids), chunk_size):
         chunk = object_ids[start : start + chunk_size]
         payload = post_form_with_curl(
+            f"{layer_url}/query",
+            [
+                ("where", where),
+                ("objectIds", ",".join(str(value) for value in chunk)),
+                ("outFields", ",".join(out_fields)),
+                ("returnGeometry", "true"),
+                ("outSR", "4326"),
+                ("f", "pjson"),
+            ],
+        )
+        if "error" in payload:
+            raise RuntimeError(f"ArcGIS error for {layer_url}: {payload['error']}")
+        features.extend(payload.get("features") or [])
+    return features
+
+
+def fetch_json_via_curl_url(url: str) -> dict[str, Any]:
+    last_error: Exception | None = None
+    for attempt in range(1, 5):
+        result = subprocess.run(
+            ["curl", "-sL", "--max-time", "120", url],
+            capture_output=True,
+            text=True,
+            check=False,
+        )
+        if result.returncode != 0:
+            last_error = RuntimeError(f"curl failed ({result.returncode}): {result.stderr.strip()}")
+            time.sleep(0.35 * attempt)
+            continue
+        payload = result.stdout.strip()
+        if not payload:
+            last_error = RuntimeError("curl returned empty payload")
+            time.sleep(0.35 * attempt)
+            continue
+        try:
+            return json.loads(payload)
+        except Exception as exc:  # noqa: PERF203
+            last_error = exc
+            time.sleep(0.35 * attempt)
+    raise RuntimeError(f"Failed to fetch valid JSON for {url}: {last_error}")
+
+
+def post_form_json_via_curl(url: str, form_pairs: list[tuple[str, Any]]) -> dict[str, Any]:
+    last_error: Exception | None = None
+    for attempt in range(1, 5):
+        cmd = ["curl", "-sL", "--max-time", "120"]
+        for key, value in form_pairs:
+            cmd.extend(["--data-urlencode", f"{key}={value}"])
+        cmd.append(url)
+        result = subprocess.run(
+            cmd,
+            capture_output=True,
+            text=True,
+            check=False,
+        )
+        if result.returncode != 0:
+            last_error = RuntimeError(f"curl failed ({result.returncode}): {result.stderr.strip()}")
+            time.sleep(0.35 * attempt)
+            continue
+        payload = result.stdout.strip()
+        if not payload:
+            last_error = RuntimeError("curl returned empty payload")
+            time.sleep(0.35 * attempt)
+            continue
+        try:
+            return json.loads(payload)
+        except Exception as exc:  # noqa: PERF203
+            last_error = exc
+            time.sleep(0.35 * attempt)
+    raise RuntimeError(f"Failed to fetch valid form JSON for {url}: {last_error}")
+
+
+def fetch_arcgis_features_by_object_ids_via_curl(
+    layer_url: str,
+    *,
+    where: str,
+    out_fields: list[str],
+    object_id_field: str,
+    chunk_size: int = 250,
+) -> list[dict[str, Any]]:
+    ids_payload = post_form_json_via_curl(
+        f"{layer_url}/query",
+        [
+            ("where", where),
+            ("returnIdsOnly", "true"),
+            ("f", "pjson"),
+        ],
+    )
+    if "error" in ids_payload:
+        raise RuntimeError(f"ArcGIS error for {layer_url}: {ids_payload['error']}")
+    object_ids = ids_payload.get("objectIds") or []
+    features: list[dict[str, Any]] = []
+    for start in range(0, len(object_ids), chunk_size):
+        chunk = object_ids[start : start + chunk_size]
+        payload = post_form_json_via_curl(
             f"{layer_url}/query",
             [
                 ("where", where),
@@ -8941,6 +9253,315 @@ def fetch_winnipeg() -> dict[str, Any]:
     }
 
 
+def fetch_edmonton() -> dict[str, Any]:
+    metadata = fetch_json(EDMONTON_METADATA)
+    rows = fetch_soda_rows(EDMONTON_API, where=EDMONTON_BLOSSOM_WHERE, order="id")
+    last_edit_at = iso_from_epoch(metadata.get("rowsUpdatedAt") or metadata.get("viewLastModified"))
+    zip_index = fetch_us_city_zip_index("Edmonton", state_id="ab")
+    mapping_rows = load_mapping(MAPPING_PATH)
+    subtype_rows = load_subtype_mapping(SUBTYPE_MAPPING_PATH)
+    boundary_geometry = load_city_boundary_geometry("Edmonton", state_id="ab")
+
+    output_features: list[dict[str, Any]] = []
+    normalized_rows: list[dict[str, Any]] = []
+    for row in rows:
+        lon = parse_floatish(row.get("longitude"))
+        lat = parse_floatish(row.get("latitude"))
+        if lon is None or lat is None:
+            continue
+        if boundary_geometry and not point_in_geometry(lon, lat, boundary_geometry):
+            continue
+
+        common_name = clean_common_name(row.get("species"))
+        scientific_raw = format_scientific_display_name(row.get("species_botanical"), common_name)
+        if not scientific_raw:
+            scientific_raw = generic_scientific_name_for_common_hint(common_name)
+        scientific_normalized = normalize_scientific_name(scientific_raw)
+        species_group, subtype_name = classify_tree_record(scientific_raw, common_name, mapping_rows, subtype_rows)
+        zip_code = assign_zip_code(lon, lat, zip_index)
+        ownership_raw = clean_display_name(row.get("owner")) or "City of Edmonton"
+        row_id = f"edmonton-{row.get('id')}"
+
+        normalized_rows.append(
+            {
+                "id": row_id,
+                "city": "Edmonton",
+                "source_dataset": "Boulevard / Open Space Trees",
+                "scientific_raw": scientific_raw,
+                "scientific_normalized": scientific_normalized,
+                "common_name": common_name or "",
+                "subtype_name": subtype_name or "",
+                "zip_code": zip_code or "",
+                "species_group": species_group or "",
+                "ownership": canonical_ownership(ownership_raw),
+                "ownership_raw": ownership_raw,
+                "lat": lat,
+                "lon": lon,
+                "included": "1" if species_group else "0",
+            }
+        )
+        if not species_group:
+            continue
+        output_features.append(
+            {
+                "type": "Feature",
+                "geometry": {"type": "Point", "coordinates": [lon, lat]},
+                "properties": {
+                    "id": row_id,
+                    "species_group": species_group,
+                    "scientific_name": scientific_raw,
+                    "common_name": common_name,
+                    "subtype_name": subtype_name,
+                    "zip_code": zip_code,
+                    "ownership": canonical_ownership(ownership_raw),
+                    "ownership_raw": ownership_raw,
+                    "city": "Edmonton",
+                    "source_dataset": "Boulevard / Open Space Trees",
+                    "source_department": "City of Edmonton",
+                    "source_last_edit_at": last_edit_at,
+                },
+            }
+        )
+
+    return {
+        "city": "Edmonton",
+        "region": "ab",
+        "features": output_features,
+        "normalized_rows": normalized_rows,
+        "source": {
+            "name": "Boulevard / Open Space Trees",
+            "city": "Edmonton",
+            "endpoint": EDMONTON_DATASET_PAGE,
+            "last_edit_at": last_edit_at,
+            "records_fetched": len(rows),
+            "records_included": len(output_features),
+            "note": "Integrated from the official City of Edmonton boulevard / open space trees open-data dataset and official jurisdiction boundary.",
+        },
+    }
+
+
+def fetch_medicine_hat() -> dict[str, Any]:
+    layer_info = fetch_json(MEDICINE_HAT_TREES_LAYER, {"f": "pjson"})
+    features = fetch_arcgis_features_by_object_ids(
+        MEDICINE_HAT_TREES_LAYER,
+        where=MEDICINE_HAT_BLOSSOM_WHERE,
+        out_fields=["OBJECTID", "SPECIES", "TREE_ALIVE_DEAD"],
+        object_id_field="OBJECTID",
+    )
+    features = clip_features_to_city_boundary("Medicine Hat", "ab", features)
+    for feature in features:
+        attrs = feature.setdefault("attributes", {})
+        scientific_raw, common_name = parse_dash_species(clean_display_name(attrs.get("SPECIES")))
+        attrs["PH_COMMON_NAME"] = common_name or ""
+        attrs["PH_SCIENTIFIC_NAME"] = scientific_raw or ""
+    return build_arcgis_inventory_result(
+        city="Medicine Hat",
+        region="ab",
+        features=features,
+        total_records=len(features),
+        last_edit_at=iso_from_epoch((layer_info.get("editingInfo") or {}).get("lastEditDate")),
+        source_name="Tree Inventory",
+        source_department="City of Medicine Hat",
+        dataset_page=MEDICINE_HAT_DATASET_PAGE,
+        ownership_raw="City of Medicine Hat",
+        note="Integrated from the official City of Medicine Hat public tree inventory ArcGIS layer after restricting to living rows.",
+        object_id_field="OBJECTID",
+        common_field="PH_COMMON_NAME",
+        scientific_field="PH_SCIENTIFIC_NAME",
+    )
+
+
+def fetch_north_vancouver_district() -> dict[str, Any]:
+    point_rows = load_zipped_point_shapefile_rows(NORTH_VANCOUVER_DISTRICT_STREET_TREES_ZIP)
+    zip_index = fetch_us_city_zip_index("North Vancouver District", state_id="bc")
+    mapping_rows = load_mapping(MAPPING_PATH)
+    subtype_rows = load_subtype_mapping(SUBTYPE_MAPPING_PATH)
+    boundary_geometry = load_city_boundary_geometry("North Vancouver District", state_id="bc")
+
+    last_edit_tokens: list[str] = []
+    output_features: list[dict[str, Any]] = []
+    normalized_rows: list[dict[str, Any]] = []
+    for row in point_rows:
+        attrs = row.get("attributes", {})
+        geom = row.get("geometry", {})
+        lon = parse_floatish(geom.get("x"))
+        lat = parse_floatish(geom.get("y"))
+        if lon is None or lat is None:
+            continue
+        if boundary_geometry and not point_in_geometry(lon, lat, boundary_geometry):
+            continue
+        if (clean_display_name(attrs.get("REMOVED")) or "").upper() == "Y":
+            continue
+
+        raw_last_edit = clean_display_name(attrs.get("LASTEDITDA"))
+        if raw_last_edit and raw_last_edit.isdigit() and len(raw_last_edit) == 14:
+            last_edit_tokens.append(raw_last_edit)
+
+        common_name = clean_common_name(attrs.get("COMMONNAME"))
+        scientific_raw = format_scientific_display_name(
+            f"{attrs.get('GENUS') or ''} {attrs.get('SPECIES') or ''}",
+            common_name,
+        )
+        if not scientific_raw:
+            scientific_raw = generic_scientific_name_for_common_hint(common_name)
+        scientific_normalized = normalize_scientific_name(scientific_raw)
+        species_group, subtype_name = classify_tree_record(scientific_raw, common_name, mapping_rows, subtype_rows)
+        zip_code = assign_zip_code(lon, lat, zip_index)
+        ownership_raw = clean_display_name(attrs.get("AM_OWNER_R")) or "District of North Vancouver"
+        row_id = f"north-vancouver-district-{attrs.get('ASSET_ID') or attrs.get('OBJECTID')}"
+
+        normalized_rows.append(
+            {
+                "id": row_id,
+                "city": "North Vancouver District",
+                "source_dataset": "Street Trees",
+                "scientific_raw": scientific_raw,
+                "scientific_normalized": scientific_normalized,
+                "common_name": common_name or "",
+                "subtype_name": subtype_name or "",
+                "zip_code": zip_code or "",
+                "species_group": species_group or "",
+                "ownership": canonical_ownership(ownership_raw),
+                "ownership_raw": ownership_raw,
+                "lat": lat,
+                "lon": lon,
+                "included": "1" if species_group else "0",
+            }
+        )
+        if not species_group:
+            continue
+        output_features.append(
+            {
+                "type": "Feature",
+                "geometry": {"type": "Point", "coordinates": [lon, lat]},
+                "properties": {
+                    "id": row_id,
+                    "species_group": species_group,
+                    "scientific_name": scientific_raw,
+                    "common_name": common_name,
+                    "subtype_name": subtype_name,
+                    "zip_code": zip_code,
+                    "ownership": canonical_ownership(ownership_raw),
+                    "ownership_raw": ownership_raw,
+                    "city": "North Vancouver District",
+                    "source_dataset": "Street Trees",
+                    "source_department": "District of North Vancouver",
+                    "source_last_edit_at": "",
+                },
+            }
+        )
+
+    last_edit_at = ""
+    if last_edit_tokens:
+        last_edit_at = dt.datetime.strptime(max(last_edit_tokens), "%Y%m%d%H%M%S").isoformat()
+        for feature in output_features:
+            feature["properties"]["source_last_edit_at"] = last_edit_at
+
+    return {
+        "city": "North Vancouver District",
+        "region": "bc",
+        "features": output_features,
+        "normalized_rows": normalized_rows,
+        "source": {
+            "name": "Street Trees",
+            "city": "North Vancouver District",
+            "endpoint": NORTH_VANCOUVER_DISTRICT_DATASET_PAGE,
+            "last_edit_at": last_edit_at,
+            "records_fetched": len(normalized_rows),
+            "records_included": len(output_features),
+            "note": "Integrated from the official District of North Vancouver open-data Street Trees shapefile and official jurisdiction boundary.",
+        },
+    }
+
+
+def fetch_red_deer() -> dict[str, Any]:
+    layer_info = fetch_json_via_curl_url(f"{RED_DEER_TREES_LAYER}?f=pjson")
+    total_payload = post_form_json_via_curl(
+        f"{RED_DEER_TREES_LAYER}/query",
+        [("where", RED_DEER_BLOSSOM_WHERE), ("returnCountOnly", "true"), ("f", "pjson")],
+    )
+    features = fetch_arcgis_features_by_object_ids_via_curl(
+        RED_DEER_TREES_LAYER,
+        where=RED_DEER_BLOSSOM_WHERE,
+        out_fields=["OBJECTID", "Species", "CmnNameSpecies", "Status", "Owner"],
+        object_id_field="OBJECTID",
+    )
+    features = clip_features_to_city_boundary("Red Deer", "ab", features)
+    for feature in features:
+        attrs = feature.setdefault("attributes", {})
+        source_text = clean_display_name(attrs.get("CmnNameSpecies")) or clean_display_name(attrs.get("Species")) or ""
+        common_name = clean_common_name(attrs.get("Species"))
+        scientific_raw = ""
+        match = re.search(r"\(([^()]+)\)\s*$", source_text)
+        if match:
+            scientific_raw = match.group(1).strip()
+            if not common_name:
+                common_name = clean_common_name(source_text[: match.start()].strip())
+        attrs["PH_COMMON_NAME"] = common_name or ""
+        attrs["PH_SCIENTIFIC_NAME"] = scientific_raw
+    return build_arcgis_inventory_result(
+        city="Red Deer",
+        region="ab",
+        features=features,
+        total_records=int(total_payload.get("count") or len(features)),
+        last_edit_at=iso_from_epoch((layer_info.get("editingInfo") or {}).get("lastEditDate")),
+        source_name="PARK_Trees_inservice",
+        source_department="City of Red Deer",
+        dataset_page=RED_DEER_DATASET_PAGE,
+        ownership_raw="City of Red Deer",
+        note="Integrated from the official City of Red Deer public in-service trees ArcGIS layer after restricting to city-owned in-service rows.",
+        object_id_field="OBJECTID",
+        common_field="PH_COMMON_NAME",
+        scientific_field="PH_SCIENTIFIC_NAME",
+    )
+
+
+def fetch_abbotsford() -> dict[str, Any]:
+    park_layer_info = fetch_json(ABBOTSFORD_PARK_TREES_LAYER, {"f": "pjson"})
+    street_layer_info = fetch_json(ABBOTSFORD_STREET_TREES_LAYER, {"f": "pjson"})
+    park_features = fetch_all_features(
+        ABBOTSFORD_PARK_TREES_LAYER,
+        ABBOTSFORD_BLOSSOM_WHERE,
+        ["FID", "SPP", "LATITUDE", "LONGITUDE"],
+        "FID",
+    )
+    street_features = fetch_all_features(
+        ABBOTSFORD_STREET_TREES_LAYER,
+        ABBOTSFORD_BLOSSOM_WHERE,
+        ["FID", "SPP", "LATITUDE", "LONGITUDE"],
+        "FID",
+    )
+    features = park_features + street_features
+    features = clip_features_to_city_boundary("Abbotsford", "bc", features)
+    for feature in features:
+        attrs = feature.setdefault("attributes", {})
+        attrs["PH_SCIENTIFIC_NAME"] = clean_display_name(attrs.get("SPP")) or ""
+        attrs["PH_COMMON_NAME"] = ""
+    last_edit_candidates = [
+        (park_layer_info.get("editingInfo") or {}).get("lastEditDate"),
+        (street_layer_info.get("editingInfo") or {}).get("lastEditDate"),
+    ]
+    last_edit_values = [value for value in last_edit_candidates if value]
+    last_edit_at = iso_from_epoch(max(last_edit_values)) if last_edit_values else ""
+    return build_arcgis_inventory_result(
+        city="Abbotsford",
+        region="bc",
+        features=features,
+        total_records=len(features),
+        last_edit_at=last_edit_at,
+        source_name="Tree Inventory 2019",
+        source_department="City of Abbotsford",
+        dataset_page=ABBOTSFORD_DATASET_PAGE,
+        ownership_raw="City of Abbotsford",
+        note="Integrated from the public Tree Inventory 2019 ArcGIS service referenced by City of Abbotsford tree-management materials and official jurisdiction boundary.",
+        object_id_field="FID",
+        common_field="PH_COMMON_NAME",
+        scientific_field="PH_SCIENTIFIC_NAME",
+        lon_field="LONGITUDE",
+        lat_field="LATITUDE",
+    )
+
+
 def fetch_moncton() -> dict[str, Any]:
     layer_info = fetch_json(MONCTON_TREES_LAYER, {"f": "pjson"})
     features = fetch_arcgis_features_by_object_ids(
@@ -9319,6 +9940,7 @@ CITY_FETCHERS = {
     "Milpitas": fetch_milpitas,
     "Monterey Park": fetch_monterey_park,
     "Moncton": fetch_moncton,
+    "North Vancouver District": fetch_north_vancouver_district,
     "Mountain View": fetch_mountain_view,
     "Morgan Hill": fetch_morgan_hill,
     "Newport Beach": fetch_newport_beach,
@@ -9334,6 +9956,7 @@ CITY_FETCHERS = {
     "Rancho Palos Verdes": fetch_rancho_palos_verdes,
     "Redlands": fetch_redlands,
     "Redondo Beach": fetch_redondo_beach,
+    "Red Deer": fetch_red_deer,
     "Riverside": fetch_riverside,
     "Sacramento": fetch_sacramento,
     "Salinas": fetch_salinas,
@@ -9362,9 +9985,12 @@ CITY_FETCHERS = {
     "West Hollywood": fetch_west_hollywood,
     "West Sacramento": fetch_west_sacramento,
     "Winnipeg": fetch_winnipeg,
+    "Edmonton": fetch_edmonton,
+    "Medicine Hat": fetch_medicine_hat,
     "Yorba Linda": fetch_yorba_linda,
     "Oxnard": fetch_oxnard,
     "Arcadia": fetch_arcadia,
+    "Abbotsford": fetch_abbotsford,
     "Pittsburgh": fetch_pittsburgh,
     "New York City": fetch_new_york_city,
     "Philadelphia": fetch_philadelphia,

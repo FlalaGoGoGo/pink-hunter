@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-03-27T18:20:28.682878+00:00",
+  "generated_at": "2026-03-27T19:42:49.217976+00:00",
   "region": "on",
   "strategy": "area_shard",
   "items": [
@@ -610,6 +610,128 @@
           },
           "raw_bytes": 838661,
           "gzip_bytes": 40999
+        }
+      ]
+    },
+    {
+      "jurisdiction": "Halton Hills",
+      "slug": "halton-hills",
+      "display_name": "Halton Hills",
+      "jurisdiction_type": "city",
+      "state_province": "ON",
+      "country": "Canada",
+      "bounds": [
+        [
+          -80.05052463562842,
+          43.621013854717845
+        ],
+        [
+          -79.85713188618477,
+          43.660714261308726
+        ]
+      ],
+      "tree_count": 376,
+      "zip_codes": [
+        "None"
+      ],
+      "species_counts": {
+        "cherry": 53,
+        "plum": 0,
+        "peach": 0,
+        "magnolia": 15,
+        "crabapple": 308
+      },
+      "ownership_counts": {
+        "public": 376,
+        "private": 0,
+        "unknown": 0
+      },
+      "species_ownership_counts": {
+        "cherry": {
+          "public": 53,
+          "private": 0,
+          "unknown": 0
+        },
+        "plum": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        },
+        "peach": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        },
+        "magnolia": {
+          "public": 15,
+          "private": 0,
+          "unknown": 0
+        },
+        "crabapple": {
+          "public": 308,
+          "private": 0,
+          "unknown": 0
+        }
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "halton-hills-001",
+          "bounds": [
+            [
+              -80.05052463562842,
+              43.621013854717845
+            ],
+            [
+              -79.85713188618477,
+              43.660714261308726
+            ]
+          ],
+          "data_path": "/data/trees.on.area.halton-hills.v2.geojson",
+          "tree_count": 376,
+          "ownership_counts": {
+            "public": 376,
+            "private": 0,
+            "unknown": 0
+          },
+          "species_counts": {
+            "cherry": 53,
+            "plum": 0,
+            "peach": 0,
+            "magnolia": 15,
+            "crabapple": 308
+          },
+          "species_ownership_counts": {
+            "cherry": {
+              "public": 53,
+              "private": 0,
+              "unknown": 0
+            },
+            "plum": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            },
+            "peach": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            },
+            "magnolia": {
+              "public": 15,
+              "private": 0,
+              "unknown": 0
+            },
+            "crabapple": {
+              "public": 308,
+              "private": 0,
+              "unknown": 0
+            }
+          },
+          "raw_bytes": 177332,
+          "gzip_bytes": 9130
         }
       ]
     },
@@ -1708,6 +1830,128 @@
           },
           "raw_bytes": 260816,
           "gzip_bytes": 12629
+        }
+      ]
+    },
+    {
+      "jurisdiction": "Tecumseh",
+      "slug": "tecumseh",
+      "display_name": "Tecumseh",
+      "jurisdiction_type": "city",
+      "state_province": "ON",
+      "country": "Canada",
+      "bounds": [
+        [
+          -82.89551668441517,
+          42.27572344309168
+        ],
+        [
+          -82.84343777881271,
+          42.33247238299699
+        ]
+      ],
+      "tree_count": 242,
+      "zip_codes": [
+        "None"
+      ],
+      "species_counts": {
+        "cherry": 32,
+        "plum": 0,
+        "peach": 0,
+        "magnolia": 45,
+        "crabapple": 165
+      },
+      "ownership_counts": {
+        "public": 242,
+        "private": 0,
+        "unknown": 0
+      },
+      "species_ownership_counts": {
+        "cherry": {
+          "public": 32,
+          "private": 0,
+          "unknown": 0
+        },
+        "plum": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        },
+        "peach": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        },
+        "magnolia": {
+          "public": 45,
+          "private": 0,
+          "unknown": 0
+        },
+        "crabapple": {
+          "public": 165,
+          "private": 0,
+          "unknown": 0
+        }
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "tecumseh-001",
+          "bounds": [
+            [
+              -82.89551668441517,
+              42.27572344309168
+            ],
+            [
+              -82.84343777881271,
+              42.33247238299699
+            ]
+          ],
+          "data_path": "/data/trees.on.area.tecumseh.v2.geojson",
+          "tree_count": 242,
+          "ownership_counts": {
+            "public": 242,
+            "private": 0,
+            "unknown": 0
+          },
+          "species_counts": {
+            "cherry": 32,
+            "plum": 0,
+            "peach": 0,
+            "magnolia": 45,
+            "crabapple": 165
+          },
+          "species_ownership_counts": {
+            "cherry": {
+              "public": 32,
+              "private": 0,
+              "unknown": 0
+            },
+            "plum": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            },
+            "peach": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            },
+            "magnolia": {
+              "public": 45,
+              "private": 0,
+              "unknown": 0
+            },
+            "crabapple": {
+              "public": 165,
+              "private": 0,
+              "unknown": 0
+            }
+          },
+          "raw_bytes": 119084,
+          "gzip_bytes": 6129
         }
       ]
     },

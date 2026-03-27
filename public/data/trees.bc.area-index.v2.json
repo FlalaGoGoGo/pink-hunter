@@ -1,8 +1,130 @@
 {
-  "generated_at": "2026-03-27T18:20:28.682878+00:00",
+  "generated_at": "2026-03-27T19:42:49.217976+00:00",
   "region": "bc",
   "strategy": "area_shard",
   "items": [
+    {
+      "jurisdiction": "Abbotsford",
+      "slug": "abbotsford",
+      "display_name": "Abbotsford",
+      "jurisdiction_type": "city",
+      "state_province": "BC",
+      "country": "Canada",
+      "bounds": [
+        [
+          -122.45043836149321,
+          49.005169336546246
+        ],
+        [
+          -122.21152822384165,
+          49.118903300338275
+        ]
+      ],
+      "tree_count": 938,
+      "zip_codes": [
+        "None"
+      ],
+      "species_counts": {
+        "cherry": 169,
+        "plum": 151,
+        "peach": 0,
+        "magnolia": 586,
+        "crabapple": 32
+      },
+      "ownership_counts": {
+        "public": 938,
+        "private": 0,
+        "unknown": 0
+      },
+      "species_ownership_counts": {
+        "cherry": {
+          "public": 169,
+          "private": 0,
+          "unknown": 0
+        },
+        "plum": {
+          "public": 151,
+          "private": 0,
+          "unknown": 0
+        },
+        "peach": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        },
+        "magnolia": {
+          "public": 586,
+          "private": 0,
+          "unknown": 0
+        },
+        "crabapple": {
+          "public": 32,
+          "private": 0,
+          "unknown": 0
+        }
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "abbotsford-001",
+          "bounds": [
+            [
+              -122.45043836149321,
+              49.005169336546246
+            ],
+            [
+              -122.21152822384165,
+              49.118903300338275
+            ]
+          ],
+          "data_path": "/data/trees.bc.area.abbotsford.v2.geojson",
+          "tree_count": 938,
+          "ownership_counts": {
+            "public": 938,
+            "private": 0,
+            "unknown": 0
+          },
+          "species_counts": {
+            "cherry": 169,
+            "plum": 151,
+            "peach": 0,
+            "magnolia": 586,
+            "crabapple": 32
+          },
+          "species_ownership_counts": {
+            "cherry": {
+              "public": 169,
+              "private": 0,
+              "unknown": 0
+            },
+            "plum": {
+              "public": 151,
+              "private": 0,
+              "unknown": 0
+            },
+            "peach": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            },
+            "magnolia": {
+              "public": 586,
+              "private": 0,
+              "unknown": 0
+            },
+            "crabapple": {
+              "public": 32,
+              "private": 0,
+              "unknown": 0
+            }
+          },
+          "raw_bytes": 500539,
+          "gzip_bytes": 22547
+        }
+      ]
+    },
     {
       "jurisdiction": "Kamloops",
       "slug": "kamloops",
@@ -370,6 +492,128 @@
       ]
     },
     {
+      "jurisdiction": "Nanaimo",
+      "slug": "nanaimo",
+      "display_name": "Nanaimo",
+      "jurisdiction_type": "city",
+      "state_province": "BC",
+      "country": "Canada",
+      "bounds": [
+        [
+          -124.04983075280423,
+          49.11303326199561
+        ],
+        [
+          -123.92847408808325,
+          49.24714803106176
+        ]
+      ],
+      "tree_count": 645,
+      "zip_codes": [
+        "None"
+      ],
+      "species_counts": {
+        "cherry": 478,
+        "plum": 107,
+        "peach": 0,
+        "magnolia": 17,
+        "crabapple": 43
+      },
+      "ownership_counts": {
+        "public": 645,
+        "private": 0,
+        "unknown": 0
+      },
+      "species_ownership_counts": {
+        "cherry": {
+          "public": 478,
+          "private": 0,
+          "unknown": 0
+        },
+        "plum": {
+          "public": 107,
+          "private": 0,
+          "unknown": 0
+        },
+        "peach": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        },
+        "magnolia": {
+          "public": 17,
+          "private": 0,
+          "unknown": 0
+        },
+        "crabapple": {
+          "public": 43,
+          "private": 0,
+          "unknown": 0
+        }
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "nanaimo-001",
+          "bounds": [
+            [
+              -124.04983075280423,
+              49.11303326199561
+            ],
+            [
+              -123.92847408808325,
+              49.24714803106176
+            ]
+          ],
+          "data_path": "/data/trees.bc.area.nanaimo.v2.geojson",
+          "tree_count": 645,
+          "ownership_counts": {
+            "public": 645,
+            "private": 0,
+            "unknown": 0
+          },
+          "species_counts": {
+            "cherry": 478,
+            "plum": 107,
+            "peach": 0,
+            "magnolia": 17,
+            "crabapple": 43
+          },
+          "species_ownership_counts": {
+            "cherry": {
+              "public": 478,
+              "private": 0,
+              "unknown": 0
+            },
+            "plum": {
+              "public": 107,
+              "private": 0,
+              "unknown": 0
+            },
+            "peach": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            },
+            "magnolia": {
+              "public": 17,
+              "private": 0,
+              "unknown": 0
+            },
+            "crabapple": {
+              "public": 43,
+              "private": 0,
+              "unknown": 0
+            }
+          },
+          "raw_bytes": 302994,
+          "gzip_bytes": 15941
+        }
+      ]
+    },
+    {
       "jurisdiction": "New Westminster",
       "slug": "new-westminster",
       "display_name": "New Westminster",
@@ -488,6 +732,250 @@
           },
           "raw_bytes": 952340,
           "gzip_bytes": 40285
+        }
+      ]
+    },
+    {
+      "jurisdiction": "North Vancouver City",
+      "slug": "north-vancouver-city",
+      "display_name": "North Vancouver City",
+      "jurisdiction_type": "city",
+      "state_province": "BC",
+      "country": "Canada",
+      "bounds": [
+        [
+          -123.10168357757519,
+          49.3070925949782
+        ],
+        [
+          -123.03950559737282,
+          49.335651327115166
+        ]
+      ],
+      "tree_count": 1098,
+      "zip_codes": [
+        "None"
+      ],
+      "species_counts": {
+        "cherry": 620,
+        "plum": 144,
+        "peach": 0,
+        "magnolia": 287,
+        "crabapple": 47
+      },
+      "ownership_counts": {
+        "public": 1098,
+        "private": 0,
+        "unknown": 0
+      },
+      "species_ownership_counts": {
+        "cherry": {
+          "public": 620,
+          "private": 0,
+          "unknown": 0
+        },
+        "plum": {
+          "public": 144,
+          "private": 0,
+          "unknown": 0
+        },
+        "peach": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        },
+        "magnolia": {
+          "public": 287,
+          "private": 0,
+          "unknown": 0
+        },
+        "crabapple": {
+          "public": 47,
+          "private": 0,
+          "unknown": 0
+        }
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "north-vancouver-city-001",
+          "bounds": [
+            [
+              -123.10168357757519,
+              49.3070925949782
+            ],
+            [
+              -123.03950559737282,
+              49.335651327115166
+            ]
+          ],
+          "data_path": "/data/trees.bc.area.north-vancouver-city.v2.geojson",
+          "tree_count": 1098,
+          "ownership_counts": {
+            "public": 1098,
+            "private": 0,
+            "unknown": 0
+          },
+          "species_counts": {
+            "cherry": 620,
+            "plum": 144,
+            "peach": 0,
+            "magnolia": 287,
+            "crabapple": 47
+          },
+          "species_ownership_counts": {
+            "cherry": {
+              "public": 620,
+              "private": 0,
+              "unknown": 0
+            },
+            "plum": {
+              "public": 144,
+              "private": 0,
+              "unknown": 0
+            },
+            "peach": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            },
+            "magnolia": {
+              "public": 287,
+              "private": 0,
+              "unknown": 0
+            },
+            "crabapple": {
+              "public": 47,
+              "private": 0,
+              "unknown": 0
+            }
+          },
+          "raw_bytes": 553432,
+          "gzip_bytes": 27484
+        }
+      ]
+    },
+    {
+      "jurisdiction": "North Vancouver District",
+      "slug": "north-vancouver-district",
+      "display_name": "North Vancouver District",
+      "jurisdiction_type": "city",
+      "state_province": "BC",
+      "country": "Canada",
+      "bounds": [
+        [
+          -123.11948400558853,
+          49.30594424606257
+        ],
+        [
+          -122.9422483832029,
+          49.361514848634
+        ]
+      ],
+      "tree_count": 394,
+      "zip_codes": [
+        "None"
+      ],
+      "species_counts": {
+        "cherry": 223,
+        "plum": 60,
+        "peach": 0,
+        "magnolia": 70,
+        "crabapple": 41
+      },
+      "ownership_counts": {
+        "public": 394,
+        "private": 0,
+        "unknown": 0
+      },
+      "species_ownership_counts": {
+        "cherry": {
+          "public": 223,
+          "private": 0,
+          "unknown": 0
+        },
+        "plum": {
+          "public": 60,
+          "private": 0,
+          "unknown": 0
+        },
+        "peach": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        },
+        "magnolia": {
+          "public": 70,
+          "private": 0,
+          "unknown": 0
+        },
+        "crabapple": {
+          "public": 41,
+          "private": 0,
+          "unknown": 0
+        }
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "north-vancouver-district-001",
+          "bounds": [
+            [
+              -123.11948400558853,
+              49.30594424606257
+            ],
+            [
+              -122.9422483832029,
+              49.361514848634
+            ]
+          ],
+          "data_path": "/data/trees.bc.area.north-vancouver-district.v2.geojson",
+          "tree_count": 394,
+          "ownership_counts": {
+            "public": 394,
+            "private": 0,
+            "unknown": 0
+          },
+          "species_counts": {
+            "cherry": 223,
+            "plum": 60,
+            "peach": 0,
+            "magnolia": 70,
+            "crabapple": 41
+          },
+          "species_ownership_counts": {
+            "cherry": {
+              "public": 223,
+              "private": 0,
+              "unknown": 0
+            },
+            "plum": {
+              "public": 60,
+              "private": 0,
+              "unknown": 0
+            },
+            "peach": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            },
+            "magnolia": {
+              "public": 70,
+              "private": 0,
+              "unknown": 0
+            },
+            "crabapple": {
+              "public": 41,
+              "private": 0,
+              "unknown": 0
+            }
+          },
+          "raw_bytes": 219069,
+          "gzip_bytes": 9950
         }
       ]
     },
