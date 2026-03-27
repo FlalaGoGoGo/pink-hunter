@@ -166,6 +166,9 @@ MONTREAL_DATASET_PAGE = "https://donnees.montreal.ca/fr/dataset/arbres"
 TORONTO_STREET_TREE_CSV = "https://ckan0.cf.opendata.inter.prod-toronto.ca/dataset/6ac4569e-fd37-4cbc-ac63-db3624c5f6a2/resource/b65cd31d-fabc-4222-83ef-8ddd11295d2b/download/street-tree-data-4326.csv"
 TORONTO_BOUNDARY_ZIP = "https://ckan0.cf.opendata.inter.prod-toronto.ca/dataset/841fb820-46d0-46ac-8dcb-d20f27e57bcc/resource/41bf97f0-da1a-46a9-ac25-5ce0078d6760/download/toronto-boundary-wgs84.zip"
 TORONTO_DATASET_PAGE = "https://open.toronto.ca/dataset/street-tree-data/"
+HALIFAX_HRM_BOUNDARY_LAYER = (
+    "https://services2.arcgis.com/11XBiaBYA9Ep0yNJ/arcgis/rest/services/NSPW_HRM_Service_Exchange_Boundary_2022/FeatureServer/0"
+)
 STATCAN_CSD_2024_LAYER = "https://geo.statcan.gc.ca/geo_wa/rest/services/2024/lcsd000a24s_e/MapServer/0"
 ZIP_LAYER = "https://services.arcgis.com/Ej0PsM5Aw677QF1W/arcgis/rest/services/ZIPCODE_AREA_113/FeatureServer/0"
 US_CENSUS_CITIES_LAYER = (
@@ -195,31 +198,34 @@ PUBLISH_MUST_SPLIT_BYTES = 25 * 1024 * 1024
 PUBLISH_HARD_FAIL_BYTES = 30 * 1024 * 1024
 REGION_LABELS: dict[str, str] = {
     "az": "AZ",
+    "bc": "BC",
+    "ca": "CA",
+    "co": "CO",
     "ct": "CT",
+    "dc": "DC",
     "ga": "GA",
     "il": "IL",
     "mi": "MI",
-    "wi": "WI",
-    "wa": "WA",
-    "ca": "CA",
-    "co": "CO",
-    "nv": "NV",
-    "or": "OR",
-    "tx": "TX",
-    "ut": "UT",
-    "dc": "DC",
-    "bc": "BC",
-    "on": "ON",
-    "qc": "QC",
-    "va": "VA",
+    "ma": "MA",
+    "mb": "MB",
     "md": "MD",
+    "nc": "NC",
     "nh": "NH",
     "nj": "NJ",
-    "nc": "NC",
+    "ns": "NS",
+    "nv": "NV",
     "ny": "NY",
+    "on": "ON",
+    "or": "OR",
     "pa": "PA",
-    "ma": "MA",
+    "qc": "QC",
     "ri": "RI",
+    "sk": "SK",
+    "tx": "TX",
+    "ut": "UT",
+    "va": "VA",
+    "wa": "WA",
+    "wi": "WI",
 }
 SPECIES_GROUPS: list[str] = ["cherry", "plum", "peach", "magnolia", "crabapple"]
 REGION_CITY_OVERRIDES: dict[str, str] = {
@@ -344,11 +350,16 @@ REGION_CITY_OVERRIDES: dict[str, str] = {
     "Hamilton": "on",
     "Kitchener": "on",
     "London": "on",
+    "Mississauga": "on",
     "Oakville": "on",
+    "Peterborough": "on",
     "Waterloo": "on",
     "Whitby": "on",
     "Windsor": "on",
     "Montreal": "qc",
+    "Halifax": "ns",
+    "Winnipeg": "mb",
+    "Saskatoon": "sk",
     "Washington DC": "dc",
     "Burnaby": "bc",
     "Coquitlam": "bc",
@@ -646,13 +657,33 @@ CITY_BOUNDARY_HINTS: dict[str, dict[str, str]] = {
     "Hamilton": {"boundary_source": "statcan_csd", "csd_name": "Hamilton", "prname": "Ontario", "csd_uid": "3525005"},
     "Kitchener": {"boundary_source": "statcan_csd", "csd_name": "Kitchener", "prname": "Ontario", "csd_uid": "3530013"},
     "London": {"boundary_source": "statcan_csd", "csd_name": "London", "prname": "Ontario", "csd_uid": "3539036"},
+    "Mississauga": {
+        "boundary_source": "statcan_csd",
+        "csd_name": "Mississauga",
+        "prname": "Ontario",
+        "csd_uid": "3521005",
+    },
     "Oakville": {"boundary_source": "statcan_csd", "csd_name": "Oakville", "prname": "Ontario", "csd_uid": "3524001"},
     "Ottawa": {"boundary_source": "ottawa_arcgis"},
+    "Peterborough": {
+        "boundary_source": "statcan_csd",
+        "csd_name": "Peterborough",
+        "prname": "Ontario",
+        "csd_uid": "3515014",
+    },
     "Toronto": {"boundary_source": "toronto_zip"},
     "Waterloo": {"boundary_source": "statcan_csd", "csd_name": "Waterloo", "prname": "Ontario", "csd_uid": "3530016"},
     "Whitby": {"boundary_source": "statcan_csd", "csd_name": "Whitby", "prname": "Ontario", "csd_uid": "3518009"},
     "Windsor": {"boundary_source": "statcan_csd", "csd_name": "Windsor", "prname": "Ontario", "csd_uid": "3537039"},
     "Montreal": {"boundary_source": "montreal_arrondissements_geojson"},
+    "Halifax": {"boundary_source": "halifax_hrm_arcgis"},
+    "Winnipeg": {"boundary_source": "statcan_csd", "csd_name": "Winnipeg", "prname": "Manitoba", "csd_uid": "4611040"},
+    "Saskatoon": {
+        "boundary_source": "statcan_csd",
+        "csd_name": "Saskatoon",
+        "prname": "Saskatchewan",
+        "csd_uid": "4711066",
+    },
     "Washington DC": {"state": "11", "basename": "Washington"},
     "Portland": {"boundary_source": "portland_or_arcgis"},
     "Las Vegas": {"state": "32"},
@@ -847,7 +878,7 @@ OFFICIAL_DATA_UNAVAILABLE_CITIES: dict[str, str] = {
 BOUNDARY_CACHE_ROOT = REFERENCE_DIR / "boundaries"
 BOUNDARY_CATALOG_PATH = REFERENCE_DIR / "boundary_catalog.v1.json"
 COVERAGE_STATUS_REGISTRY_PATH = REFERENCE_DIR / "coverage_status_registry.v1.json"
-CANADIAN_REGION_IDS = {"bc", "on", "qc"}
+CANADIAN_REGION_IDS = {"bc", "mb", "ns", "on", "qc", "sk"}
 
 UW_SUPPLEMENTAL_PATH = SUPPLEMENTAL_DIR / "uw_prunus_overpass.json"
 UW_FEATURED_AREA_REFERENCE_PATH = REFERENCE_DIR / "uw_featured_area_reference.v1.json"
@@ -3423,6 +3454,13 @@ def fetch_special_city_boundary_feature(city: str) -> dict[str, Any] | None:
         if not geometry:
             return None
         return make_city_boundary_feature(city, geometry, source="City of Toronto Open Data")
+
+    if boundary_source == "halifax_hrm_arcgis":
+        return fetch_arcgis_boundary_feature(
+            HALIFAX_HRM_BOUNDARY_LAYER,
+            source="Halifax Regional Municipality Open Data",
+            where="BNDRYNAME = 'NSPW HRM Service Exchange Boundary (2022)'",
+        )
 
     if boundary_source == "montreal_arrondissements_geojson":
         result = subprocess.run(

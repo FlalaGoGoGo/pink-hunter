@@ -202,8 +202,10 @@ Live domain:
 - Hamilton
 - Kitchener
 - London
+- Mississauga
 - Oakville
 - Ottawa
+- Peterborough
 - Toronto
 - Waterloo
 - Whitby
@@ -215,6 +217,27 @@ Live domain:
 <summary>Quebec</summary>
 
 - Montreal
+
+</details>
+
+<details>
+<summary>Manitoba</summary>
+
+- Winnipeg
+
+</details>
+
+<details>
+<summary>Nova Scotia</summary>
+
+- Halifax
+
+</details>
+
+<details>
+<summary>Saskatchewan</summary>
+
+- Saskatoon
 
 </details>
 
@@ -486,8 +509,10 @@ Live domain:
 - Hamilton: [Public Tree Inventory](https://open.hamilton.ca/datasets/08e50c6cbb2545b4897d613a817fa4d4_0/explore)
 - Kitchener: [Forestry Gallery](https://open-kitchenergis.opendata.arcgis.com/pages/forestry-gallery)
 - London: [Public_TreeInventory](https://maps.london.ca/arcgisa/rest/services/Public_TreeInventory/MapServer)
+- Mississauga: [City trees](https://mississauga.ca/services-and-programs/forestry-and-environment/trees/)
 - Oakville: [Public tree inventory](https://www.oakville.ca/home-environment/trees-woodlands/public-tree-inventory/)
 - Ottawa: [Canopy cover and tree inventory](https://ottawa.ca/en/canopy-cover-and-tree-inventory)
+- Peterborough: [Tree Inventory & EAB Status in the City of Peterborough](https://ptbo.maps.arcgis.com/apps/webappviewer/index.html?id=be8a9500cdca44af86860046e651cb96)
 - Toronto: [Street Tree Data](https://open.toronto.ca/dataset/street-tree-data/)
 - Waterloo: [Waterloo Street Trees](https://services1.arcgis.com/DwLTn0u9VBSZvUPe/ArcGIS/rest/services/Waterloo_Street_Trees/FeatureServer)
 - Whitby: [Whitby Tree Inventory](https://whitby.maps.arcgis.com/apps/instant/sidebar/index.html?appid=3e192ad13b7940b98684e8dadaa94c54)
@@ -499,6 +524,27 @@ Live domain:
 <summary>Quebec</summary>
 
 - Montreal: [Arbres publics sur le territoire de la Ville](https://donnees.montreal.ca/fr/dataset/arbres)
+
+</details>
+
+<details>
+<summary>Manitoba</summary>
+
+- Winnipeg: [Tree Inventory](https://data.winnipeg.ca/Parks/Tree-Inventory-Map/hfwk-jp4h)
+
+</details>
+
+<details>
+<summary>Nova Scotia</summary>
+
+- Halifax: [Public Trees](https://data-hrm.hub.arcgis.com/datasets/33a4e9b6c7e9439abcd2b20ac50c5a4d_0/explore)
+
+</details>
+
+<details>
+<summary>Saskatchewan</summary>
+
+- Saskatoon: [Tree Inventory](https://www.saskatoon.ca/treeinventory)
 
 </details>
 
@@ -615,17 +661,35 @@ Live domain:
 ## Region Publishing
 - Tree points are now published by `area + shard` for every region, not as region-wide GeoJSON files.
 - Current regional groups:
-  - `WA`
-  - `CA`
-  - `OR`
-  - `DC`
+  - `AZ`
   - `BC`
-  - `VA`
-  - `MD`
-  - `NJ`
-  - `NY`
-  - `PA`
+  - `CA`
+  - `CO`
+  - `CT`
+  - `DC`
+  - `GA`
+  - `IL`
   - `MA`
+  - `MB`
+  - `MD`
+  - `MI`
+  - `NC`
+  - `NH`
+  - `NJ`
+  - `NS`
+  - `NV`
+  - `NY`
+  - `ON`
+  - `WA`
+  - `OR`
+  - `PA`
+  - `QC`
+  - `RI`
+  - `SK`
+  - `TX`
+  - `UT`
+  - `VA`
+  - `WI`
 - Local-only ETL audit outputs such as `data/normalized/trees_normalized.csv` and `data/tmp/*` are not part of the GitHub export repo.
 - `public/data/meta.v2.json` contains the region index, region bounds, species-count summaries, aggregate size metadata, and area-shard publish metadata for the full site, each region, and each published area.
 - `public/data/jump-index.v1.json` provides lightweight `country -> state/province -> city/county` navigation bounds for the `Show -> Jump` workflow without coupling navigation to tree payload loading.

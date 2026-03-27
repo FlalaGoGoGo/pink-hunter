@@ -1,0 +1,129 @@
+{
+  "generated_at": "2026-03-27T05:01:14.144006+00:00",
+  "region": "ns",
+  "strategy": "area_shard",
+  "items": [
+    {
+      "jurisdiction": "Halifax",
+      "slug": "halifax",
+      "display_name": "Halifax",
+      "jurisdiction_type": "city",
+      "state_province": "NS",
+      "country": "Canada",
+      "bounds": [
+        [
+          -63.74584764924905,
+          44.59215740505453
+        ],
+        [
+          -63.452852221695665,
+          44.843524732070286
+        ]
+      ],
+      "tree_count": 1022,
+      "zip_codes": [
+        "None"
+      ],
+      "species_counts": {
+        "cherry": 251,
+        "plum": 1,
+        "peach": 3,
+        "magnolia": 122,
+        "crabapple": 645
+      },
+      "ownership_counts": {
+        "public": 1022,
+        "private": 0,
+        "unknown": 0
+      },
+      "species_ownership_counts": {
+        "cherry": {
+          "public": 251,
+          "private": 0,
+          "unknown": 0
+        },
+        "plum": {
+          "public": 1,
+          "private": 0,
+          "unknown": 0
+        },
+        "peach": {
+          "public": 3,
+          "private": 0,
+          "unknown": 0
+        },
+        "magnolia": {
+          "public": 122,
+          "private": 0,
+          "unknown": 0
+        },
+        "crabapple": {
+          "public": 645,
+          "private": 0,
+          "unknown": 0
+        }
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "halifax-001",
+          "bounds": [
+            [
+              -63.74584764924905,
+              44.59215740505453
+            ],
+            [
+              -63.452852221695665,
+              44.843524732070286
+            ]
+          ],
+          "data_path": "/data/trees.ns.area.halifax.v2.geojson",
+          "tree_count": 1022,
+          "ownership_counts": {
+            "public": 1022,
+            "private": 0,
+            "unknown": 0
+          },
+          "species_counts": {
+            "cherry": 251,
+            "plum": 1,
+            "peach": 3,
+            "magnolia": 122,
+            "crabapple": 645
+          },
+          "species_ownership_counts": {
+            "cherry": {
+              "public": 251,
+              "private": 0,
+              "unknown": 0
+            },
+            "plum": {
+              "public": 1,
+              "private": 0,
+              "unknown": 0
+            },
+            "peach": {
+              "public": 3,
+              "private": 0,
+              "unknown": 0
+            },
+            "magnolia": {
+              "public": 122,
+              "private": 0,
+              "unknown": 0
+            },
+            "crabapple": {
+              "public": 645,
+              "private": 0,
+              "unknown": 0
+            }
+          },
+          "raw_bytes": 541062,
+          "gzip_bytes": 26119
+        }
+      ]
+    }
+  ]
+}

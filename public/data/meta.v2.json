@@ -1,6 +1,6 @@
 {
   "version": "v2",
-  "generated_at": "2026-03-27T03:41:53.455511+00:00",
+  "generated_at": "2026-03-27T05:03:20.759015+00:00",
   "default_region": "wa",
   "coverage_rule": "official_jurisdiction_boundary_only",
   "coverage_skipped_cities": [
@@ -118,16 +118,16 @@
     "Yarrow Point"
   ],
   "coverage_official_unavailable_skipped_cities": [],
-  "source_count": 207,
-  "total_records": 3030850,
-  "included_records": 633040,
-  "unknown_records": 1341624,
+  "source_count": 212,
+  "total_records": 3067838,
+  "included_records": 654493,
+  "unknown_records": 1355622,
   "species_counts": {
-    "cherry": 208660,
-    "plum": 115390,
-    "peach": 7918,
-    "magnolia": 176372,
-    "crabapple": 124700
+    "cherry": 213728,
+    "plum": 115539,
+    "peach": 7921,
+    "magnolia": 176655,
+    "crabapple": 140650
   },
   "regions": [
     {
@@ -687,6 +687,55 @@
       }
     },
     {
+      "id": "mb",
+      "label": "MB",
+      "available": true,
+      "bounds": [
+        [
+          -97.33000002073345,
+          49.75986576869911
+        ],
+        [
+          -96.96057647449587,
+          49.97195410235815
+        ]
+      ],
+      "data_path": null,
+      "tree_count": 12444,
+      "city_count": 1,
+      "cities": [
+        "Winnipeg"
+      ],
+      "species_counts": {
+        "cherry": 1947,
+        "plum": 45,
+        "peach": 0,
+        "magnolia": 0,
+        "crabapple": 10452
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "raw_bytes": 6769315,
+      "gzip_bytes": 302099,
+      "warning_level": "none",
+      "aggregate_raw_bytes": 6769315,
+      "aggregate_gzip_bytes": 302099,
+      "aggregate_warning_level": "none",
+      "largest_shard_raw_bytes": 6769315,
+      "largest_shard_gzip_bytes": 302099,
+      "largest_shard_area": "Winnipeg",
+      "area_split": {
+        "strategy": "area_shard",
+        "index_path": "/data/trees.mb.area-index.v2.json",
+        "area_count": 1,
+        "shard_count": 1,
+        "ready": true
+      },
+      "largest_shard_warning_level": "none",
+      "coverage_path": "/data/coverage.mb.v1.geojson"
+    },
+    {
       "id": "md",
       "label": "MD",
       "available": true,
@@ -954,6 +1003,55 @@
       }
     },
     {
+      "id": "ns",
+      "label": "NS",
+      "available": true,
+      "bounds": [
+        [
+          -63.74584764924905,
+          44.59215740505453
+        ],
+        [
+          -63.452852221695665,
+          44.843524732070286
+        ]
+      ],
+      "data_path": null,
+      "tree_count": 1022,
+      "city_count": 1,
+      "cities": [
+        "Halifax"
+      ],
+      "species_counts": {
+        "cherry": 251,
+        "plum": 1,
+        "peach": 3,
+        "magnolia": 122,
+        "crabapple": 645
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "raw_bytes": 541062,
+      "gzip_bytes": 26119,
+      "warning_level": "none",
+      "aggregate_raw_bytes": 541062,
+      "aggregate_gzip_bytes": 26119,
+      "aggregate_warning_level": "none",
+      "largest_shard_raw_bytes": 541062,
+      "largest_shard_gzip_bytes": 26119,
+      "largest_shard_area": "Halifax",
+      "area_split": {
+        "strategy": "area_shard",
+        "index_path": "/data/trees.ns.area-index.v2.json",
+        "area_count": 1,
+        "shard_count": 1,
+        "ready": true
+      },
+      "largest_shard_warning_level": "none",
+      "coverage_path": "/data/coverage.ns.v1.geojson"
+    },
+    {
       "id": "nv",
       "label": "NV",
       "available": true,
@@ -1075,8 +1173,8 @@
       ],
       "data_path": null,
       "coverage_path": "/data/coverage.on.v1.geojson",
-      "tree_count": 73069,
-      "city_count": 12,
+      "tree_count": 76777,
+      "city_count": 14,
       "cities": [
         "Burlington",
         "Cambridge ON",
@@ -1084,29 +1182,31 @@
         "Hamilton",
         "Kitchener",
         "London",
+        "Mississauga",
         "Oakville",
         "Ottawa",
+        "Peterborough",
         "Toronto",
         "Waterloo",
         "Whitby",
         "Windsor"
       ],
       "species_counts": {
-        "cherry": 39520,
-        "plum": 2855,
+        "cherry": 41940,
+        "plum": 2877,
         "peach": 470,
-        "magnolia": 5816,
-        "crabapple": 24408
+        "magnolia": 5977,
+        "crabapple": 25513
       },
       "ownership_groups": [
         "public"
       ],
-      "raw_bytes": 35512911,
-      "gzip_bytes": 1615589,
+      "raw_bytes": 37493152,
+      "gzip_bytes": 1706485,
       "warning_level": "none",
-      "aggregate_raw_bytes": 35512911,
-      "aggregate_gzip_bytes": 1615589,
-      "aggregate_warning_level": "none",
+      "aggregate_raw_bytes": 37493152,
+      "aggregate_gzip_bytes": 1706485,
+      "aggregate_warning_level": "watch",
       "largest_shard_raw_bytes": 8587256,
       "largest_shard_gzip_bytes": 333237,
       "largest_shard_area": "Toronto",
@@ -1115,8 +1215,8 @@
       "area_split": {
         "strategy": "area_shard",
         "index_path": "/data/trees.on.area-index.v2.json",
-        "area_count": 12,
-        "shard_count": 13,
+        "area_count": 14,
+        "shard_count": 15,
         "ready": true
       }
     },
@@ -1320,6 +1420,55 @@
       },
       "largest_shard_warning_level": "none",
       "coverage_path": "/data/coverage.ri.v1.geojson"
+    },
+    {
+      "id": "sk",
+      "label": "SK",
+      "available": true,
+      "bounds": [
+        [
+          -106.76346823573829,
+          52.072808927345925
+        ],
+        [
+          -106.54002689986774,
+          52.19829963178364
+        ]
+      ],
+      "data_path": null,
+      "tree_count": 4279,
+      "city_count": 1,
+      "cities": [
+        "Saskatoon"
+      ],
+      "species_counts": {
+        "cherry": 450,
+        "plum": 81,
+        "peach": 0,
+        "magnolia": 0,
+        "crabapple": 3748
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "raw_bytes": 2186972,
+      "gzip_bytes": 114258,
+      "warning_level": "none",
+      "aggregate_raw_bytes": 2186972,
+      "aggregate_gzip_bytes": 114258,
+      "aggregate_warning_level": "none",
+      "largest_shard_raw_bytes": 2186972,
+      "largest_shard_gzip_bytes": 114258,
+      "largest_shard_area": "Saskatoon",
+      "area_split": {
+        "strategy": "area_shard",
+        "index_path": "/data/trees.sk.area-index.v2.json",
+        "area_count": 1,
+        "shard_count": 1,
+        "ready": true
+      },
+      "largest_shard_warning_level": "none",
+      "coverage_path": "/data/coverage.sk.v1.geojson"
     },
     {
       "id": "tx",
@@ -3197,6 +3346,20 @@
       "state_province": "MA"
     },
     {
+      "jurisdiction": "Winnipeg",
+      "region": "mb",
+      "tree_count": 12444,
+      "species_counts": {
+        "cherry": 1947,
+        "plum": 45,
+        "peach": 0,
+        "magnolia": 0,
+        "crabapple": 10452
+      },
+      "jurisdiction_type": "city",
+      "state_province": "MB"
+    },
+    {
       "jurisdiction": "Annapolis",
       "region": "md",
       "tree_count": 260,
@@ -3533,6 +3696,20 @@
       "state_province": "NJ"
     },
     {
+      "jurisdiction": "Halifax",
+      "region": "ns",
+      "tree_count": 1022,
+      "species_counts": {
+        "cherry": 251,
+        "plum": 1,
+        "peach": 3,
+        "magnolia": 122,
+        "crabapple": 645
+      },
+      "jurisdiction_type": "city",
+      "state_province": "NS"
+    },
+    {
       "jurisdiction": "Las Vegas",
       "region": "nv",
       "tree_count": 115,
@@ -3729,6 +3906,20 @@
       "state_province": "ON"
     },
     {
+      "jurisdiction": "Mississauga",
+      "region": "on",
+      "tree_count": 3177,
+      "species_counts": {
+        "cherry": 2405,
+        "plum": 22,
+        "peach": 0,
+        "magnolia": 152,
+        "crabapple": 598
+      },
+      "jurisdiction_type": "city",
+      "state_province": "ON"
+    },
+    {
       "jurisdiction": "Oakville",
       "region": "on",
       "tree_count": 1487,
@@ -3752,6 +3943,20 @@
         "peach": 0,
         "magnolia": 154,
         "crabapple": 10090
+      },
+      "jurisdiction_type": "city",
+      "state_province": "ON"
+    },
+    {
+      "jurisdiction": "Peterborough",
+      "region": "on",
+      "tree_count": 531,
+      "species_counts": {
+        "cherry": 15,
+        "plum": 0,
+        "peach": 0,
+        "magnolia": 9,
+        "crabapple": 507
       },
       "jurisdiction_type": "city",
       "state_province": "ON"
@@ -3895,6 +4100,20 @@
       },
       "jurisdiction_type": "city",
       "state_province": "RI"
+    },
+    {
+      "jurisdiction": "Saskatoon",
+      "region": "sk",
+      "tree_count": 4279,
+      "species_counts": {
+        "cherry": 450,
+        "plum": 81,
+        "peach": 0,
+        "magnolia": 0,
+        "crabapple": 3748
+      },
+      "jurisdiction_type": "city",
+      "state_province": "SK"
     },
     {
       "jurisdiction": "Austin",
@@ -5125,6 +5344,15 @@
       "note": "Integrated from the official Milwaukee County public tree viewer and official jurisdiction boundary clipping."
     },
     {
+      "name": "Public Trees",
+      "city": "Halifax",
+      "endpoint": "https://www.halifax.ca/home-property/urban-forestry",
+      "last_edit_at": "2026-03-22T08:32:19.588000+00:00",
+      "records_fetched": 1302,
+      "records_included": 1022,
+      "note": "Integrated from the official Halifax Regional Municipality public trees ArcGIS layer."
+    },
+    {
       "name": "Public Tree Inventory",
       "city": "Hamilton",
       "endpoint": "https://open.hamilton.ca/datasets/08e50c6cbb2545b4897d613a817fa4d4_0/explore",
@@ -5401,6 +5629,15 @@
       "note": "Integrated from the official Milwaukee County public tree viewer and official jurisdiction boundary clipping."
     },
     {
+      "name": "City Owned Tree Inventory",
+      "city": "Mississauga",
+      "endpoint": "https://mississauga.ca/services-and-programs/forestry-and-environment/trees/",
+      "last_edit_at": "2024-09-12T15:33:07.923000+00:00",
+      "records_fetched": 13934,
+      "records_included": 3177,
+      "note": "Integrated from the official City of Mississauga public city-owned tree inventory ArcGIS layer."
+    },
+    {
       "name": "Tree Inventory",
       "city": "Montclair",
       "endpoint": "https://services9.arcgis.com/QHXEWAb0pE2rvfbb/arcgis/rest/services/Montclair_Trees_2017_WFL1/FeatureServer",
@@ -5613,6 +5850,15 @@
       "records_fetched": 6368,
       "records_included": 5770,
       "note": "Integrated from the official City of Pasadena Street ROW Trees layer and official jurisdiction boundary."
+    },
+    {
+      "name": "City of Peterborough Trees",
+      "city": "Peterborough",
+      "endpoint": "https://ptbo.maps.arcgis.com/apps/webappviewer/index.html?id=be8a9500cdca44af86860046e651cb96",
+      "last_edit_at": "",
+      "records_fetched": 815,
+      "records_included": 531,
+      "note": "Integrated from the official City of Peterborough public tree inventory ArcGIS application layer."
     },
     {
       "name": "PPR Tree Inventory 2025",
@@ -5946,6 +6192,15 @@
       "records_fetched": 12634,
       "records_included": 586,
       "note": "Integrated via the public Saratoga Springs TreePlotter inventory page and official jurisdiction boundary clipping."
+    },
+    {
+      "name": "Tree Inventory Public",
+      "city": "Saskatoon",
+      "endpoint": "https://www.saskatoon.ca/treeinventory",
+      "last_edit_at": "",
+      "records_fetched": 5287,
+      "records_included": 4279,
+      "note": "Integrated from the official City of Saskatoon public tree inventory ArcGIS layer."
     },
     {
       "name": "Trees",
@@ -6332,6 +6587,15 @@
       "records_fetched": 3381,
       "records_included": 3045,
       "note": "Integrated from the official City of Windsor open-data tree layers and official jurisdiction boundary."
+    },
+    {
+      "name": "Tree Inventory",
+      "city": "Winnipeg",
+      "endpoint": "https://data.winnipeg.ca/Parks/Tree-Inventory-Map/hfwk-jp4h",
+      "last_edit_at": "2026-03-23T09:56:00+00:00",
+      "records_fetched": 15654,
+      "records_included": 12444,
+      "note": "Integrated from the official City of Winnipeg open-data tree inventory and official jurisdiction boundary."
     },
     {
       "name": "TreeKeeper Inventory",

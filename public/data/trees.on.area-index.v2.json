@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-03-27T03:30:10.505924+00:00",
+  "generated_at": "2026-03-27T04:58:43.139388+00:00",
   "region": "on",
   "strategy": "area_shard",
   "items": [
@@ -736,6 +736,128 @@
       ]
     },
     {
+      "jurisdiction": "Mississauga",
+      "slug": "mississauga",
+      "display_name": "Mississauga",
+      "jurisdiction_type": "city",
+      "state_province": "ON",
+      "country": "Canada",
+      "bounds": [
+        [
+          -79.79569378870626,
+          43.483138329322735
+        ],
+        [
+          -79.54613281912248,
+          43.734660698468666
+        ]
+      ],
+      "tree_count": 3177,
+      "zip_codes": [
+        "None"
+      ],
+      "species_counts": {
+        "cherry": 2405,
+        "plum": 22,
+        "peach": 0,
+        "magnolia": 152,
+        "crabapple": 598
+      },
+      "ownership_counts": {
+        "public": 3177,
+        "private": 0,
+        "unknown": 0
+      },
+      "species_ownership_counts": {
+        "cherry": {
+          "public": 2405,
+          "private": 0,
+          "unknown": 0
+        },
+        "plum": {
+          "public": 22,
+          "private": 0,
+          "unknown": 0
+        },
+        "peach": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        },
+        "magnolia": {
+          "public": 152,
+          "private": 0,
+          "unknown": 0
+        },
+        "crabapple": {
+          "public": 598,
+          "private": 0,
+          "unknown": 0
+        }
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "mississauga-001",
+          "bounds": [
+            [
+              -79.79569378870626,
+              43.483138329322735
+            ],
+            [
+              -79.54613281912248,
+              43.734660698468666
+            ]
+          ],
+          "data_path": "/data/trees.on.area.mississauga.v2.geojson",
+          "tree_count": 3177,
+          "ownership_counts": {
+            "public": 3177,
+            "private": 0,
+            "unknown": 0
+          },
+          "species_counts": {
+            "cherry": 2405,
+            "plum": 22,
+            "peach": 0,
+            "magnolia": 152,
+            "crabapple": 598
+          },
+          "species_ownership_counts": {
+            "cherry": {
+              "public": 2405,
+              "private": 0,
+              "unknown": 0
+            },
+            "plum": {
+              "public": 22,
+              "private": 0,
+              "unknown": 0
+            },
+            "peach": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            },
+            "magnolia": {
+              "public": 152,
+              "private": 0,
+              "unknown": 0
+            },
+            "crabapple": {
+              "public": 598,
+              "private": 0,
+              "unknown": 0
+            }
+          },
+          "raw_bytes": 1719425,
+          "gzip_bytes": 78267
+        }
+      ]
+    },
+    {
       "jurisdiction": "Oakville",
       "slug": "oakville",
       "display_name": "Oakville",
@@ -976,6 +1098,128 @@
           },
           "raw_bytes": 6379242,
           "gzip_bytes": 359729
+        }
+      ]
+    },
+    {
+      "jurisdiction": "Peterborough",
+      "slug": "peterborough",
+      "display_name": "Peterborough",
+      "jurisdiction_type": "city",
+      "state_province": "ON",
+      "country": "Canada",
+      "bounds": [
+        [
+          -78.37878041493428,
+          44.263321016378434
+        ],
+        [
+          -78.27369643862687,
+          44.3563037244704
+        ]
+      ],
+      "tree_count": 531,
+      "zip_codes": [
+        "None"
+      ],
+      "species_counts": {
+        "cherry": 15,
+        "plum": 0,
+        "peach": 0,
+        "magnolia": 9,
+        "crabapple": 507
+      },
+      "ownership_counts": {
+        "public": 531,
+        "private": 0,
+        "unknown": 0
+      },
+      "species_ownership_counts": {
+        "cherry": {
+          "public": 15,
+          "private": 0,
+          "unknown": 0
+        },
+        "plum": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        },
+        "peach": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        },
+        "magnolia": {
+          "public": 9,
+          "private": 0,
+          "unknown": 0
+        },
+        "crabapple": {
+          "public": 507,
+          "private": 0,
+          "unknown": 0
+        }
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "peterborough-001",
+          "bounds": [
+            [
+              -78.37878041493428,
+              44.263321016378434
+            ],
+            [
+              -78.27369643862687,
+              44.3563037244704
+            ]
+          ],
+          "data_path": "/data/trees.on.area.peterborough.v2.geojson",
+          "tree_count": 531,
+          "ownership_counts": {
+            "public": 531,
+            "private": 0,
+            "unknown": 0
+          },
+          "species_counts": {
+            "cherry": 15,
+            "plum": 0,
+            "peach": 0,
+            "magnolia": 9,
+            "crabapple": 507
+          },
+          "species_ownership_counts": {
+            "cherry": {
+              "public": 15,
+              "private": 0,
+              "unknown": 0
+            },
+            "plum": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            },
+            "peach": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            },
+            "magnolia": {
+              "public": 9,
+              "private": 0,
+              "unknown": 0
+            },
+            "crabapple": {
+              "public": 507,
+              "private": 0,
+              "unknown": 0
+            }
+          },
+          "raw_bytes": 260816,
+          "gzip_bytes": 12629
         }
       ]
     },

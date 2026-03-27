@@ -146,6 +146,21 @@ WHITBY_DATASET_PAGE = "https://whitby.maps.arcgis.com/apps/instant/sidebar/index
 WINDSOR_PARK_TREES_LAYER = "https://mappmycity.ca/arcgis/rest/services/OpenDataServices/ParksEnvironment/MapServer/0"
 WINDSOR_ROW_TREES_LAYER = "https://mappmycity.ca/arcgis/rest/services/OpenDataServices/ParksEnvironment/MapServer/1"
 WINDSOR_DATASET_PAGE = "https://citywindsor.ca/visitors/Maps/MappMyCity"
+MISSISSAUGA_TREES_LAYER = (
+    "https://services6.arcgis.com/hM5ymMLbxIyWTjn2/ArcGIS/rest/services/2023_City_Owned_Tree_Inventory/FeatureServer/0"
+)
+MISSISSAUGA_DATASET_PAGE = "https://mississauga.ca/services-and-programs/forestry-and-environment/trees/"
+PETERBOROUGH_TREES_LAYER = "https://citymaps.peterborough.ca/arcgis/rest/services/TreesExternal/MapServer/1"
+PETERBOROUGH_DATASET_PAGE = (
+    "https://ptbo.maps.arcgis.com/apps/webappviewer/index.html?id=be8a9500cdca44af86860046e651cb96"
+)
+SASKATOON_TREES_LAYER = "https://gisext.saskatoon.ca/arcgis/rest/services/AGOL/TreeInventoryPublic/MapServer/1"
+SASKATOON_DATASET_PAGE = "https://www.saskatoon.ca/treeinventory"
+HALIFAX_TREES_LAYER = "https://services2.arcgis.com/11XBiaBYA9Ep0yNJ/arcgis/rest/services/Public_Trees/FeatureServer/0"
+HALIFAX_DATASET_PAGE = "https://www.halifax.ca/home-property/urban-forestry"
+WINNIPEG_API = "https://data.winnipeg.ca/resource/hfwk-jp4h.json"
+WINNIPEG_METADATA = "https://data.winnipeg.ca/api/views/hfwk-jp4h"
+WINNIPEG_DATASET_PAGE = "https://data.winnipeg.ca/Parks/Tree-Inventory-Map/hfwk-jp4h"
 SAN_DIEGO_TREES_LAYER = "https://webmaps.sandiego.gov/arcgis/rest/services/DSD/Environment/MapServer/20"
 SAN_DIEGO_DATASET_PAGE = "https://webmaps.sandiego.gov/arcgis/rest/services/DSD/Environment/MapServer/20"
 HOUSTON_TREES_LAYER = "https://services.arcgis.com/NummVBqZSIJKUeVR/arcgis/rest/services/COH_UrbanForestry_Trees_VIEW_ONLY/FeatureServer/0"
@@ -837,6 +852,72 @@ WINDSOR_BLOSSOM_WHERE = (
     "UPPER(species) LIKE '%APPLE%'"
     ")"
 )
+MISSISSAUGA_BLOSSOM_WHERE = (
+    "OWN <> 'PRIV' AND SERVSTAT IN ("
+    "'MAINTAINED BY CITY, NOT OWNER', "
+    "'TO BE DETERMINED', "
+    "'TO BE PLANTED', "
+    "'TREE MAINTAINED BY OPERATIONS', "
+    "'TREE UNDER WARRANTY'"
+    ") AND ("
+    "UPPER(BOTDESC) LIKE '%CHERRY%' OR "
+    "UPPER(BOTDESC) LIKE '%PLUM%' OR "
+    "UPPER(BOTDESC) LIKE '%PEACH%' OR "
+    "UPPER(BOTDESC) LIKE '%MAGNOLIA%' OR "
+    "UPPER(BOTDESC) LIKE '%CRABAPPLE%' OR "
+    "UPPER(BOTDESC) LIKE '%APPLE%'"
+    ")"
+)
+PETERBOROUGH_BLOSSOM_WHERE = (
+    "STATUS = 'Active' AND OWNERSHIP = 'City' AND ("
+    "UPPER(BOTANICAL) LIKE 'PRUNUS%' OR "
+    "UPPER(BOTANICAL) LIKE 'MALUS%' OR "
+    "UPPER(BOTANICAL) LIKE 'MAGNOLIA%' OR "
+    "UPPER(COMMON) LIKE '%CHERRY%' OR "
+    "UPPER(COMMON) LIKE '%PLUM%' OR "
+    "UPPER(COMMON) LIKE '%PEACH%' OR "
+    "UPPER(COMMON) LIKE '%MAGNOLIA%' OR "
+    "UPPER(COMMON) LIKE '%CRABAPPLE%' OR "
+    "UPPER(COMMON) LIKE '%APPLE%'"
+    ")"
+)
+SASKATOON_BLOSSOM_WHERE = (
+    "Status = 1 AND Ownership = 1 AND ("
+    "UPPER(Latin_Name) LIKE 'PRUNUS%' OR "
+    "UPPER(Latin_Name) LIKE 'MALUS%' OR "
+    "UPPER(Latin_Name) LIKE 'MAGNOLIA%' OR "
+    "UPPER(Common_Name) LIKE '%CHERRY%' OR "
+    "UPPER(Common_Name) LIKE '%PLUM%' OR "
+    "UPPER(Common_Name) LIKE '%PEACH%' OR "
+    "UPPER(Common_Name) LIKE '%MAGNOLIA%' OR "
+    "UPPER(Common_Name) LIKE '%CRABAPPLE%' OR "
+    "UPPER(Common_Name) LIKE '%APPLE%'"
+    ")"
+)
+HALIFAX_BLOSSOM_WHERE = (
+    "OWNER = 'HRM' AND ("
+    "UPPER(SP_SCIEN) LIKE 'PRUNUS%' OR "
+    "UPPER(SP_SCIEN) LIKE 'MALUS%' OR "
+    "UPPER(SP_SCIEN) LIKE 'MAGNOLIA%' OR "
+    "UPPER(SP_COMM) LIKE '%CHERRY%' OR "
+    "UPPER(SP_COMM) LIKE '%PLUM%' OR "
+    "UPPER(SP_COMM) LIKE '%PEACH%' OR "
+    "UPPER(SP_COMM) LIKE '%MAGNOLIA%' OR "
+    "UPPER(SP_COMM) LIKE '%CRABAPPLE%' OR "
+    "UPPER(SP_COMM) LIKE '%APPLE%'"
+    ")"
+)
+WINNIPEG_BLOSSOM_WHERE = (
+    "upper(botanical_name) like 'PRUNUS%' OR "
+    "upper(botanical_name) like 'MALUS%' OR "
+    "upper(botanical_name) like 'MAGNOLIA%' OR "
+    "upper(common_name) like '%CHERRY%' OR "
+    "upper(common_name) like '%PLUM%' OR "
+    "upper(common_name) like '%PEACH%' OR "
+    "upper(common_name) like '%MAGNOLIA%' OR "
+    "upper(common_name) like '%CRABAPPLE%' OR "
+    "upper(common_name) like '%APPLE%'"
+)
 LOS_ANGELES_TREEKEEPER_TERMS = ("%cherry%", "%plum%", "%peach%", "%magnolia%", "%crabapple%", "%apple%")
 SPECIES_TEXT_PATTERN = re.compile(r"^\s*(?P<common>.+?)\s*\((?P<scientific>[^()]+)\)\s*$")
 DISPLAY_NAME_REPLACEMENTS = {
@@ -1325,6 +1406,61 @@ UNCOVERED_STATE_ARCGIS_CONFIGS: dict[str, dict[str, Any]] = {
         "note": "Integrated from the official Town of Whitby public tree inventory ArcGIS layer.",
         "clip_to_boundary": True,
     },
+    "Mississauga": {
+        "region": "on",
+        "layer_url": MISSISSAUGA_TREES_LAYER,
+        "dataset_page": MISSISSAUGA_DATASET_PAGE,
+        "where": MISSISSAUGA_BLOSSOM_WHERE,
+        "object_id_field": "OBJECTID",
+        "common_field": "BOTDESC",
+        "source_name": "City Owned Tree Inventory",
+        "source_department": "City of Mississauga",
+        "ownership_raw": "City of Mississauga",
+        "note": "Integrated from the official City of Mississauga public city-owned tree inventory ArcGIS layer.",
+        "clip_to_boundary": True,
+    },
+    "Peterborough": {
+        "region": "on",
+        "layer_url": PETERBOROUGH_TREES_LAYER,
+        "dataset_page": PETERBOROUGH_DATASET_PAGE,
+        "where": PETERBOROUGH_BLOSSOM_WHERE,
+        "object_id_field": "OBJECTID",
+        "common_field": "COMMON",
+        "scientific_field": "BOTANICAL",
+        "source_name": "City of Peterborough Trees",
+        "source_department": "City of Peterborough",
+        "ownership_raw": "City of Peterborough",
+        "note": "Integrated from the official City of Peterborough public tree inventory ArcGIS application layer.",
+        "clip_to_boundary": True,
+    },
+    "Saskatoon": {
+        "region": "sk",
+        "layer_url": SASKATOON_TREES_LAYER,
+        "dataset_page": SASKATOON_DATASET_PAGE,
+        "where": SASKATOON_BLOSSOM_WHERE,
+        "object_id_field": "OBJECTID",
+        "common_field": "Common_Name",
+        "scientific_field": "Latin_Name",
+        "source_name": "Tree Inventory Public",
+        "source_department": "City of Saskatoon",
+        "ownership_raw": "City of Saskatoon",
+        "note": "Integrated from the official City of Saskatoon public tree inventory ArcGIS layer.",
+        "clip_to_boundary": True,
+    },
+    "Halifax": {
+        "region": "ns",
+        "layer_url": HALIFAX_TREES_LAYER,
+        "dataset_page": HALIFAX_DATASET_PAGE,
+        "where": HALIFAX_BLOSSOM_WHERE,
+        "object_id_field": "OBJECTID",
+        "common_field": "SP_COMM",
+        "scientific_field": "SP_SCIEN",
+        "source_name": "Public Trees",
+        "source_department": "Halifax Regional Municipality",
+        "ownership_raw": "Halifax Regional Municipality",
+        "note": "Integrated from the official Halifax Regional Municipality public trees ArcGIS layer.",
+        "clip_to_boundary": True,
+    },
     "Medford": {
         "region": "ma",
         "layer_url": MEDFORD_TREES_LAYER,
@@ -1658,6 +1794,7 @@ SUPPORTED_CITIES = (
     "Greenwich",
     "Groton",
     "Guelph",
+    "Halifax",
     "Glendale",
     "Glendale WI",
     "Greendale",
@@ -1705,6 +1842,7 @@ SUPPORTED_CITIES = (
     "Milpitas",
     "Milwaukee",
     "Manchester",
+    "Mississauga",
     "Monterey Park",
     "Montclair",
     "Montreal",
@@ -1732,6 +1870,7 @@ SUPPORTED_CITIES = (
     "Oxnard",
     "Paramount",
     "Pasadena",
+    "Peterborough",
     "Philadelphia",
     "Pleasanton",
     "Pittsburgh",
@@ -1758,6 +1897,7 @@ SUPPORTED_CITIES = (
     "San Fernando",
     "San Mateo",
     "San Rafael",
+    "Saskatoon",
     "Santa Fe Springs",
     "Santa Barbara",
     "Santa Clarita",
@@ -1786,6 +1926,7 @@ SUPPORTED_CITIES = (
     "Ventura",
     "Vista",
     "Whitby",
+    "Winnipeg",
     "Windsor",
     "Virginia Beach",
     "Wauwatosa",
@@ -7985,6 +8126,103 @@ def fetch_providence() -> dict[str, Any]:
     }
 
 
+def fetch_winnipeg() -> dict[str, Any]:
+    metadata = fetch_json(WINNIPEG_METADATA)
+    rows = fetch_soda_rows(WINNIPEG_API, where=WINNIPEG_BLOSSOM_WHERE, order="tree_id")
+    total_records = fetch_soda_count(WINNIPEG_API, where=WINNIPEG_BLOSSOM_WHERE)
+    last_edit_at = iso_from_epoch(metadata.get("rowsUpdatedAt") or metadata.get("viewLastModified"))
+    zip_index = fetch_us_city_zip_index("Winnipeg", state_id="mb")
+    mapping_rows = load_mapping(MAPPING_PATH)
+    subtype_rows = load_subtype_mapping(SUBTYPE_MAPPING_PATH)
+    boundary_geometry = load_city_boundary_geometry("Winnipeg", state_id="mb")
+
+    output_features: list[dict[str, Any]] = []
+    normalized_rows: list[dict[str, Any]] = []
+    for row in rows:
+        point = row.get("point") or {}
+        if isinstance(point, str):
+            try:
+                point = json.loads(point)
+            except json.JSONDecodeError:
+                point = {}
+        coordinates = point.get("coordinates") if isinstance(point, dict) else None
+        if not isinstance(coordinates, list) or len(coordinates) < 2:
+            continue
+        lon = parse_floatish(coordinates[0])
+        lat = parse_floatish(coordinates[1])
+        if lon is None or lat is None:
+            continue
+        if boundary_geometry and not point_in_geometry(lon, lat, boundary_geometry):
+            continue
+
+        common_name = clean_common_name(row.get("common_name"))
+        scientific_raw = format_scientific_display_name(row.get("botanical_name"), common_name)
+        if not scientific_raw:
+            scientific_raw = generic_scientific_name_for_common_hint(common_name)
+        scientific_normalized = normalize_scientific_name(scientific_raw)
+        species_group, subtype_name = classify_tree_record(scientific_raw, common_name, mapping_rows, subtype_rows)
+        zip_code = assign_zip_code(lon, lat, zip_index)
+        row_id = f"winnipeg-{row.get('tree_id')}"
+        ownership_raw = "City of Winnipeg"
+
+        normalized_rows.append(
+            {
+                "id": row_id,
+                "city": "Winnipeg",
+                "source_dataset": "Tree Inventory",
+                "scientific_raw": scientific_raw,
+                "scientific_normalized": scientific_normalized,
+                "common_name": common_name or "",
+                "subtype_name": subtype_name or "",
+                "zip_code": zip_code or "",
+                "species_group": species_group or "",
+                "ownership": canonical_ownership(ownership_raw),
+                "ownership_raw": ownership_raw,
+                "lat": lat,
+                "lon": lon,
+                "included": "1" if species_group else "0",
+            }
+        )
+        if not species_group:
+            continue
+        output_features.append(
+            {
+                "type": "Feature",
+                "geometry": {"type": "Point", "coordinates": [lon, lat]},
+                "properties": {
+                    "id": row_id,
+                    "species_group": species_group,
+                    "scientific_name": scientific_raw,
+                    "common_name": common_name,
+                    "subtype_name": subtype_name,
+                    "zip_code": zip_code,
+                    "ownership": canonical_ownership(ownership_raw),
+                    "ownership_raw": ownership_raw,
+                    "city": "Winnipeg",
+                    "source_dataset": "Tree Inventory",
+                    "source_department": "City of Winnipeg Public Works",
+                    "source_last_edit_at": last_edit_at,
+                },
+            }
+        )
+
+    return {
+        "city": "Winnipeg",
+        "region": "mb",
+        "features": output_features,
+        "normalized_rows": normalized_rows,
+        "source": {
+            "name": "Tree Inventory",
+            "city": "Winnipeg",
+            "endpoint": WINNIPEG_DATASET_PAGE,
+            "last_edit_at": last_edit_at,
+            "records_fetched": total_records,
+            "records_included": len(output_features),
+            "note": "Integrated from the official City of Winnipeg open-data tree inventory and official jurisdiction boundary.",
+        },
+    }
+
+
 def fetch_durham() -> dict[str, Any]:
     blossom_where = (
         "present = 'Tree' AND ("
@@ -8372,6 +8610,7 @@ CITY_FETCHERS = {
     "West Covina": fetch_west_covina,
     "West Hollywood": fetch_west_hollywood,
     "West Sacramento": fetch_west_sacramento,
+    "Winnipeg": fetch_winnipeg,
     "Yorba Linda": fetch_yorba_linda,
     "Oxnard": fetch_oxnard,
     "Arcadia": fetch_arcadia,

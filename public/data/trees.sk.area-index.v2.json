@@ -1,0 +1,129 @@
+{
+  "generated_at": "2026-03-27T04:59:36.207210+00:00",
+  "region": "sk",
+  "strategy": "area_shard",
+  "items": [
+    {
+      "jurisdiction": "Saskatoon",
+      "slug": "saskatoon",
+      "display_name": "Saskatoon",
+      "jurisdiction_type": "city",
+      "state_province": "SK",
+      "country": "Canada",
+      "bounds": [
+        [
+          -106.76346823573829,
+          52.072808927345925
+        ],
+        [
+          -106.54002689986774,
+          52.19829963178364
+        ]
+      ],
+      "tree_count": 4279,
+      "zip_codes": [
+        "None"
+      ],
+      "species_counts": {
+        "cherry": 450,
+        "plum": 81,
+        "peach": 0,
+        "magnolia": 0,
+        "crabapple": 3748
+      },
+      "ownership_counts": {
+        "public": 4279,
+        "private": 0,
+        "unknown": 0
+      },
+      "species_ownership_counts": {
+        "cherry": {
+          "public": 450,
+          "private": 0,
+          "unknown": 0
+        },
+        "plum": {
+          "public": 81,
+          "private": 0,
+          "unknown": 0
+        },
+        "peach": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        },
+        "magnolia": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        },
+        "crabapple": {
+          "public": 3748,
+          "private": 0,
+          "unknown": 0
+        }
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "saskatoon-001",
+          "bounds": [
+            [
+              -106.76346823573829,
+              52.072808927345925
+            ],
+            [
+              -106.54002689986774,
+              52.19829963178364
+            ]
+          ],
+          "data_path": "/data/trees.sk.area.saskatoon.v2.geojson",
+          "tree_count": 4279,
+          "ownership_counts": {
+            "public": 4279,
+            "private": 0,
+            "unknown": 0
+          },
+          "species_counts": {
+            "cherry": 450,
+            "plum": 81,
+            "peach": 0,
+            "magnolia": 0,
+            "crabapple": 3748
+          },
+          "species_ownership_counts": {
+            "cherry": {
+              "public": 450,
+              "private": 0,
+              "unknown": 0
+            },
+            "plum": {
+              "public": 81,
+              "private": 0,
+              "unknown": 0
+            },
+            "peach": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            },
+            "magnolia": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            },
+            "crabapple": {
+              "public": 3748,
+              "private": 0,
+              "unknown": 0
+            }
+          },
+          "raw_bytes": 2186972,
+          "gzip_bytes": 114258
+        }
+      ]
+    }
+  ]
+}
