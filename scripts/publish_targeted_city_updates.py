@@ -219,6 +219,45 @@ EDMONTON_METADATA = "https://data.edmonton.ca/api/views/eecg-fc54"
 EDMONTON_DATASET_PAGE = "https://data.edmonton.ca/Environmental-Services/Boulevard-Open-Space-Trees/eecg-fc54"
 REGINA_TREES_LAYER = "https://opengis.regina.ca/arcgis/rest/services/CGISViewer/TreeWebApp/MapServer/0"
 REGINA_DATASET_PAGE = "https://opengis.regina.ca/arcgis/rest/services/CGISViewer/TreeWebApp/MapServer"
+CHARLOTTETOWN_TREES_LAYER = (
+    "https://services5.arcgis.com/wtAzoGvE6RRjW7Ns/arcgis/rest/services/Tree_Sites_Public/FeatureServer/0"
+)
+CHARLOTTETOWN_DATASET_PAGE = "https://www.charlottetown.ca/environment___sustainability/urbanforestry/tree_inventory"
+LANGLEY_TOWNSHIP_TREES_LAYER = "https://services5.arcgis.com/frpHL0Fv8koQRVWY/arcgis/rest/services/Trees/FeatureServer/0"
+LANGLEY_TOWNSHIP_DATASET_PAGE = "https://tol.maps.arcgis.com/apps/View/index.html?appid=e59da91f6e434b9899d89b707e669354"
+MOOSE_JAW_TREES_LAYER = "https://gis.moosejaw.ca/server/rest/services/Trees/MapServer/1"
+MOOSE_JAW_DATASET_PAGE = "https://moosejaw.ca/maps/"
+SAINT_JOHN_TREES_LAYER = (
+    "https://services.arcgis.com/DLk7hgTJeJILuEBg/arcgis/rest/services/Urban_Forestry_Trees/FeatureServer/0"
+)
+SAINT_JOHN_DATASET_PAGE = "https://catalogue-saintjohn.opendata.arcgis.com/datasets/saintjohn::urban-forestry-trees/explore"
+COQUITLAM_TREES_LAYER = "https://geodata.coquitlam.ca/arcgis/rest/services/PRC/PRC_Operations/MapServer/2"
+COQUITLAM_DATASET_PAGE = "https://www.coquitlam.ca/784/Tree-Watering-Program"
+PORT_COQUITLAM_PARK_TREES_LAYER = (
+    "https://maps.portcoquitlam.ca/server/rest/services/DynamicData_PublicWorks/MapServer/5"
+)
+PORT_COQUITLAM_STREET_TREES_LAYER = (
+    "https://maps.portcoquitlam.ca/server/rest/services/DynamicData_PublicWorks/MapServer/30"
+)
+PORT_COQUITLAM_DATASET_PAGE = (
+    "https://maps.portcoquitlam.ca/server/rest/services/DynamicData_PublicWorks/MapServer"
+)
+WEST_VANCOUVER_TREES_LAYER = (
+    "https://services5.arcgis.com/Q4JfC7BraThG8umv/arcgis/rest/services/FORM_DWV_Tree_Inventory_View/FeatureServer/0"
+)
+WEST_VANCOUVER_DATASET_PAGE = (
+    "https://services5.arcgis.com/Q4JfC7BraThG8umv/arcgis/rest/services/FORM_DWV_Tree_Inventory_View/FeatureServer"
+)
+GRANDE_PRAIRIE_TREES_LAYER = (
+    "https://services7.arcgis.com/2IF4itZw5lplW9PO/arcgis/rest/services/City_of_Grande_Prairie_Park_Data/FeatureServer/2"
+)
+GRANDE_PRAIRIE_DATASET_PAGE = (
+    "https://services7.arcgis.com/2IF4itZw5lplW9PO/arcgis/rest/services/City_of_Grande_Prairie_Park_Data/FeatureServer"
+)
+STRATHCONA_COUNTY_TREES_LAYER = "https://services.arcgis.com/B7ZrK1Hv4P1dsm9R/arcgis/rest/services/Trees1/FeatureServer/0"
+STRATHCONA_COUNTY_DATASET_PAGE = "https://services.arcgis.com/B7ZrK1Hv4P1dsm9R/arcgis/rest/services/Trees1/FeatureServer"
+WEYBURN_TREES_LAYER = "https://services8.arcgis.com/HQs4mlvbVkaKMcl1/arcgis/rest/services/Weyburn_Tree_Point/FeatureServer/0"
+WEYBURN_DATASET_PAGE = "https://gdtrees.maps.arcgis.com/apps/webappviewer/index.html?id=3ca1e49d8493481e8327ea6202e6e175"
 MEDICINE_HAT_TREES_LAYER = (
     "https://gis.medicinehat.ca/arcgis/rest/services/Parks/Trees_RFP_Tree_Inventory_Collection_FS4/MapServer/0"
 )
@@ -1374,6 +1413,140 @@ GATINEAU_BLOSSOM_WHERE = (
     "UPPER(NAME_FR) LIKE '%CERISIER%' OR "
     "UPPER(NAME_FR) LIKE '%POMMIER%' OR "
     "UPPER(NAME_FR) LIKE '%MAGNOLIA%'"
+)
+CHARLOTTETOWN_BLOSSOM_WHERE = (
+    "UPPER(Species_Bot) LIKE 'PRUNUS%' OR "
+    "UPPER(Species_Bot) LIKE 'MALUS%' OR "
+    "UPPER(Species_Bot) LIKE 'MAGNOLIA%' OR "
+    "UPPER(Species_Com) LIKE '%CHERRY%' OR "
+    "UPPER(Species_Com) LIKE '%PLUM%' OR "
+    "UPPER(Species_Com) LIKE '%PEACH%' OR "
+    "UPPER(Species_Com) LIKE '%MAGNOLIA%' OR "
+    "UPPER(Species_Com) LIKE '%CRABAPPLE%' OR "
+    "UPPER(Species_Com) LIKE '%APPLE%'"
+)
+LANGLEY_TOWNSHIP_BLOSSOM_WHERE = (
+    "UPPER(TreeName_t) LIKE 'PRUNUS%' OR "
+    "UPPER(TreeName_t) LIKE 'MALUS%' OR "
+    "UPPER(TreeName_t) LIKE 'MAGNOLIA%' OR "
+    "UPPER(TreeName_t) LIKE '%CHERRY%' OR "
+    "UPPER(TreeName_t) LIKE '%PLUM%' OR "
+    "UPPER(TreeName_t) LIKE '%PEACH%' OR "
+    "UPPER(TreeName_t) LIKE '%MAGNOLIA%' OR "
+    "UPPER(TreeName_t) LIKE '%CRABAPPLE%' OR "
+    "UPPER(TreeName_t) LIKE '%APPLE%' OR "
+    "UPPER(CommonName) LIKE '%CHERRY%' OR "
+    "UPPER(CommonName) LIKE '%PLUM%' OR "
+    "UPPER(CommonName) LIKE '%PEACH%' OR "
+    "UPPER(CommonName) LIKE '%MAGNOLIA%' OR "
+    "UPPER(CommonName) LIKE '%CRABAPPLE%' OR "
+    "UPPER(CommonName) LIKE '%APPLE%' OR "
+    "UPPER(Genera) LIKE '%CHERRY%' OR "
+    "UPPER(Genera) LIKE '%PLUM%' OR "
+    "UPPER(Genera) LIKE '%PEACH%' OR "
+    "UPPER(Genera) LIKE '%MAGNOLIA%' OR "
+    "UPPER(Genera) LIKE '%CRABAPPLE%' OR "
+    "UPPER(Genera) LIKE '%APPLE%'"
+)
+MOOSE_JAW_BLOSSOM_WHERE = (
+    "UPPER(NAME) LIKE '%CHERRY%' OR "
+    "UPPER(NAME) LIKE '%PLUM%' OR "
+    "UPPER(NAME) LIKE '%PEACH%' OR "
+    "UPPER(NAME) LIKE '%MAGNOLIA%' OR "
+    "UPPER(NAME) LIKE '%CRABAPPLE%' OR "
+    "UPPER(NAME) LIKE '%APPLE%' OR "
+    "UPPER(GENUS) LIKE 'PRUNUS%' OR "
+    "UPPER(GENUS) LIKE 'MALUS%' OR "
+    "UPPER(GENUS) LIKE 'MAGNOLIA%' OR "
+    "UPPER(SPECIES) LIKE 'PRUNUS%' OR "
+    "UPPER(SPECIES) LIKE 'MALUS%' OR "
+    "UPPER(SPECIES) LIKE 'MAGNOLIA%'"
+)
+SAINT_JOHN_BLOSSOM_WHERE = (
+    "UPPER(Species) LIKE 'PRUNUS%' OR "
+    "UPPER(Species) LIKE 'MALUS%' OR "
+    "UPPER(Species) LIKE 'MAGNOLIA%' OR "
+    "UPPER(Species) LIKE '%CHERRY%' OR "
+    "UPPER(Species) LIKE '%PLUM%' OR "
+    "UPPER(Species) LIKE '%PEACH%' OR "
+    "UPPER(Species) LIKE '%MAGNOLIA%' OR "
+    "UPPER(Species) LIKE '%CRABAPPLE%' OR "
+    "UPPER(Species) LIKE '%APPLE%'"
+)
+COQUITLAM_BLOSSOM_WHERE = (
+    "UPPER(SPECIES) LIKE 'PRUNUS%' OR "
+    "UPPER(SPECIES) LIKE 'MALUS%' OR "
+    "UPPER(SPECIES) LIKE 'MAGNOLIA%' OR "
+    "UPPER(SPECIES) LIKE '%CHERRY%' OR "
+    "UPPER(SPECIES) LIKE '%PLUM%' OR "
+    "UPPER(SPECIES) LIKE '%PEACH%' OR "
+    "UPPER(SPECIES) LIKE '%MAGNOLIA%' OR "
+    "UPPER(SPECIES) LIKE '%CRABAPPLE%' OR "
+    "UPPER(SPECIES) LIKE '%APPLE%'"
+)
+PORT_COQUITLAM_BLOSSOM_WHERE = (
+    "UPPER(Species) LIKE 'PRUNUS%' OR "
+    "UPPER(Species) LIKE 'MALUS%' OR "
+    "UPPER(Species) LIKE 'MAGNOLIA%' OR "
+    "UPPER(Species) LIKE '%CHERRY%' OR "
+    "UPPER(Species) LIKE '%PLUM%' OR "
+    "UPPER(Species) LIKE '%PEACH%' OR "
+    "UPPER(Species) LIKE '%MAGNOLIA%' OR "
+    "UPPER(Species) LIKE '%CRABAPPLE%' OR "
+    "UPPER(Species) LIKE '%APPLE%'"
+)
+GRANDE_PRAIRIE_BLOSSOM_WHERE = (
+    "UPPER(BOTANICAL_NAME) LIKE 'PRUNUS%' OR "
+    "UPPER(BOTANICAL_NAME) LIKE 'MALUS%' OR "
+    "UPPER(BOTANICAL_NAME) LIKE 'MAGNOLIA%' OR "
+    "UPPER(ASSET_NAME) LIKE '%CHERRY%' OR "
+    "UPPER(ASSET_NAME) LIKE '%PLUM%' OR "
+    "UPPER(ASSET_NAME) LIKE '%PEACH%' OR "
+    "UPPER(ASSET_NAME) LIKE '%MAGNOLIA%' OR "
+    "UPPER(ASSET_NAME) LIKE '%CRABAPPLE%' OR "
+    "UPPER(ASSET_NAME) LIKE '%APPLE%'"
+)
+STRATHCONA_COUNTY_BLOSSOM_WHERE = (
+    "UPPER(species) LIKE 'PRUNUS%' OR "
+    "UPPER(species) LIKE 'MALUS%' OR "
+    "UPPER(species) LIKE 'MAGNOLIA%' OR "
+    "UPPER(species) LIKE '%CHERRY%' OR "
+    "UPPER(species) LIKE '%PLUM%' OR "
+    "UPPER(species) LIKE '%PEACH%' OR "
+    "UPPER(species) LIKE '%MAGNOLIA%' OR "
+    "UPPER(species) LIKE '%CRABAPPLE%' OR "
+    "UPPER(species) LIKE '%APPLE%'"
+)
+WEYBURN_BLOSSOM_WHERE = (
+    "UPPER(SciName) LIKE 'PRUNUS%' OR "
+    "UPPER(SciName) LIKE 'MALUS%' OR "
+    "UPPER(SciName) LIKE 'MAGNOLIA%' OR "
+    "UPPER(Species) LIKE '%CHERRY%' OR "
+    "UPPER(Species) LIKE '%PLUM%' OR "
+    "UPPER(Species) LIKE '%PEACH%' OR "
+    "UPPER(Species) LIKE '%MAGNOLIA%' OR "
+    "UPPER(Species) LIKE '%CRABAPPLE%' OR "
+    "UPPER(Species) LIKE '%APPLE%'"
+)
+WEST_VANCOUVER_BLOSSOM_WHERE = (
+    "UPPER(SpeciesName) LIKE 'PRUNUS%' OR "
+    "UPPER(SpeciesName) LIKE 'MALUS%' OR "
+    "UPPER(SpeciesName) LIKE 'MAGNOLIA%' OR "
+    "UPPER(SpeciesName) LIKE '%CHERRY%' OR "
+    "UPPER(SpeciesName) LIKE '%PLUM%' OR "
+    "UPPER(SpeciesName) LIKE '%PEACH%' OR "
+    "UPPER(SpeciesName) LIKE '%MAGNOLIA%' OR "
+    "UPPER(SpeciesName) LIKE '%CRABAPPLE%' OR "
+    "UPPER(SpeciesName) LIKE '%APPLE%' OR "
+    "UPPER(CommonName) LIKE '%CHERRY%' OR "
+    "UPPER(CommonName) LIKE '%PLUM%' OR "
+    "UPPER(CommonName) LIKE '%PEACH%' OR "
+    "UPPER(CommonName) LIKE '%MAGNOLIA%' OR "
+    "UPPER(CommonName) LIKE '%CRABAPPLE%' OR "
+    "UPPER(CommonName) LIKE '%APPLE%' OR "
+    "UPPER(ScientificName) LIKE 'PRUNUS%' OR "
+    "UPPER(ScientificName) LIKE 'MALUS%' OR "
+    "UPPER(ScientificName) LIKE 'MAGNOLIA%'"
 )
 MONCTON_BOTNAME_MAPPING = {
     "APPCRA": {"common_name": "Crabapple", "scientific_name": "Malus species"},
@@ -2648,6 +2821,129 @@ UNCOVERED_STATE_ARCGIS_CONFIGS: dict[str, dict[str, Any]] = {
         "source_department": "Milwaukee County",
         "ownership_raw": "Milwaukee County",
         "note": "Integrated from the official Milwaukee County public tree viewer and official jurisdiction boundary clipping.",
+        "clip_to_boundary": True,
+    },
+    "Charlottetown": {
+        "region": "pe",
+        "layer_url": CHARLOTTETOWN_TREES_LAYER,
+        "dataset_page": CHARLOTTETOWN_DATASET_PAGE,
+        "where": CHARLOTTETOWN_BLOSSOM_WHERE,
+        "object_id_field": "OBJECTID",
+        "common_field": "Species_Com",
+        "botanical_field": "Species_Bot",
+        "source_name": "Tree Sites Public",
+        "source_department": "City of Charlottetown",
+        "ownership_raw": "City of Charlottetown",
+        "note": "Integrated from the official City of Charlottetown public tree inventory ArcGIS layer and official Statistics Canada CSD boundary.",
+        "clip_to_boundary": True,
+    },
+    "Coquitlam": {
+        "region": "bc",
+        "layer_url": COQUITLAM_TREES_LAYER,
+        "dataset_page": COQUITLAM_DATASET_PAGE,
+        "where": COQUITLAM_BLOSSOM_WHERE,
+        "object_id_field": "OBJECTID",
+        "scientific_field": "SPECIES",
+        "source_name": "Maintained Trees",
+        "source_department": "City of Coquitlam",
+        "ownership_raw": "City of Coquitlam",
+        "note": "Integrated from the official City of Coquitlam maintained-trees ArcGIS layer and official jurisdiction boundary.",
+        "clip_to_boundary": True,
+    },
+    "Grande Prairie": {
+        "region": "ab",
+        "layer_url": GRANDE_PRAIRIE_TREES_LAYER,
+        "dataset_page": GRANDE_PRAIRIE_DATASET_PAGE,
+        "where": GRANDE_PRAIRIE_BLOSSOM_WHERE,
+        "object_id_field": "SDE_ID",
+        "common_field": "BOTANICAL_NAME",
+        "source_name": "Trees",
+        "source_department": "City of Grande Prairie",
+        "ownership_raw": "City of Grande Prairie",
+        "note": "Integrated from the public City of Grande Prairie park-trees ArcGIS layer and official Statistics Canada CSD boundary.",
+        "clip_to_boundary": True,
+    },
+    "Langley Township": {
+        "region": "bc",
+        "layer_url": LANGLEY_TOWNSHIP_TREES_LAYER,
+        "dataset_page": LANGLEY_TOWNSHIP_DATASET_PAGE,
+        "where": LANGLEY_TOWNSHIP_BLOSSOM_WHERE,
+        "object_id_field": "OBJECTID",
+        "common_field": "CommonName",
+        "scientific_field": "TreeName_t",
+        "source_name": "Trees",
+        "source_department": "Township of Langley",
+        "ownership_raw": "Township of Langley",
+        "note": "Integrated from the official Township of Langley public tree inventory ArcGIS layer and official jurisdiction boundary.",
+        "clip_to_boundary": True,
+    },
+    "Moose Jaw": {
+        "region": "sk",
+        "layer_url": MOOSE_JAW_TREES_LAYER,
+        "dataset_page": MOOSE_JAW_DATASET_PAGE,
+        "where": MOOSE_JAW_BLOSSOM_WHERE,
+        "object_id_field": "OBJECTID",
+        "common_field": "NAME",
+        "genus_field": "GENUS",
+        "species_field": "SPECIES",
+        "source_name": "Trees",
+        "source_department": "City of Moose Jaw",
+        "ownership_raw": "City of Moose Jaw",
+        "note": "Integrated from the official City of Moose Jaw public trees ArcGIS layer and official Statistics Canada CSD boundary.",
+        "clip_to_boundary": True,
+    },
+    "Saint John": {
+        "region": "nb",
+        "layer_url": SAINT_JOHN_TREES_LAYER,
+        "dataset_page": SAINT_JOHN_DATASET_PAGE,
+        "where": SAINT_JOHN_BLOSSOM_WHERE,
+        "object_id_field": "OBJECTID",
+        "common_field": "Species",
+        "source_name": "Urban Forestry Trees",
+        "source_department": "City of Saint John",
+        "ownership_raw": "City of Saint John",
+        "note": "Integrated from the official City of Saint John public urban-forestry trees ArcGIS layer and official Statistics Canada CSD boundary.",
+        "clip_to_boundary": True,
+    },
+    "Strathcona County": {
+        "region": "ab",
+        "layer_url": STRATHCONA_COUNTY_TREES_LAYER,
+        "dataset_page": STRATHCONA_COUNTY_DATASET_PAGE,
+        "where": STRATHCONA_COUNTY_BLOSSOM_WHERE,
+        "object_id_field": "objectid",
+        "common_field": "species",
+        "source_name": "Trees",
+        "source_department": "Strathcona County",
+        "ownership_raw": "Strathcona County",
+        "note": "Integrated from the official Strathcona County managed-trees ArcGIS layer and official Statistics Canada CSD boundary.",
+        "clip_to_boundary": True,
+    },
+    "West Vancouver": {
+        "region": "bc",
+        "layer_url": WEST_VANCOUVER_TREES_LAYER,
+        "dataset_page": WEST_VANCOUVER_DATASET_PAGE,
+        "where": WEST_VANCOUVER_BLOSSOM_WHERE,
+        "object_id_field": "OBJECTID",
+        "common_field": "SpeciesName",
+        "scientific_field": "ScientificName",
+        "source_name": "FORM_DWV Tree Inventory",
+        "source_department": "District of West Vancouver",
+        "ownership_raw": "District of West Vancouver",
+        "note": "Integrated from the public District of West Vancouver tree-inventory planning ArcGIS layer and official jurisdiction boundary.",
+        "clip_to_boundary": True,
+    },
+    "Weyburn": {
+        "region": "sk",
+        "layer_url": WEYBURN_TREES_LAYER,
+        "dataset_page": WEYBURN_DATASET_PAGE,
+        "where": WEYBURN_BLOSSOM_WHERE,
+        "object_id_field": "OBJECTID",
+        "common_field": "Species",
+        "scientific_field": "SciName",
+        "source_name": "Weyburn Tree Point",
+        "source_department": "City of Weyburn",
+        "ownership_raw": "City of Weyburn",
+        "note": "Integrated from the public Weyburn urban-forest tree inventory ArcGIS layer and official Statistics Canada CSD boundary.",
         "clip_to_boundary": True,
     },
 }
@@ -9562,6 +9858,44 @@ def fetch_abbotsford() -> dict[str, Any]:
     )
 
 
+def fetch_port_coquitlam() -> dict[str, Any]:
+    park_layer_info = fetch_json(PORT_COQUITLAM_PARK_TREES_LAYER, {"f": "pjson"})
+    street_layer_info = fetch_json(PORT_COQUITLAM_STREET_TREES_LAYER, {"f": "pjson"})
+    park_features = fetch_arcgis_features_by_object_ids(
+        PORT_COQUITLAM_PARK_TREES_LAYER,
+        where=PORT_COQUITLAM_BLOSSOM_WHERE,
+        out_fields=["OBJECTID", "Species", "Park_Name"],
+        object_id_field="OBJECTID",
+    )
+    street_features = fetch_arcgis_features_by_object_ids(
+        PORT_COQUITLAM_STREET_TREES_LAYER,
+        where=PORT_COQUITLAM_BLOSSOM_WHERE,
+        out_fields=["OBJECTID", "Species", "Streetname"],
+        object_id_field="OBJECTID",
+    )
+    features = clip_features_to_city_boundary("Port Coquitlam", "bc", park_features + street_features)
+    last_edit_candidates = [
+        (park_layer_info.get("editingInfo") or {}).get("lastEditDate"),
+        (street_layer_info.get("editingInfo") or {}).get("lastEditDate"),
+    ]
+    last_edit_values = [value for value in last_edit_candidates if value]
+    last_edit_at = iso_from_epoch(max(last_edit_values)) if last_edit_values else ""
+    return build_arcgis_inventory_result(
+        city="Port Coquitlam",
+        region="bc",
+        features=features,
+        total_records=len(features),
+        last_edit_at=last_edit_at,
+        source_name="DynamicData Public Works Trees",
+        source_department="City of Port Coquitlam",
+        dataset_page=PORT_COQUITLAM_DATASET_PAGE,
+        ownership_raw="City of Port Coquitlam",
+        note="Integrated from the official City of Port Coquitlam public park-tree and street-tree ArcGIS layers and official jurisdiction boundary.",
+        object_id_field="OBJECTID",
+        scientific_field="Species",
+    )
+
+
 def fetch_moncton() -> dict[str, Any]:
     layer_info = fetch_json(MONCTON_TREES_LAYER, {"f": "pjson"})
     features = fetch_arcgis_features_by_object_ids(
@@ -9950,6 +10284,7 @@ CITY_FETCHERS = {
     "Oakville": fetch_oakville,
     "Pleasanton": fetch_pleasanton,
     "Pomona": fetch_pomona,
+    "Port Coquitlam": fetch_port_coquitlam,
     "Poway": fetch_poway,
     "Providence": fetch_providence,
     "Rancho Cucamonga": fetch_rancho_cucamonga,

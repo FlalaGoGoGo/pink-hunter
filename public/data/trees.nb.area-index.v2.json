@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-03-27T18:20:28.682878+00:00",
+  "generated_at": "2026-03-27T22:54:21.418611+00:00",
   "region": "nb",
   "strategy": "area_shard",
   "items": [
@@ -244,6 +244,128 @@
           },
           "raw_bytes": 172580,
           "gzip_bytes": 9182
+        }
+      ]
+    },
+    {
+      "jurisdiction": "Saint John",
+      "slug": "saint-john",
+      "display_name": "Saint John",
+      "jurisdiction_type": "city",
+      "state_province": "NB",
+      "country": "Canada",
+      "bounds": [
+        [
+          -66.11891272152808,
+          45.2510633424618
+        ],
+        [
+          -65.99048970346088,
+          45.32039406658111
+        ]
+      ],
+      "tree_count": 13,
+      "zip_codes": [
+        "None"
+      ],
+      "species_counts": {
+        "cherry": 4,
+        "plum": 0,
+        "peach": 0,
+        "magnolia": 0,
+        "crabapple": 9
+      },
+      "ownership_counts": {
+        "public": 13,
+        "private": 0,
+        "unknown": 0
+      },
+      "species_ownership_counts": {
+        "cherry": {
+          "public": 4,
+          "private": 0,
+          "unknown": 0
+        },
+        "plum": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        },
+        "peach": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        },
+        "magnolia": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        },
+        "crabapple": {
+          "public": 9,
+          "private": 0,
+          "unknown": 0
+        }
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "saint-john-001",
+          "bounds": [
+            [
+              -66.11891272152808,
+              45.2510633424618
+            ],
+            [
+              -65.99048970346088,
+              45.32039406658111
+            ]
+          ],
+          "data_path": "/data/trees.nb.area.saint-john.v2.geojson",
+          "tree_count": 13,
+          "ownership_counts": {
+            "public": 13,
+            "private": 0,
+            "unknown": 0
+          },
+          "species_counts": {
+            "cherry": 4,
+            "plum": 0,
+            "peach": 0,
+            "magnolia": 0,
+            "crabapple": 9
+          },
+          "species_ownership_counts": {
+            "cherry": {
+              "public": 4,
+              "private": 0,
+              "unknown": 0
+            },
+            "plum": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            },
+            "peach": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            },
+            "magnolia": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            },
+            "crabapple": {
+              "public": 9,
+              "private": 0,
+              "unknown": 0
+            }
+          },
+          "raw_bytes": 6653,
+          "gzip_bytes": 708
         }
       ]
     }

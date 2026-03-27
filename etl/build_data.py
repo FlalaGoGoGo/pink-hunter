@@ -220,6 +220,7 @@ REGION_LABELS: dict[str, str] = {
     "on": "ON",
     "or": "OR",
     "pa": "PA",
+    "pe": "PE",
     "qc": "QC",
     "ri": "RI",
     "sk": "SK",
@@ -388,12 +389,18 @@ REGION_CITY_OVERRIDES: dict[str, str] = {
     "Lethbridge": "ab",
     "Airdrie": "ab",
     "Red Deer": "ab",
+    "Grande Prairie": "ab",
+    "Strathcona County": "ab",
     "Halifax": "ns",
     "Fredericton": "nb",
     "Moncton": "nb",
+    "Saint John": "nb",
+    "Charlottetown": "pe",
     "Winnipeg": "mb",
     "Saskatoon": "sk",
     "Regina": "sk",
+    "Moose Jaw": "sk",
+    "Weyburn": "sk",
     "Washington DC": "dc",
     "Kelowna": "bc",
     "Kamloops": "bc",
@@ -406,9 +413,11 @@ REGION_CITY_OVERRIDES: dict[str, str] = {
     "Coquitlam": "bc",
     "Delta": "bc",
     "Langley City": "bc",
+    "Langley Township": "bc",
     "New Westminster": "bc",
     "North Vancouver City": "bc",
     "North Vancouver District": "bc",
+    "Port Coquitlam": "bc",
     "Richmond BC": "bc",
     "Saanich": "bc",
     "Surrey": "bc",
@@ -750,6 +759,18 @@ CITY_BOUNDARY_HINTS: dict[str, dict[str, str]] = {
     "Lethbridge": {"boundary_source": "statcan_csd", "csd_name": "Lethbridge", "prname": "Alberta", "csd_uid": "4802012"},
     "Airdrie": {"boundary_source": "statcan_csd", "csd_name": "Airdrie", "prname": "Alberta", "csd_uid": "4806021"},
     "Red Deer": {"boundary_source": "statcan_csd", "csd_name": "Red Deer", "prname": "Alberta", "csd_uid": "4808011"},
+    "Grande Prairie": {
+        "boundary_source": "statcan_csd",
+        "csd_name": "Grande Prairie",
+        "prname": "Alberta",
+        "csd_uid": "4819012",
+    },
+    "Strathcona County": {
+        "boundary_source": "statcan_csd",
+        "csd_name": "Strathcona County",
+        "prname": "Alberta",
+        "csd_uid": "4811052",
+    },
     "Halifax": {"boundary_source": "halifax_hrm_arcgis"},
     "Fredericton": {
         "boundary_source": "statcan_csd",
@@ -763,6 +784,18 @@ CITY_BOUNDARY_HINTS: dict[str, dict[str, str]] = {
         "prname": "New Brunswick / Nouveau-Brunswick",
         "csd_uid": "1327034",
     },
+    "Saint John": {
+        "boundary_source": "statcan_csd",
+        "csd_name": "Saint John",
+        "prname": "New Brunswick / Nouveau-Brunswick",
+        "csd_uid": "1329050",
+    },
+    "Charlottetown": {
+        "boundary_source": "statcan_csd",
+        "csd_name": "Charlottetown",
+        "prname": "Prince Edward Island / Île-du-Prince-Édouard",
+        "csd_uid": "1102075",
+    },
     "Winnipeg": {"boundary_source": "statcan_csd", "csd_name": "Winnipeg", "prname": "Manitoba", "csd_uid": "4611040"},
     "Saskatoon": {
         "boundary_source": "statcan_csd",
@@ -771,6 +804,8 @@ CITY_BOUNDARY_HINTS: dict[str, dict[str, str]] = {
         "csd_uid": "4711066",
     },
     "Regina": {"boundary_source": "statcan_csd", "csd_name": "Regina", "prname": "Saskatchewan", "csd_uid": "4706027"},
+    "Moose Jaw": {"boundary_source": "statcan_csd", "csd_name": "Moose Jaw", "prname": "Saskatchewan", "csd_uid": "4707039"},
+    "Weyburn": {"boundary_source": "statcan_csd", "csd_name": "Weyburn", "prname": "Saskatchewan", "csd_uid": "4702047"},
     "Washington DC": {"state": "11", "basename": "Washington"},
     "Portland": {"boundary_source": "portland_or_arcgis"},
     "Las Vegas": {"state": "32"},
@@ -895,9 +930,11 @@ CITY_BOUNDARY_HINTS: dict[str, dict[str, str]] = {
     "Coquitlam": {"boundary_source": "coquitlam_arcgis"},
     "Delta": {"boundary_source": "delta_arcgis"},
     "Langley City": {"boundary_source": "metro_vancouver_admin", "fullname": "City of Langley"},
+    "Langley Township": {"boundary_source": "metro_vancouver_admin", "fullname": "Township of Langley"},
     "New Westminster": {"boundary_source": "metro_vancouver_admin", "fullname": "City of New Westminster"},
     "North Vancouver City": {"boundary_source": "metro_vancouver_admin", "fullname": "City of North Vancouver"},
     "North Vancouver District": {"boundary_source": "metro_vancouver_admin", "fullname": "District of North Vancouver"},
+    "Port Coquitlam": {"boundary_source": "metro_vancouver_admin", "fullname": "City of Port Coquitlam"},
     "Saanich": {"boundary_source": "saanich_arcgis"},
     "Surrey": {"boundary_source": "surrey_arcgis"},
     "West Vancouver": {"boundary_source": "metro_vancouver_admin", "fullname": "District of West Vancouver"},
@@ -918,7 +955,6 @@ OFFICIAL_DATA_UNAVAILABLE_CITIES: dict[str, str] = {
     "Bothell": "Official planning documents mention inventory work, but no public raw single-tree species endpoint was confirmed.",
     "Bremerton": "An official tree web map exists, but the underlying feature service is not publicly queryable for ETL access.",
     "Burnaby": "Official Burnaby GIS/open-data sources were reviewed, but no public single-tree species inventory was confirmed.",
-    "Coquitlam": "Official City of Coquitlam GIS services expose the official city boundary, but this round did not confirm a public citywide single-tree species inventory.",
     "Brier": "City investigated; public search hits were false positives, not an official city tree inventory.",
     "Burien": "Official tree data uses internal species codes without a public mapping table usable for current taxonomy.",
     "Carnation": "City investigated; no official public single-tree species dataset was confirmed.",
@@ -995,7 +1031,6 @@ OFFICIAL_DATA_UNAVAILABLE_CITIES: dict[str, str] = {
     "University Place": "City investigated; no official public single-tree species dataset was confirmed.",
     "Vancouver WA": "Official geohub content surfaced canopy and other inventories, but not a public single-tree species dataset.",
     "Wenatchee": "City investigated; only Wenatchee Valley College campus tree maps surfaced in this round, not a verified City of Wenatchee public tree inventory.",
-    "West Vancouver": "Official West Vancouver GIS and urban-forest planning materials were reviewed; an official administrative boundary is public, but no public citywide single-tree species inventory was confirmed.",
     "White Rock": "Official Metro Vancouver administrative boundaries confirm the City of White Rock geometry, but this round did not confirm a public citywide single-tree species inventory.",
     "Woodinville": "Official city pages did not confirm a public single-tree species point inventory.",
     "Woodway": "City investigated; no official public single-tree species dataset was confirmed.",
@@ -1005,7 +1040,7 @@ OFFICIAL_DATA_UNAVAILABLE_CITIES: dict[str, str] = {
 BOUNDARY_CACHE_ROOT = REFERENCE_DIR / "boundaries"
 BOUNDARY_CATALOG_PATH = REFERENCE_DIR / "boundary_catalog.v1.json"
 COVERAGE_STATUS_REGISTRY_PATH = REFERENCE_DIR / "coverage_status_registry.v1.json"
-CANADIAN_REGION_IDS = {"ab", "bc", "mb", "nb", "ns", "on", "qc", "sk"}
+CANADIAN_REGION_IDS = {"ab", "bc", "mb", "nb", "ns", "on", "pe", "qc", "sk"}
 
 UW_SUPPLEMENTAL_PATH = SUPPLEMENTAL_DIR / "uw_prunus_overpass.json"
 UW_FEATURED_AREA_REFERENCE_PATH = REFERENCE_DIR / "uw_featured_area_reference.v1.json"
@@ -6903,6 +6938,7 @@ def main() -> int:
         "nb": "Canada",
         "ns": "Canada",
         "on": "Canada",
+        "pe": "Canada",
         "qc": "Canada",
         "sk": "Canada",
     }

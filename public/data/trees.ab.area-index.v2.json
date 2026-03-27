@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-03-27T19:42:49.217976+00:00",
+  "generated_at": "2026-03-27T22:54:21.418611+00:00",
   "region": "ab",
   "strategy": "area_shard",
   "items": [
@@ -600,6 +600,128 @@
           },
           "raw_bytes": 8003487,
           "gzip_bytes": 345823
+        }
+      ]
+    },
+    {
+      "jurisdiction": "Grande Prairie",
+      "slug": "grande-prairie",
+      "display_name": "Grande Prairie",
+      "jurisdiction_type": "city",
+      "state_province": "AB",
+      "country": "Canada",
+      "bounds": [
+        [
+          -118.8587736287105,
+          55.13073239154866
+        ],
+        [
+          -118.74546159565445,
+          55.203779387787634
+        ]
+      ],
+      "tree_count": 2034,
+      "zip_codes": [
+        "None"
+      ],
+      "species_counts": {
+        "cherry": 84,
+        "plum": 106,
+        "peach": 0,
+        "magnolia": 0,
+        "crabapple": 1844
+      },
+      "ownership_counts": {
+        "public": 2034,
+        "private": 0,
+        "unknown": 0
+      },
+      "species_ownership_counts": {
+        "cherry": {
+          "public": 84,
+          "private": 0,
+          "unknown": 0
+        },
+        "plum": {
+          "public": 106,
+          "private": 0,
+          "unknown": 0
+        },
+        "peach": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        },
+        "magnolia": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        },
+        "crabapple": {
+          "public": 1844,
+          "private": 0,
+          "unknown": 0
+        }
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "grande-prairie-001",
+          "bounds": [
+            [
+              -118.8587736287105,
+              55.13073239154866
+            ],
+            [
+              -118.74546159565445,
+              55.203779387787634
+            ]
+          ],
+          "data_path": "/data/trees.ab.area.grande-prairie.v2.geojson",
+          "tree_count": 2034,
+          "ownership_counts": {
+            "public": 2034,
+            "private": 0,
+            "unknown": 0
+          },
+          "species_counts": {
+            "cherry": 84,
+            "plum": 106,
+            "peach": 0,
+            "magnolia": 0,
+            "crabapple": 1844
+          },
+          "species_ownership_counts": {
+            "cherry": {
+              "public": 84,
+              "private": 0,
+              "unknown": 0
+            },
+            "plum": {
+              "public": 106,
+              "private": 0,
+              "unknown": 0
+            },
+            "peach": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            },
+            "magnolia": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            },
+            "crabapple": {
+              "public": 1844,
+              "private": 0,
+              "unknown": 0
+            }
+          },
+          "raw_bytes": 1046920,
+          "gzip_bytes": 44593
         }
       ]
     },
@@ -1210,6 +1332,128 @@
           },
           "raw_bytes": 1541452,
           "gzip_bytes": 67067
+        }
+      ]
+    },
+    {
+      "jurisdiction": "Strathcona County",
+      "slug": "strathcona-county",
+      "display_name": "Strathcona County",
+      "jurisdiction_type": "county",
+      "state_province": "AB",
+      "country": "Canada",
+      "bounds": [
+        [
+          -113.33073727350913,
+          53.495000526904455
+        ],
+        [
+          -113.07168919282036,
+          53.71348186025255
+        ]
+      ],
+      "tree_count": 1128,
+      "zip_codes": [
+        "None"
+      ],
+      "species_counts": {
+        "cherry": 309,
+        "plum": 4,
+        "peach": 0,
+        "magnolia": 0,
+        "crabapple": 815
+      },
+      "ownership_counts": {
+        "public": 1128,
+        "private": 0,
+        "unknown": 0
+      },
+      "species_ownership_counts": {
+        "cherry": {
+          "public": 309,
+          "private": 0,
+          "unknown": 0
+        },
+        "plum": {
+          "public": 4,
+          "private": 0,
+          "unknown": 0
+        },
+        "peach": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        },
+        "magnolia": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        },
+        "crabapple": {
+          "public": 815,
+          "private": 0,
+          "unknown": 0
+        }
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "strathcona-county-001",
+          "bounds": [
+            [
+              -113.33073727350913,
+              53.495000526904455
+            ],
+            [
+              -113.07168919282036,
+              53.71348186025255
+            ]
+          ],
+          "data_path": "/data/trees.ab.area.strathcona-county.v2.geojson",
+          "tree_count": 1128,
+          "ownership_counts": {
+            "public": 1128,
+            "private": 0,
+            "unknown": 0
+          },
+          "species_counts": {
+            "cherry": 309,
+            "plum": 4,
+            "peach": 0,
+            "magnolia": 0,
+            "crabapple": 815
+          },
+          "species_ownership_counts": {
+            "cherry": {
+              "public": 309,
+              "private": 0,
+              "unknown": 0
+            },
+            "plum": {
+              "public": 4,
+              "private": 0,
+              "unknown": 0
+            },
+            "peach": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            },
+            "magnolia": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            },
+            "crabapple": {
+              "public": 815,
+              "private": 0,
+              "unknown": 0
+            }
+          },
+          "raw_bytes": 592161,
+          "gzip_bytes": 26030
         }
       ]
     }

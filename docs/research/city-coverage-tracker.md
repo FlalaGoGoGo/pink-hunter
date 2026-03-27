@@ -76,6 +76,16 @@ Current state: no cities are parked in `A2` right now.
 | ✅ | Airdrie | 73 | Official jurisdiction boundary | Official City of Airdrie public edible trees ArcGIS layer integrated after restricting to active blossom rows and clipping to the official Statistics Canada CSD boundary |
 | ✅ | Penticton | 69 | Official jurisdiction boundary | Official City of Penticton public trees ArcGIS layer integrated after restricting to active rows and clipping to the official Statistics Canada CSD boundary |
 | ✅ | Gatineau | 1 | Official jurisdiction boundary | Official National Capital Commission `Remarkable Trees` ArcGIS layer clipped to the official Gatineau Statistics Canada CSD boundary |
+| ✅ | Langley Township | 2,900 | Official jurisdiction boundary | Official Township of Langley public tree inventory ArcGIS layer integrated after clipping to the official Metro Vancouver administrative boundary |
+| ✅ | Grande Prairie | 2,034 | Official jurisdiction boundary | Official City of Grande Prairie park trees ArcGIS layer integrated after clipping to the official Statistics Canada CSD boundary |
+| ✅ | Strathcona County | 1,128 | Official jurisdiction boundary | Official Strathcona County managed trees ArcGIS layer integrated after clipping to the official Statistics Canada CSD boundary |
+| ✅ | Coquitlam | 641 | Official jurisdiction boundary | Official City of Coquitlam maintained trees ArcGIS layer integrated after clipping to the official jurisdiction boundary |
+| ✅ | Charlottetown | 461 | Official jurisdiction boundary | Official City of Charlottetown `Tree Sites Public` ArcGIS layer integrated after clipping to the official Statistics Canada CSD boundary |
+| ✅ | West Vancouver | 283 | Official jurisdiction boundary | Public District of West Vancouver tree-inventory planning ArcGIS layer clipped to the official Metro Vancouver administrative boundary |
+| ✅ | Weyburn | 227 | Official jurisdiction boundary | Public Weyburn urban-forest tree inventory ArcGIS layer clipped to the official Statistics Canada CSD boundary |
+| ✅ | Port Coquitlam | 205 | Official jurisdiction boundary | Official City of Port Coquitlam park + street tree ArcGIS layers merged and clipped to the official jurisdiction boundary |
+| ✅ | Moose Jaw | 33 | Official jurisdiction boundary | Official City of Moose Jaw public trees ArcGIS layer clipped to the official Statistics Canada CSD boundary |
+| ✅ | Saint John | 13 | Official jurisdiction boundary | Official City of Saint John `Urban Forestry Trees` ArcGIS layer clipped to the official Statistics Canada CSD boundary |
 | ✅ | Denver | 19,900 | Official jurisdiction boundary | Official City and County of Denver `Public Tree Inventory` ArcGIS layer integrated from the city open-data portal and official jurisdiction boundary |
 | ✅ | Boston | 4,488 | Official jurisdiction boundary | Official Analyze Boston `BPRD Trees` download integrated; includes both street and park trees published by Boston Parks and Recreation |
 | ✅ | Belmont | 221 | Official jurisdiction boundary | Official Town of Belmont public TreeKeeper inventory integrated with the official jurisdiction boundary |
@@ -259,7 +269,6 @@ These cities are not in `A2` yet because the official point-tree source is still
 | 🩶 | Alexandria | In gray coverage | Official jurisdiction boundary | Official City of Alexandria urban-forestry and GIS pages were reviewed, but no public single-tree species inventory was confirmed |
 | 🩶 | Burnaby | In gray coverage | Official jurisdiction boundary | Official Burnaby GIS/open-data sources were reviewed; no public single-tree species inventory was confirmed |
 | 🩶 | Beaverton | In gray coverage | Official jurisdiction boundary | Official inventory web maps exist, but the raw city tree inventory service currently requires a token and is not publicly queryable for stable ETL access |
-| 🩶 | Coquitlam | In gray coverage | Official jurisdiction boundary | Official City of Coquitlam GIS services expose the official city boundary, but this round did not confirm a public citywide single-tree species inventory |
 | 🩶 | Delta | In gray coverage | Official jurisdiction boundary | Official Delta GIS/open-data sources were reviewed; no public single-tree species inventory was confirmed |
 | 🩶 | Alameda | In gray coverage | Official jurisdiction boundary | Official city tree and urban-forest materials were reviewed, but no verified public citywide single-tree dataset was confirmed in this round |
 | 🩶 | Daly City | In gray coverage | Official jurisdiction boundary | Official city urban-forestry and GIS entry points were reviewed, but no verified public citywide single-tree species dataset was confirmed in this round |
@@ -286,7 +295,6 @@ These cities are not in `A2` yet because the official point-tree source is still
 | 🩶 | Stockton | In gray coverage | Official jurisdiction boundary | Official ArcGIS and city GIS searches did not confirm a public citywide single-tree species dataset |
 | 🩶 | Surrey | In gray coverage | Official jurisdiction boundary | Official Surrey Open Data exposes `Important Trees` and `Park Specimen Trees`, but no citywide public single-tree species inventory was confirmed |
 | 🩶 | Tigard | In gray coverage | Official jurisdiction boundary | Official ArcGIS results exposed an ash-tree inventory, not a citywide public single-tree species inventory |
-| 🩶 | West Vancouver | In gray coverage | Official jurisdiction boundary | Official West Vancouver GIS and urban-forest planning materials were reviewed; an official administrative boundary is public, but no public citywide single-tree species inventory was confirmed |
 | 🩶 | White Rock | In gray coverage | Official jurisdiction boundary | Official Metro Vancouver administrative boundaries confirm the City of White Rock geometry, but this round did not confirm a public citywide single-tree species inventory |
 | 🩶 | Langley City | In gray coverage | Official jurisdiction boundary | Official City of Langley / Metro Vancouver public GIS entry points were reviewed; the official jurisdiction boundary is available, but no public citywide single-tree species inventory was confirmed |
 
@@ -490,6 +498,14 @@ These cities are not in `A2` yet because the official point-tree source is still
 - Integrated `Abbotsford` by merging the official city `Tree Inventory 2019` park and street ArcGIS layers, then clipping to the official Statistics Canada CSD boundary.
 - Integrated `North Vancouver District` from the official district `Street Trees` downloadable shapefile after clipping the published points to the official Statistics Canada CSD boundary.
 - Rechecked `Surrey`; the official public `Important Trees` / `Park Specimen Trees` sources remain partial-only, so it stays gray coverage.
+
+## March 2026 Canada BC / Prairie / Atlantic Follow-up
+- Added reusable `PE` region publishing support plus official-boundary hints so `Charlottetown` can reuse the existing Canada publish flow.
+- Integrated `Coquitlam`, `Langley Township`, `Port Coquitlam`, and `West Vancouver` from public British Columbia tree layers after clipping to official municipal or Metro Vancouver administrative boundaries.
+- Integrated `Grande Prairie` and `Strathcona County` from official Alberta public tree inventories.
+- Integrated `Moose Jaw` and `Weyburn` from Saskatchewan public tree inventory services after clipping to the official Statistics Canada CSD boundaries.
+- Integrated `Saint John` and `Charlottetown` from Atlantic public ArcGIS tree inventories.
+- `Port Coquitlam` merges separate official public park-tree and street-tree layers into one city publish result.
 
 ## March 2026 East Coast / Southern California Follow-up
 - Rechecked `Alexandria, VA`; official city urban-forestry and GIS materials still do not expose a verified public single-tree inventory, so it remains gray coverage.
