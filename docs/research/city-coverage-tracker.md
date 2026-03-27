@@ -24,6 +24,9 @@ Current state: no cities are parked in `A2` right now.
 |---|---|---:|---|---|
 | ✅ | Seattle | 46,114 | Official jurisdiction boundary | Includes UW supplemental points; ornamental cherry keyword sweep rerun |
 | ✅ | New York City | 40,685 | Official jurisdiction boundary | Official NYC Parks `2015 Street Tree Census - Tree Data` integrated from NYC Open Data; rows are limited to living trees before blossom filtering |
+| ✅ | Albany | 2,394 | Official jurisdiction boundary | Official City of Albany public TreeKeeper inventory integrated with the official jurisdiction boundary |
+| ✅ | Saratoga Springs | 586 | Official jurisdiction boundary | Official City of Saratoga Springs public TreePlotter inventory integrated via the public TreePlotter page and official jurisdiction boundary clipping |
+| ✅ | Troy | 716 | Official jurisdiction boundary | Official City of Troy public TreePlotter inventory integrated via the public TreePlotter page and official jurisdiction boundary clipping |
 | ✅ | Toronto | 36,302 | Official jurisdiction boundary | Official City of Toronto `Street Tree Data` CSV integrated from Toronto Open Data using the official municipal boundary shapefile |
 | ✅ | Philadelphia | 17,717 | Official jurisdiction boundary | Official Philadelphia Parks & Recreation `PPR Tree Inventory 2025` layer integrated from the city's ArcGIS/metadata catalog |
 | ✅ | Montreal | 16,258 | Official jurisdiction boundary | Official Ville de Montréal `Arbres publics sur le territoire de la Ville` CSV integrated; official boundary is assembled from arrondissement polygons |
@@ -45,17 +48,24 @@ Current state: no cities are parked in `A2` right now.
 | ✅ | Waterloo | 378 | Official jurisdiction boundary | Official City of Waterloo public street-tree ArcGIS layer integrated after restricting to `STATUS = 'Existing'` |
 | ✅ | Denver | 19,900 | Official jurisdiction boundary | Official City and County of Denver `Public Tree Inventory` ArcGIS layer integrated from the city open-data portal and official jurisdiction boundary |
 | ✅ | Boston | 4,488 | Official jurisdiction boundary | Official Analyze Boston `BPRD Trees` download integrated; includes both street and park trees published by Boston Parks and Recreation |
+| ✅ | Belmont | 221 | Official jurisdiction boundary | Official Town of Belmont public TreeKeeper inventory integrated with the official jurisdiction boundary |
 | ✅ | Brookline | 1,064 | Official jurisdiction boundary | Official Town of Brookline public tree inventory ArcGIS layer integrated with the official jurisdiction boundary |
 | ✅ | Dedham | 425 | Official jurisdiction boundary | Official Town of Dedham public tree inventory ArcGIS layer integrated with server-side blossom filtering on `Species_bot` / `Species_com` |
 | ✅ | Longmeadow | 404 | Official jurisdiction boundary | Official Town of Longmeadow public tree inventory ArcGIS layer integrated with the official jurisdiction boundary |
+| ✅ | Newton | 2,471 | Official jurisdiction boundary | Official City of Newton public TreeKeeper inventory integrated with the official jurisdiction boundary |
 | ✅ | Pittsburgh | 3,691 | Official jurisdiction boundary | Official public Pittsburgh TreeKeeper inventory domain integrated; blossom names are parsed from `SITE_ATTR6` |
+| ✅ | Somerville | 338 | Official jurisdiction boundary | Official City of Somerville public TreeKeeper inventory integrated with the official jurisdiction boundary |
+| ✅ | Worcester | 300 | Official jurisdiction boundary | Official City of Worcester public TreeKeeper inventory integrated with the official jurisdiction boundary |
 | ✅ | Jersey City | 2,148 | Official jurisdiction boundary | Public Jersey City tree inventory service integrated from the city-referenced Urban Forests materials and official jurisdiction boundary |
 | ✅ | Cambridge (MA) | 1,954 | Official jurisdiction boundary | Official City of Cambridge `Street Trees` shapefile integrated; only current `SiteType = Tree` rows are included |
 | ✅ | Groton | 100 | Official jurisdiction boundary | Official Town of Groton public tree inventory ArcGIS service integrated using the official town boundary from the Census county subdivision rather than the smaller Groton city place |
 | ✅ | Gaithersburg | 1,051 | Official jurisdiction boundary | Official City of Gaithersburg `Street Trees View` ArcGIS layer integrated with the official jurisdiction boundary |
 | ✅ | Garrett Park | 109 | Official jurisdiction boundary | Official Town of Garrett Park tree inventory integrated from the published ArcGIS web map featureCollection and clipped to the official jurisdiction boundary |
+| ✅ | West Hartford | 210 | Official jurisdiction boundary | Official Town of West Hartford public TreePlotter inventory integrated via the public TreePlotter page and official jurisdiction boundary clipping |
 | ✅ | Baltimore | 1,920 | Official jurisdiction boundary | Official Baltimore city forestry tree layer integrated from `gis.baltimorecity.gov`; botanical names come from `SPP` |
+| ✅ | Annapolis | 260 | Official jurisdiction boundary | Official City of Annapolis public TreePlotter inventory integrated via the public TreePlotter page and official jurisdiction boundary clipping |
 | ✅ | Arlington | 1,882 | Official jurisdiction boundary | Official Arlington County `DPR Trees` layer integrated using the official county-equivalent jurisdiction boundary |
+| ✅ | Fairfax | 481 | Official jurisdiction boundary | Official City of Fairfax public TreePlotter inventory integrated via the public TreePlotter page and official jurisdiction boundary clipping |
 | ✅ | Norfolk | 1,615 | Official jurisdiction boundary | Official City of Norfolk open-data `City Tree Inventory` integrated with the official jurisdiction boundary and coordinate fallback from `latitude_longitude_point` |
 | ✅ | Providence | 1,567 | Official jurisdiction boundary | Official City of Providence open-data `Providence Tree Dataset` integrated with the official jurisdiction boundary |
 | ✅ | Durham | 1,301 | Official jurisdiction boundary | Official City of Durham `Trees & Planting Sites` ArcGIS layer integrated after restricting to `present = Tree` and clipping to the official jurisdiction boundary |
@@ -460,6 +470,11 @@ These cities are not in `A2` yet because the official point-tree source is still
 - Integrated `Durham` from the official City of Durham `Trees & Planting Sites` ArcGIS layer after restricting to `present = Tree` rows.
 - Rechecked `Salisbury`; the official citywide source is public, but the blossom-filter path returned zero in-scope rows inside the official jurisdiction boundary.
 - Rechecked `Fayetteville`; the official citywide `Tree Inventory Phase 1` layer is public, but the blossom-filter path returned zero in-scope rows inside the official jurisdiction boundary.
+
+## March 2026 East Coast TreeKeeper / TreePlotter Expansion
+- Integrated `Albany`, `Belmont`, `Newton`, `Somerville`, and `Worcester` from official public TreeKeeper inventories using the existing jurisdiction-boundary clipping path.
+- Integrated `Annapolis`, `Fairfax`, `Saratoga Springs`, `Troy`, and `West Hartford` from official public TreePlotter inventories and clipped the resulting blossom rows to official jurisdiction boundaries.
+- Reused the existing `ma`, `md`, `ny`, `ct`, and `va` publish flows without database or schema changes.
 
 ## March 2026 Texas / Large-City Follow-up
 - Integrated `Los Angeles` after implementing the city-scale blossom-filter path against the official public StreetsLA TreeKeeper inventory.

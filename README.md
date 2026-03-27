@@ -385,7 +385,10 @@ Live domain:
 <details>
 <summary>New York</summary>
 
+- Albany: [TreeKeeper Inventory](https://albanyny.treekeepersoftware.com/)
 - New York City: [2015 Street Tree Census - Tree Data](https://data.cityofnewyork.us/Environment/2015-Street-Tree-Census-Tree-Data/uvpi-gqnh)
+- Saratoga Springs: [Tree Inventory](https://pg-cloud.com/SaratogaSpringsNY/)
+- Troy: [Tree Inventory](https://pg-cloud.com/TroyNY/)
 
 </details>
 
@@ -393,6 +396,7 @@ Live domain:
 <summary>Connecticut</summary>
 
 - Groton: [Groton Tree Inventory](https://experience.arcgis.com/experience/d06d9f14108945d097d879d724d4cf56)
+- West Hartford: [Tree Inventory](https://pg-cloud.com/WestHartfordCT/)
 
 </details>
 
@@ -401,6 +405,7 @@ Live domain:
 
 - Arlington: [Open Data Portal](https://www.arlingtonva.us/About-Arlington/Data-and-Research/Open-Data-Portal)
 - Charlottesville: [OpenData Trees](https://www.arcgis.com/home/item.html?id=e7c856379492408e9543a25d684b8311)
+- Fairfax: [Tree Inventory](https://pg-cloud.com/FairfaxVA/)
 - Fredericksburg: [Trees Public](https://experience.arcgis.com/experience/367d494216d844179620057d78c168d7)
 - Newport News: [Newport News Tree Inventory](https://www.arcgis.com/home/item.html?id=9d10ce6b9f0e4d29ac48285037193138)
 - Norfolk: [City Tree Inventory](https://data.norfolk.gov/Government/City-Tree-Inventory/cmvv-agyb)
@@ -412,6 +417,7 @@ Live domain:
 <details>
 <summary>Maryland</summary>
 
+- Annapolis: [Tree Inventory](https://pg-cloud.com/AnnapolisMD/)
 - Baltimore: [Open Baltimore](https://data.baltimorecity.gov/)
 - Gaithersburg: [Street Trees View](https://www.arcgis.com/home/item.html?id=8450e6c3992d4e8e9d0f3df4fd2722dd)
 - Garrett Park: [Garrett Park Tree Inventory](https://www.arcgis.com/home/item.html?id=f487ba0469f74cc098e8dc6f37736073)
@@ -445,6 +451,7 @@ Live domain:
 <details>
 <summary>Massachusetts</summary>
 
+- Belmont: [TreeKeeper Inventory](https://belmontma.treekeepersoftware.com/)
 - Boston: [BPRD Trees](https://data.boston.gov/dataset/bprd-trees)
 - Brookline: [Brookline Tree Inventory](https://www.arcgis.com/home/item.html?id=4500c14f85d846d6924c7f8cb532763f)
 - Cambridge: [Street Trees](https://www.cambridgema.gov/GIS/gisdatadictionary/Environmental/ENVIRONMENTAL_StreetTrees)
@@ -453,6 +460,9 @@ Live domain:
 - Lynn: [Tree Inventory](https://www.arcgis.com/home/item.html?id=c1d88b9e29594016898fb9d2699067cc)
 - Medford: [Forestry](https://www.medfordma.org/departments/forestry)
 - New Bedford: [NewBedfordTreeInventory2023](https://www.arcgis.com/home/item.html?id=c80392f7b4bf4a2ebd5617776d508721)
+- Newton: [TreeKeeper Inventory](https://newtonma.treekeepersoftware.com/)
+- Somerville: [TreeKeeper Inventory](https://somervillema.treekeepersoftware.com/)
+- Worcester: [TreeKeeper Inventory](https://worcesterma.treekeepersoftware.com/)
 
 </details>
 

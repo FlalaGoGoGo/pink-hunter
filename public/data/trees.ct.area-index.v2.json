@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-03-12T19:38:26.573144+00:00",
+  "generated_at": "2026-03-27T05:25:13.134646+00:00",
   "region": "ct",
   "strategy": "area_shard",
   "items": [
@@ -631,7 +631,7 @@
           41.79866118766447
         ]
       ],
-      "tree_count": 206,
+      "tree_count": 210,
       "zip_codes": [
         "06107",
         "06110",
@@ -643,10 +643,10 @@
         "plum": 3,
         "peach": 0,
         "magnolia": 22,
-        "crabapple": 72
+        "crabapple": 76
       },
       "ownership_counts": {
-        "public": 206,
+        "public": 210,
         "private": 0,
         "unknown": 0
       },
@@ -672,7 +672,7 @@
           "unknown": 0
         },
         "crabapple": {
-          "public": 72,
+          "public": 76,
           "private": 0,
           "unknown": 0
         }
@@ -694,9 +694,9 @@
             ]
           ],
           "data_path": "/data/trees.ct.area.west-hartford.v2.geojson",
-          "tree_count": 206,
+          "tree_count": 210,
           "ownership_counts": {
-            "public": 206,
+            "public": 210,
             "private": 0,
             "unknown": 0
           },
@@ -705,7 +705,7 @@
             "plum": 3,
             "peach": 0,
             "magnolia": 22,
-            "crabapple": 72
+            "crabapple": 76
           },
           "species_ownership_counts": {
             "cherry": {
@@ -729,13 +729,13 @@
               "unknown": 0
             },
             "crabapple": {
-              "public": 72,
+              "public": 76,
               "private": 0,
               "unknown": 0
             }
           },
-          "raw_bytes": 107799,
-          "gzip_bytes": 5761
+          "raw_bytes": 109905,
+          "gzip_bytes": 5854
         }
       ]
     }

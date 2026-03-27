@@ -1,6 +1,6 @@
 {
   "version": "v2",
-  "generated_at": "2026-03-27T05:03:20.759015+00:00",
+  "generated_at": "2026-03-27T05:26:35.364910+00:00",
   "default_region": "wa",
   "coverage_rule": "official_jurisdiction_boundary_only",
   "coverage_skipped_cities": [
@@ -119,15 +119,15 @@
   ],
   "coverage_official_unavailable_skipped_cities": [],
   "source_count": 212,
-  "total_records": 3067838,
-  "included_records": 654493,
-  "unknown_records": 1355622,
+  "total_records": 3067893,
+  "included_records": 654495,
+  "unknown_records": 1355645,
   "species_counts": {
     "cherry": 213728,
     "plum": 115539,
     "peach": 7921,
     "magnolia": 176655,
-    "crabapple": 140650
+    "crabapple": 140652
   },
   "regions": [
     {
@@ -430,7 +430,7 @@
         ]
       ],
       "data_path": null,
-      "tree_count": 7508,
+      "tree_count": 7512,
       "city_count": 6,
       "cities": [
         "Greenwich",
@@ -445,16 +445,16 @@
         "plum": 381,
         "peach": 47,
         "magnolia": 316,
-        "crabapple": 2227
+        "crabapple": 2231
       },
       "ownership_groups": [
         "public"
       ],
-      "raw_bytes": 3812261,
-      "gzip_bytes": 152186,
+      "raw_bytes": 3814367,
+      "gzip_bytes": 152279,
       "warning_level": "none",
-      "aggregate_raw_bytes": 3812261,
-      "aggregate_gzip_bytes": 152186,
+      "aggregate_raw_bytes": 3814367,
+      "aggregate_gzip_bytes": 152279,
       "aggregate_warning_level": "none",
       "largest_shard_raw_bytes": 2291224,
       "largest_shard_gzip_bytes": 89123,
@@ -1117,7 +1117,7 @@
       ],
       "data_path": null,
       "coverage_path": "/data/coverage.ny.v1.geojson",
-      "tree_count": 51362,
+      "tree_count": 51360,
       "city_count": 7,
       "cities": [
         "Albany",
@@ -1133,16 +1133,16 @@
         "plum": 7022,
         "peach": 54,
         "magnolia": 1365,
-        "crabapple": 9478
+        "crabapple": 9476
       },
       "ownership_groups": [
         "public"
       ],
-      "raw_bytes": 28083637,
-      "gzip_bytes": 932122,
+      "raw_bytes": 28082714,
+      "gzip_bytes": 932082,
       "warning_level": "none",
-      "aggregate_raw_bytes": 28083637,
-      "aggregate_gzip_bytes": 932122,
+      "aggregate_raw_bytes": 28082714,
+      "aggregate_gzip_bytes": 932082,
       "aggregate_warning_level": "none",
       "largest_shard_raw_bytes": 11401075,
       "largest_shard_gzip_bytes": 346577,
@@ -3068,13 +3068,13 @@
     {
       "jurisdiction": "West Hartford",
       "region": "ct",
-      "tree_count": 206,
+      "tree_count": 210,
       "species_counts": {
         "cherry": 109,
         "plum": 3,
         "peach": 0,
         "magnolia": 22,
-        "crabapple": 72
+        "crabapple": 76
       },
       "jurisdiction_type": "city",
       "state_province": "CT"
@@ -3726,13 +3726,13 @@
     {
       "jurisdiction": "Albany",
       "region": "ny",
-      "tree_count": 2396,
+      "tree_count": 2394,
       "species_counts": {
         "cherry": 1042,
         "plum": 34,
         "peach": 22,
         "magnolia": 226,
-        "crabapple": 1072
+        "crabapple": 1070
       },
       "jurisdiction_type": "city",
       "state_province": "NY"
@@ -4752,8 +4752,8 @@
       "city": "Albany",
       "endpoint": "https://albanyny.treekeepersoftware.com",
       "last_edit_at": "",
-      "records_fetched": 30629,
-      "records_included": 2396,
+      "records_fetched": 30641,
+      "records_included": 2394,
       "note": "Integrated from the official City of Albany public TreeKeeper inventory."
     },
     {
@@ -4779,7 +4779,7 @@
       "city": "Annapolis",
       "endpoint": "https://pg-cloud.com/AnnapolisMD/",
       "last_edit_at": "",
-      "records_fetched": 5423,
+      "records_fetched": 5424,
       "records_included": 260,
       "note": "Integrated via the public Annapolis TreePlotter inventory page and official jurisdiction boundary clipping."
     },
@@ -6189,7 +6189,7 @@
       "city": "Saratoga Springs",
       "endpoint": "https://pg-cloud.com/SaratogaSpringsNY/",
       "last_edit_at": "",
-      "records_fetched": 12634,
+      "records_fetched": 12667,
       "records_included": 586,
       "note": "Integrated via the public Saratoga Springs TreePlotter inventory page and official jurisdiction boundary clipping."
     },
@@ -6530,8 +6530,8 @@
       "city": "West Hartford",
       "endpoint": "https://pg-cloud.com/WestHartfordCT/",
       "last_edit_at": "",
-      "records_fetched": 4657,
-      "records_included": 206,
+      "records_fetched": 4667,
+      "records_included": 210,
       "note": "Integrated via the public West Hartford TreePlotter inventory page and official jurisdiction boundary clipping."
     },
     {
