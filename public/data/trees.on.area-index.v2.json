@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-03-28T05:21:40.296288+00:00",
+  "generated_at": "2026-03-28T07:22:25.277461+00:00",
   "region": "on",
   "strategy": "area_shard",
   "items": [
@@ -122,6 +122,128 @@
           },
           "raw_bytes": 357804,
           "gzip_bytes": 18505
+        }
+      ]
+    },
+    {
+      "jurisdiction": "Aurora",
+      "slug": "aurora",
+      "display_name": "Aurora",
+      "jurisdiction_type": "city",
+      "state_province": "ON",
+      "country": "Canada",
+      "bounds": [
+        [
+          -79.4994949539747,
+          43.95748822343528
+        ],
+        [
+          -79.39267163102679,
+          44.0355187489086
+        ]
+      ],
+      "tree_count": 115,
+      "zip_codes": [
+        "None"
+      ],
+      "species_counts": {
+        "cherry": 15,
+        "plum": 0,
+        "peach": 0,
+        "magnolia": 0,
+        "crabapple": 100
+      },
+      "ownership_counts": {
+        "public": 115,
+        "private": 0,
+        "unknown": 0
+      },
+      "species_ownership_counts": {
+        "cherry": {
+          "public": 15,
+          "private": 0,
+          "unknown": 0
+        },
+        "plum": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        },
+        "peach": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        },
+        "magnolia": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        },
+        "crabapple": {
+          "public": 100,
+          "private": 0,
+          "unknown": 0
+        }
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "aurora-001",
+          "bounds": [
+            [
+              -79.49871278128256,
+              43.97151413692602
+            ],
+            [
+              -79.41111604331394,
+              44.025871010608036
+            ]
+          ],
+          "data_path": "/data/trees.on.area.aurora.v2.geojson",
+          "tree_count": 115,
+          "ownership_counts": {
+            "public": 115,
+            "private": 0,
+            "unknown": 0
+          },
+          "species_counts": {
+            "cherry": 15,
+            "plum": 0,
+            "peach": 0,
+            "magnolia": 0,
+            "crabapple": 100
+          },
+          "species_ownership_counts": {
+            "cherry": {
+              "public": 15,
+              "private": 0,
+              "unknown": 0
+            },
+            "plum": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            },
+            "peach": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            },
+            "magnolia": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            },
+            "crabapple": {
+              "public": 100,
+              "private": 0,
+              "unknown": 0
+            }
+          },
+          "raw_bytes": 52792,
+          "gzip_bytes": 3103
         }
       ]
     },
@@ -858,6 +980,250 @@
       ]
     },
     {
+      "jurisdiction": "East Gwillimbury",
+      "slug": "east-gwillimbury",
+      "display_name": "East Gwillimbury",
+      "jurisdiction_type": "city",
+      "state_province": "ON",
+      "country": "Canada",
+      "bounds": [
+        [
+          -79.53184066228803,
+          44.06364903279418
+        ],
+        [
+          -79.2761726005563,
+          44.22331119649129
+        ]
+      ],
+      "tree_count": 102,
+      "zip_codes": [
+        "None"
+      ],
+      "species_counts": {
+        "cherry": 22,
+        "plum": 0,
+        "peach": 0,
+        "magnolia": 1,
+        "crabapple": 79
+      },
+      "ownership_counts": {
+        "public": 102,
+        "private": 0,
+        "unknown": 0
+      },
+      "species_ownership_counts": {
+        "cherry": {
+          "public": 22,
+          "private": 0,
+          "unknown": 0
+        },
+        "plum": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        },
+        "peach": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        },
+        "magnolia": {
+          "public": 1,
+          "private": 0,
+          "unknown": 0
+        },
+        "crabapple": {
+          "public": 79,
+          "private": 0,
+          "unknown": 0
+        }
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "east-gwillimbury-001",
+          "bounds": [
+            [
+              -79.5089181761908,
+              44.06755330138272
+            ],
+            [
+              -79.34203507142902,
+              44.196865073433344
+            ]
+          ],
+          "data_path": "/data/trees.on.area.east-gwillimbury.v2.geojson",
+          "tree_count": 102,
+          "ownership_counts": {
+            "public": 102,
+            "private": 0,
+            "unknown": 0
+          },
+          "species_counts": {
+            "cherry": 22,
+            "plum": 0,
+            "peach": 0,
+            "magnolia": 1,
+            "crabapple": 79
+          },
+          "species_ownership_counts": {
+            "cherry": {
+              "public": 22,
+              "private": 0,
+              "unknown": 0
+            },
+            "plum": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            },
+            "peach": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            },
+            "magnolia": {
+              "public": 1,
+              "private": 0,
+              "unknown": 0
+            },
+            "crabapple": {
+              "public": 79,
+              "private": 0,
+              "unknown": 0
+            }
+          },
+          "raw_bytes": 48794,
+          "gzip_bytes": 3067
+        }
+      ]
+    },
+    {
+      "jurisdiction": "Georgina",
+      "slug": "georgina",
+      "display_name": "Georgina",
+      "jurisdiction_type": "city",
+      "state_province": "ON",
+      "country": "Canada",
+      "bounds": [
+        [
+          -79.51986156296618,
+          44.18158387921005
+        ],
+        [
+          -79.15612648365342,
+          44.45979251930451
+        ]
+      ],
+      "tree_count": 100,
+      "zip_codes": [
+        "None"
+      ],
+      "species_counts": {
+        "cherry": 6,
+        "plum": 0,
+        "peach": 0,
+        "magnolia": 0,
+        "crabapple": 94
+      },
+      "ownership_counts": {
+        "public": 100,
+        "private": 0,
+        "unknown": 0
+      },
+      "species_ownership_counts": {
+        "cherry": {
+          "public": 6,
+          "private": 0,
+          "unknown": 0
+        },
+        "plum": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        },
+        "peach": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        },
+        "magnolia": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        },
+        "crabapple": {
+          "public": 94,
+          "private": 0,
+          "unknown": 0
+        }
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "georgina-001",
+          "bounds": [
+            [
+              -79.49502532452834,
+              44.19298717567868
+            ],
+            [
+              -79.15944978330138,
+              44.312136938447935
+            ]
+          ],
+          "data_path": "/data/trees.on.area.georgina.v2.geojson",
+          "tree_count": 100,
+          "ownership_counts": {
+            "public": 100,
+            "private": 0,
+            "unknown": 0
+          },
+          "species_counts": {
+            "cherry": 6,
+            "plum": 0,
+            "peach": 0,
+            "magnolia": 0,
+            "crabapple": 94
+          },
+          "species_ownership_counts": {
+            "cherry": {
+              "public": 6,
+              "private": 0,
+              "unknown": 0
+            },
+            "plum": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            },
+            "peach": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            },
+            "magnolia": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            },
+            "crabapple": {
+              "public": 94,
+              "private": 0,
+              "unknown": 0
+            }
+          },
+          "raw_bytes": 45807,
+          "gzip_bytes": 2785
+        }
+      ]
+    },
+    {
       "jurisdiction": "Guelph",
       "slug": "guelph",
       "display_name": "Guelph",
@@ -1220,6 +1586,128 @@
           },
           "raw_bytes": 3862156,
           "gzip_bytes": 180885
+        }
+      ]
+    },
+    {
+      "jurisdiction": "King",
+      "slug": "king",
+      "display_name": "King",
+      "jurisdiction_type": "city",
+      "state_province": "ON",
+      "country": "Canada",
+      "bounds": [
+        [
+          -79.77550793859136,
+          43.87576931978476
+        ],
+        [
+          -79.47774830888186,
+          44.150837725781116
+        ]
+      ],
+      "tree_count": 154,
+      "zip_codes": [
+        "None"
+      ],
+      "species_counts": {
+        "cherry": 8,
+        "plum": 0,
+        "peach": 0,
+        "magnolia": 0,
+        "crabapple": 146
+      },
+      "ownership_counts": {
+        "public": 154,
+        "private": 0,
+        "unknown": 0
+      },
+      "species_ownership_counts": {
+        "cherry": {
+          "public": 8,
+          "private": 0,
+          "unknown": 0
+        },
+        "plum": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        },
+        "peach": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        },
+        "magnolia": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        },
+        "crabapple": {
+          "public": 146,
+          "private": 0,
+          "unknown": 0
+        }
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "king-001",
+          "bounds": [
+            [
+              -79.71011254839473,
+              43.88959933790581
+            ],
+            [
+              -79.48082341573594,
+              44.06243171890116
+            ]
+          ],
+          "data_path": "/data/trees.on.area.king.v2.geojson",
+          "tree_count": 154,
+          "ownership_counts": {
+            "public": 154,
+            "private": 0,
+            "unknown": 0
+          },
+          "species_counts": {
+            "cherry": 8,
+            "plum": 0,
+            "peach": 0,
+            "magnolia": 0,
+            "crabapple": 146
+          },
+          "species_ownership_counts": {
+            "cherry": {
+              "public": 8,
+              "private": 0,
+              "unknown": 0
+            },
+            "plum": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            },
+            "peach": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            },
+            "magnolia": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            },
+            "crabapple": {
+              "public": 146,
+              "private": 0,
+              "unknown": 0
+            }
+          },
+          "raw_bytes": 69286,
+          "gzip_bytes": 4070
         }
       ]
     },
@@ -1590,6 +2078,128 @@
       ]
     },
     {
+      "jurisdiction": "Markham",
+      "slug": "markham",
+      "display_name": "Markham",
+      "jurisdiction_type": "city",
+      "state_province": "ON",
+      "country": "Canada",
+      "bounds": [
+        [
+          -79.42871514278589,
+          43.79800151263255
+        ],
+        [
+          -79.17024885191739,
+          43.96252324998413
+        ]
+      ],
+      "tree_count": 442,
+      "zip_codes": [
+        "None"
+      ],
+      "species_counts": {
+        "cherry": 37,
+        "plum": 0,
+        "peach": 0,
+        "magnolia": 0,
+        "crabapple": 405
+      },
+      "ownership_counts": {
+        "public": 442,
+        "private": 0,
+        "unknown": 0
+      },
+      "species_ownership_counts": {
+        "cherry": {
+          "public": 37,
+          "private": 0,
+          "unknown": 0
+        },
+        "plum": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        },
+        "peach": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        },
+        "magnolia": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        },
+        "crabapple": {
+          "public": 405,
+          "private": 0,
+          "unknown": 0
+        }
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "markham-001",
+          "bounds": [
+            [
+              -79.4038515933554,
+              43.81317418331269
+            ],
+            [
+              -79.1844620058956,
+              43.94796397762701
+            ]
+          ],
+          "data_path": "/data/trees.on.area.markham.v2.geojson",
+          "tree_count": 442,
+          "ownership_counts": {
+            "public": 442,
+            "private": 0,
+            "unknown": 0
+          },
+          "species_counts": {
+            "cherry": 37,
+            "plum": 0,
+            "peach": 0,
+            "magnolia": 0,
+            "crabapple": 405
+          },
+          "species_ownership_counts": {
+            "cherry": {
+              "public": 37,
+              "private": 0,
+              "unknown": 0
+            },
+            "plum": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            },
+            "peach": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            },
+            "magnolia": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            },
+            "crabapple": {
+              "public": 405,
+              "private": 0,
+              "unknown": 0
+            }
+          },
+          "raw_bytes": 201828,
+          "gzip_bytes": 10521
+        }
+      ]
+    },
+    {
       "jurisdiction": "Mississauga",
       "slug": "mississauga",
       "display_name": "Mississauga",
@@ -1708,6 +2318,128 @@
           },
           "raw_bytes": 1719425,
           "gzip_bytes": 78267
+        }
+      ]
+    },
+    {
+      "jurisdiction": "Newmarket",
+      "slug": "newmarket",
+      "display_name": "Newmarket",
+      "jurisdiction_type": "city",
+      "state_province": "ON",
+      "country": "Canada",
+      "bounds": [
+        [
+          -79.5094102170003,
+          44.01647914233684
+        ],
+        [
+          -79.41142800276617,
+          44.08393363050647
+        ]
+      ],
+      "tree_count": 110,
+      "zip_codes": [
+        "None"
+      ],
+      "species_counts": {
+        "cherry": 46,
+        "plum": 0,
+        "peach": 0,
+        "magnolia": 0,
+        "crabapple": 64
+      },
+      "ownership_counts": {
+        "public": 110,
+        "private": 0,
+        "unknown": 0
+      },
+      "species_ownership_counts": {
+        "cherry": {
+          "public": 46,
+          "private": 0,
+          "unknown": 0
+        },
+        "plum": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        },
+        "peach": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        },
+        "magnolia": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        },
+        "crabapple": {
+          "public": 64,
+          "private": 0,
+          "unknown": 0
+        }
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "newmarket-001",
+          "bounds": [
+            [
+              -79.48549061741127,
+              44.02833039402133
+            ],
+            [
+              -79.42783960717226,
+              44.079786781445904
+            ]
+          ],
+          "data_path": "/data/trees.on.area.newmarket.v2.geojson",
+          "tree_count": 110,
+          "ownership_counts": {
+            "public": 110,
+            "private": 0,
+            "unknown": 0
+          },
+          "species_counts": {
+            "cherry": 46,
+            "plum": 0,
+            "peach": 0,
+            "magnolia": 0,
+            "crabapple": 64
+          },
+          "species_ownership_counts": {
+            "cherry": {
+              "public": 46,
+              "private": 0,
+              "unknown": 0
+            },
+            "plum": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            },
+            "peach": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            },
+            "magnolia": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            },
+            "crabapple": {
+              "public": 64,
+              "private": 0,
+              "unknown": 0
+            }
+          },
+          "raw_bytes": 50989,
+          "gzip_bytes": 3017
         }
       ]
     },
@@ -2318,6 +3050,128 @@
           },
           "raw_bytes": 260816,
           "gzip_bytes": 12629
+        }
+      ]
+    },
+    {
+      "jurisdiction": "Richmond Hill",
+      "slug": "richmond-hill",
+      "display_name": "Richmond Hill",
+      "jurisdiction_type": "city",
+      "state_province": "ON",
+      "country": "Canada",
+      "bounds": [
+        [
+          -79.4855520308004,
+          43.8293793078175
+        ],
+        [
+          -79.37066879911299,
+          43.97781166544557
+        ]
+      ],
+      "tree_count": 199,
+      "zip_codes": [
+        "None"
+      ],
+      "species_counts": {
+        "cherry": 36,
+        "plum": 0,
+        "peach": 0,
+        "magnolia": 0,
+        "crabapple": 163
+      },
+      "ownership_counts": {
+        "public": 199,
+        "private": 0,
+        "unknown": 0
+      },
+      "species_ownership_counts": {
+        "cherry": {
+          "public": 36,
+          "private": 0,
+          "unknown": 0
+        },
+        "plum": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        },
+        "peach": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        },
+        "magnolia": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        },
+        "crabapple": {
+          "public": 163,
+          "private": 0,
+          "unknown": 0
+        }
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "richmond-hill-001",
+          "bounds": [
+            [
+              -79.46276642875638,
+              43.83883349903007
+            ],
+            [
+              -79.38969372278082,
+              43.971135806325286
+            ]
+          ],
+          "data_path": "/data/trees.on.area.richmond-hill.v2.geojson",
+          "tree_count": 199,
+          "ownership_counts": {
+            "public": 199,
+            "private": 0,
+            "unknown": 0
+          },
+          "species_counts": {
+            "cherry": 36,
+            "plum": 0,
+            "peach": 0,
+            "magnolia": 0,
+            "crabapple": 163
+          },
+          "species_ownership_counts": {
+            "cherry": {
+              "public": 36,
+              "private": 0,
+              "unknown": 0
+            },
+            "plum": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            },
+            "peach": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            },
+            "magnolia": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            },
+            "crabapple": {
+              "public": 163,
+              "private": 0,
+              "unknown": 0
+            }
+          },
+          "raw_bytes": 92861,
+          "gzip_bytes": 5146
         }
       ]
     },
@@ -3228,6 +4082,128 @@
           },
           "raw_bytes": 233264,
           "gzip_bytes": 11870
+        }
+      ]
+    },
+    {
+      "jurisdiction": "Whitchurch-Stouffville",
+      "slug": "whitchurch-stouffville",
+      "display_name": "Whitchurch-Stouffville",
+      "jurisdiction_type": "city",
+      "state_province": "ON",
+      "country": "Canada",
+      "bounds": [
+        [
+          -79.42024624917929,
+          43.92379623486128
+        ],
+        [
+          -79.21741805685215,
+          44.101274763107476
+        ]
+      ],
+      "tree_count": 180,
+      "zip_codes": [
+        "None"
+      ],
+      "species_counts": {
+        "cherry": 18,
+        "plum": 0,
+        "peach": 0,
+        "magnolia": 0,
+        "crabapple": 162
+      },
+      "ownership_counts": {
+        "public": 180,
+        "private": 0,
+        "unknown": 0
+      },
+      "species_ownership_counts": {
+        "cherry": {
+          "public": 18,
+          "private": 0,
+          "unknown": 0
+        },
+        "plum": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        },
+        "peach": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        },
+        "magnolia": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        },
+        "crabapple": {
+          "public": 162,
+          "private": 0,
+          "unknown": 0
+        }
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "whitchurch-stouffville-001",
+          "bounds": [
+            [
+              -79.4055413929278,
+              43.93041143707345
+            ],
+            [
+              -79.22486919590872,
+              44.095183332799074
+            ]
+          ],
+          "data_path": "/data/trees.on.area.whitchurch-stouffville.v2.geojson",
+          "tree_count": 180,
+          "ownership_counts": {
+            "public": 180,
+            "private": 0,
+            "unknown": 0
+          },
+          "species_counts": {
+            "cherry": 18,
+            "plum": 0,
+            "peach": 0,
+            "magnolia": 0,
+            "crabapple": 162
+          },
+          "species_ownership_counts": {
+            "cherry": {
+              "public": 18,
+              "private": 0,
+              "unknown": 0
+            },
+            "plum": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            },
+            "peach": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            },
+            "magnolia": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            },
+            "crabapple": {
+              "public": 162,
+              "private": 0,
+              "unknown": 0
+            }
+          },
+          "raw_bytes": 87582,
+          "gzip_bytes": 4771
         }
       ]
     },

@@ -1,6 +1,6 @@
 {
   "version": "v2",
-  "generated_at": "2026-03-28T05:21:40.296288+00:00",
+  "generated_at": "2026-03-28T07:22:50.499965+00:00",
   "default_region": "wa",
   "coverage_rule": "official_jurisdiction_boundary_only",
   "coverage_skipped_cities": [],
@@ -12,7 +12,6 @@
     "Richmond BC",
     "Saanich",
     "Surrey",
-    "White Rock",
     "Alameda",
     "Daly City",
     "Davis",
@@ -97,16 +96,16 @@
     "Yarrow Point"
   ],
   "coverage_official_unavailable_skipped_cities": [],
-  "source_count": 292,
-  "total_records": 3865215,
-  "included_records": 803301,
-  "unknown_records": 1830314,
+  "source_count": 302,
+  "total_records": 3913834,
+  "included_records": 805649,
+  "unknown_records": 1834243,
   "species_counts": {
-    "cherry": 251957,
-    "plum": 118550,
+    "cherry": 252660,
+    "plum": 118745,
     "peach": 8028,
-    "magnolia": 181542,
-    "crabapple": 243224
+    "magnolia": 181725,
+    "crabapple": 244491
   },
   "regions": [
     {
@@ -235,8 +234,8 @@
       ],
       "data_path": null,
       "coverage_path": "/data/coverage.bc.v1.geojson",
-      "tree_count": 57496,
-      "city_count": 16,
+      "tree_count": 58442,
+      "city_count": 18,
       "cities": [
         "Abbotsford",
         "Coquitlam",
@@ -250,26 +249,28 @@
         "North Vancouver District",
         "Penticton",
         "Port Coquitlam",
+        "Port Moody",
         "Prince George",
         "Vancouver BC",
         "Victoria BC",
-        "West Vancouver"
+        "West Vancouver",
+        "White Rock"
       ],
       "species_counts": {
-        "cherry": 27395,
-        "plum": 14458,
+        "cherry": 27910,
+        "plum": 14653,
         "peach": 1,
-        "magnolia": 8300,
-        "crabapple": 7342
+        "magnolia": 8482,
+        "crabapple": 7396
       },
       "ownership_groups": [
         "public"
       ],
-      "raw_bytes": 30325627,
-      "gzip_bytes": 1398609,
+      "raw_bytes": 30809172,
+      "gzip_bytes": 1422449,
       "warning_level": "none",
-      "aggregate_raw_bytes": 30325627,
-      "aggregate_gzip_bytes": 1398609,
+      "aggregate_raw_bytes": 30809172,
+      "aggregate_gzip_bytes": 1422449,
       "aggregate_warning_level": "none",
       "largest_shard_raw_bytes": 10061104,
       "largest_shard_gzip_bytes": 466494,
@@ -279,8 +280,8 @@
       "area_split": {
         "strategy": "area_shard",
         "index_path": "/data/trees.bc.area-index.v2.json",
-        "area_count": 16,
-        "shard_count": 17,
+        "area_count": 18,
+        "shard_count": 19,
         "ready": true
       }
     },
@@ -1438,28 +1439,35 @@
       ],
       "data_path": null,
       "coverage_path": "/data/coverage.on.v1.geojson",
-      "tree_count": 86090,
-      "city_count": 27,
+      "tree_count": 87492,
+      "city_count": 35,
       "cities": [
         "Ajax",
+        "Aurora",
         "Barrie",
         "Brampton",
         "Burlington",
         "Cambridge ON",
         "Cobourg",
         "Cornwall",
+        "East Gwillimbury",
+        "Georgina",
         "Guelph",
         "Halton Hills",
         "Hamilton",
+        "King",
         "Kingston",
         "Kitchener",
         "London",
+        "Markham",
         "Mississauga",
+        "Newmarket",
         "Niagara Falls",
         "Oakville",
         "Orangeville",
         "Ottawa",
         "Peterborough",
+        "Richmond Hill",
         "Tecumseh",
         "Thunder Bay",
         "Toronto",
@@ -1467,23 +1475,24 @@
         "Waterloo",
         "Welland",
         "Whitby",
+        "Whitchurch-Stouffville",
         "Windsor"
       ],
       "species_counts": {
-        "cherry": 43591,
+        "cherry": 43779,
         "plum": 2901,
         "peach": 482,
-        "magnolia": 6251,
-        "crabapple": 32865
+        "magnolia": 6252,
+        "crabapple": 34078
       },
       "ownership_groups": [
         "public"
       ],
-      "raw_bytes": 42121855,
-      "gzip_bytes": 1932230,
+      "raw_bytes": 42771794,
+      "gzip_bytes": 1968710,
       "warning_level": "none",
-      "aggregate_raw_bytes": 42121855,
-      "aggregate_gzip_bytes": 1932230,
+      "aggregate_raw_bytes": 42771794,
+      "aggregate_gzip_bytes": 1968710,
       "aggregate_warning_level": "watch",
       "largest_shard_raw_bytes": 8587256,
       "largest_shard_gzip_bytes": 333237,
@@ -1493,8 +1502,8 @@
       "area_split": {
         "strategy": "area_shard",
         "index_path": "/data/trees.on.area-index.v2.json",
-        "area_count": 27,
-        "shard_count": 28,
+        "area_count": 35,
+        "shard_count": 36,
         "ready": true
       }
     },
@@ -2557,6 +2566,20 @@
       "state_province": "BC"
     },
     {
+      "jurisdiction": "Port Moody",
+      "region": "bc",
+      "tree_count": 275,
+      "species_counts": {
+        "cherry": 154,
+        "plum": 68,
+        "peach": 0,
+        "magnolia": 37,
+        "crabapple": 16
+      },
+      "jurisdiction_type": "city",
+      "state_province": "BC"
+    },
+    {
       "jurisdiction": "Prince George",
       "region": "bc",
       "tree_count": 350,
@@ -2608,6 +2631,20 @@
         "peach": 0,
         "magnolia": 30,
         "crabapple": 31
+      },
+      "jurisdiction_type": "city",
+      "state_province": "BC"
+    },
+    {
+      "jurisdiction": "White Rock",
+      "region": "bc",
+      "tree_count": 671,
+      "species_counts": {
+        "cherry": 361,
+        "plum": 127,
+        "peach": 0,
+        "magnolia": 145,
+        "crabapple": 38
       },
       "jurisdiction_type": "city",
       "state_province": "BC"
@@ -4923,6 +4960,20 @@
       "state_province": "ON"
     },
     {
+      "jurisdiction": "Aurora",
+      "region": "on",
+      "tree_count": 115,
+      "species_counts": {
+        "cherry": 15,
+        "plum": 0,
+        "peach": 0,
+        "magnolia": 0,
+        "crabapple": 100
+      },
+      "jurisdiction_type": "city",
+      "state_province": "ON"
+    },
+    {
       "jurisdiction": "Barrie",
       "region": "on",
       "tree_count": 417,
@@ -5007,6 +5058,34 @@
       "state_province": "ON"
     },
     {
+      "jurisdiction": "East Gwillimbury",
+      "region": "on",
+      "tree_count": 102,
+      "species_counts": {
+        "cherry": 22,
+        "plum": 0,
+        "peach": 0,
+        "magnolia": 1,
+        "crabapple": 79
+      },
+      "jurisdiction_type": "city",
+      "state_province": "ON"
+    },
+    {
+      "jurisdiction": "Georgina",
+      "region": "on",
+      "tree_count": 100,
+      "species_counts": {
+        "cherry": 6,
+        "plum": 0,
+        "peach": 0,
+        "magnolia": 0,
+        "crabapple": 94
+      },
+      "jurisdiction_type": "city",
+      "state_province": "ON"
+    },
+    {
       "jurisdiction": "Guelph",
       "region": "on",
       "tree_count": 1706,
@@ -5044,6 +5123,20 @@
         "peach": 0,
         "magnolia": 1405,
         "crabapple": 3564
+      },
+      "jurisdiction_type": "city",
+      "state_province": "ON"
+    },
+    {
+      "jurisdiction": "King",
+      "region": "on",
+      "tree_count": 154,
+      "species_counts": {
+        "cherry": 8,
+        "plum": 0,
+        "peach": 0,
+        "magnolia": 0,
+        "crabapple": 146
       },
       "jurisdiction_type": "city",
       "state_province": "ON"
@@ -5091,6 +5184,20 @@
       "state_province": "ON"
     },
     {
+      "jurisdiction": "Markham",
+      "region": "on",
+      "tree_count": 442,
+      "species_counts": {
+        "cherry": 37,
+        "plum": 0,
+        "peach": 0,
+        "magnolia": 0,
+        "crabapple": 405
+      },
+      "jurisdiction_type": "city",
+      "state_province": "ON"
+    },
+    {
       "jurisdiction": "Mississauga",
       "region": "on",
       "tree_count": 3177,
@@ -5100,6 +5207,20 @@
         "peach": 0,
         "magnolia": 152,
         "crabapple": 598
+      },
+      "jurisdiction_type": "city",
+      "state_province": "ON"
+    },
+    {
+      "jurisdiction": "Newmarket",
+      "region": "on",
+      "tree_count": 110,
+      "species_counts": {
+        "cherry": 46,
+        "plum": 0,
+        "peach": 0,
+        "magnolia": 0,
+        "crabapple": 64
       },
       "jurisdiction_type": "city",
       "state_province": "ON"
@@ -5170,6 +5291,20 @@
         "peach": 0,
         "magnolia": 9,
         "crabapple": 507
+      },
+      "jurisdiction_type": "city",
+      "state_province": "ON"
+    },
+    {
+      "jurisdiction": "Richmond Hill",
+      "region": "on",
+      "tree_count": 199,
+      "species_counts": {
+        "cherry": 36,
+        "plum": 0,
+        "peach": 0,
+        "magnolia": 0,
+        "crabapple": 163
       },
       "jurisdiction_type": "city",
       "state_province": "ON"
@@ -5268,6 +5403,20 @@
         "peach": 0,
         "magnolia": 59,
         "crabapple": 367
+      },
+      "jurisdiction_type": "city",
+      "state_province": "ON"
+    },
+    {
+      "jurisdiction": "Whitchurch-Stouffville",
+      "region": "on",
+      "tree_count": 180,
+      "species_counts": {
+        "cherry": 18,
+        "plum": 0,
+        "peach": 0,
+        "magnolia": 0,
+        "crabapple": 162
       },
       "jurisdiction_type": "city",
       "state_province": "ON"
@@ -6383,6 +6532,15 @@
       "note": "Integrated from Arlington County's official public DPR Trees layer using the official county jurisdiction boundary."
     },
     {
+      "name": "Street Trees",
+      "city": "Aurora",
+      "endpoint": "https://www.york.ca/newsroom/campaigns-projects/street-trees",
+      "last_edit_at": "",
+      "records_fetched": 123,
+      "records_included": 115,
+      "note": "Integrated from the official York Region street trees ArcGIS layer after restricting to active Aurora rows and clipping to the official Statistics Canada CSD boundary."
+    },
+    {
       "name": "Tree Inventory",
       "city": "Austin",
       "endpoint": "https://data.austintexas.gov/Environment/Tree-Inventory/wrik-xasw",
@@ -6810,6 +6968,15 @@
       "note": "Integrated from the official City of Durham public tree inventory ArcGIS layer and official jurisdiction boundary."
     },
     {
+      "name": "Street Trees",
+      "city": "East Gwillimbury",
+      "endpoint": "https://www.york.ca/newsroom/campaigns-projects/street-trees",
+      "last_edit_at": "",
+      "records_fetched": 140,
+      "records_included": 102,
+      "note": "Integrated from the official York Region street trees ArcGIS layer after restricting to active East Gwillimbury rows and clipping to the official Statistics Canada CSD boundary."
+    },
+    {
       "name": "TREES - CURRENT STATUS",
       "city": "East Lansing",
       "endpoint": "https://www.arcgis.com/home/item.html?id=0166cb5e3a124abfa845e26a15a10a13",
@@ -7005,6 +7172,15 @@
       "records_fetched": 2,
       "records_included": 1,
       "note": "Integrated from the official National Capital Commission remarkable trees ArcGIS layer after clipping to the official Gatineau boundary."
+    },
+    {
+      "name": "Street Trees",
+      "city": "Georgina",
+      "endpoint": "https://www.york.ca/newsroom/campaigns-projects/street-trees",
+      "last_edit_at": "",
+      "records_fetched": 116,
+      "records_included": 100,
+      "note": "Integrated from the official York Region street trees ArcGIS layer after restricting to active Georgina rows and clipping to the official Statistics Canada CSD boundary."
     },
     {
       "name": "PW Trees Public Viewer",
@@ -7293,6 +7469,15 @@
       "records_included": 329
     },
     {
+      "name": "Street Trees",
+      "city": "King",
+      "endpoint": "https://www.york.ca/newsroom/campaigns-projects/street-trees",
+      "last_edit_at": "",
+      "records_fetched": 222,
+      "records_included": 154,
+      "note": "Integrated from the official York Region street trees ArcGIS layer after restricting to active King rows and clipping to the official Statistics Canada CSD boundary."
+    },
+    {
       "name": "City Owned Trees",
       "city": "Kingston",
       "endpoint": "https://utility.arcgis.com/usrsvcs/servers/511fd5299053486daf48c6466332320c/rest/services/Eng/City_Owned_Trees/FeatureServer/0",
@@ -7499,6 +7684,15 @@
       "note": "Integrated from the official City of Maple Ridge public street-tree ArcGIS layer after restricting to existing rows."
     },
     {
+      "name": "Street Trees",
+      "city": "Markham",
+      "endpoint": "https://www.york.ca/newsroom/campaigns-projects/street-trees",
+      "last_edit_at": "",
+      "records_fetched": 562,
+      "records_included": 442,
+      "note": "Integrated from the official York Region street trees ArcGIS layer after restricting to active Markham rows and clipping to the official Statistics Canada CSD boundary."
+    },
+    {
       "name": "Maywood i-Tree Inventory",
       "city": "Maywood",
       "endpoint": "https://services2.arcgis.com/yrktbS5Xw87hJQvs/arcgis/rest/services/Maywood_iTree_Inventory_WFL1/FeatureServer",
@@ -7703,6 +7897,15 @@
       "records_fetched": 1456,
       "records_included": 28,
       "note": "Integrated from the official Newark public TreeKeeper inventory and jurisdiction boundary."
+    },
+    {
+      "name": "Street Trees",
+      "city": "Newmarket",
+      "endpoint": "https://www.york.ca/newsroom/campaigns-projects/street-trees",
+      "last_edit_at": "",
+      "records_fetched": 224,
+      "records_included": 110,
+      "note": "Integrated from the official York Region street trees ArcGIS layer after restricting to active Newmarket rows and clipping to the official Statistics Canada CSD boundary."
     },
     {
       "name": "Tree Inventory",
@@ -7964,6 +8167,15 @@
       "note": "Integrated from the official City of Port Coquitlam public park-tree and street-tree ArcGIS layers and official jurisdiction boundary."
     },
     {
+      "name": "Street Trees Inventory",
+      "city": "Port Moody",
+      "endpoint": "https://services5.arcgis.com/Q4JfC7BraThG8umv/ArcGIS/rest/services/Port_Moody_Planting_Plan_BASE/FeatureServer/1",
+      "last_edit_at": "2024-08-06T16:23:45.706000+00:00",
+      "records_fetched": 276,
+      "records_included": 275,
+      "note": "Integrated from the official City of Port Moody street-trees ArcGIS layer after restricting to operational street trees and clipping to the official jurisdiction boundary."
+    },
+    {
       "name": "Street Tree Inventory - Active Records",
       "city": "Portland",
       "endpoint": "https://www.portlandmaps.com/od/rest/services/COP_OpenData_Environment/MapServer/1415",
@@ -8121,6 +8333,15 @@
       "records_fetched": 4462,
       "records_included": 2099,
       "note": "Integrated from the official City of Richmond, Virginia public tree inventory ArcGIS layer."
+    },
+    {
+      "name": "Street Trees",
+      "city": "Richmond Hill",
+      "endpoint": "https://www.york.ca/newsroom/campaigns-projects/street-trees",
+      "last_edit_at": "",
+      "records_fetched": 242,
+      "records_included": 199,
+      "note": "Integrated from the official York Region street trees ArcGIS layer after restricting to active Richmond Hill rows and clipping to the official Statistics Canada CSD boundary."
     },
     {
       "name": "TreeKeeper Inventory",
@@ -8834,6 +9055,24 @@
       "records_fetched": 580,
       "records_included": 468,
       "note": "Integrated from the official Town of Whitby public tree inventory ArcGIS layer."
+    },
+    {
+      "name": "Street Trees",
+      "city": "Whitchurch-Stouffville",
+      "endpoint": "https://www.york.ca/newsroom/campaigns-projects/street-trees",
+      "last_edit_at": "",
+      "records_fetched": 270,
+      "records_included": 180,
+      "note": "Integrated from the official York Region street trees ArcGIS layer after restricting to active Whitchurch-Stouffville rows and clipping to the official Statistics Canada CSD boundary."
+    },
+    {
+      "name": "Trees",
+      "city": "White Rock",
+      "endpoint": "https://maps.whiterockcity.ca/opendata/download/preview.html?layername=Tree&filetype=shapefile%20target=",
+      "last_edit_at": "",
+      "records_fetched": 754,
+      "records_included": 671,
+      "note": "Integrated from the official City of White Rock public tree map service after excluding removed trees and clipping to the official jurisdiction boundary."
     },
     {
       "name": "Tree Points - All (view)",

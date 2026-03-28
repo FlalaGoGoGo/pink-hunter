@@ -96,6 +96,16 @@ Current state: no cities are parked in `A2` right now.
 | ✅ | Cornwall | 453 | Official jurisdiction boundary | Official City of Cornwall public tree inventory ArcGIS layer integrated after restricting to `Status = 'PRESENT'` and clipping to the official Statistics Canada CSD boundary |
 | ✅ | Cobourg | 442 | Official jurisdiction boundary | Official Town of Cobourg virtual arboretum tree inventory integrated from the public ArcGIS service and clipped to the official Statistics Canada CSD boundary |
 | ✅ | Orangeville | 99 | Official jurisdiction boundary | Official Town of Orangeville public street-tree inventory ArcGIS layer integrated after excluding removed rows and clipping to the official Statistics Canada CSD boundary |
+| ✅ | White Rock | 671 | Official jurisdiction boundary | Official City of White Rock `Trees` open-data map service integrated after excluding removed trees and clipping to the official Metro Vancouver administrative boundary |
+| ✅ | Markham | 442 | Official jurisdiction boundary | Official York Region `Street Trees` layer integrated after restricting to active `MUNICIPALITY = 'Markham'` rows and clipping to the official Statistics Canada CSD boundary |
+| ✅ | Port Moody | 275 | Official jurisdiction boundary | Official City of Port Moody `Street Trees Inventory` ArcGIS layer integrated after restricting to `STATUS = 'OPERATIONAL'` and `TYPE = 'Street Tree'` |
+| ✅ | Richmond Hill | 199 | Official jurisdiction boundary | Official York Region `Street Trees` layer integrated after restricting to active `MUNICIPALITY = 'Richmond Hill'` rows and clipping to the official Statistics Canada CSD boundary |
+| ✅ | Whitchurch-Stouffville | 180 | Official jurisdiction boundary | Official York Region `Street Trees` layer integrated after restricting to active `MUNICIPALITY = 'Whitchurch-Stouffville'` rows and clipping to the official Statistics Canada CSD boundary |
+| ✅ | King | 154 | Official jurisdiction boundary | Official York Region `Street Trees` layer integrated after restricting to active `MUNICIPALITY = 'King'` rows and clipping to the official Statistics Canada CSD boundary |
+| ✅ | Aurora | 115 | Official jurisdiction boundary | Official York Region `Street Trees` layer integrated after restricting to active `MUNICIPALITY = 'Aurora'` rows and clipping to the official Statistics Canada CSD boundary |
+| ✅ | Newmarket | 110 | Official jurisdiction boundary | Official York Region `Street Trees` layer integrated after restricting to active `MUNICIPALITY = 'Newmarket'` rows and clipping to the official Statistics Canada CSD boundary |
+| ✅ | East Gwillimbury | 102 | Official jurisdiction boundary | Official York Region `Street Trees` layer integrated after restricting to active `MUNICIPALITY = 'East Gwillimbury'` rows and clipping to the official Statistics Canada CSD boundary |
+| ✅ | Georgina | 100 | Official jurisdiction boundary | Official York Region `Street Trees` layer integrated after restricting to active `MUNICIPALITY = 'Georgina'` rows and clipping to the official Statistics Canada CSD boundary |
 | ✅ | Denver | 19,900 | Official jurisdiction boundary | Official City and County of Denver `Public Tree Inventory` ArcGIS layer integrated from the city open-data portal and official jurisdiction boundary |
 | ✅ | Erie | 411 | Official jurisdiction boundary | Official Town of Erie public TreeKeeper inventory integrated with the official jurisdiction boundary |
 | ✅ | Fort Collins | 4,265 | Official jurisdiction boundary | Official City of Fort Collins public TreeKeeper inventory integrated with the official jurisdiction boundary |
@@ -326,7 +336,6 @@ These cities are not in `A2` yet because the official point-tree source is still
 | 🩶 | Stockton | In gray coverage | Official jurisdiction boundary | Official ArcGIS and city GIS searches did not confirm a public citywide single-tree species dataset |
 | 🩶 | Surrey | In gray coverage | Official jurisdiction boundary | Official Surrey Open Data exposes `Important Trees` and `Park Specimen Trees`, but no citywide public single-tree species inventory was confirmed |
 | 🩶 | Tigard | In gray coverage | Official jurisdiction boundary | Official ArcGIS results exposed an ash-tree inventory, not a citywide public single-tree species inventory |
-| 🩶 | White Rock | In gray coverage | Official jurisdiction boundary | Official Metro Vancouver administrative boundaries confirm the City of White Rock geometry, but this round did not confirm a public citywide single-tree species inventory |
 | 🩶 | Langley City | In gray coverage | Official jurisdiction boundary | Official City of Langley / Metro Vancouver public GIS entry points were reviewed; the official jurisdiction boundary is available, but no public citywide single-tree species inventory was confirmed |
 
 ### Investigated / Blocked / Out Of Scope
@@ -544,6 +553,11 @@ These cities are not in `A2` yet because the official point-tree source is still
 - Integrated `Leduc` from the official City of Leduc public Cityworks trees layer after restricting to active rows and clipping to the official Statistics Canada CSD boundary.
 - Integrated `Longueuil`, `Quebec City`, `Repentigny`, and `Saguenay` from official Donnees Quebec GeoJSON tree inventories and clipped them to the official Statistics Canada CSD boundaries.
 - Rechecked `County of Brant`; the official public source is valid, but the blossom-filtered publish path currently returns zero in-scope rows inside the official boundary, so it remains out of product for now.
+
+## March 2026 Canada York Region / Metro Vancouver Follow-up
+- Integrated `Aurora`, `East Gwillimbury`, `Georgina`, `King`, `Markham`, `Newmarket`, `Richmond Hill`, and `Whitchurch-Stouffville` from the official York Region `Street Trees` ArcGIS layer by reusing municipality-specific filters and official Statistics Canada CSD boundaries.
+- Integrated `Port Moody` from the official City of Port Moody `Street Trees Inventory` ArcGIS layer after restricting to operational street trees.
+- Integrated `White Rock` from the official City of White Rock `Trees` open-data map service after excluding removed rows and clipping to the official Metro Vancouver administrative boundary.
 
 ## March 2026 East Coast / Southern California Follow-up
 - Rechecked `Alexandria, VA`; official city urban-forestry and GIS materials still do not expose a verified public single-tree inventory, so it remains gray coverage.

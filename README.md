@@ -293,24 +293,31 @@ Live domain:
 <summary>Ontario</summary>
 
 - Ajax
+- Aurora
 - Barrie
 - Brampton
 - Burlington
 - Cobourg
 - Cambridge ON
 - Cornwall
+- East Gwillimbury
+- Georgina
 - Guelph
 - Halton Hills
 - Hamilton
+- King
 - Kingston
 - Kitchener
 - London
+- Markham
 - Mississauga
+- Newmarket
 - Niagara Falls
 - Oakville
 - Orangeville
 - Ottawa
 - Peterborough
+- Richmond Hill
 - Tecumseh
 - Thunder Bay
 - Toronto
@@ -318,6 +325,7 @@ Live domain:
 - Waterloo
 - Welland
 - Whitby
+- Whitchurch-Stouffville
 - Windsor
 
 </details>
@@ -485,10 +493,12 @@ Live domain:
 - North Vancouver District
 - Penticton
 - Port Coquitlam
+- Port Moody
 - Prince George
 - Vancouver BC
 - Victoria BC
 - West Vancouver
+- White Rock
 
 </details>
 
@@ -501,7 +511,7 @@ Live domain:
 
 ### Gray Coverage
 - Gray coverage marks cities whose official boundary is public but whose official public single-tree dataset is not available yet.
-- Current gray-coverage examples include `Alexandria`, `Montgomery County`, `Newark`, `Santa Clara`, `Monterey`, `Napa`, `Richmond (CA)`, `Santa Cruz`, `Santa Rosa`, `Stockton`, `Redwood City`, `Alameda`, `Hayward`, `Daly City`, `Long Beach`, `Santa Ana`, `Beaverton`, `Gresham`, `Hillsboro`, `Salem`, `Tigard`, `Burnaby`, `Delta`, `Langley City`, `Richmond BC`, `Saanich`, `Surrey`, and `White Rock`.
+- Current gray-coverage examples include `Alexandria`, `Montgomery County`, `Newark`, `Santa Clara`, `Monterey`, `Napa`, `Richmond (CA)`, `Santa Cruz`, `Santa Rosa`, `Stockton`, `Redwood City`, `Alameda`, `Hayward`, `Daly City`, `Long Beach`, `Santa Ana`, `Beaverton`, `Gresham`, `Hillsboro`, `Salem`, `Tigard`, `Burnaby`, `Delta`, `Langley City`, `Richmond BC`, `Saanich`, and `Surrey`.
 - Tracking details: [docs/research/city-coverage-tracker.md](docs/research/city-coverage-tracker.md)
 
 ## Official Data Sources
@@ -756,24 +766,31 @@ Live domain:
 <summary>Ontario</summary>
 
 - Ajax: [Town Owned Trees](https://ajaxmaps.ajax.ca/gisernie/rest/services/Public/Ajax_Open_Data/MapServer/8)
+- Aurora: [Street Trees](https://www.york.ca/newsroom/campaigns-projects/street-trees)
 - Barrie: [Tree](https://gispublic.barrie.ca/arcgis/rest/services/Open_Data/FacilitiesStreets/MapServer/37)
 - Brampton: [Tree Inventory](https://mapsdev.brampton.ca/arcgis/rest/services/ParksOps/Tree_Inventory/MapServer/0)
 - Burlington: [City Owned Trees](https://www.arcgis.com/home/item.html?id=41412ef3188942c7abbe14035004273d)
 - Cobourg: [Virtual Arboretum Tree Inventory](https://public-townofcobourg.hub.arcgis.com)
 - Cambridge ON: [Street Trees](https://www.arcgis.com/home/item.html?id=93f699f0aeba49f1acb582cf26b90ed7)
 - Cornwall: [Tree Inventory](https://cornwallcity.maps.arcgis.com/apps/dashboards/3d1418832bbe4b0e920d1c44e613af56)
+- East Gwillimbury: [Street Trees](https://www.york.ca/newsroom/campaigns-projects/street-trees)
+- Georgina: [Street Trees](https://www.york.ca/newsroom/campaigns-projects/street-trees)
 - Guelph: [TreeInventory](https://servicesdev.arcgis.com/LkFyxb9zDq7vAOAm/ArcGIS/rest/services/TreeInventory_Guelph/FeatureServer)
 - Halton Hills: [Tree](https://map.haltonhills.ca/awse/rest/services/eP/MapServer/5)
 - Hamilton: [Public Tree Inventory](https://open.hamilton.ca/datasets/08e50c6cbb2545b4897d613a817fa4d4_0/explore)
+- King: [Street Trees](https://www.york.ca/newsroom/campaigns-projects/street-trees)
 - Kingston: [City Owned Trees](https://utility.arcgis.com/usrsvcs/servers/511fd5299053486daf48c6466332320c/rest/services/Eng/City_Owned_Trees/FeatureServer/0)
 - Kitchener: [Forestry Gallery](https://open-kitchenergis.opendata.arcgis.com/pages/forestry-gallery)
 - London: [Public_TreeInventory](https://maps.london.ca/arcgisa/rest/services/Public_TreeInventory/MapServer)
+- Markham: [Street Trees](https://www.york.ca/newsroom/campaigns-projects/street-trees)
 - Mississauga: [City trees](https://mississauga.ca/services-and-programs/forestry-and-environment/trees/)
+- Newmarket: [Street Trees](https://www.york.ca/newsroom/campaigns-projects/street-trees)
 - Niagara Falls: [Niagara Falls Trees Inventory](https://open.niagarafalls.ca/datasets/niagarafalls::niagara-falls-trees-inventory)
 - Oakville: [Public tree inventory](https://www.oakville.ca/home-environment/trees-woodlands/public-tree-inventory/)
 - Orangeville: [Urban Forestry](https://www.orangeville.ca/en/living-here/urban-forestry.aspx)
 - Ottawa: [Canopy cover and tree inventory](https://ottawa.ca/en/canopy-cover-and-tree-inventory)
 - Peterborough: [Tree Inventory & EAB Status in the City of Peterborough](https://ptbo.maps.arcgis.com/apps/webappviewer/index.html?id=be8a9500cdca44af86860046e651cb96)
+- Richmond Hill: [Street Trees](https://www.york.ca/newsroom/campaigns-projects/street-trees)
 - Tecumseh: [Trees Municipal](https://gisweb.tecumseh.ca/arcgis/rest/services/GeocortexEssentialsMapping/MapServer/75)
 - Thunder Bay: [City of Thunder Bay Trees](https://services5.arcgis.com/h9xShea49ZANgOtx/arcgis/rest/services/City_of_Thunder_Bay_Trees/FeatureServer)
 - Toronto: [Street Tree Data](https://open.toronto.ca/dataset/street-tree-data/)
@@ -781,6 +798,7 @@ Live domain:
 - Waterloo: [Waterloo Street Trees](https://services1.arcgis.com/DwLTn0u9VBSZvUPe/ArcGIS/rest/services/Waterloo_Street_Trees/FeatureServer)
 - Welland: [Welland Trees](https://open.welland.ca/datasets/welland-trees)
 - Whitby: [Whitby Tree Inventory](https://whitby.maps.arcgis.com/apps/instant/sidebar/index.html?appid=3e192ad13b7940b98684e8dadaa94c54)
+- Whitchurch-Stouffville: [Street Trees](https://www.york.ca/newsroom/campaigns-projects/street-trees)
 - Windsor: [City Trees In Park](https://mappmycity.ca/arcgis/rest/services/OpenDataServices/ParksEnvironment/MapServer/0), [City Trees In Right Of Way](https://mappmycity.ca/arcgis/rest/services/OpenDataServices/ParksEnvironment/MapServer/1)
 
 </details>
@@ -913,10 +931,12 @@ Live domain:
 - North Vancouver District: [Street Trees](https://geoweb.dnv.org/data/)
 - Penticton: [Trees](https://services1.arcgis.com/ZMQyarkhNAnn8lip/ArcGIS/rest/services/Parks_PRD/FeatureServer/1355)
 - Port Coquitlam: [DynamicData Public Works](https://maps.portcoquitlam.ca/server/rest/services/DynamicData_PublicWorks/MapServer)
+- Port Moody: [Street Trees Inventory](https://services5.arcgis.com/Q4JfC7BraThG8umv/ArcGIS/rest/services/Port_Moody_Planting_Plan_BASE/FeatureServer/1)
 - Prince George: [Trees](https://services2.arcgis.com/CnkB6jCzAsyli34z/arcgis/rest/services/OpenData_ParkData/FeatureServer/0)
 - Vancouver BC: [Public trees](https://opendata.vancouver.ca/api/explore/v2.1/catalog/datasets/public-trees)
 - Victoria BC: [Tree Species (Parks trees database)](https://maps.victoria.ca/server/rest/services/OpenData/OpenData_Parks/MapServer/15)
 - West Vancouver: [FORM_DWV Tree Inventory](https://services5.arcgis.com/Q4JfC7BraThG8umv/arcgis/rest/services/FORM_DWV_Tree_Inventory_View/FeatureServer)
+- White Rock: [Trees](https://maps.whiterockcity.ca/opendata/download/preview.html?layername=Tree&filetype=shapefile%20target=)
 
 </details>
 

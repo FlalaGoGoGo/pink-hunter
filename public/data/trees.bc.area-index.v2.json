@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-03-28T05:21:40.296288+00:00",
+  "generated_at": "2026-03-28T07:22:25.277461+00:00",
   "region": "bc",
   "strategy": "area_shard",
   "items": [
@@ -1468,6 +1468,128 @@
       ]
     },
     {
+      "jurisdiction": "Port Moody",
+      "slug": "port-moody",
+      "display_name": "Port Moody",
+      "jurisdiction_type": "city",
+      "state_province": "BC",
+      "country": "Canada",
+      "bounds": [
+        [
+          -122.944077369103,
+          49.2704407780811
+        ],
+        [
+          -122.82112135542,
+          49.3299470743883
+        ]
+      ],
+      "tree_count": 275,
+      "zip_codes": [
+        "None"
+      ],
+      "species_counts": {
+        "cherry": 154,
+        "plum": 68,
+        "peach": 0,
+        "magnolia": 37,
+        "crabapple": 16
+      },
+      "ownership_counts": {
+        "public": 275,
+        "private": 0,
+        "unknown": 0
+      },
+      "species_ownership_counts": {
+        "cherry": {
+          "public": 154,
+          "private": 0,
+          "unknown": 0
+        },
+        "plum": {
+          "public": 68,
+          "private": 0,
+          "unknown": 0
+        },
+        "peach": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        },
+        "magnolia": {
+          "public": 37,
+          "private": 0,
+          "unknown": 0
+        },
+        "crabapple": {
+          "public": 16,
+          "private": 0,
+          "unknown": 0
+        }
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "port-moody-001",
+          "bounds": [
+            [
+              -122.89112607750101,
+              49.27270257476208
+            ],
+            [
+              -122.82317164305212,
+              49.306558153716914
+            ]
+          ],
+          "data_path": "/data/trees.bc.area.port-moody.v2.geojson",
+          "tree_count": 275,
+          "ownership_counts": {
+            "public": 275,
+            "private": 0,
+            "unknown": 0
+          },
+          "species_counts": {
+            "cherry": 154,
+            "plum": 68,
+            "peach": 0,
+            "magnolia": 37,
+            "crabapple": 16
+          },
+          "species_ownership_counts": {
+            "cherry": {
+              "public": 154,
+              "private": 0,
+              "unknown": 0
+            },
+            "plum": {
+              "public": 68,
+              "private": 0,
+              "unknown": 0
+            },
+            "peach": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            },
+            "magnolia": {
+              "public": 37,
+              "private": 0,
+              "unknown": 0
+            },
+            "crabapple": {
+              "public": 16,
+              "private": 0,
+              "unknown": 0
+            }
+          },
+          "raw_bytes": 146583,
+          "gzip_bytes": 6831
+        }
+      ]
+    },
+    {
       "jurisdiction": "Prince George",
       "slug": "prince-george",
       "display_name": "Prince George",
@@ -2008,6 +2130,128 @@
           },
           "raw_bytes": 167129,
           "gzip_bytes": 7454
+        }
+      ]
+    },
+    {
+      "jurisdiction": "White Rock",
+      "slug": "white-rock",
+      "display_name": "White Rock",
+      "jurisdiction_type": "city",
+      "state_province": "BC",
+      "country": "Canada",
+      "bounds": [
+        [
+          -122.845474370247,
+          49.0021263078077
+        ],
+        [
+          -122.77921293681,
+          49.0312357777067
+        ]
+      ],
+      "tree_count": 671,
+      "zip_codes": [
+        "None"
+      ],
+      "species_counts": {
+        "cherry": 361,
+        "plum": 127,
+        "peach": 0,
+        "magnolia": 145,
+        "crabapple": 38
+      },
+      "ownership_counts": {
+        "public": 671,
+        "private": 0,
+        "unknown": 0
+      },
+      "species_ownership_counts": {
+        "cherry": {
+          "public": 361,
+          "private": 0,
+          "unknown": 0
+        },
+        "plum": {
+          "public": 127,
+          "private": 0,
+          "unknown": 0
+        },
+        "peach": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        },
+        "magnolia": {
+          "public": 145,
+          "private": 0,
+          "unknown": 0
+        },
+        "crabapple": {
+          "public": 38,
+          "private": 0,
+          "unknown": 0
+        }
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "white-rock-001",
+          "bounds": [
+            [
+              -122.84471049354997,
+              49.01665578469952
+            ],
+            [
+              -122.77940134863464,
+              49.03108803248598
+            ]
+          ],
+          "data_path": "/data/trees.bc.area.white-rock.v2.geojson",
+          "tree_count": 671,
+          "ownership_counts": {
+            "public": 671,
+            "private": 0,
+            "unknown": 0
+          },
+          "species_counts": {
+            "cherry": 361,
+            "plum": 127,
+            "peach": 0,
+            "magnolia": 145,
+            "crabapple": 38
+          },
+          "species_ownership_counts": {
+            "cherry": {
+              "public": 361,
+              "private": 0,
+              "unknown": 0
+            },
+            "plum": {
+              "public": 127,
+              "private": 0,
+              "unknown": 0
+            },
+            "peach": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            },
+            "magnolia": {
+              "public": 145,
+              "private": 0,
+              "unknown": 0
+            },
+            "crabapple": {
+              "public": 38,
+              "private": 0,
+              "unknown": 0
+            }
+          },
+          "raw_bytes": 336962,
+          "gzip_bytes": 17009
         }
       ]
     }
