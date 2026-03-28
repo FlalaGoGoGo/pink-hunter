@@ -3113,6 +3113,7 @@ def load_coverage_status_registry() -> list[dict[str, str]]:
 REGION_TO_STATE_FIPS: dict[str, str] = {
     "az": "04",
     "ca": "06",
+    "co": "08",
     "ct": "09",
     "dc": "11",
     "fl": "12",
@@ -3398,6 +3399,22 @@ def bounds_for_geometry(geometry: dict[str, Any]) -> tuple[float, float, float, 
     xs = [point[0] for point in points]
     ys = [point[1] for point in points]
     return min(xs), min(ys), max(xs), max(ys)
+
+
+def bounds_from_bounds_list(bounds: list[list[float]] | None) -> tuple[float, float, float, float] | None:
+    if (
+        not bounds
+        or len(bounds) != 2
+        or len(bounds[0]) != 2
+        or len(bounds[1]) != 2
+    ):
+        return None
+    return (
+        float(bounds[0][0]),
+        float(bounds[0][1]),
+        float(bounds[1][0]),
+        float(bounds[1][1]),
+    )
 
 
 def build_region_bounds(coverage_features: list[dict[str, Any]]) -> dict[str, list[list[float]]]:
@@ -3982,6 +3999,25 @@ def load_city_boundary_geometry(
     if not feature:
         return None
     return feature.get("geometry")
+
+
+def load_city_boundary_bounds(
+    city: str,
+    *,
+    state_id: str | None = None,
+    country_id: str | None = None,
+    refresh: bool = False,
+) -> list[list[float]] | None:
+    geometry = load_city_boundary_geometry(
+        city,
+        state_id=state_id,
+        country_id=country_id,
+        refresh=refresh,
+    )
+    raw_bounds = bounds_for_geometry(geometry) if geometry else None
+    if not raw_bounds:
+        return None
+    return [[float(raw_bounds[0]), float(raw_bounds[1])], [float(raw_bounds[2]), float(raw_bounds[3])]]
 
 
 def normalize_redmond_ownership(raw_value: str | None) -> str:
@@ -7142,6 +7178,7 @@ def main() -> int:
                     extra_output_names.append(shard_file_name)
 
                 jurisdiction_type = "county" if city == "Arlington" or city.endswith(" County") else "city"
+                city_bounds = load_city_boundary_bounds(city, state_id=region_id) or bounds_from_features(city_features)
                 area_entries.append(
                     {
                         "jurisdiction": city,
@@ -7150,7 +7187,7 @@ def main() -> int:
                         "jurisdiction_type": jurisdiction_type,
                         "state_province": region_id.upper(),
                         "country": country_by_region.get(region_id, "United States"),
-                        "bounds": bounds_from_features(city_features),
+                        "bounds": city_bounds,
                         "tree_count": len(city_features),
                         "zip_codes": summarize_zip_codes(city_features),
                         "species_counts": summarize_species_counts(city_features),

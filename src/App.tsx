@@ -1635,9 +1635,19 @@ type StatusNoticeKind =
   | "location_timeout"
   | "location_unavailable";
 
+type OfficialUnavailableReasonKind =
+  | "no_public_inventory"
+  | "access_limited"
+  | "partial_inventory"
+  | "taxonomy_gap"
+  | "wrong_source";
+
 interface StatusNotice {
   kind: StatusNoticeKind;
   areaName?: string;
+  areaType?: JurisdictionType;
+  region?: CoverageRegion;
+  note?: string;
 }
 
 type JumpAreaDisplayStatus = "covered" | "city_level_coverage" | "official_unavailable" | "untracked";
@@ -2471,6 +2481,156 @@ function buildContactMailtoHref(kind: "official_unavailable" | "untracked", area
   return `mailto:flalaz@uw.edu?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(lines.join("\n"))}`;
 }
 
+function classifyOfficialUnavailableReason(note: string): OfficialUnavailableReasonKind {
+  const normalized = note.trim().toLowerCase();
+  if (
+    normalized.includes("internal species codes") ||
+    normalized.includes("mapping table") ||
+    normalized.includes("taxonomy")
+  ) {
+    return "taxonomy_gap";
+  }
+  if (
+    normalized.includes("requires a token") ||
+    normalized.includes("not publicly queryable") ||
+    normalized.includes("not publicly accessible")
+  ) {
+    return "access_limited";
+  }
+  if (
+    normalized.includes("false positives") ||
+    normalized.includes("false positive") ||
+    normalized.includes("street lights") ||
+    normalized.includes("not trees") ||
+    normalized.includes("other states") ||
+    normalized.includes("not a verified")
+  ) {
+    return "wrong_source";
+  }
+  if (
+    normalized.includes("partial") ||
+    normalized.includes("not a citywide") ||
+    normalized.includes("not a countywide") ||
+    normalized.includes("planting-program") ||
+    normalized.includes("neighborhood street-tree") ||
+    normalized.includes("important trees") ||
+    normalized.includes("specimen trees") ||
+    normalized.includes("ash-tree inventory")
+  ) {
+    return "partial_inventory";
+  }
+  return "no_public_inventory";
+}
+
+function officialUnavailableReasonCopy(
+  language: Language,
+  kind: OfficialUnavailableReasonKind
+): { reasonLabel: string; noteLabel: string; title: string; body: string } {
+  if (language === "zh-CN") {
+    const copy = {
+      reasonLabel: "未收录原因分类",
+      noteLabel: "本次核验备注",
+      kinds: {
+        no_public_inventory: {
+          title: "没有确认到官方公开的单树点位数据",
+          body: "Pink Hunter 已检查这个地区的官方入口，但目前没有确认到可公开使用、逐棵树、带点位的官方树木数据。"
+        },
+        access_limited: {
+          title: "官方有地图或库存，但原始点数据无法公开访问",
+          body: "这个地区并非完全没有官方数据，而是当前公开入口不支持稳定抓取原始点位，例如需要 token、接口未开放，或服务不可公开查询。"
+        },
+        partial_inventory: {
+          title: "只找到局部或非全域数据，不能代表整个地区",
+          body: "目前找到的官方数据只覆盖部分项目、部分街区、专项计划或单一子集，还不能作为整个 city / county 的完整树木覆盖。"
+        },
+        taxonomy_gap: {
+          title: "有官方树点，但无法可靠区分这五类粉花树",
+          body: "官方数据里虽然可能有树点，但公开字段不足以稳定判断樱花、李花、桃花、木兰、海棠这五类，因此 Pink Hunter 目前不能把它算作可覆盖区域。"
+        },
+        wrong_source: {
+          title: "检索到的公开线索并不是可用的官方树木数据",
+          body: "这次探索命中的内容后来核实为误报、错误城市、非树木图层，或其他不符合条件的来源，所以这里暂时仍不能收录。"
+        }
+      }
+    } as const;
+    return {
+      reasonLabel: copy.reasonLabel,
+      noteLabel: copy.noteLabel,
+      title: copy.kinds[kind].title,
+      body: copy.kinds[kind].body
+    };
+  }
+
+  if (language === "zh-TW") {
+    const copy = {
+      reasonLabel: "未收錄原因分類",
+      noteLabel: "本次核驗備註",
+      kinds: {
+        no_public_inventory: {
+          title: "尚未確認到官方公開的單樹點位資料",
+          body: "Pink Hunter 已檢查這個地區的官方入口，但目前尚未確認到可公開使用、逐棵樹、帶點位的官方樹木資料。"
+        },
+        access_limited: {
+          title: "官方有地圖或庫存，但原始點資料無法公開存取",
+          body: "這個地區並非完全沒有官方資料，而是目前公開入口不支援穩定抓取原始點位，例如需要 token、介面未開放，或服務不可公開查詢。"
+        },
+        partial_inventory: {
+          title: "只找到局部或非全域資料，不能代表整個地區",
+          body: "目前找到的官方資料只覆蓋部分計畫、部分街區、專案子集，還不能作為整個 city / county 的完整樹木覆蓋。"
+        },
+        taxonomy_gap: {
+          title: "有官方樹點，但無法可靠區分這五類粉花樹",
+          body: "官方資料裡雖然可能有樹點，但公開欄位不足以穩定判斷櫻花、李花、桃花、木蘭、海棠這五類，因此 Pink Hunter 目前不能把它算作可覆蓋區域。"
+        },
+        wrong_source: {
+          title: "檢索到的公開線索並不是可用的官方樹木資料",
+          body: "這次探索命中的內容後來核實為誤報、錯誤城市、非樹木圖層，或其他不符合條件的來源，所以這裡暫時仍不能收錄。"
+        }
+      }
+    } as const;
+    return {
+      reasonLabel: copy.reasonLabel,
+      noteLabel: copy.noteLabel,
+      title: copy.kinds[kind].title,
+      body: copy.kinds[kind].body
+    };
+  }
+
+  const copy = {
+    reasonLabel: "Why this area is unavailable",
+    noteLabel: "Research note",
+    kinds: {
+      no_public_inventory: {
+        title: "No official public single-tree point dataset was confirmed",
+        body: "Pink Hunter checked this jurisdiction's official entry points, but did not confirm a public point-by-point tree inventory that can be used here."
+      },
+      access_limited: {
+        title: "An official map or inventory exists, but the raw points are not publicly accessible",
+        body: "This area is not completely undocumented. The blocker is that the official raw point data is currently gated, token-protected, or otherwise not stably queryable in public."
+      },
+      partial_inventory: {
+        title: "Only partial or non-jurisdiction-wide data was found",
+        body: "Official tree-related data exists, but it only covers a subset of the jurisdiction, a limited program, or a non-citywide inventory, so Pink Hunter cannot mark the whole area as covered."
+      },
+      taxonomy_gap: {
+        title: "Official tree points exist, but the public fields cannot reliably separate the five tracked blossom groups",
+        body: "Pink Hunter needs point-level public data that can distinguish cherry, plum, peach, magnolia, and crabapple. This area's public fields do not support that reliably yet."
+      },
+      wrong_source: {
+        title: "The researched leads turned out to be unrelated or unusable sources",
+        body: "This round surfaced false positives, the wrong city, non-tree layers, or other sources that do not qualify as a usable official public tree inventory."
+      }
+    }
+  } as const;
+
+  return {
+    reasonLabel: copy.reasonLabel,
+    noteLabel: copy.noteLabel,
+    title: copy.kinds[kind].title,
+    body: copy.kinds[kind].body
+  };
+}
+
 function buildLegalDocumentHref(documentId: LegalDocumentId): string {
   if (typeof window === "undefined") {
     return `?legal=${documentId}`;
@@ -2615,6 +2775,7 @@ export default function App(): JSX.Element {
     async () => undefined
   );
   const openCityAreaRef = useRef<(areaId: string) => void>(() => undefined);
+  const openOfficialUnavailableAreaRef = useRef<(notice: { areaName: string; areaType?: JurisdictionType; region?: CoverageRegion; note?: string }) => void>(() => undefined);
   const openFeaturedAreaRef = useRef<(area: FeaturedAreaIndexItem) => void>(() => undefined);
   const isDesktopRef = useRef(layoutMode === "desktop_split");
   const dragStateRef = useRef<{ startY: number; startHeight: number; dragging: boolean }>({
@@ -3630,6 +3791,22 @@ export default function App(): JSX.Element {
     } as CoverageCollection;
   }, [coverageFeaturesWithAreaIds]);
 
+  const coverageFeaturesByKey = useMemo(() => {
+    const next = new Map<string, CoverageCollection["features"][number]>();
+    coverageFeaturesWithAreaIds.forEach((feature) => {
+      const region = feature.properties.state_id as CoverageRegion;
+      next.set(coverageAreaLookupKey(region, feature.properties.jurisdiction), feature);
+    });
+    return next;
+  }, [coverageFeaturesWithAreaIds]);
+
+  const selectedOfficialUnavailableCoverage = useMemo(() => {
+    if (statusNotice?.kind !== "official_unavailable" || !statusNotice.areaName || !statusNotice.region) {
+      return null;
+    }
+    return coverageFeaturesByKey.get(coverageAreaLookupKey(statusNotice.region, statusNotice.areaName)) ?? null;
+  }, [coverageFeaturesByKey, statusNotice]);
+
   const filteredFeatures = useMemo(() => {
     const speciesSet =
       selectedSpecies.length === 0 ? new Set<SpeciesGroup>(ALL_SPECIES) : new Set<SpeciesGroup>(selectedSpecies);
@@ -4442,6 +4619,7 @@ export default function App(): JSX.Element {
           });
           if (coverageFeatures.length === 0) {
             setSelectedCoverage(null);
+            setStatusNotice((current) => (current?.kind === "official_unavailable" ? null : current));
             return;
           }
 
@@ -4462,22 +4640,16 @@ export default function App(): JSX.Element {
             } else {
               setSelectedTree(null);
               setSelectedCoverage(null);
+              setStatusNotice((current) => (current?.kind === "official_unavailable" ? null : current));
             }
             return;
           }
 
-          setSelectedTree(null);
-          setSelectedCoverage({
-            coordinates: [event.lngLat.lng, event.lngLat.lat],
-            properties: {
-              id: String(coverageProperties.id ?? `coverage-${jurisdiction}`),
-              status: "official_unavailable",
-              jurisdiction: String(jurisdiction),
-              country_id: String(coverageProperties.country_id ?? "us") as CoverageFeatureProps["country_id"],
-              state_id: String(coverageProperties.state_id ?? activeRegion),
-              area_type: String(coverageProperties.area_type ?? "city") as CoverageFeatureProps["area_type"],
-              note: String(coverageProperties.note ?? "")
-            }
+          openOfficialUnavailableAreaRef.current({
+            areaName: String(jurisdiction),
+            region: String(coverageProperties.state_id ?? activeRegion) as CoverageRegion,
+            areaType: String(coverageProperties.area_type ?? "city") as JurisdictionType,
+            note: String(coverageProperties.note ?? "")
           });
         });
 
@@ -5077,6 +5249,32 @@ export default function App(): JSX.Element {
     setActivePanel("filters");
   }, []);
 
+  const openOfficialUnavailableArea = useCallback((notice: {
+    areaName: string;
+    areaType?: JurisdictionType;
+    region?: CoverageRegion;
+    note?: string;
+  }): void => {
+    setSelectedCityAreaId(null);
+    setLoadedCityAreaId(null);
+    setSelectedTree(null);
+    setSelectedCoverage(null);
+    setSelectedFeaturedAreaId(null);
+    setStatusNotice({
+      kind: "official_unavailable",
+      areaName: notice.areaName,
+      areaType: notice.areaType,
+      region: notice.region,
+      note: notice.note
+    });
+    setJumpAreaMenuOpen(false);
+    setJumpAreaQuery("");
+    if (!isDesktopRef.current) {
+      setSheetHeight(0.72);
+    }
+    setActivePanel("filters");
+  }, []);
+
   function openFeaturedArea(area: FeaturedAreaIndexItem): void {
     setSelectedFeaturedAreaId(area.id);
     setSelectedTree(null);
@@ -5110,6 +5308,7 @@ export default function App(): JSX.Element {
   useEffect(() => {
     openTreeDetailsRef.current = openTreeDetails;
     openCityAreaRef.current = openCityArea;
+    openOfficialUnavailableAreaRef.current = openOfficialUnavailableArea;
     openFeaturedAreaRef.current = openFeaturedArea;
   });
 
@@ -5172,10 +5371,10 @@ export default function App(): JSX.Element {
       if (displayStatus.kind === "covered") {
         setSelectedCityAreaId(selectedArea.id);
       } else if (displayStatus.kind === "official_unavailable") {
-        setSelectedCityAreaId(null);
-        setStatusNotice({
-          kind: "official_unavailable",
-          areaName
+        openOfficialUnavailableArea({
+          areaName: selectedArea.jurisdiction,
+          areaType: selectedArea.area_type,
+          region: selectedArea.region_hint ?? undefined
         });
       } else if (displayStatus.kind === "city_level_coverage") {
         setSelectedCityAreaId(null);
@@ -5257,9 +5456,10 @@ export default function App(): JSX.Element {
           }
 
           if (matchedArea && getJumpAreaDisplayStatus(matchedArea).kind === "official_unavailable") {
-            setStatusNotice({
-              kind: "official_unavailable",
-              areaName: formatJumpAreaLabel(matchedArea)
+            openOfficialUnavailableArea({
+              areaName: matchedArea.jurisdiction,
+              areaType: matchedArea.area_type,
+              region: matchedArea.region_hint ?? undefined
             });
           } else if (matchedArea && getJumpAreaDisplayStatus(matchedArea).kind === "city_level_coverage") {
             setStatusNotice({
@@ -5427,6 +5627,10 @@ export default function App(): JSX.Element {
       );
     }
 
+    if (statusNotice?.kind === "official_unavailable") {
+      return null;
+    }
+
     if (statusNotice) {
       let title = "";
       let body = "";
@@ -5554,6 +5758,20 @@ export default function App(): JSX.Element {
   }
 
   function renderCityDiscoveryCard(): JSX.Element {
+    const officialUnavailableNotice = statusNotice?.kind === "official_unavailable" ? statusNotice : null;
+    const officialUnavailableAreaType =
+      selectedOfficialUnavailableCoverage?.properties.area_type ??
+      officialUnavailableNotice?.areaType ??
+      "city";
+    const officialUnavailableNote =
+      selectedOfficialUnavailableCoverage?.properties.note ?? officialUnavailableNotice?.note ?? "";
+    const officialUnavailableReason = officialUnavailableNotice
+      ? officialUnavailableReasonCopy(
+          language,
+          classifyOfficialUnavailableReason(officialUnavailableNote)
+        )
+      : null;
+
     const cityCardBody = selectedCityArea ? (
       <>
         <div className="city-selection-head">
@@ -5594,12 +5812,55 @@ export default function App(): JSX.Element {
           </button>
         </div>
       </>
+    ) : officialUnavailableNotice && officialUnavailableReason ? (
+      <>
+        <div className="city-selection-head">
+          <div className="city-selection-title-wrap">
+            {officialUnavailableNotice.region ? (
+              <p className="status-card-area">{regionOptionLabel(language, officialUnavailableNotice.region)}</p>
+            ) : null}
+            <h3>{formatAreaLabelResolved(officialUnavailableNotice.areaName ?? "")}</h3>
+          </div>
+          <span
+            className={`coverage-area-type-badge ${jurisdictionTypeClassName(officialUnavailableAreaType)}`}
+          >
+            {jurisdictionTypeLabel(language, officialUnavailableAreaType)}
+          </span>
+        </div>
+        <div className="city-unavailable-body">
+          <p className="coverage-popup-eyebrow city-unavailable-eyebrow">
+            {t(language, "officialUnavailablePopupTitle")}
+          </p>
+          <p className="show-block-copy">{t(language, "officialUnavailablePopupBody")}</p>
+          <div className="city-unavailable-callout">
+            <p className="city-unavailable-label">{officialUnavailableReason.reasonLabel}</p>
+            <h4>{officialUnavailableReason.title}</h4>
+            <p>{officialUnavailableReason.body}</p>
+          </div>
+          {officialUnavailableNote ? (
+            <div className="city-unavailable-note">
+              <p className="city-unavailable-label">{officialUnavailableReason.noteLabel}</p>
+              <p>{officialUnavailableNote}</p>
+            </div>
+          ) : null}
+          <p className="show-block-copy">{t(language, "officialUnavailablePopupFoot")}</p>
+          <p className="show-block-copy">{t(language, "officialUnavailablePopupContact")}</p>
+        </div>
+        <div className="status-card-actions">
+          <a
+            className="detail-route-btn status-card-primary-link"
+            href={buildContactMailtoHref("official_unavailable", officialUnavailableNotice.areaName ?? "Unknown area")}
+          >
+            {discoveryCopy.officialUnavailableCta}
+          </a>
+        </div>
+      </>
     ) : null;
 
     return (
       <section className="show-block city-selection-card">
         {renderFindStepHeader(2, findPanelCopy.showTitle)}
-        {!selectedCityArea ? <p className="show-block-copy">{findPanelCopy.showBody}</p> : null}
+        {!cityCardBody ? <p className="show-block-copy">{findPanelCopy.showBody}</p> : null}
         {cityCardBody}
       </section>
     );

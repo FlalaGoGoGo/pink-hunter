@@ -15,10 +15,12 @@ if str(ROOT) not in sys.path:
 
 from etl.build_data import (  # noqa: E402
     REGION_LABELS,
+    bounds_from_bounds_list,
     bounds_from_features,
     classify_aggregate_advisory_level,
     classify_publish_warning_level,
     encode_feature_collection,
+    load_city_boundary_bounds,
     slugify_token,
     split_features_for_publish,
     summarize_ownership_counts,
@@ -112,10 +114,13 @@ def write_region_area_shards(data_dir: Path, region_entry: dict[str, object], ge
     largest_shard_area: str | None = None
     area_entries: list[dict[str, object]] = []
     shard_count = 0
+    region_bounds_candidates: list[tuple[float, float, float, float]] = []
 
     for jurisdiction in sorted(area_feature_map):
         features = area_feature_map[jurisdiction]
         area_slug = slugify_token(jurisdiction)
+        boundary_bounds = load_city_boundary_bounds(jurisdiction, state_id=region_id)
+        area_bounds = boundary_bounds or bounds_from_features(features)
         shard_feature_sets = split_features_for_publish(features)
         shard_entries: list[dict[str, object]] = []
         for shard_index, shard_features in enumerate(shard_feature_sets, start=1):
@@ -156,7 +161,7 @@ def write_region_area_shards(data_dir: Path, region_entry: dict[str, object], ge
                 "jurisdiction_type": "county" if jurisdiction == "Arlington" or jurisdiction.endswith(" County") else "city",
                 "state_province": region_id.upper(),
                 "country": "Canada" if region_id in {"ab", "bc", "mb", "nb", "ns", "on", "pe", "qc", "sk"} else "United States",
-                "bounds": bounds_from_features(features),
+                "bounds": area_bounds,
                 "tree_count": len(features),
                 "zip_codes": summarize_zip_codes(features),
                 "species_counts": summarize_species_counts(features),
@@ -166,6 +171,9 @@ def write_region_area_shards(data_dir: Path, region_entry: dict[str, object], ge
                 "shards": shard_entries,
             }
         )
+        candidate_bounds = bounds_from_bounds_list(area_bounds)
+        if candidate_bounds:
+            region_bounds_candidates.append(candidate_bounds)
 
     area_index_name = f"trees.{region_id}.area-index.v2.json"
     (data_dir / area_index_name).write_text(
@@ -189,7 +197,17 @@ def write_region_area_shards(data_dir: Path, region_entry: dict[str, object], ge
     region_entry["city_count"] = len(area_entries)
     region_entry["cities"] = [str(item["jurisdiction"]) for item in area_entries]
     all_region_features = [feature for features in area_feature_map.values() for feature in features]
-    region_entry["bounds"] = bounds_from_features(all_region_features) if all_region_features else region_entry.get("bounds")
+    if region_bounds_candidates:
+        region_entry["bounds"] = [
+            [
+                min(bounds[0] for bounds in region_bounds_candidates),
+                min(bounds[1] for bounds in region_bounds_candidates),
+            ],
+            [
+                max(bounds[2] for bounds in region_bounds_candidates),
+                max(bounds[3] for bounds in region_bounds_candidates),
+            ],
+        ]
     region_entry["species_counts"] = summarize_species_counts(
         all_region_features
     )
