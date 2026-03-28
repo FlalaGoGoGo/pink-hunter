@@ -107,6 +107,16 @@ Current state: no cities are parked in `A2` right now.
 | ✅ | Bloomington | 1,206 | Official jurisdiction boundary | Official City of Bloomington public TreeKeeper inventory integrated with the official jurisdiction boundary |
 | ✅ | Pendleton | 170 | Official jurisdiction boundary | Official Town of Pendleton public TreeKeeper inventory integrated with the official jurisdiction boundary |
 | ✅ | Valparaiso | 752 | Official jurisdiction boundary | Official City of Valparaiso public TreeKeeper inventory integrated with the official jurisdiction boundary |
+| ✅ | Brentwood | 184 | Official jurisdiction boundary | Official City of Brentwood public TreeKeeper inventory integrated with the official jurisdiction boundary |
+| ✅ | Carmel | 935 | Official jurisdiction boundary | Official City of Carmel public tree inventory ArcGIS layer integrated with server-side blossom filtering on `COMM_NAME` and clipped to the official jurisdiction boundary |
+| ✅ | Clarksville | 404 | Official jurisdiction boundary | Official City of Clarksville public TreeKeeper inventory integrated with the official jurisdiction boundary |
+| ✅ | Ferndale | 496 | Official jurisdiction boundary | Official City of Ferndale public TreeKeeper inventory integrated with the official jurisdiction boundary |
+| ✅ | Kalamazoo | 1,564 | Official jurisdiction boundary | Official City of Kalamazoo public TreeKeeper inventory integrated with the official jurisdiction boundary |
+| ✅ | Madison | 3,561 | Official jurisdiction boundary | Official City of Madison public TreeKeeper inventory integrated with the official jurisdiction boundary |
+| ✅ | Maitland | 202 | Official jurisdiction boundary | Official City of Maitland public tree inventory ArcGIS layer integrated with server-side blossom filtering on `COMMON` and clipped to the official jurisdiction boundary |
+| ✅ | Michigan City | 526 | Official jurisdiction boundary | Official City of Michigan City public tree inventory ArcGIS layer integrated with server-side blossom filtering on `COMMON_NAME` and clipped to the official jurisdiction boundary |
+| ✅ | Springfield | 603 | Official jurisdiction boundary | Official City of Springfield public TreeKeeper inventory integrated with the official jurisdiction boundary |
+| ✅ | Westfield | 1,462 | Official jurisdiction boundary | Official City of Westfield public tree inventory ArcGIS layer integrated with server-side blossom filtering on `Tree` and clipped to the official jurisdiction boundary |
 | ✅ | Boston | 4,488 | Official jurisdiction boundary | Official Analyze Boston `BPRD Trees` download integrated; includes both street and park trees published by Boston Parks and Recreation |
 | ✅ | Belmont | 221 | Official jurisdiction boundary | Official Town of Belmont public TreeKeeper inventory integrated with the official jurisdiction boundary |
 | ✅ | Brookline | 1,064 | Official jurisdiction boundary | Official Town of Brookline public tree inventory ArcGIS layer integrated with the official jurisdiction boundary |
@@ -350,7 +360,7 @@ These cities are not in `A2` yet because the official point-tree source is still
 | ⚠️ | Carnation | Not found yet | ArcGIS public search and city-site spot-check did not confirm an official public single-tree inventory |
 | ⚠️ | Duvall | False positive search hit | ArcGIS search result found a Lower Columbia dams layer, not a City of Duvall tree inventory |
 | ⚠️ | Enumclaw | Not found yet | ArcGIS public search and city-site spot-check did not confirm an official public single-tree inventory |
-| ⚠️ | Ferndale | False positive search hit | Public ArcGIS result in this round was City of Ferndale, Michigan tree data, not a verified Ferndale, WA city inventory |
+| ⚠️ | Ferndale, WA | False positive search hit | Public ArcGIS result in this round was City of Ferndale, Michigan tree data, not a verified Ferndale, WA city inventory |
 | ⚠️ | Clyde Hill | Not found yet | ArcGIS public search and city-site spot-check did not confirm an official public single-tree inventory |
 | ⚠️ | Granite Falls | Not found yet | ArcGIS public search and city-site spot-check did not confirm an official public single-tree inventory |
 | ⚠️ | Hunts Point | Not found yet | ArcGIS public search and city-site spot-check did not confirm an official public single-tree inventory |

@@ -1,54 +1,42 @@
 {
-  "generated_at": "2026-03-28T04:21:25+00:00",
+  "generated_at": "2026-03-12T23:05:34+00:00",
   "path": "/data/trees.render.v1.pmtiles",
   "vector_layer": "trees",
   "minzoom": 8,
   "maxzoom": 15,
-  "tree_count": 793364,
+  "tree_count": 599318,
   "bounds": [
     [
-      -124.04983075280423,
+      -123.39426089582695,
       5.088887490341627e-14
     ],
     [
       0.7949803702920468,
-      55.203779387787634
+      51.55035300321103
     ]
   ],
   "regions": [
-    "ab",
     "az",
     "bc",
     "ca",
     "co",
     "ct",
     "dc",
-    "fl",
     "ga",
     "il",
-    "in",
     "ma",
-    "mb",
     "md",
     "mi",
-    "nb",
-    "nc",
-    "nh",
     "nj",
-    "ns",
     "nv",
     "ny",
     "on",
     "or",
     "pa",
-    "pe",
     "qc",
-    "ri",
-    "sk",
     "tx",
     "ut",
     "va",
-    "vt",
     "wa",
     "wi"
   ]

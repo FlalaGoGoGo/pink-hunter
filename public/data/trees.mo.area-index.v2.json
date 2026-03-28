@@ -1,0 +1,251 @@
+{
+  "generated_at": "2026-03-28T05:14:23.962918+00:00",
+  "region": "mo",
+  "strategy": "area_shard",
+  "items": [
+    {
+      "jurisdiction": "Brentwood",
+      "slug": "brentwood",
+      "display_name": "Brentwood",
+      "jurisdiction_type": "city",
+      "state_province": "MO",
+      "country": "United States",
+      "bounds": [
+        [
+          -90.3618704121,
+          38.606062753381
+        ],
+        [
+          -90.3360067147,
+          38.6291991308
+        ]
+      ],
+      "tree_count": 184,
+      "zip_codes": [
+        "None"
+      ],
+      "species_counts": {
+        "cherry": 85,
+        "plum": 0,
+        "peach": 0,
+        "magnolia": 73,
+        "crabapple": 26
+      },
+      "ownership_counts": {
+        "public": 184,
+        "private": 0,
+        "unknown": 0
+      },
+      "species_ownership_counts": {
+        "cherry": {
+          "public": 85,
+          "private": 0,
+          "unknown": 0
+        },
+        "plum": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        },
+        "peach": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        },
+        "magnolia": {
+          "public": 73,
+          "private": 0,
+          "unknown": 0
+        },
+        "crabapple": {
+          "public": 26,
+          "private": 0,
+          "unknown": 0
+        }
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "brentwood-001",
+          "bounds": [
+            [
+              -90.3618704121,
+              38.606062753381
+            ],
+            [
+              -90.3360067147,
+              38.6291991308
+            ]
+          ],
+          "data_path": "/data/trees.mo.area.brentwood.v2.geojson",
+          "tree_count": 184,
+          "ownership_counts": {
+            "public": 184,
+            "private": 0,
+            "unknown": 0
+          },
+          "species_counts": {
+            "cherry": 85,
+            "plum": 0,
+            "peach": 0,
+            "magnolia": 73,
+            "crabapple": 26
+          },
+          "species_ownership_counts": {
+            "cherry": {
+              "public": 85,
+              "private": 0,
+              "unknown": 0
+            },
+            "plum": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            },
+            "peach": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            },
+            "magnolia": {
+              "public": 73,
+              "private": 0,
+              "unknown": 0
+            },
+            "crabapple": {
+              "public": 26,
+              "private": 0,
+              "unknown": 0
+            }
+          },
+          "raw_bytes": 95076,
+          "gzip_bytes": 4250
+        }
+      ]
+    },
+    {
+      "jurisdiction": "Springfield",
+      "slug": "springfield",
+      "display_name": "Springfield",
+      "jurisdiction_type": "city",
+      "state_province": "MO",
+      "country": "United States",
+      "bounds": [
+        [
+          -93.3583406791,
+          37.115506875624
+        ],
+        [
+          -93.217398670836,
+          37.2581470317
+        ]
+      ],
+      "tree_count": 603,
+      "zip_codes": [
+        "None"
+      ],
+      "species_counts": {
+        "cherry": 394,
+        "plum": 3,
+        "peach": 0,
+        "magnolia": 57,
+        "crabapple": 149
+      },
+      "ownership_counts": {
+        "public": 603,
+        "private": 0,
+        "unknown": 0
+      },
+      "species_ownership_counts": {
+        "cherry": {
+          "public": 394,
+          "private": 0,
+          "unknown": 0
+        },
+        "plum": {
+          "public": 3,
+          "private": 0,
+          "unknown": 0
+        },
+        "peach": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        },
+        "magnolia": {
+          "public": 57,
+          "private": 0,
+          "unknown": 0
+        },
+        "crabapple": {
+          "public": 149,
+          "private": 0,
+          "unknown": 0
+        }
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "springfield-001",
+          "bounds": [
+            [
+              -93.3583406791,
+              37.115506875624
+            ],
+            [
+              -93.217398670836,
+              37.2581470317
+            ]
+          ],
+          "data_path": "/data/trees.mo.area.springfield.v2.geojson",
+          "tree_count": 603,
+          "ownership_counts": {
+            "public": 603,
+            "private": 0,
+            "unknown": 0
+          },
+          "species_counts": {
+            "cherry": 394,
+            "plum": 3,
+            "peach": 0,
+            "magnolia": 57,
+            "crabapple": 149
+          },
+          "species_ownership_counts": {
+            "cherry": {
+              "public": 394,
+              "private": 0,
+              "unknown": 0
+            },
+            "plum": {
+              "public": 3,
+              "private": 0,
+              "unknown": 0
+            },
+            "peach": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            },
+            "magnolia": {
+              "public": 57,
+              "private": 0,
+              "unknown": 0
+            },
+            "crabapple": {
+              "public": 149,
+              "private": 0,
+              "unknown": 0
+            }
+          },
+          "raw_bytes": 310900,
+          "gzip_bytes": 13589
+        }
+      ]
+    }
+  ]
+}

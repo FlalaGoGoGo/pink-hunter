@@ -202,6 +202,7 @@ Live domain:
 <summary>Florida</summary>
 
 - Cape Coral
+- Maitland
 - Winter Park
 
 </details>
@@ -218,8 +219,41 @@ Live domain:
 <summary>Indiana</summary>
 
 - Bloomington
+- Carmel
+- Michigan City
 - Pendleton
 - Valparaiso
+- Westfield
+
+</details>
+
+<details>
+<summary>Michigan</summary>
+
+- Ferndale
+- Kalamazoo
+
+</details>
+
+<details>
+<summary>Missouri</summary>
+
+- Brentwood
+- Springfield
+
+</details>
+
+<details>
+<summary>Tennessee</summary>
+
+- Clarksville
+
+</details>
+
+<details>
+<summary>Wisconsin</summary>
+
+- Madison
 
 </details>
 
@@ -631,6 +665,7 @@ Live domain:
 <summary>Florida</summary>
 
 - Cape Coral: [Tree Inventory](https://capeims.capecoral.gov/arcgis/rest/services/GISDATA/Tree_Inventory/MapServer/0)
+- Maitland: [Tree Inventory](https://services8.arcgis.com/q4Vpy7r3KXnWcTBW/arcgis/rest/services/Tree_Inventory/FeatureServer/0)
 - Winter Park: [TreeKeeper Inventory](https://winterparkfl.treekeepersoftware.com/)
 
 </details>
@@ -647,8 +682,41 @@ Live domain:
 <summary>Indiana</summary>
 
 - Bloomington: [TreeKeeper Inventory](https://bloomingtonin.treekeepersoftware.com/)
+- Carmel: [Urban Forestry / Tree Inventory](https://www.carmel.in.gov/government/departments-services/community-services/urban-forestry)
+- Michigan City: [Tree Inventory](https://www.arcgis.com/home/item.html?id=85b7a9bdcb904f77b6815680b7c166de)
 - Pendleton: [TreeKeeper Inventory](https://pendletonin.treekeepersoftware.com/)
 - Valparaiso: [TreeKeeper Inventory](https://valparaisoin.treekeepersoftware.com/)
+- Westfield: [Tree Inventory](https://maps.westfield.in.gov/arcgis/rest/services/Parks/TreeInventory/MapServer/0)
+
+</details>
+
+<details>
+<summary>Michigan</summary>
+
+- Ferndale: [Public Trees Map](https://ferndalemi.treekeepersoftware.com/)
+- Kalamazoo: [TreeKeeper Inventory](https://kalamazoomi.treekeepersoftware.com/)
+
+</details>
+
+<details>
+<summary>Missouri</summary>
+
+- Brentwood: [Tree Inventory](https://brentwoodmo.treekeepersoftware.com/)
+- Springfield: [TreeKeeper Inventory](https://springfieldmo.treekeepersoftware.com/)
+
+</details>
+
+<details>
+<summary>Tennessee</summary>
+
+- Clarksville: [TreeKeeper Inventory](https://clarksvilletn.treekeepersoftware.com/)
+
+</details>
+
+<details>
+<summary>Wisconsin</summary>
+
+- Madison: [Tree Inventory](https://www.cityofmadison.com/streets/urban-forestry/tree-inventory)
 
 </details>
 

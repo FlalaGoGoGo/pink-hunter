@@ -1,28 +1,13 @@
 {
   "version": "v2",
-  "generated_at": "2026-03-28T04:06:30.423424+00:00",
+  "generated_at": "2026-03-28T05:21:40.296288+00:00",
   "default_region": "wa",
   "coverage_rule": "official_jurisdiction_boundary_only",
   "coverage_skipped_cities": [
     "Denver",
     "Erie",
     "Fort Collins",
-    "Wheat Ridge",
-    "Cudahy WI",
-    "Fox Point",
-    "Franklin",
-    "Glendale WI",
-    "Greendale",
-    "Greenfield",
-    "Hales Corners",
-    "Milwaukee",
-    "Oak Creek",
-    "Shorewood",
-    "South Milwaukee",
-    "St. Francis",
-    "Wauwatosa",
-    "West Allis",
-    "Whitefish Bay"
+    "Wheat Ridge"
   ],
   "coverage_official_unavailable_cities": [
     "Phoenix",
@@ -117,16 +102,16 @@
     "Yarrow Point"
   ],
   "coverage_official_unavailable_skipped_cities": [],
-  "source_count": 283,
-  "total_records": 3685558,
-  "included_records": 793364,
-  "unknown_records": 1691002,
+  "source_count": 292,
+  "total_records": 3865215,
+  "included_records": 803301,
+  "unknown_records": 1830314,
   "species_counts": {
-    "cherry": 249403,
-    "plum": 117962,
-    "peach": 8016,
-    "magnolia": 180907,
-    "crabapple": 237076
+    "cherry": 251957,
+    "plum": 118550,
+    "peach": 8028,
+    "magnolia": 181542,
+    "crabapple": 243224
   },
   "regions": [
     {
@@ -606,31 +591,32 @@
         ],
         [
           -81.310044498,
-          28.629431489
+          28.63999354166751
         ]
       ],
       "data_path": null,
-      "tree_count": 1685,
-      "city_count": 2,
+      "tree_count": 1887,
+      "city_count": 3,
       "cities": [
         "Cape Coral",
+        "Maitland",
         "Winter Park"
       ],
       "species_counts": {
-        "cherry": 72,
+        "cherry": 74,
         "plum": 534,
         "peach": 6,
-        "magnolia": 977,
+        "magnolia": 1177,
         "crabapple": 96
       },
       "ownership_groups": [
         "public"
       ],
-      "raw_bytes": 851611,
-      "gzip_bytes": 34221,
+      "raw_bytes": 959450,
+      "gzip_bytes": 39759,
       "warning_level": "none",
-      "aggregate_raw_bytes": 851611,
-      "aggregate_gzip_bytes": 34221,
+      "aggregate_raw_bytes": 959450,
+      "aggregate_gzip_bytes": 39759,
       "aggregate_warning_level": "none",
       "largest_shard_raw_bytes": 491802,
       "largest_shard_gzip_bytes": 17044,
@@ -638,8 +624,8 @@
       "area_split": {
         "strategy": "area_shard",
         "index_path": "/data/trees.fl.area-index.v2.json",
-        "area_count": 2,
-        "shard_count": 2,
+        "area_count": 3,
+        "shard_count": 3,
         "ready": true
       },
       "largest_shard_warning_level": "none",
@@ -760,41 +746,44 @@
         ],
         [
           -85.7294173647,
-          41.510457186638
+          41.752952019315515
         ]
       ],
       "data_path": null,
-      "tree_count": 2128,
-      "city_count": 3,
+      "tree_count": 5051,
+      "city_count": 6,
       "cities": [
         "Bloomington",
+        "Carmel",
+        "Michigan City",
         "Pendleton",
-        "Valparaiso"
+        "Valparaiso",
+        "Westfield"
       ],
       "species_counts": {
-        "cherry": 784,
-        "plum": 9,
-        "peach": 16,
-        "magnolia": 145,
-        "crabapple": 1174
+        "cherry": 2147,
+        "plum": 10,
+        "peach": 28,
+        "magnolia": 273,
+        "crabapple": 2593
       },
       "ownership_groups": [
         "public"
       ],
-      "raw_bytes": 1120235,
-      "gzip_bytes": 45649,
+      "raw_bytes": 2556959,
+      "gzip_bytes": 111847,
       "warning_level": "none",
-      "aggregate_raw_bytes": 1120235,
-      "aggregate_gzip_bytes": 45649,
+      "aggregate_raw_bytes": 2556959,
+      "aggregate_gzip_bytes": 111847,
       "aggregate_warning_level": "none",
-      "largest_shard_raw_bytes": 636230,
-      "largest_shard_gzip_bytes": 24728,
-      "largest_shard_area": "Bloomington",
+      "largest_shard_raw_bytes": 718849,
+      "largest_shard_gzip_bytes": 30576,
+      "largest_shard_area": "Westfield",
       "area_split": {
         "strategy": "area_shard",
         "index_path": "/data/trees.in.area-index.v2.json",
-        "area_count": 3,
-        "shard_count": 3,
+        "area_count": 6,
+        "shard_count": 6,
         "ready": true
       },
       "largest_shard_warning_level": "none",
@@ -976,36 +965,38 @@
           42.22790595456471
         ],
         [
-          -83.30205975924032,
+          -83.1100286596,
           43.02269673718202
         ]
       ],
       "data_path": null,
       "coverage_path": "/data/coverage.mi.v1.geojson",
-      "tree_count": 5848,
-      "city_count": 5,
+      "tree_count": 7908,
+      "city_count": 7,
       "cities": [
         "Ann Arbor",
         "Dearborn Heights",
         "East Lansing",
+        "Ferndale",
         "Grand Rapids",
+        "Kalamazoo",
         "Novi"
       ],
       "species_counts": {
-        "cherry": 602,
-        "plum": 474,
+        "cherry": 939,
+        "plum": 940,
         "peach": 13,
-        "magnolia": 88,
-        "crabapple": 4671
+        "magnolia": 129,
+        "crabapple": 5887
       },
       "ownership_groups": [
         "public"
       ],
-      "raw_bytes": 2851265,
-      "gzip_bytes": 144357,
+      "raw_bytes": 3842806,
+      "gzip_bytes": 183063,
       "warning_level": "none",
-      "aggregate_raw_bytes": 2851265,
-      "aggregate_gzip_bytes": 144357,
+      "aggregate_raw_bytes": 3842806,
+      "aggregate_gzip_bytes": 183063,
       "aggregate_warning_level": "none",
       "largest_shard_raw_bytes": 1791964,
       "largest_shard_gzip_bytes": 93485,
@@ -1015,10 +1006,60 @@
       "area_split": {
         "strategy": "area_shard",
         "index_path": "/data/trees.mi.area-index.v2.json",
-        "area_count": 5,
-        "shard_count": 5,
+        "area_count": 7,
+        "shard_count": 7,
         "ready": true
       }
+    },
+    {
+      "id": "mo",
+      "label": "MO",
+      "available": true,
+      "bounds": [
+        [
+          -93.3583406791,
+          37.115506875624
+        ],
+        [
+          -90.3360067147,
+          38.6291991308
+        ]
+      ],
+      "data_path": null,
+      "tree_count": 787,
+      "city_count": 2,
+      "cities": [
+        "Brentwood",
+        "Springfield"
+      ],
+      "species_counts": {
+        "cherry": 479,
+        "plum": 3,
+        "peach": 0,
+        "magnolia": 130,
+        "crabapple": 175
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "raw_bytes": 405976,
+      "gzip_bytes": 17839,
+      "warning_level": "none",
+      "aggregate_raw_bytes": 405976,
+      "aggregate_gzip_bytes": 17839,
+      "aggregate_warning_level": "none",
+      "largest_shard_raw_bytes": 310900,
+      "largest_shard_gzip_bytes": 13589,
+      "largest_shard_area": "Springfield",
+      "area_split": {
+        "strategy": "area_shard",
+        "index_path": "/data/trees.mo.area-index.v2.json",
+        "area_count": 2,
+        "shard_count": 2,
+        "ready": true
+      },
+      "largest_shard_warning_level": "none",
+      "coverage_path": "/data/coverage.mo.v1.geojson"
     },
     {
       "id": "nb",
@@ -1770,6 +1811,55 @@
       "coverage_path": "/data/coverage.sk.v1.geojson"
     },
     {
+      "id": "tn",
+      "label": "TN",
+      "available": true,
+      "bounds": [
+        [
+          -87.435210069,
+          36.499087379
+        ],
+        [
+          -87.234989673,
+          36.633051346
+        ]
+      ],
+      "data_path": null,
+      "tree_count": 404,
+      "city_count": 1,
+      "cities": [
+        "Clarksville"
+      ],
+      "species_counts": {
+        "cherry": 166,
+        "plum": 118,
+        "peach": 0,
+        "magnolia": 110,
+        "crabapple": 10
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "raw_bytes": 201432,
+      "gzip_bytes": 7890,
+      "warning_level": "none",
+      "aggregate_raw_bytes": 201432,
+      "aggregate_gzip_bytes": 7890,
+      "aggregate_warning_level": "none",
+      "largest_shard_raw_bytes": 201432,
+      "largest_shard_gzip_bytes": 7890,
+      "largest_shard_area": "Clarksville",
+      "area_split": {
+        "strategy": "area_shard",
+        "index_path": "/data/trees.tn.area-index.v2.json",
+        "area_count": 1,
+        "shard_count": 1,
+        "ready": true
+      },
+      "largest_shard_warning_level": "none",
+      "coverage_path": "/data/coverage.tn.v1.geojson"
+    },
+    {
       "id": "tx",
       "label": "TX",
       "available": true,
@@ -2061,7 +2151,7 @@
       "available": true,
       "bounds": [
         [
-          -88.06527167548244,
+          -89.5590808139,
           42.86132258425465
         ],
         [
@@ -2070,8 +2160,8 @@
         ]
       ],
       "data_path": null,
-      "tree_count": 1279,
-      "city_count": 15,
+      "tree_count": 4840,
+      "city_count": 16,
       "cities": [
         "Cudahy WI",
         "Fox Point",
@@ -2080,6 +2170,7 @@
         "Greendale",
         "Greenfield",
         "Hales Corners",
+        "Madison",
         "Milwaukee",
         "Oak Creek",
         "Shorewood",
@@ -2090,33 +2181,33 @@
         "Whitefish Bay"
       ],
       "species_counts": {
-        "cherry": 1,
+        "cherry": 208,
         "plum": 0,
         "peach": 1,
-        "magnolia": 95,
-        "crabapple": 1182
+        "magnolia": 121,
+        "crabapple": 4510
       },
       "ownership_groups": [
         "public"
       ],
-      "raw_bytes": 641323,
-      "gzip_bytes": 35629,
+      "raw_bytes": 2344279,
+      "gzip_bytes": 101672,
       "warning_level": "none",
-      "aggregate_raw_bytes": 641323,
-      "aggregate_gzip_bytes": 35629,
+      "aggregate_raw_bytes": 2344279,
+      "aggregate_gzip_bytes": 101672,
       "aggregate_warning_level": "none",
-      "largest_shard_raw_bytes": 340439,
-      "largest_shard_gzip_bytes": 16670,
-      "largest_shard_area": "Milwaukee",
+      "largest_shard_raw_bytes": 1702956,
+      "largest_shard_gzip_bytes": 66043,
+      "largest_shard_area": "Madison",
       "area_split": {
         "strategy": "area_shard",
         "index_path": "/data/trees.wi.area-index.v2.json",
-        "area_count": 15,
-        "shard_count": 15,
+        "area_count": 16,
+        "shard_count": 16,
         "ready": true
       },
       "largest_shard_warning_level": "none",
-      "coverage_path": null
+      "coverage_path": "/data/coverage.wi.v1.geojson"
     }
   ],
   "areas": [
@@ -3857,6 +3948,20 @@
       "state_province": "FL"
     },
     {
+      "jurisdiction": "Maitland",
+      "region": "fl",
+      "tree_count": 202,
+      "species_counts": {
+        "cherry": 2,
+        "plum": 0,
+        "peach": 0,
+        "magnolia": 200,
+        "crabapple": 0
+      },
+      "jurisdiction_type": "city",
+      "state_province": "FL"
+    },
+    {
       "jurisdiction": "Winter Park",
       "region": "fl",
       "tree_count": 944,
@@ -3969,6 +4074,34 @@
       "state_province": "IN"
     },
     {
+      "jurisdiction": "Carmel",
+      "region": "in",
+      "tree_count": 935,
+      "species_counts": {
+        "cherry": 25,
+        "plum": 1,
+        "peach": 0,
+        "magnolia": 75,
+        "crabapple": 834
+      },
+      "jurisdiction_type": "city",
+      "state_province": "IN"
+    },
+    {
+      "jurisdiction": "Michigan City",
+      "region": "in",
+      "tree_count": 526,
+      "species_counts": {
+        "cherry": 0,
+        "plum": 0,
+        "peach": 12,
+        "magnolia": 53,
+        "crabapple": 461
+      },
+      "jurisdiction_type": "city",
+      "state_province": "IN"
+    },
+    {
       "jurisdiction": "Pendleton",
       "region": "in",
       "tree_count": 170,
@@ -3992,6 +4125,20 @@
         "peach": 13,
         "magnolia": 31,
         "crabapple": 470
+      },
+      "jurisdiction_type": "city",
+      "state_province": "IN"
+    },
+    {
+      "jurisdiction": "Westfield",
+      "region": "in",
+      "tree_count": 1462,
+      "species_counts": {
+        "cherry": 1338,
+        "plum": 0,
+        "peach": 0,
+        "magnolia": 0,
+        "crabapple": 124
       },
       "jurisdiction_type": "city",
       "state_province": "IN"
@@ -4305,6 +4452,20 @@
       "state_province": "MI"
     },
     {
+      "jurisdiction": "Ferndale",
+      "region": "mi",
+      "tree_count": 496,
+      "species_counts": {
+        "cherry": 140,
+        "plum": 1,
+        "peach": 0,
+        "magnolia": 17,
+        "crabapple": 338
+      },
+      "jurisdiction_type": "city",
+      "state_province": "MI"
+    },
+    {
       "jurisdiction": "Grand Rapids",
       "region": "mi",
       "tree_count": 13,
@@ -4314,6 +4475,20 @@
         "peach": 0,
         "magnolia": 1,
         "crabapple": 10
+      },
+      "jurisdiction_type": "city",
+      "state_province": "MI"
+    },
+    {
+      "jurisdiction": "Kalamazoo",
+      "region": "mi",
+      "tree_count": 1564,
+      "species_counts": {
+        "cherry": 197,
+        "plum": 465,
+        "peach": 0,
+        "magnolia": 24,
+        "crabapple": 878
       },
       "jurisdiction_type": "city",
       "state_province": "MI"
@@ -4331,6 +4506,34 @@
       },
       "jurisdiction_type": "city",
       "state_province": "MI"
+    },
+    {
+      "jurisdiction": "Brentwood",
+      "region": "mo",
+      "tree_count": 184,
+      "species_counts": {
+        "cherry": 85,
+        "plum": 0,
+        "peach": 0,
+        "magnolia": 73,
+        "crabapple": 26
+      },
+      "jurisdiction_type": "city",
+      "state_province": "MO"
+    },
+    {
+      "jurisdiction": "Springfield",
+      "region": "mo",
+      "tree_count": 603,
+      "species_counts": {
+        "cherry": 394,
+        "plum": 3,
+        "peach": 0,
+        "magnolia": 57,
+        "crabapple": 149
+      },
+      "jurisdiction_type": "city",
+      "state_province": "MO"
     },
     {
       "jurisdiction": "Fredericton",
@@ -5313,6 +5516,20 @@
       "state_province": "SK"
     },
     {
+      "jurisdiction": "Clarksville",
+      "region": "tn",
+      "tree_count": 404,
+      "species_counts": {
+        "cherry": 166,
+        "plum": 118,
+        "peach": 0,
+        "magnolia": 110,
+        "crabapple": 10
+      },
+      "jurisdiction_type": "city",
+      "state_province": "TN"
+    },
+    {
       "jurisdiction": "Austin",
       "region": "tx",
       "tree_count": 675,
@@ -5971,6 +6188,20 @@
       "state_province": "WI"
     },
     {
+      "jurisdiction": "Madison",
+      "region": "wi",
+      "tree_count": 3561,
+      "species_counts": {
+        "cherry": 207,
+        "plum": 0,
+        "peach": 0,
+        "magnolia": 26,
+        "crabapple": 3328
+      },
+      "jurisdiction_type": "city",
+      "state_province": "WI"
+    },
+    {
       "jurisdiction": "Milwaukee",
       "region": "wi",
       "tree_count": 680,
@@ -6271,6 +6502,15 @@
       "note": "Integrated from the official City of Brampton public tree inventory ArcGIS layer after restricting to city-owned live-tree rows."
     },
     {
+      "name": "TreeKeeper Inventory",
+      "city": "Brentwood",
+      "endpoint": "https://brentwoodmo.treekeepersoftware.com",
+      "last_edit_at": "",
+      "records_fetched": 4180,
+      "records_included": 184,
+      "note": "Integrated from the official City of Brentwood public TreeKeeper inventory."
+    },
+    {
       "name": "Buena Park i-Tree Benefits",
       "city": "Buena Park",
       "endpoint": "https://services2.arcgis.com/yrktbS5Xw87hJQvs/ArcGIS/rest/services/Buena_Park_iTree_Benefits_WFL1/FeatureServer",
@@ -6360,6 +6600,15 @@
       "note": "Integrated from the official City of Cape Coral public tree inventory ArcGIS layer and clipped to the official jurisdiction boundary."
     },
     {
+      "name": "Tree Inventory",
+      "city": "Carmel",
+      "endpoint": "https://www.carmel.in.gov/government/departments-services/community-services/urban-forestry",
+      "last_edit_at": "",
+      "records_fetched": 1654,
+      "records_included": 935,
+      "note": "Integrated from the official City of Carmel public tree inventory ArcGIS layer and clipped to the official jurisdiction boundary."
+    },
+    {
       "name": "OpenData Trees",
       "city": "Charlottesville",
       "endpoint": "https://www.arcgis.com/home/item.html?id=e7c856379492408e9543a25d684b8311",
@@ -6403,6 +6652,15 @@
       "records_fetched": 50,
       "records_included": 50,
       "note": "Integrated from the official City of Citrus Heights urban forestry tree inventory layer and official jurisdiction boundary."
+    },
+    {
+      "name": "TreeKeeper Inventory",
+      "city": "Clarksville",
+      "endpoint": "https://clarksvilletn.treekeepersoftware.com",
+      "last_edit_at": "",
+      "records_fetched": 5814,
+      "records_included": 404,
+      "note": "Integrated from the official City of Clarksville public TreeKeeper inventory."
     },
     {
       "name": "December 2025 Tree Inventory",
@@ -6653,6 +6911,15 @@
       "records_fetched": 12338,
       "records_included": 912,
       "note": "Integrated from the official City of Falls Church public TreeKeeper inventory."
+    },
+    {
+      "name": "TreeKeeper Inventory",
+      "city": "Ferndale",
+      "endpoint": "https://ferndalemi.treekeepersoftware.com",
+      "last_edit_at": "",
+      "records_fetched": 12470,
+      "records_included": 496,
+      "note": "Integrated from the official City of Ferndale public TreeKeeper inventory."
     },
     {
       "name": "Fontana i-Tree Inventory",
@@ -6996,6 +7263,15 @@
       "note": "Integrated from the official City of Johns Creek public Tree Inventory ArcGIS layer using the published species labels."
     },
     {
+      "name": "TreeKeeper Inventory",
+      "city": "Kalamazoo",
+      "endpoint": "https://kalamazoomi.treekeepersoftware.com",
+      "last_edit_at": "",
+      "records_fetched": 35363,
+      "records_included": 1564,
+      "note": "Integrated from the official City of Kalamazoo public TreeKeeper inventory."
+    },
+    {
       "name": "TreeSite",
       "city": "Kamloops",
       "endpoint": "https://maps.kamloops.ca/arcgis/rest/services/OpenData/OpenDataParks/MapServer/12",
@@ -7192,6 +7468,24 @@
       "note": "Integrated from the official City of Lynn public tree inventory ArcGIS layer and official jurisdiction boundary."
     },
     {
+      "name": "TreeKeeper Inventory",
+      "city": "Madison",
+      "endpoint": "https://madisonwi.treekeepersoftware.com",
+      "last_edit_at": "",
+      "records_fetched": 157499,
+      "records_included": 3561,
+      "note": "Integrated from the official City of Madison public TreeKeeper inventory."
+    },
+    {
+      "name": "Tree Inventory",
+      "city": "Maitland",
+      "endpoint": "https://services8.arcgis.com/q4Vpy7r3KXnWcTBW/arcgis/rest/services/Tree_Inventory/FeatureServer/0",
+      "last_edit_at": "2026-03-24T11:44:52.551000+00:00",
+      "records_fetched": 343,
+      "records_included": 202,
+      "note": "Integrated from the official City of Maitland public tree inventory ArcGIS layer and clipped to the official jurisdiction boundary."
+    },
+    {
       "name": "Manchester Trees 2022",
       "city": "Manchester",
       "endpoint": "https://www.arcgis.com/home/item.html?id=880d1fd2f9404a0381814565f5ee4cd7",
@@ -7235,6 +7529,15 @@
       "records_fetched": 1362,
       "records_included": 677,
       "note": "Integrated from the official City of Medicine Hat public tree inventory ArcGIS layer after restricting to living rows."
+    },
+    {
+      "name": "Tree Inventory",
+      "city": "Michigan City",
+      "endpoint": "https://www.arcgis.com/home/item.html?id=85b7a9bdcb904f77b6815680b7c166de",
+      "last_edit_at": "2025-08-20T18:35:42.259000+00:00",
+      "records_fetched": 784,
+      "records_included": 526,
+      "note": "Integrated from the official City of Michigan City public tree inventory ArcGIS layer and clipped to the official jurisdiction boundary."
     },
     {
       "name": "Municipal Tree Inventory",
@@ -8175,10 +8478,10 @@
     {
       "name": "TreeKeeper Inventory",
       "city": "Springfield",
-      "endpoint": "https://springfieldma.treekeepersoftware.com",
+      "endpoint": "https://springfieldmo.treekeepersoftware.com",
       "last_edit_at": "",
-      "records_fetched": 49412,
-      "records_included": 1590,
+      "records_fetched": 11123,
+      "records_included": 603,
       "note": "Integrated from the official City of Springfield public TreeKeeper inventory."
     },
     {
@@ -8491,6 +8794,15 @@
       "records_fetched": 162,
       "records_included": 108,
       "note": "Integrated from the official Village of Westchester public tree inventory ArcGIS layer and clipped to the official jurisdiction boundary."
+    },
+    {
+      "name": "Tree Inventory",
+      "city": "Westfield",
+      "endpoint": "https://maps.westfield.in.gov/arcgis/rest/services/Parks/TreeInventory/MapServer/0",
+      "last_edit_at": "",
+      "records_fetched": 1462,
+      "records_included": 1462,
+      "note": "Integrated from the official City of Westfield public tree inventory ArcGIS layer and clipped to the official jurisdiction boundary."
     },
     {
       "name": "TreeKeeper Inventory",

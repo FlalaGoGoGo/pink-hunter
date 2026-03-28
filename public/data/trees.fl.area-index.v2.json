@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-03-28T04:05:19.503021+00:00",
+  "generated_at": "2026-03-28T05:14:23.962918+00:00",
   "region": "fl",
   "strategy": "area_shard",
   "items": [
@@ -127,6 +127,129 @@
           },
           "raw_bytes": 359809,
           "gzip_bytes": 17177
+        }
+      ]
+    },
+    {
+      "jurisdiction": "Maitland",
+      "slug": "maitland",
+      "display_name": "Maitland",
+      "jurisdiction_type": "city",
+      "state_province": "FL",
+      "country": "United States",
+      "bounds": [
+        [
+          -81.40745644560364,
+          28.612154372055777
+        ],
+        [
+          -81.32876262130779,
+          28.63999354166751
+        ]
+      ],
+      "tree_count": 202,
+      "zip_codes": [
+        "32751",
+        "32810"
+      ],
+      "species_counts": {
+        "cherry": 2,
+        "plum": 0,
+        "peach": 0,
+        "magnolia": 200,
+        "crabapple": 0
+      },
+      "ownership_counts": {
+        "public": 202,
+        "private": 0,
+        "unknown": 0
+      },
+      "species_ownership_counts": {
+        "cherry": {
+          "public": 2,
+          "private": 0,
+          "unknown": 0
+        },
+        "plum": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        },
+        "peach": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        },
+        "magnolia": {
+          "public": 200,
+          "private": 0,
+          "unknown": 0
+        },
+        "crabapple": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        }
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "maitland-001",
+          "bounds": [
+            [
+              -81.40745644560364,
+              28.612154372055777
+            ],
+            [
+              -81.32876262130779,
+              28.63999354166751
+            ]
+          ],
+          "data_path": "/data/trees.fl.area.maitland.v2.geojson",
+          "tree_count": 202,
+          "ownership_counts": {
+            "public": 202,
+            "private": 0,
+            "unknown": 0
+          },
+          "species_counts": {
+            "cherry": 2,
+            "plum": 0,
+            "peach": 0,
+            "magnolia": 200,
+            "crabapple": 0
+          },
+          "species_ownership_counts": {
+            "cherry": {
+              "public": 2,
+              "private": 0,
+              "unknown": 0
+            },
+            "plum": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            },
+            "peach": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            },
+            "magnolia": {
+              "public": 200,
+              "private": 0,
+              "unknown": 0
+            },
+            "crabapple": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            }
+          },
+          "raw_bytes": 107839,
+          "gzip_bytes": 5538
         }
       ]
     },

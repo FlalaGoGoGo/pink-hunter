@@ -29,7 +29,6 @@ import tempfile
 import time
 import urllib.parse
 import urllib.request
-import xml.etree.ElementTree as ET
 import zipfile
 from collections import Counter
 from pathlib import Path
@@ -61,6 +60,14 @@ def _require_pyproj() -> tuple[Any, Any]:
     except ImportError as exc:  # pragma: no cover - runtime dependency guard
         raise RuntimeError(_DEPENDENCY_ERROR) from exc
     return crs_class, transformer_class
+
+
+def _require_element_tree() -> Any:
+    try:
+        import xml.etree.ElementTree as element_tree_module
+    except ImportError as exc:  # pragma: no cover - runtime dependency guard
+        raise RuntimeError(_DEPENDENCY_ERROR) from exc
+    return element_tree_module
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -224,6 +231,7 @@ REGION_LABELS: dict[str, str] = {
     "ma": "MA",
     "mb": "MB",
     "md": "MD",
+    "mo": "MO",
     "nb": "NB",
     "nc": "NC",
     "nh": "NH",
@@ -238,6 +246,7 @@ REGION_LABELS: dict[str, str] = {
     "qc": "QC",
     "ri": "RI",
     "sk": "SK",
+    "tn": "TN",
     "tx": "TX",
     "ut": "UT",
     "va": "VA",
@@ -1419,14 +1428,15 @@ def read_xlsx_shared_strings(workbook: zipfile.ZipFile) -> list[str]:
         return []
 
     namespace = {"m": "http://schemas.openxmlformats.org/spreadsheetml/2006/main"}
-    root = ET.fromstring(workbook.read(shared_strings_path))
+    et = _require_element_tree()
+    root = et.fromstring(workbook.read(shared_strings_path))
     values: list[str] = []
     for item in root.findall("m:si", namespace):
         values.append("".join(text_node.text or "" for text_node in item.findall(".//m:t", namespace)))
     return values
 
 
-def read_xlsx_cell_text(cell: ET.Element, shared_strings: list[str]) -> str:
+def read_xlsx_cell_text(cell: Any, shared_strings: list[str]) -> str:
     namespace = {"m": "http://schemas.openxmlformats.org/spreadsheetml/2006/main"}
     cell_type = cell.attrib.get("t")
     if cell_type == "inlineStr":
@@ -1453,8 +1463,9 @@ def load_xlsx_sheet_rows(payload: bytes, sheet_name: str) -> list[dict[str, str]
     }
     shared_strings = read_xlsx_shared_strings(workbook)
 
-    workbook_xml = ET.fromstring(workbook.read("xl/workbook.xml"))
-    rels_xml = ET.fromstring(workbook.read("xl/_rels/workbook.xml.rels"))
+    et = _require_element_tree()
+    workbook_xml = et.fromstring(workbook.read("xl/workbook.xml"))
+    rels_xml = et.fromstring(workbook.read("xl/_rels/workbook.xml.rels"))
     rel_targets = {rel.attrib["Id"]: rel.attrib["Target"] for rel in rels_xml}
 
     sheet_target: str | None = None
@@ -1473,7 +1484,7 @@ def load_xlsx_sheet_rows(payload: bytes, sheet_name: str) -> list[dict[str, str]
     if not normalized_target.startswith("xl/"):
         normalized_target = f"xl/{normalized_target}"
 
-    worksheet = ET.fromstring(workbook.read(normalized_target))
+    worksheet = et.fromstring(workbook.read(normalized_target))
     sheet_data = worksheet.find("m:sheetData", namespace)
     if sheet_data is None:
         return []
@@ -3111,6 +3122,7 @@ REGION_TO_STATE_FIPS: dict[str, str] = {
     "ma": "25",
     "md": "24",
     "mi": "26",
+    "mo": "29",
     "nh": "33",
     "nc": "37",
     "nj": "34",
@@ -3119,11 +3131,13 @@ REGION_TO_STATE_FIPS: dict[str, str] = {
     "or": "41",
     "pa": "42",
     "ri": "44",
+    "tn": "47",
     "tx": "48",
     "ut": "49",
     "va": "51",
     "vt": "50",
     "wa": "53",
+    "wi": "55",
 }
 
 
