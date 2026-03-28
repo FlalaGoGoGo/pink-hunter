@@ -1,0 +1,256 @@
+{
+  "generated_at": "2026-03-28T04:05:19.503021+00:00",
+  "region": "fl",
+  "strategy": "area_shard",
+  "items": [
+    {
+      "jurisdiction": "Cape Coral",
+      "slug": "cape-coral",
+      "display_name": "Cape Coral",
+      "jurisdiction_type": "city",
+      "state_province": "FL",
+      "country": "United States",
+      "bounds": [
+        [
+          -82.05383783137461,
+          26.542249808728343
+        ],
+        [
+          -81.91483946109402,
+          26.704265110786256
+        ]
+      ],
+      "tree_count": 741,
+      "zip_codes": [
+        "33904",
+        "33909",
+        "33914",
+        "33990",
+        "33991",
+        "33993"
+      ],
+      "species_counts": {
+        "cherry": 0,
+        "plum": 523,
+        "peach": 0,
+        "magnolia": 123,
+        "crabapple": 95
+      },
+      "ownership_counts": {
+        "public": 741,
+        "private": 0,
+        "unknown": 0
+      },
+      "species_ownership_counts": {
+        "cherry": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        },
+        "plum": {
+          "public": 523,
+          "private": 0,
+          "unknown": 0
+        },
+        "peach": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        },
+        "magnolia": {
+          "public": 123,
+          "private": 0,
+          "unknown": 0
+        },
+        "crabapple": {
+          "public": 95,
+          "private": 0,
+          "unknown": 0
+        }
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "cape-coral-001",
+          "bounds": [
+            [
+              -82.05383783137461,
+              26.542249808728343
+            ],
+            [
+              -81.91483946109402,
+              26.704265110786256
+            ]
+          ],
+          "data_path": "/data/trees.fl.area.cape-coral.v2.geojson",
+          "tree_count": 741,
+          "ownership_counts": {
+            "public": 741,
+            "private": 0,
+            "unknown": 0
+          },
+          "species_counts": {
+            "cherry": 0,
+            "plum": 523,
+            "peach": 0,
+            "magnolia": 123,
+            "crabapple": 95
+          },
+          "species_ownership_counts": {
+            "cherry": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            },
+            "plum": {
+              "public": 523,
+              "private": 0,
+              "unknown": 0
+            },
+            "peach": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            },
+            "magnolia": {
+              "public": 123,
+              "private": 0,
+              "unknown": 0
+            },
+            "crabapple": {
+              "public": 95,
+              "private": 0,
+              "unknown": 0
+            }
+          },
+          "raw_bytes": 359809,
+          "gzip_bytes": 17177
+        }
+      ]
+    },
+    {
+      "jurisdiction": "Winter Park",
+      "slug": "winter-park",
+      "display_name": "Winter Park",
+      "jurisdiction_type": "city",
+      "state_province": "FL",
+      "country": "United States",
+      "bounds": [
+        [
+          -81.385218233,
+          28.569134758
+        ],
+        [
+          -81.310044498,
+          28.629431489
+        ]
+      ],
+      "tree_count": 944,
+      "zip_codes": [
+        "None"
+      ],
+      "species_counts": {
+        "cherry": 72,
+        "plum": 11,
+        "peach": 6,
+        "magnolia": 854,
+        "crabapple": 1
+      },
+      "ownership_counts": {
+        "public": 944,
+        "private": 0,
+        "unknown": 0
+      },
+      "species_ownership_counts": {
+        "cherry": {
+          "public": 72,
+          "private": 0,
+          "unknown": 0
+        },
+        "plum": {
+          "public": 11,
+          "private": 0,
+          "unknown": 0
+        },
+        "peach": {
+          "public": 6,
+          "private": 0,
+          "unknown": 0
+        },
+        "magnolia": {
+          "public": 854,
+          "private": 0,
+          "unknown": 0
+        },
+        "crabapple": {
+          "public": 1,
+          "private": 0,
+          "unknown": 0
+        }
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "winter-park-001",
+          "bounds": [
+            [
+              -81.385218233,
+              28.569134758
+            ],
+            [
+              -81.310044498,
+              28.629431489
+            ]
+          ],
+          "data_path": "/data/trees.fl.area.winter-park.v2.geojson",
+          "tree_count": 944,
+          "ownership_counts": {
+            "public": 944,
+            "private": 0,
+            "unknown": 0
+          },
+          "species_counts": {
+            "cherry": 72,
+            "plum": 11,
+            "peach": 6,
+            "magnolia": 854,
+            "crabapple": 1
+          },
+          "species_ownership_counts": {
+            "cherry": {
+              "public": 72,
+              "private": 0,
+              "unknown": 0
+            },
+            "plum": {
+              "public": 11,
+              "private": 0,
+              "unknown": 0
+            },
+            "peach": {
+              "public": 6,
+              "private": 0,
+              "unknown": 0
+            },
+            "magnolia": {
+              "public": 854,
+              "private": 0,
+              "unknown": 0
+            },
+            "crabapple": {
+              "public": 1,
+              "private": 0,
+              "unknown": 0
+            }
+          },
+          "raw_bytes": 491802,
+          "gzip_bytes": 17044
+        }
+      ]
+    }
+  ]
+}

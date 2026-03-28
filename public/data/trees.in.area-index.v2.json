@@ -1,0 +1,373 @@
+{
+  "generated_at": "2026-03-28T04:05:19.503021+00:00",
+  "region": "in",
+  "strategy": "area_shard",
+  "items": [
+    {
+      "jurisdiction": "Bloomington",
+      "slug": "bloomington",
+      "display_name": "Bloomington",
+      "jurisdiction_type": "city",
+      "state_province": "IN",
+      "country": "United States",
+      "bounds": [
+        [
+          -86.589953741237,
+          39.1217175046
+        ],
+        [
+          -86.4725050593,
+          39.2083121126
+        ]
+      ],
+      "tree_count": 1206,
+      "zip_codes": [
+        "None"
+      ],
+      "species_counts": {
+        "cherry": 476,
+        "plum": 6,
+        "peach": 2,
+        "magnolia": 98,
+        "crabapple": 624
+      },
+      "ownership_counts": {
+        "public": 1206,
+        "private": 0,
+        "unknown": 0
+      },
+      "species_ownership_counts": {
+        "cherry": {
+          "public": 476,
+          "private": 0,
+          "unknown": 0
+        },
+        "plum": {
+          "public": 6,
+          "private": 0,
+          "unknown": 0
+        },
+        "peach": {
+          "public": 2,
+          "private": 0,
+          "unknown": 0
+        },
+        "magnolia": {
+          "public": 98,
+          "private": 0,
+          "unknown": 0
+        },
+        "crabapple": {
+          "public": 624,
+          "private": 0,
+          "unknown": 0
+        }
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "bloomington-001",
+          "bounds": [
+            [
+              -86.589953741237,
+              39.1217175046
+            ],
+            [
+              -86.4725050593,
+              39.2083121126
+            ]
+          ],
+          "data_path": "/data/trees.in.area.bloomington.v2.geojson",
+          "tree_count": 1206,
+          "ownership_counts": {
+            "public": 1206,
+            "private": 0,
+            "unknown": 0
+          },
+          "species_counts": {
+            "cherry": 476,
+            "plum": 6,
+            "peach": 2,
+            "magnolia": 98,
+            "crabapple": 624
+          },
+          "species_ownership_counts": {
+            "cherry": {
+              "public": 476,
+              "private": 0,
+              "unknown": 0
+            },
+            "plum": {
+              "public": 6,
+              "private": 0,
+              "unknown": 0
+            },
+            "peach": {
+              "public": 2,
+              "private": 0,
+              "unknown": 0
+            },
+            "magnolia": {
+              "public": 98,
+              "private": 0,
+              "unknown": 0
+            },
+            "crabapple": {
+              "public": 624,
+              "private": 0,
+              "unknown": 0
+            }
+          },
+          "raw_bytes": 636230,
+          "gzip_bytes": 24728
+        }
+      ]
+    },
+    {
+      "jurisdiction": "Pendleton",
+      "slug": "pendleton",
+      "display_name": "Pendleton",
+      "jurisdiction_type": "city",
+      "state_province": "IN",
+      "country": "United States",
+      "bounds": [
+        [
+          -85.8027610961,
+          39.979636757773
+        ],
+        [
+          -85.7294173647,
+          40.0280244359
+        ]
+      ],
+      "tree_count": 170,
+      "zip_codes": [
+        "None"
+      ],
+      "species_counts": {
+        "cherry": 73,
+        "plum": 0,
+        "peach": 1,
+        "magnolia": 16,
+        "crabapple": 80
+      },
+      "ownership_counts": {
+        "public": 170,
+        "private": 0,
+        "unknown": 0
+      },
+      "species_ownership_counts": {
+        "cherry": {
+          "public": 73,
+          "private": 0,
+          "unknown": 0
+        },
+        "plum": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        },
+        "peach": {
+          "public": 1,
+          "private": 0,
+          "unknown": 0
+        },
+        "magnolia": {
+          "public": 16,
+          "private": 0,
+          "unknown": 0
+        },
+        "crabapple": {
+          "public": 80,
+          "private": 0,
+          "unknown": 0
+        }
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "pendleton-001",
+          "bounds": [
+            [
+              -85.8027610961,
+              39.979636757773
+            ],
+            [
+              -85.7294173647,
+              40.0280244359
+            ]
+          ],
+          "data_path": "/data/trees.in.area.pendleton.v2.geojson",
+          "tree_count": 170,
+          "ownership_counts": {
+            "public": 170,
+            "private": 0,
+            "unknown": 0
+          },
+          "species_counts": {
+            "cherry": 73,
+            "plum": 0,
+            "peach": 1,
+            "magnolia": 16,
+            "crabapple": 80
+          },
+          "species_ownership_counts": {
+            "cherry": {
+              "public": 73,
+              "private": 0,
+              "unknown": 0
+            },
+            "plum": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            },
+            "peach": {
+              "public": 1,
+              "private": 0,
+              "unknown": 0
+            },
+            "magnolia": {
+              "public": 16,
+              "private": 0,
+              "unknown": 0
+            },
+            "crabapple": {
+              "public": 80,
+              "private": 0,
+              "unknown": 0
+            }
+          },
+          "raw_bytes": 88122,
+          "gzip_bytes": 3953
+        }
+      ]
+    },
+    {
+      "jurisdiction": "Valparaiso",
+      "slug": "valparaiso",
+      "display_name": "Valparaiso",
+      "jurisdiction_type": "city",
+      "state_province": "IN",
+      "country": "United States",
+      "bounds": [
+        [
+          -87.103605204734,
+          41.452390984029
+        ],
+        [
+          -87.016273295495,
+          41.510457186638
+        ]
+      ],
+      "tree_count": 752,
+      "zip_codes": [
+        "None"
+      ],
+      "species_counts": {
+        "cherry": 235,
+        "plum": 3,
+        "peach": 13,
+        "magnolia": 31,
+        "crabapple": 470
+      },
+      "ownership_counts": {
+        "public": 752,
+        "private": 0,
+        "unknown": 0
+      },
+      "species_ownership_counts": {
+        "cherry": {
+          "public": 235,
+          "private": 0,
+          "unknown": 0
+        },
+        "plum": {
+          "public": 3,
+          "private": 0,
+          "unknown": 0
+        },
+        "peach": {
+          "public": 13,
+          "private": 0,
+          "unknown": 0
+        },
+        "magnolia": {
+          "public": 31,
+          "private": 0,
+          "unknown": 0
+        },
+        "crabapple": {
+          "public": 470,
+          "private": 0,
+          "unknown": 0
+        }
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "valparaiso-001",
+          "bounds": [
+            [
+              -87.103605204734,
+              41.452390984029
+            ],
+            [
+              -87.016273295495,
+              41.510457186638
+            ]
+          ],
+          "data_path": "/data/trees.in.area.valparaiso.v2.geojson",
+          "tree_count": 752,
+          "ownership_counts": {
+            "public": 752,
+            "private": 0,
+            "unknown": 0
+          },
+          "species_counts": {
+            "cherry": 235,
+            "plum": 3,
+            "peach": 13,
+            "magnolia": 31,
+            "crabapple": 470
+          },
+          "species_ownership_counts": {
+            "cherry": {
+              "public": 235,
+              "private": 0,
+              "unknown": 0
+            },
+            "plum": {
+              "public": 3,
+              "private": 0,
+              "unknown": 0
+            },
+            "peach": {
+              "public": 13,
+              "private": 0,
+              "unknown": 0
+            },
+            "magnolia": {
+              "public": 31,
+              "private": 0,
+              "unknown": 0
+            },
+            "crabapple": {
+              "public": 470,
+              "private": 0,
+              "unknown": 0
+            }
+          },
+          "raw_bytes": 395883,
+          "gzip_bytes": 16968
+        }
+      ]
+    }
+  ]
+}

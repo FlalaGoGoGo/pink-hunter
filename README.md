@@ -192,6 +192,34 @@ Live domain:
 <summary>Colorado</summary>
 
 - Denver
+- Erie
+- Fort Collins
+- Wheat Ridge
+
+</details>
+
+<details>
+<summary>Florida</summary>
+
+- Cape Coral
+- Winter Park
+
+</details>
+
+<details>
+<summary>Illinois</summary>
+
+- Normal
+- Westchester
+
+</details>
+
+<details>
+<summary>Indiana</summary>
+
+- Bloomington
+- Pendleton
+- Valparaiso
 
 </details>
 
@@ -593,6 +621,34 @@ Live domain:
 <summary>Colorado</summary>
 
 - Denver: [Public Tree Inventory](https://opendata-geospatialdenver.hub.arcgis.com/datasets/public-tree-inventory)
+- Erie: [TreeKeeper Inventory](https://erieco.treekeepersoftware.com/)
+- Fort Collins: [TreeKeeper Inventory](https://fortcollinsco.treekeepersoftware.com/)
+- Wheat Ridge: [Tree Inventory](https://cem.pg-cloud.com/wheatridgeco/)
+
+</details>
+
+<details>
+<summary>Florida</summary>
+
+- Cape Coral: [Tree Inventory](https://capeims.capecoral.gov/arcgis/rest/services/GISDATA/Tree_Inventory/MapServer/0)
+- Winter Park: [TreeKeeper Inventory](https://winterparkfl.treekeepersoftware.com/)
+
+</details>
+
+<details>
+<summary>Illinois</summary>
+
+- Normal: [TreeKeeper Inventory](https://normalil.treekeepersoftware.com/)
+- Westchester: [Tree Inventory](https://www.westchester-il.gov/page/tree-inventory)
+
+</details>
+
+<details>
+<summary>Indiana</summary>
+
+- Bloomington: [TreeKeeper Inventory](https://bloomingtonin.treekeepersoftware.com/)
+- Pendleton: [TreeKeeper Inventory](https://pendletonin.treekeepersoftware.com/)
+- Valparaiso: [TreeKeeper Inventory](https://valparaisoin.treekeepersoftware.com/)
 
 </details>
 

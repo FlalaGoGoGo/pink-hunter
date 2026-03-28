@@ -17,7 +17,6 @@ import io
 import shutil
 import time
 import urllib.request
-import requests
 from collections import Counter
 from functools import lru_cache
 from pathlib import Path
@@ -1907,7 +1906,116 @@ EAST_COAST_TREEPLOTTER_CONFIGS: dict[str, dict[str, Any]] = {
     },
 }
 
+MID_SOUTH_TREEKEEPER_CONFIGS: dict[str, dict[str, Any]] = {
+    "Bloomington": {
+        "base_url": "https://bloomingtonin.treekeepersoftware.com",
+        "uid": "pinkhunter-bloomington-in",
+        "region": "in",
+        "source_department": "City of Bloomington",
+        "note": "Integrated from the official City of Bloomington public TreeKeeper inventory.",
+        "use_zip_index": False,
+    },
+    "Erie": {
+        "base_url": "https://erieco.treekeepersoftware.com",
+        "uid": "pinkhunter-erie-co",
+        "region": "co",
+        "source_department": "Town of Erie",
+        "note": "Integrated from the official Town of Erie public TreeKeeper inventory.",
+        "use_zip_index": False,
+    },
+    "Fort Collins": {
+        "base_url": "https://fortcollinsco.treekeepersoftware.com",
+        "uid": "pinkhunter-fort-collins-co",
+        "region": "co",
+        "source_department": "City of Fort Collins",
+        "note": "Integrated from the official City of Fort Collins public TreeKeeper inventory.",
+        "use_zip_index": False,
+    },
+    "Normal": {
+        "base_url": "https://normalil.treekeepersoftware.com",
+        "uid": "pinkhunter-normal-il",
+        "region": "il",
+        "source_department": "Town of Normal",
+        "note": "Integrated from the official Town of Normal public TreeKeeper inventory.",
+        "use_zip_index": False,
+    },
+    "Pendleton": {
+        "base_url": "https://pendletonin.treekeepersoftware.com",
+        "uid": "pinkhunter-pendleton-in",
+        "region": "in",
+        "source_department": "Town of Pendleton",
+        "note": "Integrated from the official Town of Pendleton public TreeKeeper inventory.",
+        "use_zip_index": False,
+    },
+    "Valparaiso": {
+        "base_url": "https://valparaisoin.treekeepersoftware.com",
+        "uid": "pinkhunter-valparaiso-in",
+        "region": "in",
+        "source_department": "City of Valparaiso",
+        "note": "Integrated from the official City of Valparaiso public TreeKeeper inventory.",
+        "use_zip_index": False,
+    },
+    "Winter Park": {
+        "base_url": "https://winterparkfl.treekeepersoftware.com",
+        "uid": "pinkhunter-winter-park-fl",
+        "region": "fl",
+        "source_department": "City of Winter Park",
+        "note": "Integrated from the official City of Winter Park public TreeKeeper inventory.",
+        "use_zip_index": False,
+    },
+}
+
+MID_SOUTH_TREEPLOTTER_CONFIGS: dict[str, dict[str, Any]] = {
+    "Jacksonville": {
+        "folder": "JacksonvilleFL",
+        "landing_url": "https://pg-cloud.com/JacksonvilleFL/",
+        "region": "fl",
+        "source_department": "City of Jacksonville",
+        "ownership_raw": "City of Jacksonville",
+        "note": "Integrated via the official City of Jacksonville public TreePlotter inventory page and official jurisdiction boundary clipping.",
+        "clip_to_boundary": True,
+    },
+    "Wheat Ridge": {
+        "folder": "wheatridgeco",
+        "landing_url": "https://cem.pg-cloud.com/wheatridgeco/",
+        "region": "co",
+        "source_department": "City of Wheat Ridge",
+        "ownership_raw": "City of Wheat Ridge",
+        "note": "Integrated via the official City of Wheat Ridge public TreePlotter inventory page and official jurisdiction boundary clipping.",
+        "clip_to_boundary": True,
+    },
+}
+
 UNCOVERED_STATE_ARCGIS_CONFIGS: dict[str, dict[str, Any]] = {
+    "Cape Coral": {
+        "region": "fl",
+        "layer_url": "https://capeims.capecoral.gov/arcgis/rest/services/GISDATA/Tree_Inventory/MapServer/0",
+        "dataset_page": "https://capeims.capecoral.gov/arcgis/rest/services/GISDATA/Tree_Inventory/MapServer/0",
+        "where": "UPPER(SPECIES) LIKE '%CHERRY%' OR UPPER(SPECIES) LIKE '%PLUM%' OR UPPER(SPECIES) LIKE '%PEACH%' OR UPPER(SPECIES) LIKE '%MAGNOLIA%' OR UPPER(SPECIES) LIKE '%CRABAPPLE%' OR UPPER(SPECIES) LIKE '%APPLE%'",
+        "object_id_field": "OBJECTID",
+        "common_field": "SPECIES",
+        "source_department": "City of Cape Coral",
+        "ownership_raw": "City of Cape Coral",
+        "note": "Integrated from the official City of Cape Coral public tree inventory ArcGIS layer and clipped to the official jurisdiction boundary.",
+        "clip_to_boundary": True,
+        "lon_field": "X",
+        "lat_field": "Y",
+    },
+    "Westchester": {
+        "region": "il",
+        "layer_url": "https://services.arcgis.com/0ofY9RQ0ZCO4aRRx/arcgis/rest/services/Westchester_Public_Trees/FeatureServer/0",
+        "dataset_page": "https://www.westchester-il.gov/page/tree-inventory",
+        "where": "UPPER(COMMON_NAME) LIKE '%CHERRY%' OR UPPER(COMMON_NAME) LIKE '%PLUM%' OR UPPER(COMMON_NAME) LIKE '%PEACH%' OR UPPER(COMMON_NAME) LIKE '%MAGNOLIA%' OR UPPER(COMMON_NAME) LIKE '%CRABAPPLE%' OR UPPER(COMMON_NAME) LIKE '%APPLE%'",
+        "object_id_field": "OBJECTID",
+        "common_field": "COMMON_NAME",
+        "scientific_field": "LATIN_NAME",
+        "source_department": "Village of Westchester",
+        "ownership_raw": "Village of Westchester",
+        "note": "Integrated from the official Village of Westchester public tree inventory ArcGIS layer and clipped to the official jurisdiction boundary.",
+        "clip_to_boundary": True,
+        "lon_field": "X",
+        "lat_field": "Y",
+    },
     "Brookline": {
         "region": "ma",
         "layer_url": BROOKLINE_TREES_LAYER,
@@ -3226,6 +3334,7 @@ SUPPORTED_CITIES = (
     "Belmont",
     "Bell",
     "Beverly Hills",
+    "Bloomington",
     "Boston",
     "Brookline",
     "Buffalo",
@@ -3236,6 +3345,7 @@ SUPPORTED_CITIES = (
     "Camarillo",
     "Cambridge",
     "Cambridge ON",
+    "Cape Coral",
     "Charlottesville",
     "Chino",
     "Citrus Heights",
@@ -3253,6 +3363,7 @@ SUPPORTED_CITIES = (
     "Dedham",
     "Denver",
     "Durham",
+    "Erie",
     "East Lansing",
     "El Segundo",
     "Encinitas",
@@ -3264,6 +3375,7 @@ SUPPORTED_CITIES = (
     "Fox Point",
     "Franklin",
     "Fontana",
+    "Fort Collins",
     "Fort Lee",
     "Fredericksburg",
     "Garrett Park",
@@ -3294,6 +3406,7 @@ SUPPORTED_CITIES = (
     "Inglewood",
     "Irvine",
     "Ithaca",
+    "Jacksonville",
     "Johns Creek",
     "Jersey City",
     "Kitchener",
@@ -3337,6 +3450,7 @@ SUPPORTED_CITIES = (
     "Newark",
     "Newton",
     "Newport News",
+    "Normal",
     "Novi",
     "Newport Beach",
     "Norfolk",
@@ -3350,6 +3464,7 @@ SUPPORTED_CITIES = (
     "Oxnard",
     "Paramount",
     "Pasadena",
+    "Pendleton",
     "Peterborough",
     "Philadelphia",
     "Pleasanton",
@@ -3404,6 +3519,7 @@ SUPPORTED_CITIES = (
     "Thousand Oaks",
     "Torrance",
     "Toronto",
+    "Valparaiso",
     "Waterloo",
     "Troy",
     "Vaughan",
@@ -3411,15 +3527,18 @@ SUPPORTED_CITIES = (
     "Vista",
     "Whitby",
     "Winnipeg",
+    "Winter Park",
     "Windsor",
     "Virginia Beach",
     "Wauwatosa",
     "Waltham",
+    "Wheat Ridge",
     "West Allis",
     "West Hartford",
     "West Hollywood",
     "West Sacramento",
     "West Covina",
+    "Westchester",
     "Westwood",
     "Whitefish Bay",
     "Worcester",
@@ -10739,6 +10858,8 @@ CITY_FETCHERS = {
 CITY_FETCHERS.update({city: build_nyc_metro_treekeeper_fetcher(city, config) for city, config in NYC_METRO_TREEKEEPER_CONFIGS.items()})
 CITY_FETCHERS.update({city: build_treekeeper_fetcher(city, config) for city, config in EAST_COAST_TREEKEEPER_CONFIGS.items()})
 CITY_FETCHERS.update({city: build_treeplotter_fetcher(city, config) for city, config in EAST_COAST_TREEPLOTTER_CONFIGS.items()})
+CITY_FETCHERS.update({city: build_treekeeper_fetcher(city, config) for city, config in MID_SOUTH_TREEKEEPER_CONFIGS.items()})
+CITY_FETCHERS.update({city: build_treeplotter_fetcher(city, config) for city, config in MID_SOUTH_TREEPLOTTER_CONFIGS.items()})
 CITY_FETCHERS.update({city: build_nyc_metro_arcgis_fetcher(city, config) for city, config in NYC_METRO_ARCGIS_CONFIGS.items()})
 CITY_FETCHERS.update({city: build_arcgis_fetcher(city, config) for city, config in UNCOVERED_STATE_ARCGIS_CONFIGS.items()})
 CITY_FETCHERS.update({city: build_geojson_fetcher(city, config) for city, config in CANADA_GEOJSON_CONFIGS.items()})

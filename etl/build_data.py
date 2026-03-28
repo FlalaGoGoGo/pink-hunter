@@ -35,14 +35,6 @@ from collections import Counter
 from pathlib import Path
 from typing import Any
 
-try:
-    import shapefile
-    from pyproj import CRS, Transformer
-except ImportError as exc:  # pragma: no cover - runtime dependency guard
-    raise RuntimeError(
-        "Missing Python ETL dependencies. Install them with `python3 -m pip install -r requirements.txt`."
-    ) from exc
-
 ROOT = Path(__file__).resolve().parents[1]
 PUBLIC_DATA_DIR = ROOT / "public" / "data"
 NORMALIZED_DIR = ROOT / "data" / "normalized"
@@ -51,6 +43,26 @@ SUBTYPE_MAPPING_PATH = ROOT / "config" / "blossom_subtypes.csv"
 SPECIES_GUIDE_CONTENT_PATH = ROOT / "config" / "species_guide_content.v1.json"
 REFERENCE_DIR = ROOT / "data" / "reference"
 SUPPLEMENTAL_DIR = ROOT / "data" / "supplemental"
+
+_DEPENDENCY_ERROR = "Missing Python ETL dependencies. Install them with `python3 -m pip install -r requirements.txt`."
+
+
+def _require_shapefile() -> Any:
+    try:
+        import shapefile as shapefile_module
+    except ImportError as exc:  # pragma: no cover - runtime dependency guard
+        raise RuntimeError(_DEPENDENCY_ERROR) from exc
+    return shapefile_module
+
+
+def _require_pyproj() -> tuple[Any, Any]:
+    try:
+        from pyproj import CRS as crs_class, Transformer as transformer_class
+    except ImportError as exc:  # pragma: no cover - runtime dependency guard
+        raise RuntimeError(_DEPENDENCY_ERROR) from exc
+    return crs_class, transformer_class
+
+ROOT = Path(__file__).resolve().parents[1]
 
 SEATTLE_LAYER = "https://services.arcgis.com/ZOyb2t4B0UYuYNYH/arcgis/rest/services/Combined_Tree_Point/FeatureServer/0"
 BELLEVUE_LAYER = "https://services1.arcgis.com/EYzEZbDhXZjURPbP/arcgis/rest/services/City_Trees/FeatureServer/29"
@@ -204,7 +216,9 @@ REGION_LABELS: dict[str, str] = {
     "co": "CO",
     "ct": "CT",
     "dc": "DC",
+    "fl": "FL",
     "ga": "GA",
+    "in": "IN",
     "il": "IL",
     "mi": "MI",
     "ma": "MA",
@@ -238,9 +252,12 @@ REGION_CITY_OVERRIDES: dict[str, str] = {
     "Tempe": "az",
     "Atlanta": "ga",
     "Johns Creek": "ga",
+    "Bloomington": "in",
     "Chicago": "il",
     "Danville": "il",
+    "Cape Coral": "fl",
     "Evanston": "il",
+    "Normal": "il",
     "O'Fallon": "il",
     "Dearborn Heights": "mi",
     "Detroit": "mi",
@@ -263,7 +280,10 @@ REGION_CITY_OVERRIDES: dict[str, str] = {
     "Glendale WI": "wi",
     "Cudahy WI": "wi",
     "Denver": "co",
+    "Erie": "co",
+    "Fort Collins": "co",
     "Austin": "tx",
+    "Jacksonville": "fl",
     "Dallas": "tx",
     "Houston": "tx",
     "Arlington": "va",
@@ -279,6 +299,7 @@ REGION_CITY_OVERRIDES: dict[str, str] = {
     "Rutherford": "nj",
     "River Edge": "nj",
     "Dumont": "nj",
+    "Westchester": "il",
     "Westwood": "nj",
     "Tenafly": "nj",
     "Teaneck": "nj",
@@ -296,6 +317,7 @@ REGION_CITY_OVERRIDES: dict[str, str] = {
     "Fair Lawn": "nj",
     "Allendale": "nj",
     "Mahwah": "nj",
+    "Pendleton": "in",
     "Fort Lee": "nj",
     "Hoboken": "nj",
     "Morristown": "nj",
@@ -381,7 +403,10 @@ REGION_CITY_OVERRIDES: dict[str, str] = {
     "Peterborough": "on",
     "Vaughan": "on",
     "Waterloo": "on",
+    "Valparaiso": "in",
     "Whitby": "on",
+    "Wheat Ridge": "co",
+    "Winter Park": "fl",
     "Windsor": "on",
     "Longueuil": "qc",
     "Montreal": "qc",
@@ -557,9 +582,12 @@ CITY_BOUNDARY_HINTS: dict[str, dict[str, str]] = {
     "Tempe": {"state": "04"},
     "Atlanta": {"state": "13"},
     "Johns Creek": {"state": "13"},
+    "Bloomington": {"state": "18"},
     "Chicago": {"state": "17"},
     "Danville": {"state": "17"},
+    "Cape Coral": {"state": "12"},
     "Evanston": {"state": "17"},
+    "Normal": {"state": "17"},
     "O'Fallon": {"state": "17"},
     "Dearborn Heights": {"state": "26"},
     "Detroit": {"state": "26"},
@@ -582,7 +610,10 @@ CITY_BOUNDARY_HINTS: dict[str, dict[str, str]] = {
     "Glendale WI": {"state": "55", "basename": "Glendale"},
     "Cudahy WI": {"state": "55", "basename": "Cudahy"},
     "Denver": {"state": "08"},
+    "Erie": {"state": "08"},
+    "Fort Collins": {"state": "08"},
     "Austin": {"state": "48"},
+    "Jacksonville": {"state": "12"},
     "Dallas": {"state": "48"},
     "Houston": {"state": "48"},
     "Buena Park": {"state": "06"},
@@ -644,6 +675,7 @@ CITY_BOUNDARY_HINTS: dict[str, dict[str, str]] = {
     "Rutherford": {"state": "34"},
     "River Edge": {"state": "34"},
     "Dumont": {"state": "34"},
+    "Westchester": {"state": "17"},
     "Westwood": {"state": "34"},
     "Tenafly": {"state": "34"},
     "Teaneck": {"state": "34"},
@@ -661,6 +693,7 @@ CITY_BOUNDARY_HINTS: dict[str, dict[str, str]] = {
     "Fair Lawn": {"state": "34"},
     "Allendale": {"state": "34"},
     "Mahwah": {"state": "34"},
+    "Pendleton": {"state": "18"},
     "Fort Lee": {"state": "34"},
     "Hoboken": {"state": "34"},
     "Morristown": {"state": "34"},
@@ -750,8 +783,11 @@ CITY_BOUNDARY_HINTS: dict[str, dict[str, str]] = {
     "Tecumseh": {"boundary_source": "statcan_csd", "csd_name": "Tecumseh", "prname": "Ontario", "csd_uid": "3537048"},
     "Vaughan": {"boundary_source": "statcan_csd", "csd_name": "Vaughan", "prname": "Ontario", "csd_uid": "3519028"},
     "Waterloo": {"boundary_source": "statcan_csd", "csd_name": "Waterloo", "prname": "Ontario", "csd_uid": "3530016"},
+    "Valparaiso": {"state": "18"},
     "Welland": {"boundary_source": "statcan_csd", "csd_name": "Welland", "prname": "Ontario", "csd_uid": "3526032"},
     "Whitby": {"boundary_source": "statcan_csd", "csd_name": "Whitby", "prname": "Ontario", "csd_uid": "3518009"},
+    "Wheat Ridge": {"state": "08"},
+    "Winter Park": {"state": "12"},
     "Windsor": {"boundary_source": "statcan_csd", "csd_name": "Windsor", "prname": "Ontario", "csd_uid": "3537039"},
     "Montreal": {"boundary_source": "montreal_arrondissements_geojson"},
     "Gatineau": {
@@ -1959,16 +1995,17 @@ def transform_geojson_coordinates(value: Any, transformer: Transformer | None) -
     return value
 
 
-def transformer_from_prj(prj_text: str | None) -> Transformer | None:
+def transformer_from_prj(prj_text: str | None) -> Any | None:
     if not prj_text:
         return None
-    source_crs = CRS.from_wkt(prj_text)
+    crs_class, transformer_class = _require_pyproj()
+    source_crs = crs_class.from_wkt(prj_text)
     if source_crs.to_epsg() == 4326:
         return None
-    return Transformer.from_crs(source_crs, CRS.from_epsg(4326), always_xy=True)
+    return transformer_class.from_crs(source_crs, crs_class.from_epsg(4326), always_xy=True)
 
 
-def load_zipped_shapefile(zip_url: str) -> tuple[shapefile.Reader, str | None]:
+def load_zipped_shapefile(zip_url: str) -> tuple[Any, str | None]:
     payload = fetch_binary(zip_url)
     archive = zipfile.ZipFile(io.BytesIO(payload))
     members = {Path(name).suffix.lower(): name for name in archive.namelist() if not name.endswith("/")}
@@ -1981,7 +2018,8 @@ def load_zipped_shapefile(zip_url: str) -> tuple[shapefile.Reader, str | None]:
     cpg_name = members.get(".cpg")
     prj_text = archive.read(prj_name).decode("utf-8", "ignore") if prj_name else None
     encoding = decode_cpg(archive.read(cpg_name) if cpg_name else None)
-    reader = shapefile.Reader(
+    shapefile_module = _require_shapefile()
+    reader = shapefile_module.Reader(
         shp=io.BytesIO(archive.read(shp_name)),
         shx=io.BytesIO(archive.read(shx_name)),
         dbf=io.BytesIO(archive.read(dbf_name)),
@@ -3066,7 +3104,9 @@ REGION_TO_STATE_FIPS: dict[str, str] = {
     "ca": "06",
     "ct": "09",
     "dc": "11",
+    "fl": "12",
     "ga": "13",
+    "in": "18",
     "il": "17",
     "ma": "25",
     "md": "24",

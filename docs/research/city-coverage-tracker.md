@@ -97,6 +97,16 @@ Current state: no cities are parked in `A2` right now.
 | ✅ | Cobourg | 442 | Official jurisdiction boundary | Official Town of Cobourg virtual arboretum tree inventory integrated from the public ArcGIS service and clipped to the official Statistics Canada CSD boundary |
 | ✅ | Orangeville | 99 | Official jurisdiction boundary | Official Town of Orangeville public street-tree inventory ArcGIS layer integrated after excluding removed rows and clipping to the official Statistics Canada CSD boundary |
 | ✅ | Denver | 19,900 | Official jurisdiction boundary | Official City and County of Denver `Public Tree Inventory` ArcGIS layer integrated from the city open-data portal and official jurisdiction boundary |
+| ✅ | Erie | 411 | Official jurisdiction boundary | Official Town of Erie public TreeKeeper inventory integrated with the official jurisdiction boundary |
+| ✅ | Fort Collins | 4,265 | Official jurisdiction boundary | Official City of Fort Collins public TreeKeeper inventory integrated with the official jurisdiction boundary |
+| ✅ | Wheat Ridge | 514 | Official jurisdiction boundary | Official City of Wheat Ridge public TreePlotter inventory integrated via the public TreePlotter page and official jurisdiction boundary clipping |
+| ✅ | Cape Coral | 741 | Official jurisdiction boundary | Official City of Cape Coral public tree inventory ArcGIS layer integrated with server-side blossom filtering on `SPECIES` and clipped to the official jurisdiction boundary |
+| ✅ | Winter Park | 944 | Official jurisdiction boundary | Official City of Winter Park public TreeKeeper inventory integrated with the official jurisdiction boundary |
+| ✅ | Normal | 1,128 | Official jurisdiction boundary | Official Town of Normal public TreeKeeper inventory integrated with the official jurisdiction boundary |
+| ✅ | Westchester | 108 | Official jurisdiction boundary | Official Village of Westchester public tree inventory ArcGIS layer integrated with server-side blossom filtering on `COMMON_NAME` and clipped to the official jurisdiction boundary |
+| ✅ | Bloomington | 1,206 | Official jurisdiction boundary | Official City of Bloomington public TreeKeeper inventory integrated with the official jurisdiction boundary |
+| ✅ | Pendleton | 170 | Official jurisdiction boundary | Official Town of Pendleton public TreeKeeper inventory integrated with the official jurisdiction boundary |
+| ✅ | Valparaiso | 752 | Official jurisdiction boundary | Official City of Valparaiso public TreeKeeper inventory integrated with the official jurisdiction boundary |
 | ✅ | Boston | 4,488 | Official jurisdiction boundary | Official Analyze Boston `BPRD Trees` download integrated; includes both street and park trees published by Boston Parks and Recreation |
 | ✅ | Belmont | 221 | Official jurisdiction boundary | Official Town of Belmont public TreeKeeper inventory integrated with the official jurisdiction boundary |
 | ✅ | Brookline | 1,064 | Official jurisdiction boundary | Official Town of Brookline public tree inventory ArcGIS layer integrated with the official jurisdiction boundary |
@@ -270,6 +280,7 @@ These cities are not in `A2` yet because the official point-tree source is still
 | ⏳ | Harrisburg | Unknown | Blocked species codes | Official City of Harrisburg `Street Trees` layer is public, but species values are internal short codes (for example `PRPE2`, `PRSE1`) and this round did not confirm a public mapping table |
 | ⏳ | Salisbury | 0 | Zero in-scope rows | Official City of Salisbury public tree inventory layer is citywide, but the current blossom-filtered official source returned no in-scope rows inside the official jurisdiction boundary |
 | ⏳ | Fayetteville | 0 | Zero in-scope rows | Official City of Fayetteville `Tree Inventory Phase 1` public layer is citywide, but the current blossom-filtered official source returned no in-scope rows inside the official jurisdiction boundary |
+| ⏳ | Jacksonville | 0 | Zero in-scope rows | Official City of Jacksonville public TreePlotter inventory page is live, but the current public inventory returned no in-scope blossom rows inside the official jurisdiction boundary |
 
 ## C — No Verified Official Public Point-Tree Dataset Or Outside Current Workflow
 

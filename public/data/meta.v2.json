@@ -1,10 +1,13 @@
 {
   "version": "v2",
-  "generated_at": "2026-03-28T02:06:51.290981+00:00",
+  "generated_at": "2026-03-28T04:06:30.423424+00:00",
   "default_region": "wa",
   "coverage_rule": "official_jurisdiction_boundary_only",
   "coverage_skipped_cities": [
     "Denver",
+    "Erie",
+    "Fort Collins",
+    "Wheat Ridge",
     "Cudahy WI",
     "Fox Point",
     "Franklin",
@@ -114,16 +117,16 @@
     "Yarrow Point"
   ],
   "coverage_official_unavailable_skipped_cities": [],
-  "source_count": 272,
-  "total_records": 3513512,
-  "included_records": 783125,
-  "unknown_records": 1652180,
+  "source_count": 283,
+  "total_records": 3685558,
+  "included_records": 793364,
+  "unknown_records": 1691002,
   "species_counts": {
-    "cherry": 246711,
-    "plum": 117037,
-    "peach": 7936,
-    "magnolia": 179621,
-    "crabapple": 231820
+    "cherry": 249403,
+    "plum": 117962,
+    "peach": 8016,
+    "magnolia": 180907,
+    "crabapple": 237076
   },
   "regions": [
     {
@@ -445,31 +448,34 @@
         ],
         [
           -104.73483552591162,
-          39.82636962561561
+          40.701142443696
         ]
       ],
       "data_path": null,
       "coverage_path": null,
-      "tree_count": 19900,
-      "city_count": 1,
+      "tree_count": 25090,
+      "city_count": 4,
       "cities": [
-        "Denver"
+        "Denver",
+        "Erie",
+        "Fort Collins",
+        "Wheat Ridge"
       ],
       "species_counts": {
-        "cherry": 1543,
-        "plum": 2527,
-        "peach": 987,
-        "magnolia": 220,
-        "crabapple": 14623
+        "cherry": 3193,
+        "plum": 2864,
+        "peach": 1037,
+        "magnolia": 252,
+        "crabapple": 17744
       },
       "ownership_groups": [
         "public"
       ],
-      "raw_bytes": 11604093,
-      "gzip_bytes": 526311,
+      "raw_bytes": 14325459,
+      "gzip_bytes": 642829,
       "warning_level": "none",
-      "aggregate_raw_bytes": 11604093,
-      "aggregate_gzip_bytes": 526311,
+      "aggregate_raw_bytes": 14325459,
+      "aggregate_gzip_bytes": 642829,
       "aggregate_warning_level": "none",
       "largest_shard_raw_bytes": 11604093,
       "largest_shard_gzip_bytes": 526311,
@@ -479,8 +485,8 @@
       "area_split": {
         "strategy": "area_shard",
         "index_path": "/data/trees.co.area-index.v2.json",
-        "area_count": 1,
-        "shard_count": 1,
+        "area_count": 4,
+        "shard_count": 4,
         "ready": true
       }
     },
@@ -590,6 +596,56 @@
       }
     },
     {
+      "id": "fl",
+      "label": "FL",
+      "available": true,
+      "bounds": [
+        [
+          -82.05383783137461,
+          26.542249808728343
+        ],
+        [
+          -81.310044498,
+          28.629431489
+        ]
+      ],
+      "data_path": null,
+      "tree_count": 1685,
+      "city_count": 2,
+      "cities": [
+        "Cape Coral",
+        "Winter Park"
+      ],
+      "species_counts": {
+        "cherry": 72,
+        "plum": 534,
+        "peach": 6,
+        "magnolia": 977,
+        "crabapple": 96
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "raw_bytes": 851611,
+      "gzip_bytes": 34221,
+      "warning_level": "none",
+      "aggregate_raw_bytes": 851611,
+      "aggregate_gzip_bytes": 34221,
+      "aggregate_warning_level": "none",
+      "largest_shard_raw_bytes": 491802,
+      "largest_shard_gzip_bytes": 17044,
+      "largest_shard_area": "Winter Park",
+      "area_split": {
+        "strategy": "area_shard",
+        "index_path": "/data/trees.fl.area-index.v2.json",
+        "area_count": 2,
+        "shard_count": 2,
+        "ready": true
+      },
+      "largest_shard_warning_level": "none",
+      "coverage_path": "/data/coverage.fl.v1.geojson"
+    },
+    {
       "id": "ga",
       "label": "GA",
       "available": true,
@@ -655,28 +711,30 @@
       ],
       "data_path": null,
       "coverage_path": "/data/coverage.il.v1.geojson",
-      "tree_count": 1596,
-      "city_count": 3,
+      "tree_count": 2832,
+      "city_count": 5,
       "cities": [
         "Danville",
         "Evanston",
-        "O'Fallon"
+        "Normal",
+        "O'Fallon",
+        "Westchester"
       ],
       "species_counts": {
-        "cherry": 149,
-        "plum": 122,
-        "peach": 0,
-        "magnolia": 152,
-        "crabapple": 1173
+        "cherry": 335,
+        "plum": 167,
+        "peach": 8,
+        "magnolia": 284,
+        "crabapple": 2038
       },
       "ownership_groups": [
         "public"
       ],
-      "raw_bytes": 783376,
-      "gzip_bytes": 39307,
+      "raw_bytes": 1369808,
+      "gzip_bytes": 64695,
       "warning_level": "none",
-      "aggregate_raw_bytes": 783376,
-      "aggregate_gzip_bytes": 39307,
+      "aggregate_raw_bytes": 1369808,
+      "aggregate_gzip_bytes": 64695,
       "aggregate_warning_level": "none",
       "largest_shard_raw_bytes": 535220,
       "largest_shard_gzip_bytes": 26497,
@@ -686,10 +744,61 @@
       "area_split": {
         "strategy": "area_shard",
         "index_path": "/data/trees.il.area-index.v2.json",
+        "area_count": 5,
+        "shard_count": 5,
+        "ready": true
+      }
+    },
+    {
+      "id": "in",
+      "label": "IN",
+      "available": true,
+      "bounds": [
+        [
+          -87.103605204734,
+          39.1217175046
+        ],
+        [
+          -85.7294173647,
+          41.510457186638
+        ]
+      ],
+      "data_path": null,
+      "tree_count": 2128,
+      "city_count": 3,
+      "cities": [
+        "Bloomington",
+        "Pendleton",
+        "Valparaiso"
+      ],
+      "species_counts": {
+        "cherry": 784,
+        "plum": 9,
+        "peach": 16,
+        "magnolia": 145,
+        "crabapple": 1174
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "raw_bytes": 1120235,
+      "gzip_bytes": 45649,
+      "warning_level": "none",
+      "aggregate_raw_bytes": 1120235,
+      "aggregate_gzip_bytes": 45649,
+      "aggregate_warning_level": "none",
+      "largest_shard_raw_bytes": 636230,
+      "largest_shard_gzip_bytes": 24728,
+      "largest_shard_area": "Bloomington",
+      "area_split": {
+        "strategy": "area_shard",
+        "index_path": "/data/trees.in.area-index.v2.json",
         "area_count": 3,
         "shard_count": 3,
         "ready": true
-      }
+      },
+      "largest_shard_warning_level": "none",
+      "coverage_path": "/data/coverage.in.v1.geojson"
     },
     {
       "id": "ma",
@@ -3594,6 +3703,48 @@
       "state_province": "CO"
     },
     {
+      "jurisdiction": "Erie",
+      "region": "co",
+      "tree_count": 411,
+      "species_counts": {
+        "cherry": 305,
+        "plum": 11,
+        "peach": 1,
+        "magnolia": 14,
+        "crabapple": 80
+      },
+      "jurisdiction_type": "city",
+      "state_province": "CO"
+    },
+    {
+      "jurisdiction": "Fort Collins",
+      "region": "co",
+      "tree_count": 4265,
+      "species_counts": {
+        "cherry": 1324,
+        "plum": 171,
+        "peach": 43,
+        "magnolia": 17,
+        "crabapple": 2710
+      },
+      "jurisdiction_type": "city",
+      "state_province": "CO"
+    },
+    {
+      "jurisdiction": "Wheat Ridge",
+      "region": "co",
+      "tree_count": 514,
+      "species_counts": {
+        "cherry": 21,
+        "plum": 155,
+        "peach": 6,
+        "magnolia": 1,
+        "crabapple": 331
+      },
+      "jurisdiction_type": "city",
+      "state_province": "CO"
+    },
+    {
       "jurisdiction": "Greenwich",
       "region": "ct",
       "tree_count": 4502,
@@ -3692,6 +3843,34 @@
       "state_province": "DC"
     },
     {
+      "jurisdiction": "Cape Coral",
+      "region": "fl",
+      "tree_count": 741,
+      "species_counts": {
+        "cherry": 0,
+        "plum": 523,
+        "peach": 0,
+        "magnolia": 123,
+        "crabapple": 95
+      },
+      "jurisdiction_type": "city",
+      "state_province": "FL"
+    },
+    {
+      "jurisdiction": "Winter Park",
+      "region": "fl",
+      "tree_count": 944,
+      "species_counts": {
+        "cherry": 72,
+        "plum": 11,
+        "peach": 6,
+        "magnolia": 854,
+        "crabapple": 1
+      },
+      "jurisdiction_type": "city",
+      "state_province": "FL"
+    },
+    {
       "jurisdiction": "Johns Creek",
       "region": "ga",
       "tree_count": 8,
@@ -3734,6 +3913,20 @@
       "state_province": "IL"
     },
     {
+      "jurisdiction": "Normal",
+      "region": "il",
+      "tree_count": 1128,
+      "species_counts": {
+        "cherry": 186,
+        "plum": 45,
+        "peach": 1,
+        "magnolia": 100,
+        "crabapple": 796
+      },
+      "jurisdiction_type": "city",
+      "state_province": "IL"
+    },
+    {
       "jurisdiction": "O'Fallon",
       "region": "il",
       "tree_count": 152,
@@ -3746,6 +3939,62 @@
       },
       "jurisdiction_type": "city",
       "state_province": "IL"
+    },
+    {
+      "jurisdiction": "Westchester",
+      "region": "il",
+      "tree_count": 108,
+      "species_counts": {
+        "cherry": 0,
+        "plum": 0,
+        "peach": 7,
+        "magnolia": 32,
+        "crabapple": 69
+      },
+      "jurisdiction_type": "city",
+      "state_province": "IL"
+    },
+    {
+      "jurisdiction": "Bloomington",
+      "region": "in",
+      "tree_count": 1206,
+      "species_counts": {
+        "cherry": 476,
+        "plum": 6,
+        "peach": 2,
+        "magnolia": 98,
+        "crabapple": 624
+      },
+      "jurisdiction_type": "city",
+      "state_province": "IN"
+    },
+    {
+      "jurisdiction": "Pendleton",
+      "region": "in",
+      "tree_count": 170,
+      "species_counts": {
+        "cherry": 73,
+        "plum": 0,
+        "peach": 1,
+        "magnolia": 16,
+        "crabapple": 80
+      },
+      "jurisdiction_type": "city",
+      "state_province": "IN"
+    },
+    {
+      "jurisdiction": "Valparaiso",
+      "region": "in",
+      "tree_count": 752,
+      "species_counts": {
+        "cherry": 235,
+        "plum": 3,
+        "peach": 13,
+        "magnolia": 31,
+        "crabapple": 470
+      },
+      "jurisdiction_type": "city",
+      "state_province": "IN"
     },
     {
       "jurisdiction": "Belmont",
@@ -5995,6 +6244,15 @@
       "note": "Integrated from the official City of Beverly Hills public tree inventory and official jurisdiction boundary."
     },
     {
+      "name": "TreeKeeper Inventory",
+      "city": "Bloomington",
+      "endpoint": "https://bloomingtonin.treekeepersoftware.com",
+      "last_edit_at": "",
+      "records_fetched": 30658,
+      "records_included": 1206,
+      "note": "Integrated from the official City of Bloomington public TreeKeeper inventory."
+    },
+    {
       "name": "BPRD Trees",
       "city": "Boston",
       "endpoint": "https://data.boston.gov/dataset/bprd-trees",
@@ -6091,6 +6349,15 @@
       "records_fetched": 2304,
       "records_included": 1940,
       "note": "Integrated from the official City of Cambridge, Ontario `Street Trees` open-data layer after restricting to `STATUS = 'EXISTING'`."
+    },
+    {
+      "name": "Tree Inventory",
+      "city": "Cape Coral",
+      "endpoint": "https://capeims.capecoral.gov/arcgis/rest/services/GISDATA/Tree_Inventory/MapServer/0",
+      "last_edit_at": "",
+      "records_fetched": 741,
+      "records_included": 741,
+      "note": "Integrated from the official City of Cape Coral public tree inventory ArcGIS layer and clipped to the official jurisdiction boundary."
     },
     {
       "name": "OpenData Trees",
@@ -6326,6 +6593,15 @@
       "note": "Integrated from the official City of Encinitas public street and parks tree inventory layers and official jurisdiction boundary."
     },
     {
+      "name": "TreeKeeper Inventory",
+      "city": "Erie",
+      "endpoint": "https://erieco.treekeepersoftware.com",
+      "last_edit_at": "",
+      "records_fetched": 4680,
+      "records_included": 411,
+      "note": "Integrated from the official Town of Erie public TreeKeeper inventory."
+    },
+    {
       "name": "Tree Inventory",
       "city": "Escondido",
       "endpoint": "https://services2.arcgis.com/eJcVbjTyyZIzZ5Ye/arcgis/rest/services/TreeInventory/FeatureServer",
@@ -6386,6 +6662,15 @@
       "records_fetched": 3791,
       "records_included": 3732,
       "note": "Integrated from the official City of Fontana public tree inventory layer and official jurisdiction boundary."
+    },
+    {
+      "name": "TreeKeeper Inventory",
+      "city": "Fort Collins",
+      "endpoint": "https://fortcollinsco.treekeepersoftware.com",
+      "last_edit_at": "",
+      "records_fetched": 64664,
+      "records_included": 4265,
+      "note": "Integrated from the official City of Fort Collins public TreeKeeper inventory."
     },
     {
       "name": "Tree Points - All (view)",
@@ -6682,6 +6967,15 @@
       "records_fetched": 13332,
       "records_included": 1357,
       "note": "Integrated from the official City of Ithaca public TreeKeeper inventory."
+    },
+    {
+      "name": "Tree Inventory",
+      "city": "Jacksonville",
+      "endpoint": "https://pg-cloud.com/JacksonvilleFL/",
+      "last_edit_at": "",
+      "records_fetched": 0,
+      "records_included": 0,
+      "note": "Integrated via the official City of Jacksonville public TreePlotter inventory page and official jurisdiction boundary clipping."
     },
     {
       "name": "City of Jersey City Tree Inventory",
@@ -7149,6 +7443,15 @@
       "note": "Integrated from the official City of Norfolk open-data tree inventory and official jurisdiction boundary."
     },
     {
+      "name": "TreeKeeper Inventory",
+      "city": "Normal",
+      "endpoint": "https://normalil.treekeepersoftware.com",
+      "last_edit_at": "",
+      "records_fetched": 13567,
+      "records_included": 1128,
+      "note": "Integrated from the official Town of Normal public TreeKeeper inventory."
+    },
+    {
       "name": "City Trees",
       "city": "North Vancouver City",
       "endpoint": "https://www.cnv.org/Community-Environment/Trees/Public-Trees",
@@ -7289,6 +7592,15 @@
       "records_fetched": 6368,
       "records_included": 5770,
       "note": "Integrated from the official City of Pasadena Street ROW Trees layer and official jurisdiction boundary."
+    },
+    {
+      "name": "TreeKeeper Inventory",
+      "city": "Pendleton",
+      "endpoint": "https://pendletonin.treekeepersoftware.com",
+      "last_edit_at": "",
+      "records_fetched": 3876,
+      "records_included": 170,
+      "note": "Integrated from the official Town of Pendleton public TreeKeeper inventory."
     },
     {
       "name": "Trees",
@@ -8005,6 +8317,15 @@
       "note": "Integrated via the public Troy TreePlotter inventory page and official jurisdiction boundary clipping."
     },
     {
+      "name": "TreeKeeper Inventory",
+      "city": "Valparaiso",
+      "endpoint": "https://valparaisoin.treekeepersoftware.com",
+      "last_edit_at": "",
+      "records_fetched": 20858,
+      "records_included": 752,
+      "note": "Integrated from the official City of Valparaiso public TreeKeeper inventory."
+    },
+    {
       "name": "Public trees",
       "city": "Vancouver BC",
       "endpoint": "https://opendata.vancouver.ca/api/explore/v2.1/catalog/datasets/public-trees",
@@ -8163,6 +8484,15 @@
       "note": "Integrated from the public District of West Vancouver tree-inventory planning ArcGIS layer and official jurisdiction boundary."
     },
     {
+      "name": "Tree Inventory",
+      "city": "Westchester",
+      "endpoint": "https://www.westchester-il.gov/page/tree-inventory",
+      "last_edit_at": "2025-10-10T16:26:13.512000+00:00",
+      "records_fetched": 162,
+      "records_included": 108,
+      "note": "Integrated from the official Village of Westchester public tree inventory ArcGIS layer and clipped to the official jurisdiction boundary."
+    },
+    {
       "name": "TreeKeeper Inventory",
       "city": "Westwood",
       "endpoint": "https://westwoodnj.treekeepersoftware.com",
@@ -8179,6 +8509,15 @@
       "records_fetched": 510,
       "records_included": 227,
       "note": "Integrated from the public Weyburn urban-forest tree inventory ArcGIS layer and official Statistics Canada CSD boundary."
+    },
+    {
+      "name": "Tree Inventory",
+      "city": "Wheat Ridge",
+      "endpoint": "https://cem.pg-cloud.com/wheatridgeco/",
+      "last_edit_at": "",
+      "records_fetched": 8397,
+      "records_included": 514,
+      "note": "Integrated via the official City of Wheat Ridge public TreePlotter inventory page and official jurisdiction boundary clipping."
     },
     {
       "name": "Trees",
@@ -8224,6 +8563,15 @@
       "records_fetched": 101,
       "records_included": 99,
       "note": "Integrated from the official Vermont Municipal Tree Inventory rows for the City of Winooski."
+    },
+    {
+      "name": "TreeKeeper Inventory",
+      "city": "Winter Park",
+      "endpoint": "https://winterparkfl.treekeepersoftware.com",
+      "last_edit_at": "",
+      "records_fetched": 25782,
+      "records_included": 944,
+      "note": "Integrated from the official City of Winter Park public TreeKeeper inventory."
     },
     {
       "name": "TreeKeeper Inventory",

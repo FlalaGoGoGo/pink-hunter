@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-03-12T19:38:26.573144+00:00",
+  "generated_at": "2026-03-28T04:05:19.503021+00:00",
   "region": "co",
   "strategy": "area_shard",
   "items": [
@@ -159,6 +159,372 @@
           },
           "raw_bytes": 11604093,
           "gzip_bytes": 526311
+        }
+      ]
+    },
+    {
+      "jurisdiction": "Erie",
+      "slug": "erie",
+      "display_name": "Erie",
+      "jurisdiction_type": "city",
+      "state_province": "CO",
+      "country": "United States",
+      "bounds": [
+        [
+          -105.102444587612,
+          40.007474749831
+        ],
+        [
+          -104.985351276381,
+          40.066989402663
+        ]
+      ],
+      "tree_count": 411,
+      "zip_codes": [
+        "None"
+      ],
+      "species_counts": {
+        "cherry": 305,
+        "plum": 11,
+        "peach": 1,
+        "magnolia": 14,
+        "crabapple": 80
+      },
+      "ownership_counts": {
+        "public": 411,
+        "private": 0,
+        "unknown": 0
+      },
+      "species_ownership_counts": {
+        "cherry": {
+          "public": 305,
+          "private": 0,
+          "unknown": 0
+        },
+        "plum": {
+          "public": 11,
+          "private": 0,
+          "unknown": 0
+        },
+        "peach": {
+          "public": 1,
+          "private": 0,
+          "unknown": 0
+        },
+        "magnolia": {
+          "public": 14,
+          "private": 0,
+          "unknown": 0
+        },
+        "crabapple": {
+          "public": 80,
+          "private": 0,
+          "unknown": 0
+        }
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "erie-001",
+          "bounds": [
+            [
+              -105.102444587612,
+              40.007474749831
+            ],
+            [
+              -104.985351276381,
+              40.066989402663
+            ]
+          ],
+          "data_path": "/data/trees.co.area.erie.v2.geojson",
+          "tree_count": 411,
+          "ownership_counts": {
+            "public": 411,
+            "private": 0,
+            "unknown": 0
+          },
+          "species_counts": {
+            "cherry": 305,
+            "plum": 11,
+            "peach": 1,
+            "magnolia": 14,
+            "crabapple": 80
+          },
+          "species_ownership_counts": {
+            "cherry": {
+              "public": 305,
+              "private": 0,
+              "unknown": 0
+            },
+            "plum": {
+              "public": 11,
+              "private": 0,
+              "unknown": 0
+            },
+            "peach": {
+              "public": 1,
+              "private": 0,
+              "unknown": 0
+            },
+            "magnolia": {
+              "public": 14,
+              "private": 0,
+              "unknown": 0
+            },
+            "crabapple": {
+              "public": 80,
+              "private": 0,
+              "unknown": 0
+            }
+          },
+          "raw_bytes": 192081,
+          "gzip_bytes": 9205
+        }
+      ]
+    },
+    {
+      "jurisdiction": "Fort Collins",
+      "slug": "fort-collins",
+      "display_name": "Fort Collins",
+      "jurisdiction_type": "city",
+      "state_province": "CO",
+      "country": "United States",
+      "bounds": [
+        [
+          -105.244871182974,
+          40.480624391296
+        ],
+        [
+          -104.989844388645,
+          40.701142443696
+        ]
+      ],
+      "tree_count": 4265,
+      "zip_codes": [
+        "None"
+      ],
+      "species_counts": {
+        "cherry": 1324,
+        "plum": 171,
+        "peach": 43,
+        "magnolia": 17,
+        "crabapple": 2710
+      },
+      "ownership_counts": {
+        "public": 4265,
+        "private": 0,
+        "unknown": 0
+      },
+      "species_ownership_counts": {
+        "cherry": {
+          "public": 1324,
+          "private": 0,
+          "unknown": 0
+        },
+        "plum": {
+          "public": 171,
+          "private": 0,
+          "unknown": 0
+        },
+        "peach": {
+          "public": 43,
+          "private": 0,
+          "unknown": 0
+        },
+        "magnolia": {
+          "public": 17,
+          "private": 0,
+          "unknown": 0
+        },
+        "crabapple": {
+          "public": 2710,
+          "private": 0,
+          "unknown": 0
+        }
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "fort-collins-001",
+          "bounds": [
+            [
+              -105.244871182974,
+              40.480624391296
+            ],
+            [
+              -104.989844388645,
+              40.701142443696
+            ]
+          ],
+          "data_path": "/data/trees.co.area.fort-collins.v2.geojson",
+          "tree_count": 4265,
+          "ownership_counts": {
+            "public": 4265,
+            "private": 0,
+            "unknown": 0
+          },
+          "species_counts": {
+            "cherry": 1324,
+            "plum": 171,
+            "peach": 43,
+            "magnolia": 17,
+            "crabapple": 2710
+          },
+          "species_ownership_counts": {
+            "cherry": {
+              "public": 1324,
+              "private": 0,
+              "unknown": 0
+            },
+            "plum": {
+              "public": 171,
+              "private": 0,
+              "unknown": 0
+            },
+            "peach": {
+              "public": 43,
+              "private": 0,
+              "unknown": 0
+            },
+            "magnolia": {
+              "public": 17,
+              "private": 0,
+              "unknown": 0
+            },
+            "crabapple": {
+              "public": 2710,
+              "private": 0,
+              "unknown": 0
+            }
+          },
+          "raw_bytes": 2275392,
+          "gzip_bytes": 96270
+        }
+      ]
+    },
+    {
+      "jurisdiction": "Wheat Ridge",
+      "slug": "wheat-ridge",
+      "display_name": "Wheat Ridge",
+      "jurisdiction_type": "city",
+      "state_province": "CO",
+      "country": "United States",
+      "bounds": [
+        [
+          -105.1609363,
+          39.75489143
+        ],
+        [
+          -105.0538773,
+          39.794354900000016
+        ]
+      ],
+      "tree_count": 514,
+      "zip_codes": [
+        "None"
+      ],
+      "species_counts": {
+        "cherry": 21,
+        "plum": 155,
+        "peach": 6,
+        "magnolia": 1,
+        "crabapple": 331
+      },
+      "ownership_counts": {
+        "public": 514,
+        "private": 0,
+        "unknown": 0
+      },
+      "species_ownership_counts": {
+        "cherry": {
+          "public": 21,
+          "private": 0,
+          "unknown": 0
+        },
+        "plum": {
+          "public": 155,
+          "private": 0,
+          "unknown": 0
+        },
+        "peach": {
+          "public": 6,
+          "private": 0,
+          "unknown": 0
+        },
+        "magnolia": {
+          "public": 1,
+          "private": 0,
+          "unknown": 0
+        },
+        "crabapple": {
+          "public": 331,
+          "private": 0,
+          "unknown": 0
+        }
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "wheat-ridge-001",
+          "bounds": [
+            [
+              -105.1609363,
+              39.75489143
+            ],
+            [
+              -105.0538773,
+              39.794354900000016
+            ]
+          ],
+          "data_path": "/data/trees.co.area.wheat-ridge.v2.geojson",
+          "tree_count": 514,
+          "ownership_counts": {
+            "public": 514,
+            "private": 0,
+            "unknown": 0
+          },
+          "species_counts": {
+            "cherry": 21,
+            "plum": 155,
+            "peach": 6,
+            "magnolia": 1,
+            "crabapple": 331
+          },
+          "species_ownership_counts": {
+            "cherry": {
+              "public": 21,
+              "private": 0,
+              "unknown": 0
+            },
+            "plum": {
+              "public": 155,
+              "private": 0,
+              "unknown": 0
+            },
+            "peach": {
+              "public": 6,
+              "private": 0,
+              "unknown": 0
+            },
+            "magnolia": {
+              "public": 1,
+              "private": 0,
+              "unknown": 0
+            },
+            "crabapple": {
+              "public": 331,
+              "private": 0,
+              "unknown": 0
+            }
+          },
+          "raw_bytes": 253893,
+          "gzip_bytes": 11043
         }
       ]
     }
