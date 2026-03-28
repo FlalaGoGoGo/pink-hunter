@@ -1,8 +1,135 @@
 {
-  "generated_at": "2026-03-28T05:21:40.296288+00:00",
+  "generated_at": "2026-03-28T19:48:58.366951+00:00",
   "region": "az",
   "strategy": "area_shard",
   "items": [
+    {
+      "jurisdiction": "Mesa",
+      "slug": "mesa",
+      "display_name": "Mesa",
+      "jurisdiction_type": "city",
+      "state_province": "AZ",
+      "country": "United States",
+      "bounds": [
+        [
+          -111.89454399977052,
+          33.27738299964462
+        ],
+        [
+          -111.58064599995942,
+          33.513186000168965
+        ]
+      ],
+      "tree_count": 25,
+      "zip_codes": [
+        "85201",
+        "85203",
+        "85205",
+        "85207",
+        "85213",
+        "85215"
+      ],
+      "species_counts": {
+        "cherry": 0,
+        "plum": 25,
+        "peach": 0,
+        "magnolia": 0,
+        "crabapple": 0
+      },
+      "ownership_counts": {
+        "public": 25,
+        "private": 0,
+        "unknown": 0
+      },
+      "species_ownership_counts": {
+        "cherry": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        },
+        "plum": {
+          "public": 25,
+          "private": 0,
+          "unknown": 0
+        },
+        "peach": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        },
+        "magnolia": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        },
+        "crabapple": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        }
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "mesa-001",
+          "bounds": [
+            [
+              -111.83274593999992,
+              33.415734319000016
+            ],
+            [
+              -111.59494472399996,
+              33.47439654600003
+            ]
+          ],
+          "data_path": "/data/trees.az.area.mesa.v2.geojson",
+          "tree_count": 25,
+          "ownership_counts": {
+            "public": 25,
+            "private": 0,
+            "unknown": 0
+          },
+          "species_counts": {
+            "cherry": 0,
+            "plum": 25,
+            "peach": 0,
+            "magnolia": 0,
+            "crabapple": 0
+          },
+          "species_ownership_counts": {
+            "cherry": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            },
+            "plum": {
+              "public": 25,
+              "private": 0,
+              "unknown": 0
+            },
+            "peach": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            },
+            "magnolia": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            },
+            "crabapple": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            }
+          },
+          "raw_bytes": 12921,
+          "gzip_bytes": 998
+        }
+      ]
+    },
     {
       "jurisdiction": "Tempe",
       "slug": "tempe",

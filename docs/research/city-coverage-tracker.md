@@ -1,6 +1,6 @@
 # City Coverage Tracker
 
-Last updated: 2026-03-27 (America/Los_Angeles)
+Last updated: 2026-03-28 (America/Los_Angeles)
 
 ## Review Order Before Any City Task
 1. Review `A2` first. Those cities are the highest publish priority.
@@ -106,17 +106,26 @@ Current state: no cities are parked in `A2` right now.
 | ✅ | Newmarket | 110 | Official jurisdiction boundary | Official York Region `Street Trees` layer integrated after restricting to active `MUNICIPALITY = 'Newmarket'` rows and clipping to the official Statistics Canada CSD boundary |
 | ✅ | East Gwillimbury | 102 | Official jurisdiction boundary | Official York Region `Street Trees` layer integrated after restricting to active `MUNICIPALITY = 'East Gwillimbury'` rows and clipping to the official Statistics Canada CSD boundary |
 | ✅ | Georgina | 100 | Official jurisdiction boundary | Official York Region `Street Trees` layer integrated after restricting to active `MUNICIPALITY = 'Georgina'` rows and clipping to the official Statistics Canada CSD boundary |
+| ✅ | Mesa | 25 | Official jurisdiction boundary | Official City of Mesa `Mesa AZ iTree Inventory` ArcGIS layer integrated from the city's tree canopy hub and clipped to the official jurisdiction boundary |
+| ✅ | Tempe | 32 | Official jurisdiction boundary | Official City of Tempe tree inventory ArcGIS open-data layer integrated with the official jurisdiction boundary |
+| ✅ | Johns Creek | 8 | Official jurisdiction boundary | Official City of Johns Creek public `Tree Inventory` ArcGIS layer integrated with the official jurisdiction boundary |
+| ✅ | Brighton | 409 | Official jurisdiction boundary | Official City of Brighton public TreeKeeper inventory integrated with the official jurisdiction boundary |
+| ✅ | Boulder | 3,147 | Official jurisdiction boundary | Official City of Boulder `Tree Inventory Open Data` ArcGIS layer integrated after restricting to `OWNEDBY = 'City'` and clipping to the official jurisdiction boundary |
 | ✅ | Denver | 19,900 | Official jurisdiction boundary | Official City and County of Denver `Public Tree Inventory` ArcGIS layer integrated from the city open-data portal and official jurisdiction boundary |
 | ✅ | Erie | 411 | Official jurisdiction boundary | Official Town of Erie public TreeKeeper inventory integrated with the official jurisdiction boundary |
 | ✅ | Fort Collins | 4,265 | Official jurisdiction boundary | Official City of Fort Collins public TreeKeeper inventory integrated with the official jurisdiction boundary |
+| ✅ | Longmont | 16 | Official jurisdiction boundary | Official City of Longmont public tree inventory ArcGIS layer integrated with the official jurisdiction boundary |
 | ✅ | Wheat Ridge | 514 | Official jurisdiction boundary | Official City of Wheat Ridge public TreePlotter inventory integrated via the public TreePlotter page and official jurisdiction boundary clipping |
 | ✅ | Cape Coral | 741 | Official jurisdiction boundary | Official City of Cape Coral public tree inventory ArcGIS layer integrated with server-side blossom filtering on `SPECIES` and clipped to the official jurisdiction boundary |
+| ✅ | Tallahassee | 758 | Official jurisdiction boundary | Official City of Tallahassee public Cityworks tree inventory ArcGIS layer integrated after restricting to active city-owned rows and clipping to the official jurisdiction boundary |
+| ✅ | West Palm Beach | 28 | Official jurisdiction boundary | Official City of West Palm Beach public trees ArcGIS layer integrated after restricting to `Status = 'Alive'` and clipping to the official jurisdiction boundary |
 | ✅ | Winter Park | 944 | Official jurisdiction boundary | Official City of Winter Park public TreeKeeper inventory integrated with the official jurisdiction boundary |
 | ✅ | Normal | 1,128 | Official jurisdiction boundary | Official Town of Normal public TreeKeeper inventory integrated with the official jurisdiction boundary |
 | ✅ | Westchester | 108 | Official jurisdiction boundary | Official Village of Westchester public tree inventory ArcGIS layer integrated with server-side blossom filtering on `COMMON_NAME` and clipped to the official jurisdiction boundary |
 | ✅ | Bloomington | 1,206 | Official jurisdiction boundary | Official City of Bloomington public TreeKeeper inventory integrated with the official jurisdiction boundary |
 | ✅ | Pendleton | 170 | Official jurisdiction boundary | Official Town of Pendleton public TreeKeeper inventory integrated with the official jurisdiction boundary |
 | ✅ | Valparaiso | 752 | Official jurisdiction boundary | Official City of Valparaiso public TreeKeeper inventory integrated with the official jurisdiction boundary |
+| ✅ | Branson | 17 | Official jurisdiction boundary | Official City of Branson public trees ArcGIS layer integrated after restricting to `ACTIVE = 1` and clipping to the official jurisdiction boundary |
 | ✅ | Brentwood | 184 | Official jurisdiction boundary | Official City of Brentwood public TreeKeeper inventory integrated with the official jurisdiction boundary |
 | ✅ | Carmel | 935 | Official jurisdiction boundary | Official City of Carmel public tree inventory ArcGIS layer integrated with server-side blossom filtering on `COMM_NAME` and clipped to the official jurisdiction boundary |
 | ✅ | Clarksville | 404 | Official jurisdiction boundary | Official City of Clarksville public TreeKeeper inventory integrated with the official jurisdiction boundary |
@@ -124,6 +133,7 @@ Current state: no cities are parked in `A2` right now.
 | ✅ | Kalamazoo | 1,564 | Official jurisdiction boundary | Official City of Kalamazoo public TreeKeeper inventory integrated with the official jurisdiction boundary |
 | ✅ | Madison | 3,561 | Official jurisdiction boundary | Official City of Madison public TreeKeeper inventory integrated with the official jurisdiction boundary |
 | ✅ | Maitland | 202 | Official jurisdiction boundary | Official City of Maitland public tree inventory ArcGIS layer integrated with server-side blossom filtering on `COMMON` and clipped to the official jurisdiction boundary |
+| ✅ | St. Louis | 4,602 | Official jurisdiction boundary | Official City of St. Louis `City Street Trees` open-data layer integrated after excluding `CONDITION = 'N/A'` rows and clipping to the official jurisdiction boundary |
 | ✅ | Michigan City | 526 | Official jurisdiction boundary | Official City of Michigan City public tree inventory ArcGIS layer integrated with server-side blossom filtering on `COMMON_NAME` and clipped to the official jurisdiction boundary |
 | ✅ | Springfield | 603 | Official jurisdiction boundary | Official City of Springfield public TreeKeeper inventory integrated with the official jurisdiction boundary |
 | ✅ | Westfield | 1,462 | Official jurisdiction boundary | Official City of Westfield public tree inventory ArcGIS layer integrated with server-side blossom filtering on `Tree` and clipped to the official jurisdiction boundary |

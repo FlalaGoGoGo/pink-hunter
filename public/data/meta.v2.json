@@ -1,6 +1,6 @@
 {
   "version": "v2",
-  "generated_at": "2026-03-28T07:22:50.499965+00:00",
+  "generated_at": "2026-03-28T19:54:23.345906+00:00",
   "default_region": "wa",
   "coverage_rule": "official_jurisdiction_boundary_only",
   "coverage_skipped_cities": [],
@@ -96,16 +96,16 @@
     "Yarrow Point"
   ],
   "coverage_official_unavailable_skipped_cities": [],
-  "source_count": 302,
-  "total_records": 3913834,
-  "included_records": 805649,
-  "unknown_records": 1834243,
+  "source_count": 310,
+  "total_records": 3932419,
+  "included_records": 814651,
+  "unknown_records": 1839519,
   "species_counts": {
-    "cherry": 252660,
-    "plum": 118745,
-    "peach": 8028,
-    "magnolia": 181725,
-    "crabapple": 244491
+    "cherry": 255278,
+    "plum": 119075,
+    "peach": 8083,
+    "magnolia": 182698,
+    "crabapple": 249517
   },
   "regions": [
     {
@@ -175,23 +175,24 @@
       "bounds": [
         [
           -111.97859999960775,
-          33.32003899968857
+          33.27738299964462
         ],
         [
-          -111.87722600014386,
-          33.464602000315416
+          -111.58064599995942,
+          33.513186000168965
         ]
       ],
       "data_path": null,
       "coverage_path": "/data/coverage.az.v1.geojson",
-      "tree_count": 32,
-      "city_count": 1,
+      "tree_count": 57,
+      "city_count": 2,
       "cities": [
+        "Mesa",
         "Tempe"
       ],
       "species_counts": {
         "cherry": 0,
-        "plum": 2,
+        "plum": 27,
         "peach": 18,
         "magnolia": 0,
         "crabapple": 12
@@ -199,11 +200,11 @@
       "ownership_groups": [
         "public"
       ],
-      "raw_bytes": 15629,
-      "gzip_bytes": 1104,
+      "raw_bytes": 28550,
+      "gzip_bytes": 2102,
       "warning_level": "none",
-      "aggregate_raw_bytes": 15629,
-      "aggregate_gzip_bytes": 1104,
+      "aggregate_raw_bytes": 28550,
+      "aggregate_gzip_bytes": 2102,
       "aggregate_warning_level": "none",
       "largest_shard_raw_bytes": 15629,
       "largest_shard_gzip_bytes": 1104,
@@ -213,8 +214,8 @@
       "area_split": {
         "strategy": "area_shard",
         "index_path": "/data/trees.az.area-index.v2.json",
-        "area_count": 1,
-        "shard_count": 1,
+        "area_count": 2,
+        "shard_count": 2,
         "ready": true
       }
     },
@@ -424,7 +425,7 @@
       "available": true,
       "bounds": [
         [
-          -105.16539100004029,
+          -105.30145000005967,
           39.61431100024426
         ],
         [
@@ -434,29 +435,32 @@
       ],
       "data_path": null,
       "coverage_path": "/data/coverage.co.v1.geojson",
-      "tree_count": 25090,
-      "city_count": 4,
+      "tree_count": 28662,
+      "city_count": 7,
       "cities": [
+        "Boulder",
+        "Brighton",
         "Denver",
         "Erie",
         "Fort Collins",
+        "Longmont",
         "Wheat Ridge"
       ],
       "species_counts": {
-        "cherry": 3193,
-        "plum": 2864,
-        "peach": 1037,
-        "magnolia": 252,
-        "crabapple": 17744
+        "cherry": 3311,
+        "plum": 3022,
+        "peach": 1078,
+        "magnolia": 265,
+        "crabapple": 20986
       },
       "ownership_groups": [
         "public"
       ],
-      "raw_bytes": 14325459,
-      "gzip_bytes": 642829,
+      "raw_bytes": 16103025,
+      "gzip_bytes": 728173,
       "warning_level": "none",
-      "aggregate_raw_bytes": 14325459,
-      "aggregate_gzip_bytes": 642829,
+      "aggregate_raw_bytes": 16103025,
+      "aggregate_gzip_bytes": 728173,
       "aggregate_warning_level": "none",
       "largest_shard_raw_bytes": 11604093,
       "largest_shard_gzip_bytes": 526311,
@@ -466,8 +470,8 @@
       "area_split": {
         "strategy": "area_shard",
         "index_path": "/data/trees.co.area-index.v2.json",
-        "area_count": 4,
-        "shard_count": 4,
+        "area_count": 7,
+        "shard_count": 7,
         "ready": true
       }
     },
@@ -582,37 +586,39 @@
       "available": true,
       "bounds": [
         [
-          -82.09156899999206,
+          -84.37800799990332,
           26.525209999858674
         ],
         [
-          -81.30888100008197,
-          28.640410999927365
+          -80.04287899993163,
+          30.587334999953743
         ]
       ],
       "data_path": null,
-      "tree_count": 1887,
-      "city_count": 3,
+      "tree_count": 2673,
+      "city_count": 5,
       "cities": [
         "Cape Coral",
         "Maitland",
+        "Tallahassee",
+        "West Palm Beach",
         "Winter Park"
       ],
       "species_counts": {
-        "cherry": 74,
-        "plum": 534,
-        "peach": 6,
-        "magnolia": 1177,
-        "crabapple": 96
+        "cherry": 100,
+        "plum": 598,
+        "peach": 12,
+        "magnolia": 1852,
+        "crabapple": 111
       },
       "ownership_groups": [
         "public"
       ],
-      "raw_bytes": 959450,
-      "gzip_bytes": 39759,
+      "raw_bytes": 1365015,
+      "gzip_bytes": 60712,
       "warning_level": "none",
-      "aggregate_raw_bytes": 959450,
-      "aggregate_gzip_bytes": 39759,
+      "aggregate_raw_bytes": 1365015,
+      "aggregate_gzip_bytes": 60712,
       "aggregate_warning_level": "none",
       "largest_shard_raw_bytes": 491802,
       "largest_shard_gzip_bytes": 17044,
@@ -620,8 +626,8 @@
       "area_split": {
         "strategy": "area_shard",
         "index_path": "/data/trees.fl.area-index.v2.json",
-        "area_count": 3,
-        "shard_count": 3,
+        "area_count": 5,
+        "shard_count": 5,
         "ready": true
       },
       "largest_shard_warning_level": "none",
@@ -1014,44 +1020,46 @@
       "bounds": [
         [
           -93.41318100000092,
-          37.08852999972792
+          36.5939809999059
         ],
         [
-          -90.33371000029425,
-          38.630620999932766
+          -90.16671699962987,
+          38.774287999650255
         ]
       ],
       "data_path": null,
-      "tree_count": 787,
-      "city_count": 2,
+      "tree_count": 5406,
+      "city_count": 4,
       "cities": [
+        "Branson",
         "Brentwood",
-        "Springfield"
+        "Springfield",
+        "St. Louis"
       ],
       "species_counts": {
-        "cherry": 479,
-        "plum": 3,
-        "peach": 0,
-        "magnolia": 130,
-        "crabapple": 175
+        "cherry": 2953,
+        "plum": 86,
+        "peach": 8,
+        "magnolia": 415,
+        "crabapple": 1944
       },
       "ownership_groups": [
         "public"
       ],
-      "raw_bytes": 405976,
-      "gzip_bytes": 17839,
+      "raw_bytes": 2711638,
+      "gzip_bytes": 150678,
       "warning_level": "none",
-      "aggregate_raw_bytes": 405976,
-      "aggregate_gzip_bytes": 17839,
+      "aggregate_raw_bytes": 2711638,
+      "aggregate_gzip_bytes": 150678,
       "aggregate_warning_level": "none",
-      "largest_shard_raw_bytes": 310900,
-      "largest_shard_gzip_bytes": 13589,
-      "largest_shard_area": "Springfield",
+      "largest_shard_raw_bytes": 2297870,
+      "largest_shard_gzip_bytes": 132065,
+      "largest_shard_area": "St. Louis",
       "area_split": {
         "strategy": "area_shard",
         "index_path": "/data/trees.mo.area-index.v2.json",
-        "area_count": 2,
-        "shard_count": 2,
+        "area_count": 4,
+        "shard_count": 4,
         "ready": true
       },
       "largest_shard_warning_level": "none",
@@ -2382,6 +2390,20 @@
       },
       "jurisdiction_type": "county",
       "state_province": "AB"
+    },
+    {
+      "jurisdiction": "Mesa",
+      "region": "az",
+      "tree_count": 25,
+      "species_counts": {
+        "cherry": 0,
+        "plum": 25,
+        "peach": 0,
+        "magnolia": 0,
+        "crabapple": 0
+      },
+      "jurisdiction_type": "city",
+      "state_province": "AZ"
     },
     {
       "jurisdiction": "Tempe",
@@ -3812,6 +3834,34 @@
       "state_province": "CA"
     },
     {
+      "jurisdiction": "Boulder",
+      "region": "co",
+      "tree_count": 3147,
+      "species_counts": {
+        "cherry": 67,
+        "plum": 132,
+        "peach": 34,
+        "magnolia": 13,
+        "crabapple": 2901
+      },
+      "jurisdiction_type": "city",
+      "state_province": "CO"
+    },
+    {
+      "jurisdiction": "Brighton",
+      "region": "co",
+      "tree_count": 409,
+      "species_counts": {
+        "cherry": 51,
+        "plum": 18,
+        "peach": 7,
+        "magnolia": 0,
+        "crabapple": 333
+      },
+      "jurisdiction_type": "city",
+      "state_province": "CO"
+    },
+    {
       "jurisdiction": "Denver",
       "region": "co",
       "tree_count": 19900,
@@ -3849,6 +3899,20 @@
         "peach": 43,
         "magnolia": 17,
         "crabapple": 2710
+      },
+      "jurisdiction_type": "city",
+      "state_province": "CO"
+    },
+    {
+      "jurisdiction": "Longmont",
+      "region": "co",
+      "tree_count": 16,
+      "species_counts": {
+        "cherry": 0,
+        "plum": 8,
+        "peach": 0,
+        "magnolia": 0,
+        "crabapple": 8
       },
       "jurisdiction_type": "city",
       "state_province": "CO"
@@ -3988,6 +4052,34 @@
         "plum": 0,
         "peach": 0,
         "magnolia": 200,
+        "crabapple": 0
+      },
+      "jurisdiction_type": "city",
+      "state_province": "FL"
+    },
+    {
+      "jurisdiction": "Tallahassee",
+      "region": "fl",
+      "tree_count": 758,
+      "species_counts": {
+        "cherry": 26,
+        "plum": 64,
+        "peach": 6,
+        "magnolia": 647,
+        "crabapple": 15
+      },
+      "jurisdiction_type": "city",
+      "state_province": "FL"
+    },
+    {
+      "jurisdiction": "West Palm Beach",
+      "region": "fl",
+      "tree_count": 28,
+      "species_counts": {
+        "cherry": 0,
+        "plum": 0,
+        "peach": 0,
+        "magnolia": 28,
         "crabapple": 0
       },
       "jurisdiction_type": "city",
@@ -4540,6 +4632,20 @@
       "state_province": "MI"
     },
     {
+      "jurisdiction": "Branson",
+      "region": "mo",
+      "tree_count": 17,
+      "species_counts": {
+        "cherry": 0,
+        "plum": 0,
+        "peach": 0,
+        "magnolia": 4,
+        "crabapple": 13
+      },
+      "jurisdiction_type": "city",
+      "state_province": "MO"
+    },
+    {
       "jurisdiction": "Brentwood",
       "region": "mo",
       "tree_count": 184,
@@ -4563,6 +4669,20 @@
         "peach": 0,
         "magnolia": 57,
         "crabapple": 149
+      },
+      "jurisdiction_type": "city",
+      "state_province": "MO"
+    },
+    {
+      "jurisdiction": "St. Louis",
+      "region": "mo",
+      "tree_count": 4602,
+      "species_counts": {
+        "cherry": 2474,
+        "plum": 83,
+        "peach": 8,
+        "magnolia": 281,
+        "crabapple": 1756
       },
       "jurisdiction_type": "city",
       "state_province": "MO"
@@ -6646,6 +6766,15 @@
       "note": "Integrated from the official Analyze Boston BPRD Trees download, which includes both street and park trees."
     },
     {
+      "name": "Tree Inventory Open Data",
+      "city": "Boulder",
+      "endpoint": "https://maps.bouldercolorado.gov/arcgis2/rest/services/parks/TreesOpenData/MapServer/0",
+      "last_edit_at": "",
+      "records_fetched": 3969,
+      "records_included": 3147,
+      "note": "Integrated from the official City of Boulder `Tree Inventory Open Data` ArcGIS layer and clipped to the official jurisdiction boundary."
+    },
+    {
       "name": "Tree Inventory",
       "city": "Brampton",
       "endpoint": "https://mapsdev.brampton.ca/arcgis/rest/services/ParksOps/Tree_Inventory/MapServer",
@@ -6655,6 +6784,15 @@
       "note": "Integrated from the official City of Brampton public tree inventory ArcGIS layer after restricting to city-owned live-tree rows."
     },
     {
+      "name": "Trees",
+      "city": "Branson",
+      "endpoint": "https://gis.bransonmo.gov/webgis/rest/services/Applications/Trees/FeatureServer/0",
+      "last_edit_at": "",
+      "records_fetched": 50,
+      "records_included": 17,
+      "note": "Integrated from the official City of Branson public trees ArcGIS layer and clipped to the official jurisdiction boundary."
+    },
+    {
       "name": "TreeKeeper Inventory",
       "city": "Brentwood",
       "endpoint": "https://brentwoodmo.treekeepersoftware.com",
@@ -6662,6 +6800,15 @@
       "records_fetched": 4180,
       "records_included": 184,
       "note": "Integrated from the official City of Brentwood public TreeKeeper inventory."
+    },
+    {
+      "name": "TreeKeeper Inventory",
+      "city": "Brighton",
+      "endpoint": "https://brightonco.treekeepersoftware.com",
+      "last_edit_at": "",
+      "records_fetched": 8208,
+      "records_included": 409,
+      "note": "Integrated from the official City of Brighton public TreeKeeper inventory linked from the city's Open Space & Forestry page."
     },
     {
       "name": "Buena Park i-Tree Benefits",
@@ -7612,6 +7759,15 @@
       "note": "Integrated from the official Town of Longmeadow public tree inventory ArcGIS layer and official jurisdiction boundary."
     },
     {
+      "name": "City of Longmont Trees",
+      "city": "Longmont",
+      "endpoint": "https://longmontcolorado.gov/forestry/city-maintained-trees-and-services/inventory-of-city-maintained-trees/",
+      "last_edit_at": "",
+      "records_fetched": 19,
+      "records_included": 16,
+      "note": "Integrated from the official City of Longmont public tree inventory ArcGIS layer and clipped to the official jurisdiction boundary."
+    },
+    {
       "name": "Arbres",
       "city": "Longueuil",
       "endpoint": "https://www.donneesquebec.ca/recherche/dataset/arbres",
@@ -7718,6 +7874,15 @@
       "records_fetched": 1362,
       "records_included": 677,
       "note": "Integrated from the official City of Medicine Hat public tree inventory ArcGIS layer after restricting to living rows."
+    },
+    {
+      "name": "Mesa AZ iTree Inventory",
+      "city": "Mesa",
+      "endpoint": "https://tree-canopy-and-benefits-mesaaz.hub.arcgis.com/",
+      "last_edit_at": "2024-11-06T17:08:43.368000+00:00",
+      "records_fetched": 53,
+      "records_included": 25,
+      "note": "Integrated from the official City of Mesa `Mesa AZ iTree Inventory` ArcGIS layer published on the city's tree canopy hub."
     },
     {
       "name": "Tree Inventory",
@@ -8719,6 +8884,15 @@
       "note": "Integrated from the official Milwaukee County public tree viewer and official jurisdiction boundary clipping."
     },
     {
+      "name": "City Street Trees",
+      "city": "St. Louis",
+      "endpoint": "https://www.stlouis-mo.gov/data/datasets/dataset.cfm?id=121",
+      "last_edit_at": "",
+      "records_fetched": 4602,
+      "records_included": 4602,
+      "note": "Integrated from the official City of St. Louis `City Street Trees` open-data layer and clipped to the official jurisdiction boundary."
+    },
+    {
       "name": "TreeKeeper Inventory",
       "city": "Stamford",
       "endpoint": "https://stamfordct.treekeepersoftware.com",
@@ -8753,6 +8927,15 @@
       "records_fetched": 9555,
       "records_included": 697,
       "note": "Integrated from the official City of Syracuse public TreeKeeper inventory."
+    },
+    {
+      "name": "Tree Inventory",
+      "city": "Tallahassee",
+      "endpoint": "https://cotinter.leoncountyfl.gov/cotinter/rest/services/Vector/COT_Cityworks_Trees_D_SP/MapServer/0",
+      "last_edit_at": "",
+      "records_fetched": 1782,
+      "records_included": 758,
+      "note": "Integrated from the official City of Tallahassee public Cityworks tree inventory layer and clipped to the official jurisdiction boundary."
     },
     {
       "name": "TreeKeeper Inventory",
@@ -8983,6 +9166,15 @@
       "records_fetched": 505,
       "records_included": 438,
       "note": "Integrated from the official City of West Hollywood public tree inventory dataset and official jurisdiction boundary."
+    },
+    {
+      "name": "Trees",
+      "city": "West Palm Beach",
+      "endpoint": "https://wpbgisportal.wpb.org/server/rest/services/Sustainability/Trees/FeatureServer/0",
+      "last_edit_at": "",
+      "records_fetched": 247,
+      "records_included": 28,
+      "note": "Integrated from the official City of West Palm Beach public trees ArcGIS layer and clipped to the official jurisdiction boundary."
     },
     {
       "name": "Tree Inventory",

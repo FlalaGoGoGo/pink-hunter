@@ -5,22 +5,94 @@ import argparse
 import ast
 import csv
 import datetime as dt
-import hashlib
 import json
 import os
 import re
-import ssl
 import subprocess
 import sys
-import tempfile
 import io
-import shutil
 import time
-import urllib.request
 from collections import Counter
 from functools import lru_cache
 from pathlib import Path
-from typing import Any
+
+
+def _require_hashlib() -> Any:
+    try:
+        import hashlib as hashlib_module
+        return hashlib_module
+    except Exception:
+        class _HashlibFallback:
+            @staticmethod
+            def md5(payload: bytes) -> Any:
+                result = subprocess.run(["md5", "-q"], input=payload, capture_output=True, check=True)
+                digest = result.stdout.decode("utf-8").strip()
+
+                class _Digest:
+                    def __init__(self, value: str) -> None:
+                        self._value = value
+
+                    def hexdigest(self) -> str:
+                        return self._value
+
+                return _Digest(digest)
+
+        return _HashlibFallback
+
+
+def _require_ssl() -> Any:
+    try:
+        import ssl as ssl_module
+    except ImportError as exc:  # pragma: no cover - runtime dependency guard
+        raise RuntimeError("Missing Python SSL support in this environment.") from exc
+    return ssl_module
+
+
+def _require_tempfile() -> Any:
+    try:
+        import tempfile as tempfile_module
+        return tempfile_module
+    except Exception:
+        class _NamedTemporaryFileWrapper:
+            def __init__(self, *args: Any, **kwargs: Any) -> None:
+                mode = args[0] if args else kwargs.pop("mode", "w+b")
+                suffix = kwargs.pop("suffix", "")
+                prefix = kwargs.pop("prefix", "tmp")
+                delete = kwargs.pop("delete", True)
+                dir_path = kwargs.pop("dir", "/tmp") or "/tmp"
+                if kwargs:
+                    raise TypeError(f"Unsupported NamedTemporaryFile kwargs: {sorted(kwargs)}")
+                path = Path(dir_path) / f"{prefix}{os.getpid()}_{time.time_ns()}{suffix}"
+                fd = os.open(path, os.O_RDWR | os.O_CREAT | os.O_EXCL, 0o600)
+                self._file = os.fdopen(fd, mode)
+                self._delete = delete
+
+            def __enter__(self) -> Any:
+                return self._file
+
+            def __exit__(self, exc_type: Any, exc: Any, tb: Any) -> None:
+                self._file.close()
+                if self._delete:
+                    try:
+                        os.unlink(self._file.name)
+                    except FileNotFoundError:
+                        pass
+
+        class _TempfileFallback:
+            @staticmethod
+            def NamedTemporaryFile(*args: Any, **kwargs: Any) -> Any:
+                return _NamedTemporaryFileWrapper(*args, **kwargs)
+
+            @staticmethod
+            def mkstemp(prefix: str = "tmp", suffix: str = "", dir: str | None = None, text: bool = False) -> tuple[int, str]:
+                del text
+                dir_path = dir or "/tmp"
+                path = Path(dir_path) / f"{prefix}{os.getpid()}_{time.time_ns()}{suffix}"
+                fd = os.open(path, os.O_RDWR | os.O_CREAT | os.O_EXCL, 0o600)
+                return fd, str(path)
+
+        return _TempfileFallback
+
 
 ROOT = Path(__file__).resolve().parents[1]
 if str(ROOT) not in sys.path:
@@ -1931,6 +2003,14 @@ MID_SOUTH_TREEKEEPER_CONFIGS: dict[str, dict[str, Any]] = {
         "note": "Integrated from the official City of Fort Collins public TreeKeeper inventory.",
         "use_zip_index": False,
     },
+    "Brighton": {
+        "base_url": "https://brightonco.treekeepersoftware.com",
+        "uid": "pinkhunter-brighton-co",
+        "region": "co",
+        "source_department": "City of Brighton",
+        "note": "Integrated from the official City of Brighton public TreeKeeper inventory linked from the city's Open Space & Forestry page.",
+        "use_zip_index": False,
+    },
     "Normal": {
         "base_url": "https://normalil.treekeepersoftware.com",
         "uid": "pinkhunter-normal-il",
@@ -2021,6 +2101,15 @@ MID_SOUTH_TREEPLOTTER_CONFIGS: dict[str, dict[str, Any]] = {
         "source_department": "City of Jacksonville",
         "ownership_raw": "City of Jacksonville",
         "note": "Integrated via the official City of Jacksonville public TreePlotter inventory page and official jurisdiction boundary clipping.",
+        "clip_to_boundary": True,
+    },
+    "Colorado Springs": {
+        "folder": "ColoradoSpringsCO",
+        "landing_url": "https://pg-cloud.com/ColoradoSpringsCO/",
+        "region": "co",
+        "source_department": "City of Colorado Springs",
+        "ownership_raw": "City of Colorado Springs",
+        "note": "Integrated via the official City of Colorado Springs public TreePlotter inventory page and official jurisdiction boundary clipping.",
         "clip_to_boundary": True,
     },
     "Wheat Ridge": {
@@ -2145,6 +2234,106 @@ UNCOVERED_STATE_ARCGIS_CONFIGS: dict[str, dict[str, Any]] = {
         "source_department": "City of Gaithersburg",
         "ownership_raw": "City of Gaithersburg",
         "note": "Integrated from the official City of Gaithersburg public street-tree ArcGIS layer.",
+        "clip_to_boundary": True,
+    },
+    "Boulder": {
+        "region": "co",
+        "layer_url": "https://maps.bouldercolorado.gov/arcgis2/rest/services/parks/TreesOpenData/MapServer/0",
+        "dataset_page": "https://maps.bouldercolorado.gov/arcgis2/rest/services/parks/TreesOpenData/MapServer/0",
+        "where": "OWNEDBY = 'City' AND (UPPER(COMMONNAME) LIKE '%CHERRY%' OR UPPER(COMMONNAME) LIKE '%PLUM%' OR UPPER(COMMONNAME) LIKE '%PEACH%' OR UPPER(COMMONNAME) LIKE '%MAGNOLIA%' OR UPPER(COMMONNAME) LIKE '%CRABAPPLE%' OR UPPER(COMMONNAME) LIKE '%APPLE%' OR UPPER(LATINNAME) LIKE 'PRUNUS%' OR UPPER(LATINNAME) LIKE 'MALUS%' OR UPPER(LATINNAME) LIKE 'MAGNOLIA%')",
+        "object_id_field": "OBJECTID",
+        "common_field": "COMMONNAME",
+        "scientific_field": "LATINNAME",
+        "source_name": "Tree Inventory Open Data",
+        "source_department": "City of Boulder",
+        "ownership_raw": "City of Boulder",
+        "note": "Integrated from the official City of Boulder `Tree Inventory Open Data` ArcGIS layer and clipped to the official jurisdiction boundary.",
+        "clip_to_boundary": True,
+    },
+    "Longmont": {
+        "region": "co",
+        "layer_url": "https://pwnrmaps.ci.longmont.co.us/arcgis_public/rest/services/FORESTRY/Longmont_Public_Tree_Inventory/MapServer/0",
+        "dataset_page": "https://longmontcolorado.gov/forestry/city-maintained-trees-and-services/inventory-of-city-maintained-trees/",
+        "where": "UPPER(SPECIES) LIKE '%CHERRY%' OR UPPER(SPECIES) LIKE '%PLUM%' OR UPPER(SPECIES) LIKE '%PEACH%' OR UPPER(SPECIES) LIKE '%MAGNOLIA%' OR UPPER(SPECIES) LIKE '%CRABAPPLE%' OR UPPER(SPECIES) LIKE '%APPLE%'",
+        "object_id_field": "OBJECTID",
+        "common_field": "SPECIES",
+        "source_name": "City of Longmont Trees",
+        "source_department": "City of Longmont",
+        "ownership_raw": "City of Longmont",
+        "note": "Integrated from the official City of Longmont public tree inventory ArcGIS layer and clipped to the official jurisdiction boundary.",
+        "clip_to_boundary": True,
+    },
+    "Branson": {
+        "region": "mo",
+        "layer_url": "https://gis.bransonmo.gov/webgis/rest/services/Applications/Trees/FeatureServer/0",
+        "dataset_page": "https://gis.bransonmo.gov/webgis/rest/services/Applications/Trees/FeatureServer/0",
+        "where": "ACTIVE = 1 AND (UPPER(NAME) LIKE '%CHERRY%' OR UPPER(NAME) LIKE '%PLUM%' OR UPPER(NAME) LIKE '%PEACH%' OR UPPER(NAME) LIKE '%MAGNOLIA%' OR UPPER(NAME) LIKE '%CRABAPPLE%' OR UPPER(NAME) LIKE '%APPLE%' OR UPPER(SPP) LIKE 'PRUNUS%' OR UPPER(SPP) LIKE 'MALUS%' OR UPPER(SPP) LIKE 'MAGNOLIA%')",
+        "object_id_field": "OBJECTID",
+        "common_field": "NAME",
+        "scientific_field": "SPP",
+        "source_name": "Trees",
+        "source_department": "City of Branson",
+        "ownership_raw": "City of Branson",
+        "note": "Integrated from the official City of Branson public trees ArcGIS layer and clipped to the official jurisdiction boundary.",
+        "clip_to_boundary": True,
+    },
+    "Mesa": {
+        "region": "az",
+        "layer_url": "https://services2.arcgis.com/1gVyYKfYgW5Nxb1V/arcgis/rest/services/Mesa_AZ_iTree_Inventory_WFL1/FeatureServer/0",
+        "dataset_page": "https://tree-canopy-and-benefits-mesaaz.hub.arcgis.com/",
+        "where": "ISACTIVE = 1 AND (UPPER(COMMON_NAME) LIKE '%CHERRY%' OR UPPER(COMMON_NAME) LIKE '%PLUM%' OR UPPER(COMMON_NAME) LIKE '%PEACH%' OR UPPER(COMMON_NAME) LIKE '%MAGNOLIA%' OR UPPER(COMMON_NAME) LIKE '%CRABAPPLE%' OR UPPER(COMMON_NAME) LIKE '%APPLE%' OR UPPER(BOTANICAL_NAME) LIKE 'PRUNUS%' OR UPPER(BOTANICAL_NAME) LIKE 'MALUS%' OR UPPER(BOTANICAL_NAME) LIKE 'MAGNOLIA%')",
+        "object_id_field": "OBJECTID",
+        "common_field": "COMMON_NAME",
+        "scientific_field": "BOTANICAL_NAME",
+        "lon_field": "Longitude",
+        "lat_field": "Latitude",
+        "source_name": "Mesa AZ iTree Inventory",
+        "source_department": "City of Mesa",
+        "ownership_raw": "City of Mesa",
+        "note": "Integrated from the official City of Mesa `Mesa AZ iTree Inventory` ArcGIS layer published on the city's tree canopy hub.",
+        "clip_to_boundary": True,
+    },
+    "St. Louis": {
+        "region": "mo",
+        "layer_url": "https://maps9.stlouis-mo.gov/arcgis/rest/services/FORESTRY/FORESTRY_TREES/MapServer/0",
+        "dataset_page": "https://www.stlouis-mo.gov/data/datasets/dataset.cfm?id=121",
+        "where": "CONDITION <> 'N/A' AND (UPPER(COMMON) LIKE '%CHERRY%' OR UPPER(COMMON) LIKE '%PLUM%' OR UPPER(COMMON) LIKE '%PEACH%' OR UPPER(COMMON) LIKE '%MAGNOLIA%' OR UPPER(COMMON) LIKE '%CRABAPPLE%' OR UPPER(COMMON) LIKE '%APPLE%')",
+        "object_id_field": "OBJECTID",
+        "common_field": "COMMON",
+        "source_name": "City Street Trees",
+        "source_department": "City of St. Louis",
+        "ownership_raw": "City of St. Louis",
+        "note": "Integrated from the official City of St. Louis `City Street Trees` open-data layer and clipped to the official jurisdiction boundary.",
+        "clip_to_boundary": True,
+    },
+    "Tallahassee": {
+        "region": "fl",
+        "layer_url": "https://cotinter.leoncountyfl.gov/cotinter/rest/services/Vector/COT_Cityworks_Trees_D_SP/MapServer/0",
+        "dataset_page": "https://cotinter.leoncountyfl.gov/cotinter/rest/services/Vector/COT_Cityworks_Trees_D_SP/MapServer/0",
+        "where": "LIFECYCLE = 'Active' AND OWNER = 'City' AND (UPPER(BOTANICAL) LIKE 'PRUNUS%' OR UPPER(BOTANICAL) LIKE 'MALUS%' OR UPPER(BOTANICAL) LIKE 'MAGNOLIA%' OR UPPER(COMMON) LIKE '%CHERRY%' OR UPPER(COMMON) LIKE '%PLUM%' OR UPPER(COMMON) LIKE '%PEACH%' OR UPPER(COMMON) LIKE '%MAGNOLIA%' OR UPPER(COMMON) LIKE '%CRABAPPLE%' OR UPPER(COMMON) LIKE '%APPLE%')",
+        "object_id_field": "OBJECTID",
+        "common_field": "COMMON",
+        "scientific_field": "BOTANICAL",
+        "source_name": "Tree Inventory",
+        "source_department": "City of Tallahassee",
+        "ownership_raw": "City of Tallahassee",
+        "note": "Integrated from the official City of Tallahassee public Cityworks tree inventory layer and clipped to the official jurisdiction boundary.",
+        "clip_to_boundary": True,
+    },
+    "West Palm Beach": {
+        "region": "fl",
+        "layer_url": "https://wpbgisportal.wpb.org/server/rest/services/Sustainability/Trees/FeatureServer/0",
+        "dataset_page": "https://wpbgisportal.wpb.org/server/rest/services/Sustainability/Trees/FeatureServer/0",
+        "where": "Status = 'Alive' AND (UPPER(CommonName) LIKE '%CHERRY%' OR UPPER(CommonName) LIKE '%PLUM%' OR UPPER(CommonName) LIKE '%PEACH%' OR UPPER(CommonName) LIKE '%MAGNOLIA%' OR UPPER(CommonName) LIKE '%CRABAPPLE%' OR UPPER(CommonName) LIKE '%APPLE%' OR UPPER(LatinName) LIKE 'PRUNUS%' OR UPPER(LatinName) LIKE 'MALUS%' OR UPPER(LatinName) LIKE 'MAGNOLIA%')",
+        "object_id_field": "OBJECTID",
+        "common_field": "CommonName",
+        "scientific_field": "LatinName",
+        "lon_field": "Longitude",
+        "lat_field": "Latitude",
+        "source_name": "Trees",
+        "source_department": "City of West Palm Beach",
+        "ownership_raw": "City of West Palm Beach",
+        "note": "Integrated from the official City of West Palm Beach public trees ArcGIS layer and clipped to the official jurisdiction boundary.",
         "clip_to_boundary": True,
     },
     "Ann Arbor": {
@@ -4406,37 +4595,22 @@ def load_remote_geojson(url: str) -> dict[str, Any]:
 
 
 def iter_remote_csv_rows(url: str) -> Any:
-    request = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0"})
-    try:
-        with urllib.request.urlopen(request, timeout=180) as response:
-            text_stream = io.TextIOWrapper(response, encoding="utf-8-sig", newline="")
-            yield from csv.DictReader(text_stream)
-            return
-    except Exception:
-        pass
+    last_error: Exception | None = None
+    for insecure in (False, True):
+        with _require_tempfile().NamedTemporaryFile("wb", suffix=".csv") as handle:
+            cmd = ["curl", "-sL", "--max-time", "600", "-A", "Mozilla/5.0", "-o", handle.name]
+            if insecure:
+                cmd.insert(3, "-k")
+            cmd.append(url)
+            result = subprocess.run(cmd, check=False, capture_output=True, text=True)
+            if result.returncode != 0:
+                last_error = RuntimeError(f"Failed to download CSV from {url}: {result.stderr.strip()}")
+                continue
+            with open(handle.name, "r", encoding="utf-8-sig", newline="") as csv_handle:
+                yield from csv.DictReader(csv_handle)
+                return
 
-    insecure_context = ssl.create_default_context()
-    insecure_context.check_hostname = False
-    insecure_context.verify_mode = ssl.CERT_NONE
-    try:
-        with urllib.request.urlopen(request, timeout=180, context=insecure_context) as response:
-            text_stream = io.TextIOWrapper(response, encoding="utf-8-sig", newline="")
-            yield from csv.DictReader(text_stream)
-            return
-    except Exception:
-        pass
-
-    with tempfile.NamedTemporaryFile("wb", suffix=".csv") as handle:
-        result = subprocess.run(
-            ["curl", "-sL", "-k", "--max-time", "600", "-o", handle.name, url],
-            check=False,
-            capture_output=True,
-            text=True,
-        )
-        if result.returncode != 0:
-            raise RuntimeError(f"Failed to download CSV from {url}: {result.stderr.strip()}")
-        with open(handle.name, "r", encoding="utf-8-sig", newline="") as csv_handle:
-            yield from csv.DictReader(csv_handle)
+    raise RuntimeError(f"Failed to download CSV from {url}: {last_error}")
 
 
 def parse_point_geometry_text(raw_value: str | None) -> tuple[float | None, float | None]:
@@ -4501,7 +4675,7 @@ def rewrite_normalized_rows(target_cities: set[str], new_rows: list[dict[str, An
     for attempt in range(3):
         temp_path: Path | None = None
         try:
-            with tempfile.NamedTemporaryFile(
+            with _require_tempfile().NamedTemporaryFile(
                 "w",
                 encoding="utf-8",
                 newline="",
@@ -4638,17 +4812,17 @@ def ensure_region_entries(meta: dict[str, Any], regions: set[str]) -> None:
 def refresh_publish_indexes(target_regions: set[str], *, skip_global_refresh: bool = False) -> None:
     for region in sorted(target_regions):
         subprocess.run(
-            ["python3", "scripts/refresh_region_area_shards.py", "--data-dir", "public/data", "--region", region],
+            [sys.executable, "scripts/refresh_region_area_shards.py", "--data-dir", "public/data", "--region", region],
             check=True,
         )
     if skip_global_refresh:
         return
     subprocess.run(
-        ["python3", "scripts/refresh_coverage_metadata.py", "--data-dir", "public/data"],
+        [sys.executable, "scripts/refresh_coverage_metadata.py", "--data-dir", "public/data"],
         check=True,
     )
     subprocess.run(
-        ["python3", "scripts/refresh_meta_species_summary.py", "--data-dir", "public/data"],
+        [sys.executable, "scripts/refresh_meta_species_summary.py", "--data-dir", "public/data"],
         check=True,
     )
 
@@ -4797,7 +4971,7 @@ def fetch_austin() -> dict[str, Any]:
         species_group, subtype_name = classify_tree_record(scientific_raw, common_name, mapping_rows, subtype_rows)
         ownership_raw = "City of Austin"
         zip_code = assign_zip_code(lon, lat, zip_index)
-        fingerprint = hashlib.md5(
+        fingerprint = _require_hashlib().md5(
             f"{common_name or scientific_raw}|{lat:.6f}|{lon:.6f}".encode("utf-8")
         ).hexdigest()[:12]
         row_id = f"austin-{fingerprint}"
@@ -5483,7 +5657,7 @@ def fetch_san_rafael() -> dict[str, Any]:
 
 
 def init_treeplotter_session(folder: str, landing_url: str) -> str:
-    fd, cookie_path = tempfile.mkstemp(prefix=f"{slugify_token(folder)}_", suffix=".cookies")
+    fd, cookie_path = _require_tempfile().mkstemp(prefix=f"{slugify_token(folder)}_", suffix=".cookies")
     os.close(fd)
     landing = subprocess.run(["curl", "-sL", "-c", cookie_path, landing_url], capture_output=True, text=True, check=False)
     if landing.returncode != 0:
@@ -6182,7 +6356,7 @@ def fetch_los_angeles_filtered_rows() -> list[dict[str, Any]]:
     )
     rows_by_site_id: dict[str, dict[str, Any]] = {}
 
-    with tempfile.NamedTemporaryFile(prefix="la_tk_", suffix=".cookies", delete=False) as handle:
+    with _require_tempfile().NamedTemporaryFile(prefix="la_tk_", suffix=".cookies", delete=False) as handle:
         cookie_path = handle.name
 
     try:
@@ -8928,7 +9102,7 @@ def fetch_west_hollywood() -> dict[str, Any]:
         zip_code = assign_zip_code(lon, lat, zip_index)
         ownership_raw = "City of West Hollywood"
         row_seed = f"{row.get('tree') or ''}|{common_name or ''}|{scientific_raw}|{lat:.6f}|{lon:.6f}"
-        row_id = f"west-hollywood-{hashlib.md5(row_seed.encode('utf-8')).hexdigest()[:12]}"
+        row_id = f"west-hollywood-{_require_hashlib().md5(row_seed.encode('utf-8')).hexdigest()[:12]}"
 
         normalized_rows.append(
             {
@@ -10154,7 +10328,7 @@ def fetch_providence() -> dict[str, Any]:
         species_group, subtype_name = classify_tree_record(scientific_raw, None, mapping_rows, subtype_rows)
         zip_code = assign_zip_code(lon, lat, zip_index)
         row_seed = f"{row.get('address') or ''}|{row.get('street') or ''}|{scientific_raw}|{lat:.6f}|{lon:.6f}"
-        row_id = f"providence-{hashlib.md5(row_seed.encode('utf-8')).hexdigest()[:12]}"
+        row_id = f"providence-{_require_hashlib().md5(row_seed.encode('utf-8')).hexdigest()[:12]}"
         ownership_raw = "City of Providence"
 
         normalized_rows.append(
@@ -11182,7 +11356,7 @@ def main() -> int:
     meta["included_records"] = sum(int(region.get("tree_count", 0)) for region in meta.get("regions", []))
     meta["unknown_records"] = sum(item["count"] for item in unknown_items)
     save_meta(meta)
-    subprocess.run(["python3", "scripts/check_region_data_sizes.py", "--data-dir", "public/data"], check=True)
+    subprocess.run([sys.executable, "scripts/check_region_data_sizes.py", "--data-dir", "public/data"], check=True)
 
     return 0
 

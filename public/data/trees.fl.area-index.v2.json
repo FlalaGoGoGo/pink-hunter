@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-03-28T05:21:40.296288+00:00",
+  "generated_at": "2026-03-28T19:48:58.366951+00:00",
   "region": "fl",
   "strategy": "area_shard",
   "items": [
@@ -250,6 +250,260 @@
           },
           "raw_bytes": 107839,
           "gzip_bytes": 5538
+        }
+      ]
+    },
+    {
+      "jurisdiction": "Tallahassee",
+      "slug": "tallahassee",
+      "display_name": "Tallahassee",
+      "jurisdiction_type": "city",
+      "state_province": "FL",
+      "country": "United States",
+      "bounds": [
+        [
+          -84.37800799990332,
+          30.34677700015026
+        ],
+        [
+          -84.12982599958042,
+          30.587334999953743
+        ]
+      ],
+      "tree_count": 758,
+      "zip_codes": [
+        "32301",
+        "32303",
+        "32304",
+        "32307",
+        "32308",
+        "32310",
+        "32311",
+        "32312",
+        "32399"
+      ],
+      "species_counts": {
+        "cherry": 26,
+        "plum": 64,
+        "peach": 6,
+        "magnolia": 647,
+        "crabapple": 15
+      },
+      "ownership_counts": {
+        "public": 758,
+        "private": 0,
+        "unknown": 0
+      },
+      "species_ownership_counts": {
+        "cherry": {
+          "public": 26,
+          "private": 0,
+          "unknown": 0
+        },
+        "plum": {
+          "public": 64,
+          "private": 0,
+          "unknown": 0
+        },
+        "peach": {
+          "public": 6,
+          "private": 0,
+          "unknown": 0
+        },
+        "magnolia": {
+          "public": 647,
+          "private": 0,
+          "unknown": 0
+        },
+        "crabapple": {
+          "public": 15,
+          "private": 0,
+          "unknown": 0
+        }
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "tallahassee-001",
+          "bounds": [
+            [
+              -84.35235259688585,
+              30.4127177336088
+            ],
+            [
+              -84.2255506999367,
+              30.543053398655704
+            ]
+          ],
+          "data_path": "/data/trees.fl.area.tallahassee.v2.geojson",
+          "tree_count": 758,
+          "ownership_counts": {
+            "public": 758,
+            "private": 0,
+            "unknown": 0
+          },
+          "species_counts": {
+            "cherry": 26,
+            "plum": 64,
+            "peach": 6,
+            "magnolia": 647,
+            "crabapple": 15
+          },
+          "species_ownership_counts": {
+            "cherry": {
+              "public": 26,
+              "private": 0,
+              "unknown": 0
+            },
+            "plum": {
+              "public": 64,
+              "private": 0,
+              "unknown": 0
+            },
+            "peach": {
+              "public": 6,
+              "private": 0,
+              "unknown": 0
+            },
+            "magnolia": {
+              "public": 647,
+              "private": 0,
+              "unknown": 0
+            },
+            "crabapple": {
+              "public": 15,
+              "private": 0,
+              "unknown": 0
+            }
+          },
+          "raw_bytes": 391061,
+          "gzip_bytes": 19902
+        }
+      ]
+    },
+    {
+      "jurisdiction": "West Palm Beach",
+      "slug": "west-palm-beach",
+      "display_name": "West Palm Beach",
+      "jurisdiction_type": "city",
+      "state_province": "FL",
+      "country": "United States",
+      "bounds": [
+        [
+          -80.21462799971376,
+          26.644366000297886
+        ],
+        [
+          -80.04287899993163,
+          26.83810100000792
+        ]
+      ],
+      "tree_count": 28,
+      "zip_codes": [
+        "33401",
+        "33405",
+        "33407"
+      ],
+      "species_counts": {
+        "cherry": 0,
+        "plum": 0,
+        "peach": 0,
+        "magnolia": 28,
+        "crabapple": 0
+      },
+      "ownership_counts": {
+        "public": 28,
+        "private": 0,
+        "unknown": 0
+      },
+      "species_ownership_counts": {
+        "cherry": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        },
+        "plum": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        },
+        "peach": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        },
+        "magnolia": {
+          "public": 28,
+          "private": 0,
+          "unknown": 0
+        },
+        "crabapple": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        }
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "west-palm-beach-001",
+          "bounds": [
+            [
+              -80.08835121985175,
+              26.653424119930325
+            ],
+            [
+              -80.0514345049612,
+              26.757348884630442
+            ]
+          ],
+          "data_path": "/data/trees.fl.area.west-palm-beach.v2.geojson",
+          "tree_count": 28,
+          "ownership_counts": {
+            "public": 28,
+            "private": 0,
+            "unknown": 0
+          },
+          "species_counts": {
+            "cherry": 0,
+            "plum": 0,
+            "peach": 0,
+            "magnolia": 28,
+            "crabapple": 0
+          },
+          "species_ownership_counts": {
+            "cherry": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            },
+            "plum": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            },
+            "peach": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            },
+            "magnolia": {
+              "public": 28,
+              "private": 0,
+              "unknown": 0
+            },
+            "crabapple": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            }
+          },
+          "raw_bytes": 14504,
+          "gzip_bytes": 1051
         }
       ]
     },

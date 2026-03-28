@@ -1,8 +1,257 @@
 {
-  "generated_at": "2026-03-28T05:21:40.296288+00:00",
+  "generated_at": "2026-03-28T19:48:58.366951+00:00",
   "region": "co",
   "strategy": "area_shard",
   "items": [
+    {
+      "jurisdiction": "Boulder",
+      "slug": "boulder",
+      "display_name": "Boulder",
+      "jurisdiction_type": "city",
+      "state_province": "CO",
+      "country": "United States",
+      "bounds": [
+        [
+          -105.30145000005967,
+          39.95691500007509
+        ],
+        [
+          -105.17835500023213,
+          40.09441199992107
+        ]
+      ],
+      "tree_count": 3147,
+      "zip_codes": [
+        "80301",
+        "80302",
+        "80303",
+        "80304",
+        "80305",
+        "80310"
+      ],
+      "species_counts": {
+        "cherry": 67,
+        "plum": 132,
+        "peach": 34,
+        "magnolia": 13,
+        "crabapple": 2901
+      },
+      "ownership_counts": {
+        "public": 3147,
+        "private": 0,
+        "unknown": 0
+      },
+      "species_ownership_counts": {
+        "cherry": {
+          "public": 67,
+          "private": 0,
+          "unknown": 0
+        },
+        "plum": {
+          "public": 132,
+          "private": 0,
+          "unknown": 0
+        },
+        "peach": {
+          "public": 34,
+          "private": 0,
+          "unknown": 0
+        },
+        "magnolia": {
+          "public": 13,
+          "private": 0,
+          "unknown": 0
+        },
+        "crabapple": {
+          "public": 2901,
+          "private": 0,
+          "unknown": 0
+        }
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "boulder-001",
+          "bounds": [
+            [
+              -105.29738762016159,
+              39.96526259197047
+            ],
+            [
+              -105.17983234054932,
+              40.08542700673992
+            ]
+          ],
+          "data_path": "/data/trees.co.area.boulder.v2.geojson",
+          "tree_count": 3147,
+          "ownership_counts": {
+            "public": 3147,
+            "private": 0,
+            "unknown": 0
+          },
+          "species_counts": {
+            "cherry": 67,
+            "plum": 132,
+            "peach": 34,
+            "magnolia": 13,
+            "crabapple": 2901
+          },
+          "species_ownership_counts": {
+            "cherry": {
+              "public": 67,
+              "private": 0,
+              "unknown": 0
+            },
+            "plum": {
+              "public": 132,
+              "private": 0,
+              "unknown": 0
+            },
+            "peach": {
+              "public": 34,
+              "private": 0,
+              "unknown": 0
+            },
+            "magnolia": {
+              "public": 13,
+              "private": 0,
+              "unknown": 0
+            },
+            "crabapple": {
+              "public": 2901,
+              "private": 0,
+              "unknown": 0
+            }
+          },
+          "raw_bytes": 1577350,
+          "gzip_bytes": 76950
+        }
+      ]
+    },
+    {
+      "jurisdiction": "Brighton",
+      "slug": "brighton",
+      "display_name": "Brighton",
+      "jurisdiction_type": "city",
+      "state_province": "CO",
+      "country": "United States",
+      "bounds": [
+        [
+          -104.86505999994539,
+          39.899685999853546
+        ],
+        [
+          -104.71662099989022,
+          40.0330900000644
+        ]
+      ],
+      "tree_count": 409,
+      "zip_codes": [
+        "None"
+      ],
+      "species_counts": {
+        "cherry": 51,
+        "plum": 18,
+        "peach": 7,
+        "magnolia": 0,
+        "crabapple": 333
+      },
+      "ownership_counts": {
+        "public": 409,
+        "private": 0,
+        "unknown": 0
+      },
+      "species_ownership_counts": {
+        "cherry": {
+          "public": 51,
+          "private": 0,
+          "unknown": 0
+        },
+        "plum": {
+          "public": 18,
+          "private": 0,
+          "unknown": 0
+        },
+        "peach": {
+          "public": 7,
+          "private": 0,
+          "unknown": 0
+        },
+        "magnolia": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        },
+        "crabapple": {
+          "public": 333,
+          "private": 0,
+          "unknown": 0
+        }
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "brighton-001",
+          "bounds": [
+            [
+              -104.846323068442,
+              39.91002252
+            ],
+            [
+              -104.7456094,
+              40.00050564
+            ]
+          ],
+          "data_path": "/data/trees.co.area.brighton.v2.geojson",
+          "tree_count": 409,
+          "ownership_counts": {
+            "public": 409,
+            "private": 0,
+            "unknown": 0
+          },
+          "species_counts": {
+            "cherry": 51,
+            "plum": 18,
+            "peach": 7,
+            "magnolia": 0,
+            "crabapple": 333
+          },
+          "species_ownership_counts": {
+            "cherry": {
+              "public": 51,
+              "private": 0,
+              "unknown": 0
+            },
+            "plum": {
+              "public": 18,
+              "private": 0,
+              "unknown": 0
+            },
+            "peach": {
+              "public": 7,
+              "private": 0,
+              "unknown": 0
+            },
+            "magnolia": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            },
+            "crabapple": {
+              "public": 333,
+              "private": 0,
+              "unknown": 0
+            }
+          },
+          "raw_bytes": 192426,
+          "gzip_bytes": 7641
+        }
+      ]
+    },
     {
       "jurisdiction": "Denver",
       "slug": "denver",
@@ -403,6 +652,130 @@
           },
           "raw_bytes": 2275392,
           "gzip_bytes": 96270
+        }
+      ]
+    },
+    {
+      "jurisdiction": "Longmont",
+      "slug": "longmont",
+      "display_name": "Longmont",
+      "jurisdiction_type": "city",
+      "state_province": "CO",
+      "country": "United States",
+      "bounds": [
+        [
+          -105.17838700001919,
+          40.12707099976957
+        ],
+        [
+          -104.99869000035227,
+          40.210418999724816
+        ]
+      ],
+      "tree_count": 16,
+      "zip_codes": [
+        "80501",
+        "80503",
+        "80504"
+      ],
+      "species_counts": {
+        "cherry": 0,
+        "plum": 8,
+        "peach": 0,
+        "magnolia": 0,
+        "crabapple": 8
+      },
+      "ownership_counts": {
+        "public": 16,
+        "private": 0,
+        "unknown": 0
+      },
+      "species_ownership_counts": {
+        "cherry": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        },
+        "plum": {
+          "public": 8,
+          "private": 0,
+          "unknown": 0
+        },
+        "peach": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        },
+        "magnolia": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        },
+        "crabapple": {
+          "public": 8,
+          "private": 0,
+          "unknown": 0
+        }
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "longmont-001",
+          "bounds": [
+            [
+              -105.13797131420868,
+              40.16179506661886
+            ],
+            [
+              -105.08687662437917,
+              40.199880260324015
+            ]
+          ],
+          "data_path": "/data/trees.co.area.longmont.v2.geojson",
+          "tree_count": 16,
+          "ownership_counts": {
+            "public": 16,
+            "private": 0,
+            "unknown": 0
+          },
+          "species_counts": {
+            "cherry": 0,
+            "plum": 8,
+            "peach": 0,
+            "magnolia": 0,
+            "crabapple": 8
+          },
+          "species_ownership_counts": {
+            "cherry": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            },
+            "plum": {
+              "public": 8,
+              "private": 0,
+              "unknown": 0
+            },
+            "peach": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            },
+            "magnolia": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            },
+            "crabapple": {
+              "public": 8,
+              "private": 0,
+              "unknown": 0
+            }
+          },
+          "raw_bytes": 7790,
+          "gzip_bytes": 753
         }
       ]
     },

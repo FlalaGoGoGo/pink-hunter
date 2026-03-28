@@ -189,11 +189,22 @@ Live domain:
 </details>
 
 <details>
+<summary>Arizona</summary>
+
+- Mesa
+- Tempe
+
+</details>
+
+<details>
 <summary>Colorado</summary>
 
+- Brighton
+- Boulder
 - Denver
 - Erie
 - Fort Collins
+- Longmont
 - Wheat Ridge
 
 </details>
@@ -203,7 +214,16 @@ Live domain:
 
 - Cape Coral
 - Maitland
+- Tallahassee
+- West Palm Beach
 - Winter Park
+
+</details>
+
+<details>
+<summary>Georgia</summary>
+
+- Johns Creek
 
 </details>
 
@@ -238,7 +258,9 @@ Live domain:
 <details>
 <summary>Missouri</summary>
 
+- Branson
 - Brentwood
+- St. Louis
 - Springfield
 
 </details>
@@ -662,11 +684,22 @@ Live domain:
 </details>
 
 <details>
+<summary>Arizona</summary>
+
+- Mesa: [Mesa AZ iTree Inventory](https://tree-canopy-and-benefits-mesaaz.hub.arcgis.com/)
+- Tempe: [Tree Inventory](https://data.tempe.gov/datasets/tempegov::tree-inventory)
+
+</details>
+
+<details>
 <summary>Colorado</summary>
 
+- Brighton: [TreeKeeper Inventory](https://brightonco.treekeepersoftware.com/)
+- Boulder: [Tree Inventory Open Data](https://maps.bouldercolorado.gov/arcgis2/rest/services/parks/TreesOpenData/MapServer/0)
 - Denver: [Public Tree Inventory](https://opendata-geospatialdenver.hub.arcgis.com/datasets/public-tree-inventory)
 - Erie: [TreeKeeper Inventory](https://erieco.treekeepersoftware.com/)
 - Fort Collins: [TreeKeeper Inventory](https://fortcollinsco.treekeepersoftware.com/)
+- Longmont: [Inventory of City-Maintained Trees](https://longmontcolorado.gov/forestry/city-maintained-trees-and-services/inventory-of-city-maintained-trees/)
 - Wheat Ridge: [Tree Inventory](https://cem.pg-cloud.com/wheatridgeco/)
 
 </details>
@@ -676,7 +709,16 @@ Live domain:
 
 - Cape Coral: [Tree Inventory](https://capeims.capecoral.gov/arcgis/rest/services/GISDATA/Tree_Inventory/MapServer/0)
 - Maitland: [Tree Inventory](https://services8.arcgis.com/q4Vpy7r3KXnWcTBW/arcgis/rest/services/Tree_Inventory/FeatureServer/0)
+- Tallahassee: [Tree Inventory](https://cotinter.leoncountyfl.gov/cotinter/rest/services/Vector/COT_Cityworks_Trees_D_SP/MapServer/0)
+- West Palm Beach: [Trees](https://wpbgisportal.wpb.org/server/rest/services/Sustainability/Trees/FeatureServer/0)
 - Winter Park: [TreeKeeper Inventory](https://winterparkfl.treekeepersoftware.com/)
+
+</details>
+
+<details>
+<summary>Georgia</summary>
+
+- Johns Creek: [Tree Inventory](https://services1.arcgis.com/bqfNVPUK3HOnCFmA/arcgis/rest/services/Tree_Inventory/FeatureServer)
 
 </details>
 
@@ -711,7 +753,9 @@ Live domain:
 <details>
 <summary>Missouri</summary>
 
+- Branson: [Trees](https://gis.bransonmo.gov/webgis/rest/services/Applications/Trees/FeatureServer/0)
 - Brentwood: [Tree Inventory](https://brentwoodmo.treekeepersoftware.com/)
+- St. Louis: [City Street Trees](https://www.stlouis-mo.gov/data/datasets/dataset.cfm?id=121)
 - Springfield: [TreeKeeper Inventory](https://springfieldmo.treekeepersoftware.com/)
 
 </details>

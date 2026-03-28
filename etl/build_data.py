@@ -15,24 +15,17 @@ from __future__ import annotations
 
 import csv
 import datetime as dt
-import gzip
 import io
 import json
 import math
 import re
-import statistics
-import shutil
 import struct
 import subprocess
 import sys
-import tempfile
 import time
 import urllib.parse
-import urllib.request
-import zipfile
 from collections import Counter
 from pathlib import Path
-from typing import Any
 
 ROOT = Path(__file__).resolve().parents[1]
 PUBLIC_DATA_DIR = ROOT / "public" / "data"
@@ -68,6 +61,62 @@ def _require_element_tree() -> Any:
     except ImportError as exc:  # pragma: no cover - runtime dependency guard
         raise RuntimeError(_DEPENDENCY_ERROR) from exc
     return element_tree_module
+
+
+def _require_gzip() -> Any:
+    try:
+        import gzip as gzip_module
+        return gzip_module
+    except Exception:
+        class _GzipFallback:
+            @staticmethod
+            def compress(payload: bytes) -> bytes:
+                result = subprocess.run(["gzip", "-c"], input=payload, capture_output=True, check=True)
+                return result.stdout
+
+        return _GzipFallback
+
+
+def _require_statistics() -> Any:
+    try:
+        import statistics as statistics_module
+    except ImportError as exc:  # pragma: no cover - runtime dependency guard
+        raise RuntimeError(_DEPENDENCY_ERROR) from exc
+    return statistics_module
+
+
+def _require_zipfile() -> Any:
+    try:
+        import zipfile as zipfile_module
+    except ImportError as exc:  # pragma: no cover - runtime dependency guard
+        raise RuntimeError(_DEPENDENCY_ERROR) from exc
+    return zipfile_module
+
+
+def _require_tempfile() -> Any:
+    try:
+        import tempfile as tempfile_module
+    except ImportError as exc:  # pragma: no cover - runtime dependency guard
+        raise RuntimeError(_DEPENDENCY_ERROR) from exc
+    return tempfile_module
+
+
+def _require_shutil() -> Any:
+    try:
+        import shutil as shutil_module
+        return shutil_module
+    except Exception:
+        class _ShutilFallback:
+            @staticmethod
+            def rmtree(path: Path | str) -> None:
+                subprocess.run(["rm", "-rf", str(path)], check=True)
+
+            @staticmethod
+            def move(src: Path | str, dst: Path | str) -> str:
+                subprocess.run(["mv", str(src), str(dst)], check=True)
+                return str(dst)
+
+        return _ShutilFallback
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -257,6 +306,7 @@ REGION_LABELS: dict[str, str] = {
 SPECIES_GROUPS: list[str] = ["cherry", "plum", "peach", "magnolia", "crabapple"]
 REGION_CITY_OVERRIDES: dict[str, str] = {
     "Ann Arbor": "mi",
+    "Mesa": "az",
     "Phoenix": "az",
     "Tempe": "az",
     "Atlanta": "ga",
@@ -291,8 +341,14 @@ REGION_CITY_OVERRIDES: dict[str, str] = {
     "Denver": "co",
     "Erie": "co",
     "Fort Collins": "co",
+    "Longmont": "co",
+    "Boulder": "co",
+    "Brighton": "co",
+    "Colorado Springs": "co",
     "Austin": "tx",
     "Jacksonville": "fl",
+    "Tallahassee": "fl",
+    "West Palm Beach": "fl",
     "Dallas": "tx",
     "Houston": "tx",
     "Arlington": "va",
@@ -424,6 +480,8 @@ REGION_CITY_OVERRIDES: dict[str, str] = {
     "Whitby": "on",
     "Wheat Ridge": "co",
     "Winter Park": "fl",
+    "Branson": "mo",
+    "St. Louis": "mo",
     "Windsor": "on",
     "Longueuil": "qc",
     "Montreal": "qc",
@@ -596,6 +654,7 @@ REGION_CITY_OVERRIDES: dict[str, str] = {
 
 CITY_BOUNDARY_HINTS: dict[str, dict[str, str]] = {
     "Ann Arbor": {"state": "26"},
+    "Mesa": {"state": "04"},
     "Phoenix": {"state": "04"},
     "Tempe": {"state": "04"},
     "Atlanta": {"state": "13"},
@@ -630,10 +689,18 @@ CITY_BOUNDARY_HINTS: dict[str, dict[str, str]] = {
     "Denver": {"state": "08"},
     "Erie": {"state": "08"},
     "Fort Collins": {"state": "08"},
+    "Longmont": {"state": "08"},
+    "Boulder": {"state": "08"},
+    "Brighton": {"state": "08"},
+    "Colorado Springs": {"state": "08"},
     "Austin": {"state": "48"},
     "Jacksonville": {"state": "12"},
+    "Tallahassee": {"state": "12"},
+    "West Palm Beach": {"state": "12"},
     "Dallas": {"state": "48"},
     "Houston": {"state": "48"},
+    "Branson": {"state": "29"},
+    "St. Louis": {"state": "29"},
     "Buena Park": {"state": "06"},
     "Arcadia": {"state": "06"},
     "Cudahy": {"state": "06"},
@@ -1320,13 +1387,6 @@ def fetch_json(
 
     last_error: Exception | None = None
     for attempt in range(1, 5):
-        try:
-            request = urllib.request.Request(full_url, data=body_bytes, headers=request_headers, method=method.upper())
-            with urllib.request.urlopen(request, timeout=60) as response:
-                return json.loads(response.read().decode("utf-8"))
-        except Exception as exc:
-            last_error = exc
-
         for insecure in (False, True):
             cmd = ["curl", "-sL", "--max-time", "60"]
             if insecure:
@@ -1359,12 +1419,6 @@ def fetch_json(
 def fetch_binary(url: str) -> bytes:
     last_error: Exception | None = None
     for attempt in range(1, 5):
-        try:
-            with urllib.request.urlopen(url, timeout=60) as response:
-                return response.read()
-        except Exception as exc:
-            last_error = exc
-
         for insecure in (False, True):
             cmd = ["curl", "-sL", "--max-time", "60"]
             if insecure:
@@ -1473,7 +1527,7 @@ def read_xlsx_cell_text(cell: Any, shared_strings: list[str]) -> str:
 
 
 def load_xlsx_sheet_rows(payload: bytes, sheet_name: str) -> list[dict[str, str]]:
-    workbook = zipfile.ZipFile(io.BytesIO(payload))
+    workbook = _require_zipfile().ZipFile(io.BytesIO(payload))
     namespace = {
         "m": "http://schemas.openxmlformats.org/spreadsheetml/2006/main",
         "r": "http://schemas.openxmlformats.org/officeDocument/2006/relationships",
@@ -1645,8 +1699,8 @@ def fit_linear_regression(samples: list[tuple[float, float]]) -> tuple[float, fl
     if len(samples) < 2:
         return None
 
-    x_mean = statistics.fmean(sample[0] for sample in samples)
-    y_mean = statistics.fmean(sample[1] for sample in samples)
+    x_mean = _require_statistics().fmean(sample[0] for sample in samples)
+    y_mean = _require_statistics().fmean(sample[1] for sample in samples)
     denominator = sum((sample[0] - x_mean) ** 2 for sample in samples)
     if denominator == 0:
         return y_mean, 0.0
@@ -1679,7 +1733,7 @@ def leave_one_out_mae(samples: list[tuple[float, float]]) -> float | None:
 
     if not errors:
         return None
-    return round(statistics.fmean(errors), 3)
+    return round(_require_statistics().fmean(errors), 3)
 
 
 def parse_open_meteo_temperature_rows(payload: dict[str, Any]) -> list[tuple[dt.date, float, float]]:
@@ -1793,9 +1847,9 @@ def build_uw_bloom_forecast(area_reference: dict[str, Any], updated_at: str) -> 
 
     sample_years = len(training_samples)
     cv_mae_days = leave_one_out_mae(training_samples)
-    median_peak_day = int(round(statistics.median(peak_days.values()))) if peak_days else dt.date.today().timetuple().tm_yday
+    median_peak_day = int(round(_require_statistics().median(peak_days.values()))) if peak_days else dt.date.today().timetuple().tm_yday
     start_offset_days = (
-        int(round(statistics.median(start_offsets))) if start_offsets else UW_DEFAULT_START_OFFSET_DAYS
+        int(round(_require_statistics().median(start_offsets))) if start_offsets else UW_DEFAULT_START_OFFSET_DAYS
     )
     end_offset_days = start_offset_days if start_offsets else UW_DEFAULT_END_OFFSET_DAYS
 
@@ -2035,7 +2089,7 @@ def transformer_from_prj(prj_text: str | None) -> Any | None:
 
 def load_zipped_shapefile(zip_url: str) -> tuple[Any, str | None]:
     payload = fetch_binary(zip_url)
-    archive = zipfile.ZipFile(io.BytesIO(payload))
+    archive = _require_zipfile().ZipFile(io.BytesIO(payload))
     members = {Path(name).suffix.lower(): name for name in archive.namelist() if not name.endswith("/")}
     shp_name = members.get(".shp")
     shx_name = members.get(".shx")
@@ -4308,7 +4362,7 @@ def fetch_kirkland_rows(limit: int = 5000) -> tuple[dict[str, Any], list[dict[st
         "species_la": {"data_type": "character varying", "input_type": "text"},
     }
 
-    with tempfile.NamedTemporaryFile(prefix="kirkland_tp_", suffix=".cookies", delete=False) as handle:
+    with _require_tempfile().NamedTemporaryFile(prefix="kirkland_tp_", suffix=".cookies", delete=False) as handle:
         cookie_path = handle.name
 
     try:
@@ -7071,7 +7125,7 @@ def main() -> int:
 
     next_dir = PUBLIC_DATA_DIR / ".next"
     if next_dir.exists():
-        shutil.rmtree(next_dir)
+        _require_shutil().rmtree(next_dir)
     next_dir.mkdir(parents=True, exist_ok=True)
 
     region_meta: list[dict[str, Any]] = []
@@ -7170,7 +7224,7 @@ def main() -> int:
                         shard_file_name = f"trees.{region_id}.area.{city_slug}.shard-{shard_index:03d}.v2.geojson"
                     shard_payload_bytes = encode_feature_collection(shard_features)
                     shard_raw_bytes = len(shard_payload_bytes)
-                    shard_gzip_bytes = len(gzip.compress(shard_payload_bytes))
+                    shard_gzip_bytes = len(_require_gzip().compress(shard_payload_bytes))
                     (next_dir / shard_file_name).write_bytes(shard_payload_bytes)
                     shard_entries.append(
                         {
@@ -7326,10 +7380,10 @@ def main() -> int:
         legacy_meta.unlink()
 
     for output_name in output_names:
-        shutil.move(str(next_dir / output_name), str(PUBLIC_DATA_DIR / output_name))
+        _require_shutil().move(str(next_dir / output_name), str(PUBLIC_DATA_DIR / output_name))
 
     if next_dir.exists():
-        shutil.rmtree(next_dir)
+        _require_shutil().rmtree(next_dir)
 
     csv_path = NORMALIZED_DIR / "trees_normalized.csv"
     with csv_path.open("w", encoding="utf-8", newline="") as file:

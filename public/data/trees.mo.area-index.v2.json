@@ -1,8 +1,130 @@
 {
-  "generated_at": "2026-03-28T05:21:40.296288+00:00",
+  "generated_at": "2026-03-28T19:48:58.366951+00:00",
   "region": "mo",
   "strategy": "area_shard",
   "items": [
+    {
+      "jurisdiction": "Branson",
+      "slug": "branson",
+      "display_name": "Branson",
+      "jurisdiction_type": "city",
+      "state_province": "MO",
+      "country": "United States",
+      "bounds": [
+        [
+          -93.31489599957527,
+          36.5939809999059
+        ],
+        [
+          -93.21172299978741,
+          36.71185600019015
+        ]
+      ],
+      "tree_count": 17,
+      "zip_codes": [
+        "65616"
+      ],
+      "species_counts": {
+        "cherry": 0,
+        "plum": 0,
+        "peach": 0,
+        "magnolia": 4,
+        "crabapple": 13
+      },
+      "ownership_counts": {
+        "public": 17,
+        "private": 0,
+        "unknown": 0
+      },
+      "species_ownership_counts": {
+        "cherry": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        },
+        "plum": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        },
+        "peach": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        },
+        "magnolia": {
+          "public": 4,
+          "private": 0,
+          "unknown": 0
+        },
+        "crabapple": {
+          "public": 13,
+          "private": 0,
+          "unknown": 0
+        }
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "branson-001",
+          "bounds": [
+            [
+              -93.24932714727989,
+              36.63450744911745
+            ],
+            [
+              -93.21484723420873,
+              36.657990727763234
+            ]
+          ],
+          "data_path": "/data/trees.mo.area.branson.v2.geojson",
+          "tree_count": 17,
+          "ownership_counts": {
+            "public": 17,
+            "private": 0,
+            "unknown": 0
+          },
+          "species_counts": {
+            "cherry": 0,
+            "plum": 0,
+            "peach": 0,
+            "magnolia": 4,
+            "crabapple": 13
+          },
+          "species_ownership_counts": {
+            "cherry": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            },
+            "plum": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            },
+            "peach": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            },
+            "magnolia": {
+              "public": 4,
+              "private": 0,
+              "unknown": 0
+            },
+            "crabapple": {
+              "public": 13,
+              "private": 0,
+              "unknown": 0
+            }
+          },
+          "raw_bytes": 7792,
+          "gzip_bytes": 774
+        }
+      ]
+    },
     {
       "jurisdiction": "Brentwood",
       "slug": "brentwood",
@@ -244,6 +366,154 @@
           },
           "raw_bytes": 310900,
           "gzip_bytes": 13589
+        }
+      ]
+    },
+    {
+      "jurisdiction": "St. Louis",
+      "slug": "st-louis",
+      "display_name": "St. Louis",
+      "jurisdiction_type": "city",
+      "state_province": "MO",
+      "country": "United States",
+      "bounds": [
+        [
+          -90.32051500012372,
+          38.532011999831624
+        ],
+        [
+          -90.16671699962987,
+          38.774287999650255
+        ]
+      ],
+      "tree_count": 4602,
+      "zip_codes": [
+        "63101",
+        "63102",
+        "63103",
+        "63104",
+        "63105",
+        "63106",
+        "63107",
+        "63108",
+        "63109",
+        "63110",
+        "63111",
+        "63112",
+        "63113",
+        "63115",
+        "63116",
+        "63117",
+        "63118",
+        "63119",
+        "63120",
+        "63123",
+        "63125",
+        "63133",
+        "63136",
+        "63137",
+        "63139",
+        "63143",
+        "63147"
+      ],
+      "species_counts": {
+        "cherry": 2474,
+        "plum": 83,
+        "peach": 8,
+        "magnolia": 281,
+        "crabapple": 1756
+      },
+      "ownership_counts": {
+        "public": 4602,
+        "private": 0,
+        "unknown": 0
+      },
+      "species_ownership_counts": {
+        "cherry": {
+          "public": 2474,
+          "private": 0,
+          "unknown": 0
+        },
+        "plum": {
+          "public": 83,
+          "private": 0,
+          "unknown": 0
+        },
+        "peach": {
+          "public": 8,
+          "private": 0,
+          "unknown": 0
+        },
+        "magnolia": {
+          "public": 281,
+          "private": 0,
+          "unknown": 0
+        },
+        "crabapple": {
+          "public": 1756,
+          "private": 0,
+          "unknown": 0
+        }
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "st-louis-001",
+          "bounds": [
+            [
+              -90.31626766001209,
+              38.541314976396585
+            ],
+            [
+              -90.18626290180515,
+              38.72671162652506
+            ]
+          ],
+          "data_path": "/data/trees.mo.area.st-louis.v2.geojson",
+          "tree_count": 4602,
+          "ownership_counts": {
+            "public": 4602,
+            "private": 0,
+            "unknown": 0
+          },
+          "species_counts": {
+            "cherry": 2474,
+            "plum": 83,
+            "peach": 8,
+            "magnolia": 281,
+            "crabapple": 1756
+          },
+          "species_ownership_counts": {
+            "cherry": {
+              "public": 2474,
+              "private": 0,
+              "unknown": 0
+            },
+            "plum": {
+              "public": 83,
+              "private": 0,
+              "unknown": 0
+            },
+            "peach": {
+              "public": 8,
+              "private": 0,
+              "unknown": 0
+            },
+            "magnolia": {
+              "public": 281,
+              "private": 0,
+              "unknown": 0
+            },
+            "crabapple": {
+              "public": 1756,
+              "private": 0,
+              "unknown": 0
+            }
+          },
+          "raw_bytes": 2297870,
+          "gzip_bytes": 132065
         }
       ]
     }
