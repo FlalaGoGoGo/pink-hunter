@@ -5636,18 +5636,7 @@ export default function App(): JSX.Element {
       let body = "";
       let action: ReactNode = null;
 
-      if (statusNotice.kind === "official_unavailable") {
-        title = discoveryCopy.officialUnavailableTitle;
-        body = discoveryCopy.officialUnavailableBody;
-        action = (
-          <a
-            className="detail-route-btn status-card-primary-link"
-            href={buildContactMailtoHref("official_unavailable", statusNotice.areaName ?? "Unknown area")}
-          >
-            {discoveryCopy.officialUnavailableCta}
-          </a>
-        );
-      } else if (statusNotice.kind === "city_level_coverage") {
+      if (statusNotice.kind === "city_level_coverage") {
         title = discoveryCopy.cityLevelCoverageTitle;
         body = discoveryCopy.cityLevelCoverageBody;
         action = (
