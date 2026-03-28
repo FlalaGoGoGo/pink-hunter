@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-03-27T22:54:21.418611+00:00",
+  "generated_at": "2026-03-28T02:05:43.977036+00:00",
   "region": "ab",
   "strategy": "area_shard",
   "items": [
@@ -722,6 +722,128 @@
           },
           "raw_bytes": 1046920,
           "gzip_bytes": 44593
+        }
+      ]
+    },
+    {
+      "jurisdiction": "Leduc",
+      "slug": "leduc",
+      "display_name": "Leduc",
+      "jurisdiction_type": "city",
+      "state_province": "AB",
+      "country": "Canada",
+      "bounds": [
+        [
+          -113.60946087457032,
+          53.23679714679394
+        ],
+        [
+          -113.50280016199412,
+          53.30372932693424
+        ]
+      ],
+      "tree_count": 910,
+      "zip_codes": [
+        "None"
+      ],
+      "species_counts": {
+        "cherry": 168,
+        "plum": 2,
+        "peach": 0,
+        "magnolia": 0,
+        "crabapple": 740
+      },
+      "ownership_counts": {
+        "public": 910,
+        "private": 0,
+        "unknown": 0
+      },
+      "species_ownership_counts": {
+        "cherry": {
+          "public": 168,
+          "private": 0,
+          "unknown": 0
+        },
+        "plum": {
+          "public": 2,
+          "private": 0,
+          "unknown": 0
+        },
+        "peach": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        },
+        "magnolia": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        },
+        "crabapple": {
+          "public": 740,
+          "private": 0,
+          "unknown": 0
+        }
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "leduc-001",
+          "bounds": [
+            [
+              -113.60946087457032,
+              53.23679714679394
+            ],
+            [
+              -113.50280016199412,
+              53.30372932693424
+            ]
+          ],
+          "data_path": "/data/trees.ab.area.leduc.v2.geojson",
+          "tree_count": 910,
+          "ownership_counts": {
+            "public": 910,
+            "private": 0,
+            "unknown": 0
+          },
+          "species_counts": {
+            "cherry": 168,
+            "plum": 2,
+            "peach": 0,
+            "magnolia": 0,
+            "crabapple": 740
+          },
+          "species_ownership_counts": {
+            "cherry": {
+              "public": 168,
+              "private": 0,
+              "unknown": 0
+            },
+            "plum": {
+              "public": 2,
+              "private": 0,
+              "unknown": 0
+            },
+            "peach": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            },
+            "magnolia": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            },
+            "crabapple": {
+              "public": 740,
+              "private": 0,
+              "unknown": 0
+            }
+          },
+          "raw_bytes": 418337,
+          "gzip_bytes": 20902
         }
       ]
     },

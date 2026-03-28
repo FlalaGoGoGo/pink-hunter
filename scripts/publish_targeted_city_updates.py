@@ -174,6 +174,20 @@ THUNDER_BAY_TREES_LAYER = (
     "https://services5.arcgis.com/h9xShea49ZANgOtx/arcgis/rest/services/City_of_Thunder_Bay_Trees/FeatureServer/2"
 )
 THUNDER_BAY_DATASET_PAGE = "https://services5.arcgis.com/h9xShea49ZANgOtx/arcgis/rest/services/City_of_Thunder_Bay_Trees/FeatureServer"
+ORANGEVILLE_TREES_LAYER = "https://gis.orangeville.ca/arcgis/rest/services/Biota/StreetTree/FeatureServer/0"
+ORANGEVILLE_DATASET_PAGE = "https://www.orangeville.ca/en/living-here/urban-forestry.aspx"
+CORNWALL_ON_TREES_LAYER = (
+    "https://services2.arcgis.com/tPtW2sjE3XOR63A7/arcgis/rest/services/Tree_Inventory_2023_view/FeatureServer/0"
+)
+CORNWALL_ON_DATASET_PAGE = "https://cornwallcity.maps.arcgis.com/apps/dashboards/3d1418832bbe4b0e920d1c44e613af56"
+BRAMPTON_TREES_LAYER = "https://mapsdev.brampton.ca/arcgis/rest/services/ParksOps/Tree_Inventory/MapServer/0"
+BRAMPTON_DATASET_PAGE = "https://mapsdev.brampton.ca/arcgis/rest/services/ParksOps/Tree_Inventory/MapServer"
+COBOURG_TREES_LAYER = (
+    "https://services5.arcgis.com/bD7yhukP2irPxz1v/arcgis/rest/services/Virtual_Arboretum_Tree_Inventory_2025/FeatureServer/10"
+)
+COBOURG_DATASET_PAGE = "https://public-townofcobourg.hub.arcgis.com"
+VAUGHAN_TREES_LAYER = "https://ww8.yorkmaps.ca/arcgis/rest/services/OpenData/Biodiversity/MapServer/0"
+VAUGHAN_DATASET_PAGE = "https://www.york.ca/newsroom/campaigns-projects/street-trees"
 CALGARY_TREES_LAYER = "https://services1.arcgis.com/AVP60cs0Q9PEA8rH/arcgis/rest/services/Public_Trees/FeatureServer/0"
 CALGARY_DATASET_PAGE = "https://services1.arcgis.com/AVP60cs0Q9PEA8rH/arcgis/rest/services/Public_Trees/FeatureServer/0"
 ST_ALBERT_TREES_LAYER = "https://services1.arcgis.com/fyyY0cNXvmUWvX1x/arcgis/rest/services/Tree_Inventory/FeatureServer/0"
@@ -184,6 +198,8 @@ OKOTOKS_TREES_LAYER = "https://services3.arcgis.com/Fl5sQFvYY7w7mPQj/arcgis/rest
 OKOTOKS_DATASET_PAGE = "https://services3.arcgis.com/Fl5sQFvYY7w7mPQj/arcgis/rest/services/Tree_Inventory/FeatureServer"
 LETHBRIDGE_TREES_LAYER = "https://gis.lethbridge.ca/gisopendata/rest/services/OpenData/odl_trees/MapServer/0"
 LETHBRIDGE_DATASET_PAGE = "https://gis.lethbridge.ca/gisopendata/rest/services/OpenData/odl_trees/MapServer/0"
+LEDUC_TREES_LAYER = "https://maps.leduc.ca/arcgis/rest/services/Cityworks/cwRoadsAndDrainage/MapServer/2"
+LEDUC_DATASET_PAGE = "https://maps.leduc.ca/arcgis/rest/services/Cityworks/cwRoadsAndDrainage/MapServer"
 AIRDRIE_TREES_LAYER = "https://map.airdrie.ca:6443/arcgis/rest/services/pk_EdibleTrees_ap/MapServer/0"
 AIRDRIE_DATASET_PAGE = "https://map.airdrie.ca:6443/arcgis/rest/services/pk_EdibleTrees_ap/MapServer/0"
 KELOWNA_TREES_LAYER = "https://geoportal.kelowna.ca/arcgis/rest/services/ArcGISOnline/OpenData_Environment/MapServer/17"
@@ -210,6 +226,22 @@ FREDERICTON_DATASET_PAGE = (
 )
 GATINEAU_TREES_LAYER = "https://services2.arcgis.com/WLyMuW006nKOfa5Z/arcgis/rest/services/Remarkable_Trees_view2/FeatureServer/0"
 GATINEAU_DATASET_PAGE = "https://ncc-ccn.gc.ca/places/remarkable-trees"
+LONGUEUIL_TREES_GEOJSON = (
+    "https://www.donneesquebec.ca/recherche/dataset/9ed153b2-4751-4e03-862f-6d4027e6f2a6/resource/23cde69a-a1d7-4775-8271-e3b46b3a6d83/download/arbres.json"
+)
+LONGUEUIL_DATASET_PAGE = "https://www.donneesquebec.ca/recherche/dataset/arbres"
+QUEBEC_CITY_TREES_GEOJSON = (
+    "https://www.donneesquebec.ca/recherche/dataset/34103a43-3712-4a29-92e1-039e9188e915/resource/de031174-cbdf-4d69-869c-21cca8036279/download/vdq-arbrerepertorie.geojson"
+)
+QUEBEC_CITY_DATASET_PAGE = "https://www.donneesquebec.ca/recherche/dataset/vque_26"
+REPENTIGNY_TREES_GEOJSON = (
+    "https://www.donneesquebec.ca/recherche/dataset/d65f10dd-9948-4b52-bc4c-b40261e2c593/resource/a3e77a08-b88a-4fa5-ae2f-56739f14c58b/download/arbres.geojson"
+)
+REPENTIGNY_DATASET_PAGE = "https://www.donneesquebec.ca/recherche/dataset/vrep-arbres"
+SAGUENAY_TREES_GEOJSON = (
+    "https://www.donneesquebec.ca/recherche/dataset/9d688a5e-1725-4b7e-ad68-21533d6cb36d/resource/70ebed94-824e-4a72-a9f0-d7d7fa55597e/download/sag_inventairearbres.geojson"
+)
+SAGUENAY_DATASET_PAGE = "https://www.donneesquebec.ca/recherche/dataset/sag_inventaire-des-arbres-repertories"
 SASKATOON_TREES_LAYER = "https://gisext.saskatoon.ca/arcgis/rest/services/AGOL/TreeInventoryPublic/MapServer/1"
 SASKATOON_DATASET_PAGE = "https://www.saskatoon.ca/treeinventory"
 HALIFAX_TREES_LAYER = "https://services2.arcgis.com/11XBiaBYA9Ep0yNJ/arcgis/rest/services/Public_Trees/FeatureServer/0"
@@ -1178,6 +1210,65 @@ THUNDER_BAY_BLOSSOM_WHERE = (
     "UPPER(COMMON) LIKE '%APPLE%'"
     ")"
 )
+ORANGEVILLE_BLOSSOM_WHERE = (
+    "Removed = 'No' AND ("
+    "UPPER(SPCIES) LIKE 'PRUNUS%' OR "
+    "UPPER(SPCIES) LIKE 'MALUS%' OR "
+    "UPPER(SPCIES) LIKE 'MAGNOLIA%' OR "
+    "UPPER(SPCIES) LIKE '%CHERRY%' OR "
+    "UPPER(SPCIES) LIKE '%PLUM%' OR "
+    "UPPER(SPCIES) LIKE '%PEACH%' OR "
+    "UPPER(SPCIES) LIKE '%MAGNOLIA%' OR "
+    "UPPER(SPCIES) LIKE '%CRABAPPLE%' OR "
+    "UPPER(SPCIES) LIKE '%APPLE%'"
+    ")"
+)
+VAUGHAN_BLOSSOM_WHERE = (
+    "STATUS = 'Active' AND MUNICIPALITY = 'Vaughan' AND ("
+    "UPPER(SPECIES) LIKE 'PRUNUS%' OR "
+    "UPPER(SPECIES) LIKE 'MALUS%' OR "
+    "UPPER(SPECIES) LIKE 'MAGNOLIA%' OR "
+    "UPPER(COMMONNAME) LIKE '%CHERRY%' OR "
+    "UPPER(COMMONNAME) LIKE '%PLUM%' OR "
+    "UPPER(COMMONNAME) LIKE '%PEACH%' OR "
+    "UPPER(COMMONNAME) LIKE '%MAGNOLIA%' OR "
+    "UPPER(COMMONNAME) LIKE '%CRABAPPLE%' OR "
+    "UPPER(COMMONNAME) LIKE '%APPLE%'"
+    ")"
+)
+CORNWALL_ON_BLOSSOM_WHERE = (
+    "(Status IS NULL OR Status = 'PRESENT') AND ("
+    "UPPER(SPECIES) LIKE '%CHERRY%' OR "
+    "UPPER(SPECIES) LIKE '%PLUM%' OR "
+    "UPPER(SPECIES) LIKE '%PEACH%' OR "
+    "UPPER(SPECIES) LIKE '%MAGNOLIA%' OR "
+    "UPPER(SPECIES) LIKE '%CRABAPPLE%' OR "
+    "UPPER(SPECIES) LIKE '%APPLE%'"
+    ")"
+)
+BRAMPTON_BLOSSOM_WHERE = (
+    "SERVICE_STATUS = 'TREE' AND OWNERSHIP = 'COB' AND ("
+    "UPPER(TREE_TYPE) LIKE '%CHERRY%' OR "
+    "UPPER(TREE_TYPE) LIKE '%PLUM%' OR "
+    "UPPER(TREE_TYPE) LIKE '%PEACH%' OR "
+    "UPPER(TREE_TYPE) LIKE '%MAGNOLIA%' OR "
+    "UPPER(TREE_TYPE) LIKE '%CRAB%' OR "
+    "UPPER(TREE_TYPE) LIKE '%APPLE%'"
+    ")"
+)
+COBOURG_BLOSSOM_WHERE = (
+    "("
+    "UPPER(Botanical) LIKE 'PRUNUS%' OR "
+    "UPPER(Botanical) LIKE 'MALUS%' OR "
+    "UPPER(Botanical) LIKE 'MAGNOLIA%' OR "
+    "UPPER(Common) LIKE '%CHERRY%' OR "
+    "UPPER(Common) LIKE '%PLUM%' OR "
+    "UPPER(Common) LIKE '%PEACH%' OR "
+    "UPPER(Common) LIKE '%MAGNOLIA%' OR "
+    "UPPER(Common) LIKE '%CRABAPPLE%' OR "
+    "UPPER(Common) LIKE '%APPLE%'"
+    ")"
+)
 CALGARY_BLOSSOM_WHERE = (
     "LIFE_CYCLE_STATUS = 'ACTIVE' AND ("
     "UPPER(GENUS) LIKE 'PRUNUS%' OR "
@@ -1239,6 +1330,19 @@ LETHBRIDGE_BLOSSOM_WHERE = (
     "UPPER(cultivar) LIKE '%MAGNOLIA%' OR "
     "UPPER(cultivar) LIKE '%CRABAPPLE%' OR "
     "UPPER(cultivar) LIKE '%APPLE%'"
+    ")"
+)
+LEDUC_BLOSSOM_WHERE = (
+    "CWSTATUS = 'Active' AND ("
+    "UPPER(BOTANICAL_COMMON_NAME) LIKE 'PRUNUS%' OR "
+    "UPPER(BOTANICAL_COMMON_NAME) LIKE 'MALUS%' OR "
+    "UPPER(BOTANICAL_COMMON_NAME) LIKE 'MAGNOLIA%' OR "
+    "UPPER(BOTANICAL_COMMON_NAME) LIKE '%CHERRY%' OR "
+    "UPPER(BOTANICAL_COMMON_NAME) LIKE '%PLUM%' OR "
+    "UPPER(BOTANICAL_COMMON_NAME) LIKE '%PEACH%' OR "
+    "UPPER(BOTANICAL_COMMON_NAME) LIKE '%MAGNOLIA%' OR "
+    "UPPER(BOTANICAL_COMMON_NAME) LIKE '%CRABAPPLE%' OR "
+    "UPPER(BOTANICAL_COMMON_NAME) LIKE '%APPLE%'"
     ")"
 )
 NANAIMO_BLOSSOM_WHERE = (
@@ -2109,6 +2213,19 @@ UNCOVERED_STATE_ARCGIS_CONFIGS: dict[str, dict[str, Any]] = {
         "note": "Integrated from the official City of Burlington public urban-forestry tree layer after restricting to living trees.",
         "clip_to_boundary": True,
     },
+    "Brampton": {
+        "region": "on",
+        "layer_url": BRAMPTON_TREES_LAYER,
+        "dataset_page": BRAMPTON_DATASET_PAGE,
+        "where": BRAMPTON_BLOSSOM_WHERE,
+        "object_id_field": "OBJECTID",
+        "common_field": "TREE_TYPE",
+        "source_name": "Tree Inventory",
+        "source_department": "City of Brampton",
+        "ownership_raw": "City of Brampton",
+        "note": "Integrated from the official City of Brampton public tree inventory ArcGIS layer after restricting to city-owned live-tree rows.",
+        "clip_to_boundary": True,
+    },
     "Cambridge ON": {
         "region": "on",
         "layer_url": CAMBRIDGE_ON_TREES_LAYER,
@@ -2148,6 +2265,47 @@ UNCOVERED_STATE_ARCGIS_CONFIGS: dict[str, dict[str, Any]] = {
         "source_department": "City of Hamilton",
         "ownership_raw": "City of Hamilton",
         "note": "Integrated from the official City of Hamilton public tree inventory ArcGIS layer after restricting to `STATUS = 'Existing'`.",
+        "clip_to_boundary": True,
+    },
+    "Cobourg": {
+        "region": "on",
+        "layer_url": COBOURG_TREES_LAYER,
+        "dataset_page": COBOURG_DATASET_PAGE,
+        "where": COBOURG_BLOSSOM_WHERE,
+        "object_id_field": "OBJECTID",
+        "common_field": "Common",
+        "scientific_field": "Botanical",
+        "source_name": "December 2025 Tree Inventory",
+        "source_department": "Town of Cobourg",
+        "ownership_raw": "Town of Cobourg",
+        "note": "Integrated from the official Town of Cobourg virtual arboretum tree inventory service and official Statistics Canada CSD boundary.",
+        "clip_to_boundary": True,
+    },
+    "Cornwall": {
+        "region": "on",
+        "layer_url": CORNWALL_ON_TREES_LAYER,
+        "dataset_page": CORNWALL_ON_DATASET_PAGE,
+        "where": CORNWALL_ON_BLOSSOM_WHERE,
+        "object_id_field": "OBJECTID",
+        "common_field": "SPECIES",
+        "source_name": "Tree Inventory",
+        "source_department": "City of Cornwall",
+        "ownership_raw": "City of Cornwall",
+        "note": "Integrated from the official City of Cornwall public tree inventory ArcGIS layer after restricting to present rows.",
+        "clip_to_boundary": True,
+    },
+    "Vaughan": {
+        "region": "on",
+        "layer_url": VAUGHAN_TREES_LAYER,
+        "dataset_page": VAUGHAN_DATASET_PAGE,
+        "where": VAUGHAN_BLOSSOM_WHERE,
+        "object_id_field": "OBJECTID",
+        "common_field": "COMMONNAME",
+        "scientific_field": "SPECIES",
+        "source_name": "Street Trees",
+        "source_department": "York Region",
+        "ownership_raw": "York Region",
+        "note": "Integrated from the official York Region street trees ArcGIS layer after restricting to active Vaughan rows and clipping to the official Vaughan boundary.",
         "clip_to_boundary": True,
     },
     "Kingston": {
@@ -2400,6 +2558,19 @@ UNCOVERED_STATE_ARCGIS_CONFIGS: dict[str, dict[str, Any]] = {
         "note": "Integrated from the official City of Lethbridge public trees ArcGIS layer after restricting to active rows.",
         "clip_to_boundary": True,
     },
+    "Leduc": {
+        "region": "ab",
+        "layer_url": LEDUC_TREES_LAYER,
+        "dataset_page": LEDUC_DATASET_PAGE,
+        "where": LEDUC_BLOSSOM_WHERE,
+        "object_id_field": "OBJECTID",
+        "scientific_field": "BOTANICAL_COMMON_NAME",
+        "source_name": "Trees",
+        "source_department": "City of Leduc",
+        "ownership_raw": "City of Leduc",
+        "note": "Integrated from the official City of Leduc public Cityworks trees layer after restricting to active rows.",
+        "clip_to_boundary": True,
+    },
     "Halton Hills": {
         "region": "on",
         "layer_url": HALTON_HILLS_TREES_LAYER,
@@ -2426,6 +2597,19 @@ UNCOVERED_STATE_ARCGIS_CONFIGS: dict[str, dict[str, Any]] = {
         "source_department": "Town of Tecumseh",
         "ownership_raw": "Town of Tecumseh",
         "note": "Integrated from the official Town of Tecumseh municipal trees ArcGIS layer after excluding boundary-only rows.",
+        "clip_to_boundary": True,
+    },
+    "Orangeville": {
+        "region": "on",
+        "layer_url": ORANGEVILLE_TREES_LAYER,
+        "dataset_page": ORANGEVILLE_DATASET_PAGE,
+        "where": ORANGEVILLE_BLOSSOM_WHERE,
+        "object_id_field": "OBJECTID",
+        "scientific_field": "SPCIES",
+        "source_name": "Street Tree",
+        "source_department": "Town of Orangeville",
+        "ownership_raw": "Town of Orangeville",
+        "note": "Integrated from the official Town of Orangeville public street-tree inventory ArcGIS layer after excluding removed rows.",
         "clip_to_boundary": True,
     },
     "Airdrie": {
@@ -2948,6 +3132,66 @@ UNCOVERED_STATE_ARCGIS_CONFIGS: dict[str, dict[str, Any]] = {
     },
 }
 
+CANADA_GEOJSON_CONFIGS: dict[str, dict[str, Any]] = {
+    "Longueuil": {
+        "region": "qc",
+        "geojson_url": LONGUEUIL_TREES_GEOJSON,
+        "dataset_page": LONGUEUIL_DATASET_PAGE,
+        "id_field": None,
+        "combined_species_field": "Espece",
+        "source_name": "Arbres",
+        "source_department": "Ville de Longueuil",
+        "ownership_raw": "Ville de Longueuil",
+        "note": "Integrated from the official Ville de Longueuil `Arbres` GeoJSON on Donnees Quebec and the official Statistics Canada CSD boundary.",
+        "clip_to_boundary": True,
+    },
+    "Quebec City": {
+        "region": "qc",
+        "geojson_url": QUEBEC_CITY_TREES_GEOJSON,
+        "dataset_page": QUEBEC_CITY_DATASET_PAGE,
+        "id_field": "ID",
+        "common_field": "NOM_FRANCAIS",
+        "scientific_field": "NOM_LATIN",
+        "include_field": "TYPE_PROP",
+        "include_values": ["Public"],
+        "source_name": "Arbres répertoriés",
+        "source_department": "Ville de Québec",
+        "ownership_raw": "Ville de Québec",
+        "note": "Integrated from the official Ville de Québec `Arbres répertoriés` GeoJSON on Donnees Quebec and the official Statistics Canada CSD boundary.",
+        "clip_to_boundary": True,
+    },
+    "Repentigny": {
+        "region": "qc",
+        "geojson_url": REPENTIGNY_TREES_GEOJSON,
+        "dataset_page": REPENTIGNY_DATASET_PAGE,
+        "id_field": "ID",
+        "common_field": "ESSENCE_FR",
+        "scientific_field": "ESSENCE_LATIN",
+        "include_field": "PROPRIETE",
+        "include_values": ["Terrain municipal"],
+        "source_name": "Arbres",
+        "source_department": "Ville de Repentigny",
+        "ownership_raw": "Ville de Repentigny",
+        "note": "Integrated from the official Ville de Repentigny `Arbres` GeoJSON on Donnees Quebec and the official Statistics Canada CSD boundary.",
+        "clip_to_boundary": True,
+    },
+    "Saguenay": {
+        "region": "qc",
+        "geojson_url": SAGUENAY_TREES_GEOJSON,
+        "dataset_page": SAGUENAY_DATASET_PAGE,
+        "id_field": "id",
+        "common_field": "essence_fr",
+        "scientific_field": "essence_latin",
+        "include_field": "propriete",
+        "include_values": ["public"],
+        "source_name": "Inventaire des arbres répertoriés",
+        "source_department": "Ville de Saguenay",
+        "ownership_raw": "Ville de Saguenay",
+        "note": "Integrated from the official Ville de Saguenay tree-inventory GeoJSON on Donnees Quebec and the official Statistics Canada CSD boundary.",
+        "clip_to_boundary": True,
+    },
+}
+
 MILWAUKEE_COUNTY_TREE_VIEW_LAYER = (
     "https://utility.arcgis.com/usrsvcs/servers/18874e6d99b242878288adc0cf478841/rest/services/Environmental/Trees_View/FeatureServer/0"
 )
@@ -2986,6 +3230,7 @@ SUPPORTED_CITIES = (
     "Brookline",
     "Buffalo",
     "Burbank",
+    "Brampton",
     "Burlington",
     "Buena Park",
     "Camarillo",
@@ -2994,8 +3239,10 @@ SUPPORTED_CITIES = (
     "Charlottesville",
     "Chino",
     "Citrus Heights",
+    "Cobourg",
     "Concord",
     "Corona",
+    "Cornwall",
     "Costa Mesa",
     "Cudahy",
     "Cudahy WI",
@@ -3056,7 +3303,9 @@ SUPPORTED_CITIES = (
     "Laguna Beach",
     "Las Vegas",
     "La Mesa",
+    "Leduc",
     "Longmeadow",
+    "Longueuil",
     "Lodi",
     "London",
     "Lynwood",
@@ -3097,6 +3346,7 @@ SUPPORTED_CITIES = (
     "Ottawa",
     "O'Fallon",
     "Oak Creek",
+    "Orangeville",
     "Oxnard",
     "Paramount",
     "Pasadena",
@@ -3108,12 +3358,14 @@ SUPPORTED_CITIES = (
     "Princeton",
     "Poway",
     "Providence",
+    "Quebec City",
     "Ramsey",
     "Rancho Cucamonga",
     "Rancho Palos Verdes",
     "Redlands",
     "Redondo Beach",
     "Richmond",
+    "Repentigny",
     "Ridgewood",
     "River Edge",
     "Riverside",
@@ -3121,6 +3373,7 @@ SUPPORTED_CITIES = (
     "Sacramento",
     "Salinas",
     "Salt Lake City",
+    "Saguenay",
     "Saratoga Springs",
     "San Diego",
     "San Dimas",
@@ -3153,6 +3406,7 @@ SUPPORTED_CITIES = (
     "Toronto",
     "Waterloo",
     "Troy",
+    "Vaughan",
     "Ventura",
     "Vista",
     "Whitby",
@@ -5366,6 +5620,151 @@ def build_arcgis_fetcher(city: str, config: dict[str, Any]) -> Any:
         lon_field=config.get("lon_field"),
         lat_field=config.get("lat_field"),
         zip_field=config.get("zip_field"),
+    )
+
+
+def fetch_geojson_inventory_city_result(
+    *,
+    city: str,
+    region: str,
+    geojson_url: str,
+    dataset_page: str,
+    source_name: str,
+    source_department: str,
+    ownership_raw: str,
+    note: str,
+    clip_to_boundary: bool = False,
+    id_field: str | None = None,
+    combined_species_field: str | None = None,
+    common_field: str | None = None,
+    scientific_field: str | None = None,
+    include_field: str | None = None,
+    include_values: list[str] | None = None,
+) -> dict[str, Any]:
+    payload = load_remote_geojson(geojson_url)
+    source_features = payload.get("features") or []
+    zip_index = fetch_us_city_zip_index(city, state_id=region)
+    mapping_rows = load_mapping(MAPPING_PATH)
+    subtype_rows = load_subtype_mapping(SUBTYPE_MAPPING_PATH)
+    boundary_geometry = load_city_boundary_geometry(city, state_id=region) if clip_to_boundary else None
+    allowed_values = {str(value).casefold() for value in include_values or []}
+
+    output_features: list[dict[str, Any]] = []
+    normalized_rows: list[dict[str, Any]] = []
+    city_slug = slugify_token(city)
+    for index, feature in enumerate(source_features, start=1):
+        properties = feature.get("properties") or {}
+        geometry = feature.get("geometry") or {}
+        coordinates = geometry.get("coordinates") if isinstance(geometry, dict) else None
+
+        lon = None
+        lat = None
+        if isinstance(coordinates, list) and len(coordinates) >= 2:
+            lon = parse_floatish(coordinates[0])
+            lat = parse_floatish(coordinates[1])
+        if lon is None or lat is None:
+            lon = parse_floatish(properties.get("Longitude") or properties.get("longitude"))
+            lat = parse_floatish(properties.get("Latitude") or properties.get("latitude"))
+        if lon is None or lat is None:
+            continue
+        if boundary_geometry and not point_in_geometry(lon, lat, boundary_geometry):
+            continue
+
+        if include_field:
+            include_value = clean_display_name(properties.get(include_field)) or ""
+            if allowed_values and include_value.casefold() not in allowed_values:
+                continue
+
+        if combined_species_field:
+            scientific_raw, common_name = parse_dash_species(properties.get(combined_species_field))
+        else:
+            common_name = clean_common_name(properties.get(common_field)) if common_field else None
+            scientific_raw = ""
+            if scientific_field and properties.get(scientific_field):
+                scientific_raw = format_scientific_display_name(properties.get(scientific_field), common_name)
+            if not scientific_raw:
+                scientific_raw = generic_scientific_name_for_common_hint(common_name)
+        scientific_normalized = normalize_scientific_name(scientific_raw)
+        species_group, subtype_name = classify_tree_record(scientific_raw, common_name, mapping_rows, subtype_rows)
+        zip_code = assign_zip_code(lon, lat, zip_index)
+        row_key = properties.get(id_field) if id_field else None
+        row_id = f"{city_slug}-{row_key or index}"
+
+        normalized_rows.append(
+            {
+                "id": row_id,
+                "city": city,
+                "source_dataset": source_name,
+                "scientific_raw": scientific_raw,
+                "scientific_normalized": scientific_normalized,
+                "common_name": common_name or "",
+                "subtype_name": subtype_name or "",
+                "zip_code": zip_code or "",
+                "species_group": species_group or "",
+                "ownership": canonical_ownership(ownership_raw),
+                "ownership_raw": ownership_raw,
+                "lat": lat,
+                "lon": lon,
+                "included": "1" if species_group else "0",
+            }
+        )
+        if not species_group:
+            continue
+        output_features.append(
+            {
+                "type": "Feature",
+                "geometry": {"type": "Point", "coordinates": [lon, lat]},
+                "properties": {
+                    "id": row_id,
+                    "species_group": species_group,
+                    "scientific_name": scientific_raw,
+                    "common_name": common_name,
+                    "subtype_name": subtype_name,
+                    "zip_code": zip_code,
+                    "ownership": canonical_ownership(ownership_raw),
+                    "ownership_raw": ownership_raw,
+                    "city": city,
+                    "source_dataset": source_name,
+                    "source_department": source_department,
+                    "source_last_edit_at": "",
+                },
+            }
+        )
+
+    return {
+        "city": city,
+        "region": region,
+        "features": output_features,
+        "normalized_rows": normalized_rows,
+        "source": {
+            "name": source_name,
+            "city": city,
+            "endpoint": dataset_page,
+            "last_edit_at": "",
+            "records_fetched": len(source_features),
+            "records_included": len(output_features),
+            "note": note,
+        },
+    }
+
+
+def build_geojson_fetcher(city: str, config: dict[str, Any]) -> Any:
+    return lambda city=city, config=config: fetch_geojson_inventory_city_result(
+        city=city,
+        region=str(config["region"]),
+        geojson_url=str(config["geojson_url"]),
+        dataset_page=str(config["dataset_page"]),
+        source_name=str(config["source_name"]),
+        source_department=str(config["source_department"]),
+        ownership_raw=str(config.get("ownership_raw", config["source_department"])),
+        note=str(config["note"]),
+        clip_to_boundary=bool(config.get("clip_to_boundary", False)),
+        id_field=config.get("id_field"),
+        combined_species_field=config.get("combined_species_field"),
+        common_field=config.get("common_field"),
+        scientific_field=config.get("scientific_field"),
+        include_field=config.get("include_field"),
+        include_values=list(config.get("include_values", [])),
     )
 
 
@@ -10342,6 +10741,7 @@ CITY_FETCHERS.update({city: build_treekeeper_fetcher(city, config) for city, con
 CITY_FETCHERS.update({city: build_treeplotter_fetcher(city, config) for city, config in EAST_COAST_TREEPLOTTER_CONFIGS.items()})
 CITY_FETCHERS.update({city: build_nyc_metro_arcgis_fetcher(city, config) for city, config in NYC_METRO_ARCGIS_CONFIGS.items()})
 CITY_FETCHERS.update({city: build_arcgis_fetcher(city, config) for city, config in UNCOVERED_STATE_ARCGIS_CONFIGS.items()})
+CITY_FETCHERS.update({city: build_geojson_fetcher(city, config) for city, config in CANADA_GEOJSON_CONFIGS.items()})
 CITY_FETCHERS.update({city: build_milwaukee_county_fetcher(city) for city in MILWAUKEE_COUNTY_SUPPORTED_CITIES})
 
 

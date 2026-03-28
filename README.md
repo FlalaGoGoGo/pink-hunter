@@ -220,6 +220,7 @@ Live domain:
 - Chestermere
 - Okotoks
 - Lethbridge
+- Leduc
 - Medicine Hat
 - Red Deer
 - Airdrie
@@ -231,8 +232,11 @@ Live domain:
 
 - Ajax
 - Barrie
+- Brampton
 - Burlington
+- Cobourg
 - Cambridge ON
+- Cornwall
 - Guelph
 - Halton Hills
 - Hamilton
@@ -242,11 +246,13 @@ Live domain:
 - Mississauga
 - Niagara Falls
 - Oakville
+- Orangeville
 - Ottawa
 - Peterborough
 - Tecumseh
 - Thunder Bay
 - Toronto
+- Vaughan
 - Waterloo
 - Welland
 - Whitby
@@ -258,7 +264,11 @@ Live domain:
 <summary>Quebec</summary>
 
 - Gatineau
+- Longueuil
 - Montreal
+- Quebec City
+- Repentigny
+- Saguenay
 
 </details>
 
@@ -611,6 +621,7 @@ Live domain:
 - Chestermere: [Trees Open](https://gis.chestermere.ca/serversite/rest/services/Trees_Open/FeatureServer/0)
 - Okotoks: [Tree Inventory](https://services3.arcgis.com/Fl5sQFvYY7w7mPQj/arcgis/rest/services/Tree_Inventory/FeatureServer)
 - Lethbridge: [Trees](https://gis.lethbridge.ca/gisopendata/rest/services/OpenData/odl_trees/MapServer/0)
+- Leduc: [Trees](https://maps.leduc.ca/arcgis/rest/services/Cityworks/cwRoadsAndDrainage/MapServer)
 - Medicine Hat: [Tree Inventory](https://gis.medicinehat.ca/arcgis/rest/services/Parks/Trees_RFP_Tree_Inventory_Collection_FS4/MapServer)
 - Red Deer: [PARK_Trees_inservice](https://arcgis.reddeer.ca/arcgis/rest/services/CoRD_View_Layers/PARK_Trees_inservice/MapServer)
 - Airdrie: [Edible Trees](https://map.airdrie.ca:6443/arcgis/rest/services/pk_EdibleTrees_ap/MapServer/0)
@@ -622,8 +633,11 @@ Live domain:
 
 - Ajax: [Town Owned Trees](https://ajaxmaps.ajax.ca/gisernie/rest/services/Public/Ajax_Open_Data/MapServer/8)
 - Barrie: [Tree](https://gispublic.barrie.ca/arcgis/rest/services/Open_Data/FacilitiesStreets/MapServer/37)
+- Brampton: [Tree Inventory](https://mapsdev.brampton.ca/arcgis/rest/services/ParksOps/Tree_Inventory/MapServer/0)
 - Burlington: [City Owned Trees](https://www.arcgis.com/home/item.html?id=41412ef3188942c7abbe14035004273d)
+- Cobourg: [Virtual Arboretum Tree Inventory](https://public-townofcobourg.hub.arcgis.com)
 - Cambridge ON: [Street Trees](https://www.arcgis.com/home/item.html?id=93f699f0aeba49f1acb582cf26b90ed7)
+- Cornwall: [Tree Inventory](https://cornwallcity.maps.arcgis.com/apps/dashboards/3d1418832bbe4b0e920d1c44e613af56)
 - Guelph: [TreeInventory](https://servicesdev.arcgis.com/LkFyxb9zDq7vAOAm/ArcGIS/rest/services/TreeInventory_Guelph/FeatureServer)
 - Halton Hills: [Tree](https://map.haltonhills.ca/awse/rest/services/eP/MapServer/5)
 - Hamilton: [Public Tree Inventory](https://open.hamilton.ca/datasets/08e50c6cbb2545b4897d613a817fa4d4_0/explore)
@@ -633,11 +647,13 @@ Live domain:
 - Mississauga: [City trees](https://mississauga.ca/services-and-programs/forestry-and-environment/trees/)
 - Niagara Falls: [Niagara Falls Trees Inventory](https://open.niagarafalls.ca/datasets/niagarafalls::niagara-falls-trees-inventory)
 - Oakville: [Public tree inventory](https://www.oakville.ca/home-environment/trees-woodlands/public-tree-inventory/)
+- Orangeville: [Urban Forestry](https://www.orangeville.ca/en/living-here/urban-forestry.aspx)
 - Ottawa: [Canopy cover and tree inventory](https://ottawa.ca/en/canopy-cover-and-tree-inventory)
 - Peterborough: [Tree Inventory & EAB Status in the City of Peterborough](https://ptbo.maps.arcgis.com/apps/webappviewer/index.html?id=be8a9500cdca44af86860046e651cb96)
 - Tecumseh: [Trees Municipal](https://gisweb.tecumseh.ca/arcgis/rest/services/GeocortexEssentialsMapping/MapServer/75)
 - Thunder Bay: [City of Thunder Bay Trees](https://services5.arcgis.com/h9xShea49ZANgOtx/arcgis/rest/services/City_of_Thunder_Bay_Trees/FeatureServer)
 - Toronto: [Street Tree Data](https://open.toronto.ca/dataset/street-tree-data/)
+- Vaughan: [Street Trees](https://www.york.ca/newsroom/campaigns-projects/street-trees)
 - Waterloo: [Waterloo Street Trees](https://services1.arcgis.com/DwLTn0u9VBSZvUPe/ArcGIS/rest/services/Waterloo_Street_Trees/FeatureServer)
 - Welland: [Welland Trees](https://open.welland.ca/datasets/welland-trees)
 - Whitby: [Whitby Tree Inventory](https://whitby.maps.arcgis.com/apps/instant/sidebar/index.html?appid=3e192ad13b7940b98684e8dadaa94c54)
@@ -649,7 +665,11 @@ Live domain:
 <summary>Quebec</summary>
 
 - Gatineau: [Remarkable Trees](https://ncc-ccn.gc.ca/places/remarkable-trees)
+- Longueuil: [Arbres](https://www.donneesquebec.ca/recherche/dataset/arbres)
 - Montreal: [Arbres publics sur le territoire de la Ville](https://donnees.montreal.ca/fr/dataset/arbres)
+- Quebec City: [Arbres répertoriés](https://www.donneesquebec.ca/recherche/dataset/vque_26)
+- Repentigny: [Arbres](https://www.donneesquebec.ca/recherche/dataset/vrep-arbres)
+- Saguenay: [Inventaire des arbres répertoriés](https://www.donneesquebec.ca/recherche/dataset/sag_inventaire-des-arbres-repertories)
 
 </details>
 

@@ -86,6 +86,16 @@ Current state: no cities are parked in `A2` right now.
 | ✅ | Port Coquitlam | 205 | Official jurisdiction boundary | Official City of Port Coquitlam park + street tree ArcGIS layers merged and clipped to the official jurisdiction boundary |
 | ✅ | Moose Jaw | 33 | Official jurisdiction boundary | Official City of Moose Jaw public trees ArcGIS layer clipped to the official Statistics Canada CSD boundary |
 | ✅ | Saint John | 13 | Official jurisdiction boundary | Official City of Saint John `Urban Forestry Trees` ArcGIS layer clipped to the official Statistics Canada CSD boundary |
+| ✅ | Quebec City | 8,879 | Official jurisdiction boundary | Official Ville de Quebec `Arbres repertories` GeoJSON integrated from Donnees Quebec and clipped to the official Statistics Canada CSD boundary |
+| ✅ | Longueuil | 2,298 | Official jurisdiction boundary | Official Ville de Longueuil `Arbres` GeoJSON integrated from Donnees Quebec and clipped to the official Statistics Canada CSD boundary |
+| ✅ | Saguenay | 1,627 | Official jurisdiction boundary | Official Ville de Saguenay tree-inventory GeoJSON integrated from Donnees Quebec and clipped to the official Statistics Canada CSD boundary |
+| ✅ | Brampton | 1,238 | Official jurisdiction boundary | Official City of Brampton public tree inventory ArcGIS layer integrated after restricting to city-owned live-tree rows and clipping to the official Statistics Canada CSD boundary |
+| ✅ | Leduc | 910 | Official jurisdiction boundary | Official City of Leduc public Cityworks trees layer integrated after restricting to active rows and clipping to the official Statistics Canada CSD boundary |
+| ✅ | Vaughan | 609 | Official jurisdiction boundary | Official York Region `Street Trees` layer integrated after restricting to active `MUNICIPALITY = 'Vaughan'` rows and clipping to the official Vaughan Statistics Canada CSD boundary |
+| ✅ | Repentigny | 529 | Official jurisdiction boundary | Official Ville de Repentigny `Arbres` GeoJSON integrated from Donnees Quebec and clipped to the official Statistics Canada CSD boundary |
+| ✅ | Cornwall | 453 | Official jurisdiction boundary | Official City of Cornwall public tree inventory ArcGIS layer integrated after restricting to `Status = 'PRESENT'` and clipping to the official Statistics Canada CSD boundary |
+| ✅ | Cobourg | 442 | Official jurisdiction boundary | Official Town of Cobourg virtual arboretum tree inventory integrated from the public ArcGIS service and clipped to the official Statistics Canada CSD boundary |
+| ✅ | Orangeville | 99 | Official jurisdiction boundary | Official Town of Orangeville public street-tree inventory ArcGIS layer integrated after excluding removed rows and clipping to the official Statistics Canada CSD boundary |
 | ✅ | Denver | 19,900 | Official jurisdiction boundary | Official City and County of Denver `Public Tree Inventory` ArcGIS layer integrated from the city open-data portal and official jurisdiction boundary |
 | ✅ | Boston | 4,488 | Official jurisdiction boundary | Official Analyze Boston `BPRD Trees` download integrated; includes both street and park trees published by Boston Parks and Recreation |
 | ✅ | Belmont | 221 | Official jurisdiction boundary | Official Town of Belmont public TreeKeeper inventory integrated with the official jurisdiction boundary |
@@ -506,6 +516,13 @@ These cities are not in `A2` yet because the official point-tree source is still
 - Integrated `Moose Jaw` and `Weyburn` from Saskatchewan public tree inventory services after clipping to the official Statistics Canada CSD boundaries.
 - Integrated `Saint John` and `Charlottetown` from Atlantic public ArcGIS tree inventories.
 - `Port Coquitlam` merges separate official public park-tree and street-tree layers into one city publish result.
+
+## March 2026 Canada Ontario / Quebec GeoJSON Follow-up
+- Integrated `Brampton`, `Cobourg`, `Cornwall`, and `Orangeville` from official Ontario public ArcGIS single-tree inventories and clipped them to the official Statistics Canada CSD boundaries.
+- Integrated `Vaughan` from the official York Region `Street Trees` layer after restricting to active `MUNICIPALITY = 'Vaughan'` rows and clipping to the official Vaughan Statistics Canada CSD boundary.
+- Integrated `Leduc` from the official City of Leduc public Cityworks trees layer after restricting to active rows and clipping to the official Statistics Canada CSD boundary.
+- Integrated `Longueuil`, `Quebec City`, `Repentigny`, and `Saguenay` from official Donnees Quebec GeoJSON tree inventories and clipped them to the official Statistics Canada CSD boundaries.
+- Rechecked `County of Brant`; the official public source is valid, but the blossom-filtered publish path currently returns zero in-scope rows inside the official boundary, so it remains out of product for now.
 
 ## March 2026 East Coast / Southern California Follow-up
 - Rechecked `Alexandria, VA`; official city urban-forestry and GIS materials still do not expose a verified public single-tree inventory, so it remains gray coverage.

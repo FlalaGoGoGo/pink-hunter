@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-03-27T18:20:28.682878+00:00",
+  "generated_at": "2026-03-28T02:05:43.977036+00:00",
   "region": "qc",
   "strategy": "area_shard",
   "items": [
@@ -126,6 +126,128 @@
       ]
     },
     {
+      "jurisdiction": "Longueuil",
+      "slug": "longueuil",
+      "display_name": "Longueuil",
+      "jurisdiction_type": "city",
+      "state_province": "QC",
+      "country": "Canada",
+      "bounds": [
+        [
+          -73.52307713550898,
+          45.450042217085695
+        ],
+        [
+          -73.35052391320038,
+          45.57577159279167
+        ]
+      ],
+      "tree_count": 2298,
+      "zip_codes": [
+        "None"
+      ],
+      "species_counts": {
+        "cherry": 0,
+        "plum": 4,
+        "peach": 0,
+        "magnolia": 18,
+        "crabapple": 2276
+      },
+      "ownership_counts": {
+        "public": 2298,
+        "private": 0,
+        "unknown": 0
+      },
+      "species_ownership_counts": {
+        "cherry": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        },
+        "plum": {
+          "public": 4,
+          "private": 0,
+          "unknown": 0
+        },
+        "peach": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        },
+        "magnolia": {
+          "public": 18,
+          "private": 0,
+          "unknown": 0
+        },
+        "crabapple": {
+          "public": 2276,
+          "private": 0,
+          "unknown": 0
+        }
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "longueuil-001",
+          "bounds": [
+            [
+              -73.52307713550898,
+              45.450042217085695
+            ],
+            [
+              -73.35052391320038,
+              45.57577159279167
+            ]
+          ],
+          "data_path": "/data/trees.qc.area.longueuil.v2.geojson",
+          "tree_count": 2298,
+          "ownership_counts": {
+            "public": 2298,
+            "private": 0,
+            "unknown": 0
+          },
+          "species_counts": {
+            "cherry": 0,
+            "plum": 4,
+            "peach": 0,
+            "magnolia": 18,
+            "crabapple": 2276
+          },
+          "species_ownership_counts": {
+            "cherry": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            },
+            "plum": {
+              "public": 4,
+              "private": 0,
+              "unknown": 0
+            },
+            "peach": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            },
+            "magnolia": {
+              "public": 18,
+              "private": 0,
+              "unknown": 0
+            },
+            "crabapple": {
+              "public": 2276,
+              "private": 0,
+              "unknown": 0
+            }
+          },
+          "raw_bytes": 1091555,
+          "gzip_bytes": 54839
+        }
+      ]
+    },
+    {
       "jurisdiction": "Montreal",
       "slug": "montreal",
       "display_name": "Montreal",
@@ -244,6 +366,372 @@
           },
           "raw_bytes": 8319935,
           "gzip_bytes": 265892
+        }
+      ]
+    },
+    {
+      "jurisdiction": "Quebec City",
+      "slug": "quebec-city",
+      "display_name": "Quebec City",
+      "jurisdiction_type": "city",
+      "state_province": "QC",
+      "country": "Canada",
+      "bounds": [
+        [
+          -71.4667808984,
+          46.7367337636
+        ],
+        [
+          -71.1525033345,
+          46.9367812811
+        ]
+      ],
+      "tree_count": 8879,
+      "zip_codes": [
+        "None"
+      ],
+      "species_counts": {
+        "cherry": 4827,
+        "plum": 0,
+        "peach": 0,
+        "magnolia": 9,
+        "crabapple": 4043
+      },
+      "ownership_counts": {
+        "public": 8879,
+        "private": 0,
+        "unknown": 0
+      },
+      "species_ownership_counts": {
+        "cherry": {
+          "public": 4827,
+          "private": 0,
+          "unknown": 0
+        },
+        "plum": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        },
+        "peach": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        },
+        "magnolia": {
+          "public": 9,
+          "private": 0,
+          "unknown": 0
+        },
+        "crabapple": {
+          "public": 4043,
+          "private": 0,
+          "unknown": 0
+        }
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "quebec-city-001",
+          "bounds": [
+            [
+              -71.4667808984,
+              46.7367337636
+            ],
+            [
+              -71.1525033345,
+              46.9367812811
+            ]
+          ],
+          "data_path": "/data/trees.qc.area.quebec-city.v2.geojson",
+          "tree_count": 8879,
+          "ownership_counts": {
+            "public": 8879,
+            "private": 0,
+            "unknown": 0
+          },
+          "species_counts": {
+            "cherry": 4827,
+            "plum": 0,
+            "peach": 0,
+            "magnolia": 9,
+            "crabapple": 4043
+          },
+          "species_ownership_counts": {
+            "cherry": {
+              "public": 4827,
+              "private": 0,
+              "unknown": 0
+            },
+            "plum": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            },
+            "peach": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            },
+            "magnolia": {
+              "public": 9,
+              "private": 0,
+              "unknown": 0
+            },
+            "crabapple": {
+              "public": 4043,
+              "private": 0,
+              "unknown": 0
+            }
+          },
+          "raw_bytes": 4466417,
+          "gzip_bytes": 176300
+        }
+      ]
+    },
+    {
+      "jurisdiction": "Repentigny",
+      "slug": "repentigny",
+      "display_name": "Repentigny",
+      "jurisdiction_type": "city",
+      "state_province": "QC",
+      "country": "Canada",
+      "bounds": [
+        [
+          -73.5104321538,
+          45.7148094866
+        ],
+        [
+          -73.4023842877,
+          45.790020817
+        ]
+      ],
+      "tree_count": 529,
+      "zip_codes": [
+        "None"
+      ],
+      "species_counts": {
+        "cherry": 0,
+        "plum": 0,
+        "peach": 0,
+        "magnolia": 6,
+        "crabapple": 523
+      },
+      "ownership_counts": {
+        "public": 529,
+        "private": 0,
+        "unknown": 0
+      },
+      "species_ownership_counts": {
+        "cherry": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        },
+        "plum": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        },
+        "peach": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        },
+        "magnolia": {
+          "public": 6,
+          "private": 0,
+          "unknown": 0
+        },
+        "crabapple": {
+          "public": 523,
+          "private": 0,
+          "unknown": 0
+        }
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "repentigny-001",
+          "bounds": [
+            [
+              -73.5104321538,
+              45.7148094866
+            ],
+            [
+              -73.4023842877,
+              45.790020817
+            ]
+          ],
+          "data_path": "/data/trees.qc.area.repentigny.v2.geojson",
+          "tree_count": 529,
+          "ownership_counts": {
+            "public": 529,
+            "private": 0,
+            "unknown": 0
+          },
+          "species_counts": {
+            "cherry": 0,
+            "plum": 0,
+            "peach": 0,
+            "magnolia": 6,
+            "crabapple": 523
+          },
+          "species_ownership_counts": {
+            "cherry": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            },
+            "plum": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            },
+            "peach": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            },
+            "magnolia": {
+              "public": 6,
+              "private": 0,
+              "unknown": 0
+            },
+            "crabapple": {
+              "public": 523,
+              "private": 0,
+              "unknown": 0
+            }
+          },
+          "raw_bytes": 250169,
+          "gzip_bytes": 10527
+        }
+      ]
+    },
+    {
+      "jurisdiction": "Saguenay",
+      "slug": "saguenay",
+      "display_name": "Saguenay",
+      "jurisdiction_type": "city",
+      "state_province": "QC",
+      "country": "Canada",
+      "bounds": [
+        [
+          -71.3746651041,
+          48.3059381402
+        ],
+        [
+          -70.8525953101,
+          48.5118362053
+        ]
+      ],
+      "tree_count": 1627,
+      "zip_codes": [
+        "None"
+      ],
+      "species_counts": {
+        "cherry": 7,
+        "plum": 16,
+        "peach": 0,
+        "magnolia": 0,
+        "crabapple": 1604
+      },
+      "ownership_counts": {
+        "public": 1627,
+        "private": 0,
+        "unknown": 0
+      },
+      "species_ownership_counts": {
+        "cherry": {
+          "public": 7,
+          "private": 0,
+          "unknown": 0
+        },
+        "plum": {
+          "public": 16,
+          "private": 0,
+          "unknown": 0
+        },
+        "peach": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        },
+        "magnolia": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        },
+        "crabapple": {
+          "public": 1604,
+          "private": 0,
+          "unknown": 0
+        }
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "saguenay-001",
+          "bounds": [
+            [
+              -71.3746651041,
+              48.3059381402
+            ],
+            [
+              -70.8525953101,
+              48.5118362053
+            ]
+          ],
+          "data_path": "/data/trees.qc.area.saguenay.v2.geojson",
+          "tree_count": 1627,
+          "ownership_counts": {
+            "public": 1627,
+            "private": 0,
+            "unknown": 0
+          },
+          "species_counts": {
+            "cherry": 7,
+            "plum": 16,
+            "peach": 0,
+            "magnolia": 0,
+            "crabapple": 1604
+          },
+          "species_ownership_counts": {
+            "cherry": {
+              "public": 7,
+              "private": 0,
+              "unknown": 0
+            },
+            "plum": {
+              "public": 16,
+              "private": 0,
+              "unknown": 0
+            },
+            "peach": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            },
+            "magnolia": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            },
+            "crabapple": {
+              "public": 1604,
+              "private": 0,
+              "unknown": 0
+            }
+          },
+          "raw_bytes": 781190,
+          "gzip_bytes": 28548
         }
       ]
     }

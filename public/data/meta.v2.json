@@ -1,6 +1,6 @@
 {
   "version": "v2",
-  "generated_at": "2026-03-27T22:55:24.644394+00:00",
+  "generated_at": "2026-03-28T02:06:51.290981+00:00",
   "default_region": "wa",
   "coverage_rule": "official_jurisdiction_boundary_only",
   "coverage_skipped_cities": [
@@ -114,16 +114,16 @@
     "Yarrow Point"
   ],
   "coverage_official_unavailable_skipped_cities": [],
-  "source_count": 262,
-  "total_records": 3232028,
-  "included_records": 766041,
-  "unknown_records": 1407900,
+  "source_count": 272,
+  "total_records": 3513512,
+  "included_records": 783125,
+  "unknown_records": 1652180,
   "species_counts": {
-    "cherry": 241337,
-    "plum": 117007,
-    "peach": 7924,
-    "magnolia": 179518,
-    "crabapple": 220255
+    "cherry": 246711,
+    "plum": 117037,
+    "peach": 7936,
+    "magnolia": 179621,
+    "crabapple": 231820
   },
   "regions": [
     {
@@ -141,14 +141,15 @@
         ]
       ],
       "data_path": null,
-      "tree_count": 85675,
-      "city_count": 11,
+      "tree_count": 86585,
+      "city_count": 12,
       "cities": [
         "Airdrie",
         "Calgary",
         "Chestermere",
         "Edmonton",
         "Grande Prairie",
+        "Leduc",
         "Lethbridge",
         "Medicine Hat",
         "Okotoks",
@@ -157,20 +158,20 @@
         "Strathcona County"
       ],
       "species_counts": {
-        "cherry": 17356,
-        "plum": 365,
+        "cherry": 17524,
+        "plum": 367,
         "peach": 2,
         "magnolia": 0,
-        "crabapple": 67952
+        "crabapple": 68692
       },
       "ownership_groups": [
         "public"
       ],
-      "raw_bytes": 43891974,
-      "gzip_bytes": 2047342,
+      "raw_bytes": 44310311,
+      "gzip_bytes": 2068244,
       "warning_level": "none",
-      "aggregate_raw_bytes": 43891974,
-      "aggregate_gzip_bytes": 2047342,
+      "aggregate_raw_bytes": 44310311,
+      "aggregate_gzip_bytes": 2068244,
       "aggregate_warning_level": "watch",
       "largest_shard_raw_bytes": 10601635,
       "largest_shard_gzip_bytes": 523220,
@@ -178,8 +179,8 @@
       "area_split": {
         "strategy": "area_shard",
         "index_path": "/data/trees.ab.area-index.v2.json",
-        "area_count": 11,
-        "shard_count": 13,
+        "area_count": 12,
+        "shard_count": 14,
         "ready": true
       },
       "largest_shard_warning_level": "none",
@@ -1286,19 +1287,22 @@
           42.23479157060771
         ],
         [
-          -75.26063675999347,
+          -74.67376246660201,
           48.48020781250394
         ]
       ],
       "data_path": null,
       "coverage_path": "/data/coverage.on.v1.geojson",
-      "tree_count": 83249,
-      "city_count": 22,
+      "tree_count": 86090,
+      "city_count": 27,
       "cities": [
         "Ajax",
         "Barrie",
+        "Brampton",
         "Burlington",
         "Cambridge ON",
+        "Cobourg",
+        "Cornwall",
         "Guelph",
         "Halton Hills",
         "Hamilton",
@@ -1308,31 +1312,33 @@
         "Mississauga",
         "Niagara Falls",
         "Oakville",
+        "Orangeville",
         "Ottawa",
         "Peterborough",
         "Tecumseh",
         "Thunder Bay",
         "Toronto",
+        "Vaughan",
         "Waterloo",
         "Welland",
         "Whitby",
         "Windsor"
       ],
       "species_counts": {
-        "cherry": 43219,
-        "plum": 2893,
-        "peach": 470,
-        "magnolia": 6181,
-        "crabapple": 30486
+        "cherry": 43591,
+        "plum": 2901,
+        "peach": 482,
+        "magnolia": 6251,
+        "crabapple": 32865
       },
       "ownership_groups": [
         "public"
       ],
-      "raw_bytes": 40750238,
-      "gzip_bytes": 1861614,
+      "raw_bytes": 42121855,
+      "gzip_bytes": 1932230,
       "warning_level": "none",
-      "aggregate_raw_bytes": 40750238,
-      "aggregate_gzip_bytes": 1861614,
+      "aggregate_raw_bytes": 42121855,
+      "aggregate_gzip_bytes": 1932230,
       "aggregate_warning_level": "watch",
       "largest_shard_raw_bytes": 8587256,
       "largest_shard_gzip_bytes": 333237,
@@ -1342,8 +1348,8 @@
       "area_split": {
         "strategy": "area_shard",
         "index_path": "/data/trees.on.area-index.v2.json",
-        "area_count": 22,
-        "shard_count": 23,
+        "area_count": 27,
+        "shard_count": 28,
         "ready": true
       }
     },
@@ -1508,33 +1514,37 @@
           45.428586
         ],
         [
-          -73.477656,
-          45.702299
+          -70.8525953101,
+          48.5118362053
         ]
       ],
       "data_path": null,
       "coverage_path": "/data/coverage.qc.v1.geojson",
-      "tree_count": 16259,
-      "city_count": 2,
+      "tree_count": 29592,
+      "city_count": 6,
       "cities": [
         "Gatineau",
-        "Montreal"
+        "Longueuil",
+        "Montreal",
+        "Quebec City",
+        "Repentigny",
+        "Saguenay"
       ],
       "species_counts": {
-        "cherry": 6727,
-        "plum": 88,
+        "cherry": 11561,
+        "plum": 108,
         "peach": 25,
-        "magnolia": 294,
-        "crabapple": 9125
+        "magnolia": 327,
+        "crabapple": 17571
       },
       "ownership_groups": [
         "public"
       ],
-      "raw_bytes": 8320541,
-      "gzip_bytes": 266249,
+      "raw_bytes": 14909872,
+      "gzip_bytes": 536463,
       "warning_level": "none",
-      "aggregate_raw_bytes": 8320541,
-      "aggregate_gzip_bytes": 266249,
+      "aggregate_raw_bytes": 14909872,
+      "aggregate_gzip_bytes": 536463,
       "aggregate_warning_level": "none",
       "largest_shard_raw_bytes": 8319935,
       "largest_shard_gzip_bytes": 265892,
@@ -1544,8 +1554,8 @@
       "area_split": {
         "strategy": "area_shard",
         "index_path": "/data/trees.qc.area-index.v2.json",
-        "area_count": 2,
-        "shard_count": 2,
+        "area_count": 6,
+        "shard_count": 6,
         "ready": true
       }
     },
@@ -2067,6 +2077,20 @@
         "peach": 0,
         "magnolia": 0,
         "crabapple": 1844
+      },
+      "jurisdiction_type": "city",
+      "state_province": "AB"
+    },
+    {
+      "jurisdiction": "Leduc",
+      "region": "ab",
+      "tree_count": 910,
+      "species_counts": {
+        "cherry": 168,
+        "plum": 2,
+        "peach": 0,
+        "magnolia": 0,
+        "crabapple": 740
       },
       "jurisdiction_type": "city",
       "state_province": "AB"
@@ -4466,6 +4490,20 @@
       "state_province": "ON"
     },
     {
+      "jurisdiction": "Brampton",
+      "region": "on",
+      "tree_count": 1238,
+      "species_counts": {
+        "cherry": 105,
+        "plum": 0,
+        "peach": 0,
+        "magnolia": 39,
+        "crabapple": 1094
+      },
+      "jurisdiction_type": "city",
+      "state_province": "ON"
+    },
+    {
       "jurisdiction": "Burlington",
       "region": "on",
       "tree_count": 1621,
@@ -4489,6 +4527,34 @@
         "peach": 0,
         "magnolia": 156,
         "crabapple": 1258
+      },
+      "jurisdiction_type": "city",
+      "state_province": "ON"
+    },
+    {
+      "jurisdiction": "Cobourg",
+      "region": "on",
+      "tree_count": 442,
+      "species_counts": {
+        "cherry": 7,
+        "plum": 8,
+        "peach": 0,
+        "magnolia": 16,
+        "crabapple": 411
+      },
+      "jurisdiction_type": "city",
+      "state_province": "ON"
+    },
+    {
+      "jurisdiction": "Cornwall",
+      "region": "on",
+      "tree_count": 453,
+      "species_counts": {
+        "cherry": 186,
+        "plum": 0,
+        "peach": 12,
+        "magnolia": 5,
+        "crabapple": 250
       },
       "jurisdiction_type": "city",
       "state_province": "ON"
@@ -4620,6 +4686,20 @@
       "state_province": "ON"
     },
     {
+      "jurisdiction": "Orangeville",
+      "region": "on",
+      "tree_count": 99,
+      "species_counts": {
+        "cherry": 2,
+        "plum": 0,
+        "peach": 0,
+        "magnolia": 9,
+        "crabapple": 88
+      },
+      "jurisdiction_type": "city",
+      "state_province": "ON"
+    },
+    {
       "jurisdiction": "Ottawa",
       "region": "on",
       "tree_count": 12913,
@@ -4685,6 +4765,20 @@
         "peach": 470,
         "magnolia": 2728,
         "crabapple": 42
+      },
+      "jurisdiction_type": "city",
+      "state_province": "ON"
+    },
+    {
+      "jurisdiction": "Vaughan",
+      "region": "on",
+      "tree_count": 609,
+      "species_counts": {
+        "cherry": 72,
+        "plum": 0,
+        "peach": 0,
+        "magnolia": 1,
+        "crabapple": 536
       },
       "jurisdiction_type": "city",
       "state_province": "ON"
@@ -4830,6 +4924,20 @@
       "state_province": "QC"
     },
     {
+      "jurisdiction": "Longueuil",
+      "region": "qc",
+      "tree_count": 2298,
+      "species_counts": {
+        "cherry": 0,
+        "plum": 4,
+        "peach": 0,
+        "magnolia": 18,
+        "crabapple": 2276
+      },
+      "jurisdiction_type": "city",
+      "state_province": "QC"
+    },
+    {
       "jurisdiction": "Montreal",
       "region": "qc",
       "tree_count": 16258,
@@ -4839,6 +4947,48 @@
         "peach": 25,
         "magnolia": 294,
         "crabapple": 9124
+      },
+      "jurisdiction_type": "city",
+      "state_province": "QC"
+    },
+    {
+      "jurisdiction": "Quebec City",
+      "region": "qc",
+      "tree_count": 8879,
+      "species_counts": {
+        "cherry": 4827,
+        "plum": 0,
+        "peach": 0,
+        "magnolia": 9,
+        "crabapple": 4043
+      },
+      "jurisdiction_type": "city",
+      "state_province": "QC"
+    },
+    {
+      "jurisdiction": "Repentigny",
+      "region": "qc",
+      "tree_count": 529,
+      "species_counts": {
+        "cherry": 0,
+        "plum": 0,
+        "peach": 0,
+        "magnolia": 6,
+        "crabapple": 523
+      },
+      "jurisdiction_type": "city",
+      "state_province": "QC"
+    },
+    {
+      "jurisdiction": "Saguenay",
+      "region": "qc",
+      "tree_count": 1627,
+      "species_counts": {
+        "cherry": 7,
+        "plum": 16,
+        "peach": 0,
+        "magnolia": 0,
+        "crabapple": 1604
       },
       "jurisdiction_type": "city",
       "state_province": "QC"
@@ -5854,6 +6004,15 @@
       "note": "Integrated from the official Analyze Boston BPRD Trees download, which includes both street and park trees."
     },
     {
+      "name": "Tree Inventory",
+      "city": "Brampton",
+      "endpoint": "https://mapsdev.brampton.ca/arcgis/rest/services/ParksOps/Tree_Inventory/MapServer",
+      "last_edit_at": "",
+      "records_fetched": 1238,
+      "records_included": 1238,
+      "note": "Integrated from the official City of Brampton public tree inventory ArcGIS layer after restricting to city-owned live-tree rows."
+    },
+    {
       "name": "Buena Park i-Tree Benefits",
       "city": "Buena Park",
       "endpoint": "https://services2.arcgis.com/yrktbS5Xw87hJQvs/ArcGIS/rest/services/Buena_Park_iTree_Benefits_WFL1/FeatureServer",
@@ -5979,6 +6138,15 @@
       "note": "Integrated from the official City of Citrus Heights urban forestry tree inventory layer and official jurisdiction boundary."
     },
     {
+      "name": "December 2025 Tree Inventory",
+      "city": "Cobourg",
+      "endpoint": "https://public-townofcobourg.hub.arcgis.com",
+      "last_edit_at": "2025-12-15T18:25:39.890000+00:00",
+      "records_fetched": 517,
+      "records_included": 442,
+      "note": "Integrated from the official Town of Cobourg virtual arboretum tree inventory service and official Statistics Canada CSD boundary."
+    },
+    {
       "name": "Municipal Tree Inventory",
       "city": "Colchester",
       "endpoint": "https://www.arcgis.com/home/item.html?id=2d0401a0ac9d449784ed9b31daabed60",
@@ -6004,6 +6172,15 @@
       "records_fetched": 768,
       "records_included": 641,
       "note": "Integrated from the official City of Coquitlam maintained-trees ArcGIS layer and official jurisdiction boundary."
+    },
+    {
+      "name": "Tree Inventory",
+      "city": "Cornwall",
+      "endpoint": "https://cornwallcity.maps.arcgis.com/apps/dashboards/3d1418832bbe4b0e920d1c44e613af56",
+      "last_edit_at": "2026-01-28T12:36:23.311000+00:00",
+      "records_fetched": 453,
+      "records_included": 453,
+      "note": "Integrated from the official City of Cornwall public tree inventory ArcGIS layer after restricting to present rows."
     },
     {
       "name": "Corona Tree Sites",
@@ -6641,6 +6818,15 @@
     },
     {
       "name": "Trees",
+      "city": "Leduc",
+      "endpoint": "https://maps.leduc.ca/arcgis/rest/services/Cityworks/cwRoadsAndDrainage/MapServer",
+      "last_edit_at": "",
+      "records_fetched": 2139,
+      "records_included": 910,
+      "note": "Integrated from the official City of Leduc public Cityworks trees layer after restricting to active rows."
+    },
+    {
+      "name": "Trees",
       "city": "Lethbridge",
       "endpoint": "https://gis.lethbridge.ca/gisopendata/rest/services/OpenData/odl_trees/MapServer/0",
       "last_edit_at": "",
@@ -6674,6 +6860,15 @@
       "records_fetched": 6178,
       "records_included": 404,
       "note": "Integrated from the official Town of Longmeadow public tree inventory ArcGIS layer and official jurisdiction boundary."
+    },
+    {
+      "name": "Arbres",
+      "city": "Longueuil",
+      "endpoint": "https://www.donneesquebec.ca/recherche/dataset/arbres",
+      "last_edit_at": "",
+      "records_fetched": 99345,
+      "records_included": 2298,
+      "note": "Integrated from the official Ville de Longueuil `Arbres` GeoJSON on Donnees Quebec and the official Statistics Canada CSD boundary."
     },
     {
       "name": "TreeKeeper Street Sites",
@@ -7052,6 +7247,15 @@
       "note": "Integrated from the official Oradell public TreeKeeper inventory and jurisdiction boundary."
     },
     {
+      "name": "Street Tree",
+      "city": "Orangeville",
+      "endpoint": "https://www.orangeville.ca/en/living-here/urban-forestry.aspx",
+      "last_edit_at": "",
+      "records_fetched": 113,
+      "records_included": 99,
+      "note": "Integrated from the official Town of Orangeville public street-tree inventory ArcGIS layer after excluding removed rows."
+    },
+    {
       "name": "Tree Inventory / Inventaire des arbres",
       "city": "Ottawa",
       "endpoint": "https://ottawa.ca/en/canopy-cover-and-tree-inventory",
@@ -7202,6 +7406,15 @@
       "records_included": 76
     },
     {
+      "name": "Arbres répertoriés",
+      "city": "Quebec City",
+      "endpoint": "https://www.donneesquebec.ca/recherche/dataset/vque_26",
+      "last_edit_at": "",
+      "records_fetched": 158707,
+      "records_included": 8879,
+      "note": "Integrated from the official Ville de Québec `Arbres répertoriés` GeoJSON on Donnees Quebec and the official Statistics Canada CSD boundary."
+    },
+    {
       "name": "Rancho Cucamonga Tree Benefits",
       "city": "Rancho Cucamonga",
       "endpoint": "https://services2.arcgis.com/yrktbS5Xw87hJQvs/arcgis/rest/services/Rancho_Cucamonga_Tree_Benefits_WFL1/FeatureServer",
@@ -7282,6 +7495,15 @@
       "note": ""
     },
     {
+      "name": "Arbres",
+      "city": "Repentigny",
+      "endpoint": "https://www.donneesquebec.ca/recherche/dataset/vrep-arbres",
+      "last_edit_at": "",
+      "records_fetched": 164113,
+      "records_included": 529,
+      "note": "Integrated from the official Ville de Repentigny `Arbres` GeoJSON on Donnees Quebec and the official Statistics Canada CSD boundary."
+    },
+    {
       "name": "Tree Inventory",
       "city": "Richmond",
       "endpoint": "https://cor.maps.arcgis.com/apps/webappviewer/index.html?id=3dda2aa7521941d8a48dc91f5014a5c8",
@@ -7325,6 +7547,15 @@
       "records_fetched": 4100,
       "records_included": 3442,
       "note": "Integrated from the official City of Sacramento City Maintained Trees ArcGIS layer and official jurisdiction boundary."
+    },
+    {
+      "name": "Inventaire des arbres répertoriés",
+      "city": "Saguenay",
+      "endpoint": "https://www.donneesquebec.ca/recherche/dataset/sag_inventaire-des-arbres-repertories",
+      "last_edit_at": "",
+      "records_fetched": 38784,
+      "records_included": 1627,
+      "note": "Integrated from the official Ville de Saguenay tree-inventory GeoJSON on Donnees Quebec and the official Statistics Canada CSD boundary."
     },
     {
       "name": "Urban Forestry Trees",
@@ -7780,6 +8011,15 @@
       "last_edit_at": "2026-03-09T13:50:32+00:00",
       "records_fetched": 39373,
       "records_included": 38589
+    },
+    {
+      "name": "Street Trees",
+      "city": "Vaughan",
+      "endpoint": "https://www.york.ca/newsroom/campaigns-projects/street-trees",
+      "last_edit_at": "",
+      "records_fetched": 993,
+      "records_included": 609,
+      "note": "Integrated from the official York Region street trees ArcGIS layer after restricting to active Vaughan rows and clipping to the official Vaughan boundary."
     },
     {
       "name": "ARBOR ACCESS - City Tree Inventory",
