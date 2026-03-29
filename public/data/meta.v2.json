@@ -1,9 +1,11 @@
 {
   "version": "v2",
-  "generated_at": "2026-03-29T01:01:53.727305+00:00",
+  "generated_at": "2026-03-29T02:10:15.868682+00:00",
   "default_region": "wa",
   "coverage_rule": "official_jurisdiction_boundary_only",
-  "coverage_skipped_cities": [],
+  "coverage_skipped_cities": [
+    "Nashville"
+  ],
   "coverage_official_unavailable_cities": [
     "Phoenix",
     "Burnaby",
@@ -29,7 +31,6 @@
     "Santa Cruz",
     "Santa Rosa",
     "Stockton",
-    "Atlanta",
     "Chicago",
     "Montgomery County",
     "Detroit",
@@ -96,16 +97,16 @@
     "Yarrow Point"
   ],
   "coverage_official_unavailable_skipped_cities": [],
-  "source_count": 324,
-  "total_records": 3938041,
-  "included_records": 820273,
-  "unknown_records": 1839519,
+  "source_count": 334,
+  "total_records": 3960293,
+  "included_records": 832896,
+  "unknown_records": 1842084,
   "species_counts": {
-    "cherry": 256764,
-    "plum": 120198,
-    "peach": 8100,
-    "magnolia": 182707,
-    "crabapple": 252504
+    "cherry": 264336,
+    "plum": 121142,
+    "peach": 8135,
+    "magnolia": 185171,
+    "crabapple": 254112
   },
   "regions": [
     {
@@ -639,8 +640,8 @@
       "available": true,
       "bounds": [
         [
-          -84.28615599961894,
-          33.985402000114604
+          -84.5508539998525,
+          33.64794399969981
         ],
         [
           -84.09763700038123,
@@ -649,37 +650,39 @@
       ],
       "data_path": null,
       "coverage_path": "/data/coverage.ga.v1.geojson",
-      "tree_count": 8,
-      "city_count": 1,
+      "tree_count": 1328,
+      "city_count": 3,
       "cities": [
-        "Johns Creek"
+        "Atlanta",
+        "Johns Creek",
+        "Sandy Springs"
       ],
       "species_counts": {
-        "cherry": 0,
-        "plum": 0,
-        "peach": 0,
-        "magnolia": 8,
-        "crabapple": 0
+        "cherry": 285,
+        "plum": 22,
+        "peach": 2,
+        "magnolia": 1013,
+        "crabapple": 6
       },
       "ownership_groups": [
         "public"
       ],
-      "raw_bytes": 4310,
-      "gzip_bytes": 557,
+      "raw_bytes": 693265,
+      "gzip_bytes": 32555,
       "warning_level": "none",
-      "aggregate_raw_bytes": 4310,
-      "aggregate_gzip_bytes": 557,
+      "aggregate_raw_bytes": 693265,
+      "aggregate_gzip_bytes": 32555,
       "aggregate_warning_level": "none",
-      "largest_shard_raw_bytes": 4310,
-      "largest_shard_gzip_bytes": 557,
-      "largest_shard_area": "Johns Creek",
+      "largest_shard_raw_bytes": 541255,
+      "largest_shard_gzip_bytes": 25244,
+      "largest_shard_area": "Atlanta",
       "largest_shard_warning_level": "none",
       "city_split": null,
       "area_split": {
         "strategy": "area_shard",
         "index_path": "/data/trees.ga.area-index.v2.json",
-        "area_count": 1,
-        "shard_count": 1,
+        "area_count": 3,
+        "shard_count": 3,
         "ready": true
       }
     },
@@ -1028,29 +1031,30 @@
         ]
       ],
       "data_path": null,
-      "tree_count": 5406,
-      "city_count": 4,
+      "tree_count": 5705,
+      "city_count": 5,
       "cities": [
         "Branson",
         "Brentwood",
         "Springfield",
-        "St. Louis"
+        "St. Louis",
+        "University City"
       ],
       "species_counts": {
-        "cherry": 2953,
-        "plum": 86,
+        "cherry": 2996,
+        "plum": 120,
         "peach": 8,
-        "magnolia": 415,
-        "crabapple": 1944
+        "magnolia": 556,
+        "crabapple": 2025
       },
       "ownership_groups": [
         "public"
       ],
-      "raw_bytes": 2711638,
-      "gzip_bytes": 150678,
+      "raw_bytes": 2865343,
+      "gzip_bytes": 157183,
       "warning_level": "none",
-      "aggregate_raw_bytes": 2711638,
-      "aggregate_gzip_bytes": 150678,
+      "aggregate_raw_bytes": 2865343,
+      "aggregate_gzip_bytes": 157183,
       "aggregate_warning_level": "none",
       "largest_shard_raw_bytes": 2297870,
       "largest_shard_gzip_bytes": 132065,
@@ -1058,8 +1062,8 @@
       "area_split": {
         "strategy": "area_shard",
         "index_path": "/data/trees.mo.area-index.v2.json",
-        "area_count": 4,
-        "shard_count": 4,
+        "area_count": 5,
+        "shard_count": 5,
         "ready": true
       },
       "largest_shard_warning_level": "none",
@@ -1122,8 +1126,8 @@
       "available": true,
       "bounds": [
         [
-          -79.00753600043811,
-          35.86637200001736
+          -82.58541500043857,
+          35.66980300004487
         ],
         [
           -78.75449699981682,
@@ -1131,26 +1135,27 @@
         ]
       ],
       "data_path": null,
-      "tree_count": 1301,
-      "city_count": 1,
+      "tree_count": 1307,
+      "city_count": 2,
       "cities": [
-        "Durham"
+        "Durham",
+        "Weaverville"
       ],
       "species_counts": {
-        "cherry": 646,
-        "plum": 16,
+        "cherry": 647,
+        "plum": 18,
         "peach": 14,
-        "magnolia": 615,
-        "crabapple": 10
+        "magnolia": 616,
+        "crabapple": 12
       },
       "ownership_groups": [
         "public"
       ],
-      "raw_bytes": 629360,
-      "gzip_bytes": 34629,
+      "raw_bytes": 632637,
+      "gzip_bytes": 35228,
       "warning_level": "none",
-      "aggregate_raw_bytes": 629360,
-      "aggregate_gzip_bytes": 34629,
+      "aggregate_raw_bytes": 632637,
+      "aggregate_gzip_bytes": 35228,
       "aggregate_warning_level": "none",
       "largest_shard_raw_bytes": 629360,
       "largest_shard_gzip_bytes": 34629,
@@ -1158,8 +1163,8 @@
       "area_split": {
         "strategy": "area_shard",
         "index_path": "/data/trees.nc.area-index.v2.json",
-        "area_count": 1,
-        "shard_count": 1,
+        "area_count": 2,
+        "shard_count": 2,
         "ready": true
       },
       "largest_shard_warning_level": "none",
@@ -1524,8 +1529,8 @@
       "available": true,
       "bounds": [
         [
-          -122.83676363372525,
-          45.43254152511167
+          -123.33623299981545,
+          43.987478999691405
         ],
         [
           -122.47203838021687,
@@ -1534,26 +1539,28 @@
       ],
       "data_path": null,
       "coverage_path": "/data/coverage.or.v1.geojson",
-      "tree_count": 24775,
-      "city_count": 1,
+      "tree_count": 34314,
+      "city_count": 3,
       "cities": [
+        "Corvallis",
+        "Eugene",
         "Portland"
       ],
       "species_counts": {
-        "cherry": 2375,
-        "plum": 7473,
-        "peach": 259,
-        "magnolia": 5191,
-        "crabapple": 9477
+        "cherry": 8705,
+        "plum": 8346,
+        "peach": 289,
+        "magnolia": 6088,
+        "crabapple": 10886
       },
       "ownership_groups": [
         "public"
       ],
-      "raw_bytes": 13009529,
-      "gzip_bytes": 586223,
+      "raw_bytes": 18161270,
+      "gzip_bytes": 820829,
       "warning_level": "none",
-      "aggregate_raw_bytes": 13009529,
-      "aggregate_gzip_bytes": 586223,
+      "aggregate_raw_bytes": 18161270,
+      "aggregate_gzip_bytes": 820829,
       "aggregate_warning_level": "none",
       "largest_shard_raw_bytes": 6510618,
       "largest_shard_gzip_bytes": 292466,
@@ -1563,8 +1570,8 @@
       "area_split": {
         "strategy": "area_shard",
         "index_path": "/data/trees.or.area-index.v2.json",
-        "area_count": 1,
-        "shard_count": 2,
+        "area_count": 3,
+        "shard_count": 4,
         "ready": true
       }
     },
@@ -1832,43 +1839,45 @@
       "bounds": [
         [
           -87.48224299987943,
-          36.47888799966793
+          34.98292399972572
         ],
         [
-          -87.205874000338,
+          -85.05149800031327,
           36.641772999995
         ]
       ],
       "data_path": null,
-      "tree_count": 404,
-      "city_count": 1,
+      "tree_count": 1729,
+      "city_count": 3,
       "cities": [
-        "Clarksville"
+        "Chattanooga",
+        "Clarksville",
+        "Nashville"
       ],
       "species_counts": {
-        "cherry": 166,
-        "plum": 118,
+        "cherry": 1077,
+        "plum": 130,
         "peach": 0,
-        "magnolia": 110,
-        "crabapple": 10
+        "magnolia": 402,
+        "crabapple": 120
       },
       "ownership_groups": [
         "public"
       ],
-      "raw_bytes": 201432,
-      "gzip_bytes": 7890,
+      "raw_bytes": 885943,
+      "gzip_bytes": 40201,
       "warning_level": "none",
-      "aggregate_raw_bytes": 201432,
-      "aggregate_gzip_bytes": 7890,
+      "aggregate_raw_bytes": 885943,
+      "aggregate_gzip_bytes": 40201,
       "aggregate_warning_level": "none",
-      "largest_shard_raw_bytes": 201432,
-      "largest_shard_gzip_bytes": 7890,
-      "largest_shard_area": "Clarksville",
+      "largest_shard_raw_bytes": 664819,
+      "largest_shard_gzip_bytes": 31022,
+      "largest_shard_area": "Chattanooga",
       "area_split": {
         "strategy": "area_shard",
         "index_path": "/data/trees.tn.area-index.v2.json",
-        "area_count": 1,
-        "shard_count": 1,
+        "area_count": 3,
+        "shard_count": 3,
         "ready": true
       },
       "largest_shard_warning_level": "none",
@@ -1885,33 +1894,35 @@
         ],
         [
           -95.01263700030414,
-          33.0237919997644
+          33.3581480001705
         ]
       ],
       "data_path": null,
       "coverage_path": "/data/coverage.tx.v1.geojson",
-      "tree_count": 9351,
-      "city_count": 3,
+      "tree_count": 9485,
+      "city_count": 5,
       "cities": [
         "Austin",
         "Dallas",
-        "Houston"
+        "Denton",
+        "Houston",
+        "Waco"
       ],
       "species_counts": {
-        "cherry": 1620,
-        "plum": 1611,
-        "peach": 284,
-        "magnolia": 5713,
+        "cherry": 1622,
+        "plum": 1612,
+        "peach": 287,
+        "magnolia": 5841,
         "crabapple": 123
       },
       "ownership_groups": [
         "public"
       ],
-      "raw_bytes": 4894061,
-      "gzip_bytes": 231519,
+      "raw_bytes": 4967757,
+      "gzip_bytes": 235669,
       "warning_level": "none",
-      "aggregate_raw_bytes": 4894061,
-      "aggregate_gzip_bytes": 231519,
+      "aggregate_raw_bytes": 4967757,
+      "aggregate_gzip_bytes": 235669,
       "aggregate_warning_level": "none",
       "largest_shard_raw_bytes": 4550451,
       "largest_shard_gzip_bytes": 211618,
@@ -1921,8 +1932,8 @@
       "area_split": {
         "strategy": "area_shard",
         "index_path": "/data/trees.tx.area-index.v2.json",
-        "area_count": 3,
-        "shard_count": 3,
+        "area_count": 5,
+        "shard_count": 5,
         "ready": true
       }
     },
@@ -4114,6 +4125,20 @@
       "state_province": "FL"
     },
     {
+      "jurisdiction": "Atlanta",
+      "region": "ga",
+      "tree_count": 1051,
+      "species_counts": {
+        "cherry": 233,
+        "plum": 10,
+        "peach": 2,
+        "magnolia": 800,
+        "crabapple": 6
+      },
+      "jurisdiction_type": "city",
+      "state_province": "GA"
+    },
+    {
       "jurisdiction": "Johns Creek",
       "region": "ga",
       "tree_count": 8,
@@ -4122,6 +4147,20 @@
         "plum": 0,
         "peach": 0,
         "magnolia": 8,
+        "crabapple": 0
+      },
+      "jurisdiction_type": "city",
+      "state_province": "GA"
+    },
+    {
+      "jurisdiction": "Sandy Springs",
+      "region": "ga",
+      "tree_count": 269,
+      "species_counts": {
+        "cherry": 52,
+        "plum": 12,
+        "peach": 0,
+        "magnolia": 205,
         "crabapple": 0
       },
       "jurisdiction_type": "city",
@@ -4702,6 +4741,20 @@
       "state_province": "MO"
     },
     {
+      "jurisdiction": "University City",
+      "region": "mo",
+      "tree_count": 299,
+      "species_counts": {
+        "cherry": 43,
+        "plum": 34,
+        "peach": 0,
+        "magnolia": 141,
+        "crabapple": 81
+      },
+      "jurisdiction_type": "city",
+      "state_province": "MO"
+    },
+    {
       "jurisdiction": "Fredericton",
       "region": "nb",
       "tree_count": 391,
@@ -4753,6 +4806,20 @@
         "peach": 14,
         "magnolia": 615,
         "crabapple": 10
+      },
+      "jurisdiction_type": "city",
+      "state_province": "NC"
+    },
+    {
+      "jurisdiction": "Weaverville",
+      "region": "nc",
+      "tree_count": 6,
+      "species_counts": {
+        "cherry": 1,
+        "plum": 2,
+        "peach": 0,
+        "magnolia": 1,
+        "crabapple": 2
       },
       "jurisdiction_type": "city",
       "state_province": "NC"
@@ -5612,6 +5679,34 @@
       "state_province": "ON"
     },
     {
+      "jurisdiction": "Corvallis",
+      "region": "or",
+      "tree_count": 1359,
+      "species_counts": {
+        "cherry": 691,
+        "plum": 333,
+        "peach": 3,
+        "magnolia": 47,
+        "crabapple": 285
+      },
+      "jurisdiction_type": "city",
+      "state_province": "OR"
+    },
+    {
+      "jurisdiction": "Eugene",
+      "region": "or",
+      "tree_count": 8180,
+      "species_counts": {
+        "cherry": 5639,
+        "plum": 540,
+        "peach": 27,
+        "magnolia": 850,
+        "crabapple": 1124
+      },
+      "jurisdiction_type": "city",
+      "state_province": "OR"
+    },
+    {
       "jurisdiction": "Portland",
       "region": "or",
       "tree_count": 24775,
@@ -5836,6 +5931,20 @@
       "state_province": "SK"
     },
     {
+      "jurisdiction": "Chattanooga",
+      "region": "tn",
+      "tree_count": 1286,
+      "species_counts": {
+        "cherry": 872,
+        "plum": 12,
+        "peach": 0,
+        "magnolia": 292,
+        "crabapple": 110
+      },
+      "jurisdiction_type": "city",
+      "state_province": "TN"
+    },
+    {
       "jurisdiction": "Clarksville",
       "region": "tn",
       "tree_count": 404,
@@ -5845,6 +5954,20 @@
         "peach": 0,
         "magnolia": 110,
         "crabapple": 10
+      },
+      "jurisdiction_type": "city",
+      "state_province": "TN"
+    },
+    {
+      "jurisdiction": "Nashville",
+      "region": "tn",
+      "tree_count": 39,
+      "species_counts": {
+        "cherry": 39,
+        "plum": 0,
+        "peach": 0,
+        "magnolia": 0,
+        "crabapple": 0
       },
       "jurisdiction_type": "city",
       "state_province": "TN"
@@ -5878,6 +6001,20 @@
       "state_province": "TX"
     },
     {
+      "jurisdiction": "Denton",
+      "region": "tx",
+      "tree_count": 66,
+      "species_counts": {
+        "cherry": 1,
+        "plum": 1,
+        "peach": 0,
+        "magnolia": 64,
+        "crabapple": 0
+      },
+      "jurisdiction_type": "city",
+      "state_province": "TX"
+    },
+    {
       "jurisdiction": "Houston",
       "region": "tx",
       "tree_count": 8623,
@@ -5887,6 +6024,20 @@
         "peach": 220,
         "magnolia": 5655,
         "crabapple": 123
+      },
+      "jurisdiction_type": "city",
+      "state_province": "TX"
+    },
+    {
+      "jurisdiction": "Waco",
+      "region": "tx",
+      "tree_count": 68,
+      "species_counts": {
+        "cherry": 1,
+        "plum": 0,
+        "peach": 3,
+        "magnolia": 64,
+        "crabapple": 0
       },
       "jurisdiction_type": "city",
       "state_province": "TX"
@@ -6862,6 +7013,15 @@
       "note": "Integrated from Arlington County's official public DPR Trees layer using the official county jurisdiction boundary."
     },
     {
+      "name": "Trees_All_View1",
+      "city": "Atlanta",
+      "endpoint": "https://www.arcgis.com/home/item.html?id=e434525626ab48849ec183b8cbb4c6ac",
+      "last_edit_at": "2021-02-01T01:51:55.301000+00:00",
+      "records_fetched": 1462,
+      "records_included": 1051,
+      "note": "Integrated from the official Georgia Tech public campus tree inventory after clipping blossom rows to the official Atlanta boundary."
+    },
+    {
       "name": "Street Trees",
       "city": "Aurora",
       "endpoint": "https://www.york.ca/newsroom/campaigns-projects/street-trees",
@@ -7146,6 +7306,15 @@
       "note": "Integrated from the official City of Charlottetown public tree inventory ArcGIS layer and official Statistics Canada CSD boundary."
     },
     {
+      "name": "Trees View Layer",
+      "city": "Chattanooga",
+      "endpoint": "https://www.arcgis.com/home/item.html?id=5eaf6ca482514b1fbd5195afe918004d",
+      "last_edit_at": "2026-03-28T14:45:59.813000+00:00",
+      "records_fetched": 1478,
+      "records_included": 1286,
+      "note": "Integrated from the official City of Chattanooga public tree inventory ArcGIS layer."
+    },
+    {
       "name": "Trees Open",
       "city": "Chestermere",
       "endpoint": "https://gis.chestermere.ca/serversite/rest/services/Trees_Open/FeatureServer/0",
@@ -7236,6 +7405,15 @@
       "note": "Integrated from the official City of Corona public tree sites layer and official jurisdiction boundary."
     },
     {
+      "name": "TreeInventory",
+      "city": "Corvallis",
+      "endpoint": "https://www.arcgis.com/home/item.html?id=f44769feb88a43bc9de78cf51e96d6ef",
+      "last_edit_at": "2024-09-10T20:32:59.456000+00:00",
+      "records_fetched": 1359,
+      "records_included": 1359,
+      "note": "Integrated from the official City of Corvallis public tree inventory ArcGIS layer."
+    },
+    {
       "name": "Costa Mesa Tree Benefits",
       "city": "Costa Mesa",
       "endpoint": "https://services2.arcgis.com/yrktbS5Xw87hJQvs/arcgis/rest/services/Costa_Mesa_Tree_benefits/FeatureServer",
@@ -7314,6 +7492,15 @@
       "records_fetched": 619,
       "records_included": 425,
       "note": "Integrated from the official Town of Dedham public tree inventory ArcGIS layer."
+    },
+    {
+      "name": "2023 Tree Inventory Final Data",
+      "city": "Denton",
+      "endpoint": "https://www.arcgis.com/home/item.html?id=1e3e2b2557ac46e9bfdcf41ff088df66",
+      "last_edit_at": "2023-11-27T19:36:29.590000+00:00",
+      "records_fetched": 102,
+      "records_included": 66,
+      "note": "Integrated from the official University of North Texas public 2023 tree inventory after clipping blossom rows to the official Denton boundary."
     },
     {
       "name": "TreeKeeper Inventory",
@@ -7404,6 +7591,15 @@
       "records_fetched": 57,
       "records_included": 57,
       "note": "Integrated from the official Vermont Municipal Tree Inventory rows for the Town of Essex."
+    },
+    {
+      "name": "Public Trees View",
+      "city": "Eugene",
+      "endpoint": "https://www.arcgis.com/home/item.html?id=8c2c6e0c1599456dabd1f18fbbf6676c",
+      "last_edit_at": "2026-03-28T15:37:35.713000+00:00",
+      "records_fetched": 8202,
+      "records_included": 8180,
+      "note": "Integrated from the official City of Eugene public urban-forest ArcGIS layer."
     },
     {
       "name": "Trees",
@@ -8283,6 +8479,15 @@
       "note": "Integrated from the official City of Nanaimo public urban trees ArcGIS layer."
     },
     {
+      "name": "Nashville Cherry Tree Planting Sites",
+      "city": "Nashville",
+      "endpoint": "https://www.arcgis.com/home/item.html?id=0363da9476e449d7a6c96d972439c07d",
+      "last_edit_at": "2021-03-16T13:51:40+00:00",
+      "records_fetched": 39,
+      "records_included": 39,
+      "note": "Integrated from the official Nashville public Cherry Tree Planting Sites ArcGIS web map."
+    },
+    {
       "name": "Utah Urban Tree Inventory",
       "city": "Nephi",
       "endpoint": "https://www.arcgis.com/home/item.html?id=0d064ecdae5841db92245d4de14ee0f4",
@@ -8956,6 +9161,15 @@
       "note": "Integrated from the official Utah Urban Tree Inventory rows for the City of Sandy."
     },
     {
+      "name": "Tree Plantings Public",
+      "city": "Sandy Springs",
+      "endpoint": "https://www.arcgis.com/home/item.html?id=3c42a7f81a2e4049915e627e272583d8",
+      "last_edit_at": "2024-04-24T18:24:10.939000+00:00",
+      "records_fetched": 317,
+      "records_included": 269,
+      "note": "Integrated from the official City of Sandy Springs public tree-plantings ArcGIS layer."
+    },
+    {
       "name": "Tree Inventory (April 2017)",
       "city": "Santa Barbara",
       "endpoint": "https://www.santabarbaraca.gov/gov/depts/pw/urban_forest/default.asp",
@@ -9347,6 +9561,15 @@
     },
     {
       "name": "TreeKeeper Inventory",
+      "city": "University City",
+      "endpoint": "https://universitycitymo.treekeepersoftware.com",
+      "last_edit_at": "",
+      "records_fetched": 9152,
+      "records_included": 299,
+      "note": "Integrated from the official City of University City public TreeKeeper inventory."
+    },
+    {
+      "name": "TreeKeeper Inventory",
       "city": "Valparaiso",
       "endpoint": "https://valparaisoin.treekeepersoftware.com",
       "last_edit_at": "",
@@ -9407,6 +9630,15 @@
       "note": "Integrated from the official City of Vista public tree inventory layer and official jurisdiction boundary."
     },
     {
+      "name": "Baylor University Tree Inventory",
+      "city": "Waco",
+      "endpoint": "https://www.arcgis.com/home/item.html?id=c6f72ead77af454d9bded8773c030a5f",
+      "last_edit_at": "2026-03-28T15:26:30.320000+00:00",
+      "records_fetched": 87,
+      "records_included": 68,
+      "note": "Integrated from the official Baylor University public tree inventory after clipping blossom rows to the official Waco boundary."
+    },
+    {
       "name": "City of Walla Walla Trees",
       "city": "Walla Walla",
       "endpoint": "https://gis2.ci.walla-walla.wa.us/arcgis/rest/services/Basemap/GISBaseMap_TreesVisible/MapServer/0",
@@ -9448,6 +9680,15 @@
       "records_fetched": 3546,
       "records_included": 77,
       "note": "Integrated from the official Milwaukee County public tree viewer and official jurisdiction boundary clipping."
+    },
+    {
+      "name": "Weaverville Tree Inventory",
+      "city": "Weaverville",
+      "endpoint": "https://www.arcgis.com/home/item.html?id=c7b2caa071c04948ab4c20a00e8919f2",
+      "last_edit_at": "2026-03-06T16:01:19.243000+00:00",
+      "records_fetched": 65,
+      "records_included": 6,
+      "note": "Integrated from the official Town of Weaverville public tree inventory ArcGIS layer."
     },
     {
       "name": "Welland Trees",

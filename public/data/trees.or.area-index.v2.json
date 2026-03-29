@@ -1,8 +1,259 @@
 {
-  "generated_at": "2026-03-28T05:21:40.296288+00:00",
+  "generated_at": "2026-03-29T02:09:45.932965+00:00",
   "region": "or",
   "strategy": "area_shard",
   "items": [
+    {
+      "jurisdiction": "Corvallis",
+      "slug": "corvallis",
+      "display_name": "Corvallis",
+      "jurisdiction_type": "city",
+      "state_province": "OR",
+      "country": "United States",
+      "bounds": [
+        [
+          -123.33623299981545,
+          44.51989400014215
+        ],
+        [
+          -123.2310280000751,
+          44.607239999716484
+        ]
+      ],
+      "tree_count": 1359,
+      "zip_codes": [
+        "97330",
+        "97331",
+        "97333"
+      ],
+      "species_counts": {
+        "cherry": 691,
+        "plum": 333,
+        "peach": 3,
+        "magnolia": 47,
+        "crabapple": 285
+      },
+      "ownership_counts": {
+        "public": 1359,
+        "private": 0,
+        "unknown": 0
+      },
+      "species_ownership_counts": {
+        "cherry": {
+          "public": 691,
+          "private": 0,
+          "unknown": 0
+        },
+        "plum": {
+          "public": 333,
+          "private": 0,
+          "unknown": 0
+        },
+        "peach": {
+          "public": 3,
+          "private": 0,
+          "unknown": 0
+        },
+        "magnolia": {
+          "public": 47,
+          "private": 0,
+          "unknown": 0
+        },
+        "crabapple": {
+          "public": 285,
+          "private": 0,
+          "unknown": 0
+        }
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "corvallis-001",
+          "bounds": [
+            [
+              -123.32286700089365,
+              44.53099261586076
+            ],
+            [
+              -123.23303406113891,
+              44.60335910430406
+            ]
+          ],
+          "data_path": "/data/trees.or.area.corvallis.v2.geojson",
+          "tree_count": 1359,
+          "ownership_counts": {
+            "public": 1359,
+            "private": 0,
+            "unknown": 0
+          },
+          "species_counts": {
+            "cherry": 691,
+            "plum": 333,
+            "peach": 3,
+            "magnolia": 47,
+            "crabapple": 285
+          },
+          "species_ownership_counts": {
+            "cherry": {
+              "public": 691,
+              "private": 0,
+              "unknown": 0
+            },
+            "plum": {
+              "public": 333,
+              "private": 0,
+              "unknown": 0
+            },
+            "peach": {
+              "public": 3,
+              "private": 0,
+              "unknown": 0
+            },
+            "magnolia": {
+              "public": 47,
+              "private": 0,
+              "unknown": 0
+            },
+            "crabapple": {
+              "public": 285,
+              "private": 0,
+              "unknown": 0
+            }
+          },
+          "raw_bytes": 708537,
+          "gzip_bytes": 32887
+        }
+      ]
+    },
+    {
+      "jurisdiction": "Eugene",
+      "slug": "eugene",
+      "display_name": "Eugene",
+      "jurisdiction_type": "city",
+      "state_province": "OR",
+      "country": "United States",
+      "bounds": [
+        [
+          -123.20858399963822,
+          43.987478999691405
+        ],
+        [
+          -123.03053700033234,
+          44.1323660001832
+        ]
+      ],
+      "tree_count": 8180,
+      "zip_codes": [
+        "97401",
+        "97402",
+        "97403",
+        "97404",
+        "97405",
+        "97408"
+      ],
+      "species_counts": {
+        "cherry": 5639,
+        "plum": 540,
+        "peach": 27,
+        "magnolia": 850,
+        "crabapple": 1124
+      },
+      "ownership_counts": {
+        "public": 8180,
+        "private": 0,
+        "unknown": 0
+      },
+      "species_ownership_counts": {
+        "cherry": {
+          "public": 5639,
+          "private": 0,
+          "unknown": 0
+        },
+        "plum": {
+          "public": 540,
+          "private": 0,
+          "unknown": 0
+        },
+        "peach": {
+          "public": 27,
+          "private": 0,
+          "unknown": 0
+        },
+        "magnolia": {
+          "public": 850,
+          "private": 0,
+          "unknown": 0
+        },
+        "crabapple": {
+          "public": 1124,
+          "private": 0,
+          "unknown": 0
+        }
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "eugene-001",
+          "bounds": [
+            [
+              -123.20763402352499,
+              43.99206811228028
+            ],
+            [
+              -123.04102458483995,
+              44.132017227765296
+            ]
+          ],
+          "data_path": "/data/trees.or.area.eugene.v2.geojson",
+          "tree_count": 8180,
+          "ownership_counts": {
+            "public": 8180,
+            "private": 0,
+            "unknown": 0
+          },
+          "species_counts": {
+            "cherry": 5639,
+            "plum": 540,
+            "peach": 27,
+            "magnolia": 850,
+            "crabapple": 1124
+          },
+          "species_ownership_counts": {
+            "cherry": {
+              "public": 5639,
+              "private": 0,
+              "unknown": 0
+            },
+            "plum": {
+              "public": 540,
+              "private": 0,
+              "unknown": 0
+            },
+            "peach": {
+              "public": 27,
+              "private": 0,
+              "unknown": 0
+            },
+            "magnolia": {
+              "public": 850,
+              "private": 0,
+              "unknown": 0
+            },
+            "crabapple": {
+              "public": 1124,
+              "private": 0,
+              "unknown": 0
+            }
+          },
+          "raw_bytes": 4443204,
+          "gzip_bytes": 201719
+        }
+      ]
+    },
     {
       "jurisdiction": "Portland",
       "slug": "portland",

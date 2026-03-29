@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-03-28T19:48:58.366951+00:00",
+  "generated_at": "2026-03-29T02:09:45.932965+00:00",
   "region": "mo",
   "strategy": "area_shard",
   "items": [
@@ -514,6 +514,128 @@
           },
           "raw_bytes": 2297870,
           "gzip_bytes": 132065
+        }
+      ]
+    },
+    {
+      "jurisdiction": "University City",
+      "slug": "university-city",
+      "display_name": "University City",
+      "jurisdiction_type": "city",
+      "state_province": "MO",
+      "country": "United States",
+      "bounds": [
+        [
+          -90.3666140000691,
+          38.64588599979099
+        ],
+        [
+          -90.29742299995661,
+          38.68343799993571
+        ]
+      ],
+      "tree_count": 299,
+      "zip_codes": [
+        "None"
+      ],
+      "species_counts": {
+        "cherry": 43,
+        "plum": 34,
+        "peach": 0,
+        "magnolia": 141,
+        "crabapple": 81
+      },
+      "ownership_counts": {
+        "public": 299,
+        "private": 0,
+        "unknown": 0
+      },
+      "species_ownership_counts": {
+        "cherry": {
+          "public": 43,
+          "private": 0,
+          "unknown": 0
+        },
+        "plum": {
+          "public": 34,
+          "private": 0,
+          "unknown": 0
+        },
+        "peach": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        },
+        "magnolia": {
+          "public": 141,
+          "private": 0,
+          "unknown": 0
+        },
+        "crabapple": {
+          "public": 81,
+          "private": 0,
+          "unknown": 0
+        }
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "university-city-001",
+          "bounds": [
+            [
+              -90.3642041507,
+              38.6462436888
+            ],
+            [
+              -90.3005998608,
+              38.6824875338
+            ]
+          ],
+          "data_path": "/data/trees.mo.area.university-city.v2.geojson",
+          "tree_count": 299,
+          "ownership_counts": {
+            "public": 299,
+            "private": 0,
+            "unknown": 0
+          },
+          "species_counts": {
+            "cherry": 43,
+            "plum": 34,
+            "peach": 0,
+            "magnolia": 141,
+            "crabapple": 81
+          },
+          "species_ownership_counts": {
+            "cherry": {
+              "public": 43,
+              "private": 0,
+              "unknown": 0
+            },
+            "plum": {
+              "public": 34,
+              "private": 0,
+              "unknown": 0
+            },
+            "peach": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            },
+            "magnolia": {
+              "public": 141,
+              "private": 0,
+              "unknown": 0
+            },
+            "crabapple": {
+              "public": 81,
+              "private": 0,
+              "unknown": 0
+            }
+          },
+          "raw_bytes": 153705,
+          "gzip_bytes": 6505
         }
       ]
     }

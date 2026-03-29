@@ -1,8 +1,133 @@
 {
-  "generated_at": "2026-03-28T19:48:58.366951+00:00",
+  "generated_at": "2026-03-29T02:09:45.932965+00:00",
   "region": "ga",
   "strategy": "area_shard",
   "items": [
+    {
+      "jurisdiction": "Atlanta",
+      "slug": "atlanta",
+      "display_name": "Atlanta",
+      "jurisdiction_type": "city",
+      "state_province": "GA",
+      "country": "United States",
+      "bounds": [
+        [
+          -84.5508539998525,
+          33.64794399969981
+        ],
+        [
+          -84.28956000009809,
+          33.88682300034589
+        ]
+      ],
+      "tree_count": 1051,
+      "zip_codes": [
+        "30308",
+        "30313",
+        "30318",
+        "30332"
+      ],
+      "species_counts": {
+        "cherry": 233,
+        "plum": 10,
+        "peach": 2,
+        "magnolia": 800,
+        "crabapple": 6
+      },
+      "ownership_counts": {
+        "public": 1051,
+        "private": 0,
+        "unknown": 0
+      },
+      "species_ownership_counts": {
+        "cherry": {
+          "public": 233,
+          "private": 0,
+          "unknown": 0
+        },
+        "plum": {
+          "public": 10,
+          "private": 0,
+          "unknown": 0
+        },
+        "peach": {
+          "public": 2,
+          "private": 0,
+          "unknown": 0
+        },
+        "magnolia": {
+          "public": 800,
+          "private": 0,
+          "unknown": 0
+        },
+        "crabapple": {
+          "public": 6,
+          "private": 0,
+          "unknown": 0
+        }
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "atlanta-001",
+          "bounds": [
+            [
+              -84.40671870241268,
+              33.76917579681988
+            ],
+            [
+              -84.38685249868273,
+              33.78305964954155
+            ]
+          ],
+          "data_path": "/data/trees.ga.area.atlanta.v2.geojson",
+          "tree_count": 1051,
+          "ownership_counts": {
+            "public": 1051,
+            "private": 0,
+            "unknown": 0
+          },
+          "species_counts": {
+            "cherry": 233,
+            "plum": 10,
+            "peach": 2,
+            "magnolia": 800,
+            "crabapple": 6
+          },
+          "species_ownership_counts": {
+            "cherry": {
+              "public": 233,
+              "private": 0,
+              "unknown": 0
+            },
+            "plum": {
+              "public": 10,
+              "private": 0,
+              "unknown": 0
+            },
+            "peach": {
+              "public": 2,
+              "private": 0,
+              "unknown": 0
+            },
+            "magnolia": {
+              "public": 800,
+              "private": 0,
+              "unknown": 0
+            },
+            "crabapple": {
+              "public": 6,
+              "private": 0,
+              "unknown": 0
+            }
+          },
+          "raw_bytes": 541255,
+          "gzip_bytes": 25244
+        }
+      ]
+    },
     {
       "jurisdiction": "Johns Creek",
       "slug": "johns-creek",
@@ -123,6 +248,131 @@
           },
           "raw_bytes": 4310,
           "gzip_bytes": 557
+        }
+      ]
+    },
+    {
+      "jurisdiction": "Sandy Springs",
+      "slug": "sandy-springs",
+      "display_name": "Sandy Springs",
+      "jurisdiction_type": "city",
+      "state_province": "GA",
+      "country": "United States",
+      "bounds": [
+        [
+          -84.44773399976809,
+          33.8769299997895
+        ],
+        [
+          -84.25808900005097,
+          34.010137000025345
+        ]
+      ],
+      "tree_count": 269,
+      "zip_codes": [
+        "30327",
+        "30328",
+        "30342",
+        "30350"
+      ],
+      "species_counts": {
+        "cherry": 52,
+        "plum": 12,
+        "peach": 0,
+        "magnolia": 205,
+        "crabapple": 0
+      },
+      "ownership_counts": {
+        "public": 269,
+        "private": 0,
+        "unknown": 0
+      },
+      "species_ownership_counts": {
+        "cherry": {
+          "public": 52,
+          "private": 0,
+          "unknown": 0
+        },
+        "plum": {
+          "public": 12,
+          "private": 0,
+          "unknown": 0
+        },
+        "peach": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        },
+        "magnolia": {
+          "public": 205,
+          "private": 0,
+          "unknown": 0
+        },
+        "crabapple": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        }
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "sandy-springs-001",
+          "bounds": [
+            [
+              -84.4217761007568,
+              33.87915803528792
+            ],
+            [
+              -84.34607303169004,
+              34.0014641477553
+            ]
+          ],
+          "data_path": "/data/trees.ga.area.sandy-springs.v2.geojson",
+          "tree_count": 269,
+          "ownership_counts": {
+            "public": 269,
+            "private": 0,
+            "unknown": 0
+          },
+          "species_counts": {
+            "cherry": 52,
+            "plum": 12,
+            "peach": 0,
+            "magnolia": 205,
+            "crabapple": 0
+          },
+          "species_ownership_counts": {
+            "cherry": {
+              "public": 52,
+              "private": 0,
+              "unknown": 0
+            },
+            "plum": {
+              "public": 12,
+              "private": 0,
+              "unknown": 0
+            },
+            "peach": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            },
+            "magnolia": {
+              "public": 205,
+              "private": 0,
+              "unknown": 0
+            },
+            "crabapple": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            }
+          },
+          "raw_bytes": 147700,
+          "gzip_bytes": 6754
         }
       ]
     }

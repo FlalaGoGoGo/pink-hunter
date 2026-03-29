@@ -1,8 +1,141 @@
 {
-  "generated_at": "2026-03-28T05:21:40.296288+00:00",
+  "generated_at": "2026-03-29T02:09:45.932965+00:00",
   "region": "tn",
   "strategy": "area_shard",
   "items": [
+    {
+      "jurisdiction": "Chattanooga",
+      "slug": "chattanooga",
+      "display_name": "Chattanooga",
+      "jurisdiction_type": "city",
+      "state_province": "TN",
+      "country": "United States",
+      "bounds": [
+        [
+          -85.46805500007636,
+          34.98292399972572
+        ],
+        [
+          -85.05149800031327,
+          35.21429900019549
+        ]
+      ],
+      "tree_count": 1286,
+      "zip_codes": [
+        "37351",
+        "37402",
+        "37403",
+        "37404",
+        "37405",
+        "37406",
+        "37407",
+        "37408",
+        "37409",
+        "37410",
+        "37411",
+        "37421"
+      ],
+      "species_counts": {
+        "cherry": 872,
+        "plum": 12,
+        "peach": 0,
+        "magnolia": 292,
+        "crabapple": 110
+      },
+      "ownership_counts": {
+        "public": 1286,
+        "private": 0,
+        "unknown": 0
+      },
+      "species_ownership_counts": {
+        "cherry": {
+          "public": 872,
+          "private": 0,
+          "unknown": 0
+        },
+        "plum": {
+          "public": 12,
+          "private": 0,
+          "unknown": 0
+        },
+        "peach": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        },
+        "magnolia": {
+          "public": 292,
+          "private": 0,
+          "unknown": 0
+        },
+        "crabapple": {
+          "public": 110,
+          "private": 0,
+          "unknown": 0
+        }
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "chattanooga-001",
+          "bounds": [
+            [
+              -85.3302841201459,
+              34.98677043247452
+            ],
+            [
+              -85.14361344413113,
+              35.098185291755385
+            ]
+          ],
+          "data_path": "/data/trees.tn.area.chattanooga.v2.geojson",
+          "tree_count": 1286,
+          "ownership_counts": {
+            "public": 1286,
+            "private": 0,
+            "unknown": 0
+          },
+          "species_counts": {
+            "cherry": 872,
+            "plum": 12,
+            "peach": 0,
+            "magnolia": 292,
+            "crabapple": 110
+          },
+          "species_ownership_counts": {
+            "cherry": {
+              "public": 872,
+              "private": 0,
+              "unknown": 0
+            },
+            "plum": {
+              "public": 12,
+              "private": 0,
+              "unknown": 0
+            },
+            "peach": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            },
+            "magnolia": {
+              "public": 292,
+              "private": 0,
+              "unknown": 0
+            },
+            "crabapple": {
+              "public": 110,
+              "private": 0,
+              "unknown": 0
+            }
+          },
+          "raw_bytes": 664819,
+          "gzip_bytes": 31022
+        }
+      ]
+    },
     {
       "jurisdiction": "Clarksville",
       "slug": "clarksville",
@@ -122,6 +255,128 @@
           },
           "raw_bytes": 201432,
           "gzip_bytes": 7890
+        }
+      ]
+    },
+    {
+      "jurisdiction": "Nashville",
+      "slug": "nashville",
+      "display_name": "Nashville",
+      "jurisdiction_type": "city",
+      "state_province": "TN",
+      "country": "United States",
+      "bounds": [
+        [
+          -86.8706812354942,
+          36.066982650446484
+        ],
+        [
+          -86.6463808922024,
+          36.25574651228963
+        ]
+      ],
+      "tree_count": 39,
+      "zip_codes": [
+        "None"
+      ],
+      "species_counts": {
+        "cherry": 39,
+        "plum": 0,
+        "peach": 0,
+        "magnolia": 0,
+        "crabapple": 0
+      },
+      "ownership_counts": {
+        "public": 39,
+        "private": 0,
+        "unknown": 0
+      },
+      "species_ownership_counts": {
+        "cherry": {
+          "public": 39,
+          "private": 0,
+          "unknown": 0
+        },
+        "plum": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        },
+        "peach": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        },
+        "magnolia": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        },
+        "crabapple": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        }
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "nashville-001",
+          "bounds": [
+            [
+              -86.8706812354942,
+              36.066982650446484
+            ],
+            [
+              -86.6463808922024,
+              36.25574651228963
+            ]
+          ],
+          "data_path": "/data/trees.tn.area.nashville.v2.geojson",
+          "tree_count": 39,
+          "ownership_counts": {
+            "public": 39,
+            "private": 0,
+            "unknown": 0
+          },
+          "species_counts": {
+            "cherry": 39,
+            "plum": 0,
+            "peach": 0,
+            "magnolia": 0,
+            "crabapple": 0
+          },
+          "species_ownership_counts": {
+            "cherry": {
+              "public": 39,
+              "private": 0,
+              "unknown": 0
+            },
+            "plum": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            },
+            "peach": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            },
+            "magnolia": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            },
+            "crabapple": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            }
+          },
+          "raw_bytes": 19692,
+          "gzip_bytes": 1289
         }
       ]
     }

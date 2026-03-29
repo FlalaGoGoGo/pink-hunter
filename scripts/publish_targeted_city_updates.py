@@ -502,6 +502,9 @@ FAYETTEVILLE_DATASET_PAGE = "https://www.arcgis.com/home/item.html?id=9c90a47d32
 GARRETT_PARK_WEBMAP_ITEM = "https://www.arcgis.com/home/item.html?id=f487ba0469f74cc098e8dc6f37736073"
 GARRETT_PARK_WEBMAP_DATA = "https://www.arcgis.com/sharing/rest/content/items/f487ba0469f74cc098e8dc6f37736073/data"
 GARRETT_PARK_WEBMAP_METADATA = "https://www.arcgis.com/sharing/rest/content/items/f487ba0469f74cc098e8dc6f37736073"
+NASHVILLE_CHERRY_WEBMAP_ITEM = "https://www.arcgis.com/home/item.html?id=0363da9476e449d7a6c96d972439c07d"
+NASHVILLE_CHERRY_WEBMAP_DATA = "https://www.arcgis.com/sharing/rest/content/items/0363da9476e449d7a6c96d972439c07d/data"
+NASHVILLE_CHERRY_WEBMAP_METADATA = "https://www.arcgis.com/sharing/rest/content/items/0363da9476e449d7a6c96d972439c07d"
 LINDEN_TREES_LAYER = "https://services.arcgis.com/VgmyyKiMPvUPgldo/arcgis/rest/services/Linden_Tree_Survey/FeatureServer/0"
 LINDEN_DATASET_PAGE = "https://services.arcgis.com/VgmyyKiMPvUPgldo/arcgis/rest/services/Linden_Tree_Survey/FeatureServer"
 MONTCLAIR_TREES_LAYER = "https://services9.arcgis.com/QHXEWAb0pE2rvfbb/arcgis/rest/services/Montclair_Trees_2017_WFL1/FeatureServer/0"
@@ -2061,6 +2064,14 @@ MID_SOUTH_TREEKEEPER_CONFIGS: dict[str, dict[str, Any]] = {
         "note": "Integrated from the official City of Valparaiso public TreeKeeper inventory.",
         "use_zip_index": False,
     },
+    "University City": {
+        "base_url": "https://universitycitymo.treekeepersoftware.com",
+        "uid": "pinkhunter-university-city-mo",
+        "region": "mo",
+        "source_department": "City of University City",
+        "note": "Integrated from the official City of University City public TreeKeeper inventory.",
+        "use_zip_index": False,
+    },
     "Winter Park": {
         "base_url": "https://winterparkfl.treekeepersoftware.com",
         "uid": "pinkhunter-winter-park-fl",
@@ -3516,6 +3527,129 @@ UNCOVERED_STATE_ARCGIS_CONFIGS: dict[str, dict[str, Any]] = {
         "ownership_raw": "City of Johns Creek",
         "note": "Integrated from the official City of Johns Creek public Tree Inventory ArcGIS layer using the published species labels.",
         "clip_to_boundary": True,
+    },
+    "Sandy Springs": {
+        "region": "ga",
+        "layer_url": "https://services5.arcgis.com/buITjRsK0rZsAXbQ/arcgis/rest/services/Tree_Plantings_Public/FeatureServer/0",
+        "dataset_page": "https://www.arcgis.com/home/item.html?id=3c42a7f81a2e4049915e627e272583d8",
+        "where": "UPPER(NAME) LIKE '%CHERRY%' OR UPPER(NAME) LIKE '%PLUM%' OR UPPER(NAME) LIKE '%PEACH%' OR UPPER(NAME) LIKE '%MAGNOLIA%' OR UPPER(NAME) LIKE '%CRABAPPLE%' OR UPPER(NAME) LIKE '%APPLE%' OR UPPER(SPECIES) LIKE '%PRUNUS%' OR UPPER(SPECIES) LIKE '%MALUS%' OR UPPER(SPECIES) LIKE '%MAGNOLIA%' OR UPPER(GENUS) = 'PRUNUS' OR UPPER(GENUS) = 'MALUS' OR UPPER(GENUS) = 'MAGNOLIA'",
+        "out_fields": ["OBJECTID", "NAME", "GENUS", "SPECIES", "Cultivar"],
+        "object_id_field": "OBJECTID",
+        "common_field": "NAME",
+        "genus_field": "GENUS",
+        "species_field": "SPECIES",
+        "source_name": "Tree Plantings Public",
+        "source_department": "City of Sandy Springs",
+        "ownership_raw": "City of Sandy Springs",
+        "note": "Integrated from the official City of Sandy Springs public tree-plantings ArcGIS layer.",
+    },
+    "Weaverville": {
+        "region": "nc",
+        "layer_url": "https://services5.arcgis.com/lA7fMEY4qaPiZF6g/arcgis/rest/services/Weaverville_Tree_Inventory/FeatureServer/0",
+        "dataset_page": "https://www.arcgis.com/home/item.html?id=c7b2caa071c04948ab4c20a00e8919f2",
+        "where": "UPPER(Common) LIKE '%CHERRY%' OR UPPER(Common) LIKE '%PLUM%' OR UPPER(Common) LIKE '%PEACH%' OR UPPER(Common) LIKE '%MAGNOLIA%' OR UPPER(Common) LIKE '%CRABAPPLE%' OR UPPER(Common) LIKE '%APPLE%' OR UPPER(Botanical) LIKE '%PRUNUS%' OR UPPER(Botanical) LIKE '%MALUS%' OR UPPER(Botanical) LIKE '%MAGNOLIA%'",
+        "out_fields": ["FID", "Botanical", "Common", "LatDD", "LonDD"],
+        "object_id_field": "FID",
+        "common_field": "Common",
+        "botanical_field": "Botanical",
+        "lon_field": "LonDD",
+        "lat_field": "LatDD",
+        "source_name": "Weaverville Tree Inventory",
+        "source_department": "Town of Weaverville",
+        "ownership_raw": "Town of Weaverville",
+        "note": "Integrated from the official Town of Weaverville public tree inventory ArcGIS layer.",
+        "clip_to_boundary": True,
+    },
+    "Denton": {
+        "region": "tx",
+        "layer_url": "https://services6.arcgis.com/nwPkaLXTDexHnmsW/arcgis/rest/services/2023_Tree_Inventory_Final_Data/FeatureServer/0",
+        "dataset_page": "https://www.arcgis.com/home/item.html?id=1e3e2b2557ac46e9bfdcf41ff088df66",
+        "where": "UPPER(COMMON) LIKE '%CHERRY%' OR UPPER(COMMON) LIKE '%PLUM%' OR UPPER(COMMON) LIKE '%PEACH%' OR UPPER(COMMON) LIKE '%MAGNOLIA%' OR UPPER(COMMON) LIKE '%CRABAPPLE%' OR UPPER(COMMON) LIKE '%APPLE%' OR UPPER(BINOMIAL) LIKE '%PRUNUS%' OR UPPER(BINOMIAL) LIKE '%MALUS%' OR UPPER(BINOMIAL) LIKE '%MAGNOLIA%' OR UPPER(GENUS) = 'PRUNUS' OR UPPER(GENUS) = 'MALUS' OR UPPER(GENUS) = 'MAGNOLIA'",
+        "out_fields": ["OBJECTID", "COMMON", "BINOMIAL", "GENUS"],
+        "object_id_field": "OBJECTID",
+        "common_field": "COMMON",
+        "botanical_field": "BINOMIAL",
+        "genus_field": "GENUS",
+        "source_name": "2023 Tree Inventory Final Data",
+        "source_department": "University of North Texas",
+        "ownership_raw": "University of North Texas",
+        "note": "Integrated from the official University of North Texas public 2023 tree inventory after clipping blossom rows to the official Denton boundary.",
+        "clip_to_boundary": True,
+    },
+    "Atlanta": {
+        "region": "ga",
+        "layer_url": "https://services2.arcgis.com/I9cUOJUZvdGAJncI/arcgis/rest/services/Trees_All_View1/FeatureServer/0",
+        "dataset_page": "https://www.arcgis.com/home/item.html?id=e434525626ab48849ec183b8cbb4c6ac",
+        "where": "UPPER(COMMONNAME) LIKE '%CHERRY%' OR UPPER(COMMONNAME) LIKE '%PLUM%' OR UPPER(COMMONNAME) LIKE '%PEACH%' OR UPPER(COMMONNAME) LIKE '%MAGNOLIA%' OR UPPER(COMMONNAME) LIKE '%CRABAPPLE%' OR UPPER(COMMONNAME) LIKE '%APPLE%' OR UPPER(BOTANICAL) LIKE '%PRUNUS%' OR UPPER(BOTANICAL) LIKE '%MALUS%' OR UPPER(BOTANICAL) LIKE '%MAGNOLIA%' OR UPPER(SPECIES) LIKE '%PRUNUS%' OR UPPER(SPECIES) LIKE '%MALUS%' OR UPPER(SPECIES) LIKE '%MAGNOLIA%'",
+        "out_fields": ["OBJECTID", "COMMONNAME", "BOTANICAL", "SPECIES"],
+        "object_id_field": "OBJECTID",
+        "common_field": "COMMONNAME",
+        "botanical_field": "BOTANICAL",
+        "species_field": "SPECIES",
+        "source_name": "Trees_All_View1",
+        "source_department": "Georgia Tech",
+        "ownership_raw": "Georgia Tech",
+        "note": "Integrated from the official Georgia Tech public campus tree inventory after clipping blossom rows to the official Atlanta boundary.",
+        "clip_to_boundary": True,
+    },
+    "Waco": {
+        "region": "tx",
+        "layer_url": "https://services8.arcgis.com/t4l5MlZWeZ3C03RW/arcgis/rest/services/Baylor_University_Tree_Inventory/FeatureServer/0",
+        "dataset_page": "https://www.arcgis.com/home/item.html?id=c6f72ead77af454d9bded8773c030a5f",
+        "where": "UPPER(Common_Name) LIKE '%CHERRY%' OR UPPER(Common_Name) LIKE '%PLUM%' OR UPPER(Common_Name) LIKE '%PEACH%' OR UPPER(Common_Name) LIKE '%MAGNOLIA%' OR UPPER(Common_Name) LIKE '%CRABAPPLE%' OR UPPER(Common_Name) LIKE '%APPLE%' OR UPPER(Scientific_Name) LIKE '%PRUNUS%' OR UPPER(Scientific_Name) LIKE '%MALUS%' OR UPPER(Scientific_Name) LIKE '%MAGNOLIA%'",
+        "out_fields": ["OBJECTID", "Common_Name", "Scientific_Name", "Longitude", "Latitude"],
+        "object_id_field": "OBJECTID",
+        "common_field": "Common_Name",
+        "scientific_field": "Scientific_Name",
+        "lon_field": "Longitude",
+        "lat_field": "Latitude",
+        "source_name": "Baylor University Tree Inventory",
+        "source_department": "Baylor University",
+        "ownership_raw": "Baylor University",
+        "note": "Integrated from the official Baylor University public tree inventory after clipping blossom rows to the official Waco boundary.",
+        "clip_to_boundary": True,
+    },
+    "Eugene": {
+        "region": "or",
+        "layer_url": "https://services3.arcgis.com/F7NiRLGNbA2hh7gE/arcgis/rest/services/Public_Trees_View_1/FeatureServer/0",
+        "dataset_page": "https://www.arcgis.com/home/item.html?id=8c2c6e0c1599456dabd1f18fbbf6676c",
+        "where": "UPPER(Tree_species) LIKE '%CHERRY%' OR UPPER(Tree_species) LIKE '%PLUM%' OR UPPER(Tree_species) LIKE '%PEACH%' OR UPPER(Tree_species) LIKE '%MAGNOLIA%' OR UPPER(Tree_species) LIKE '%CRABAPPLE%' OR UPPER(Tree_species) LIKE '%APPLE%' OR UPPER(Tree_species) LIKE '%PRUNUS%' OR UPPER(Tree_species) LIKE '%MALUS%'",
+        "out_fields": ["OBJECTID", "Tree_species"],
+        "object_id_field": "OBJECTID",
+        "common_field": "Tree_species",
+        "source_name": "Public Trees View",
+        "source_department": "City of Eugene",
+        "ownership_raw": "City of Eugene",
+        "note": "Integrated from the official City of Eugene public urban-forest ArcGIS layer.",
+    },
+    "Corvallis": {
+        "region": "or",
+        "layer_url": "https://services6.arcgis.com/NNPaUnXVoJt8FVVE/arcgis/rest/services/TreeInventory/FeatureServer/0",
+        "dataset_page": "https://www.arcgis.com/home/item.html?id=f44769feb88a43bc9de78cf51e96d6ef",
+        "where": "UPPER(SPECIES) LIKE '%CHERRY%' OR UPPER(SPECIES) LIKE '%PLUM%' OR UPPER(SPECIES) LIKE '%PEACH%' OR UPPER(SPECIES) LIKE '%MAGNOLIA%' OR UPPER(SPECIES) LIKE '%CRABAPPLE%' OR UPPER(SPECIES) LIKE '%APPLE%' OR UPPER(SPECIES) LIKE '%PRUNUS%' OR UPPER(SPECIES) LIKE '%MALUS%'",
+        "out_fields": ["FID", "SPECIES"],
+        "object_id_field": "FID",
+        "common_field": "SPECIES",
+        "source_name": "TreeInventory",
+        "source_department": "City of Corvallis",
+        "ownership_raw": "City of Corvallis",
+        "note": "Integrated from the official City of Corvallis public tree inventory ArcGIS layer.",
+    },
+    "Chattanooga": {
+        "region": "tn",
+        "layer_url": "https://services2.arcgis.com/OIAIimblRxPs0xxc/arcgis/rest/services/Trees_View_Layer/FeatureServer/0",
+        "dataset_page": "https://www.arcgis.com/home/item.html?id=5eaf6ca482514b1fbd5195afe918004d",
+        "where": "UPPER(commonname) LIKE '%CHERRY%' OR UPPER(commonname) LIKE '%PLUM%' OR UPPER(commonname) LIKE '%PEACH%' OR UPPER(commonname) LIKE '%MAGNOLIA%' OR UPPER(commonname) LIKE '%CRABAPPLE%' OR UPPER(commonname) LIKE '%APPLE%' OR UPPER(Botanical) LIKE '%PRUNUS%' OR UPPER(Botanical) LIKE '%MALUS%' OR UPPER(Botanical) LIKE '%MAGNOLIA%' OR UPPER(genus) = 'PRUNUS' OR UPPER(genus) = 'MALUS' OR UPPER(genus) = 'MAGNOLIA' OR UPPER(species) LIKE '%PRUNUS%' OR UPPER(species) LIKE '%MALUS%' OR UPPER(species) LIKE '%MAGNOLIA%'",
+        "out_fields": ["OBJECTID", "commonname", "Botanical", "genus", "species"],
+        "object_id_field": "OBJECTID",
+        "common_field": "commonname",
+        "botanical_field": "Botanical",
+        "genus_field": "genus",
+        "species_field": "species",
+        "source_name": "Trees View Layer",
+        "source_department": "City of Chattanooga",
+        "ownership_raw": "City of Chattanooga",
+        "note": "Integrated from the official City of Chattanooga public tree inventory ArcGIS layer.",
     },
     "Boulder City": {
         "region": "nv",
@@ -11363,6 +11497,98 @@ def fetch_garrett_park() -> dict[str, Any]:
     }
 
 
+def fetch_nashville_cherry_sites() -> dict[str, Any]:
+    webmap_data = fetch_json(NASHVILLE_CHERRY_WEBMAP_DATA, {"f": "json"})
+    webmap_metadata = fetch_json(NASHVILLE_CHERRY_WEBMAP_METADATA, {"f": "json"})
+    layer = (
+        ((webmap_data.get("operationalLayers") or [])[0].get("featureCollection") or {}).get("layers") or [{}]
+    )[0]
+    features = (layer.get("featureSet") or {}).get("features") or []
+    boundary_geometry = load_city_boundary_geometry("Nashville", state_id="tn")
+    zip_index = fetch_us_city_zip_index("Nashville", state_id="tn")
+    mapping_rows = load_mapping(MAPPING_PATH)
+    subtype_rows = load_subtype_mapping(SUBTYPE_MAPPING_PATH)
+    last_edit_at = iso_from_epoch(webmap_metadata.get("modified"))
+
+    output_features: list[dict[str, Any]] = []
+    normalized_rows: list[dict[str, Any]] = []
+    for index, feature in enumerate(features, start=1):
+        attrs = feature.get("attributes", {})
+        geometry = feature.get("geometry") or {}
+        x = parse_floatish(geometry.get("x"))
+        y = parse_floatish(geometry.get("y"))
+        if x is None or y is None:
+            continue
+        lon, lat = web_mercator_to_lon_lat(x, y)
+        if boundary_geometry and not point_in_geometry(lon, lat, boundary_geometry):
+            continue
+
+        common_name = "Cherry"
+        scientific_raw = "Prunus"
+        scientific_normalized = normalize_scientific_name(scientific_raw)
+        species_group, subtype_name = classify_tree_record(scientific_raw, common_name, mapping_rows, subtype_rows)
+        zip_code = assign_zip_code(lon, lat, zip_index)
+        row_id = f"nashville-cherry-{attrs.get('__OBJECTID') or index}"
+        ownership_raw = "Metro Nashville"
+
+        normalized_rows.append(
+            {
+                "id": row_id,
+                "city": "Nashville",
+                "source_dataset": "Nashville Cherry Tree Planting Sites",
+                "scientific_raw": scientific_raw,
+                "scientific_normalized": scientific_normalized,
+                "common_name": common_name,
+                "subtype_name": subtype_name or "",
+                "zip_code": zip_code or "",
+                "species_group": species_group or "",
+                "ownership": canonical_ownership(ownership_raw),
+                "ownership_raw": ownership_raw,
+                "lat": lat,
+                "lon": lon,
+                "included": "1" if species_group else "0",
+            }
+        )
+        if not species_group:
+            continue
+        output_features.append(
+            {
+                "type": "Feature",
+                "geometry": {"type": "Point", "coordinates": [lon, lat]},
+                "properties": {
+                    "id": row_id,
+                    "species_group": species_group,
+                    "scientific_name": scientific_raw,
+                    "common_name": common_name,
+                    "subtype_name": subtype_name,
+                    "zip_code": zip_code,
+                    "ownership": canonical_ownership(ownership_raw),
+                    "ownership_raw": ownership_raw,
+                    "city": "Nashville",
+                    "source_dataset": "Nashville Cherry Tree Planting Sites",
+                    "source_department": "Metro Nashville",
+                    "source_last_edit_at": last_edit_at,
+                },
+            }
+        )
+
+    return {
+        "city": "Nashville",
+        "region": "tn",
+        "features": output_features,
+        "normalized_rows": normalized_rows,
+        "source": {
+            "name": "Nashville Cherry Tree Planting Sites",
+            "city": "Nashville",
+            "endpoint": NASHVILLE_CHERRY_WEBMAP_ITEM,
+            "last_edit_at": last_edit_at,
+            "records_fetched": len(features),
+            "records_included": len(output_features),
+            "note": "Integrated from the official Nashville public Cherry Tree Planting Sites ArcGIS web map.",
+        },
+    }
+
+
 CITY_FETCHERS = {
     "Anaheim": fetch_anaheim,
     "Arlington": fetch_arlington,
@@ -11485,6 +11711,7 @@ CITY_FETCHERS = {
     "Salt Lake City": fetch_salt_lake_city,
     "Toronto": fetch_toronto,
     "Montreal": fetch_montreal,
+    "Nashville": fetch_nashville_cherry_sites,
     "New Westminster": fetch_new_westminster,
 }
 

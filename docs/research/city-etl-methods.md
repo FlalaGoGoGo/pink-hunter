@@ -32,7 +32,7 @@ Last updated: 2026-03-28 (America/Los_Angeles)
 ## Source Families
 
 ### ArcGIS REST
-- Use `query_arcgis_features()` against official city or jurisdiction `FeatureServer` / `MapServer` layers.
+- Use `query_arcgis_features()` against official city or jurisdiction `FeatureServer` / `MapServer` layers. Recent examples: `Sandy Springs`, `Weaverville`, `Denton`, `Atlanta`, `Waco`, `Eugene`, `Corvallis`, and `Chattanooga`.
 - Pull source metadata from the layer `pjson` endpoint.
 - Map raw city-specific field names into:
   - `scientific_raw`
@@ -73,7 +73,7 @@ Last updated: 2026-03-28 (America/Los_Angeles)
 - Official item pages or city open-data pages remain the source-of-truth links in metadata.
 
 ### TreeKeeper
-- Used for `Sammamish`, `Everett`, `South San Francisco`, and `Pittsburgh`.
+- Used for `Sammamish`, `Everett`, `South San Francisco`, `Pittsburgh`, and `University City`.
 - Public access comes from `search.cfc` plus `grids.cfc`.
 - `SITE_ATTR1` may contain either:
   - `Common (Scientific)` format
@@ -91,9 +91,9 @@ Last updated: 2026-03-28 (America/Los_Angeles)
 - Scientific names may be abbreviated and need genus expansion from common-name hints.
 
 ### ArcGIS Web Map featureCollection
-- Used for `Garrett Park`.
+- Used for `Garrett Park` and `Nashville`.
 - Fetch the published web map item JSON from ArcGIS sharing endpoints, then extract features from the embedded `featureCollection`.
-- Prefer explicit lon/lat attribute fields when the embedded point geometry is still stored in Web Mercator.
+- Prefer explicit lon/lat attribute fields when the embedded point geometry is still stored in Web Mercator; if the featureCollection only exposes Web Mercator `x/y`, convert with `web_mercator_to_lon_lat()`.
 
 ### OSM Supplemental
 - Used only for supplemental UW cherry points inside Seattle.

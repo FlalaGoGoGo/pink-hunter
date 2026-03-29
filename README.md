@@ -98,6 +98,7 @@ Live domain:
 <summary>North Carolina</summary>
 
 - Durham
+- Weaverville
 
 </details>
 
@@ -184,7 +185,9 @@ Live domain:
 
 - Austin
 - Dallas
+- Denton
 - Houston
+- Waco
 
 </details>
 
@@ -223,7 +226,9 @@ Live domain:
 <details>
 <summary>Georgia</summary>
 
+- Atlanta
 - Johns Creek
+- Sandy Springs
 
 </details>
 
@@ -267,15 +272,18 @@ Live domain:
 
 - Branson
 - Brentwood
-- St. Louis
 - Springfield
+- St. Louis
+- University City
 
 </details>
 
 <details>
 <summary>Tennessee</summary>
 
+- Chattanooga
 - Clarksville
+- Nashville
 
 </details>
 
@@ -424,6 +432,8 @@ Live domain:
 <details>
 <summary>Oregon</summary>
 
+- Corvallis
+- Eugene
 - Portland
 
 </details>

@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-03-28T05:21:40.296288+00:00",
+  "generated_at": "2026-03-29T02:09:45.932965+00:00",
   "region": "nc",
   "strategy": "area_shard",
   "items": [
@@ -127,6 +127,128 @@
           },
           "raw_bytes": 629360,
           "gzip_bytes": 34629
+        }
+      ]
+    },
+    {
+      "jurisdiction": "Weaverville",
+      "slug": "weaverville",
+      "display_name": "Weaverville",
+      "jurisdiction_type": "city",
+      "state_province": "NC",
+      "country": "United States",
+      "bounds": [
+        [
+          -82.58541500043857,
+          35.66980300004487
+        ],
+        [
+          -82.51513899985459,
+          35.715660000146705
+        ]
+      ],
+      "tree_count": 6,
+      "zip_codes": [
+        "28787"
+      ],
+      "species_counts": {
+        "cherry": 1,
+        "plum": 2,
+        "peach": 0,
+        "magnolia": 1,
+        "crabapple": 2
+      },
+      "ownership_counts": {
+        "public": 6,
+        "private": 0,
+        "unknown": 0
+      },
+      "species_ownership_counts": {
+        "cherry": {
+          "public": 1,
+          "private": 0,
+          "unknown": 0
+        },
+        "plum": {
+          "public": 2,
+          "private": 0,
+          "unknown": 0
+        },
+        "peach": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        },
+        "magnolia": {
+          "public": 1,
+          "private": 0,
+          "unknown": 0
+        },
+        "crabapple": {
+          "public": 2,
+          "private": 0,
+          "unknown": 0
+        }
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "weaverville-001",
+          "bounds": [
+            [
+              -82.57191700027101,
+              35.68925399977534
+            ],
+            [
+              -82.56310100021268,
+              35.69563900014285
+            ]
+          ],
+          "data_path": "/data/trees.nc.area.weaverville.v2.geojson",
+          "tree_count": 6,
+          "ownership_counts": {
+            "public": 6,
+            "private": 0,
+            "unknown": 0
+          },
+          "species_counts": {
+            "cherry": 1,
+            "plum": 2,
+            "peach": 0,
+            "magnolia": 1,
+            "crabapple": 2
+          },
+          "species_ownership_counts": {
+            "cherry": {
+              "public": 1,
+              "private": 0,
+              "unknown": 0
+            },
+            "plum": {
+              "public": 2,
+              "private": 0,
+              "unknown": 0
+            },
+            "peach": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            },
+            "magnolia": {
+              "public": 1,
+              "private": 0,
+              "unknown": 0
+            },
+            "crabapple": {
+              "public": 2,
+              "private": 0,
+              "unknown": 0
+            }
+          },
+          "raw_bytes": 3277,
+          "gzip_bytes": 599
         }
       ]
     }

@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-03-28T05:21:40.296288+00:00",
+  "generated_at": "2026-03-29T02:09:45.932965+00:00",
   "region": "tx",
   "strategy": "area_shard",
   "items": [
@@ -283,6 +283,129 @@
       ]
     },
     {
+      "jurisdiction": "Denton",
+      "slug": "denton",
+      "display_name": "Denton",
+      "jurisdiction_type": "city",
+      "state_province": "TX",
+      "country": "United States",
+      "bounds": [
+        [
+          -97.26648999955951,
+          33.11751000019241
+        ],
+        [
+          -97.0239160000957,
+          33.3581480001705
+        ]
+      ],
+      "tree_count": 66,
+      "zip_codes": [
+        "76201",
+        "76203"
+      ],
+      "species_counts": {
+        "cherry": 1,
+        "plum": 1,
+        "peach": 0,
+        "magnolia": 64,
+        "crabapple": 0
+      },
+      "ownership_counts": {
+        "public": 66,
+        "private": 0,
+        "unknown": 0
+      },
+      "species_ownership_counts": {
+        "cherry": {
+          "public": 1,
+          "private": 0,
+          "unknown": 0
+        },
+        "plum": {
+          "public": 1,
+          "private": 0,
+          "unknown": 0
+        },
+        "peach": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        },
+        "magnolia": {
+          "public": 64,
+          "private": 0,
+          "unknown": 0
+        },
+        "crabapple": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        }
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "denton-001",
+          "bounds": [
+            [
+              -97.1563218283634,
+              33.206498776865
+            ],
+            [
+              -97.14164907991037,
+              33.21448148629795
+            ]
+          ],
+          "data_path": "/data/trees.tx.area.denton.v2.geojson",
+          "tree_count": 66,
+          "ownership_counts": {
+            "public": 66,
+            "private": 0,
+            "unknown": 0
+          },
+          "species_counts": {
+            "cherry": 1,
+            "plum": 1,
+            "peach": 0,
+            "magnolia": 64,
+            "crabapple": 0
+          },
+          "species_ownership_counts": {
+            "cherry": {
+              "public": 1,
+              "private": 0,
+              "unknown": 0
+            },
+            "plum": {
+              "public": 1,
+              "private": 0,
+              "unknown": 0
+            },
+            "peach": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            },
+            "magnolia": {
+              "public": 64,
+              "private": 0,
+              "unknown": 0
+            },
+            "crabapple": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            }
+          },
+          "raw_bytes": 36817,
+          "gzip_bytes": 2024
+        }
+      ]
+    },
+    {
       "jurisdiction": "Houston",
       "slug": "houston",
       "display_name": "Houston",
@@ -479,6 +602,129 @@
           },
           "raw_bytes": 4550451,
           "gzip_bytes": 211618
+        }
+      ]
+    },
+    {
+      "jurisdiction": "Waco",
+      "slug": "waco",
+      "display_name": "Waco",
+      "jurisdiction_type": "city",
+      "state_province": "TX",
+      "country": "United States",
+      "bounds": [
+        [
+          -97.34134399988434,
+          31.445852000081384
+        ],
+        [
+          -97.04459299999567,
+          31.66040799985199
+        ]
+      ],
+      "tree_count": 68,
+      "zip_codes": [
+        "76706",
+        "76798"
+      ],
+      "species_counts": {
+        "cherry": 1,
+        "plum": 0,
+        "peach": 3,
+        "magnolia": 64,
+        "crabapple": 0
+      },
+      "ownership_counts": {
+        "public": 68,
+        "private": 0,
+        "unknown": 0
+      },
+      "species_ownership_counts": {
+        "cherry": {
+          "public": 1,
+          "private": 0,
+          "unknown": 0
+        },
+        "plum": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        },
+        "peach": {
+          "public": 3,
+          "private": 0,
+          "unknown": 0
+        },
+        "magnolia": {
+          "public": 64,
+          "private": 0,
+          "unknown": 0
+        },
+        "crabapple": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        }
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "waco-001",
+          "bounds": [
+            [
+              -97.12363791061802,
+              31.543172149757844
+            ],
+            [
+              -97.10657642014606,
+              31.552969670090526
+            ]
+          ],
+          "data_path": "/data/trees.tx.area.waco.v2.geojson",
+          "tree_count": 68,
+          "ownership_counts": {
+            "public": 68,
+            "private": 0,
+            "unknown": 0
+          },
+          "species_counts": {
+            "cherry": 1,
+            "plum": 0,
+            "peach": 3,
+            "magnolia": 64,
+            "crabapple": 0
+          },
+          "species_ownership_counts": {
+            "cherry": {
+              "public": 1,
+              "private": 0,
+              "unknown": 0
+            },
+            "plum": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            },
+            "peach": {
+              "public": 3,
+              "private": 0,
+              "unknown": 0
+            },
+            "magnolia": {
+              "public": 64,
+              "private": 0,
+              "unknown": 0
+            },
+            "crabapple": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            }
+          },
+          "raw_bytes": 36879,
+          "gzip_bytes": 2126
         }
       ]
     }

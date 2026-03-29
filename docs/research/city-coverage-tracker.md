@@ -109,6 +109,16 @@ Current state: no cities are parked in `A2` right now.
 | ✅ | Mesa | 25 | Official jurisdiction boundary | Official City of Mesa `Mesa AZ iTree Inventory` ArcGIS layer integrated from the city's tree canopy hub and clipped to the official jurisdiction boundary |
 | ✅ | Tempe | 32 | Official jurisdiction boundary | Official City of Tempe tree inventory ArcGIS open-data layer integrated with the official jurisdiction boundary |
 | ✅ | Johns Creek | 8 | Official jurisdiction boundary | Official City of Johns Creek public `Tree Inventory` ArcGIS layer integrated with the official jurisdiction boundary |
+| ✅ | Sandy Springs | 269 | Official jurisdiction boundary | Official City of Sandy Springs public tree-plantings ArcGIS layer integrated with server-side blossom filtering |
+| ✅ | Weaverville | 6 | Official jurisdiction boundary | Official Town of Weaverville public tree inventory ArcGIS layer integrated with the official jurisdiction boundary |
+| ✅ | Denton | 66 | Official jurisdiction boundary | Official University of North Texas public 2023 tree inventory integrated after clipping blossom rows to the official Denton boundary |
+| ✅ | Atlanta | 1,051 | Official jurisdiction boundary | Official Georgia Tech public campus tree inventory integrated after clipping blossom rows to the official Atlanta boundary |
+| ✅ | Waco | 68 | Official jurisdiction boundary | Official Baylor University public tree inventory integrated after clipping blossom rows to the official Waco boundary |
+| ✅ | Eugene | 8,180 | Official jurisdiction boundary | Official City of Eugene public urban-forest ArcGIS layer integrated with server-side blossom filtering |
+| ✅ | Corvallis | 1,359 | Official jurisdiction boundary | Official City of Corvallis public tree inventory ArcGIS layer integrated with server-side blossom filtering |
+| ✅ | Chattanooga | 1,286 | Official jurisdiction boundary | Official City of Chattanooga public tree inventory ArcGIS layer integrated with server-side blossom filtering |
+| ✅ | Nashville | 39 | Official jurisdiction boundary | Official Nashville public `Cherry Tree Planting Sites` ArcGIS web map integrated from the embedded featureCollection and official jurisdiction boundary |
+| ✅ | University City | 299 | Official jurisdiction boundary | Official City of University City public TreeKeeper inventory integrated with the official jurisdiction boundary |
 | ✅ | Brighton | 409 | Official jurisdiction boundary | Official City of Brighton public TreeKeeper inventory integrated with the official jurisdiction boundary |
 | ✅ | Boulder | 3,147 | Official jurisdiction boundary | Official City of Boulder `Tree Inventory Open Data` ArcGIS layer integrated after restricting to `OWNEDBY = 'City'` and clipping to the official jurisdiction boundary |
 | ✅ | Denver | 19,900 | Official jurisdiction boundary | Official City and County of Denver `Public Tree Inventory` ArcGIS layer integrated from the city open-data portal and official jurisdiction boundary |
