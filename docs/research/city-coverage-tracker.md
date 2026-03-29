@@ -122,6 +122,9 @@ Current state: no cities are parked in `A2` right now.
 | ✅ | Winter Park | 944 | Official jurisdiction boundary | Official City of Winter Park public TreeKeeper inventory integrated with the official jurisdiction boundary |
 | ✅ | Normal | 1,128 | Official jurisdiction boundary | Official Town of Normal public TreeKeeper inventory integrated with the official jurisdiction boundary |
 | ✅ | Westchester | 108 | Official jurisdiction boundary | Official Village of Westchester public tree inventory ArcGIS layer integrated with server-side blossom filtering on `COMMON_NAME` and clipped to the official jurisdiction boundary |
+| ✅ | Danville | 351 | Official jurisdiction boundary | Official City of Danville public tree inventory ArcGIS layer integrated with the official jurisdiction boundary |
+| ✅ | Evanston | 1,093 | Official jurisdiction boundary | Official City of Evanston public trees ArcGIS layer integrated with the official jurisdiction boundary |
+| ✅ | O'Fallon | 152 | Official jurisdiction boundary | Official City of O'Fallon public city tree ArcGIS layer integrated with the official jurisdiction boundary |
 | ✅ | Bloomington | 1,206 | Official jurisdiction boundary | Official City of Bloomington public TreeKeeper inventory integrated with the official jurisdiction boundary |
 | ✅ | Pendleton | 170 | Official jurisdiction boundary | Official Town of Pendleton public TreeKeeper inventory integrated with the official jurisdiction boundary |
 | ✅ | Valparaiso | 752 | Official jurisdiction boundary | Official City of Valparaiso public TreeKeeper inventory integrated with the official jurisdiction boundary |
@@ -131,7 +134,14 @@ Current state: no cities are parked in `A2` right now.
 | ✅ | Clarksville | 404 | Official jurisdiction boundary | Official City of Clarksville public TreeKeeper inventory integrated with the official jurisdiction boundary |
 | ✅ | Ferndale | 496 | Official jurisdiction boundary | Official City of Ferndale public TreeKeeper inventory integrated with the official jurisdiction boundary |
 | ✅ | Kalamazoo | 1,564 | Official jurisdiction boundary | Official City of Kalamazoo public TreeKeeper inventory integrated with the official jurisdiction boundary |
+| ✅ | Ann Arbor | 3,756 | Official jurisdiction boundary | Official City of Ann Arbor public street tree ArcGIS layer integrated with the official jurisdiction boundary |
+| ✅ | Dearborn Heights | 2 | Official jurisdiction boundary | Official City of Dearborn Heights public tree record ArcGIS layer integrated with the official jurisdiction boundary |
+| ✅ | East Lansing | 521 | Official jurisdiction boundary | Official City of East Lansing public tree status ArcGIS layer integrated with the official jurisdiction boundary |
+| ✅ | Grand Rapids | 13 | Official jurisdiction boundary | Official City of Grand Rapids public street-tree ArcGIS layer integrated with the official jurisdiction boundary |
 | ✅ | Madison | 3,561 | Official jurisdiction boundary | Official City of Madison public TreeKeeper inventory integrated with the official jurisdiction boundary |
+| ✅ | Franklin | 87 | Official jurisdiction boundary | Official Milwaukee County public tree viewer clipped to the official Franklin jurisdiction boundary |
+| ✅ | Milwaukee | 680 | Official jurisdiction boundary | Official Milwaukee County public tree viewer clipped to the official Milwaukee jurisdiction boundary |
+| ✅ | Wauwatosa | 77 | Official jurisdiction boundary | Official Milwaukee County public tree viewer clipped to the official Wauwatosa jurisdiction boundary |
 | ✅ | Maitland | 202 | Official jurisdiction boundary | Official City of Maitland public tree inventory ArcGIS layer integrated with server-side blossom filtering on `COMMON` and clipped to the official jurisdiction boundary |
 | ✅ | St. Louis | 4,602 | Official jurisdiction boundary | Official City of St. Louis `City Street Trees` open-data layer integrated after excluding `CONDITION = 'N/A'` rows and clipping to the official jurisdiction boundary |
 | ✅ | Michigan City | 526 | Official jurisdiction boundary | Official City of Michigan City public tree inventory ArcGIS layer integrated with server-side blossom filtering on `COMMON_NAME` and clipped to the official jurisdiction boundary |

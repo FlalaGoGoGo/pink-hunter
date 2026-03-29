@@ -230,7 +230,10 @@ Live domain:
 <details>
 <summary>Illinois</summary>
 
+- Danville
+- Evanston
 - Normal
+- O'Fallon
 - Westchester
 
 </details>
@@ -250,7 +253,11 @@ Live domain:
 <details>
 <summary>Michigan</summary>
 
+- Ann Arbor
+- Dearborn Heights
+- East Lansing
 - Ferndale
+- Grand Rapids
 - Kalamazoo
 
 </details>
@@ -275,7 +282,10 @@ Live domain:
 <details>
 <summary>Wisconsin</summary>
 
+- Franklin
 - Madison
+- Milwaukee
+- Wauwatosa
 
 </details>
 
@@ -725,7 +735,10 @@ Live domain:
 <details>
 <summary>Illinois</summary>
 
+- Danville: [Tree Inventory](https://gis.cityofdanville.org/arcgis/rest/services/PublicWorks/Tree_Inventory/FeatureServer)
+- Evanston: [Trees](https://data.cityofevanston.org/datasets/evanston::trees)
 - Normal: [TreeKeeper Inventory](https://normalil.treekeepersoftware.com/)
+- O'Fallon: [City Trees](https://services.arcgis.com/K8hCj4l2z1EMabnx/arcgis/rest/services/CityTrees/FeatureServer)
 - Westchester: [Tree Inventory](https://www.westchester-il.gov/page/tree-inventory)
 
 </details>
@@ -745,7 +758,11 @@ Live domain:
 <details>
 <summary>Michigan</summary>
 
+- Ann Arbor: [Street Trees Inventory](https://data.a2gov.org/city-of-ann-arbor/street-trees-inventory)
+- Dearborn Heights: [Tree Record](https://www.arcgis.com/home/item.html?id=d3f2d45e2a024faf911a8af033eb769a)
+- East Lansing: [Trees - Current Status](https://www.arcgis.com/home/item.html?id=0166cb5e3a124abfa845e26a15a10a13)
 - Ferndale: [Public Trees Map](https://ferndalemi.treekeepersoftware.com/)
+- Grand Rapids: [Street Trees](https://www.arcgis.com/home/item.html?id=8dd6632e710243d4b3620f2304e8e409)
 - Kalamazoo: [TreeKeeper Inventory](https://kalamazoomi.treekeepersoftware.com/)
 
 </details>
@@ -770,7 +787,10 @@ Live domain:
 <details>
 <summary>Wisconsin</summary>
 
+- Franklin: [Milwaukee County Tree Viewer](https://experience.arcgis.com/experience/b1d9ccfd3a2949728e5b445bfdc78935)
 - Madison: [Tree Inventory](https://www.cityofmadison.com/streets/urban-forestry/tree-inventory)
+- Milwaukee: [Milwaukee County Tree Viewer](https://experience.arcgis.com/experience/b1d9ccfd3a2949728e5b445bfdc78935)
+- Wauwatosa: [Milwaukee County Tree Viewer](https://experience.arcgis.com/experience/b1d9ccfd3a2949728e5b445bfdc78935)
 
 </details>
 
