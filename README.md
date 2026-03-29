@@ -292,7 +292,10 @@ Live domain:
 <details>
 <summary>Nevada</summary>
 
+- Boulder City
+- Henderson
 - Las Vegas
+- North Las Vegas
 
 </details>
 
@@ -808,7 +811,10 @@ Live domain:
 <details>
 <summary>Nevada</summary>
 
+- Boulder City: [Clark County Schools Tree Inventory](https://www.arcgis.com/home/item.html?id=d4f540a74ca345a7a8371eb7e8ebc321)
+- Henderson: [Clark County Schools Tree Inventory](https://www.arcgis.com/home/item.html?id=d4f540a74ca345a7a8371eb7e8ebc321)
 - Las Vegas: [CLV Tree Sites](https://services1.arcgis.com/F1v0ufATbBQScMtY/ArcGIS/rest/services/CLV_Tree_Sites/FeatureServer)
+- North Las Vegas: [Clark County Schools Tree Inventory](https://www.arcgis.com/home/item.html?id=d4f540a74ca345a7a8371eb7e8ebc321)
 
 </details>
 

@@ -399,6 +399,10 @@ DENVER_TREES_LAYER = "https://services1.arcgis.com/zdB7qR0BtYrg0Xpl/arcgis/rest/
 DENVER_DATASET_PAGE = "https://opendata-geospatialdenver.hub.arcgis.com/datasets/public-tree-inventory"
 LAS_VEGAS_TREES_LAYER = "https://services1.arcgis.com/F1v0ufATbBQScMtY/ArcGIS/rest/services/CLV_Tree_Sites/FeatureServer/0"
 LAS_VEGAS_DATASET_PAGE = "https://services1.arcgis.com/F1v0ufATbBQScMtY/ArcGIS/rest/services/CLV_Tree_Sites/FeatureServer"
+CLARK_COUNTY_SCHOOLS_TREES_LAYER = (
+    "https://services2.arcgis.com/bDmJlFHtkbwdyhN7/arcgis/rest/services/Clark_County_Schools_Tree_Inventory/FeatureServer/0"
+)
+CLARK_COUNTY_SCHOOLS_DATASET_PAGE = "https://www.arcgis.com/home/item.html?id=d4f540a74ca345a7a8371eb7e8ebc321"
 SALT_LAKE_CITY_TREES_LAYER = "https://services.arcgis.com/mMBpeYj0vPFotzbe/arcgis/rest/services/Urban_Forestry_Inventory/FeatureServer/0"
 SALT_LAKE_CITY_DATASET_PAGE = "https://www.slc.gov/parks/urban-forestry/"
 LOS_ANGELES_STREETSLA_PAGE = "https://streetsla.lacity.org/tree-inventory-and-maintenance"
@@ -617,6 +621,16 @@ LAS_VEGAS_BLOSSOM_WHERE = (
     "UPPER(SPP_COM) LIKE '%CRABAPPLE%' OR "
     "UPPER(SPP_COM) LIKE '%APPLE%'"
     ")"
+)
+CLARK_COUNTY_SCHOOLS_BLOSSOM_WHERE = (
+    "UPPER(COMMON) LIKE '%CHERRY%' OR "
+    "UPPER(COMMON) LIKE '%PLUM%' OR "
+    "UPPER(COMMON) LIKE '%PEACH%' OR "
+    "UPPER(COMMON) LIKE '%MAGNOLIA%' OR "
+    "UPPER(COMMON) LIKE '%CRABAPPLE%' OR "
+    "UPPER(BOTANICAL) LIKE '%PRUNUS%' OR "
+    "UPPER(BOTANICAL) LIKE '%MALUS%' OR "
+    "UPPER(BOTANICAL) LIKE '%MAGNOLIA%'"
 )
 SALT_LAKE_CITY_BLOSSOM_WHERE = (
     "(Vacant IS NULL OR Vacant <> 'Yes') AND ("
@@ -3501,6 +3515,51 @@ UNCOVERED_STATE_ARCGIS_CONFIGS: dict[str, dict[str, Any]] = {
         "source_department": "City of Johns Creek",
         "ownership_raw": "City of Johns Creek",
         "note": "Integrated from the official City of Johns Creek public Tree Inventory ArcGIS layer using the published species labels.",
+        "clip_to_boundary": True,
+    },
+    "Boulder City": {
+        "region": "nv",
+        "layer_url": CLARK_COUNTY_SCHOOLS_TREES_LAYER,
+        "dataset_page": CLARK_COUNTY_SCHOOLS_DATASET_PAGE,
+        "where": CLARK_COUNTY_SCHOOLS_BLOSSOM_WHERE,
+        "out_fields": ["OBJECTID", "COMMON", "BOTANICAL"],
+        "object_id_field": "OBJECTID",
+        "common_field": "COMMON",
+        "botanical_field": "BOTANICAL",
+        "source_name": "Clark County Schools Tree Inventory",
+        "source_department": "Nevada Division of Forestry",
+        "ownership_raw": "Nevada Division of Forestry",
+        "note": "Integrated from the official Nevada Division of Forestry Clark County Schools Tree Inventory after clipping blossom rows to the official Boulder City boundary.",
+        "clip_to_boundary": True,
+    },
+    "Henderson": {
+        "region": "nv",
+        "layer_url": CLARK_COUNTY_SCHOOLS_TREES_LAYER,
+        "dataset_page": CLARK_COUNTY_SCHOOLS_DATASET_PAGE,
+        "where": CLARK_COUNTY_SCHOOLS_BLOSSOM_WHERE,
+        "out_fields": ["OBJECTID", "COMMON", "BOTANICAL"],
+        "object_id_field": "OBJECTID",
+        "common_field": "COMMON",
+        "botanical_field": "BOTANICAL",
+        "source_name": "Clark County Schools Tree Inventory",
+        "source_department": "Nevada Division of Forestry",
+        "ownership_raw": "Nevada Division of Forestry",
+        "note": "Integrated from the official Nevada Division of Forestry Clark County Schools Tree Inventory after clipping blossom rows to the official Henderson boundary.",
+        "clip_to_boundary": True,
+    },
+    "North Las Vegas": {
+        "region": "nv",
+        "layer_url": CLARK_COUNTY_SCHOOLS_TREES_LAYER,
+        "dataset_page": CLARK_COUNTY_SCHOOLS_DATASET_PAGE,
+        "where": CLARK_COUNTY_SCHOOLS_BLOSSOM_WHERE,
+        "out_fields": ["OBJECTID", "COMMON", "BOTANICAL"],
+        "object_id_field": "OBJECTID",
+        "common_field": "COMMON",
+        "botanical_field": "BOTANICAL",
+        "source_name": "Clark County Schools Tree Inventory",
+        "source_department": "Nevada Division of Forestry",
+        "ownership_raw": "Nevada Division of Forestry",
+        "note": "Integrated from the official Nevada Division of Forestry Clark County Schools Tree Inventory after clipping blossom rows to the official North Las Vegas boundary.",
         "clip_to_boundary": True,
     },
     "Novi": {

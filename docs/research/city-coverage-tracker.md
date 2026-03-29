@@ -203,6 +203,9 @@ Current state: no cities are parked in `A2` right now.
 | ✅ | Newark | 28 | Official jurisdiction boundary | Official Newark public TreeKeeper inventory integrated with the official jurisdiction boundary |
 | ✅ | Houston | 8,623 | Official jurisdiction boundary | Official City of Houston `COH Urban Forestry Trees` ArcGIS layer integrated from the city's public tree inventory web map and official jurisdiction boundary |
 | ✅ | Las Vegas | 115 | Official jurisdiction boundary | Official City of Las Vegas `CLV Tree Sites` ArcGIS layer integrated using server-side blossom filtering on `SPP_BOT` / `SPP_COM` |
+| ✅ | Boulder City | 3 | Official jurisdiction boundary | Official Nevada Division of Forestry `Clark County Schools Tree Inventory` blossom rows clipped to the official Boulder City boundary |
+| ✅ | Henderson | 7 | Official jurisdiction boundary | Official Nevada Division of Forestry `Clark County Schools Tree Inventory` blossom rows clipped to the official Henderson boundary |
+| ✅ | North Las Vegas | 16 | Official jurisdiction boundary | Official Nevada Division of Forestry `Clark County Schools Tree Inventory` blossom rows clipped to the official North Las Vegas boundary |
 | ✅ | Salt Lake City | 7,810 | Official jurisdiction boundary | Official Salt Lake City Public Lands `Urban Forestry Inventory` ArcGIS layer integrated after excluding vacant sites and classifying `SPP` values |
 | ✅ | Lehi | 153 | Official jurisdiction boundary | Official Utah Division of Forestry, Fire & State Lands `Utah Urban Tree Inventory` rows for the City of Lehi integrated with the official jurisdiction boundary |
 | ✅ | Moab | 135 | Official jurisdiction boundary | Official Utah Division of Forestry, Fire & State Lands `Utah Urban Tree Inventory` rows for the City of Moab integrated with the official jurisdiction boundary |

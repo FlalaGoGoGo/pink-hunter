@@ -1,8 +1,253 @@
 {
-  "generated_at": "2026-03-28T05:21:40.296288+00:00",
+  "generated_at": "2026-03-29T01:01:35.266780+00:00",
   "region": "nv",
   "strategy": "area_shard",
   "items": [
+    {
+      "jurisdiction": "Boulder City",
+      "slug": "boulder-city",
+      "display_name": "Boulder City",
+      "jurisdiction_type": "city",
+      "state_province": "NV",
+      "country": "United States",
+      "bounds": [
+        [
+          -115.10084000019712,
+          35.67697999971015
+        ],
+        [
+          -114.76960600031771,
+          36.01136599970461
+        ]
+      ],
+      "tree_count": 3,
+      "zip_codes": [
+        "89005"
+      ],
+      "species_counts": {
+        "cherry": 0,
+        "plum": 3,
+        "peach": 0,
+        "magnolia": 0,
+        "crabapple": 0
+      },
+      "ownership_counts": {
+        "public": 3,
+        "private": 0,
+        "unknown": 0
+      },
+      "species_ownership_counts": {
+        "cherry": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        },
+        "plum": {
+          "public": 3,
+          "private": 0,
+          "unknown": 0
+        },
+        "peach": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        },
+        "magnolia": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        },
+        "crabapple": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        }
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "boulder-city-001",
+          "bounds": [
+            [
+              -114.8369435253691,
+              35.97085227447514
+            ],
+            [
+              -114.8365474509738,
+              35.97177103082486
+            ]
+          ],
+          "data_path": "/data/trees.nv.area.boulder-city.v2.geojson",
+          "tree_count": 3,
+          "ownership_counts": {
+            "public": 3,
+            "private": 0,
+            "unknown": 0
+          },
+          "species_counts": {
+            "cherry": 0,
+            "plum": 3,
+            "peach": 0,
+            "magnolia": 0,
+            "crabapple": 0
+          },
+          "species_ownership_counts": {
+            "cherry": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            },
+            "plum": {
+              "public": 3,
+              "private": 0,
+              "unknown": 0
+            },
+            "peach": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            },
+            "magnolia": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            },
+            "crabapple": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            }
+          },
+          "raw_bytes": 1757,
+          "gzip_bytes": 445
+        }
+      ]
+    },
+    {
+      "jurisdiction": "Henderson",
+      "slug": "henderson",
+      "display_name": "Henderson",
+      "jurisdiction_type": "city",
+      "state_province": "NV",
+      "country": "United States",
+      "bounds": [
+        [
+          -115.21249599962208,
+          35.8970110003494
+        ],
+        [
+          -114.90235299991942,
+          36.13030799973261
+        ]
+      ],
+      "tree_count": 7,
+      "zip_codes": [
+        "89015",
+        "89052"
+      ],
+      "species_counts": {
+        "cherry": 0,
+        "plum": 7,
+        "peach": 0,
+        "magnolia": 0,
+        "crabapple": 0
+      },
+      "ownership_counts": {
+        "public": 7,
+        "private": 0,
+        "unknown": 0
+      },
+      "species_ownership_counts": {
+        "cherry": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        },
+        "plum": {
+          "public": 7,
+          "private": 0,
+          "unknown": 0
+        },
+        "peach": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        },
+        "magnolia": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        },
+        "crabapple": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        }
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "henderson-001",
+          "bounds": [
+            [
+              -115.12174975179062,
+              35.99056254296355
+            ],
+            [
+              -114.99226873011791,
+              36.02900903477653
+            ]
+          ],
+          "data_path": "/data/trees.nv.area.henderson.v2.geojson",
+          "tree_count": 7,
+          "ownership_counts": {
+            "public": 7,
+            "private": 0,
+            "unknown": 0
+          },
+          "species_counts": {
+            "cherry": 0,
+            "plum": 7,
+            "peach": 0,
+            "magnolia": 0,
+            "crabapple": 0
+          },
+          "species_ownership_counts": {
+            "cherry": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            },
+            "plum": {
+              "public": 7,
+              "private": 0,
+              "unknown": 0
+            },
+            "peach": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            },
+            "magnolia": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            },
+            "crabapple": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            }
+          },
+          "raw_bytes": 4000,
+          "gzip_bytes": 554
+        }
+      ]
+    },
     {
       "jurisdiction": "Las Vegas",
       "slug": "las-vegas",
@@ -131,6 +376,130 @@
           },
           "raw_bytes": 60244,
           "gzip_bytes": 3235
+        }
+      ]
+    },
+    {
+      "jurisdiction": "North Las Vegas",
+      "slug": "north-las-vegas",
+      "display_name": "North Las Vegas",
+      "jurisdiction_type": "city",
+      "state_province": "NV",
+      "country": "United States",
+      "bounds": [
+        [
+          -115.21221100011506,
+          36.1848340002812
+        ],
+        [
+          -114.89278999983371,
+          36.43524700012062
+        ]
+      ],
+      "tree_count": 16,
+      "zip_codes": [
+        "89030",
+        "89031",
+        "89032"
+      ],
+      "species_counts": {
+        "cherry": 0,
+        "plum": 15,
+        "peach": 0,
+        "magnolia": 0,
+        "crabapple": 1
+      },
+      "ownership_counts": {
+        "public": 16,
+        "private": 0,
+        "unknown": 0
+      },
+      "species_ownership_counts": {
+        "cherry": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        },
+        "plum": {
+          "public": 15,
+          "private": 0,
+          "unknown": 0
+        },
+        "peach": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        },
+        "magnolia": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        },
+        "crabapple": {
+          "public": 1,
+          "private": 0,
+          "unknown": 0
+        }
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "north-las-vegas-001",
+          "bounds": [
+            [
+              -115.18299150246175,
+              36.19176711568852
+            ],
+            [
+              -115.10565323637152,
+              36.268020433350756
+            ]
+          ],
+          "data_path": "/data/trees.nv.area.north-las-vegas.v2.geojson",
+          "tree_count": 16,
+          "ownership_counts": {
+            "public": 16,
+            "private": 0,
+            "unknown": 0
+          },
+          "species_counts": {
+            "cherry": 0,
+            "plum": 15,
+            "peach": 0,
+            "magnolia": 0,
+            "crabapple": 1
+          },
+          "species_ownership_counts": {
+            "cherry": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            },
+            "plum": {
+              "public": 15,
+              "private": 0,
+              "unknown": 0
+            },
+            "peach": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            },
+            "magnolia": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            },
+            "crabapple": {
+              "public": 1,
+              "private": 0,
+              "unknown": 0
+            }
+          },
+          "raw_bytes": 9266,
+          "gzip_bytes": 845
         }
       ]
     }
