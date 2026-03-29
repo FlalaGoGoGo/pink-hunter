@@ -3937,7 +3937,8 @@ export default function App(): JSX.Element {
   const showMapLoadingOverlay = false;
 
   useEffect(() => {
-    if (showDetailsTab) {
+    const hasDetailsSelection = Boolean(selectedTree || selectedFeaturedAreaId);
+    if (hasDetailsSelection) {
       return;
     }
 
@@ -3951,7 +3952,7 @@ export default function App(): JSX.Element {
     if (activePanel === "details") {
       setActivePanel("filters");
     }
-  }, [activePanel, isTouchLayout, showDetailsTab, touchTab]);
+  }, [activePanel, isTouchLayout, selectedFeaturedAreaId, selectedTree, touchTab]);
 
   useEffect(() => {
     filteredFeaturesRef.current = filteredFeatures;
@@ -6022,10 +6023,12 @@ export default function App(): JSX.Element {
   }
 
   function renderMetaFooter(): JSX.Element {
+    const appData = data as StaticAppData;
+
     return (
       <footer className="meta-row">
         <span className="meta-row-info">
-          {t(language, "dataUpdated")}: {new Date(data.meta.generated_at).toLocaleString(language)}
+          {t(language, "dataUpdated")}: {new Date(appData.meta.generated_at).toLocaleString(language)}
         </span>
         <div className="meta-row-links">
           <button
@@ -6445,10 +6448,12 @@ export default function App(): JSX.Element {
   }
 
   function renderGuidePanelContent(): JSX.Element {
+    const appData = data as StaticAppData;
+
     return (
       <section className="guide-panel">
         <h3>{t(language, "guideTitle")}</h3>
-        {data.guide.entries.map((entry) => (
+        {appData.guide.entries.map((entry) => (
           <article className="guide-card" key={entry.id}>
             <div className="guide-card-hero">
               <img
@@ -6499,6 +6504,8 @@ export default function App(): JSX.Element {
   }
 
   function renderAboutPanelContent(): JSX.Element {
+    const appData = data as StaticAppData;
+
     return (
       <section className={activeLegalContent ? "about-panel legal-panel" : "about-panel"}>
         {activeLegalContent ? (
@@ -6560,10 +6567,10 @@ export default function App(): JSX.Element {
                     <div>
                       <h4>{aboutCopy.summaryAllTitle}</h4>
                     </div>
-                    <strong className="about-summary-total-number">{formatCount(data.meta.included_records)}</strong>
+                    <strong className="about-summary-total-number">{formatCount(appData.meta.included_records)}</strong>
                   </div>
                   <div className="about-summary-divider" />
-                  {renderSpeciesCountRows(data.meta.species_counts ?? EMPTY_SPECIES_COUNTS)}
+                  {renderSpeciesCountRows(appData.meta.species_counts ?? EMPTY_SPECIES_COUNTS)}
                 </article>
 
                 <article className="about-card about-summary-card about-summary-browse-card">
