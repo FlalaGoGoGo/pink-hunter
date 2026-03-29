@@ -506,6 +506,10 @@ VERMONT_MUNICIPAL_TREES_LAYER = (
     "https://anrmaps.vermont.gov/arcgis/rest/services/Open_Data/OPENDATA_ANR_ECOLOGIC_SP_NOCACHE_v1/MapServer/40"
 )
 VERMONT_MUNICIPAL_TREES_DATASET_PAGE = "https://www.arcgis.com/home/item.html?id=2d0401a0ac9d449784ed9b31daabed60"
+UTAH_URBAN_TREES_LAYER = (
+    "https://services.arcgis.com/ZzrwjTRez6FJiOq4/arcgis/rest/services/Utah_Urban_Tree_Inventory_Public_View/FeatureServer/0"
+)
+UTAH_URBAN_TREES_DATASET_PAGE = "https://www.arcgis.com/home/item.html?id=0d064ecdae5841db92245d4de14ee0f4"
 NEWPORT_BEACH_TREES_LAYER = "https://nbgis.newportbeachca.gov/arcgis/rest/services/DashBuildingPermits/MapServer/58"
 NEWPORT_BEACH_DATASET_PAGE = "https://nbgis.newportbeachca.gov/gispub/Dashboards/TreeInventoryDash.htm"
 THOUSAND_OAKS_TREES_LAYER = "https://gis.toaks.gov/server/rest/services/Landscape/MSLandscapeAssets/MapServer/3"
@@ -851,6 +855,14 @@ VERMONT_MUNICIPAL_BLOSSOM_WHERE = (
     "UPPER(SPECIES) LIKE '%MAGNOLIA%' OR "
     "UPPER(SPECIES) LIKE '%CRABAPPLE%' OR "
     "UPPER(SPECIES) LIKE '%APPLE%'"
+)
+UTAH_URBAN_BLOSSOM_WHERE = (
+    "UPPER(Species) LIKE '%CHERRY%' OR "
+    "UPPER(Species) LIKE '%PLUM%' OR "
+    "UPPER(Species) LIKE '%PEACH%' OR "
+    "UPPER(Species) LIKE '%MAGNOLIA%' OR "
+    "UPPER(Species) LIKE '%CRABAPPLE%' OR "
+    "UPPER(Species) LIKE '%APPLE%'"
 )
 ESCONDIDO_BLOSSOM_WHERE = (
     "UPPER(BOTANICAL_NAME) LIKE 'PRUNUS%' OR "
@@ -2572,6 +2584,149 @@ UNCOVERED_STATE_ARCGIS_CONFIGS: dict[str, dict[str, Any]] = {
         "source_department": "Town of Randolph",
         "ownership_raw": "Town of Randolph",
         "note": "Integrated from the official Vermont Municipal Tree Inventory rows for the Town of Randolph.",
+        "clip_to_boundary": True,
+    },
+    "Lehi": {
+        "region": "ut",
+        "layer_url": UTAH_URBAN_TREES_LAYER,
+        "dataset_page": UTAH_URBAN_TREES_DATASET_PAGE,
+        "where": f"UPPER(Community) = 'LEHI' AND ({UTAH_URBAN_BLOSSOM_WHERE})",
+        "object_id_field": "OBJECTID",
+        "common_field": "Species",
+        "source_name": "Utah Urban Tree Inventory",
+        "source_department": "City of Lehi",
+        "ownership_raw": "City of Lehi",
+        "note": "Integrated from the official Utah Urban Tree Inventory rows for the City of Lehi.",
+        "clip_to_boundary": True,
+    },
+    "Moab": {
+        "region": "ut",
+        "layer_url": UTAH_URBAN_TREES_LAYER,
+        "dataset_page": UTAH_URBAN_TREES_DATASET_PAGE,
+        "where": f"UPPER(Community) = 'MOAB' AND ({UTAH_URBAN_BLOSSOM_WHERE})",
+        "object_id_field": "OBJECTID",
+        "common_field": "Species",
+        "source_name": "Utah Urban Tree Inventory",
+        "source_department": "City of Moab",
+        "ownership_raw": "City of Moab",
+        "note": "Integrated from the official Utah Urban Tree Inventory rows for the City of Moab.",
+        "clip_to_boundary": True,
+    },
+    "Murray": {
+        "region": "ut",
+        "layer_url": UTAH_URBAN_TREES_LAYER,
+        "dataset_page": UTAH_URBAN_TREES_DATASET_PAGE,
+        "where": f"UPPER(Community) = 'MURRAY' AND ({UTAH_URBAN_BLOSSOM_WHERE})",
+        "object_id_field": "OBJECTID",
+        "common_field": "Species",
+        "source_name": "Utah Urban Tree Inventory",
+        "source_department": "City of Murray",
+        "ownership_raw": "City of Murray",
+        "note": "Integrated from the official Utah Urban Tree Inventory rows for the City of Murray.",
+        "clip_to_boundary": True,
+    },
+    "Nephi": {
+        "region": "ut",
+        "layer_url": UTAH_URBAN_TREES_LAYER,
+        "dataset_page": UTAH_URBAN_TREES_DATASET_PAGE,
+        "where": f"UPPER(Community) = 'NEPHI' AND ({UTAH_URBAN_BLOSSOM_WHERE})",
+        "object_id_field": "OBJECTID",
+        "common_field": "Species",
+        "source_name": "Utah Urban Tree Inventory",
+        "source_department": "City of Nephi",
+        "ownership_raw": "City of Nephi",
+        "note": "Integrated from the official Utah Urban Tree Inventory rows for the City of Nephi.",
+        "clip_to_boundary": True,
+    },
+    "Richfield": {
+        "region": "ut",
+        "layer_url": UTAH_URBAN_TREES_LAYER,
+        "dataset_page": UTAH_URBAN_TREES_DATASET_PAGE,
+        "where": f"UPPER(Community) = 'RICHFIELD' AND ({UTAH_URBAN_BLOSSOM_WHERE})",
+        "object_id_field": "OBJECTID",
+        "common_field": "Species",
+        "source_name": "Utah Urban Tree Inventory",
+        "source_department": "City of Richfield",
+        "ownership_raw": "City of Richfield",
+        "note": "Integrated from the official Utah Urban Tree Inventory rows for the City of Richfield.",
+        "clip_to_boundary": True,
+    },
+    "Riverton": {
+        "region": "ut",
+        "layer_url": UTAH_URBAN_TREES_LAYER,
+        "dataset_page": UTAH_URBAN_TREES_DATASET_PAGE,
+        "where": f"UPPER(Community) = 'RIVERTON' AND ({UTAH_URBAN_BLOSSOM_WHERE})",
+        "object_id_field": "OBJECTID",
+        "common_field": "Species",
+        "source_name": "Utah Urban Tree Inventory",
+        "source_department": "City of Riverton",
+        "ownership_raw": "City of Riverton",
+        "note": "Integrated from the official Utah Urban Tree Inventory rows for the City of Riverton.",
+        "clip_to_boundary": True,
+    },
+    "Sandy": {
+        "region": "ut",
+        "layer_url": UTAH_URBAN_TREES_LAYER,
+        "dataset_page": UTAH_URBAN_TREES_DATASET_PAGE,
+        "where": f"(UPPER(Community) = 'SANDY' OR UPPER(Community) = 'SANDY CITY') AND ({UTAH_URBAN_BLOSSOM_WHERE})",
+        "object_id_field": "OBJECTID",
+        "common_field": "Species",
+        "source_name": "Utah Urban Tree Inventory",
+        "source_department": "City of Sandy",
+        "ownership_raw": "City of Sandy",
+        "note": "Integrated from the official Utah Urban Tree Inventory rows for the City of Sandy.",
+        "clip_to_boundary": True,
+    },
+    "Santa Clara": {
+        "region": "ut",
+        "layer_url": UTAH_URBAN_TREES_LAYER,
+        "dataset_page": UTAH_URBAN_TREES_DATASET_PAGE,
+        "where": f"UPPER(Community) = 'SANTA CLARA' AND ({UTAH_URBAN_BLOSSOM_WHERE})",
+        "object_id_field": "OBJECTID",
+        "common_field": "Species",
+        "source_name": "Utah Urban Tree Inventory",
+        "source_department": "City of Santa Clara",
+        "ownership_raw": "City of Santa Clara",
+        "note": "Integrated from the official Utah Urban Tree Inventory rows for the City of Santa Clara.",
+        "clip_to_boundary": True,
+    },
+    "South Jordan": {
+        "region": "ut",
+        "layer_url": UTAH_URBAN_TREES_LAYER,
+        "dataset_page": UTAH_URBAN_TREES_DATASET_PAGE,
+        "where": f"UPPER(Community) = 'SOUTH JORDAN' AND ({UTAH_URBAN_BLOSSOM_WHERE})",
+        "object_id_field": "OBJECTID",
+        "common_field": "Species",
+        "source_name": "Utah Urban Tree Inventory",
+        "source_department": "City of South Jordan",
+        "ownership_raw": "City of South Jordan",
+        "note": "Integrated from the official Utah Urban Tree Inventory rows for the City of South Jordan.",
+        "clip_to_boundary": True,
+    },
+    "Taylorsville": {
+        "region": "ut",
+        "layer_url": UTAH_URBAN_TREES_LAYER,
+        "dataset_page": UTAH_URBAN_TREES_DATASET_PAGE,
+        "where": f"UPPER(Community) = 'TAYLORSVILLE' AND ({UTAH_URBAN_BLOSSOM_WHERE})",
+        "object_id_field": "OBJECTID",
+        "common_field": "Species",
+        "source_name": "Utah Urban Tree Inventory",
+        "source_department": "City of Taylorsville",
+        "ownership_raw": "City of Taylorsville",
+        "note": "Integrated from the official Utah Urban Tree Inventory rows for the City of Taylorsville.",
+        "clip_to_boundary": True,
+    },
+    "West Valley City": {
+        "region": "ut",
+        "layer_url": UTAH_URBAN_TREES_LAYER,
+        "dataset_page": UTAH_URBAN_TREES_DATASET_PAGE,
+        "where": f"(UPPER(Community) = 'WEST VALLEY' OR UPPER(Community) = 'WEST VALLEY CITY') AND ({UTAH_URBAN_BLOSSOM_WHERE})",
+        "object_id_field": "OBJECTID",
+        "common_field": "Species",
+        "source_name": "Utah Urban Tree Inventory",
+        "source_department": "West Valley City",
+        "ownership_raw": "West Valley City",
+        "note": "Integrated from the official Utah Urban Tree Inventory rows for West Valley City.",
         "clip_to_boundary": True,
     },
     "Ajax": {

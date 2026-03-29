@@ -1,6 +1,6 @@
 {
   "version": "v2",
-  "generated_at": "2026-03-28T19:54:23.345906+00:00",
+  "generated_at": "2026-03-29T00:25:52.379849+00:00",
   "default_region": "wa",
   "coverage_rule": "official_jurisdiction_boundary_only",
   "coverage_skipped_cities": [],
@@ -96,16 +96,16 @@
     "Yarrow Point"
   ],
   "coverage_official_unavailable_skipped_cities": [],
-  "source_count": 310,
-  "total_records": 3932419,
-  "included_records": 814651,
+  "source_count": 321,
+  "total_records": 3938015,
+  "included_records": 820247,
   "unknown_records": 1839519,
   "species_counts": {
-    "cherry": 255278,
-    "plum": 119075,
-    "peach": 8083,
-    "magnolia": 182698,
-    "crabapple": 249517
+    "cherry": 256764,
+    "plum": 120173,
+    "peach": 8100,
+    "magnolia": 182707,
+    "crabapple": 252503
   },
   "regions": [
     {
@@ -1929,36 +1929,47 @@
       "available": true,
       "bounds": [
         [
-          -112.10135399985177,
-          40.699892999862605
+          -113.6769720003484,
+          37.11016300015689
         ],
         [
-          -111.7405150001963,
+          -109.5153219999875,
           40.85394599988966
         ]
       ],
       "data_path": null,
       "coverage_path": "/data/coverage.ut.v1.geojson",
-      "tree_count": 7810,
-      "city_count": 1,
+      "tree_count": 13406,
+      "city_count": 12,
       "cities": [
-        "Salt Lake City"
+        "Lehi",
+        "Moab",
+        "Murray",
+        "Nephi",
+        "Richfield",
+        "Riverton",
+        "Salt Lake City",
+        "Sandy",
+        "Santa Clara",
+        "South Jordan",
+        "Taylorsville",
+        "West Valley City"
       ],
       "species_counts": {
-        "cherry": 1524,
-        "plum": 2797,
-        "peach": 204,
-        "magnolia": 45,
-        "crabapple": 3240
+        "cherry": 3010,
+        "plum": 3895,
+        "peach": 221,
+        "magnolia": 54,
+        "crabapple": 6226
       },
       "ownership_groups": [
         "public"
       ],
-      "raw_bytes": 4387468,
-      "gzip_bytes": 185657,
+      "raw_bytes": 7297858,
+      "gzip_bytes": 315605,
       "warning_level": "none",
-      "aggregate_raw_bytes": 4387468,
-      "aggregate_gzip_bytes": 185657,
+      "aggregate_raw_bytes": 7297858,
+      "aggregate_gzip_bytes": 315605,
       "aggregate_warning_level": "none",
       "largest_shard_raw_bytes": 4387468,
       "largest_shard_gzip_bytes": 185657,
@@ -1968,8 +1979,8 @@
       "area_split": {
         "strategy": "area_shard",
         "index_path": "/data/trees.ut.area-index.v2.json",
-        "area_count": 1,
-        "shard_count": 1,
+        "area_count": 12,
+        "shard_count": 12,
         "ready": true
       }
     },
@@ -5836,6 +5847,90 @@
       "state_province": "TX"
     },
     {
+      "jurisdiction": "Lehi",
+      "region": "ut",
+      "tree_count": 153,
+      "species_counts": {
+        "cherry": 69,
+        "plum": 9,
+        "peach": 0,
+        "magnolia": 0,
+        "crabapple": 75
+      },
+      "jurisdiction_type": "city",
+      "state_province": "UT"
+    },
+    {
+      "jurisdiction": "Moab",
+      "region": "ut",
+      "tree_count": 135,
+      "species_counts": {
+        "cherry": 16,
+        "plum": 67,
+        "peach": 1,
+        "magnolia": 0,
+        "crabapple": 51
+      },
+      "jurisdiction_type": "city",
+      "state_province": "UT"
+    },
+    {
+      "jurisdiction": "Murray",
+      "region": "ut",
+      "tree_count": 1178,
+      "species_counts": {
+        "cherry": 219,
+        "plum": 555,
+        "peach": 3,
+        "magnolia": 0,
+        "crabapple": 401
+      },
+      "jurisdiction_type": "city",
+      "state_province": "UT"
+    },
+    {
+      "jurisdiction": "Nephi",
+      "region": "ut",
+      "tree_count": 337,
+      "species_counts": {
+        "cherry": 103,
+        "plum": 96,
+        "peach": 1,
+        "magnolia": 0,
+        "crabapple": 137
+      },
+      "jurisdiction_type": "city",
+      "state_province": "UT"
+    },
+    {
+      "jurisdiction": "Richfield",
+      "region": "ut",
+      "tree_count": 129,
+      "species_counts": {
+        "cherry": 23,
+        "plum": 11,
+        "peach": 0,
+        "magnolia": 0,
+        "crabapple": 95
+      },
+      "jurisdiction_type": "city",
+      "state_province": "UT"
+    },
+    {
+      "jurisdiction": "Riverton",
+      "region": "ut",
+      "tree_count": 503,
+      "species_counts": {
+        "cherry": 209,
+        "plum": 10,
+        "peach": 0,
+        "magnolia": 5,
+        "crabapple": 279
+      },
+      "jurisdiction_type": "city",
+      "state_province": "UT"
+    },
+    {
       "jurisdiction": "Salt Lake City",
       "region": "ut",
       "tree_count": 7810,
@@ -5845,6 +5940,76 @@
         "peach": 204,
         "magnolia": 45,
         "crabapple": 3240
+      },
+      "jurisdiction_type": "city",
+      "state_province": "UT"
+    },
+    {
+      "jurisdiction": "Sandy",
+      "region": "ut",
+      "tree_count": 738,
+      "species_counts": {
+        "cherry": 365,
+        "plum": 49,
+        "peach": 1,
+        "magnolia": 3,
+        "crabapple": 320
+      },
+      "jurisdiction_type": "city",
+      "state_province": "UT"
+    },
+    {
+      "jurisdiction": "Santa Clara",
+      "region": "ut",
+      "tree_count": 178,
+      "species_counts": {
+        "cherry": 6,
+        "plum": 161,
+        "peach": 5,
+        "magnolia": 0,
+        "crabapple": 6
+      },
+      "jurisdiction_type": "city",
+      "state_province": "UT"
+    },
+    {
+      "jurisdiction": "South Jordan",
+      "region": "ut",
+      "tree_count": 1328,
+      "species_counts": {
+        "cherry": 355,
+        "plum": 26,
+        "peach": 5,
+        "magnolia": 1,
+        "crabapple": 941
+      },
+      "jurisdiction_type": "city",
+      "state_province": "UT"
+    },
+    {
+      "jurisdiction": "Taylorsville",
+      "region": "ut",
+      "tree_count": 106,
+      "species_counts": {
+        "cherry": 26,
+        "plum": 5,
+        "peach": 0,
+        "magnolia": 0,
+        "crabapple": 75
+      },
+      "jurisdiction_type": "city",
+      "state_province": "UT"
+    },
+    {
+      "jurisdiction": "West Valley City",
+      "region": "ut",
+      "tree_count": 811,
+      "species_counts": {
+        "cherry": 95,
+        "plum": 109,
+        "peach": 1,
+        "magnolia": 0,
+        "crabapple": 606
       },
       "jurisdiction_type": "city",
       "state_province": "UT"
@@ -7723,6 +7888,15 @@
       "note": "Integrated from the official City of Leduc public Cityworks trees layer after restricting to active rows."
     },
     {
+      "name": "Utah Urban Tree Inventory",
+      "city": "Lehi",
+      "endpoint": "https://www.arcgis.com/home/item.html?id=0d064ecdae5841db92245d4de14ee0f4",
+      "last_edit_at": "2026-03-28T17:19:55.001000+00:00",
+      "records_fetched": 153,
+      "records_included": 153,
+      "note": "Integrated from the official Utah Urban Tree Inventory rows for the City of Lehi."
+    },
+    {
       "name": "Trees",
       "city": "Lethbridge",
       "endpoint": "https://gis.lethbridge.ca/gisopendata/rest/services/OpenData/odl_trees/MapServer/0",
@@ -7947,6 +8121,15 @@
       "note": "Integrated from the official City of Mississauga public city-owned tree inventory ArcGIS layer."
     },
     {
+      "name": "Utah Urban Tree Inventory",
+      "city": "Moab",
+      "endpoint": "https://www.arcgis.com/home/item.html?id=0d064ecdae5841db92245d4de14ee0f4",
+      "last_edit_at": "2026-03-28T17:19:55.001000+00:00",
+      "records_fetched": 135,
+      "records_included": 135,
+      "note": "Integrated from the official Utah Urban Tree Inventory rows for the City of Moab."
+    },
+    {
       "name": "Trees",
       "city": "Moncton",
       "endpoint": "https://services1.arcgis.com/E26PuSoie2Y7bbyI/arcgis/rest/services/Trees/FeatureServer/0",
@@ -8019,6 +8202,15 @@
       "note": "Integrated from the official City of Mountain View Trees ArcGIS layer and official city boundary."
     },
     {
+      "name": "Utah Urban Tree Inventory",
+      "city": "Murray",
+      "endpoint": "https://www.arcgis.com/home/item.html?id=0d064ecdae5841db92245d4de14ee0f4",
+      "last_edit_at": "2026-03-28T17:19:55.001000+00:00",
+      "records_fetched": 1178,
+      "records_included": 1178,
+      "note": "Integrated from the official Utah Urban Tree Inventory rows for the City of Murray."
+    },
+    {
       "name": "Urban Trees",
       "city": "Nanaimo",
       "endpoint": "https://nanmap.nanaimo.ca/Geocortex/Essentials/REST/sites/Nanaimo_Map/map/mapservices",
@@ -8026,6 +8218,15 @@
       "records_fetched": 818,
       "records_included": 645,
       "note": "Integrated from the official City of Nanaimo public urban trees ArcGIS layer."
+    },
+    {
+      "name": "Utah Urban Tree Inventory",
+      "city": "Nephi",
+      "endpoint": "https://www.arcgis.com/home/item.html?id=0d064ecdae5841db92245d4de14ee0f4",
+      "last_edit_at": "2026-03-28T17:19:55.001000+00:00",
+      "records_fetched": 337,
+      "records_included": 337,
+      "note": "Integrated from the official Utah Urban Tree Inventory rows for the City of Nephi."
     },
     {
       "name": "TreeKeeper Inventory",
@@ -8491,6 +8692,15 @@
       "note": "Integrated from the official Ville de Repentigny `Arbres` GeoJSON on Donnees Quebec and the official Statistics Canada CSD boundary."
     },
     {
+      "name": "Utah Urban Tree Inventory",
+      "city": "Richfield",
+      "endpoint": "https://www.arcgis.com/home/item.html?id=0d064ecdae5841db92245d4de14ee0f4",
+      "last_edit_at": "2026-03-28T17:19:55.001000+00:00",
+      "records_fetched": 129,
+      "records_included": 129,
+      "note": "Integrated from the official Utah Urban Tree Inventory rows for the City of Richfield."
+    },
+    {
       "name": "Tree Inventory",
       "city": "Richmond",
       "endpoint": "https://cor.maps.arcgis.com/apps/webappviewer/index.html?id=3dda2aa7521941d8a48dc91f5014a5c8",
@@ -8525,6 +8735,15 @@
       "records_fetched": 6009,
       "records_included": 5479,
       "note": "Integrated from the official City of Riverside public i-Tree inventory layer and official jurisdiction boundary."
+    },
+    {
+      "name": "Utah Urban Tree Inventory",
+      "city": "Riverton",
+      "endpoint": "https://www.arcgis.com/home/item.html?id=0d064ecdae5841db92245d4de14ee0f4",
+      "last_edit_at": "2026-03-28T17:19:55.001000+00:00",
+      "records_fetched": 503,
+      "records_included": 503,
+      "note": "Integrated from the official Utah Urban Tree Inventory rows for the City of Riverton."
     },
     {
       "name": "TreeKeeper Inventory",
@@ -8656,6 +8875,15 @@
       "records_included": 422
     },
     {
+      "name": "Utah Urban Tree Inventory",
+      "city": "Sandy",
+      "endpoint": "https://www.arcgis.com/home/item.html?id=0d064ecdae5841db92245d4de14ee0f4",
+      "last_edit_at": "2026-03-28T17:19:55.001000+00:00",
+      "records_fetched": 738,
+      "records_included": 738,
+      "note": "Integrated from the official Utah Urban Tree Inventory rows for the City of Sandy."
+    },
+    {
       "name": "Tree Inventory (April 2017)",
       "city": "Santa Barbara",
       "endpoint": "https://www.santabarbaraca.gov/gov/depts/pw/urban_forest/default.asp",
@@ -8663,6 +8891,15 @@
       "records_fetched": 39101,
       "records_included": 1249,
       "note": "Integrated from the official City of Santa Barbara public tree inventory layer and official jurisdiction boundary."
+    },
+    {
+      "name": "Utah Urban Tree Inventory",
+      "city": "Santa Clara",
+      "endpoint": "https://www.arcgis.com/home/item.html?id=0d064ecdae5841db92245d4de14ee0f4",
+      "last_edit_at": "2026-03-28T17:19:55.001000+00:00",
+      "records_fetched": 178,
+      "records_included": 178,
+      "note": "Integrated from the official Utah Urban Tree Inventory rows for the City of Santa Clara."
     },
     {
       "name": "City of Santa Clarita i-Tree Benefits Canopy Cover",
@@ -8831,6 +9068,15 @@
       "note": "Integrated from the public South Gate/Cudahy tree layer clipped to the official South Gate jurisdiction boundary."
     },
     {
+      "name": "Utah Urban Tree Inventory",
+      "city": "South Jordan",
+      "endpoint": "https://www.arcgis.com/home/item.html?id=0d064ecdae5841db92245d4de14ee0f4",
+      "last_edit_at": "2026-03-28T17:19:55.001000+00:00",
+      "records_fetched": 1328,
+      "records_included": 1328,
+      "note": "Integrated from the official Utah Urban Tree Inventory rows for the City of South Jordan."
+    },
+    {
       "name": "Tree Points - All (view)",
       "city": "South Milwaukee",
       "endpoint": "https://experience.arcgis.com/experience/b1d9ccfd3a2949728e5b445bfdc78935",
@@ -8936,6 +9182,15 @@
       "records_fetched": 1782,
       "records_included": 758,
       "note": "Integrated from the official City of Tallahassee public Cityworks tree inventory layer and clipped to the official jurisdiction boundary."
+    },
+    {
+      "name": "Utah Urban Tree Inventory",
+      "city": "Taylorsville",
+      "endpoint": "https://www.arcgis.com/home/item.html?id=0d064ecdae5841db92245d4de14ee0f4",
+      "last_edit_at": "2026-03-28T17:19:55.001000+00:00",
+      "records_fetched": 106,
+      "records_included": 106,
+      "note": "Integrated from the official Utah Urban Tree Inventory rows for the City of Taylorsville."
     },
     {
       "name": "TreeKeeper Inventory",
@@ -9184,6 +9439,15 @@
       "records_fetched": 1484,
       "records_included": 1480,
       "note": "Integrated from the official City of West Sacramento Tree Inventory ArcGIS layer and official jurisdiction boundary."
+    },
+    {
+      "name": "Utah Urban Tree Inventory",
+      "city": "West Valley City",
+      "endpoint": "https://www.arcgis.com/home/item.html?id=0d064ecdae5841db92245d4de14ee0f4",
+      "last_edit_at": "2026-03-28T17:19:55.001000+00:00",
+      "records_fetched": 811,
+      "records_included": 811,
+      "note": "Integrated from the official Utah Urban Tree Inventory rows for West Valley City."
     },
     {
       "name": "FORM_DWV Tree Inventory",

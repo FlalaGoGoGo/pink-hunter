@@ -1,4 +1,20 @@
 {
+  "generated_at": "2026-03-29T00:34:59+00:00",
+  "path": "/data/trees.render.v1.pmtiles",
+  "vector_layer": "trees",
+  "minzoom": 8,
+  "maxzoom": 15,
+  "tree_count": 820247,
+  "bounds": [
+    [
+      -124.06483820381743,
+      26.525209999858674
+    ],
+    [
+      -63.073678316420455,
+      55.24254148246442
+    ]
+  ],
   "regions": [
     "ab",
     "az",
@@ -37,21 +53,5 @@
     "vt",
     "wa",
     "wi"
-  ],
-  "bounds": [
-    [
-      -124.06483820381743,
-      26.525209999858674
-    ],
-    [
-      -63.073678316420455,
-      55.24254148246442
-    ]
-  ],
-  "generated_at": "2026-03-28T20:16:31Z",
-  "path": "/data/trees.render.v1.pmtiles",
-  "vector_layer": "trees",
-  "minzoom": 8,
-  "maxzoom": 15,
-  "tree_count": 814651
+  ]
 }

@@ -1,8 +1,744 @@
 {
-  "generated_at": "2026-03-28T05:21:40.296288+00:00",
+  "generated_at": "2026-03-29T00:25:32.959090+00:00",
   "region": "ut",
   "strategy": "area_shard",
   "items": [
+    {
+      "jurisdiction": "Lehi",
+      "slug": "lehi",
+      "display_name": "Lehi",
+      "jurisdiction_type": "city",
+      "state_province": "UT",
+      "country": "United States",
+      "bounds": [
+        [
+          -111.94493699977461,
+          40.35532899972717
+        ],
+        [
+          -111.8152670004139,
+          40.47173600026095
+        ]
+      ],
+      "tree_count": 153,
+      "zip_codes": [
+        "84043"
+      ],
+      "species_counts": {
+        "cherry": 69,
+        "plum": 9,
+        "peach": 0,
+        "magnolia": 0,
+        "crabapple": 75
+      },
+      "ownership_counts": {
+        "public": 153,
+        "private": 0,
+        "unknown": 0
+      },
+      "species_ownership_counts": {
+        "cherry": {
+          "public": 69,
+          "private": 0,
+          "unknown": 0
+        },
+        "plum": {
+          "public": 9,
+          "private": 0,
+          "unknown": 0
+        },
+        "peach": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        },
+        "magnolia": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        },
+        "crabapple": {
+          "public": 75,
+          "private": 0,
+          "unknown": 0
+        }
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "lehi-001",
+          "bounds": [
+            [
+              -111.90125759031683,
+              40.36192020993174
+            ],
+            [
+              -111.82500938468988,
+              40.44515695968563
+            ]
+          ],
+          "data_path": "/data/trees.ut.area.lehi.v2.geojson",
+          "tree_count": 153,
+          "ownership_counts": {
+            "public": 153,
+            "private": 0,
+            "unknown": 0
+          },
+          "species_counts": {
+            "cherry": 69,
+            "plum": 9,
+            "peach": 0,
+            "magnolia": 0,
+            "crabapple": 75
+          },
+          "species_ownership_counts": {
+            "cherry": {
+              "public": 69,
+              "private": 0,
+              "unknown": 0
+            },
+            "plum": {
+              "public": 9,
+              "private": 0,
+              "unknown": 0
+            },
+            "peach": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            },
+            "magnolia": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            },
+            "crabapple": {
+              "public": 75,
+              "private": 0,
+              "unknown": 0
+            }
+          },
+          "raw_bytes": 77268,
+          "gzip_bytes": 3958
+        }
+      ]
+    },
+    {
+      "jurisdiction": "Moab",
+      "slug": "moab",
+      "display_name": "Moab",
+      "jurisdiction_type": "city",
+      "state_province": "UT",
+      "country": "United States",
+      "bounds": [
+        [
+          -109.57965900017466,
+          38.53621100010977
+        ],
+        [
+          -109.5153219999875,
+          38.603144999816124
+        ]
+      ],
+      "tree_count": 135,
+      "zip_codes": [
+        "84532"
+      ],
+      "species_counts": {
+        "cherry": 16,
+        "plum": 67,
+        "peach": 1,
+        "magnolia": 0,
+        "crabapple": 51
+      },
+      "ownership_counts": {
+        "public": 135,
+        "private": 0,
+        "unknown": 0
+      },
+      "species_ownership_counts": {
+        "cherry": {
+          "public": 16,
+          "private": 0,
+          "unknown": 0
+        },
+        "plum": {
+          "public": 67,
+          "private": 0,
+          "unknown": 0
+        },
+        "peach": {
+          "public": 1,
+          "private": 0,
+          "unknown": 0
+        },
+        "magnolia": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        },
+        "crabapple": {
+          "public": 51,
+          "private": 0,
+          "unknown": 0
+        }
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "moab-001",
+          "bounds": [
+            [
+              -109.56188910947516,
+              38.56134125269679
+            ],
+            [
+              -109.53638962575253,
+              38.5792390474174
+            ]
+          ],
+          "data_path": "/data/trees.ut.area.moab.v2.geojson",
+          "tree_count": 135,
+          "ownership_counts": {
+            "public": 135,
+            "private": 0,
+            "unknown": 0
+          },
+          "species_counts": {
+            "cherry": 16,
+            "plum": 67,
+            "peach": 1,
+            "magnolia": 0,
+            "crabapple": 51
+          },
+          "species_ownership_counts": {
+            "cherry": {
+              "public": 16,
+              "private": 0,
+              "unknown": 0
+            },
+            "plum": {
+              "public": 67,
+              "private": 0,
+              "unknown": 0
+            },
+            "peach": {
+              "public": 1,
+              "private": 0,
+              "unknown": 0
+            },
+            "magnolia": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            },
+            "crabapple": {
+              "public": 51,
+              "private": 0,
+              "unknown": 0
+            }
+          },
+          "raw_bytes": 68200,
+          "gzip_bytes": 3555
+        }
+      ]
+    },
+    {
+      "jurisdiction": "Murray",
+      "slug": "murray",
+      "display_name": "Murray",
+      "jurisdiction_type": "city",
+      "state_province": "UT",
+      "country": "United States",
+      "bounds": [
+        [
+          -111.93206100034463,
+          40.626142000164634
+        ],
+        [
+          -111.83411400002778,
+          40.6839260001642
+        ]
+      ],
+      "tree_count": 1178,
+      "zip_codes": [
+        "84107",
+        "84117",
+        "84121",
+        "84123"
+      ],
+      "species_counts": {
+        "cherry": 219,
+        "plum": 555,
+        "peach": 3,
+        "magnolia": 0,
+        "crabapple": 401
+      },
+      "ownership_counts": {
+        "public": 1178,
+        "private": 0,
+        "unknown": 0
+      },
+      "species_ownership_counts": {
+        "cherry": {
+          "public": 219,
+          "private": 0,
+          "unknown": 0
+        },
+        "plum": {
+          "public": 555,
+          "private": 0,
+          "unknown": 0
+        },
+        "peach": {
+          "public": 3,
+          "private": 0,
+          "unknown": 0
+        },
+        "magnolia": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        },
+        "crabapple": {
+          "public": 401,
+          "private": 0,
+          "unknown": 0
+        }
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "murray-001",
+          "bounds": [
+            [
+              -111.92865872699744,
+              40.6268010218219
+            ],
+            [
+              -111.83708770834701,
+              40.68316202785437
+            ]
+          ],
+          "data_path": "/data/trees.ut.area.murray.v2.geojson",
+          "tree_count": 1178,
+          "ownership_counts": {
+            "public": 1178,
+            "private": 0,
+            "unknown": 0
+          },
+          "species_counts": {
+            "cherry": 219,
+            "plum": 555,
+            "peach": 3,
+            "magnolia": 0,
+            "crabapple": 401
+          },
+          "species_ownership_counts": {
+            "cherry": {
+              "public": 219,
+              "private": 0,
+              "unknown": 0
+            },
+            "plum": {
+              "public": 555,
+              "private": 0,
+              "unknown": 0
+            },
+            "peach": {
+              "public": 3,
+              "private": 0,
+              "unknown": 0
+            },
+            "magnolia": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            },
+            "crabapple": {
+              "public": 401,
+              "private": 0,
+              "unknown": 0
+            }
+          },
+          "raw_bytes": 597315,
+          "gzip_bytes": 28346
+        }
+      ]
+    },
+    {
+      "jurisdiction": "Nephi",
+      "slug": "nephi",
+      "display_name": "Nephi",
+      "jurisdiction_type": "city",
+      "state_province": "UT",
+      "country": "United States",
+      "bounds": [
+        [
+          -111.86517499999609,
+          39.660503999877534
+        ],
+        [
+          -111.79990999969624,
+          39.733881999828135
+        ]
+      ],
+      "tree_count": 337,
+      "zip_codes": [
+        "84648"
+      ],
+      "species_counts": {
+        "cherry": 103,
+        "plum": 96,
+        "peach": 1,
+        "magnolia": 0,
+        "crabapple": 137
+      },
+      "ownership_counts": {
+        "public": 337,
+        "private": 0,
+        "unknown": 0
+      },
+      "species_ownership_counts": {
+        "cherry": {
+          "public": 103,
+          "private": 0,
+          "unknown": 0
+        },
+        "plum": {
+          "public": 96,
+          "private": 0,
+          "unknown": 0
+        },
+        "peach": {
+          "public": 1,
+          "private": 0,
+          "unknown": 0
+        },
+        "magnolia": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        },
+        "crabapple": {
+          "public": 137,
+          "private": 0,
+          "unknown": 0
+        }
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "nephi-001",
+          "bounds": [
+            [
+              -111.8415014372583,
+              39.69404546529207
+            ],
+            [
+              -111.80901534790638,
+              39.73022196974255
+            ]
+          ],
+          "data_path": "/data/trees.ut.area.nephi.v2.geojson",
+          "tree_count": 337,
+          "ownership_counts": {
+            "public": 337,
+            "private": 0,
+            "unknown": 0
+          },
+          "species_counts": {
+            "cherry": 103,
+            "plum": 96,
+            "peach": 1,
+            "magnolia": 0,
+            "crabapple": 137
+          },
+          "species_ownership_counts": {
+            "cherry": {
+              "public": 103,
+              "private": 0,
+              "unknown": 0
+            },
+            "plum": {
+              "public": 96,
+              "private": 0,
+              "unknown": 0
+            },
+            "peach": {
+              "public": 1,
+              "private": 0,
+              "unknown": 0
+            },
+            "magnolia": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            },
+            "crabapple": {
+              "public": 137,
+              "private": 0,
+              "unknown": 0
+            }
+          },
+          "raw_bytes": 171277,
+          "gzip_bytes": 7943
+        }
+      ]
+    },
+    {
+      "jurisdiction": "Richfield",
+      "slug": "richfield",
+      "display_name": "Richfield",
+      "jurisdiction_type": "city",
+      "state_province": "UT",
+      "country": "United States",
+      "bounds": [
+        [
+          -112.11753199965366,
+          38.71993299969249
+        ],
+        [
+          -112.0661129996276,
+          38.794517000334274
+        ]
+      ],
+      "tree_count": 129,
+      "zip_codes": [
+        "84701"
+      ],
+      "species_counts": {
+        "cherry": 23,
+        "plum": 11,
+        "peach": 0,
+        "magnolia": 0,
+        "crabapple": 95
+      },
+      "ownership_counts": {
+        "public": 129,
+        "private": 0,
+        "unknown": 0
+      },
+      "species_ownership_counts": {
+        "cherry": {
+          "public": 23,
+          "private": 0,
+          "unknown": 0
+        },
+        "plum": {
+          "public": 11,
+          "private": 0,
+          "unknown": 0
+        },
+        "peach": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        },
+        "magnolia": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        },
+        "crabapple": {
+          "public": 95,
+          "private": 0,
+          "unknown": 0
+        }
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "richfield-001",
+          "bounds": [
+            [
+              -112.11245375830515,
+              38.73513634799261
+            ],
+            [
+              -112.0825977371252,
+              38.789117614073724
+            ]
+          ],
+          "data_path": "/data/trees.ut.area.richfield.v2.geojson",
+          "tree_count": 129,
+          "ownership_counts": {
+            "public": 129,
+            "private": 0,
+            "unknown": 0
+          },
+          "species_counts": {
+            "cherry": 23,
+            "plum": 11,
+            "peach": 0,
+            "magnolia": 0,
+            "crabapple": 95
+          },
+          "species_ownership_counts": {
+            "cherry": {
+              "public": 23,
+              "private": 0,
+              "unknown": 0
+            },
+            "plum": {
+              "public": 11,
+              "private": 0,
+              "unknown": 0
+            },
+            "peach": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            },
+            "magnolia": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            },
+            "crabapple": {
+              "public": 95,
+              "private": 0,
+              "unknown": 0
+            }
+          },
+          "raw_bytes": 67141,
+          "gzip_bytes": 3408
+        }
+      ]
+    },
+    {
+      "jurisdiction": "Riverton",
+      "slug": "riverton",
+      "display_name": "Riverton",
+      "jurisdiction_type": "city",
+      "state_province": "UT",
+      "country": "United States",
+      "bounds": [
+        [
+          -112.02446699974956,
+          40.49313700029812
+        ],
+        [
+          -111.91361999971328,
+          40.54066700025777
+        ]
+      ],
+      "tree_count": 503,
+      "zip_codes": [
+        "84065",
+        "84096"
+      ],
+      "species_counts": {
+        "cherry": 209,
+        "plum": 10,
+        "peach": 0,
+        "magnolia": 5,
+        "crabapple": 279
+      },
+      "ownership_counts": {
+        "public": 503,
+        "private": 0,
+        "unknown": 0
+      },
+      "species_ownership_counts": {
+        "cherry": {
+          "public": 209,
+          "private": 0,
+          "unknown": 0
+        },
+        "plum": {
+          "public": 10,
+          "private": 0,
+          "unknown": 0
+        },
+        "peach": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        },
+        "magnolia": {
+          "public": 5,
+          "private": 0,
+          "unknown": 0
+        },
+        "crabapple": {
+          "public": 279,
+          "private": 0,
+          "unknown": 0
+        }
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "riverton-001",
+          "bounds": [
+            [
+              -112.01869291476972,
+              40.49629396357629
+            ],
+            [
+              -111.91990808548651,
+              40.536115863189714
+            ]
+          ],
+          "data_path": "/data/trees.ut.area.riverton.v2.geojson",
+          "tree_count": 503,
+          "ownership_counts": {
+            "public": 503,
+            "private": 0,
+            "unknown": 0
+          },
+          "species_counts": {
+            "cherry": 209,
+            "plum": 10,
+            "peach": 0,
+            "magnolia": 5,
+            "crabapple": 279
+          },
+          "species_ownership_counts": {
+            "cherry": {
+              "public": 209,
+              "private": 0,
+              "unknown": 0
+            },
+            "plum": {
+              "public": 10,
+              "private": 0,
+              "unknown": 0
+            },
+            "peach": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            },
+            "magnolia": {
+              "public": 5,
+              "private": 0,
+              "unknown": 0
+            },
+            "crabapple": {
+              "public": 279,
+              "private": 0,
+              "unknown": 0
+            }
+          },
+          "raw_bytes": 260558,
+          "gzip_bytes": 11827
+        }
+      ]
+    },
     {
       "jurisdiction": "Salt Lake City",
       "slug": "salt-lake-city",
@@ -132,6 +868,626 @@
           },
           "raw_bytes": 4387468,
           "gzip_bytes": 185657
+        }
+      ]
+    },
+    {
+      "jurisdiction": "Sandy",
+      "slug": "sandy",
+      "display_name": "Sandy",
+      "jurisdiction_type": "city",
+      "state_province": "UT",
+      "country": "United States",
+      "bounds": [
+        [
+          -111.92162100019985,
+          40.528077000238625
+        ],
+        [
+          -111.77699900017743,
+          40.61800500029912
+        ]
+      ],
+      "tree_count": 738,
+      "zip_codes": [
+        "84047",
+        "84070",
+        "84092",
+        "84093",
+        "84094"
+      ],
+      "species_counts": {
+        "cherry": 365,
+        "plum": 49,
+        "peach": 1,
+        "magnolia": 3,
+        "crabapple": 320
+      },
+      "ownership_counts": {
+        "public": 738,
+        "private": 0,
+        "unknown": 0
+      },
+      "species_ownership_counts": {
+        "cherry": {
+          "public": 365,
+          "private": 0,
+          "unknown": 0
+        },
+        "plum": {
+          "public": 49,
+          "private": 0,
+          "unknown": 0
+        },
+        "peach": {
+          "public": 1,
+          "private": 0,
+          "unknown": 0
+        },
+        "magnolia": {
+          "public": 3,
+          "private": 0,
+          "unknown": 0
+        },
+        "crabapple": {
+          "public": 320,
+          "private": 0,
+          "unknown": 0
+        }
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "sandy-001",
+          "bounds": [
+            [
+              -111.91806424651882,
+              40.53114284542158
+            ],
+            [
+              -111.81221597202183,
+              40.617186550367805
+            ]
+          ],
+          "data_path": "/data/trees.ut.area.sandy.v2.geojson",
+          "tree_count": 738,
+          "ownership_counts": {
+            "public": 738,
+            "private": 0,
+            "unknown": 0
+          },
+          "species_counts": {
+            "cherry": 365,
+            "plum": 49,
+            "peach": 1,
+            "magnolia": 3,
+            "crabapple": 320
+          },
+          "species_ownership_counts": {
+            "cherry": {
+              "public": 365,
+              "private": 0,
+              "unknown": 0
+            },
+            "plum": {
+              "public": 49,
+              "private": 0,
+              "unknown": 0
+            },
+            "peach": {
+              "public": 1,
+              "private": 0,
+              "unknown": 0
+            },
+            "magnolia": {
+              "public": 3,
+              "private": 0,
+              "unknown": 0
+            },
+            "crabapple": {
+              "public": 320,
+              "private": 0,
+              "unknown": 0
+            }
+          },
+          "raw_bytes": 371794,
+          "gzip_bytes": 17044
+        }
+      ]
+    },
+    {
+      "jurisdiction": "Santa Clara",
+      "slug": "santa-clara",
+      "display_name": "Santa Clara",
+      "jurisdiction_type": "city",
+      "state_province": "UT",
+      "country": "United States",
+      "bounds": [
+        [
+          -113.6769720003484,
+          37.11016300015689
+        ],
+        [
+          -113.62822700015721,
+          37.15762199980214
+        ]
+      ],
+      "tree_count": 178,
+      "zip_codes": [
+        "84765"
+      ],
+      "species_counts": {
+        "cherry": 6,
+        "plum": 161,
+        "peach": 5,
+        "magnolia": 0,
+        "crabapple": 6
+      },
+      "ownership_counts": {
+        "public": 178,
+        "private": 0,
+        "unknown": 0
+      },
+      "species_ownership_counts": {
+        "cherry": {
+          "public": 6,
+          "private": 0,
+          "unknown": 0
+        },
+        "plum": {
+          "public": 161,
+          "private": 0,
+          "unknown": 0
+        },
+        "peach": {
+          "public": 5,
+          "private": 0,
+          "unknown": 0
+        },
+        "magnolia": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        },
+        "crabapple": {
+          "public": 6,
+          "private": 0,
+          "unknown": 0
+        }
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "santa-clara-001",
+          "bounds": [
+            [
+              -113.66766295158722,
+              37.13253666530792
+            ],
+            [
+              -113.639041311738,
+              37.14957292238184
+            ]
+          ],
+          "data_path": "/data/trees.ut.area.santa-clara.v2.geojson",
+          "tree_count": 178,
+          "ownership_counts": {
+            "public": 178,
+            "private": 0,
+            "unknown": 0
+          },
+          "species_counts": {
+            "cherry": 6,
+            "plum": 161,
+            "peach": 5,
+            "magnolia": 0,
+            "crabapple": 6
+          },
+          "species_ownership_counts": {
+            "cherry": {
+              "public": 6,
+              "private": 0,
+              "unknown": 0
+            },
+            "plum": {
+              "public": 161,
+              "private": 0,
+              "unknown": 0
+            },
+            "peach": {
+              "public": 5,
+              "private": 0,
+              "unknown": 0
+            },
+            "magnolia": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            },
+            "crabapple": {
+              "public": 6,
+              "private": 0,
+              "unknown": 0
+            }
+          },
+          "raw_bytes": 95640,
+          "gzip_bytes": 2458
+        }
+      ]
+    },
+    {
+      "jurisdiction": "South Jordan",
+      "slug": "south-jordan",
+      "display_name": "South Jordan",
+      "jurisdiction_type": "city",
+      "state_province": "UT",
+      "country": "United States",
+      "bounds": [
+        [
+          -112.09469800012774,
+          40.51957400007881
+        ],
+        [
+          -111.89493999960564,
+          40.58209999983294
+        ]
+      ],
+      "tree_count": 1328,
+      "zip_codes": [
+        "84009",
+        "84095"
+      ],
+      "species_counts": {
+        "cherry": 355,
+        "plum": 26,
+        "peach": 5,
+        "magnolia": 1,
+        "crabapple": 941
+      },
+      "ownership_counts": {
+        "public": 1328,
+        "private": 0,
+        "unknown": 0
+      },
+      "species_ownership_counts": {
+        "cherry": {
+          "public": 355,
+          "private": 0,
+          "unknown": 0
+        },
+        "plum": {
+          "public": 26,
+          "private": 0,
+          "unknown": 0
+        },
+        "peach": {
+          "public": 5,
+          "private": 0,
+          "unknown": 0
+        },
+        "magnolia": {
+          "public": 1,
+          "private": 0,
+          "unknown": 0
+        },
+        "crabapple": {
+          "public": 941,
+          "private": 0,
+          "unknown": 0
+        }
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "south-jordan-001",
+          "bounds": [
+            [
+              -112.0293493779443,
+              40.5369736591496
+            ],
+            [
+              -111.89543061591115,
+              40.580334843913285
+            ]
+          ],
+          "data_path": "/data/trees.ut.area.south-jordan.v2.geojson",
+          "tree_count": 1328,
+          "ownership_counts": {
+            "public": 1328,
+            "private": 0,
+            "unknown": 0
+          },
+          "species_counts": {
+            "cherry": 355,
+            "plum": 26,
+            "peach": 5,
+            "magnolia": 1,
+            "crabapple": 941
+          },
+          "species_ownership_counts": {
+            "cherry": {
+              "public": 355,
+              "private": 0,
+              "unknown": 0
+            },
+            "plum": {
+              "public": 26,
+              "private": 0,
+              "unknown": 0
+            },
+            "peach": {
+              "public": 5,
+              "private": 0,
+              "unknown": 0
+            },
+            "magnolia": {
+              "public": 1,
+              "private": 0,
+              "unknown": 0
+            },
+            "crabapple": {
+              "public": 941,
+              "private": 0,
+              "unknown": 0
+            }
+          },
+          "raw_bytes": 712785,
+          "gzip_bytes": 30134
+        }
+      ]
+    },
+    {
+      "jurisdiction": "Taylorsville",
+      "slug": "taylorsville",
+      "display_name": "Taylorsville",
+      "jurisdiction_type": "city",
+      "state_province": "UT",
+      "country": "United States",
+      "bounds": [
+        [
+          -111.99152500033986,
+          40.62988100032308
+        ],
+        [
+          -111.90784600007119,
+          40.68632899971982
+        ]
+      ],
+      "tree_count": 106,
+      "zip_codes": [
+        "84123",
+        "84129"
+      ],
+      "species_counts": {
+        "cherry": 26,
+        "plum": 5,
+        "peach": 0,
+        "magnolia": 0,
+        "crabapple": 75
+      },
+      "ownership_counts": {
+        "public": 106,
+        "private": 0,
+        "unknown": 0
+      },
+      "species_ownership_counts": {
+        "cherry": {
+          "public": 26,
+          "private": 0,
+          "unknown": 0
+        },
+        "plum": {
+          "public": 5,
+          "private": 0,
+          "unknown": 0
+        },
+        "peach": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        },
+        "magnolia": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        },
+        "crabapple": {
+          "public": 75,
+          "private": 0,
+          "unknown": 0
+        }
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "taylorsville-001",
+          "bounds": [
+            [
+              -111.98420592756642,
+              40.64075429028482
+            ],
+            [
+              -111.92242478307386,
+              40.671457096639294
+            ]
+          ],
+          "data_path": "/data/trees.ut.area.taylorsville.v2.geojson",
+          "tree_count": 106,
+          "ownership_counts": {
+            "public": 106,
+            "private": 0,
+            "unknown": 0
+          },
+          "species_counts": {
+            "cherry": 26,
+            "plum": 5,
+            "peach": 0,
+            "magnolia": 0,
+            "crabapple": 75
+          },
+          "species_ownership_counts": {
+            "cherry": {
+              "public": 26,
+              "private": 0,
+              "unknown": 0
+            },
+            "plum": {
+              "public": 5,
+              "private": 0,
+              "unknown": 0
+            },
+            "peach": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            },
+            "magnolia": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            },
+            "crabapple": {
+              "public": 75,
+              "private": 0,
+              "unknown": 0
+            }
+          },
+          "raw_bytes": 56643,
+          "gzip_bytes": 2507
+        }
+      ]
+    },
+    {
+      "jurisdiction": "West Valley City",
+      "slug": "west-valley-city",
+      "display_name": "West Valley City",
+      "jurisdiction_type": "city",
+      "state_province": "UT",
+      "country": "United States",
+      "bounds": [
+        [
+          -112.09727599970316,
+          40.63121499983288
+        ],
+        [
+          -111.92034400010769,
+          40.72683000024053
+        ]
+      ],
+      "tree_count": 811,
+      "zip_codes": [
+        "84081",
+        "84118",
+        "84119",
+        "84120",
+        "84128"
+      ],
+      "species_counts": {
+        "cherry": 95,
+        "plum": 109,
+        "peach": 1,
+        "magnolia": 0,
+        "crabapple": 606
+      },
+      "ownership_counts": {
+        "public": 811,
+        "private": 0,
+        "unknown": 0
+      },
+      "species_ownership_counts": {
+        "cherry": {
+          "public": 95,
+          "private": 0,
+          "unknown": 0
+        },
+        "plum": {
+          "public": 109,
+          "private": 0,
+          "unknown": 0
+        },
+        "peach": {
+          "public": 1,
+          "private": 0,
+          "unknown": 0
+        },
+        "magnolia": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        },
+        "crabapple": {
+          "public": 606,
+          "private": 0,
+          "unknown": 0
+        }
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "west-valley-city-001",
+          "bounds": [
+            [
+              -112.06303074963424,
+              40.634385614013404
+            ],
+            [
+              -111.92969930091309,
+              40.723763366374115
+            ]
+          ],
+          "data_path": "/data/trees.ut.area.west-valley-city.v2.geojson",
+          "tree_count": 811,
+          "ownership_counts": {
+            "public": 811,
+            "private": 0,
+            "unknown": 0
+          },
+          "species_counts": {
+            "cherry": 95,
+            "plum": 109,
+            "peach": 1,
+            "magnolia": 0,
+            "crabapple": 606
+          },
+          "species_ownership_counts": {
+            "cherry": {
+              "public": 95,
+              "private": 0,
+              "unknown": 0
+            },
+            "plum": {
+              "public": 109,
+              "private": 0,
+              "unknown": 0
+            },
+            "peach": {
+              "public": 1,
+              "private": 0,
+              "unknown": 0
+            },
+            "magnolia": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            },
+            "crabapple": {
+              "public": 606,
+              "private": 0,
+              "unknown": 0
+            }
+          },
+          "raw_bytes": 431769,
+          "gzip_bytes": 18768
         }
       ]
     }

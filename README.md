@@ -299,7 +299,18 @@ Live domain:
 <details>
 <summary>Utah</summary>
 
+- Lehi
+- Moab
+- Murray
+- Nephi
+- Richfield
+- Riverton
 - Salt Lake City
+- Sandy
+- Santa Clara
+- South Jordan
+- Taylorsville
+- West Valley City
 
 </details>
 
@@ -804,7 +815,18 @@ Live domain:
 <details>
 <summary>Utah</summary>
 
+- Lehi: [Utah Urban Tree Inventory](https://www.arcgis.com/home/item.html?id=0d064ecdae5841db92245d4de14ee0f4)
+- Moab: [Utah Urban Tree Inventory](https://www.arcgis.com/home/item.html?id=0d064ecdae5841db92245d4de14ee0f4)
+- Murray: [Utah Urban Tree Inventory](https://www.arcgis.com/home/item.html?id=0d064ecdae5841db92245d4de14ee0f4)
+- Nephi: [Utah Urban Tree Inventory](https://www.arcgis.com/home/item.html?id=0d064ecdae5841db92245d4de14ee0f4)
+- Richfield: [Utah Urban Tree Inventory](https://www.arcgis.com/home/item.html?id=0d064ecdae5841db92245d4de14ee0f4)
+- Riverton: [Utah Urban Tree Inventory](https://www.arcgis.com/home/item.html?id=0d064ecdae5841db92245d4de14ee0f4)
 - Salt Lake City: [Urban Forestry Inventory](https://www.slc.gov/parks/urban-forestry/)
+- Sandy: [Utah Urban Tree Inventory](https://www.arcgis.com/home/item.html?id=0d064ecdae5841db92245d4de14ee0f4)
+- Santa Clara: [Utah Urban Tree Inventory](https://www.arcgis.com/home/item.html?id=0d064ecdae5841db92245d4de14ee0f4)
+- South Jordan: [Utah Urban Tree Inventory](https://www.arcgis.com/home/item.html?id=0d064ecdae5841db92245d4de14ee0f4)
+- Taylorsville: [Utah Urban Tree Inventory](https://www.arcgis.com/home/item.html?id=0d064ecdae5841db92245d4de14ee0f4)
+- West Valley City: [Utah Urban Tree Inventory](https://www.arcgis.com/home/item.html?id=0d064ecdae5841db92245d4de14ee0f4)
 
 </details>
 
