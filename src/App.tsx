@@ -2079,6 +2079,31 @@ function buildFeaturedAreaPinCollection(items: FeaturedAreaIndexItem[]) {
   };
 }
 
+function buildCityPinCollection(entries: AreaIndexEntry[]) {
+  return {
+    type: "FeatureCollection" as const,
+    features: entries.map(({ areaId, region, item }) => {
+      const properties: CityPinFeatureProps = {
+        area_id: areaId,
+        region,
+        area_slug: item.slug,
+        jurisdiction: item.jurisdiction,
+        display_name: item.display_name,
+        jurisdiction_type: item.jurisdiction_type,
+        tree_count: item.tree_count
+      };
+
+      return {
+        type: "Feature" as const,
+        geometry: {
+          type: "Point" as const,
+          coordinates: boundsCenter(item.bounds)
+        },
+        properties
+      };
+    })
+  };
+}
 
 function buildAreaIdExclusionFilter(areaIds: ReadonlyArray<string | null | undefined>): unknown[] {
   const uniqueAreaIds = [...new Set(areaIds.filter((areaId): areaId is string => Boolean(areaId)))];
