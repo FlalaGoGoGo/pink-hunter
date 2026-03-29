@@ -686,7 +686,47 @@ const ownershipLabelMap: Record<Language, Record<OwnershipGroup, string>> = {
   "vi-VN": { public: "Công cộng", private: "Tư nhân", unknown: "Không rõ" }
 };
 
-const regionLabelMap: Record<Language, Record<CoverageRegion, string>> = {
+const fallbackRegionLabels: Record<CoverageRegion, string> = {
+  ab: "Alberta",
+  az: "Arizona",
+  bc: "British Columbia",
+  ca: "California",
+  co: "Colorado",
+  ct: "Connecticut",
+  dc: "Washington, DC",
+  fl: "Florida",
+  ga: "Georgia",
+  il: "Illinois",
+  in: "Indiana",
+  ma: "Massachusetts",
+  mb: "Manitoba",
+  md: "Maryland",
+  mi: "Michigan",
+  mo: "Missouri",
+  nb: "New Brunswick",
+  nc: "North Carolina",
+  nh: "New Hampshire",
+  nj: "New Jersey",
+  ns: "Nova Scotia",
+  nv: "Nevada",
+  ny: "New York",
+  on: "Ontario",
+  or: "Oregon",
+  pa: "Pennsylvania",
+  pe: "Prince Edward Island",
+  qc: "Quebec",
+  ri: "Rhode Island",
+  sk: "Saskatchewan",
+  tn: "Tennessee",
+  tx: "Texas",
+  ut: "Utah",
+  va: "Virginia",
+  vt: "Vermont",
+  wa: "Washington",
+  wi: "Wisconsin"
+};
+
+const regionLabelMap: Record<Language, Partial<Record<CoverageRegion, string>>> = {
   "en-US": {
     wa: "Washington",
     ca: "California",
@@ -866,7 +906,7 @@ export function ownershipLabel(language: Language, ownership: OwnershipGroup): s
 }
 
 export function regionLabel(language: Language, region: CoverageRegion): string {
-  return regionLabelMap[language][region];
+  return regionLabelMap[language][region] ?? fallbackRegionLabels[region] ?? region.toUpperCase();
 }
 
 export function languageEmoji(language: Language): string {

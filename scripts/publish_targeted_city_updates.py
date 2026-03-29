@@ -5173,6 +5173,10 @@ def refresh_publish_indexes(target_regions: set[str], *, skip_global_refresh: bo
         [sys.executable, "scripts/refresh_meta_species_summary.py", "--data-dir", "public/data"],
         check=True,
     )
+    subprocess.run(
+        [sys.executable, "scripts/generate_jump_index.py", "--data-dir", "public/data"],
+        check=True,
+    )
 
 
 def fetch_arlington() -> dict[str, Any]:

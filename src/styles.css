@@ -2706,8 +2706,9 @@ body {
 
 .app-root.touch-phone,
 .app-root.touch-tablet {
-  --touch-topbar-offset: calc(env(safe-area-inset-top, 0px) + 4.45rem);
-  --touch-bottom-offset: calc(env(safe-area-inset-bottom, 0px) + 5.65rem);
+  --touch-topbar-offset: calc(env(safe-area-inset-top, 0px) + 3.65rem);
+  --touch-bottom-offset: calc(env(safe-area-inset-bottom, 0px) + 5.45rem);
+  --touch-fab-rail-width: 4.75rem;
 }
 
 .app-root.touch-phone .map-root,
@@ -2727,12 +2728,14 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 0.9rem;
-  padding: calc(env(safe-area-inset-top, 0px) + 0.75rem) 0.95rem 0.78rem;
-  background: rgba(255, 252, 253, 0.92);
-  border-bottom: 1px solid rgba(153, 83, 116, 0.18);
+  gap: 0.75rem;
+  height: var(--touch-topbar-offset);
+  box-sizing: border-box;
+  padding: calc(env(safe-area-inset-top, 0px) + 0.38rem) 0.9rem 0.48rem;
+  background: rgba(255, 252, 253, 0.94);
+  border-bottom: 1px solid rgba(153, 83, 116, 0.16);
   backdrop-filter: blur(16px);
-  box-shadow: 0 10px 24px rgba(95, 49, 72, 0.08);
+  box-shadow: 0 8px 20px rgba(95, 49, 72, 0.08);
 }
 
 .touch-topbar-brand {
@@ -2742,8 +2745,20 @@ body {
 }
 
 .touch-brand-logo {
-  width: min(52vw, 11.4rem);
-  max-width: 11.4rem;
+  width: min(40vw, 8.8rem);
+  max-width: 8.8rem;
+}
+
+.touch-topbar .icon-btn {
+  min-width: 40px;
+  min-height: 40px;
+  padding: 0.24rem 0.52rem;
+  border-radius: 12px;
+}
+
+.touch-topbar .language-btn {
+  padding: 0.28rem 0.52rem;
+  font-size: 1rem;
 }
 
 .touch-bottom-nav {
@@ -2755,8 +2770,8 @@ body {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 0.55rem;
-  padding: 0.72rem 0.95rem calc(env(safe-area-inset-bottom, 0px) + 0.82rem);
-  background: rgba(255, 252, 253, 0.94);
+  padding: 0.68rem 0.95rem calc(env(safe-area-inset-bottom, 0px) + 0.8rem);
+  background: rgba(255, 252, 253, 0.95);
   border-top: 1px solid rgba(153, 83, 116, 0.2);
   backdrop-filter: blur(16px);
   box-shadow: 0 -14px 28px rgba(95, 49, 72, 0.12);
@@ -2767,14 +2782,14 @@ body {
 }
 
 .touch-bottom-nav-btn {
-  min-height: 48px;
-  padding: 0.72rem 0.4rem;
+  min-height: 46px;
+  padding: 0.68rem 0.36rem;
   border: 1px solid rgba(139, 78, 103, 0.18);
   border-radius: 16px;
   background: rgba(255, 255, 255, 0.72);
   color: #6a4657;
   font: inherit;
-  font-size: 0.8rem;
+  font-size: 0.78rem;
   font-weight: 800;
 }
 
@@ -2788,15 +2803,15 @@ body {
 .touch-fab-stack {
   position: fixed;
   right: 1rem;
-  bottom: calc(var(--touch-bottom-offset) + 0.7rem);
+  bottom: calc(var(--touch-bottom-offset) + 0.65rem);
   z-index: 31;
   display: grid;
-  gap: 0.7rem;
+  gap: 0.65rem;
 }
 
 .touch-map-fab {
-  width: 56px;
-  height: 56px;
+  width: 54px;
+  height: 54px;
   display: grid;
   place-items: center;
   border: 1px solid rgba(161, 70, 109, 0.3);
@@ -2807,8 +2822,8 @@ body {
 }
 
 .touch-map-fab svg {
-  width: 23px;
-  height: 23px;
+  width: 22px;
+  height: 22px;
 }
 
 .touch-map-fab.active {
@@ -2828,24 +2843,104 @@ body {
 
 .touch-overlay-card {
   position: absolute;
-  right: 0.95rem;
-  bottom: 0.1rem;
-  width: min(calc(100vw - 1.9rem), 27rem);
-  max-height: min(68vh, 34rem);
+  right: calc(0.75rem + var(--touch-fab-rail-width));
+  bottom: 0;
+  width: min(calc(100vw - (var(--touch-fab-rail-width) + 1.5rem)), 22rem);
+  max-height: min(68vh, 33rem);
   overflow-y: auto;
-  padding: 0.85rem;
-  border-radius: 22px;
+  padding: 0.82rem 0.88rem;
+  border-radius: 20px;
   background: rgba(255, 251, 253, 0.98);
   border: 1px solid rgba(153, 83, 116, 0.22);
   box-shadow: 0 20px 42px rgba(91, 43, 65, 0.24);
 }
 
-.touch-overlay-card .show-block {
-  margin-bottom: 0;
+.touch-overlay-card .show-block,
+.touch-overlay-card .touch-overlay-section {
+  margin: 0;
+  padding: 0;
+  border: none;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
 }
 
 .touch-overlay-card .show-block + .show-block {
-  margin-top: 0.85rem;
+  margin-top: 0.7rem;
+}
+
+.touch-overlay-section {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.touch-overlay-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.6rem;
+  margin-bottom: 0.08rem;
+}
+
+.touch-overlay-title {
+  margin: 0;
+  color: #5c3145;
+  font-size: 0.95rem;
+  font-weight: 800;
+  text-align: left;
+}
+
+.touch-overlay-header-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.34rem;
+  flex-shrink: 0;
+}
+
+.touch-overlay-header-actions .clear-btn {
+  min-height: 30px;
+  padding: 0.22rem 0.58rem;
+  border-radius: 10px;
+  font-size: 0.7rem;
+}
+
+.touch-overlay-card .filters-intro {
+  gap: 0.38rem;
+  margin-bottom: 0.08rem;
+}
+
+.touch-overlay-card .filter-group {
+  gap: 0.52rem;
+}
+
+.touch-overlay-card .chip-wrap {
+  gap: 0.42rem;
+}
+
+.touch-overlay-card .chip-wrap-species {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.4rem;
+}
+
+.touch-overlay-card .chip-wrap-species .chip {
+  width: 100%;
+  min-height: 40px;
+  padding: 0.34rem 0.3rem;
+  font-size: 0.72rem;
+  line-height: 1.14;
+}
+
+.touch-overlay-card .jump-grid {
+  gap: 0.68rem;
+}
+
+.touch-overlay-card .jump-picker-trigger {
+  padding: 0.64rem 0.78rem;
+}
+
+.touch-overlay-card .jump-picker-option {
+  padding: 0.56rem 0.62rem;
 }
 
 .touch-context-cta,
@@ -2897,7 +2992,7 @@ body {
   left: 0;
   right: 0;
   top: var(--touch-topbar-offset);
-  bottom: var(--touch-bottom-offset);
+  bottom: 0;
   z-index: 28;
   background:
     linear-gradient(180deg, rgba(255, 251, 253, 0.98), rgba(255, 247, 250, 0.99)),
@@ -2908,7 +3003,7 @@ body {
   height: 100%;
   overflow-y: auto;
   overflow-x: hidden;
-  padding: 1rem 1rem 1.3rem;
+  padding: 1rem 1rem calc(var(--touch-bottom-offset) + 1rem);
 }
 
 .touch-fullscreen-scroll .guide-panel,
@@ -2917,31 +3012,42 @@ body {
 }
 
 .app-root.touch-tablet {
-  --touch-topbar-offset: calc(env(safe-area-inset-top, 0px) + 4.95rem);
-  --touch-bottom-offset: calc(env(safe-area-inset-bottom, 0px) + 6.2rem);
+  --touch-topbar-offset: calc(env(safe-area-inset-top, 0px) + 4.05rem);
+  --touch-bottom-offset: calc(env(safe-area-inset-bottom, 0px) + 5.85rem);
+  --touch-fab-rail-width: 5.15rem;
 }
 
 .app-root.touch-tablet .touch-topbar {
-  padding: calc(env(safe-area-inset-top, 0px) + 0.9rem) 1.3rem 0.92rem;
+  padding: calc(env(safe-area-inset-top, 0px) + 0.5rem) 1.2rem 0.6rem;
 }
 
 .app-root.touch-tablet .touch-brand-logo {
-  max-width: 13rem;
+  width: min(28vw, 10.2rem);
+  max-width: 10.2rem;
+}
+
+.app-root.touch-tablet .touch-topbar .icon-btn {
+  min-width: 44px;
+  min-height: 44px;
+}
+
+.app-root.touch-tablet .touch-topbar .language-btn {
+  font-size: 1.08rem;
 }
 
 .app-root.touch-tablet .touch-bottom-nav {
-  gap: 0.72rem;
-  padding-left: 1.3rem;
-  padding-right: 1.3rem;
+  gap: 0.68rem;
+  padding-left: 1.2rem;
+  padding-right: 1.2rem;
 }
 
 .app-root.touch-tablet .touch-fab-stack {
-  right: 1.3rem;
+  right: 1.2rem;
 }
 
 .app-root.touch-tablet .touch-overlay-card {
-  right: 1.3rem;
-  width: min(calc(100vw - 2.6rem), 32rem);
+  right: calc(0.95rem + var(--touch-fab-rail-width));
+  width: min(calc(100vw - (var(--touch-fab-rail-width) + 2rem)), 28rem);
   max-height: min(72vh, 40rem);
 }
 

@@ -19541,7 +19541,7 @@
         ]
       ],
       "region_hint": "ga",
-      "coverage_status": "official_unavailable"
+      "coverage_status": "covered"
     },
     {
       "id": "ga:johns-creek",

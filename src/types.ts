@@ -15,7 +15,7 @@ export type Language =
   | "ja-JP"
   | "fr-FR"
   | "vi-VN";
-export type CoverageRegion = "wa" | "ca" | "co" | "nv" | "or" | "tx" | "ut" | "dc" | "bc" | "on" | "qc" | "va" | "md" | "nj" | "ny" | "pa" | "ma";
+export type CoverageRegion = "ab" | "az" | "bc" | "ca" | "co" | "ct" | "dc" | "fl" | "ga" | "il" | "in" | "ma" | "mb" | "md" | "mi" | "mo" | "nb" | "nc" | "nh" | "nj" | "ns" | "nv" | "ny" | "on" | "or" | "pa" | "pe" | "qc" | "ri" | "sk" | "tn" | "tx" | "ut" | "va" | "vt" | "wa" | "wi";
 export type RegionWarningLevel = "none" | "warning" | "high_warning" | "hard_fail";
 export type RegionAggregateAdvisoryLevel = "none" | "watch" | "large" | "very_large";
 export type SpeciesCounts = Record<SpeciesGroup, number>;

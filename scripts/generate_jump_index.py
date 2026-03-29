@@ -30,55 +30,83 @@ US_PLACE_LAYER_URL = "https://tigerweb.geo.census.gov/arcgis/rest/services/TIGER
 US_COUNTY_LAYER_URL = "https://tigerweb.geo.census.gov/arcgis/rest/services/TIGERweb/State_County/MapServer/55/query"
 
 REGION_COUNTRY: dict[str, str] = {
+    "ab": "ca",
     "az": "us",
-    "ct": "us",
-    "ga": "us",
-    "il": "us",
-    "mi": "us",
-    "wi": "us",
-    "wa": "us",
+    "bc": "ca",
     "ca": "us",
     "co": "us",
+    "ct": "us",
+    "dc": "us",
+    "fl": "us",
+    "ga": "us",
+    "il": "us",
+    "in": "us",
+    "ma": "us",
+    "mb": "ca",
+    "md": "us",
+    "mi": "us",
+    "mo": "us",
+    "nb": "ca",
+    "nc": "us",
+    "nh": "us",
+    "nj": "us",
+    "ns": "ca",
     "nv": "us",
+    "ny": "us",
+    "on": "ca",
     "or": "us",
+    "pa": "us",
+    "pe": "ca",
+    "qc": "ca",
+    "ri": "us",
+    "sk": "ca",
+    "tn": "us",
     "tx": "us",
     "ut": "us",
-    "dc": "us",
     "va": "us",
-    "md": "us",
-    "nj": "us",
-    "ny": "us",
-    "pa": "us",
-    "ma": "us",
-    "bc": "ca",
-    "on": "ca",
-    "qc": "ca",
+    "vt": "us",
+    "wa": "us",
+    "wi": "us",
 }
 
 REGION_FULL_NAMES: dict[str, str] = {
+    "ab": "Alberta",
     "az": "Arizona",
-    "ct": "Connecticut",
-    "ga": "Georgia",
-    "il": "Illinois",
-    "mi": "Michigan",
-    "wi": "Wisconsin",
-    "wa": "Washington",
+    "bc": "British Columbia",
     "ca": "California",
     "co": "Colorado",
+    "ct": "Connecticut",
+    "dc": "Washington, DC",
+    "fl": "Florida",
+    "ga": "Georgia",
+    "il": "Illinois",
+    "in": "Indiana",
+    "ma": "Massachusetts",
+    "mb": "Manitoba",
+    "md": "Maryland",
+    "mi": "Michigan",
+    "mo": "Missouri",
+    "nb": "New Brunswick",
+    "nc": "North Carolina",
+    "nh": "New Hampshire",
+    "nj": "New Jersey",
+    "ns": "Nova Scotia",
     "nv": "Nevada",
+    "ny": "New York",
+    "on": "Ontario",
     "or": "Oregon",
+    "pa": "Pennsylvania",
+    "pe": "Prince Edward Island",
+    "qc": "Quebec",
+    "ri": "Rhode Island",
+    "sk": "Saskatchewan",
+    "tn": "Tennessee",
     "tx": "Texas",
     "ut": "Utah",
-    "dc": "Washington, DC",
     "va": "Virginia",
-    "md": "Maryland",
-    "nj": "New Jersey",
-    "ny": "New York",
-    "pa": "Pennsylvania",
-    "ma": "Massachusetts",
-    "bc": "British Columbia",
-    "on": "Ontario",
-    "qc": "Quebec",
+    "vt": "Vermont",
+    "wa": "Washington",
+    "wi": "Wisconsin",
 }
 
 US_STATE_META_BY_FIPS: dict[str, dict[str, str]] = {
@@ -156,41 +184,79 @@ COUNTRY_META = {
     "ca": {"label": "Canada", "emoji": "🇨🇦"},
 }
 
+
+def country_for_region(region: str) -> str:
+    return REGION_COUNTRY.get(region, "ca" if region in CANADA_PROVINCE_META else "us")
+
+
 STATE_FIPS_TO_REGION = {
-    "53": "wa",
+    "04": "az",
     "06": "ca",
     "08": "co",
-    "32": "nv",
-    "41": "or",
-    "48": "tx",
-    "49": "ut",
+    "09": "ct",
     "11": "dc",
-    "51": "va",
+    "12": "fl",
+    "13": "ga",
+    "17": "il",
+    "18": "in",
     "24": "md",
+    "25": "ma",
+    "26": "mi",
+    "29": "mo",
+    "33": "nh",
     "34": "nj",
     "36": "ny",
+    "37": "nc",
+    "41": "or",
     "42": "pa",
-    "25": "ma",
+    "44": "ri",
+    "47": "tn",
+    "48": "tx",
+    "49": "ut",
+    "50": "vt",
+    "51": "va",
+    "53": "wa",
+    "55": "wi",
 }
 
 COVERED_REGION_BY_STATE_CODE = {
-    "wa": "wa",
+    "ab": "ab",
+    "az": "az",
+    "bc": "bc",
     "ca": "ca",
     "co": "co",
+    "ct": "ct",
+    "dc": "dc",
+    "fl": "fl",
+    "ga": "ga",
+    "il": "il",
+    "in": "in",
+    "ma": "ma",
+    "mb": "mb",
+    "md": "md",
+    "mi": "mi",
+    "mo": "mo",
+    "nb": "nb",
+    "nc": "nc",
+    "nh": "nh",
+    "nj": "nj",
+    "ns": "ns",
     "nv": "nv",
+    "ny": "ny",
+    "on": "on",
     "or": "or",
+    "pa": "pa",
+    "pe": "pe",
+    "qc": "qc",
+    "ri": "ri",
+    "sk": "sk",
+    "tn": "tn",
     "tx": "tx",
     "ut": "ut",
-    "dc": "dc",
     "va": "va",
-    "md": "md",
-    "nj": "nj",
-    "ny": "ny",
-    "pa": "pa",
-    "ma": "ma",
-    "bc": "bc",
-    "on": "on",
-    "qc": "qc",
+    "vt": "vt",
+    "wa": "wa",
+    "wi": "wi",
 }
 
 DISPLAY_NAME_OVERRIDES = {
@@ -495,6 +561,7 @@ def build_jump_index(data_dir: Path) -> dict[str, Any]:
 
     area_map: dict[tuple[str, str, str], dict[str, Any]] = {}
     coverage_status_map: dict[tuple[str, str, str], str] = {}
+    covered_area_keys: set[tuple[str, str, str]] = set()
     for feature in coverage.get("features", []):
         properties = feature.get("properties", {})
         jurisdiction = str(properties.get("jurisdiction", "")).strip()
@@ -505,7 +572,7 @@ def build_jump_index(data_dir: Path) -> dict[str, Any]:
         if not state_id:
             state_id = infer_region_for_jurisdiction(jurisdiction) or ""
         if not country_id and state_id:
-            country_id = REGION_COUNTRY.get(state_id, "us")
+            country_id = country_for_region(state_id)
         if not state_id or not country_id:
             continue
         coverage_status_map[(country_id, state_id, jurisdiction)] = str(properties.get("status", "untracked"))
@@ -517,8 +584,10 @@ def build_jump_index(data_dir: Path) -> dict[str, Any]:
             jurisdiction = str(item.get("jurisdiction", "")).strip()
             if not jurisdiction:
                 continue
-            country_id = REGION_COUNTRY[region]
+            country_id = country_for_region(region)
             key = (country_id, region, jurisdiction)
+            if int(item.get("tree_count") or 0) > 0:
+                covered_area_keys.add(key)
             area_map[key] = {
                 "id": f"{region}:{slugify_token(jurisdiction)}",
                 "country_id": country_id,
@@ -542,7 +611,7 @@ def build_jump_index(data_dir: Path) -> dict[str, Any]:
         if not state_id:
             state_id = infer_region_for_jurisdiction(jurisdiction) or ""
         if not country_id and state_id:
-            country_id = REGION_COUNTRY.get(state_id, "us")
+            country_id = country_for_region(state_id)
         if not state_id or not country_id:
             continue
         key = (country_id, state_id, jurisdiction)
@@ -588,7 +657,7 @@ def build_jump_index(data_dir: Path) -> dict[str, Any]:
         slug = boundary_path.stem.removeprefix("boundary_")
         jurisdiction = titleize_slug(slug)
         state_id = infer_region_for_jurisdiction(jurisdiction) or ""
-        country_id = REGION_COUNTRY.get(state_id, "us") if state_id else ""
+        country_id = country_for_region(state_id) if state_id else ""
         if state_id and country_id and (country_id, state_id, jurisdiction) in area_map:
             continue
 
@@ -609,7 +678,7 @@ def build_jump_index(data_dir: Path) -> dict[str, Any]:
         if not state_id:
             state_id = infer_region_for_jurisdiction(jurisdiction) or ""
         if not country_id and state_id:
-            country_id = REGION_COUNTRY.get(state_id, "us")
+            country_id = country_for_region(state_id)
         if not state_id or not country_id:
             continue
         key = (country_id, state_id, jurisdiction)
@@ -729,6 +798,21 @@ def build_jump_index(data_dir: Path) -> dict[str, Any]:
     )
     states.sort(key=lambda item: (str(item["country_id"]), str(item["label"])))
     countries.sort(key=lambda item: str(item["label"]))
+
+    inconsistencies: list[str] = []
+    for key in sorted(covered_area_keys):
+        area = area_map.get(key)
+        if area is None:
+            inconsistencies.append(f"{key[1]}:{key[2]} is missing from jump-index.v1.json")
+            continue
+        if str(area.get("coverage_status")) != "covered":
+            inconsistencies.append(
+                f"{key[1]}:{key[2]} expected covered but found {area.get('coverage_status')}"
+            )
+
+    if inconsistencies:
+        details = "\n - ".join(inconsistencies[:20])
+        raise ValueError(f"Jump index coverage mismatch:\n - {details}")
 
     return {
         "generated_at": meta.get("generated_at"),
