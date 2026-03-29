@@ -22,7 +22,7 @@ export type SpeciesCounts = Record<SpeciesGroup, number>;
 export type OwnershipCounts = Record<OwnershipGroup, number>;
 export type SpeciesOwnershipCounts = Record<SpeciesGroup, OwnershipCounts>;
 
-export type LayoutMode = "mobile_sheet" | "desktop_split";
+export type LayoutMode = "touch_phone" | "touch_tablet" | "desktop_compact_legacy" | "desktop_split";
 export type MapStylePreset = "positron" | "demotiles" | "mapbox" | "blank_fallback";
 export type MapStack = "maplibre" | "mapbox";
 export type VisitorCounterMode = "counterapi" | "aws_api";

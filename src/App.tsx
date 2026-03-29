@@ -1384,7 +1384,15 @@ const REGION_DEFAULT_FOCUS_BOUNDS: Partial<Record<CoverageRegion, Record<LayoutM
       [-122.37, 47.58],
       [-122.31, 47.64]
     ],
-    mobile_sheet: [
+    desktop_compact_legacy: [
+      [-122.32, 47.55],
+      [-122.26, 47.63]
+    ],
+    touch_phone: [
+      [-122.32, 47.55],
+      [-122.26, 47.63]
+    ],
+    touch_tablet: [
       [-122.32, 47.55],
       [-122.26, 47.63]
     ]
@@ -1664,6 +1672,13 @@ interface JumpStateDisplayStatusInfo {
 
 type AboutSummaryMode = "region" | "area";
 type PanelView = "details" | "filters" | "guide" | "about";
+type DeviceFamily = "phone" | "tablet" | "desktop";
+type TouchTab = "find" | "guide" | "about" | "details";
+type TouchOverlay = "jump" | "filters";
+
+type TouchFindContext =
+  | { kind: "covered"; areaId: string; areaName: string }
+  | { kind: "official_unavailable"; areaName: string };
 
 function ContactIconLink({
   href,
@@ -1782,6 +1797,52 @@ function parseStringList(raw: string | null): string[] {
 
 function parseLegalDocument(raw: string | null): LegalDocumentId | null {
   return raw === "privacy" || raw === "terms" ? raw : null;
+}
+
+function detectDeviceFamily(): DeviceFamily {
+  if (typeof navigator === "undefined") {
+    return "desktop";
+  }
+
+  const userAgent = navigator.userAgent || "";
+  const platform = navigator.platform || "";
+  const maxTouchPoints = navigator.maxTouchPoints || 0;
+  const iPadOs = platform === "MacIntel" && maxTouchPoints > 1;
+
+  if (/iPad/i.test(userAgent) || iPadOs) {
+    return "tablet";
+  }
+
+  if (/iPhone|iPod/i.test(userAgent)) {
+    return "phone";
+  }
+
+  if (/Android/i.test(userAgent)) {
+    return /Mobile/i.test(userAgent) ? "phone" : "tablet";
+  }
+
+  if (/Tablet|PlayBook|Silk|Kindle/i.test(userAgent)) {
+    return "tablet";
+  }
+
+  return "desktop";
+}
+
+function layoutModeForViewport(width: number, deviceFamily: DeviceFamily): LayoutMode {
+  if (deviceFamily === "phone") {
+    return "touch_phone";
+  }
+
+  if (deviceFamily === "tablet") {
+    return "touch_tablet";
+  }
+
+  return width >= 1024 ? "desktop_split" : "desktop_compact_legacy";
+}
+
+function detectLayoutMode(): LayoutMode {
+  const width = typeof window !== "undefined" ? window.innerWidth : 1440;
+  return layoutModeForViewport(width, detectDeviceFamily());
 }
 
 function parseUrlState(): UrlState {
@@ -2694,13 +2755,17 @@ async function resolveMapStyle(): Promise<ResolvedMapStyle> {
 
 export default function App(): JSX.Element {
   const initialUrlState = useMemo(parseUrlState, []);
-  const initialLayoutMode: LayoutMode =
-    typeof window !== "undefined" && window.innerWidth >= 1024 ? "desktop_split" : "mobile_sheet";
+  const initialLayoutMode: LayoutMode = detectLayoutMode();
   const initialPanel: PanelView = initialUrlState.legalDocument
     ? "about"
     : initialUrlState.featuredId
       ? "details"
       : "filters";
+  const initialTouchTab: TouchTab = initialUrlState.legalDocument
+    ? "about"
+    : initialUrlState.featuredId
+      ? "details"
+      : "find";
 
   const [data, setData] = useState<StaticAppData | null>(null);
   const [mapRuntime, setMapRuntime] = useState<MapRuntimeDeps | null>(null);
@@ -2737,6 +2802,9 @@ export default function App(): JSX.Element {
   const [languageMenuOpen, setLanguageMenuOpen] = useState(false);
   const [sheetHeight, setSheetHeight] = useState<number>(0.4);
   const [activePanel, setActivePanel] = useState<PanelView>(initialPanel);
+  const [touchTab, setTouchTab] = useState<TouchTab>(initialTouchTab);
+  const [touchOverlay, setTouchOverlay] = useState<TouchOverlay | null>(null);
+  const [touchFindContext, setTouchFindContext] = useState<TouchFindContext | null>(null);
   const [activeLegalDocument, setActiveLegalDocument] = useState<LegalDocumentId | null>(initialUrlState.legalDocument);
   const [aboutSourcesPage, setAboutSourcesPage] = useState(0);
   const [aboutSourcesSearchQuery, setAboutSourcesSearchQuery] = useState("");
@@ -2778,33 +2846,55 @@ export default function App(): JSX.Element {
   const openOfficialUnavailableAreaRef = useRef<(notice: { areaName: string; areaType?: JurisdictionType; region?: CoverageRegion; note?: string }) => void>(() => undefined);
   const openFeaturedAreaRef = useRef<(area: FeaturedAreaIndexItem) => void>(() => undefined);
   const isDesktopRef = useRef(layoutMode === "desktop_split");
+  const isTouchLayoutRef = useRef(layoutMode === "touch_phone" || layoutMode === "touch_tablet");
   const dragStateRef = useRef<{ startY: number; startHeight: number; dragging: boolean }>({
     startY: 0,
     startHeight: 0.4,
     dragging: false
   });
 
-  const isDesktop = layoutMode === "desktop_split";
+  const isDesktopSplit = layoutMode === "desktop_split";
+  const isDesktopLegacyCompact = layoutMode === "desktop_compact_legacy";
+  const isTouchLayout = layoutMode === "touch_phone" || layoutMode === "touch_tablet";
+  const isTouchTablet = layoutMode === "touch_tablet";
+  const isShowingAboutPanel = isTouchLayout ? touchTab === "about" : activePanel === "about";
+  const rootClassName = isDesktopSplit
+    ? "app-root desktop-mode"
+    : isTouchLayout
+      ? isTouchTablet
+        ? "app-root touch-tablet"
+        : "app-root touch-phone"
+      : "app-root desktop-compact-legacy";
   const legalUiCopy = getLegalUiCopy(language);
   const activeLegalDocumentResult =
     activeLegalDocument !== null ? getLegalDocument(language, activeLegalDocument) : null;
   const activeLegalContent = activeLegalDocumentResult?.content ?? null;
   const browserPageTitle =
-    activePanel === "about" && activeLegalDocumentResult
+    isShowingAboutPanel && activeLegalDocumentResult
       ? `Pink Hunter - ${activeLegalDocumentResult.content.title}`
       : t(language, "browserTitle");
   const browserPageDescription =
-    activePanel === "about" && activeLegalDocumentResult
+    isShowingAboutPanel && activeLegalDocumentResult
       ? activeLegalDocumentResult.content.summary
       : t(language, "browserDescription");
   const openAboutOverview = useCallback(() => {
     setActiveLegalDocument(null);
+    if (isTouchLayout) {
+      setTouchOverlay(null);
+      setTouchTab("about");
+      return;
+    }
     setActivePanel("about");
-  }, []);
+  }, [isTouchLayout]);
   const openLegalDocument = useCallback((documentId: LegalDocumentId) => {
     setActiveLegalDocument(documentId);
+    if (isTouchLayout) {
+      setTouchOverlay(null);
+      setTouchTab("about");
+      return;
+    }
     setActivePanel("about");
-  }, []);
+  }, [isTouchLayout]);
   const ensureJumpIndexLoaded = useCallback(async (): Promise<JumpIndex | null> => {
     if (!data) {
       return null;
@@ -2904,22 +2994,22 @@ export default function App(): JSX.Element {
   }, []);
 
   useEffect(() => {
-    const mediaQuery = window.matchMedia("(min-width: 1024px)");
-    const handleChange = (event: MediaQueryListEvent): void => {
-      setLayoutMode(event.matches ? "desktop_split" : "mobile_sheet");
+    const handleResize = (): void => {
+      setLayoutMode(detectLayoutMode());
     };
 
-    setLayoutMode(mediaQuery.matches ? "desktop_split" : "mobile_sheet");
-    mediaQuery.addEventListener("change", handleChange);
+    handleResize();
+    window.addEventListener("resize", handleResize);
     return () => {
-      mediaQuery.removeEventListener("change", handleChange);
+      window.removeEventListener("resize", handleResize);
     };
   }, []);
 
   useEffect(() => {
-    isDesktopRef.current = isDesktop;
+    isDesktopRef.current = isDesktopSplit;
+    isTouchLayoutRef.current = isTouchLayout;
     mapRef.current?.resize();
-  }, [isDesktop]);
+  }, [isDesktopSplit, isTouchLayout]);
 
   useEffect(() => {
     if (!data || !mapReady || showDiscoveryOverlays) {
@@ -2936,10 +3026,10 @@ export default function App(): JSX.Element {
   }, [data, mapReady, showDiscoveryOverlays]);
 
   useEffect(() => {
-    if (activePanel !== "about" && activeLegalDocument !== null) {
+    if (!isShowingAboutPanel && activeLegalDocument !== null) {
       setActiveLegalDocument(null);
     }
-  }, [activeLegalDocument, activePanel]);
+  }, [activeLegalDocument, isShowingAboutPanel]);
 
   const regionMetaById = useMemo(() => {
     const entries = (data?.meta.regions ?? []).map((regionMeta) => [regionMeta.id, regionMeta]);
@@ -3847,10 +3937,21 @@ export default function App(): JSX.Element {
   const showMapLoadingOverlay = false;
 
   useEffect(() => {
-    if (!selectedTree && !selectedFeaturedAreaId && activePanel === "details") {
+    if (showDetailsTab) {
+      return;
+    }
+
+    if (isTouchLayout) {
+      if (touchTab === "details") {
+        setTouchTab("find");
+      }
+      return;
+    }
+
+    if (activePanel === "details") {
       setActivePanel("filters");
     }
-  }, [activePanel, selectedFeaturedAreaId, selectedTree]);
+  }, [activePanel, isTouchLayout, showDetailsTab, touchTab]);
 
   useEffect(() => {
     filteredFeaturesRef.current = filteredFeatures;
@@ -4619,6 +4720,7 @@ export default function App(): JSX.Element {
           });
           if (coverageFeatures.length === 0) {
             setSelectedCoverage(null);
+            setTouchFindContext(null);
             setStatusNotice((current) => (current?.kind === "official_unavailable" ? null : current));
             return;
           }
@@ -4723,11 +4825,11 @@ export default function App(): JSX.Element {
             preferredBoundsForRegion(
               initialUrlState.region,
               initialRegionMeta,
-              isDesktopRef.current ? "desktop_split" : "mobile_sheet"
+              isDesktopRef.current ? "desktop_split" : initialLayoutMode
             );
           if (defaultBounds) {
             map.fitBounds(defaultBounds, {
-              padding: isDesktopRef.current ? 80 : 48,
+              padding: isDesktopRef.current ? 80 : initialLayoutMode === "touch_tablet" ? 60 : 48,
               duration: 0
             });
             setViewportBounds(defaultBounds);
@@ -4932,6 +5034,10 @@ export default function App(): JSX.Element {
     popupRef.current?.remove();
     popupRef.current = null;
 
+    if (isTouchLayout) {
+      return;
+    }
+
     if (selectedTree) {
       const [lon, lat] = selectedTree.coordinates;
       const areaDisplayName = formatAreaLabelResolved(selectedTree.properties.city);
@@ -5014,7 +5120,7 @@ export default function App(): JSX.Element {
     });
 
     popupRef.current = popup;
-  }, [language, mapRuntime, selectedCoverage, selectedTree]);
+  }, [isTouchLayout, language, mapRuntime, selectedCoverage, selectedTree]);
 
   useEffect(() => {
     if (!data) {
@@ -5030,7 +5136,7 @@ export default function App(): JSX.Element {
     if (selectedFeaturedAreaId) {
       params.set("featured", selectedFeaturedAreaId);
     }
-    if (activePanel === "about" && activeLegalDocument) {
+    if (isShowingAboutPanel && activeLegalDocument) {
       params.set("legal", activeLegalDocument);
     }
 
@@ -5057,8 +5163,8 @@ export default function App(): JSX.Element {
     }
   }, [
     activeLegalDocument,
-    activePanel,
     activeRegion,
+    isShowingAboutPanel,
     allOwnershipOptions.length,
     data,
     language,
@@ -5103,6 +5209,7 @@ export default function App(): JSX.Element {
     setJumpAreaMenuOpen(false);
     setJumpAreaQuery("");
     setStatusNotice(null);
+    setTouchFindContext(null);
   }
 
   const loadAreaIndexForRegion = useCallback(
@@ -5194,6 +5301,33 @@ export default function App(): JSX.Element {
     [loadAreaIndexForRegion, regionShardCache]
   );
 
+  const openFindSurface = useCallback((): void => {
+    setTouchOverlay(null);
+    if (isTouchLayoutRef.current) {
+      setTouchTab("find");
+      return;
+    }
+    setActivePanel("filters");
+  }, []);
+
+  const openGuideSurface = useCallback((): void => {
+    setTouchOverlay(null);
+    if (isTouchLayoutRef.current) {
+      setTouchTab("guide");
+      return;
+    }
+    setActivePanel("guide");
+  }, []);
+
+  const openDetailsSurface = useCallback((): void => {
+    setTouchOverlay(null);
+    if (isTouchLayoutRef.current) {
+      setTouchTab("details");
+      return;
+    }
+    setActivePanel("details");
+  }, []);
+
   const openTreeDetails = useCallback(async (treeId: string, hint?: TreeRenderLookupHint): Promise<void> => {
     let matched: TreeCollection["features"][number] | undefined =
       loadedActiveRegionTreeById.get(treeId) ??
@@ -5221,20 +5355,25 @@ export default function App(): JSX.Element {
     });
     setSelectedCoverage(null);
     setStatusNotice(null);
+    setTouchFindContext(null);
+    setTouchOverlay(null);
     setSelectedFeaturedAreaId(
       matched.properties.featured_area_ids?.[0] ?? featuredAreaIdForCoordinate(getTreeCoordinates(matched))
     );
-    if (!isDesktopRef.current) {
+    if (!isDesktopRef.current && !isTouchLayoutRef.current) {
       setSheetHeight(0.72);
     }
-    setActivePanel("details");
+    openDetailsSurface();
   }, [
     currentTrees,
     loadTreeFeatureFromHint,
-    loadedActiveRegionTreeById
+    loadedActiveRegionTreeById,
+    openDetailsSurface
   ]);
 
   const openCityArea = useCallback((areaId: string): void => {
+    const areaEntry = areaEntriesById.get(areaId) ?? null;
+
     setSelectedJumpAreaId(areaId);
     setSelectedCityAreaId(areaId);
     setSelectedTree(null);
@@ -5243,11 +5382,24 @@ export default function App(): JSX.Element {
     setStatusNotice(null);
     setJumpAreaMenuOpen(false);
     setJumpAreaQuery("");
-    if (!isDesktopRef.current) {
+    setTouchOverlay(null);
+
+    if (isTouchLayoutRef.current) {
+      setTouchFindContext({
+        kind: "covered",
+        areaId,
+        areaName: areaEntry ? formatAreaLabelResolved(areaEntry.item.jurisdiction) : areaId
+      });
+      setTouchTab("find");
+      return;
+    }
+
+    setTouchFindContext(null);
+    if (!isDesktopRef.current && !isTouchLayoutRef.current) {
       setSheetHeight(0.72);
     }
     setActivePanel("filters");
-  }, []);
+  }, [areaEntriesById]);
 
   const openOfficialUnavailableArea = useCallback((notice: {
     areaName: string;
@@ -5269,7 +5421,19 @@ export default function App(): JSX.Element {
     });
     setJumpAreaMenuOpen(false);
     setJumpAreaQuery("");
-    if (!isDesktopRef.current) {
+    setTouchOverlay(null);
+
+    if (isTouchLayoutRef.current) {
+      setTouchFindContext({
+        kind: "official_unavailable",
+        areaName: notice.areaName
+      });
+      setTouchTab("find");
+      return;
+    }
+
+    setTouchFindContext(null);
+    if (!isDesktopRef.current && !isTouchLayoutRef.current) {
       setSheetHeight(0.72);
     }
     setActivePanel("filters");
@@ -5280,6 +5444,8 @@ export default function App(): JSX.Element {
     setSelectedTree(null);
     setSelectedCoverage(null);
     setStatusNotice(null);
+    setTouchFindContext(null);
+    setTouchOverlay(null);
     setUserLocation(null);
     setJumpAreaMenuOpen(false);
     setJumpAreaQuery("");
@@ -5299,10 +5465,10 @@ export default function App(): JSX.Element {
       setSelectedOwnership([...allOwnershipOptions]);
     }
     fitMapToBounds(area.bounds);
-    if (!isDesktopRef.current) {
+    if (!isDesktopRef.current && !isTouchLayoutRef.current) {
       setSheetHeight(0.72);
     }
-    setActivePanel("details");
+    openDetailsSurface();
   }
 
   useEffect(() => {
@@ -5334,7 +5500,7 @@ export default function App(): JSX.Element {
       return;
     }
     map.fitBounds(normalizedBounds, {
-      padding: isDesktop ? 80 : 48,
+      padding: isDesktopSplit ? 80 : isTouchTablet ? 60 : 48,
       duration: 700
     });
   }
@@ -5354,6 +5520,8 @@ export default function App(): JSX.Element {
     setSelectedFeaturedAreaId(null);
     setLoadedCityAreaId(null);
     setStatusNotice(null);
+    setTouchFindContext(null);
+    setTouchOverlay(null);
     setUserLocation(null);
     setJumpAreaMenuOpen(false);
 
@@ -5369,7 +5537,7 @@ export default function App(): JSX.Element {
       const areaName = formatJumpAreaLabel(selectedArea);
       const displayStatus = getJumpAreaDisplayStatus(selectedArea);
       if (displayStatus.kind === "covered") {
-        setSelectedCityAreaId(selectedArea.id);
+        openCityArea(selectedArea.id);
       } else if (displayStatus.kind === "official_unavailable") {
         openOfficialUnavailableArea({
           areaName: selectedArea.jurisdiction,
@@ -5399,8 +5567,8 @@ export default function App(): JSX.Element {
       setSelectedCityAreaId(null);
     }
 
-    if (!isDesktop) {
-      setActivePanel("filters");
+    if (isTouchLayoutRef.current || !isDesktopRef.current) {
+      openFindSurface();
     }
   }
 
@@ -5440,6 +5608,8 @@ export default function App(): JSX.Element {
           setSelectedJumpAreaId(null);
           setSelectedCityAreaId(null);
           setLoadedCityAreaId(null);
+          setTouchFindContext(null);
+          setTouchOverlay(null);
           setJumpAreaMenuOpen(false);
           setJumpAreaQuery("");
           setUserLocation(coordinates);
@@ -5472,7 +5642,7 @@ export default function App(): JSX.Element {
               areaName: formatJumpAreaLabel(matchedArea)
             });
           } else if (matchedArea && getJumpAreaDisplayStatus(matchedArea).kind === "covered") {
-            setSelectedCityAreaId(matchedArea.id);
+            openCityArea(matchedArea.id);
           }
 
           const map = mapRef.current;
@@ -5484,8 +5654,8 @@ export default function App(): JSX.Element {
             });
           }
 
-          if (!isDesktopRef.current) {
-            setActivePanel("filters");
+          if (isTouchLayoutRef.current || !isDesktopRef.current) {
+            openFindSurface();
           }
         })();
       },
@@ -5510,6 +5680,7 @@ export default function App(): JSX.Element {
   }
 
   function showSelectedCityTrees(): void {
+
     if (!selectedCityArea) {
       return;
     }
@@ -5532,7 +5703,7 @@ export default function App(): JSX.Element {
     setSelectedCoverage(null);
     setSelectedFeaturedAreaId(null);
     setStatusNotice(null);
-    if (!isDesktopRef.current) {
+    if (!isDesktopRef.current && !isTouchLayoutRef.current) {
       setSheetHeight(0.72);
     }
   }
@@ -5642,12 +5813,7 @@ export default function App(): JSX.Element {
         action = (
           <button
             className="clear-btn"
-            onClick={() => {
-              setActivePanel("filters");
-              if (!isDesktopRef.current) {
-                setSheetHeight(0.72);
-              }
-            }}
+            onClick={openFindSurface}
             type="button"
           >
             {discoveryCopy.areaSearchShow}
@@ -5855,6 +6021,971 @@ export default function App(): JSX.Element {
     );
   }
 
+  function renderMetaFooter(): JSX.Element {
+    return (
+      <footer className="meta-row">
+        <span className="meta-row-info">
+          {t(language, "dataUpdated")}: {new Date(data.meta.generated_at).toLocaleString(language)}
+        </span>
+        <div className="meta-row-links">
+          <button
+            className={
+              isShowingAboutPanel && activeLegalDocument === "privacy"
+                ? "meta-link-button active"
+                : "meta-link-button"
+            }
+            onClick={() => openLegalDocument("privacy")}
+            type="button"
+          >
+            {legalUiCopy.footerPrivacy}
+          </button>
+          <button
+            className={
+              isShowingAboutPanel && activeLegalDocument === "terms"
+                ? "meta-link-button active"
+                : "meta-link-button"
+            }
+            onClick={() => openLegalDocument("terms")}
+            type="button"
+          >
+            {legalUiCopy.footerTerms}
+          </button>
+        </div>
+      </footer>
+    );
+  }
+
+  function renderDetailsPanelContent(): JSX.Element {
+    return (
+      <>
+        {!selectedTree && selectedFeaturedAreaDetail ? (
+          <FeaturedAreaPanel
+            area={selectedFeaturedAreaDetail}
+            language={language}
+            trees={selectedFeaturedAreaTrees}
+            weather={selectedFeaturedAreaWeather}
+            weatherError={
+              selectedFeaturedAreaId ? featuredAreaWeatherErrors[selectedFeaturedAreaId] ?? null : null
+            }
+            weatherLoading={loadingFeaturedAreaWeatherId === selectedFeaturedAreaDetail.id}
+          />
+        ) : null}
+        {!selectedTree && selectedFeaturedAreaId && !selectedFeaturedAreaDetail && loadingFeaturedAreaDetail ? (
+          <article className="tree-card selected details-card">
+            <p className="featured-area-eyebrow">
+              {featuredAreaMeta(language, selectedFeaturedAreaId).eyebrow}
+            </p>
+            <h4>{featuredAreaMeta(language, selectedFeaturedAreaId).label}</h4>
+            <p>{featuredAreaUiCopy.weatherLoading}</p>
+          </article>
+        ) : null}
+        {selectedTree ? (
+          <>
+            {selectedTreeFeaturedAreaDetail ? (
+              <FeaturedAreaSummaryCard
+                area={selectedTreeFeaturedAreaDetail}
+                language={language}
+                onOpenArea={() => openFeaturedArea(selectedTreeFeaturedAreaDetail)}
+                weather={
+                  selectedTreeFeaturedAreaDetail.id === selectedFeaturedAreaId
+                    ? selectedFeaturedAreaWeather
+                    : featuredAreaWeatherCache[selectedTreeFeaturedAreaDetail.id] ?? null
+                }
+              />
+            ) : null}
+            <article className="tree-card selected details-card">
+              <header className="selected-tree-header">
+                <h4>{speciesLabel(language, selectedTree.properties.species_group)}</h4>
+                <img
+                  alt={`${speciesLabel(language, selectedTree.properties.species_group)} icon`}
+                  className="selected-tree-species-icon"
+                  loading="lazy"
+                  src={SPECIES_ICON_ART[selectedTree.properties.species_group]}
+                />
+              </header>
+              {selectedTree.properties.subtype_name && (
+                <p>
+                  <strong>{t(language, "subtype")}: </strong>
+                  {selectedTree.properties.subtype_name}
+                </p>
+              )}
+              <FeaturedTreeMetaRows language={language} tree={selectedTree} />
+              <p>
+                <strong>{t(language, "scientific")}: </strong>
+                {selectedTree.properties.scientific_name}
+              </p>
+              <p>
+                <strong>{t(language, "common")}: </strong>
+                {selectedTree.properties.common_name ?? t(language, "unknown")}
+              </p>
+              <p>
+                <strong>{t(language, "city")}: </strong>
+                {formatAreaLabelResolved(selectedTree.properties.city)}
+              </p>
+              {hasKnownZipCode(selectedTree.properties.zip_code) && (
+                <p>
+                  <strong>{t(language, "zipCode")}: </strong>
+                  {selectedTree.properties.zip_code}
+                </p>
+              )}
+              <p>
+                <strong>{t(language, "ownership")}: </strong>
+                {ownershipLabel(language, selectedTree.properties.ownership)} ({selectedTree.properties.ownership_raw})
+              </p>
+              <p>
+                <strong>{t(language, "coordinates")}: </strong>
+                {selectedTree.coordinates[0].toFixed(5)}, {selectedTree.coordinates[1].toFixed(5)}
+              </p>
+              <p>
+                <strong>{t(language, "source")}: </strong>
+                {selectedTree.properties.source_department}
+              </p>
+              <a
+                className="detail-route-btn"
+                href={treeDirectionsHref(selectedTree.coordinates)}
+                rel="noreferrer"
+                target="_blank"
+              >
+                {t(language, "navigateToTree")}
+              </a>
+            </article>
+          </>
+        ) : null}
+      </>
+    );
+  }
+
+  function renderJumpCardContent(): JSX.Element {
+    return (
+      <section className="show-block">
+        {renderFindStepHeader(1, findPanelCopy.jumpTitle)}
+        {!jumpIndex ? (
+          <p className="show-block-copy">{findPanelCopy.jumpLoadingBody}</p>
+        ) : (
+          <>
+            <p className="show-block-copy">{findPanelCopy.jumpBody}</p>
+            <div className="jump-grid">
+              <div className="jump-field">
+                <span>{findPanelCopy.jumpCountry}</span>
+                <div className="jump-picker" ref={jumpCountryMenuRef}>
+                  <button
+                    aria-expanded={jumpCountryMenuOpen}
+                    className="jump-picker-trigger"
+                    onClick={() => {
+                      setJumpCountryMenuOpen((current) => !current);
+                      setJumpStateMenuOpen(false);
+                      setJumpAreaMenuOpen(false);
+                    }}
+                    type="button"
+                  >
+                    <span className="jump-picker-trigger-copy">
+                      {(() => {
+                        const selectedCountry = jumpCountries.find((item) => item.id === jumpCountry);
+                        return selectedCountry
+                          ? `${selectedCountry.emoji} ${COUNTRY_LABELS[language][selectedCountry.id]}`
+                          : "";
+                      })()}
+                    </span>
+                    <span className={jumpCountryMenuOpen ? "caret open" : "caret"} />
+                  </button>
+                  {jumpCountryMenuOpen ? (
+                    <div className="jump-picker-menu">
+                      {jumpCountries.map((country) => (
+                        <button
+                          className={
+                            country.id === jumpCountry ? "jump-picker-option active" : "jump-picker-option"
+                          }
+                          key={country.id}
+                          onClick={() => {
+                            setJumpCountry(country.id);
+                            setJumpState("");
+                            setJumpCountryMenuOpen(false);
+                            setJumpStateMenuOpen(false);
+                            clearSelectedJumpArea();
+                            setStatusNotice(null);
+                            setUserLocation(null);
+                          }}
+                          type="button"
+                        >
+                          <div className="jump-picker-option-main">
+                            <strong>
+                              {country.emoji} {COUNTRY_LABELS[language][country.id]}
+                            </strong>
+                          </div>
+                        </button>
+                      ))}
+                    </div>
+                  ) : null}
+                </div>
+              </div>
+
+              <div className="jump-field">
+                <span>{jumpSubnationalLabel}</span>
+                <div className="jump-picker" ref={jumpStateMenuRef}>
+                  <button
+                    aria-expanded={jumpStateMenuOpen}
+                    className="jump-picker-trigger jump-picker-trigger-with-badge"
+                    onClick={() => {
+                      setJumpStateMenuOpen((current) => !current);
+                      setJumpCountryMenuOpen(false);
+                      setJumpAreaMenuOpen(false);
+                    }}
+                    type="button"
+                  >
+                    <span className="jump-picker-trigger-main">
+                      <span className="jump-picker-trigger-copy">
+                        {selectedJumpState
+                          ? jumpStateDisplayLabel(language, selectedJumpState)
+                          : jumpAnySubnationalLabel}
+                      </span>
+                      {selectedJumpStateStatus ? (
+                        <span className={`jump-area-status-badge ${selectedJumpStateStatus.kind}`}>
+                          {jumpStateStatusLabel(selectedJumpStateStatus)}
+                        </span>
+                      ) : null}
+                    </span>
+                    <span className={jumpStateMenuOpen ? "caret open" : "caret"} />
+                  </button>
+                  {jumpStateMenuOpen ? (
+                    <div className="jump-picker-menu jump-picker-menu-tall">
+                      <button
+                        className={jumpState === "" ? "jump-picker-option active" : "jump-picker-option"}
+                        onClick={() => {
+                          setJumpState("");
+                          setJumpStateMenuOpen(false);
+                          clearSelectedJumpArea();
+                          setStatusNotice(null);
+                          setUserLocation(null);
+                        }}
+                        type="button"
+                      >
+                        <div className="jump-picker-option-main">
+                          <strong>{jumpAnySubnationalLabel}</strong>
+                        </div>
+                      </button>
+                      {jumpStates.map((state) => {
+                        const stateDisplayStatus = jumpStateDisplayStatusById.get(state.id) ?? {
+                          kind: "untracked",
+                          coveredAreaCount: 0
+                        };
+                        return (
+                          <button
+                            className={state.id === jumpState ? "jump-picker-option active" : "jump-picker-option"}
+                            key={state.id}
+                            onClick={() => {
+                              setJumpState(state.id);
+                              setJumpStateMenuOpen(false);
+                              clearSelectedJumpArea();
+                              setStatusNotice(null);
+                              setUserLocation(null);
+                            }}
+                            type="button"
+                          >
+                            <div className="jump-picker-option-main">
+                              <strong>{jumpStateDisplayLabel(language, state)}</strong>
+                              <span className={`jump-area-status-badge ${stateDisplayStatus.kind}`}>
+                                {jumpStateStatusLabel(stateDisplayStatus)}
+                              </span>
+                            </div>
+                          </button>
+                        );
+                      })}
+                    </div>
+                  ) : null}
+                </div>
+              </div>
+              <div className="jump-field">
+                <span>{t(language, "jumpArea")}</span>
+                <div className="jump-picker" ref={jumpAreaMenuRef}>
+                  <button
+                    aria-expanded={jumpAreaMenuOpen}
+                    className="jump-picker-trigger jump-picker-trigger-with-badge"
+                    onClick={() => {
+                      setJumpAreaMenuOpen((current) => !current);
+                      setJumpCountryMenuOpen(false);
+                      setJumpStateMenuOpen(false);
+                    }}
+                    type="button"
+                  >
+                    <span className="jump-picker-trigger-main">
+                      <span
+                        className={
+                          selectedJumpAreaLabel
+                            ? "jump-picker-trigger-copy"
+                            : "jump-picker-trigger-copy jump-picker-trigger-placeholder"
+                        }
+                      >
+                        {selectedJumpAreaLabel ?? t(language, "searchCityPlaceholder")}
+                      </span>
+                      {selectedJumpAreaStatus ? (
+                        <span className={`jump-area-status-badge ${selectedJumpAreaStatus.kind}`}>
+                          {jumpAreaStatusLabel(selectedJumpAreaStatus)}
+                        </span>
+                      ) : null}
+                    </span>
+                    <span className={jumpAreaMenuOpen ? "caret open" : "caret"} />
+                  </button>
+                  {jumpAreaMenuOpen ? (
+                    <div className="jump-picker-menu jump-picker-menu-tall jump-area-picker-menu">
+                      <input
+                        className="filter-search-input jump-area-search-input"
+                        onChange={(event) => setJumpAreaQuery(event.target.value)}
+                        placeholder={t(language, "searchCityPlaceholder")}
+                        type="search"
+                        value={jumpAreaQuery}
+                      />
+                      {jumpAreaMatches.length > 0 ? (
+                        <div className="jump-area-results jump-area-results-inline jump-area-options">
+                          {jumpAreaMatches.map((area) => {
+                            const areaDisplayStatus = getJumpAreaDisplayStatus(area);
+                            return (
+                              <button
+                                className={
+                                  area.id === selectedJumpAreaId ? "jump-picker-option active" : "jump-picker-option"
+                                }
+                                key={area.id}
+                                onClick={() => handleSelectJumpArea(area)}
+                                type="button"
+                              >
+                                <div className="jump-picker-option-main">
+                                  <strong>{formatJumpAreaLabel(area)}</strong>
+                                  <div className="jump-picker-option-badges">
+                                    <span
+                                      className={`coverage-area-type-badge ${jurisdictionTypeClassName(area.area_type)}`}
+                                    >
+                                      {jurisdictionTypeLabel(language, area.area_type)}
+                                    </span>
+                                    <span className={`jump-area-status-badge ${areaDisplayStatus.kind}`}>
+                                      {jumpAreaStatusLabel(areaDisplayStatus)}
+                                    </span>
+                                  </div>
+                                </div>
+                              </button>
+                            );
+                          })}
+                        </div>
+                      ) : (
+                        <p className="filter-empty jump-area-empty">{discoveryCopy.areaSearchEmpty}</p>
+                      )}
+                    </div>
+                  ) : null}
+                </div>
+              </div>
+            </div>
+            <div className="jump-actions">
+              <button className="clear-btn jump-btn" onClick={handleJump} type="button">
+                {findPanelCopy.jumpButton}
+              </button>
+            </div>
+          </>
+        )}
+      </section>
+    );
+  }
+
+  function renderFiltersCardContent(): JSX.Element {
+    return (
+      <section className={isLoadedCitySelected ? "show-block" : "show-block filters-block disabled"}>
+        <div className="filters-heading">
+          <div className="filters-heading-copy">
+            {renderFindStepHeader(3, findPanelCopy.filtersTitle)}
+          </div>
+          <div className="filter-actions filters-header-actions">
+            <button className="clear-btn" disabled={!isLoadedCitySelected} onClick={selectAllFilters} type="button">
+              {t(language, "selectAll")}
+            </button>
+            <button className="clear-btn" disabled={!isLoadedCitySelected} onClick={clearAllFilters} type="button">
+              {t(language, "clearAll")}
+            </button>
+          </div>
+        </div>
+        <div className="filters-intro">
+          <p className="show-block-copy filters-guide-copy">{findPanelCopy.filtersGuideBody}</p>
+          {!isLoadedCitySelected ? <p className="show-block-copy">{findPanelCopy.filtersLockedBody}</p> : null}
+        </div>
+        <div className="filter-group">
+          <strong>{t(language, "speciesFilter")}</strong>
+          <div className="chip-wrap chip-wrap-species">
+            {ALL_SPECIES.map((species) => (
+              <button
+                disabled={!isLoadedCitySelected}
+                key={species}
+                className={
+                  selectedSpecies.includes(species)
+                    ? `chip species-chip species-chip-${species} active`
+                    : `chip species-chip species-chip-${species}`
+                }
+                onClick={() => toggleSpecies(species)}
+                type="button"
+              >
+                {speciesLabel(language, species)}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        <div className="filter-group">
+          <strong>{t(language, "ownershipFilter")}</strong>
+          <div className="chip-wrap">
+            {ownershipOptions.map((item) => (
+              <button
+                disabled={!isLoadedCitySelected}
+                key={item}
+                className={selectedOwnership.includes(item) ? "chip active" : "chip"}
+                onClick={() => toggleOwnership(item)}
+                type="button"
+              >
+                {ownershipLabel(language, item)}
+              </button>
+            ))}
+          </div>
+        </div>
+      </section>
+    );
+  }
+
+  function renderGuidePanelContent(): JSX.Element {
+    return (
+      <section className="guide-panel">
+        <h3>{t(language, "guideTitle")}</h3>
+        {data.guide.entries.map((entry) => (
+          <article className="guide-card" key={entry.id}>
+            <div className="guide-card-hero">
+              <img
+                alt={`${entry.title[language]} illustration`}
+                className="guide-card-image"
+                loading="lazy"
+                src={GUIDE_FLOWER_ART[entry.id]}
+              />
+            </div>
+            <div className="guide-card-body">
+              <header>
+                <h4>{entry.title[language]}</h4>
+                <p>{entry.subtitle[language]}</p>
+              </header>
+              <ul>
+                {entry.bullets[language].map((bullet) => (
+                  <li key={bullet}>{bullet}</li>
+                ))}
+              </ul>
+              <p className="tips-title">{t(language, "tipsTitle")}</p>
+              <ul>
+                {entry.confusionTips[language].map((tip) => (
+                  <li key={tip}>{tip}</li>
+                ))}
+              </ul>
+            </div>
+          </article>
+        ))}
+        <section className="guide-compare-section">
+          <div className="guide-compare-header">
+            <h4>{guideCompareCopy.title}</h4>
+            <p>{guideCompareCopy.intro}</p>
+          </div>
+          <div className="guide-compare-grid">
+            {GUIDE_COMPARISON_ART.map((item) => (
+              <article className="guide-compare-card" key={item.id}>
+                <img alt={item.title[language]} className="guide-compare-image" loading="lazy" src={item.image} />
+                <div className="guide-compare-copy">
+                  <h5>{item.title[language]}</h5>
+                  <p>{item.body[language]}</p>
+                </div>
+              </article>
+            ))}
+          </div>
+        </section>
+      </section>
+    );
+  }
+
+  function renderAboutPanelContent(): JSX.Element {
+    return (
+      <section className={activeLegalContent ? "about-panel legal-panel" : "about-panel"}>
+        {activeLegalContent ? (
+          <div className="about-section">
+            <button className="clear-btn legal-back-btn" onClick={openAboutOverview} type="button">
+              {legalUiCopy.backToAbout}
+            </button>
+            <article className="about-card legal-doc-card">
+              <div className="legal-doc-header">
+                <p className="legal-doc-kicker">{legalUiCopy.sectionTitle}</p>
+                <h3 className="about-section-title legal-doc-title">{activeLegalContent.title}</h3>
+                <p className="legal-doc-summary">{activeLegalContent.summary}</p>
+                <p className="legal-doc-meta">
+                  {legalUiCopy.lastUpdatedLabel}: {activeLegalContent.lastUpdated}
+                </p>
+                {activeLegalDocumentResult?.fallbackLanguage ? (
+                  <p className="legal-doc-fallback">{legalUiCopy.fallbackNotice}</p>
+                ) : null}
+              </div>
+              <div className="legal-doc-body">
+                {activeLegalContent.sections.map((section) => (
+                  <section className="legal-doc-section" key={section.id}>
+                    <h4>{section.title}</h4>
+                    {section.paragraphs.map((paragraph) => (
+                      <p key={paragraph}>{paragraph}</p>
+                    ))}
+                    {section.bullets ? (
+                      <ul>
+                        {section.bullets.map((bullet) => (
+                          <li key={bullet}>{bullet}</li>
+                        ))}
+                      </ul>
+                    ) : null}
+                  </section>
+                ))}
+              </div>
+            </article>
+          </div>
+        ) : (
+          <>
+            <div className="about-section">
+              <h3 className="about-section-title">{aboutCopy.title}</h3>
+              <div className="about-copy-block">
+                {aboutCopy.intro.map((paragraph) => (
+                  <p key={paragraph}>{paragraph}</p>
+                ))}
+              </div>
+            </div>
+
+            <div className="about-section">
+              <h3 className="about-section-title">{aboutCopy.summaryTitle}</h3>
+              <p className="about-summary-note">{aboutCopy.summaryNote}</p>
+              <p className="about-summary-note about-summary-coverage-note">
+                {aboutCopy.summaryCoverageLead}: {aboutCoverageScope}
+              </p>
+              <div className="about-summary-stack">
+                <article className="about-card about-summary-card about-summary-total-card">
+                  <div className="about-summary-head">
+                    <div>
+                      <h4>{aboutCopy.summaryAllTitle}</h4>
+                    </div>
+                    <strong className="about-summary-total-number">{formatCount(data.meta.included_records)}</strong>
+                  </div>
+                  <div className="about-summary-divider" />
+                  {renderSpeciesCountRows(data.meta.species_counts ?? EMPTY_SPECIES_COUNTS)}
+                </article>
+
+                <article className="about-card about-summary-card about-summary-browse-card">
+                  <div className="about-summary-section-head">
+                    <h4>{activeAboutSummaryTitle}</h4>
+                    <div className="about-summary-mode-switch" role="tablist" aria-label={aboutCopy.summaryTitle}>
+                      <button
+                        aria-selected={aboutSummaryMode === "region"}
+                        className={aboutSummaryMode === "region" ? "tab-btn active" : "tab-btn"}
+                        onClick={() => setAboutSummaryMode("region")}
+                        role="tab"
+                        type="button"
+                      >
+                        {aboutCopy.summaryByRegionTitle}
+                      </button>
+                      <button
+                        aria-selected={aboutSummaryMode === "area"}
+                        className={aboutSummaryMode === "area" ? "tab-btn active" : "tab-btn"}
+                        onClick={() => setAboutSummaryMode("area")}
+                        role="tab"
+                        type="button"
+                      >
+                        {aboutCopy.summaryByAreaTitle}
+                      </button>
+                    </div>
+                  </div>
+                  <input
+                    className="filter-search-input about-summary-search-input"
+                    onChange={(event) =>
+                      aboutSummaryMode === "region"
+                        ? setAboutRegionSummarySearchQuery(event.target.value)
+                        : setAboutAreaSummarySearchQuery(event.target.value)
+                    }
+                    placeholder={activeAboutSummarySearchPlaceholder}
+                    type="search"
+                    value={
+                      aboutSummaryMode === "region" ? aboutRegionSummarySearchQuery : aboutAreaSummarySearchQuery
+                    }
+                  />
+                  <div className="about-summary-browser-list">
+                    {aboutSummaryMode === "region"
+                      ? pagedAboutRegionSummaries.map((region) => (
+                          <div className="about-region-summary-item" key={region.id}>
+                            <div className="about-region-summary-head">
+                              <strong>{region.label}</strong>
+                              <span className="about-region-summary-total">{formatCount(region.totalTrees)}</span>
+                            </div>
+                            <div className="about-summary-divider compact" />
+                            {renderSpeciesCountRows(region.speciesCounts, true)}
+                          </div>
+                        ))
+                      : pagedAboutAreaSummaries.map((area) => (
+                          <div className="about-area-summary-item" key={`${area.label}-${area.areaType}`}>
+                            <div className="about-area-summary-head">
+                              <div className="about-area-summary-title-stack">
+                                <div className="about-area-summary-title-row">
+                                  <strong>{area.label}</strong>
+                                  <span className={`coverage-area-type-badge ${jurisdictionTypeClassName(area.areaType)}`}>
+                                    {jurisdictionTypeLabel(language, area.areaType)}
+                                  </span>
+                                </div>
+                              </div>
+                              <span className="about-region-summary-total">{formatCount(area.totalTrees)}</span>
+                            </div>
+                            <div className="about-summary-divider compact" />
+                            {renderSpeciesCountRows(area.speciesCounts, true)}
+                          </div>
+                        ))}
+                    {(aboutSummaryMode === "region"
+                      ? filteredAboutRegionSummaries.length === 0
+                      : filteredAboutAreaSummaries.length === 0) && (
+                      <p className="filter-empty">{activeAboutSummaryEmpty}</p>
+                    )}
+                  </div>
+                  <div className="about-source-pagination">
+                    <button
+                      className="clear-btn"
+                      disabled={
+                        activeAboutSummaryPage === 0 ||
+                        (aboutSummaryMode === "region"
+                          ? filteredAboutRegionSummaries.length === 0
+                          : filteredAboutAreaSummaries.length === 0)
+                      }
+                      onClick={() =>
+                        aboutSummaryMode === "region"
+                          ? setAboutRegionSummaryPage((current) => Math.max(0, current - 1))
+                          : setAboutAreaSummaryPage((current) => Math.max(0, current - 1))
+                      }
+                      type="button"
+                    >
+                      {aboutCopy.previousPage}
+                    </button>
+                    <span>
+                      {aboutCopy.pageLabel} {activeAboutSummaryPage + 1} / {activeAboutSummaryPageCount}
+                    </span>
+                    <button
+                      className="clear-btn"
+                      disabled={
+                        activeAboutSummaryPage >= activeAboutSummaryPageCount - 1 ||
+                        (aboutSummaryMode === "region"
+                          ? filteredAboutRegionSummaries.length === 0
+                          : filteredAboutAreaSummaries.length === 0)
+                      }
+                      onClick={() =>
+                        aboutSummaryMode === "region"
+                          ? setAboutRegionSummaryPage((current) => Math.min(aboutRegionSummaryPageCount - 1, current + 1))
+                          : setAboutAreaSummaryPage((current) => Math.min(aboutAreaSummaryPageCount - 1, current + 1))
+                      }
+                      type="button"
+                    >
+                      {aboutCopy.nextPage}
+                    </button>
+                  </div>
+                </article>
+              </div>
+            </div>
+
+            <div className="about-section">
+              <h3 className="about-section-title">{aboutCopy.sourcesTitle}</h3>
+              <div className="about-copy-block">
+                {aboutCopy.disclaimer.map((paragraph) => (
+                  <p key={paragraph}>{paragraph}</p>
+                ))}
+              </div>
+              <article className="about-card about-sources-shell">
+                <input
+                  className="filter-search-input about-source-search-input"
+                  onChange={(event) => setAboutSourcesSearchQuery(event.target.value)}
+                  placeholder={aboutCopy.sourcesSearchPlaceholder}
+                  type="search"
+                  value={aboutSourcesSearchQuery}
+                />
+                <div className="about-source-legend" role="presentation">
+                  <span className="about-source-legend-item">
+                    <span className="about-source-legend-dot official" />
+                    <span>{aboutCopy.officialBadge}</span>
+                  </span>
+                  <span className="about-source-legend-item">
+                    <span className="about-source-legend-dot supplemental" />
+                    <span>{aboutCopy.supplementalBadge}</span>
+                  </span>
+                </div>
+                <div className="about-source-list">
+                  {pagedAboutSources.map((source) => {
+                    const supplemental = source.name === "UW OSM Supplemental" || !isHttpUrl(source.endpoint);
+                    return (
+                      <div
+                        className={`about-source-item ${supplemental ? "supplemental" : "official"}`}
+                        key={`${source.city}-${source.name}`}
+                      >
+                        <div className="about-source-head">
+                          <div className="about-source-title-row">
+                            <strong>
+                              {formatAreaLabelResolved(source.city)}: {source.name}
+                            </strong>
+                            {isHttpUrl(source.endpoint) ? (
+                              <a
+                                aria-label={aboutCopy.openLink}
+                                className="source-link-icon"
+                                href={source.endpoint}
+                                rel="noreferrer"
+                                target="_blank"
+                              >
+                                <svg aria-hidden="true" viewBox="0 0 24 24">
+                                  <path
+                                    d="M9.35 14.65 14.65 9.35"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    strokeWidth="2"
+                                  />
+                                  <path
+                                    d="M7.25 14.4 5.6 16.05a3.15 3.15 0 1 0 4.45 4.45l1.65-1.65"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    strokeWidth="2"
+                                  />
+                                  <path
+                                    d="M16.75 9.6l1.65-1.65a3.15 3.15 0 1 0-4.45-4.45L12.3 5.15"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    strokeWidth="2"
+                                  />
+                                </svg>
+                              </a>
+                            ) : null}
+                          </div>
+                        </div>
+                        {!isHttpUrl(source.endpoint) && <p>{source.endpoint}</p>}
+                      </div>
+                    );
+                  })}
+                  {filteredAboutSources.length === 0 && <p className="filter-empty">{aboutCopy.sourcesEmpty}</p>}
+                </div>
+                {aboutSources.length > 0 && (
+                  <div className="about-source-pagination">
+                    <button
+                      className="clear-btn"
+                      disabled={aboutSourcesPage === 0 || filteredAboutSources.length === 0}
+                      onClick={() => setAboutSourcesPage((current) => Math.max(0, current - 1))}
+                      type="button"
+                    >
+                      {aboutCopy.previousPage}
+                    </button>
+                    <span>
+                      {aboutCopy.pageLabel} {aboutSourcesPage + 1} / {aboutSourcePageCount}
+                    </span>
+                    <button
+                      className="clear-btn"
+                      disabled={aboutSourcesPage >= aboutSourcePageCount - 1 || filteredAboutSources.length === 0}
+                      onClick={() => setAboutSourcesPage((current) => Math.min(aboutSourcePageCount - 1, current + 1))}
+                      type="button"
+                    >
+                      {aboutCopy.nextPage}
+                    </button>
+                  </div>
+                )}
+              </article>
+            </div>
+
+            <div className="about-section">
+              <h3 className="about-section-title">{legalUiCopy.sectionTitle}</h3>
+              <div className="about-copy-block">
+                <p>
+                  Pink Hunter now includes a site{" "}
+                  <a
+                    className="about-inline-legal-link"
+                    href={buildLegalDocumentHref("privacy")}
+                    onClick={(event) => {
+                      event.preventDefault();
+                      openLegalDocument("privacy");
+                    }}
+                  >
+                    <strong>{legalUiCopy.privacyLinkLabel}</strong>
+                  </a>{" "}
+                  and a plain-language{" "}
+                  <a
+                    className="about-inline-legal-link"
+                    href={buildLegalDocumentHref("terms")}
+                    onClick={(event) => {
+                      event.preventDefault();
+                      openLegalDocument("terms");
+                    }}
+                  >
+                    <strong>{legalUiCopy.termsLinkLabel}</strong>
+                  </a>{" "}
+                  page.
+                </p>
+              </div>
+            </div>
+
+            <div className="about-section">
+              <h3 className="about-section-title">{aboutCopy.contactTitle}</h3>
+              <div className="about-copy-block about-contact-block">
+                <p>{renderBoldName(aboutCopy.contactLead, "Flala Zhang")}</p>
+                <ContactIcons />
+              </div>
+            </div>
+          </>
+        )}
+      </section>
+    );
+  }
+
+  function renderTouchContextCta(): JSX.Element | null {
+    if (touchTab !== "find" || touchOverlay) {
+      return null;
+    }
+
+    if (touchFindContext?.kind === "covered") {
+      if (!selectedCityArea) {
+        return touchFindContext.areaName ? (
+          <div className="touch-context-pill">{touchFindContext.areaName}</div>
+        ) : null;
+      }
+
+      return (
+        <div className="touch-context-cta">
+          <button
+            className="touch-context-button"
+            disabled={loadingSelectedCityTrees}
+            onClick={isLoadedCitySelected ? hideLoadedCityTrees : showSelectedCityTrees}
+            type="button"
+          >
+            {loadingSelectedCityTrees
+              ? t(language, "loading")
+              : isLoadedCitySelected
+                ? findPanelCopy.hideButton
+                : findPanelCopy.showButton}
+          </button>
+        </div>
+      );
+    }
+
+    if (touchFindContext?.kind === "official_unavailable") {
+      return (
+        <div className="touch-context-pill">
+          {touchFindContext.areaName
+            ? `${formatAreaLabelResolved(touchFindContext.areaName)}: ${t(language, "officialUnavailablePopupTitle")}`
+            : t(language, "officialUnavailablePopupTitle")}
+        </div>
+      );
+    }
+
+    if (locatingUser) {
+      return <div className="touch-context-pill">{discoveryCopy.locationLoading}</div>;
+    }
+
+    if (!statusNotice || statusNotice.kind === "official_unavailable") {
+      return null;
+    }
+
+    let message = "";
+    if (statusNotice.kind === "city_level_coverage") {
+      message = discoveryCopy.cityLevelCoverageTitle;
+    } else if (statusNotice.kind === "untracked") {
+      message = discoveryCopy.untrackedTitle;
+    } else if (statusNotice.kind === "location_unsupported") {
+      message = discoveryCopy.locationUnsupportedTitle;
+    } else if (statusNotice.kind === "location_denied") {
+      message = discoveryCopy.locationDeniedTitle;
+    } else if (statusNotice.kind === "location_timeout") {
+      message = discoveryCopy.locationTimeoutTitle;
+    } else if (statusNotice.kind === "location_unavailable") {
+      message = discoveryCopy.locationUnavailableTitle;
+    }
+
+    return (
+      <div className="touch-context-pill">
+        {statusNotice.areaName ? `${formatAreaLabelResolved(statusNotice.areaName)}: ${message}` : message}
+      </div>
+    );
+  }
+
+  function renderLanguageSwitcher(): JSX.Element {
+    return (
+      <div className="language-switcher" ref={languageMenuRef}>
+        <button
+          aria-expanded={languageMenuOpen}
+          aria-label={t(language, "language")}
+          className="icon-btn language-btn"
+          onClick={() => setLanguageMenuOpen((current) => !current)}
+          title={t(language, "language")}
+          type="button"
+        >
+          <span aria-hidden="true">{activeLanguageOption.emoji}</span>
+        </button>
+        {languageMenuOpen && (
+          <div className="language-menu">
+            {LANGUAGE_OPTIONS.map((option) => (
+              <button
+                className={option.id === language ? "language-option active" : "language-option"}
+                key={option.id}
+                onClick={() => changeLanguage(option.id)}
+                type="button"
+              >
+                <span className="language-option-emoji" aria-hidden="true">
+                  {option.emoji}
+                </span>
+                <span className="language-option-label">{option.label}</span>
+              </button>
+            ))}
+          </div>
+        )}
+      </div>
+    );
+  }
+
+  function renderTouchTopBar(): JSX.Element {
+    return (
+      <header className="touch-topbar">
+        <div className="touch-topbar-brand">
+          <span className="sr-only">{t(language, "appTitle")}</span>
+          <img alt="Pink Hunter" className="brand-logo touch-brand-logo" loading="eager" src={BRAND_LOGO_PATH} />
+        </div>
+        {renderLanguageSwitcher()}
+      </header>
+    );
+  }
+
+  function renderTouchBottomNav(): JSX.Element {
+    return (
+      <nav className={`touch-bottom-nav${showDetailsTab ? " has-details" : ""}`} aria-label="Touch navigation">
+        <button
+          className={touchTab === "find" ? "touch-bottom-nav-btn active" : "touch-bottom-nav-btn"}
+          onClick={openFindSurface}
+          type="button"
+        >
+          {t(language, "showList")}
+        </button>
+        <button
+          className={touchTab === "guide" ? "touch-bottom-nav-btn active" : "touch-bottom-nav-btn"}
+          onClick={openGuideSurface}
+          type="button"
+        >
+          {t(language, "showGuide")}
+        </button>
+        <button
+          className={touchTab === "about" ? "touch-bottom-nav-btn active" : "touch-bottom-nav-btn"}
+          onClick={openAboutOverview}
+          type="button"
+        >
+          {t(language, "showAbout")}
+        </button>
+        {showDetailsTab ? (
+          <button
+            className={touchTab === "details" ? "touch-bottom-nav-btn active" : "touch-bottom-nav-btn"}
+            onClick={openDetailsSurface}
+            type="button"
+          >
+            {t(language, "showDetails")}
+          </button>
+        ) : null}
+      </nav>
+    );
+  }
+
   if (loading) {
     return (
       <div className="loading-screen">
@@ -5876,7 +7007,7 @@ export default function App(): JSX.Element {
   }
 
   return (
-    <div className={isDesktop ? "app-root desktop-mode" : "app-root mobile-mode"}>
+    <div className={rootClassName}>
       <div className="map-root" ref={mapContainerRef} />
       {showMapLoadingOverlay && (
         <div className="region-loading-overlay">
@@ -5886,935 +7017,170 @@ export default function App(): JSX.Element {
           </div>
         </div>
       )}
-      <section className="map-corner-legend">
-        <div className="legend-row">
-          <span className="legend-dot covered" />
-          <span>{t(language, "coveredLegend")}</span>
-        </div>
-        <div className="legend-row">
-          <span className="legend-dot official-unavailable" />
-          <span>{t(language, "officialUnavailableLegend")}</span>
-        </div>
-        <div className="legend-row">
-          <span className="legend-dot featured-area" />
-          <span>{featuredAreaUiCopy.sectionTitle}</span>
-        </div>
-        {(mapStylePreset === "demotiles" || mapStylePreset === "blank_fallback") && (
-          <p>{t(language, "fallbackBasemap")}</p>
-        )}
-      </section>
+      {!isTouchLayout && (
+        <section className="map-corner-legend">
+          <div className="legend-row">
+            <span className="legend-dot covered" />
+            <span>{t(language, "coveredLegend")}</span>
+          </div>
+          <div className="legend-row">
+            <span className="legend-dot official-unavailable" />
+            <span>{t(language, "officialUnavailableLegend")}</span>
+          </div>
+          <div className="legend-row">
+            <span className="legend-dot featured-area" />
+            <span>{featuredAreaUiCopy.sectionTitle}</span>
+          </div>
+          {(mapStylePreset === "demotiles" || mapStylePreset === "blank_fallback") && (
+            <p>{t(language, "fallbackBasemap")}</p>
+          )}
+        </section>
+      )}
 
-      <section className="sheet" style={isDesktop ? undefined : { height: `${sheetHeight * 100}vh` }}>
-        <button
-          className="sheet-handle"
-          onPointerDown={handleSheetPointerDown}
-          onPointerMove={handleSheetPointerMove}
-          onPointerUp={handleSheetPointerUp}
-          type="button"
-          aria-label="Resize panel"
-        >
-          <span />
-        </button>
-
-        <div className="sheet-content">
-          <section className="panel-header-card">
-            <div className="panel-header-top">
-              <div className="panel-title-group">
-                <span className="sr-only">{t(language, "appTitle")}</span>
-                <img
-                  alt="Pink Hunter"
-                  className="brand-logo"
-                  loading="eager"
-                  src={BRAND_LOGO_PATH}
-                />
-                <p>{t(language, "appSubtitle")}</p>
-                {visitorCount !== null && (
-                  <p className="visitor-count-line">
-                    {t(language, "visitorCountPrefix")}
-                    <strong className="visitor-count-number">{visitorCount.toLocaleString(language)}</strong>
-                    {t(language, "visitorCountSuffix")}
-                  </p>
-                )}
-              </div>
-              <div className="language-switcher" ref={languageMenuRef}>
+      {isTouchLayout ? (
+        <>
+          {renderTouchTopBar()}
+          {touchTab === "find" ? (
+            <>
+              <div className="touch-fab-stack">
                 <button
-                  aria-expanded={languageMenuOpen}
-                  aria-label={t(language, "language")}
-                  className="icon-btn language-btn"
-                  onClick={() => setLanguageMenuOpen((current) => !current)}
-                  title={t(language, "language")}
+                  aria-label={findPanelCopy.jumpTitle}
+                  className={touchOverlay === "jump" ? "touch-map-fab active" : "touch-map-fab"}
+                  onClick={() => setTouchOverlay((current) => (current === "jump" ? null : "jump"))}
                   type="button"
                 >
-                  <span aria-hidden="true">{activeLanguageOption.emoji}</span>
+                  <svg aria-hidden="true" viewBox="0 0 24 24">
+                    <circle cx="12" cy="12" fill="none" r="6.5" stroke="currentColor" strokeWidth="1.8" />
+                    <path d="M12 3.5v3.2M12 17.3v3.2M3.5 12h3.2M17.3 12h3.2" fill="none" stroke="currentColor" strokeLinecap="round" strokeWidth="1.8" />
+                  </svg>
                 </button>
-                {languageMenuOpen && (
-                  <div className="language-menu">
-                    {LANGUAGE_OPTIONS.map((option) => (
-                      <button
-                        className={option.id === language ? "language-option active" : "language-option"}
-                        key={option.id}
-                        onClick={() => changeLanguage(option.id)}
-                        type="button"
-                      >
-                        <span className="language-option-emoji" aria-hidden="true">
-                          {option.emoji}
-                        </span>
-                        <span className="language-option-label">{option.label}</span>
-                      </button>
-                    ))}
+                <button
+                  aria-label={findPanelCopy.filtersTitle}
+                  className={touchOverlay === "filters" ? "touch-map-fab active" : "touch-map-fab"}
+                  onClick={() => setTouchOverlay((current) => (current === "filters" ? null : "filters"))}
+                  type="button"
+                >
+                  <svg aria-hidden="true" viewBox="0 0 24 24">
+                    <path d="M4 6h16l-6.3 7.1v4.7l-3.4 1.8v-6.5L4 6Z" fill="none" stroke="currentColor" strokeLinejoin="round" strokeWidth="1.8" />
+                  </svg>
+                </button>
+              </div>
+              {touchOverlay ? (
+                <div className="touch-overlay-backdrop" onClick={() => setTouchOverlay(null)} role="presentation">
+                  <div
+                    className="touch-overlay-card"
+                    onClick={(event) => event.stopPropagation()}
+                    role="dialog"
+                    aria-modal="false"
+                  >
+                    {touchOverlay === "jump" ? renderJumpCardContent() : renderFiltersCardContent()}
                   </div>
-                )}
+                </div>
+              ) : null}
+              {renderTouchContextCta()}
+            </>
+          ) : (
+            <div className="touch-fullscreen-panel">
+              <div className="touch-fullscreen-scroll">
+                {touchTab === "details"
+                  ? renderDetailsPanelContent()
+                  : touchTab === "guide"
+                    ? renderGuidePanelContent()
+                    : renderAboutPanelContent()}
+                {renderMetaFooter()}
               </div>
             </div>
-          </section>
+          )}
+          {renderTouchBottomNav()}
+        </>
+      ) : (
+        <section className="sheet" style={isDesktopSplit ? undefined : isDesktopLegacyCompact ? { height: `${sheetHeight * 100}vh` } : undefined}>
+          <button
+            className="sheet-handle"
+            onPointerDown={handleSheetPointerDown}
+            onPointerMove={handleSheetPointerMove}
+            onPointerUp={handleSheetPointerUp}
+            type="button"
+            aria-label="Resize panel"
+          >
+            <span />
+          </button>
 
-          <div className="sheet-toolbar">
-            {showDetailsTab && (
+          <div className="sheet-content">
+            <section className="panel-header-card">
+              <div className="panel-header-top">
+                <div className="panel-title-group">
+                  <span className="sr-only">{t(language, "appTitle")}</span>
+                  <img alt="Pink Hunter" className="brand-logo" loading="eager" src={BRAND_LOGO_PATH} />
+                  <p>{t(language, "appSubtitle")}</p>
+                  {visitorCount !== null && (
+                    <p className="visitor-count-line">
+                      {t(language, "visitorCountPrefix")}
+                      <strong className="visitor-count-number">{visitorCount.toLocaleString(language)}</strong>
+                      {t(language, "visitorCountSuffix")}
+                    </p>
+                  )}
+                </div>
+                {renderLanguageSwitcher()}
+              </div>
+            </section>
+
+            <div className="sheet-toolbar">
+              {showDetailsTab && (
+                <button
+                  className={activePanel === "details" ? "tab-btn active" : "tab-btn"}
+                  onClick={openDetailsSurface}
+                  type="button"
+                >
+                  {t(language, "showDetails")}
+                </button>
+              )}
               <button
-                className={activePanel === "details" ? "tab-btn active" : "tab-btn"}
-                onClick={() => setActivePanel("details")}
+                className={activePanel === "filters" ? "tab-btn active" : "tab-btn"}
+                onClick={openFindSurface}
                 type="button"
               >
-                {t(language, "showDetails")}
+                {t(language, "showList")}
               </button>
-            )}
-            <button
-              className={activePanel === "filters" ? "tab-btn active" : "tab-btn"}
-              onClick={() => setActivePanel("filters")}
-              type="button"
-            >
-              {t(language, "showList")}
-            </button>
-            <button
-              className={activePanel === "guide" ? "tab-btn active" : "tab-btn"}
-              onClick={() => setActivePanel("guide")}
-              type="button"
-            >
-              {t(language, "showGuide")}
-            </button>
-            <button
-              className={activePanel === "about" ? "tab-btn active" : "tab-btn"}
-              onClick={openAboutOverview}
-              type="button"
-            >
-              {t(language, "showAbout")}
-            </button>
-          </div>
+              <button
+                className={activePanel === "guide" ? "tab-btn active" : "tab-btn"}
+                onClick={openGuideSurface}
+                type="button"
+              >
+                {t(language, "showGuide")}
+              </button>
+              <button
+                className={activePanel === "about" ? "tab-btn active" : "tab-btn"}
+                onClick={openAboutOverview}
+                type="button"
+              >
+                {t(language, "showAbout")}
+              </button>
+            </div>
 
-          {activePanel === "details" ? (
-            <>
-              {!selectedTree && selectedFeaturedAreaDetail ? (
-                <FeaturedAreaPanel
-                  area={selectedFeaturedAreaDetail}
-                  language={language}
-                  trees={selectedFeaturedAreaTrees}
-                  weather={selectedFeaturedAreaWeather}
-                  weatherError={
-                    selectedFeaturedAreaId ? featuredAreaWeatherErrors[selectedFeaturedAreaId] ?? null : null
-                  }
-                  weatherLoading={loadingFeaturedAreaWeatherId === selectedFeaturedAreaDetail.id}
-                />
-              ) : null}
-              {!selectedTree && selectedFeaturedAreaId && !selectedFeaturedAreaDetail && loadingFeaturedAreaDetail ? (
-                <article className="tree-card selected details-card">
-                  <p className="featured-area-eyebrow">
-                    {featuredAreaMeta(language, selectedFeaturedAreaId).eyebrow}
-                  </p>
-                  <h4>{featuredAreaMeta(language, selectedFeaturedAreaId).label}</h4>
-                  <p>{featuredAreaUiCopy.weatherLoading}</p>
-                </article>
-              ) : null}
-              {selectedTree ? (
-                <>
-                  {selectedTreeFeaturedAreaDetail ? (
-                    <FeaturedAreaSummaryCard
-                      area={selectedTreeFeaturedAreaDetail}
-                      language={language}
-                      onOpenArea={() => openFeaturedArea(selectedTreeFeaturedAreaDetail)}
-                      weather={
-                        selectedTreeFeaturedAreaDetail.id === selectedFeaturedAreaId
-                          ? selectedFeaturedAreaWeather
-                          : featuredAreaWeatherCache[selectedTreeFeaturedAreaDetail.id] ?? null
-                      }
-                    />
-                  ) : null}
-                  <article className="tree-card selected details-card">
-                    <header className="selected-tree-header">
-                      <h4>{speciesLabel(language, selectedTree.properties.species_group)}</h4>
-                      <img
-                        alt={`${speciesLabel(language, selectedTree.properties.species_group)} icon`}
-                        className="selected-tree-species-icon"
-                        loading="lazy"
-                        src={SPECIES_ICON_ART[selectedTree.properties.species_group]}
-                      />
-                    </header>
-                    {selectedTree.properties.subtype_name && (
-                      <p>
-                        <strong>{t(language, "subtype")}: </strong>
-                        {selectedTree.properties.subtype_name}
-                      </p>
-                    )}
-                    <FeaturedTreeMetaRows language={language} tree={selectedTree} />
-                    <p>
-                      <strong>{t(language, "scientific")}: </strong>
-                      {selectedTree.properties.scientific_name}
-                    </p>
-                    <p>
-                      <strong>{t(language, "common")}: </strong>
-                      {selectedTree.properties.common_name ?? t(language, "unknown")}
-                    </p>
-                    <p>
-                      <strong>{t(language, "city")}: </strong>
-                      {formatAreaLabelResolved(selectedTree.properties.city)}
-                    </p>
-                    {hasKnownZipCode(selectedTree.properties.zip_code) && (
-                      <p>
-                        <strong>{t(language, "zipCode")}: </strong>
-                        {selectedTree.properties.zip_code}
-                      </p>
-                    )}
-                    <p>
-                      <strong>{t(language, "ownership")}: </strong>
-                      {ownershipLabel(language, selectedTree.properties.ownership)} ({selectedTree.properties.ownership_raw})
-                    </p>
-                    <p>
-                      <strong>{t(language, "coordinates")}: </strong>
-                      {selectedTree.coordinates[0].toFixed(5)}, {selectedTree.coordinates[1].toFixed(5)}
-                    </p>
-                    <p>
-                      <strong>{t(language, "source")}: </strong>
-                      {selectedTree.properties.source_department}
-                    </p>
-                    <a
-                      className="detail-route-btn"
-                      href={treeDirectionsHref(selectedTree.coordinates)}
-                      rel="noreferrer"
-                      target="_blank"
-                    >
-                      {t(language, "navigateToTree")}
-                    </a>
-                  </article>
-                </>
-              ) : null}
-            </>
-          ) : activePanel === "filters" ? (
-            <>
+            {activePanel === "details" ? (
+              renderDetailsPanelContent()
+            ) : activePanel === "filters" ? (
               <section className="filters show-panel">
-                <section className="show-block">
-                  {renderFindStepHeader(1, findPanelCopy.jumpTitle)}
-                  {!jumpIndex ? (
-                    <p className="show-block-copy">{findPanelCopy.jumpLoadingBody}</p>
-                  ) : (
-                    <>
-                      <p className="show-block-copy">{findPanelCopy.jumpBody}</p>
-                      <div className="jump-grid">
-                        <div className="jump-field">
-                          <span>{findPanelCopy.jumpCountry}</span>
-                          <div className="jump-picker" ref={jumpCountryMenuRef}>
-                            <button
-                              aria-expanded={jumpCountryMenuOpen}
-                              className="jump-picker-trigger"
-                              onClick={() => {
-                                setJumpCountryMenuOpen((current) => !current);
-                                setJumpStateMenuOpen(false);
-                                setJumpAreaMenuOpen(false);
-                              }}
-                              type="button"
-                            >
-                              <span className="jump-picker-trigger-copy">
-                                {(() => {
-                                  const selectedCountry = jumpCountries.find((item) => item.id === jumpCountry);
-                                  return selectedCountry
-                                    ? `${selectedCountry.emoji} ${COUNTRY_LABELS[language][selectedCountry.id]}`
-                                    : "";
-                                })()}
-                              </span>
-                              <span className={jumpCountryMenuOpen ? "caret open" : "caret"} />
-                            </button>
-                            {jumpCountryMenuOpen ? (
-                              <div className="jump-picker-menu">
-                                {jumpCountries.map((country) => (
-                                  <button
-                                    className={
-                                      country.id === jumpCountry
-                                        ? "jump-picker-option active"
-                                        : "jump-picker-option"
-                                    }
-                                    key={country.id}
-                                    onClick={() => {
-                                      setJumpCountry(country.id);
-                                      setJumpState("");
-                                      setJumpCountryMenuOpen(false);
-                                      setJumpStateMenuOpen(false);
-                                      clearSelectedJumpArea();
-                                      setStatusNotice(null);
-                                      setUserLocation(null);
-                                    }}
-                                    type="button"
-                                  >
-                                    <div className="jump-picker-option-main">
-                                      <strong>
-                                        {country.emoji} {COUNTRY_LABELS[language][country.id]}
-                                      </strong>
-                                    </div>
-                                  </button>
-                                ))}
-                              </div>
-                            ) : null}
-                          </div>
-                        </div>
-
-                        <div className="jump-field">
-                          <span>{jumpSubnationalLabel}</span>
-                          <div className="jump-picker" ref={jumpStateMenuRef}>
-                            <button
-                              aria-expanded={jumpStateMenuOpen}
-                              className="jump-picker-trigger jump-picker-trigger-with-badge"
-                              onClick={() => {
-                                setJumpStateMenuOpen((current) => !current);
-                                setJumpCountryMenuOpen(false);
-                                setJumpAreaMenuOpen(false);
-                              }}
-                              type="button"
-                            >
-                              <span className="jump-picker-trigger-main">
-                                <span className="jump-picker-trigger-copy">
-                                  {selectedJumpState ? jumpStateDisplayLabel(language, selectedJumpState) : jumpAnySubnationalLabel}
-                                </span>
-                                {selectedJumpStateStatus ? (
-                                  <span className={`jump-area-status-badge ${selectedJumpStateStatus.kind}`}>
-                                    {jumpStateStatusLabel(selectedJumpStateStatus)}
-                                  </span>
-                                ) : null}
-                              </span>
-                              <span className={jumpStateMenuOpen ? "caret open" : "caret"} />
-                            </button>
-                            {jumpStateMenuOpen ? (
-                              <div className="jump-picker-menu jump-picker-menu-tall">
-                                <button
-                                  className={jumpState === "" ? "jump-picker-option active" : "jump-picker-option"}
-                                  onClick={() => {
-                                    setJumpState("");
-                                    setJumpStateMenuOpen(false);
-                                    clearSelectedJumpArea();
-                                    setStatusNotice(null);
-                                    setUserLocation(null);
-                                  }}
-                                  type="button"
-                                >
-                                  <div className="jump-picker-option-main">
-                                    <strong>{jumpAnySubnationalLabel}</strong>
-                                  </div>
-                                </button>
-                                {jumpStates.map((state) => {
-                                  const stateDisplayStatus = jumpStateDisplayStatusById.get(state.id) ?? {
-                                    kind: "untracked",
-                                    coveredAreaCount: 0
-                                  };
-                                  return (
-                                    <button
-                                      className={
-                                        state.id === jumpState ? "jump-picker-option active" : "jump-picker-option"
-                                      }
-                                      key={state.id}
-                                      onClick={() => {
-                                        setJumpState(state.id);
-                                        setJumpStateMenuOpen(false);
-                                        clearSelectedJumpArea();
-                                        setStatusNotice(null);
-                                        setUserLocation(null);
-                                      }}
-                                      type="button"
-                                    >
-                                      <div className="jump-picker-option-main">
-                                        <strong>{jumpStateDisplayLabel(language, state)}</strong>
-                                        <span className={`jump-area-status-badge ${stateDisplayStatus.kind}`}>
-                                          {jumpStateStatusLabel(stateDisplayStatus)}
-                                        </span>
-                                      </div>
-                                    </button>
-                                  );
-                                })}
-                              </div>
-                            ) : null}
-                          </div>
-                        </div>
-                        <div className="jump-field">
-                          <span>{t(language, "jumpArea")}</span>
-                          <div className="jump-picker" ref={jumpAreaMenuRef}>
-                            <button
-                              aria-expanded={jumpAreaMenuOpen}
-                              className="jump-picker-trigger jump-picker-trigger-with-badge"
-                              onClick={() => {
-                                setJumpAreaMenuOpen((current) => !current);
-                                setJumpCountryMenuOpen(false);
-                                setJumpStateMenuOpen(false);
-                              }}
-                              type="button"
-                            >
-                              <span className="jump-picker-trigger-main">
-                                <span
-                                  className={
-                                    selectedJumpAreaLabel
-                                      ? "jump-picker-trigger-copy"
-                                      : "jump-picker-trigger-copy jump-picker-trigger-placeholder"
-                                  }
-                                >
-                                  {selectedJumpAreaLabel ?? t(language, "searchCityPlaceholder")}
-                                </span>
-                                {selectedJumpAreaStatus ? (
-                                  <span className={`jump-area-status-badge ${selectedJumpAreaStatus.kind}`}>
-                                    {jumpAreaStatusLabel(selectedJumpAreaStatus)}
-                                  </span>
-                                ) : null}
-                              </span>
-                              <span className={jumpAreaMenuOpen ? "caret open" : "caret"} />
-                            </button>
-                            {jumpAreaMenuOpen ? (
-                              <div className="jump-picker-menu jump-picker-menu-tall jump-area-picker-menu">
-                                <input
-                                  className="filter-search-input jump-area-search-input"
-                                  onChange={(event) => setJumpAreaQuery(event.target.value)}
-                                  placeholder={t(language, "searchCityPlaceholder")}
-                                  type="search"
-                                  value={jumpAreaQuery}
-                                />
-                                {jumpAreaMatches.length > 0 ? (
-                                  <div className="jump-area-results jump-area-results-inline jump-area-options">
-                                    {jumpAreaMatches.map((area) => {
-                                      const areaDisplayStatus = getJumpAreaDisplayStatus(area);
-                                      return (
-                                        <button
-                                          className={
-                                            area.id === selectedJumpAreaId
-                                              ? "jump-picker-option active"
-                                              : "jump-picker-option"
-                                          }
-                                          key={area.id}
-                                          onClick={() => handleSelectJumpArea(area)}
-                                          type="button"
-                                        >
-                                          <div className="jump-picker-option-main">
-                                            <strong>{formatJumpAreaLabel(area)}</strong>
-                                            <div className="jump-picker-option-badges">
-                                              <span
-                                                className={`coverage-area-type-badge ${jurisdictionTypeClassName(
-                                                  area.area_type
-                                                )}`}
-                                              >
-                                                {jurisdictionTypeLabel(language, area.area_type)}
-                                              </span>
-                                              <span className={`jump-area-status-badge ${areaDisplayStatus.kind}`}>
-                                                {jumpAreaStatusLabel(areaDisplayStatus)}
-                                              </span>
-                                            </div>
-                                          </div>
-                                        </button>
-                                      );
-                                    })}
-                                  </div>
-                                ) : (
-                                  <p className="filter-empty jump-area-empty">{discoveryCopy.areaSearchEmpty}</p>
-                                )}
-                              </div>
-                            ) : null}
-                          </div>
-                        </div>
-                      </div>
-                      <div className="jump-actions">
-                        <button className="clear-btn jump-btn" onClick={handleJump} type="button">
-                          {findPanelCopy.jumpButton}
-                        </button>
-                      </div>
-                    </>
-                  )}
-                </section>
-
+                {renderJumpCardContent()}
                 {renderCityDiscoveryCard()}
                 {renderStatusCard()}
-
-                <section className={isLoadedCitySelected ? "show-block" : "show-block filters-block disabled"}>
-                  <div className="filters-heading">
-                    <div className="filters-heading-copy">
-                      {renderFindStepHeader(3, findPanelCopy.filtersTitle)}
-                    </div>
-                    <div className="filter-actions filters-header-actions">
-                      <button className="clear-btn" disabled={!isLoadedCitySelected} onClick={selectAllFilters} type="button">
-                        {t(language, "selectAll")}
-                      </button>
-                      <button className="clear-btn" disabled={!isLoadedCitySelected} onClick={clearAllFilters} type="button">
-                        {t(language, "clearAll")}
-                      </button>
-                    </div>
-                  </div>
-                  <div className="filters-intro">
-                    <p className="show-block-copy filters-guide-copy">{findPanelCopy.filtersGuideBody}</p>
-                    {!isLoadedCitySelected ? <p className="show-block-copy">{findPanelCopy.filtersLockedBody}</p> : null}
-                  </div>
-                  <div className="filter-group">
-                    <strong>{t(language, "speciesFilter")}</strong>
-                    <div className="chip-wrap chip-wrap-species">
-                      {ALL_SPECIES.map((species) => (
-                        <button
-                          disabled={!isLoadedCitySelected}
-                          key={species}
-                          className={
-                            selectedSpecies.includes(species)
-                              ? `chip species-chip species-chip-${species} active`
-                              : `chip species-chip species-chip-${species}`
-                          }
-                          onClick={() => toggleSpecies(species)}
-                          type="button"
-                        >
-                          {speciesLabel(language, species)}
-                        </button>
-                      ))}
-                    </div>
-                  </div>
-
-                  <div className="filter-group">
-                    <strong>{t(language, "ownershipFilter")}</strong>
-                    <div className="chip-wrap">
-                      {ownershipOptions.map((item) => (
-                        <button
-                          disabled={!isLoadedCitySelected}
-                          key={item}
-                          className={selectedOwnership.includes(item) ? "chip active" : "chip"}
-                          onClick={() => toggleOwnership(item)}
-                          type="button"
-                        >
-                          {ownershipLabel(language, item)}
-                        </button>
-                      ))}
-                    </div>
-                  </div>
-                </section>
-
+                {renderFiltersCardContent()}
                 <section className="show-block">
                   {renderFindStepHeader(4, findPanelCopy.detailsTitle)}
                   <p className="show-block-copy">{findPanelCopy.detailsBody}</p>
                 </section>
               </section>
-            </>
-          ) : activePanel === "guide" ? (
-            <section className="guide-panel">
-              <h3>{t(language, "guideTitle")}</h3>
-              {data.guide.entries.map((entry) => (
-                <article className="guide-card" key={entry.id}>
-                  <div className="guide-card-hero">
-                    <img
-                      alt={`${entry.title[language]} illustration`}
-                      className="guide-card-image"
-                      loading="lazy"
-                      src={GUIDE_FLOWER_ART[entry.id]}
-                    />
-                  </div>
-                  <div className="guide-card-body">
-                    <header>
-                      <h4>{entry.title[language]}</h4>
-                      <p>{entry.subtitle[language]}</p>
-                    </header>
-                    <ul>
-                      {entry.bullets[language].map((bullet) => (
-                        <li key={bullet}>{bullet}</li>
-                      ))}
-                    </ul>
-                    <p className="tips-title">{t(language, "tipsTitle")}</p>
-                    <ul>
-                      {entry.confusionTips[language].map((tip) => (
-                        <li key={tip}>{tip}</li>
-                      ))}
-                    </ul>
-                  </div>
-                </article>
-              ))}
-              <section className="guide-compare-section">
-                <div className="guide-compare-header">
-                  <h4>{guideCompareCopy.title}</h4>
-                  <p>{guideCompareCopy.intro}</p>
-                </div>
-                <div className="guide-compare-grid">
-                  {GUIDE_COMPARISON_ART.map((item) => (
-                    <article className="guide-compare-card" key={item.id}>
-                      <img
-                        alt={item.title[language]}
-                        className="guide-compare-image"
-                        loading="lazy"
-                        src={item.image}
-                      />
-                      <div className="guide-compare-copy">
-                        <h5>{item.title[language]}</h5>
-                        <p>{item.body[language]}</p>
-                      </div>
-                    </article>
-                  ))}
-                </div>
-              </section>
-            </section>
-          ) : (
-            <section className={activeLegalContent ? "about-panel legal-panel" : "about-panel"}>
-              {activeLegalContent ? (
-                <div className="about-section">
-                  <button className="clear-btn legal-back-btn" onClick={openAboutOverview} type="button">
-                    {legalUiCopy.backToAbout}
-                  </button>
-                  <article className="about-card legal-doc-card">
-                    <div className="legal-doc-header">
-                      <p className="legal-doc-kicker">{legalUiCopy.sectionTitle}</p>
-                      <h3 className="about-section-title legal-doc-title">{activeLegalContent.title}</h3>
-                      <p className="legal-doc-summary">{activeLegalContent.summary}</p>
-                      <p className="legal-doc-meta">
-                        {legalUiCopy.lastUpdatedLabel}: {activeLegalContent.lastUpdated}
-                      </p>
-                      {activeLegalDocumentResult?.fallbackLanguage ? (
-                        <p className="legal-doc-fallback">{legalUiCopy.fallbackNotice}</p>
-                      ) : null}
-                    </div>
-                    <div className="legal-doc-body">
-                      {activeLegalContent.sections.map((section) => (
-                        <section className="legal-doc-section" key={section.id}>
-                          <h4>{section.title}</h4>
-                          {section.paragraphs.map((paragraph) => (
-                            <p key={paragraph}>{paragraph}</p>
-                          ))}
-                          {section.bullets ? (
-                            <ul>
-                              {section.bullets.map((bullet) => (
-                                <li key={bullet}>{bullet}</li>
-                              ))}
-                            </ul>
-                          ) : null}
-                        </section>
-                      ))}
-                    </div>
-                  </article>
-                </div>
-              ) : (
-                <>
-                  <div className="about-section">
-                    <h3 className="about-section-title">{aboutCopy.title}</h3>
-                    <div className="about-copy-block">
-                      {aboutCopy.intro.map((paragraph) => (
-                        <p key={paragraph}>{paragraph}</p>
-                      ))}
-                    </div>
-                  </div>
+            ) : activePanel === "guide" ? (
+              renderGuidePanelContent()
+            ) : (
+              renderAboutPanelContent()
+            )}
 
-                  <div className="about-section">
-                    <h3 className="about-section-title">{aboutCopy.summaryTitle}</h3>
-                    <p className="about-summary-note">{aboutCopy.summaryNote}</p>
-                    <p className="about-summary-note about-summary-coverage-note">
-                      {aboutCopy.summaryCoverageLead}: {aboutCoverageScope}
-                    </p>
-                    <div className="about-summary-stack">
-                      <article className="about-card about-summary-card about-summary-total-card">
-                        <div className="about-summary-head">
-                          <div>
-                            <h4>{aboutCopy.summaryAllTitle}</h4>
-                          </div>
-                          <strong className="about-summary-total-number">{formatCount(data.meta.included_records)}</strong>
-                        </div>
-                        <div className="about-summary-divider" />
-                        {renderSpeciesCountRows(data.meta.species_counts ?? EMPTY_SPECIES_COUNTS)}
-                      </article>
-
-                      <article className="about-card about-summary-card about-summary-browse-card">
-                        <div className="about-summary-section-head">
-                          <h4>{activeAboutSummaryTitle}</h4>
-                          <div className="about-summary-mode-switch" role="tablist" aria-label={aboutCopy.summaryTitle}>
-                            <button
-                              aria-selected={aboutSummaryMode === "region"}
-                              className={aboutSummaryMode === "region" ? "tab-btn active" : "tab-btn"}
-                              onClick={() => setAboutSummaryMode("region")}
-                              role="tab"
-                              type="button"
-                            >
-                              {aboutCopy.summaryByRegionTitle}
-                            </button>
-                            <button
-                              aria-selected={aboutSummaryMode === "area"}
-                              className={aboutSummaryMode === "area" ? "tab-btn active" : "tab-btn"}
-                              onClick={() => setAboutSummaryMode("area")}
-                              role="tab"
-                              type="button"
-                            >
-                              {aboutCopy.summaryByAreaTitle}
-                            </button>
-                          </div>
-                        </div>
-                        <input
-                          className="filter-search-input about-summary-search-input"
-                          onChange={(event) =>
-                            aboutSummaryMode === "region"
-                              ? setAboutRegionSummarySearchQuery(event.target.value)
-                              : setAboutAreaSummarySearchQuery(event.target.value)
-                          }
-                          placeholder={activeAboutSummarySearchPlaceholder}
-                          type="search"
-                          value={
-                            aboutSummaryMode === "region" ? aboutRegionSummarySearchQuery : aboutAreaSummarySearchQuery
-                          }
-                        />
-                        <div className="about-summary-browser-list">
-                          {aboutSummaryMode === "region"
-                            ? pagedAboutRegionSummaries.map((region) => (
-                                <div className="about-region-summary-item" key={region.id}>
-                                  <div className="about-region-summary-head">
-                                    <strong>{region.label}</strong>
-                                    <span className="about-region-summary-total">{formatCount(region.totalTrees)}</span>
-                                  </div>
-                                  <div className="about-summary-divider compact" />
-                                  {renderSpeciesCountRows(region.speciesCounts, true)}
-                                </div>
-                              ))
-                            : pagedAboutAreaSummaries.map((area) => (
-                                <div className="about-area-summary-item" key={`${area.label}-${area.areaType}`}>
-                                  <div className="about-area-summary-head">
-                                    <div className="about-area-summary-title-stack">
-                                      <div className="about-area-summary-title-row">
-                                        <strong>{area.label}</strong>
-                                        <span
-                                          className={`coverage-area-type-badge ${jurisdictionTypeClassName(area.areaType)}`}
-                                        >
-                                          {jurisdictionTypeLabel(language, area.areaType)}
-                                        </span>
-                                      </div>
-                                    </div>
-                                    <span className="about-region-summary-total">{formatCount(area.totalTrees)}</span>
-                                  </div>
-                                  <div className="about-summary-divider compact" />
-                                  {renderSpeciesCountRows(area.speciesCounts, true)}
-                                </div>
-                              ))}
-                          {(aboutSummaryMode === "region"
-                            ? filteredAboutRegionSummaries.length === 0
-                            : filteredAboutAreaSummaries.length === 0) && (
-                            <p className="filter-empty">{activeAboutSummaryEmpty}</p>
-                          )}
-                        </div>
-                        <div className="about-source-pagination">
-                          <button
-                            className="clear-btn"
-                            disabled={
-                              activeAboutSummaryPage === 0 ||
-                              (aboutSummaryMode === "region"
-                                ? filteredAboutRegionSummaries.length === 0
-                                : filteredAboutAreaSummaries.length === 0)
-                            }
-                            onClick={() =>
-                              aboutSummaryMode === "region"
-                                ? setAboutRegionSummaryPage((current) => Math.max(0, current - 1))
-                                : setAboutAreaSummaryPage((current) => Math.max(0, current - 1))
-                            }
-                            type="button"
-                          >
-                            {aboutCopy.previousPage}
-                          </button>
-                          <span>
-                            {aboutCopy.pageLabel} {activeAboutSummaryPage + 1} / {activeAboutSummaryPageCount}
-                          </span>
-                          <button
-                            className="clear-btn"
-                            disabled={
-                              activeAboutSummaryPage >= activeAboutSummaryPageCount - 1 ||
-                              (aboutSummaryMode === "region"
-                                ? filteredAboutRegionSummaries.length === 0
-                                : filteredAboutAreaSummaries.length === 0)
-                            }
-                            onClick={() =>
-                              aboutSummaryMode === "region"
-                                ? setAboutRegionSummaryPage((current) =>
-                                    Math.min(aboutRegionSummaryPageCount - 1, current + 1)
-                                  )
-                                : setAboutAreaSummaryPage((current) =>
-                                    Math.min(aboutAreaSummaryPageCount - 1, current + 1)
-                                  )
-                            }
-                            type="button"
-                          >
-                            {aboutCopy.nextPage}
-                          </button>
-                        </div>
-                      </article>
-                    </div>
-                  </div>
-
-                  <div className="about-section">
-                    <h3 className="about-section-title">{aboutCopy.sourcesTitle}</h3>
-                    <div className="about-copy-block">
-                      {aboutCopy.disclaimer.map((paragraph) => (
-                        <p key={paragraph}>{paragraph}</p>
-                      ))}
-                    </div>
-                    <article className="about-card about-sources-shell">
-                      <input
-                        className="filter-search-input about-source-search-input"
-                        onChange={(event) => setAboutSourcesSearchQuery(event.target.value)}
-                        placeholder={aboutCopy.sourcesSearchPlaceholder}
-                        type="search"
-                        value={aboutSourcesSearchQuery}
-                      />
-                      <div className="about-source-legend" role="presentation">
-                        <span className="about-source-legend-item">
-                          <span className="about-source-legend-dot official" />
-                          <span>{aboutCopy.officialBadge}</span>
-                        </span>
-                        <span className="about-source-legend-item">
-                          <span className="about-source-legend-dot supplemental" />
-                          <span>{aboutCopy.supplementalBadge}</span>
-                        </span>
-                      </div>
-                      <div className="about-source-list">
-                        {pagedAboutSources.map((source) => {
-                          const supplemental = source.name === "UW OSM Supplemental" || !isHttpUrl(source.endpoint);
-                          return (
-                            <div
-                              className={`about-source-item ${supplemental ? "supplemental" : "official"}`}
-                              key={`${source.city}-${source.name}`}
-                            >
-                              <div className="about-source-head">
-                                <div className="about-source-title-row">
-                                  <strong>
-                                    {formatAreaLabelResolved(source.city)}: {source.name}
-                                  </strong>
-                                  {isHttpUrl(source.endpoint) ? (
-                                    <a
-                                      aria-label={aboutCopy.openLink}
-                                      className="source-link-icon"
-                                      href={source.endpoint}
-                                      rel="noreferrer"
-                                      target="_blank"
-                                    >
-                                      <svg aria-hidden="true" viewBox="0 0 24 24">
-                                        <path
-                                          d="M9.35 14.65 14.65 9.35"
-                                          fill="none"
-                                          stroke="currentColor"
-                                          strokeLinecap="round"
-                                          strokeLinejoin="round"
-                                          strokeWidth="2"
-                                        />
-                                        <path
-                                          d="M7.25 14.4 5.6 16.05a3.15 3.15 0 1 0 4.45 4.45l1.65-1.65"
-                                          fill="none"
-                                          stroke="currentColor"
-                                          strokeLinecap="round"
-                                          strokeLinejoin="round"
-                                          strokeWidth="2"
-                                        />
-                                        <path
-                                          d="M16.75 9.6l1.65-1.65a3.15 3.15 0 1 0-4.45-4.45L12.3 5.15"
-                                          fill="none"
-                                          stroke="currentColor"
-                                          strokeLinecap="round"
-                                          strokeLinejoin="round"
-                                          strokeWidth="2"
-                                        />
-                                      </svg>
-                                    </a>
-                                  ) : null}
-                                </div>
-                              </div>
-                              {!isHttpUrl(source.endpoint) && <p>{source.endpoint}</p>}
-                            </div>
-                          );
-                        })}
-                        {filteredAboutSources.length === 0 && <p className="filter-empty">{aboutCopy.sourcesEmpty}</p>}
-                      </div>
-                      {aboutSources.length > 0 && (
-                        <div className="about-source-pagination">
-                          <button
-                            className="clear-btn"
-                            disabled={aboutSourcesPage === 0 || filteredAboutSources.length === 0}
-                            onClick={() => setAboutSourcesPage((current) => Math.max(0, current - 1))}
-                            type="button"
-                          >
-                            {aboutCopy.previousPage}
-                          </button>
-                          <span>
-                            {aboutCopy.pageLabel} {aboutSourcesPage + 1} / {aboutSourcePageCount}
-                          </span>
-                          <button
-                            className="clear-btn"
-                            disabled={aboutSourcesPage >= aboutSourcePageCount - 1 || filteredAboutSources.length === 0}
-                            onClick={() =>
-                              setAboutSourcesPage((current) => Math.min(aboutSourcePageCount - 1, current + 1))
-                            }
-                            type="button"
-                          >
-                            {aboutCopy.nextPage}
-                          </button>
-                        </div>
-                      )}
-                    </article>
-                  </div>
-
-                  <div className="about-section">
-                    <h3 className="about-section-title">{legalUiCopy.sectionTitle}</h3>
-                    <div className="about-copy-block">
-                      <p>
-                        Pink Hunter now includes a site{" "}
-                        <a
-                          className="about-inline-legal-link"
-                          href={buildLegalDocumentHref("privacy")}
-                          onClick={(event) => {
-                            event.preventDefault();
-                            openLegalDocument("privacy");
-                          }}
-                        >
-                          <strong>{legalUiCopy.privacyLinkLabel}</strong>
-                        </a>{" "}
-                        and a plain-language{" "}
-                        <a
-                          className="about-inline-legal-link"
-                          href={buildLegalDocumentHref("terms")}
-                          onClick={(event) => {
-                            event.preventDefault();
-                            openLegalDocument("terms");
-                          }}
-                        >
-                          <strong>{legalUiCopy.termsLinkLabel}</strong>
-                        </a>{" "}
-                        page.
-                      </p>
-                    </div>
-                  </div>
-
-                  <div className="about-section">
-                    <h3 className="about-section-title">{aboutCopy.contactTitle}</h3>
-                    <div className="about-copy-block about-contact-block">
-                      <p>{renderBoldName(aboutCopy.contactLead, "Flala Zhang")}</p>
-                      <ContactIcons />
-                    </div>
-                  </div>
-                </>
-              )}
-            </section>
-          )}
-
-          <footer className="meta-row">
-            <span className="meta-row-info">
-              {t(language, "dataUpdated")}: {new Date(data.meta.generated_at).toLocaleString(language)}
-            </span>
-            <div className="meta-row-links">
-              <button
-                className={activePanel === "about" && activeLegalDocument === "privacy" ? "meta-link-button active" : "meta-link-button"}
-                onClick={() => openLegalDocument("privacy")}
-                type="button"
-              >
-                {legalUiCopy.footerPrivacy}
-              </button>
-              <button
-                className={activePanel === "about" && activeLegalDocument === "terms" ? "meta-link-button active" : "meta-link-button"}
-                onClick={() => openLegalDocument("terms")}
-                type="button"
-              >
-                {legalUiCopy.footerTerms}
-              </button>
-            </div>
-          </footer>
-        </div>
-      </section>
+            {renderMetaFooter()}
+          </div>
+        </section>
+      )}
     </div>
   );
 }
