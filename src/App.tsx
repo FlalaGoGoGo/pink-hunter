@@ -5604,22 +5604,13 @@ export default function App(): JSX.Element {
   }
 
   function showSelectedCityTrees(): void {
-
     if (!selectedCityArea) {
       return;
     }
 
-    if (selectedSpecies.length === 0) {
-      setSelectedSpecies([...ALL_SPECIES]);
-    }
-
-    if (selectedOwnership.length === 0) {
-      const nextOwnership =
-        selectedCityArea.item.ownership_groups && selectedCityArea.item.ownership_groups.length > 0
-          ? [...selectedCityArea.item.ownership_groups]
-          : [...ALL_OWNERSHIP];
-      setSelectedOwnership(nextOwnership);
-    }
+    // Showing a city should start from an unfiltered state so all five blossom groups load by default.
+    setSelectedSpecies([]);
+    setSelectedOwnership([]);
 
     setActiveRegion(selectedCityArea.region);
     setLoadedCityAreaId(selectedCityArea.areaId);
