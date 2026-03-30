@@ -1,0 +1,131 @@
+{
+  "generated_at": "2026-03-30T04:19:08.749572+00:00",
+  "region": "nd",
+  "strategy": "area_shard",
+  "items": [
+    {
+      "jurisdiction": "Fargo",
+      "slug": "fargo",
+      "display_name": "Fargo",
+      "jurisdiction_type": "city",
+      "state_province": "ND",
+      "country": "United States",
+      "bounds": [
+        [
+          -96.90382200034117,
+          46.70284499976631
+        ],
+        [
+          -96.75265400019958,
+          46.97696600022388
+        ]
+      ],
+      "tree_count": 2479,
+      "zip_codes": [
+        "58102",
+        "58103",
+        "58104"
+      ],
+      "species_counts": {
+        "cherry": 249,
+        "plum": 1,
+        "peach": 0,
+        "magnolia": 5,
+        "crabapple": 2224
+      },
+      "ownership_counts": {
+        "public": 2479,
+        "private": 0,
+        "unknown": 0
+      },
+      "species_ownership_counts": {
+        "cherry": {
+          "public": 249,
+          "private": 0,
+          "unknown": 0
+        },
+        "plum": {
+          "public": 1,
+          "private": 0,
+          "unknown": 0
+        },
+        "peach": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        },
+        "magnolia": {
+          "public": 5,
+          "private": 0,
+          "unknown": 0
+        },
+        "crabapple": {
+          "public": 2224,
+          "private": 0,
+          "unknown": 0
+        }
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "fargo-001",
+          "bounds": [
+            [
+              -96.89955712545655,
+              46.77914992557332
+            ],
+            [
+              -96.76501127514787,
+              46.94057017228493
+            ]
+          ],
+          "data_path": "/data/trees.nd.area.fargo.v2.geojson",
+          "tree_count": 2479,
+          "ownership_counts": {
+            "public": 2479,
+            "private": 0,
+            "unknown": 0
+          },
+          "species_counts": {
+            "cherry": 249,
+            "plum": 1,
+            "peach": 0,
+            "magnolia": 5,
+            "crabapple": 2224
+          },
+          "species_ownership_counts": {
+            "cherry": {
+              "public": 249,
+              "private": 0,
+              "unknown": 0
+            },
+            "plum": {
+              "public": 1,
+              "private": 0,
+              "unknown": 0
+            },
+            "peach": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            },
+            "magnolia": {
+              "public": 5,
+              "private": 0,
+              "unknown": 0
+            },
+            "crabapple": {
+              "public": 2224,
+              "private": 0,
+              "unknown": 0
+            }
+          },
+          "raw_bytes": 1212634,
+          "gzip_bytes": 61844
+        }
+      ]
+    }
+  ]
+}

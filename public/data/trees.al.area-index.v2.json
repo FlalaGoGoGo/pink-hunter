@@ -1,0 +1,130 @@
+{
+  "generated_at": "2026-03-30T04:19:08.749572+00:00",
+  "region": "al",
+  "strategy": "area_shard",
+  "items": [
+    {
+      "jurisdiction": "Auburn",
+      "slug": "auburn",
+      "display_name": "Auburn",
+      "jurisdiction_type": "city",
+      "state_province": "AL",
+      "country": "United States",
+      "bounds": [
+        [
+          -85.58555000033908,
+          32.52424400026742
+        ],
+        [
+          -85.40446600007685,
+          32.7306289998575
+        ]
+      ],
+      "tree_count": 219,
+      "zip_codes": [
+        "36830",
+        "36832"
+      ],
+      "species_counts": {
+        "cherry": 23,
+        "plum": 11,
+        "peach": 1,
+        "magnolia": 153,
+        "crabapple": 31
+      },
+      "ownership_counts": {
+        "public": 219,
+        "private": 0,
+        "unknown": 0
+      },
+      "species_ownership_counts": {
+        "cherry": {
+          "public": 23,
+          "private": 0,
+          "unknown": 0
+        },
+        "plum": {
+          "public": 11,
+          "private": 0,
+          "unknown": 0
+        },
+        "peach": {
+          "public": 1,
+          "private": 0,
+          "unknown": 0
+        },
+        "magnolia": {
+          "public": 153,
+          "private": 0,
+          "unknown": 0
+        },
+        "crabapple": {
+          "public": 31,
+          "private": 0,
+          "unknown": 0
+        }
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "auburn-001",
+          "bounds": [
+            [
+              -85.50571446438647,
+              32.58149039932775
+            ],
+            [
+              -85.42733955902936,
+              32.6586880373231
+            ]
+          ],
+          "data_path": "/data/trees.al.area.auburn.v2.geojson",
+          "tree_count": 219,
+          "ownership_counts": {
+            "public": 219,
+            "private": 0,
+            "unknown": 0
+          },
+          "species_counts": {
+            "cherry": 23,
+            "plum": 11,
+            "peach": 1,
+            "magnolia": 153,
+            "crabapple": 31
+          },
+          "species_ownership_counts": {
+            "cherry": {
+              "public": 23,
+              "private": 0,
+              "unknown": 0
+            },
+            "plum": {
+              "public": 11,
+              "private": 0,
+              "unknown": 0
+            },
+            "peach": {
+              "public": 1,
+              "private": 0,
+              "unknown": 0
+            },
+            "magnolia": {
+              "public": 153,
+              "private": 0,
+              "unknown": 0
+            },
+            "crabapple": {
+              "public": 31,
+              "private": 0,
+              "unknown": 0
+            }
+          },
+          "raw_bytes": 108782,
+          "gzip_bytes": 5918
+        }
+      ]
+    }
+  ]
+}

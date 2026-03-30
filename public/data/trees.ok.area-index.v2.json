@@ -1,0 +1,140 @@
+{
+  "generated_at": "2026-03-30T04:19:08.749572+00:00",
+  "region": "ok",
+  "strategy": "area_shard",
+  "items": [
+    {
+      "jurisdiction": "Tulsa",
+      "slug": "tulsa",
+      "display_name": "Tulsa",
+      "jurisdiction_type": "city",
+      "state_province": "OK",
+      "country": "United States",
+      "bounds": [
+        [
+          -96.07458299967573,
+          35.96834799980111
+        ],
+        [
+          -95.68170100041094,
+          36.336534000291714
+        ]
+      ],
+      "tree_count": 104,
+      "zip_codes": [
+        "74103",
+        "74105",
+        "74107",
+        "74112",
+        "74114",
+        "74115",
+        "74119",
+        "74120",
+        "74127",
+        "74133",
+        "74135",
+        "74146"
+      ],
+      "species_counts": {
+        "cherry": 0,
+        "plum": 6,
+        "peach": 11,
+        "magnolia": 42,
+        "crabapple": 45
+      },
+      "ownership_counts": {
+        "public": 104,
+        "private": 0,
+        "unknown": 0
+      },
+      "species_ownership_counts": {
+        "cherry": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        },
+        "plum": {
+          "public": 6,
+          "private": 0,
+          "unknown": 0
+        },
+        "peach": {
+          "public": 11,
+          "private": 0,
+          "unknown": 0
+        },
+        "magnolia": {
+          "public": 42,
+          "private": 0,
+          "unknown": 0
+        },
+        "crabapple": {
+          "public": 45,
+          "private": 0,
+          "unknown": 0
+        }
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "tulsa-001",
+          "bounds": [
+            [
+              -96.02366121521861,
+              36.01832587572586
+            ],
+            [
+              -95.86751751006031,
+              36.18433771667926
+            ]
+          ],
+          "data_path": "/data/trees.ok.area.tulsa.v2.geojson",
+          "tree_count": 104,
+          "ownership_counts": {
+            "public": 104,
+            "private": 0,
+            "unknown": 0
+          },
+          "species_counts": {
+            "cherry": 0,
+            "plum": 6,
+            "peach": 11,
+            "magnolia": 42,
+            "crabapple": 45
+          },
+          "species_ownership_counts": {
+            "cherry": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            },
+            "plum": {
+              "public": 6,
+              "private": 0,
+              "unknown": 0
+            },
+            "peach": {
+              "public": 11,
+              "private": 0,
+              "unknown": 0
+            },
+            "magnolia": {
+              "public": 42,
+              "private": 0,
+              "unknown": 0
+            },
+            "crabapple": {
+              "public": 45,
+              "private": 0,
+              "unknown": 0
+            }
+          },
+          "raw_bytes": 47896,
+          "gzip_bytes": 3038
+        }
+      ]
+    }
+  ]
+}

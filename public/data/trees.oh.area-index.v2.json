@@ -1,0 +1,130 @@
+{
+  "generated_at": "2026-03-30T04:19:08.749572+00:00",
+  "region": "oh",
+  "strategy": "area_shard",
+  "items": [
+    {
+      "jurisdiction": "Grandview Heights",
+      "slug": "grandview-heights",
+      "display_name": "Grandview Heights",
+      "jurisdiction_type": "city",
+      "state_province": "OH",
+      "country": "United States",
+      "bounds": [
+        [
+          -83.05775499970831,
+          39.97046200002955
+        ],
+        [
+          -83.0211519999015,
+          39.989319000237394
+        ]
+      ],
+      "tree_count": 266,
+      "zip_codes": [
+        "43212",
+        "43215"
+      ],
+      "species_counts": {
+        "cherry": 65,
+        "plum": 0,
+        "peach": 0,
+        "magnolia": 29,
+        "crabapple": 172
+      },
+      "ownership_counts": {
+        "public": 266,
+        "private": 0,
+        "unknown": 0
+      },
+      "species_ownership_counts": {
+        "cherry": {
+          "public": 65,
+          "private": 0,
+          "unknown": 0
+        },
+        "plum": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        },
+        "peach": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        },
+        "magnolia": {
+          "public": 29,
+          "private": 0,
+          "unknown": 0
+        },
+        "crabapple": {
+          "public": 172,
+          "private": 0,
+          "unknown": 0
+        }
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "grandview-heights-001",
+          "bounds": [
+            [
+              -83.05716399968404,
+              39.97446751458081
+            ],
+            [
+              -83.02984736859798,
+              39.98568366666666
+            ]
+          ],
+          "data_path": "/data/trees.oh.area.grandview-heights.v2.geojson",
+          "tree_count": 266,
+          "ownership_counts": {
+            "public": 266,
+            "private": 0,
+            "unknown": 0
+          },
+          "species_counts": {
+            "cherry": 65,
+            "plum": 0,
+            "peach": 0,
+            "magnolia": 29,
+            "crabapple": 172
+          },
+          "species_ownership_counts": {
+            "cherry": {
+              "public": 65,
+              "private": 0,
+              "unknown": 0
+            },
+            "plum": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            },
+            "peach": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            },
+            "magnolia": {
+              "public": 29,
+              "private": 0,
+              "unknown": 0
+            },
+            "crabapple": {
+              "public": 172,
+              "private": 0,
+              "unknown": 0
+            }
+          },
+          "raw_bytes": 139032,
+          "gzip_bytes": 6740
+        }
+      ]
+    }
+  ]
+}

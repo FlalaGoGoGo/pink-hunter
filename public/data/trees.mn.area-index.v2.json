@@ -1,0 +1,130 @@
+{
+  "generated_at": "2026-03-30T04:19:08.749572+00:00",
+  "region": "mn",
+  "strategy": "area_shard",
+  "items": [
+    {
+      "jurisdiction": "Moorhead",
+      "slug": "moorhead",
+      "display_name": "Moorhead",
+      "jurisdiction_type": "city",
+      "state_province": "MN",
+      "country": "United States",
+      "bounds": [
+        [
+          -96.80016999997918,
+          46.81107600006181
+        ],
+        [
+          -96.64770999967685,
+          46.948647999708896
+        ]
+      ],
+      "tree_count": 1813,
+      "zip_codes": [
+        "56560",
+        "56563"
+      ],
+      "species_counts": {
+        "cherry": 335,
+        "plum": 16,
+        "peach": 0,
+        "magnolia": 6,
+        "crabapple": 1456
+      },
+      "ownership_counts": {
+        "public": 1813,
+        "private": 0,
+        "unknown": 0
+      },
+      "species_ownership_counts": {
+        "cherry": {
+          "public": 335,
+          "private": 0,
+          "unknown": 0
+        },
+        "plum": {
+          "public": 16,
+          "private": 0,
+          "unknown": 0
+        },
+        "peach": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        },
+        "magnolia": {
+          "public": 6,
+          "private": 0,
+          "unknown": 0
+        },
+        "crabapple": {
+          "public": 1456,
+          "private": 0,
+          "unknown": 0
+        }
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "moorhead-001",
+          "bounds": [
+            [
+              -96.79235363057633,
+              46.81919800312765
+            ],
+            [
+              -96.70924366966419,
+              46.91154418369913
+            ]
+          ],
+          "data_path": "/data/trees.mn.area.moorhead.v2.geojson",
+          "tree_count": 1813,
+          "ownership_counts": {
+            "public": 1813,
+            "private": 0,
+            "unknown": 0
+          },
+          "species_counts": {
+            "cherry": 335,
+            "plum": 16,
+            "peach": 0,
+            "magnolia": 6,
+            "crabapple": 1456
+          },
+          "species_ownership_counts": {
+            "cherry": {
+              "public": 335,
+              "private": 0,
+              "unknown": 0
+            },
+            "plum": {
+              "public": 16,
+              "private": 0,
+              "unknown": 0
+            },
+            "peach": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            },
+            "magnolia": {
+              "public": 6,
+              "private": 0,
+              "unknown": 0
+            },
+            "crabapple": {
+              "public": 1456,
+              "private": 0,
+              "unknown": 0
+            }
+          },
+          "raw_bytes": 923300,
+          "gzip_bytes": 46033
+        }
+      ]
+    }
+  ]
+}

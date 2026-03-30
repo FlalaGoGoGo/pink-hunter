@@ -3,8 +3,15 @@ from __future__ import annotations
 
 import argparse
 import json
-import requests
 import sys
+from urllib.error import HTTPError, URLError
+from urllib.parse import urlencode
+from urllib.request import urlopen
+
+try:
+    import requests  # type: ignore
+except ImportError:  # pragma: no cover - optional runtime dependency
+    requests = None
 from pathlib import Path
 from typing import Any
 
@@ -31,6 +38,7 @@ US_COUNTY_LAYER_URL = "https://tigerweb.geo.census.gov/arcgis/rest/services/TIGE
 
 REGION_COUNTRY: dict[str, str] = {
     "ab": "ca",
+    "al": "us",
     "az": "us",
     "bc": "ca",
     "ca": "us",
@@ -39,20 +47,29 @@ REGION_COUNTRY: dict[str, str] = {
     "dc": "us",
     "fl": "us",
     "ga": "us",
+    "id": "us",
     "il": "us",
     "in": "us",
+    "ks": "us",
+    "ky": "us",
     "ma": "us",
     "mb": "ca",
     "md": "us",
     "mi": "us",
+    "mn": "us",
     "mo": "us",
     "nb": "ca",
     "nc": "us",
+    "nd": "us",
+    "ne": "us",
     "nh": "us",
     "nj": "us",
+    "nm": "us",
     "ns": "ca",
     "nv": "us",
     "ny": "us",
+    "oh": "us",
+    "ok": "us",
     "on": "ca",
     "or": "us",
     "pa": "us",
@@ -71,6 +88,7 @@ REGION_COUNTRY: dict[str, str] = {
 
 REGION_FULL_NAMES: dict[str, str] = {
     "ab": "Alberta",
+    "al": "Alabama",
     "az": "Arizona",
     "bc": "British Columbia",
     "ca": "California",
@@ -79,20 +97,29 @@ REGION_FULL_NAMES: dict[str, str] = {
     "dc": "Washington, DC",
     "fl": "Florida",
     "ga": "Georgia",
+    "id": "Idaho",
     "il": "Illinois",
     "in": "Indiana",
+    "ks": "Kansas",
+    "ky": "Kentucky",
     "ma": "Massachusetts",
     "mb": "Manitoba",
     "md": "Maryland",
     "mi": "Michigan",
+    "mn": "Minnesota",
     "mo": "Missouri",
     "nb": "New Brunswick",
     "nc": "North Carolina",
+    "nd": "North Dakota",
+    "ne": "Nebraska",
     "nh": "New Hampshire",
     "nj": "New Jersey",
+    "nm": "New Mexico",
     "ns": "Nova Scotia",
     "nv": "Nevada",
     "ny": "New York",
+    "oh": "Ohio",
+    "ok": "Oklahoma",
     "on": "Ontario",
     "or": "Oregon",
     "pa": "Pennsylvania",
@@ -190,6 +217,7 @@ def country_for_region(region: str) -> str:
 
 
 STATE_FIPS_TO_REGION = {
+    "01": "al",
     "04": "az",
     "06": "ca",
     "08": "co",
@@ -197,16 +225,25 @@ STATE_FIPS_TO_REGION = {
     "11": "dc",
     "12": "fl",
     "13": "ga",
+    "16": "id",
     "17": "il",
     "18": "in",
+    "20": "ks",
+    "21": "ky",
     "24": "md",
     "25": "ma",
     "26": "mi",
+    "27": "mn",
     "29": "mo",
     "33": "nh",
     "34": "nj",
     "36": "ny",
     "37": "nc",
+    "38": "nd",
+    "31": "ne",
+    "35": "nm",
+    "39": "oh",
+    "40": "ok",
     "41": "or",
     "42": "pa",
     "44": "ri",
@@ -221,6 +258,7 @@ STATE_FIPS_TO_REGION = {
 
 COVERED_REGION_BY_STATE_CODE = {
     "ab": "ab",
+    "al": "al",
     "az": "az",
     "bc": "bc",
     "ca": "ca",
@@ -229,20 +267,29 @@ COVERED_REGION_BY_STATE_CODE = {
     "dc": "dc",
     "fl": "fl",
     "ga": "ga",
+    "id": "id",
     "il": "il",
     "in": "in",
+    "ks": "ks",
+    "ky": "ky",
     "ma": "ma",
     "mb": "mb",
     "md": "md",
     "mi": "mi",
+    "mn": "mn",
     "mo": "mo",
     "nb": "nb",
     "nc": "nc",
+    "nd": "nd",
+    "ne": "ne",
     "nh": "nh",
     "nj": "nj",
+    "nm": "nm",
     "ns": "ns",
     "nv": "nv",
     "ny": "ny",
+    "oh": "oh",
+    "ok": "ok",
     "on": "on",
     "or": "or",
     "pa": "pa",
@@ -411,9 +458,24 @@ def load_json(path: Path) -> Any:
 
 
 def fetch_json(url: str, params: dict[str, Any]) -> Any:
-    response = requests.get(url, params=params, timeout=90)
-    response.raise_for_status()
-    return response.json()
+    if requests is not None:
+        response = requests.get(url, params=params, timeout=90)
+        response.raise_for_status()
+        return response.json()
+    query = urlencode(params)
+    with urlopen(f"{url}?{query}", timeout=90) as response:  # noqa: S310
+        return json.loads(response.read().decode("utf-8"))
+
+
+REQUEST_EXCEPTIONS = tuple(
+    exc
+    for exc in (
+        getattr(requests, "RequestException", None),
+        HTTPError,
+        URLError,
+    )
+    if exc is not None
+)
 
 
 def fetch_us_state_extent(state_fips: str) -> list[list[float]] | None:
@@ -747,7 +809,7 @@ def build_jump_index(data_dir: Path) -> dict[str, Any]:
             if state_fips:
                 try:
                     state_bounds = fetch_us_state_extent(state_fips)
-                except requests.RequestException:
+                except REQUEST_EXCEPTIONS:
                     state_bounds = None
         if not state_bounds:
             continue

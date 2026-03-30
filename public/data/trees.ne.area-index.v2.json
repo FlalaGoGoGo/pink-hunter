@@ -1,0 +1,149 @@
+{
+  "generated_at": "2026-03-30T04:19:08.749572+00:00",
+  "region": "ne",
+  "strategy": "area_shard",
+  "items": [
+    {
+      "jurisdiction": "Lincoln",
+      "slug": "lincoln",
+      "display_name": "Lincoln",
+      "jurisdiction_type": "city",
+      "state_province": "NE",
+      "country": "United States",
+      "bounds": [
+        [
+          -96.80415000021853,
+          40.69376699985648
+        ],
+        [
+          -96.56764999997247,
+          40.914891999987454
+        ]
+      ],
+      "tree_count": 9063,
+      "zip_codes": [
+        "68430",
+        "68502",
+        "68503",
+        "68504",
+        "68505",
+        "68506",
+        "68507",
+        "68508",
+        "68510",
+        "68512",
+        "68514",
+        "68516",
+        "68520",
+        "68521",
+        "68522",
+        "68523",
+        "68524",
+        "68526",
+        "68527",
+        "68528",
+        "68588"
+      ],
+      "species_counts": {
+        "cherry": 150,
+        "plum": 191,
+        "peach": 16,
+        "magnolia": 154,
+        "crabapple": 8552
+      },
+      "ownership_counts": {
+        "public": 9063,
+        "private": 0,
+        "unknown": 0
+      },
+      "species_ownership_counts": {
+        "cherry": {
+          "public": 150,
+          "private": 0,
+          "unknown": 0
+        },
+        "plum": {
+          "public": 191,
+          "private": 0,
+          "unknown": 0
+        },
+        "peach": {
+          "public": 16,
+          "private": 0,
+          "unknown": 0
+        },
+        "magnolia": {
+          "public": 154,
+          "private": 0,
+          "unknown": 0
+        },
+        "crabapple": {
+          "public": 8552,
+          "private": 0,
+          "unknown": 0
+        }
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "lincoln-001",
+          "bounds": [
+            [
+              -96.79529722620298,
+              40.70606983336599
+            ],
+            [
+              -96.57087253164875,
+              40.885854395130806
+            ]
+          ],
+          "data_path": "/data/trees.ne.area.lincoln.v2.geojson",
+          "tree_count": 9063,
+          "ownership_counts": {
+            "public": 9063,
+            "private": 0,
+            "unknown": 0
+          },
+          "species_counts": {
+            "cherry": 150,
+            "plum": 191,
+            "peach": 16,
+            "magnolia": 154,
+            "crabapple": 8552
+          },
+          "species_ownership_counts": {
+            "cherry": {
+              "public": 150,
+              "private": 0,
+              "unknown": 0
+            },
+            "plum": {
+              "public": 191,
+              "private": 0,
+              "unknown": 0
+            },
+            "peach": {
+              "public": 16,
+              "private": 0,
+              "unknown": 0
+            },
+            "magnolia": {
+              "public": 154,
+              "private": 0,
+              "unknown": 0
+            },
+            "crabapple": {
+              "public": 8552,
+              "private": 0,
+              "unknown": 0
+            }
+          },
+          "raw_bytes": 4488629,
+          "gzip_bytes": 250022
+        }
+      ]
+    }
+  ]
+}

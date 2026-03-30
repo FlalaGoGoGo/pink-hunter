@@ -2160,6 +2160,131 @@ MID_SOUTH_TREEPLOTTER_CONFIGS: dict[str, dict[str, Any]] = {
     },
 }
 
+ZERO_COVERAGE_TREEPLOTTER_CONFIGS: dict[str, dict[str, Any]] = {
+    "Albuquerque": {
+        "folder": "CABQ",
+        "landing_url": "https://pg-cloud.com/CABQ/",
+        "region": "nm",
+        "source_department": "City of Albuquerque",
+        "note": "Integrated via the official City of Albuquerque public TreePlotter inventory page and official jurisdiction boundary clipping.",
+        "clip_to_boundary": True,
+    },
+    "Coeur d'Alene": {
+        "folder": "Idaho",
+        "landing_url": "https://pg-cloud.com/Idaho/",
+        "region": "id",
+        "source_department": "Idaho Department of Lands",
+        "note": "Integrated via the official Idaho Department of Lands public TreePlotter inventory and clipped to the official Coeur d'Alene boundary.",
+        "clip_to_boundary": True,
+    },
+    "Grandview Heights": {
+        "folder": "GHPR",
+        "landing_url": "https://pg-cloud.com/GHPR/",
+        "region": "oh",
+        "source_department": "City of Grandview Heights",
+        "note": "Integrated via the official City of Grandview Heights public TreePlotter inventory page and official jurisdiction boundary clipping.",
+        "clip_to_boundary": True,
+    },
+    "Moorhead": {
+        "folder": "Moorhead",
+        "landing_url": "https://pg-cloud.com/Moorhead/",
+        "region": "mn",
+        "source_department": "City of Moorhead",
+        "note": "Integrated via the official City of Moorhead public TreePlotter inventory page and official jurisdiction boundary clipping.",
+        "clip_to_boundary": True,
+    },
+}
+
+ZERO_COVERAGE_ARCGIS_CONFIGS: dict[str, dict[str, Any]] = {
+    "Andover": {
+        "region": "ks",
+        "layer_url": "https://services3.arcgis.com/W4V2MNpny4Y5fqqM/arcgis/rest/services/Street_Trees_(Public)/FeatureServer/0",
+        "dataset_page": "https://www.arcgis.com/home/item.html?id=7a64fbc6d33d4e959629d3283bb64ab9",
+        "where": "UPPER(NAME) LIKE '%CHERRY%' OR UPPER(NAME) LIKE '%PLUM%' OR UPPER(NAME) LIKE '%PEACH%' OR UPPER(NAME) LIKE '%MAGNOLIA%' OR UPPER(NAME) LIKE '%CRABAPPLE%' OR UPPER(NAME) LIKE '%APPLE%' OR UPPER(GENUS) LIKE 'PRUNUS' OR UPPER(GENUS) LIKE 'MALUS' OR UPPER(GENUS) LIKE 'MAGNOLIA%'",
+        "object_id_field": "OBJECTID",
+        "common_field": "NAME",
+        "genus_field": "GENUS",
+        "species_field": "SPECIES",
+        "source_name": "Street Trees (Public)",
+        "source_department": "City of Andover",
+        "ownership_raw": "City of Andover",
+        "note": "Integrated from the official City of Andover public street-tree ArcGIS layer and clipped to the official jurisdiction boundary.",
+        "clip_to_boundary": True,
+    },
+    "Auburn": {
+        "region": "al",
+        "layer_url": "https://gisportal.auburnalabama.org/server/rest/services/PublicWorks/Tree_Inventory_Benefits/MapServer/0",
+        "dataset_page": "https://www.auburnal.gov/public-works/landscape-and-sustainability/urban-forestry/explore-auburn%27s-tree-canopy/",
+        "where": "UPPER(CommonName) LIKE '%CHERRY%' OR UPPER(CommonName) LIKE '%PLUM%' OR UPPER(CommonName) LIKE '%PEACH%' OR UPPER(CommonName) LIKE '%MAGNOLIA%' OR UPPER(CommonName) LIKE '%CRABAPPLE%' OR UPPER(CommonName) LIKE '%APPLE%' OR UPPER(Botanical) LIKE 'PRUNUS%' OR UPPER(Botanical) LIKE 'MALUS%' OR UPPER(Botanical) LIKE 'MAGNOLIA%'",
+        "object_id_field": "OBJECTID",
+        "common_field": "CommonName",
+        "scientific_field": "Botanical",
+        "source_name": "Tree Inventory Benefits",
+        "source_department": "City of Auburn",
+        "ownership_raw": "City of Auburn",
+        "note": "Integrated from the official City of Auburn public street-tree ArcGIS layer and clipped to the official jurisdiction boundary.",
+        "clip_to_boundary": True,
+    },
+    "Covington": {
+        "region": "ky",
+        "layer_url": "https://services2.arcgis.com/oF37xW75ElmQLUav/arcgis/rest/services/Trees/FeatureServer/0",
+        "dataset_page": "https://covingtonky.maps.arcgis.com/apps/webappviewer/index.html?id=b7ea73f6014a4f9ea174d0f490a5d9ad",
+        "where": "UPPER(Cmmn_Nm) LIKE '%CHERRY%' OR UPPER(Cmmn_Nm) LIKE '%PLUM%' OR UPPER(Cmmn_Nm) LIKE '%PEACH%' OR UPPER(Cmmn_Nm) LIKE '%MAGNOLIA%' OR UPPER(Cmmn_Nm) LIKE '%CRABAPPLE%' OR UPPER(Cmmn_Nm) LIKE '%APPLE%' OR UPPER(Scntf_N) LIKE 'PRUNUS%' OR UPPER(Scntf_N) LIKE 'MALUS%' OR UPPER(Scntf_N) LIKE 'MAGNOLIA%'",
+        "object_id_field": "FID",
+        "common_field": "Cmmn_Nm",
+        "scientific_field": "Scntf_N",
+        "source_name": "Trees",
+        "source_department": "City of Covington",
+        "ownership_raw": "City of Covington",
+        "note": "Integrated from the official City of Covington public tree-inventory ArcGIS layer and clipped to the official jurisdiction boundary.",
+        "clip_to_boundary": True,
+    },
+    "Fargo": {
+        "region": "nd",
+        "layer_url": "https://gis.cityoffargo.com/arcgis/rest/services/ArcGISOnline/ForestryTrees/MapServer/0",
+        "dataset_page": "https://fargond.gov/city-government/departments/forestry",
+        "where": "UPPER(COMMON_NAME) LIKE '%CHERRY%' OR UPPER(COMMON_NAME) LIKE '%PLUM%' OR UPPER(COMMON_NAME) LIKE '%PEACH%' OR UPPER(COMMON_NAME) LIKE '%MAGNOLIA%' OR UPPER(COMMON_NAME) LIKE '%CRABAPPLE%' OR UPPER(COMMON_NAME) LIKE '%APPLE%' OR UPPER(BOTANICAL_NAME) LIKE 'PRUNUS%' OR UPPER(BOTANICAL_NAME) LIKE 'MALUS%' OR UPPER(BOTANICAL_NAME) LIKE 'MAGNOLIA%'",
+        "object_id_field": "OBJECTID",
+        "common_field": "COMMON_NAME",
+        "scientific_field": "BOTANICAL_NAME",
+        "source_name": "Forestry Trees",
+        "source_department": "City of Fargo",
+        "ownership_raw": "City of Fargo",
+        "note": "Integrated from the official City of Fargo public forestry ArcGIS layer and clipped to the official jurisdiction boundary.",
+        "clip_to_boundary": True,
+    },
+    "Lincoln": {
+        "region": "ne",
+        "layer_url": "https://gis.lincoln.ne.gov/public/rest/services/Parks/Trees/MapServer/0",
+        "dataset_page": "https://gis.lincoln.ne.gov/public/rest/services/Parks/Trees/MapServer/0",
+        "where": "UPPER(CommonName) LIKE '%CHERRY%' OR UPPER(CommonName) LIKE '%PLUM%' OR UPPER(CommonName) LIKE '%PEACH%' OR UPPER(CommonName) LIKE '%MAGNOLIA%' OR UPPER(CommonName) LIKE '%CRABAPPLE%' OR UPPER(CommonName) LIKE '%APPLE%' OR UPPER(ScientificName) LIKE 'PRUNUS%' OR UPPER(ScientificName) LIKE 'MALUS%' OR UPPER(ScientificName) LIKE 'MAGNOLIA%'",
+        "object_id_field": "OBJECTID",
+        "common_field": "CommonName",
+        "scientific_field": "ScientificName",
+        "source_name": "Trees",
+        "source_department": "City of Lincoln",
+        "ownership_raw": "City of Lincoln",
+        "note": "Integrated from the official City of Lincoln public trees ArcGIS layer and clipped to the official jurisdiction boundary.",
+        "clip_to_boundary": True,
+    },
+    "Tulsa": {
+        "region": "ok",
+        "layer_url": "https://utility.arcgis.com/usrsvcs/servers/7ef20f8a5add4adcb61b95fdf630984d/rest/services/FieldMaps/TreesFieldEdits/MapServer/0",
+        "dataset_page": "https://www.arcgis.com/apps/webappviewer/index.html?id=6329b4beb7dc4c478610e21ea310ec4a",
+        "where": "UPPER(CommonName) LIKE '%CHERRY%' OR UPPER(CommonName) LIKE '%PLUM%' OR UPPER(CommonName) LIKE '%PEACH%' OR UPPER(CommonName) LIKE '%MAGNOLIA%' OR UPPER(CommonName) LIKE '%CRABAPPLE%' OR UPPER(CommonName) LIKE '%APPLE%' OR UPPER(Genus) LIKE 'PRUNUS' OR UPPER(Genus) LIKE 'MALUS' OR UPPER(Genus) LIKE 'MAGNOLIA%'",
+        "object_id_field": "OBJECTID",
+        "common_field": "CommonName",
+        "genus_field": "Genus",
+        "species_field": "Species",
+        "source_name": "Trees",
+        "source_department": "City of Tulsa",
+        "ownership_raw": "City of Tulsa",
+        "note": "Integrated from the official City of Tulsa public tree inventory ArcGIS layer and clipped to the official jurisdiction boundary.",
+        "clip_to_boundary": True,
+    },
+}
+
+
 UNCOVERED_STATE_ARCGIS_CONFIGS: dict[str, dict[str, Any]] = {
     "Carmel": {
         "region": "in",
@@ -11724,10 +11849,49 @@ CITY_FETCHERS.update({city: build_treekeeper_fetcher(city, config) for city, con
 CITY_FETCHERS.update({city: build_treeplotter_fetcher(city, config) for city, config in EAST_COAST_TREEPLOTTER_CONFIGS.items()})
 CITY_FETCHERS.update({city: build_treekeeper_fetcher(city, config) for city, config in MID_SOUTH_TREEKEEPER_CONFIGS.items()})
 CITY_FETCHERS.update({city: build_treeplotter_fetcher(city, config) for city, config in MID_SOUTH_TREEPLOTTER_CONFIGS.items()})
+CITY_FETCHERS.update({city: build_treeplotter_fetcher(city, config) for city, config in ZERO_COVERAGE_TREEPLOTTER_CONFIGS.items()})
 CITY_FETCHERS.update({city: build_nyc_metro_arcgis_fetcher(city, config) for city, config in NYC_METRO_ARCGIS_CONFIGS.items()})
 CITY_FETCHERS.update({city: build_arcgis_fetcher(city, config) for city, config in UNCOVERED_STATE_ARCGIS_CONFIGS.items()})
+CITY_FETCHERS.update({city: build_arcgis_fetcher(city, config) for city, config in ZERO_COVERAGE_ARCGIS_CONFIGS.items()})
 CITY_FETCHERS.update({city: build_geojson_fetcher(city, config) for city, config in CANADA_GEOJSON_CONFIGS.items()})
 CITY_FETCHERS.update({city: build_milwaukee_county_fetcher(city) for city in MILWAUKEE_COUNTY_SUPPORTED_CITIES})
+
+
+def fetch_ames() -> dict[str, Any]:
+    layer_url = "https://programs.iowadnr.gov/geospatial/rest/services/forestry/Tree_Inventory/MapServer/0"
+    dataset_page = "https://programs.iowadnr.gov/geospatial/rest/services/forestry/Tree_Inventory/MapServer"
+    where = "NAME10 = 'Ames' AND SPCODE IN ('MA2','PRSE1','PRCE','PRVI','PRSE2','PR','MAGR','MAVI')"
+    layer_info = fetch_json_via_curl_url(f"{layer_url}?f=pjson")
+    total_payload = post_form_json_via_curl(
+        f"{layer_url}/query",
+        [("where", where), ("returnCountOnly", "true"), ("f", "pjson")],
+    )
+    common_name_domain = domain_lookup(layer_info, "SPCODE")
+    features = fetch_arcgis_features_by_object_ids_via_curl(
+        layer_url,
+        where=where,
+        out_fields=["OBJECTID", "SPCODE", "NAME10"],
+        object_id_field="OBJECTID",
+    )
+    features = clip_features_to_city_boundary("Ames", "ia", features)
+    for feature in features:
+        attrs = feature.setdefault("attributes", {})
+        attrs["PH_COMMON_NAME"] = clean_common_name(common_name_domain.get(attrs.get("SPCODE"))) or ""
+    return build_arcgis_inventory_result(
+        city="Ames",
+        region="ia",
+        features=features,
+        total_records=int(total_payload.get("count") or len(features)),
+        last_edit_at=iso_from_epoch((layer_info.get("editingInfo") or {}).get("lastEditDate")),
+        source_name="Tree Inventory",
+        source_department="Iowa Department of Natural Resources",
+        dataset_page=dataset_page,
+        ownership_raw="Iowa Department of Natural Resources / municipal inventory",
+        note="Integrated from the official Iowa Department of Natural Resources public tree inventory by mapping coded species values to common names, filtering to Ames blossom trees, and clipping to the official jurisdiction boundary.",
+        object_id_field="OBJECTID",
+        common_field="PH_COMMON_NAME",
+    )
+
 
 
 def main() -> int:

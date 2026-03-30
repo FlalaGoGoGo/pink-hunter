@@ -1,6 +1,6 @@
 # City ETL Methods
 
-Last updated: 2026-03-28 (America/Los_Angeles)
+Last updated: 2026-03-29 (America/Los_Angeles)
 
 ## Purpose
 - Record how each covered city is ingested so future species expansion can reuse the same pipeline.
@@ -119,6 +119,16 @@ Last updated: 2026-03-28 (America/Los_Angeles)
 ## Integrated Cities And Extraction Notes
 | City | Source family | Key fields / parser | Geometry handling | Notes |
 |---|---|---|---|---|
+| Lincoln | ArcGIS MapServer | `CommonName`, `ScientificName` | ArcGIS point geometry | Official City of Lincoln public trees layer clipped to the official jurisdiction boundary |
+| Coeur d'Alene | TreePlotter | TreePlotter public alias fields | TreePlotter WKB point hex in Web Mercator, then official-boundary clipping | Official Idaho Department of Lands statewide TreePlotter inventory clipped to the official Coeur d'Alene boundary |
+| Fargo | ArcGIS MapServer | `COMMON_NAME`, `BOTANICAL_NAME` | ArcGIS point geometry | Official City of Fargo public forestry layer clipped to the official jurisdiction boundary |
+| Albuquerque | TreePlotter | TreePlotter public alias fields | TreePlotter WKB point hex in Web Mercator, then official-boundary clipping | Official City of Albuquerque public TreePlotter inventory |
+| Moorhead | TreePlotter | TreePlotter public alias fields | TreePlotter WKB point hex in Web Mercator, then official-boundary clipping | Official City of Moorhead public TreePlotter inventory |
+| Covington | ArcGIS FeatureServer | `Cmmn_Nm`, `Scntf_N` | ArcGIS point geometry | Official City of Covington public tree inventory layer clipped to the official jurisdiction boundary |
+| Grandview Heights | TreePlotter | TreePlotter public alias fields | TreePlotter WKB point hex in Web Mercator, then official-boundary clipping | Official City of Grandview Heights public TreePlotter inventory |
+| Auburn | ArcGIS MapServer | `CommonName`, `Botanical` | ArcGIS point geometry | Official City of Auburn public street-tree layer clipped to the official jurisdiction boundary |
+| Tulsa | ArcGIS MapServer | `CommonName`, `Genus` + `Species` | ArcGIS point geometry | Official City of Tulsa public tree inventory web map layer clipped to the official jurisdiction boundary |
+| Andover | ArcGIS FeatureServer | `NAME`, `GENUS` + `SPECIES` | ArcGIS point geometry | Official City of Andover public street-tree layer clipped to the official jurisdiction boundary |
 | Seattle | ArcGIS FeatureServer | `SCIENTIFIC_NAME`, `COMMON_NAME`, `OWNERSHIP` | ArcGIS point geometry | Also merges UW supplemental points |
 | Bellevue | ArcGIS FeatureServer | `SpeciesDesc` parsed by `parse_bellevue_species()` | ArcGIS point geometry | Scientific/common are packed into one text field |
 | Redmond | ArcGIS FeatureServer | `GenusSpecies`, `CommonName` | ArcGIS point geometry | Ownership normalized from `d_Ownership` |

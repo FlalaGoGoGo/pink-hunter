@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-03-12T05:35:52.872888+00:00",
+  "generated_at": "2026-03-30T04:28:13.868882+00:00",
   "countries": [
     {
       "id": "ca",
@@ -269,7 +269,7 @@
           35.00802799983999
         ]
       ],
-      "region_hint": null
+      "region_hint": "al"
     },
     {
       "id": "ak",
@@ -473,7 +473,7 @@
           49.000845999851144
         ]
       ],
-      "region_hint": null
+      "region_hint": "id"
     },
     {
       "id": "il",
@@ -541,7 +541,7 @@
           40.00316600026501
         ]
       ],
-      "region_hint": null
+      "region_hint": "ks"
     },
     {
       "id": "ky",
@@ -558,7 +558,7 @@
           39.14773200026906
         ]
       ],
-      "region_hint": null
+      "region_hint": "ky"
     },
     {
       "id": "la",
@@ -660,7 +660,7 @@
           49.38447899976769
         ]
       ],
-      "region_hint": null
+      "region_hint": "mn"
     },
     {
       "id": "ms",
@@ -728,7 +728,7 @@
           43.00170700025884
         ]
       ],
-      "region_hint": null
+      "region_hint": "ne"
     },
     {
       "id": "nv",
@@ -796,7 +796,7 @@
           37.000233000031926
         ]
       ],
-      "region_hint": null
+      "region_hint": "nm"
     },
     {
       "id": "ny",
@@ -847,7 +847,7 @@
           49.0005609999698
         ]
       ],
-      "region_hint": null
+      "region_hint": "nd"
     },
     {
       "id": "oh",
@@ -864,7 +864,7 @@
           42.32713200000673
         ]
       ],
-      "region_hint": null
+      "region_hint": "oh"
     },
     {
       "id": "ok",
@@ -881,7 +881,7 @@
           37.00231199975241
         ]
       ],
-      "region_hint": null
+      "region_hint": "ok"
     },
     {
       "id": "or",
@@ -1461,6 +1461,26 @@
         ]
       ],
       "region_hint": "qc",
+      "coverage_status": "covered"
+    },
+    {
+      "id": "al:auburn",
+      "country_id": "us",
+      "state_id": "al",
+      "jurisdiction": "Auburn",
+      "display_name": "Auburn",
+      "area_type": "city",
+      "bounds": [
+        [
+          -85.58555000033908,
+          32.52424400026742
+        ],
+        [
+          -85.40446600007685,
+          32.7306289998575
+        ]
+      ],
+      "region_hint": "al",
       "coverage_status": "covered"
     },
     {
@@ -19564,6 +19584,26 @@
       "coverage_status": "covered"
     },
     {
+      "id": "id:coeur-d-alene",
+      "country_id": "us",
+      "state_id": "id",
+      "jurisdiction": "Coeur d'Alene",
+      "display_name": "Coeur d'Alene",
+      "area_type": "city",
+      "bounds": [
+        [
+          -116.85289999984442,
+          47.65876899992781
+        ],
+        [
+          -116.7314539996547,
+          47.7448399999853
+        ]
+      ],
+      "region_hint": "id",
+      "coverage_status": "covered"
+    },
+    {
       "id": "il:chicago",
       "country_id": "us",
       "state_id": "il",
@@ -19641,6 +19681,46 @@
         ]
       ],
       "region_hint": "il",
+      "coverage_status": "covered"
+    },
+    {
+      "id": "ks:andover",
+      "country_id": "us",
+      "state_id": "ks",
+      "jurisdiction": "Andover",
+      "display_name": "Andover",
+      "area_type": "city",
+      "bounds": [
+        [
+          -97.1530499998792,
+          37.628571000113865
+        ],
+        [
+          -97.10765599956541,
+          37.73801800008265
+        ]
+      ],
+      "region_hint": "ks",
+      "coverage_status": "covered"
+    },
+    {
+      "id": "ky:covington",
+      "country_id": "us",
+      "state_id": "ky",
+      "jurisdiction": "Covington",
+      "display_name": "Covington",
+      "area_type": "city",
+      "bounds": [
+        [
+          -84.55429900033955,
+          38.96455599990994
+        ],
+        [
+          -84.47971000032858,
+          39.09774699994864
+        ]
+      ],
+      "region_hint": "ky",
       "coverage_status": "covered"
     },
     {
@@ -24801,6 +24881,66 @@
         ]
       ],
       "region_hint": "mi",
+      "coverage_status": "covered"
+    },
+    {
+      "id": "mn:moorhead",
+      "country_id": "us",
+      "state_id": "mn",
+      "jurisdiction": "Moorhead",
+      "display_name": "Moorhead",
+      "area_type": "city",
+      "bounds": [
+        [
+          -96.80016999997918,
+          46.81107600006181
+        ],
+        [
+          -96.64770999967685,
+          46.948647999708896
+        ]
+      ],
+      "region_hint": "mn",
+      "coverage_status": "covered"
+    },
+    {
+      "id": "nd:fargo",
+      "country_id": "us",
+      "state_id": "nd",
+      "jurisdiction": "Fargo",
+      "display_name": "Fargo",
+      "area_type": "city",
+      "bounds": [
+        [
+          -96.90382200034117,
+          46.70284499976631
+        ],
+        [
+          -96.75265400019958,
+          46.97696600022388
+        ]
+      ],
+      "region_hint": "nd",
+      "coverage_status": "covered"
+    },
+    {
+      "id": "ne:lincoln",
+      "country_id": "us",
+      "state_id": "ne",
+      "jurisdiction": "Lincoln",
+      "display_name": "Lincoln",
+      "area_type": "city",
+      "bounds": [
+        [
+          -96.80415000021853,
+          40.69376699985648
+        ],
+        [
+          -96.56764999997247,
+          40.914891999987454
+        ]
+      ],
+      "region_hint": "ne",
       "coverage_status": "covered"
     },
     {
@@ -31802,6 +31942,26 @@
       ],
       "region_hint": "nj",
       "coverage_status": "untracked"
+    },
+    {
+      "id": "nm:albuquerque",
+      "country_id": "us",
+      "state_id": "nm",
+      "jurisdiction": "Albuquerque",
+      "display_name": "Albuquerque",
+      "area_type": "city",
+      "bounds": [
+        [
+          -106.87278399964504,
+          34.94678600001413
+        ],
+        [
+          -106.4711839996682,
+          35.21797899990359
+        ]
+      ],
+      "region_hint": "nm",
+      "coverage_status": "covered"
     },
     {
       "id": "nv:boulder",
@@ -45682,6 +45842,46 @@
       ],
       "region_hint": "ny",
       "coverage_status": "untracked"
+    },
+    {
+      "id": "oh:grandview-heights",
+      "country_id": "us",
+      "state_id": "oh",
+      "jurisdiction": "Grandview Heights",
+      "display_name": "Grandview Heights",
+      "area_type": "city",
+      "bounds": [
+        [
+          -83.05775499970831,
+          39.97046200002955
+        ],
+        [
+          -83.0211519999015,
+          39.989319000237394
+        ]
+      ],
+      "region_hint": "oh",
+      "coverage_status": "covered"
+    },
+    {
+      "id": "ok:tulsa",
+      "country_id": "us",
+      "state_id": "ok",
+      "jurisdiction": "Tulsa",
+      "display_name": "Tulsa",
+      "area_type": "city",
+      "bounds": [
+        [
+          -96.07458299967573,
+          35.96834799980111
+        ],
+        [
+          -95.68170100041094,
+          36.336534000291714
+        ]
+      ],
+      "region_hint": "ok",
+      "coverage_status": "covered"
     },
     {
       "id": "or:adair",

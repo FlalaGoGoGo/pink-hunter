@@ -22,6 +22,76 @@ Live domain:
 
 ## Coverage Areas
 <details>
+<summary>Alabama</summary>
+
+- Auburn
+
+</details>
+
+<details>
+<summary>Idaho</summary>
+
+- Coeur d'Alene
+
+</details>
+
+<details>
+<summary>Kansas</summary>
+
+- Andover
+
+</details>
+
+<details>
+<summary>Kentucky</summary>
+
+- Covington
+
+</details>
+
+<details>
+<summary>Minnesota</summary>
+
+- Moorhead
+
+</details>
+
+<details>
+<summary>North Dakota</summary>
+
+- Fargo
+
+</details>
+
+<details>
+<summary>Nebraska</summary>
+
+- Lincoln
+
+</details>
+
+<details>
+<summary>New Mexico</summary>
+
+- Albuquerque
+
+</details>
+
+<details>
+<summary>Ohio</summary>
+
+- Grandview Heights
+
+</details>
+
+<details>
+<summary>Oklahoma</summary>
+
+- Tulsa
+
+</details>
+
+<details>
 <summary>Washington</summary>
 
 - Seattle

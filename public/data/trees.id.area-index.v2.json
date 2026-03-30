@@ -1,0 +1,130 @@
+{
+  "generated_at": "2026-03-30T04:19:08.749572+00:00",
+  "region": "id",
+  "strategy": "area_shard",
+  "items": [
+    {
+      "jurisdiction": "Coeur d'Alene",
+      "slug": "coeur-d-alene",
+      "display_name": "Coeur d'Alene",
+      "jurisdiction_type": "city",
+      "state_province": "ID",
+      "country": "United States",
+      "bounds": [
+        [
+          -116.85289999984442,
+          47.65876899992781
+        ],
+        [
+          -116.7314539996547,
+          47.7448399999853
+        ]
+      ],
+      "tree_count": 2954,
+      "zip_codes": [
+        "83814",
+        "83815"
+      ],
+      "species_counts": {
+        "cherry": 387,
+        "plum": 1537,
+        "peach": 11,
+        "magnolia": 71,
+        "crabapple": 948
+      },
+      "ownership_counts": {
+        "public": 2954,
+        "private": 0,
+        "unknown": 0
+      },
+      "species_ownership_counts": {
+        "cherry": {
+          "public": 387,
+          "private": 0,
+          "unknown": 0
+        },
+        "plum": {
+          "public": 1537,
+          "private": 0,
+          "unknown": 0
+        },
+        "peach": {
+          "public": 11,
+          "private": 0,
+          "unknown": 0
+        },
+        "magnolia": {
+          "public": 71,
+          "private": 0,
+          "unknown": 0
+        },
+        "crabapple": {
+          "public": 948,
+          "private": 0,
+          "unknown": 0
+        }
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "coeur-d-alene-001",
+          "bounds": [
+            [
+              -116.84706420000002,
+              47.66643565
+            ],
+            [
+              -116.73650060000003,
+              47.7445789
+            ]
+          ],
+          "data_path": "/data/trees.id.area.coeur-d-alene.v2.geojson",
+          "tree_count": 2954,
+          "ownership_counts": {
+            "public": 2954,
+            "private": 0,
+            "unknown": 0
+          },
+          "species_counts": {
+            "cherry": 387,
+            "plum": 1537,
+            "peach": 11,
+            "magnolia": 71,
+            "crabapple": 948
+          },
+          "species_ownership_counts": {
+            "cherry": {
+              "public": 387,
+              "private": 0,
+              "unknown": 0
+            },
+            "plum": {
+              "public": 1537,
+              "private": 0,
+              "unknown": 0
+            },
+            "peach": {
+              "public": 11,
+              "private": 0,
+              "unknown": 0
+            },
+            "magnolia": {
+              "public": 71,
+              "private": 0,
+              "unknown": 0
+            },
+            "crabapple": {
+              "public": 948,
+              "private": 0,
+              "unknown": 0
+            }
+          },
+          "raw_bytes": 1554476,
+          "gzip_bytes": 59552
+        }
+      ]
+    }
+  ]
+}

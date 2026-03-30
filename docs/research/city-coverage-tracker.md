@@ -1,6 +1,6 @@
 # City Coverage Tracker
 
-Last updated: 2026-03-28 (America/Los_Angeles)
+Last updated: 2026-03-29 (America/Los_Angeles)
 
 ## Review Order Before Any City Task
 1. Review `A2` first. Those cities are the highest publish priority.
@@ -22,6 +22,16 @@ Current state: no cities are parked in `A2` right now.
 ## A1 — Official Point-Tree Data Confirmed, In-Scope Trees Present, Already Integrated
 | Done | City | Included Trees | Boundary Rule | Notes |
 |---|---|---:|---|---|
+| ✅ | Lincoln | 9,063 | Official jurisdiction boundary | Official City of Lincoln public trees ArcGIS layer integrated with the official jurisdiction boundary |
+| ✅ | Coeur d'Alene | 2,954 | Official jurisdiction boundary | Official Idaho Department of Lands public TreePlotter inventory integrated after clipping statewide inventory points to the official Coeur d'Alene boundary |
+| ✅ | Fargo | 2,479 | Official jurisdiction boundary | Official City of Fargo public forestry ArcGIS layer integrated with the official jurisdiction boundary |
+| ✅ | Albuquerque | 1,907 | Official jurisdiction boundary | Official City of Albuquerque public TreePlotter inventory integrated via the public TreePlotter page and official jurisdiction boundary clipping |
+| ✅ | Moorhead | 1,813 | Official jurisdiction boundary | Official City of Moorhead public TreePlotter inventory integrated via the public TreePlotter page and official jurisdiction boundary clipping |
+| ✅ | Covington | 261 | Official jurisdiction boundary | Official City of Covington public tree-inventory ArcGIS layer integrated with the official jurisdiction boundary |
+| ✅ | Grandview Heights | 266 | Official jurisdiction boundary | Official City of Grandview Heights public TreePlotter inventory integrated via the public TreePlotter page and official jurisdiction boundary clipping |
+| ✅ | Auburn | 219 | Official jurisdiction boundary | Official City of Auburn public street-tree ArcGIS layer integrated with the official jurisdiction boundary |
+| ✅ | Tulsa | 104 | Official jurisdiction boundary | Official City of Tulsa public tree inventory ArcGIS layer integrated with the official jurisdiction boundary |
+| ✅ | Andover | 3 | Official jurisdiction boundary | Official City of Andover public street-tree ArcGIS layer integrated with the official jurisdiction boundary |
 | ✅ | Seattle | 46,114 | Official jurisdiction boundary | Includes UW supplemental points; ornamental cherry keyword sweep rerun |
 | ✅ | New York City | 40,685 | Official jurisdiction boundary | Official NYC Parks `2015 Street Tree Census - Tree Data` integrated from NYC Open Data; rows are limited to living trees before blossom filtering |
 | ✅ | Albany | 2,394 | Official jurisdiction boundary | Official City of Albany public TreeKeeper inventory integrated with the official jurisdiction boundary |
@@ -446,7 +456,7 @@ These cities are not in `A2` yet because the official point-tree source is still
 | ⚠️ | Burlington, WA | Not found yet | Official city pages reviewed in this round did not confirm a public citywide single-tree inventory |
 | ⚠️ | Anacortes | Not found yet | Official city GIS pages reviewed in this round did not confirm a public citywide single-tree inventory |
 | ⚠️ | Edmonds / Mukilteo / Mountlake Terrace / Mill Creek | Not found yet | No reliable official public single-tree species point layers confirmed yet |
-| ⚠️ | Tukwila / Des Moines / Maple Valley / Covington / Auburn | Not found or rejected | No reliable official city-level single-tree + species point layers, or false-geography matches |
+| ⚠️ | Tukwila / Des Moines / Maple Valley | Not found or rejected | No reliable official city-level single-tree + species point layers, or false-geography matches |
 
 ## Hard Rules
 - Coverage polygons must use official jurisdiction boundary geometries only.
@@ -658,6 +668,13 @@ These cities are not in `A2` yet because the official point-tree source is still
 - Rechecked `Phoenix`; official city tree-map style materials were found, but this round did not confirm a public citywide single-tree species inventory.
 - Rechecked `Boise`; a public ArcGIS result labeled `City Maintained Tree Inventory` was found, but its published geometry resolves outside Boise and is treated as a false positive rather than a safe official Boise source.
 - Rechecked `Detroit`; official Detroit open-data entry points reviewed in this round did not confirm a public citywide single-tree species inventory.
+
+## March 2026 Zero-Coverage State Expansion
+- Integrated `Auburn` from the official City of Auburn public street-tree ArcGIS layer.
+- Integrated `Coeur d'Alene` from the official Idaho Department of Lands statewide TreePlotter inventory after clipping points to the official city boundary.
+- Integrated `Andover`, `Covington`, `Fargo`, `Lincoln`, and `Tulsa` from official public ArcGIS single-tree inventories.
+- Integrated `Albuquerque`, `Grandview Heights`, and `Moorhead` from official public TreePlotter inventories with official jurisdiction-boundary clipping.
+- Added `AL / ID / KS / KY / MN / ND / NE / NM / OH / OK` region publish support so these formerly zero-city states can now reuse the standard release path.
 
 ## March 2026 Southern California Coastal Corridor
 - Integrated `Newport Beach` from the official Newport Beach tree inventory dashboard / ArcGIS layer.

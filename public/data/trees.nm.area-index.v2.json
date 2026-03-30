@@ -1,0 +1,144 @@
+{
+  "generated_at": "2026-03-30T04:19:08.749572+00:00",
+  "region": "nm",
+  "strategy": "area_shard",
+  "items": [
+    {
+      "jurisdiction": "Albuquerque",
+      "slug": "albuquerque",
+      "display_name": "Albuquerque",
+      "jurisdiction_type": "city",
+      "state_province": "NM",
+      "country": "United States",
+      "bounds": [
+        [
+          -106.87278399964504,
+          34.94678600001413
+        ],
+        [
+          -106.4711839996682,
+          35.21797899990359
+        ]
+      ],
+      "tree_count": 1907,
+      "zip_codes": [
+        "87102",
+        "87104",
+        "87105",
+        "87106",
+        "87107",
+        "87108",
+        "87109",
+        "87110",
+        "87111",
+        "87112",
+        "87113",
+        "87114",
+        "87120",
+        "87121",
+        "87122",
+        "87123"
+      ],
+      "species_counts": {
+        "cherry": 257,
+        "plum": 464,
+        "peach": 12,
+        "magnolia": 2,
+        "crabapple": 1172
+      },
+      "ownership_counts": {
+        "public": 1907,
+        "private": 0,
+        "unknown": 0
+      },
+      "species_ownership_counts": {
+        "cherry": {
+          "public": 257,
+          "private": 0,
+          "unknown": 0
+        },
+        "plum": {
+          "public": 464,
+          "private": 0,
+          "unknown": 0
+        },
+        "peach": {
+          "public": 12,
+          "private": 0,
+          "unknown": 0
+        },
+        "magnolia": {
+          "public": 2,
+          "private": 0,
+          "unknown": 0
+        },
+        "crabapple": {
+          "public": 1172,
+          "private": 0,
+          "unknown": 0
+        }
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "albuquerque-001",
+          "bounds": [
+            [
+              -106.77222721547943,
+              35.01863205084475
+            ],
+            [
+              -106.48912397887524,
+              35.21565657358802
+            ]
+          ],
+          "data_path": "/data/trees.nm.area.albuquerque.v2.geojson",
+          "tree_count": 1907,
+          "ownership_counts": {
+            "public": 1907,
+            "private": 0,
+            "unknown": 0
+          },
+          "species_counts": {
+            "cherry": 257,
+            "plum": 464,
+            "peach": 12,
+            "magnolia": 2,
+            "crabapple": 1172
+          },
+          "species_ownership_counts": {
+            "cherry": {
+              "public": 257,
+              "private": 0,
+              "unknown": 0
+            },
+            "plum": {
+              "public": 464,
+              "private": 0,
+              "unknown": 0
+            },
+            "peach": {
+              "public": 12,
+              "private": 0,
+              "unknown": 0
+            },
+            "magnolia": {
+              "public": 2,
+              "private": 0,
+              "unknown": 0
+            },
+            "crabapple": {
+              "public": 1172,
+              "private": 0,
+              "unknown": 0
+            }
+          },
+          "raw_bytes": 994960,
+          "gzip_bytes": 46732
+        }
+      ]
+    }
+  ]
+}
