@@ -1639,17 +1639,6 @@ const SUBNATIONAL_LABELS: Partial<Record<Language, Record<string, string>>> = {
     YT: "育空地區"
   }
 };
-const LANGUAGE_LIST_CONJUNCTION: Record<Language, string> = {
-  "en-US": "and",
-  "zh-CN": "和",
-  "zh-TW": "和",
-  "es-ES": "y",
-  "ko-KR": "및",
-  "ja-JP": "と",
-  "fr-FR": "et",
-  "vi-VN": "và"
-};
-
 interface SelectedTree {
   coordinates: [number, number];
   properties: TreeFeatureProps;
@@ -2245,20 +2234,6 @@ function hasKnownZipCode(zipCode: string | null): zipCode is string {
 
 function regionOptionLabel(language: Language, region: CoverageRegion): string {
   return `${countryEmojiForRegion(region)} ${regionLabel(language, region)}`;
-}
-
-function formatLanguageList(language: Language, items: string[]): string {
-  const values = items.filter(Boolean);
-  if (values.length <= 1) {
-    return values[0] ?? "";
-  }
-
-  const conjunction = LANGUAGE_LIST_CONJUNCTION[language];
-  if (values.length === 2) {
-    return `${values[0]} ${conjunction} ${values[1]}`;
-  }
-
-  return `${values.slice(0, -1).join(", ")}, ${conjunction} ${values[values.length - 1]}`;
 }
 
 function formatCoverageScope(language: Language, regions: CoverageRegion[]): string {
