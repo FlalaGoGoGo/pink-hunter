@@ -1,0 +1,130 @@
+{
+  "generated_at": "2026-03-30T07:25:17.708535+00:00",
+  "region": "wv",
+  "strategy": "area_shard",
+  "items": [
+    {
+      "jurisdiction": "Morgantown",
+      "slug": "morgantown",
+      "display_name": "Morgantown",
+      "jurisdiction_type": "city",
+      "state_province": "WV",
+      "country": "United States",
+      "bounds": [
+        [
+          -79.98816000008182,
+          39.57570000031281
+        ],
+        [
+          -79.89902600001325,
+          39.67484199981567
+        ]
+      ],
+      "tree_count": 222,
+      "zip_codes": [
+        "26505",
+        "26506"
+      ],
+      "species_counts": {
+        "cherry": 61,
+        "plum": 9,
+        "peach": 0,
+        "magnolia": 46,
+        "crabapple": 106
+      },
+      "ownership_counts": {
+        "public": 222,
+        "private": 0,
+        "unknown": 0
+      },
+      "species_ownership_counts": {
+        "cherry": {
+          "public": 61,
+          "private": 0,
+          "unknown": 0
+        },
+        "plum": {
+          "public": 9,
+          "private": 0,
+          "unknown": 0
+        },
+        "peach": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        },
+        "magnolia": {
+          "public": 46,
+          "private": 0,
+          "unknown": 0
+        },
+        "crabapple": {
+          "public": 106,
+          "private": 0,
+          "unknown": 0
+        }
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "morgantown-001",
+          "bounds": [
+            [
+              -79.98353853805091,
+              39.6325341410631
+            ],
+            [
+              -79.95201118309276,
+              39.65783589252548
+            ]
+          ],
+          "data_path": "/data/trees.wv.area.morgantown.v2.geojson",
+          "tree_count": 222,
+          "ownership_counts": {
+            "public": 222,
+            "private": 0,
+            "unknown": 0
+          },
+          "species_counts": {
+            "cherry": 61,
+            "plum": 9,
+            "peach": 0,
+            "magnolia": 46,
+            "crabapple": 106
+          },
+          "species_ownership_counts": {
+            "cherry": {
+              "public": 61,
+              "private": 0,
+              "unknown": 0
+            },
+            "plum": {
+              "public": 9,
+              "private": 0,
+              "unknown": 0
+            },
+            "peach": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            },
+            "magnolia": {
+              "public": 46,
+              "private": 0,
+              "unknown": 0
+            },
+            "crabapple": {
+              "public": 106,
+              "private": 0,
+              "unknown": 0
+            }
+          },
+          "raw_bytes": 119518,
+          "gzip_bytes": 5994
+        }
+      ]
+    }
+  ]
+}

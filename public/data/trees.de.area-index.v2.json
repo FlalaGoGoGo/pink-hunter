@@ -1,0 +1,131 @@
+{
+  "generated_at": "2026-03-30T07:25:17.708535+00:00",
+  "region": "de",
+  "strategy": "area_shard",
+  "items": [
+    {
+      "jurisdiction": "Newark DE",
+      "slug": "newark-de",
+      "display_name": "Newark DE",
+      "jurisdiction_type": "city",
+      "state_province": "DE",
+      "country": "United States",
+      "bounds": [
+        [
+          -75.78771501469528,
+          39.64794684869295
+        ],
+        [
+          -75.72512372291281,
+          39.70227182818055
+        ]
+      ],
+      "tree_count": 143,
+      "zip_codes": [
+        "19711",
+        "19713",
+        "19716"
+      ],
+      "species_counts": {
+        "cherry": 13,
+        "plum": 73,
+        "peach": 0,
+        "magnolia": 35,
+        "crabapple": 22
+      },
+      "ownership_counts": {
+        "public": 143,
+        "private": 0,
+        "unknown": 0
+      },
+      "species_ownership_counts": {
+        "cherry": {
+          "public": 13,
+          "private": 0,
+          "unknown": 0
+        },
+        "plum": {
+          "public": 73,
+          "private": 0,
+          "unknown": 0
+        },
+        "peach": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        },
+        "magnolia": {
+          "public": 35,
+          "private": 0,
+          "unknown": 0
+        },
+        "crabapple": {
+          "public": 22,
+          "private": 0,
+          "unknown": 0
+        }
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "newark-de-001",
+          "bounds": [
+            [
+              -75.78771501469528,
+              39.64794684869295
+            ],
+            [
+              -75.72512372291281,
+              39.70227182818055
+            ]
+          ],
+          "data_path": "/data/trees.de.area.newark-de.v2.geojson",
+          "tree_count": 143,
+          "ownership_counts": {
+            "public": 143,
+            "private": 0,
+            "unknown": 0
+          },
+          "species_counts": {
+            "cherry": 13,
+            "plum": 73,
+            "peach": 0,
+            "magnolia": 35,
+            "crabapple": 22
+          },
+          "species_ownership_counts": {
+            "cherry": {
+              "public": 13,
+              "private": 0,
+              "unknown": 0
+            },
+            "plum": {
+              "public": 73,
+              "private": 0,
+              "unknown": 0
+            },
+            "peach": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            },
+            "magnolia": {
+              "public": 35,
+              "private": 0,
+              "unknown": 0
+            },
+            "crabapple": {
+              "public": 22,
+              "private": 0,
+              "unknown": 0
+            }
+          },
+          "raw_bytes": 67944,
+          "gzip_bytes": 3947
+        }
+      ]
+    }
+  ]
+}

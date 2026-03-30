@@ -1,0 +1,129 @@
+{
+  "generated_at": "2026-03-30T07:25:17.708535+00:00",
+  "region": "ar",
+  "strategy": "area_shard",
+  "items": [
+    {
+      "jurisdiction": "Fayetteville AR",
+      "slug": "fayetteville-ar",
+      "display_name": "Fayetteville AR",
+      "jurisdiction_type": "city",
+      "state_province": "AR",
+      "country": "United States",
+      "bounds": [
+        [
+          -94.18103562105217,
+          36.04262978782356
+        ],
+        [
+          -94.1669954908243,
+          36.07363228071963
+        ]
+      ],
+      "tree_count": 174,
+      "zip_codes": [
+        "72701"
+      ],
+      "species_counts": {
+        "cherry": 44,
+        "plum": 51,
+        "peach": 0,
+        "magnolia": 42,
+        "crabapple": 37
+      },
+      "ownership_counts": {
+        "public": 174,
+        "private": 0,
+        "unknown": 0
+      },
+      "species_ownership_counts": {
+        "cherry": {
+          "public": 44,
+          "private": 0,
+          "unknown": 0
+        },
+        "plum": {
+          "public": 51,
+          "private": 0,
+          "unknown": 0
+        },
+        "peach": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        },
+        "magnolia": {
+          "public": 42,
+          "private": 0,
+          "unknown": 0
+        },
+        "crabapple": {
+          "public": 37,
+          "private": 0,
+          "unknown": 0
+        }
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "fayetteville-ar-001",
+          "bounds": [
+            [
+              -94.18103562105217,
+              36.04262978782356
+            ],
+            [
+              -94.1669954908243,
+              36.07363228071963
+            ]
+          ],
+          "data_path": "/data/trees.ar.area.fayetteville-ar.v2.geojson",
+          "tree_count": 174,
+          "ownership_counts": {
+            "public": 174,
+            "private": 0,
+            "unknown": 0
+          },
+          "species_counts": {
+            "cherry": 44,
+            "plum": 51,
+            "peach": 0,
+            "magnolia": 42,
+            "crabapple": 37
+          },
+          "species_ownership_counts": {
+            "cherry": {
+              "public": 44,
+              "private": 0,
+              "unknown": 0
+            },
+            "plum": {
+              "public": 51,
+              "private": 0,
+              "unknown": 0
+            },
+            "peach": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            },
+            "magnolia": {
+              "public": 42,
+              "private": 0,
+              "unknown": 0
+            },
+            "crabapple": {
+              "public": 37,
+              "private": 0,
+              "unknown": 0
+            }
+          },
+          "raw_bytes": 94046,
+          "gzip_bytes": 4672
+        }
+      ]
+    }
+  ]
+}

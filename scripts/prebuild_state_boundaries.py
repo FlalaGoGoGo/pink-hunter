@@ -27,21 +27,30 @@ from etl.build_data import (  # noqa: E402
 
 SUPPORTED_US_STATE_FIPS = {
     "al": "01",
+    "ak": "02",
+    "ar": "05",
     "az": "04",
     "ca": "06",
     "co": "08",
     "ct": "09",
     "dc": "11",
+    "de": "10",
+    "fl": "12",
     "ga": "13",
+    "hi": "15",
     "ia": "19",
     "id": "16",
     "il": "17",
     "ks": "20",
     "ky": "21",
+    "la": "22",
     "ma": "25",
     "md": "24",
+    "me": "23",
     "mi": "26",
     "mn": "27",
+    "ms": "28",
+    "mt": "30",
     "nc": "37",
     "nd": "38",
     "ne": "31",
@@ -55,11 +64,17 @@ SUPPORTED_US_STATE_FIPS = {
     "or": "41",
     "pa": "42",
     "ri": "44",
+    "sc": "45",
+    "sd": "46",
     "tx": "48",
     "ut": "49",
     "va": "51",
     "wa": "53",
+    "wv": "54",
+    "wy": "56",
+    "tn": "47",
 }
+
 
 
 def strip_us_place_suffix(raw_name: str) -> str:

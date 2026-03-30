@@ -1,0 +1,130 @@
+{
+  "generated_at": "2026-03-30T07:25:17.708535+00:00",
+  "region": "wy",
+  "strategy": "area_shard",
+  "items": [
+    {
+      "jurisdiction": "Laramie",
+      "slug": "laramie",
+      "display_name": "Laramie",
+      "jurisdiction_type": "city",
+      "state_province": "WY",
+      "country": "United States",
+      "bounds": [
+        [
+          -105.69738000015147,
+          41.27733200023126
+        ],
+        [
+          -105.5282039999219,
+          41.33580399980886
+        ]
+      ],
+      "tree_count": 1503,
+      "zip_codes": [
+        "82070",
+        "82072"
+      ],
+      "species_counts": {
+        "cherry": 627,
+        "plum": 35,
+        "peach": 0,
+        "magnolia": 0,
+        "crabapple": 841
+      },
+      "ownership_counts": {
+        "public": 1503,
+        "private": 0,
+        "unknown": 0
+      },
+      "species_ownership_counts": {
+        "cherry": {
+          "public": 627,
+          "private": 0,
+          "unknown": 0
+        },
+        "plum": {
+          "public": 35,
+          "private": 0,
+          "unknown": 0
+        },
+        "peach": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        },
+        "magnolia": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        },
+        "crabapple": {
+          "public": 841,
+          "private": 0,
+          "unknown": 0
+        }
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "laramie-001",
+          "bounds": [
+            [
+              -105.63100527546574,
+              41.28187313635056
+            ],
+            [
+              -105.52967417559051,
+              41.333724673609545
+            ]
+          ],
+          "data_path": "/data/trees.wy.area.laramie.v2.geojson",
+          "tree_count": 1503,
+          "ownership_counts": {
+            "public": 1503,
+            "private": 0,
+            "unknown": 0
+          },
+          "species_counts": {
+            "cherry": 627,
+            "plum": 35,
+            "peach": 0,
+            "magnolia": 0,
+            "crabapple": 841
+          },
+          "species_ownership_counts": {
+            "cherry": {
+              "public": 627,
+              "private": 0,
+              "unknown": 0
+            },
+            "plum": {
+              "public": 35,
+              "private": 0,
+              "unknown": 0
+            },
+            "peach": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            },
+            "magnolia": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            },
+            "crabapple": {
+              "public": 841,
+              "private": 0,
+              "unknown": 0
+            }
+          },
+          "raw_bytes": 718669,
+          "gzip_bytes": 34088
+        }
+      ]
+    }
+  ]
+}

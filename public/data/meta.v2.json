@@ -1,9 +1,13 @@
 {
   "version": "v2",
-  "generated_at": "2026-03-30T04:33:52.136427+00:00",
+  "generated_at": "2026-03-30T07:45:10.046936+00:00",
   "default_region": "wa",
   "coverage_rule": "official_jurisdiction_boundary_only",
   "coverage_skipped_cities": [
+    "Fayetteville AR",
+    "Newark DE",
+    "Burlington IA",
+    "Portland ME",
     "Nashville"
   ],
   "coverage_official_unavailable_cities": [
@@ -97,16 +101,16 @@
     "Yarrow Point"
   ],
   "coverage_official_unavailable_skipped_cities": [],
-  "source_count": 344,
-  "total_records": 4121355,
-  "included_records": 851965,
-  "unknown_records": 1947543,
+  "source_count": 357,
+  "total_records": 4139917,
+  "included_records": 857819,
+  "unknown_records": 1955121,
   "species_counts": {
-    "cherry": 265802,
-    "plum": 123373,
-    "peach": 8186,
-    "magnolia": 185682,
-    "crabapple": 268922
+    "cherry": 267188,
+    "plum": 123592,
+    "peach": 8190,
+    "magnolia": 187956,
+    "crabapple": 270893
   },
   "regions": [
     {
@@ -170,6 +174,55 @@
       "coverage_path": "/data/coverage.ab.v1.geojson"
     },
     {
+      "id": "ak",
+      "label": "AK",
+      "available": true,
+      "bounds": [
+        [
+          -135.22182499966627,
+          57.791330999999126
+        ],
+        [
+          -133.17231100014854,
+          58.97133700005607
+        ]
+      ],
+      "data_path": null,
+      "tree_count": 6,
+      "city_count": 1,
+      "cities": [
+        "Juneau"
+      ],
+      "species_counts": {
+        "cherry": 1,
+        "plum": 0,
+        "peach": 0,
+        "magnolia": 0,
+        "crabapple": 5
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "raw_bytes": 3176,
+      "gzip_bytes": 515,
+      "warning_level": "none",
+      "aggregate_raw_bytes": 3176,
+      "aggregate_gzip_bytes": 515,
+      "aggregate_warning_level": "none",
+      "largest_shard_raw_bytes": 3176,
+      "largest_shard_gzip_bytes": 515,
+      "largest_shard_area": "Juneau",
+      "area_split": {
+        "strategy": "area_shard",
+        "index_path": "/data/trees.ak.area-index.v2.json",
+        "area_count": 1,
+        "shard_count": 1,
+        "ready": true
+      },
+      "largest_shard_warning_level": "none",
+      "coverage_path": "/data/coverage.ak.v1.geojson"
+    },
+    {
       "id": "al",
       "label": "AL",
       "available": true,
@@ -217,6 +270,55 @@
       },
       "largest_shard_warning_level": "none",
       "coverage_path": "/data/coverage.al.v1.geojson"
+    },
+    {
+      "id": "ar",
+      "label": "AR",
+      "available": true,
+      "bounds": [
+        [
+          -94.18103562105217,
+          36.04262978782356
+        ],
+        [
+          -94.1669954908243,
+          36.07363228071963
+        ]
+      ],
+      "data_path": null,
+      "tree_count": 174,
+      "city_count": 1,
+      "cities": [
+        "Fayetteville AR"
+      ],
+      "species_counts": {
+        "cherry": 44,
+        "plum": 51,
+        "peach": 0,
+        "magnolia": 42,
+        "crabapple": 37
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "raw_bytes": 94046,
+      "gzip_bytes": 4672,
+      "warning_level": "none",
+      "aggregate_raw_bytes": 94046,
+      "aggregate_gzip_bytes": 4672,
+      "aggregate_warning_level": "none",
+      "largest_shard_raw_bytes": 94046,
+      "largest_shard_gzip_bytes": 4672,
+      "largest_shard_area": "Fayetteville AR",
+      "area_split": {
+        "strategy": "area_shard",
+        "index_path": "/data/trees.ar.area-index.v2.json",
+        "area_count": 1,
+        "shard_count": 1,
+        "ready": true
+      },
+      "largest_shard_warning_level": "none",
+      "coverage_path": null
     },
     {
       "id": "az",
@@ -631,6 +733,55 @@
       }
     },
     {
+      "id": "de",
+      "label": "DE",
+      "available": true,
+      "bounds": [
+        [
+          -75.78771501469528,
+          39.64794684869295
+        ],
+        [
+          -75.72512372291281,
+          39.70227182818055
+        ]
+      ],
+      "data_path": null,
+      "tree_count": 143,
+      "city_count": 1,
+      "cities": [
+        "Newark DE"
+      ],
+      "species_counts": {
+        "cherry": 13,
+        "plum": 73,
+        "peach": 0,
+        "magnolia": 35,
+        "crabapple": 22
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "raw_bytes": 67944,
+      "gzip_bytes": 3947,
+      "warning_level": "none",
+      "aggregate_raw_bytes": 67944,
+      "aggregate_gzip_bytes": 3947,
+      "aggregate_warning_level": "none",
+      "largest_shard_raw_bytes": 67944,
+      "largest_shard_gzip_bytes": 3947,
+      "largest_shard_area": "Newark DE",
+      "area_split": {
+        "strategy": "area_shard",
+        "index_path": "/data/trees.de.area-index.v2.json",
+        "area_count": 1,
+        "shard_count": 1,
+        "ready": true
+      },
+      "largest_shard_warning_level": "none",
+      "coverage_path": null
+    },
+    {
       "id": "fl",
       "label": "FL",
       "available": true,
@@ -734,6 +885,104 @@
         "shard_count": 3,
         "ready": true
       }
+    },
+    {
+      "id": "hi",
+      "label": "HI",
+      "available": true,
+      "bounds": [
+        [
+          -178.4435930001603,
+          21.19923799969125
+        ],
+        [
+          -157.5972880003514,
+          28.51726899980199
+        ]
+      ],
+      "data_path": null,
+      "tree_count": 1,
+      "city_count": 1,
+      "cities": [
+        "Honolulu"
+      ],
+      "species_counts": {
+        "cherry": 0,
+        "plum": 0,
+        "peach": 0,
+        "magnolia": 1,
+        "crabapple": 0
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "raw_bytes": 550,
+      "gzip_bytes": 319,
+      "warning_level": "none",
+      "aggregate_raw_bytes": 550,
+      "aggregate_gzip_bytes": 319,
+      "aggregate_warning_level": "none",
+      "largest_shard_raw_bytes": 550,
+      "largest_shard_gzip_bytes": 319,
+      "largest_shard_area": "Honolulu",
+      "area_split": {
+        "strategy": "area_shard",
+        "index_path": "/data/trees.hi.area-index.v2.json",
+        "area_count": 1,
+        "shard_count": 1,
+        "ready": true
+      },
+      "largest_shard_warning_level": "none",
+      "coverage_path": "/data/coverage.hi.v1.geojson"
+    },
+    {
+      "id": "ia",
+      "label": "IA",
+      "available": true,
+      "bounds": [
+        [
+          -91.14612800233,
+          40.778742437093
+        ],
+        [
+          -91.096440781458,
+          40.842847539076
+        ]
+      ],
+      "data_path": null,
+      "tree_count": 482,
+      "city_count": 1,
+      "cities": [
+        "Burlington IA"
+      ],
+      "species_counts": {
+        "cherry": 61,
+        "plum": 1,
+        "peach": 0,
+        "magnolia": 121,
+        "crabapple": 299
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "raw_bytes": 257708,
+      "gzip_bytes": 11366,
+      "warning_level": "none",
+      "aggregate_raw_bytes": 257708,
+      "aggregate_gzip_bytes": 11366,
+      "aggregate_warning_level": "none",
+      "largest_shard_raw_bytes": 257708,
+      "largest_shard_gzip_bytes": 11366,
+      "largest_shard_area": "Burlington IA",
+      "area_split": {
+        "strategy": "area_shard",
+        "index_path": "/data/trees.ia.area-index.v2.json",
+        "area_count": 1,
+        "shard_count": 1,
+        "ready": true
+      },
+      "largest_shard_warning_level": "none",
+      "coverage_path": null
     },
     {
       "id": "id",
@@ -991,6 +1240,55 @@
       "coverage_path": "/data/coverage.ky.v1.geojson"
     },
     {
+      "id": "la",
+      "label": "LA",
+      "available": true,
+      "bounds": [
+        [
+          -91.23490400042043,
+          30.338407999701282
+        ],
+        [
+          -91.00130300014014,
+          30.558941000020194
+        ]
+      ],
+      "data_path": null,
+      "tree_count": 1863,
+      "city_count": 1,
+      "cities": [
+        "Baton Rouge"
+      ],
+      "species_counts": {
+        "cherry": 33,
+        "plum": 40,
+        "peach": 3,
+        "magnolia": 1783,
+        "crabapple": 4
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "raw_bytes": 1025690,
+      "gzip_bytes": 39544,
+      "warning_level": "none",
+      "aggregate_raw_bytes": 1025690,
+      "aggregate_gzip_bytes": 39544,
+      "aggregate_warning_level": "none",
+      "largest_shard_raw_bytes": 1025690,
+      "largest_shard_gzip_bytes": 39544,
+      "largest_shard_area": "Baton Rouge",
+      "area_split": {
+        "strategy": "area_shard",
+        "index_path": "/data/trees.la.area-index.v2.json",
+        "area_count": 1,
+        "shard_count": 1,
+        "ready": true
+      },
+      "largest_shard_warning_level": "none",
+      "coverage_path": "/data/coverage.la.v1.geojson"
+    },
+    {
       "id": "ma",
       "label": "MA",
       "available": true,
@@ -1157,6 +1455,55 @@
       }
     },
     {
+      "id": "me",
+      "label": "ME",
+      "available": true,
+      "bounds": [
+        [
+          -70.32228118336792,
+          43.64351232695534
+        ],
+        [
+          -70.23886789856637,
+          43.720775189511826
+        ]
+      ],
+      "data_path": null,
+      "tree_count": 759,
+      "city_count": 1,
+      "cities": [
+        "Portland ME"
+      ],
+      "species_counts": {
+        "cherry": 526,
+        "plum": 1,
+        "peach": 1,
+        "magnolia": 85,
+        "crabapple": 146
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "raw_bytes": 355609,
+      "gzip_bytes": 19079,
+      "warning_level": "none",
+      "aggregate_raw_bytes": 355609,
+      "aggregate_gzip_bytes": 19079,
+      "aggregate_warning_level": "none",
+      "largest_shard_raw_bytes": 355609,
+      "largest_shard_gzip_bytes": 19079,
+      "largest_shard_area": "Portland ME",
+      "area_split": {
+        "strategy": "area_shard",
+        "index_path": "/data/trees.me.area-index.v2.json",
+        "area_count": 1,
+        "shard_count": 1,
+        "ready": true
+      },
+      "largest_shard_warning_level": "none",
+      "coverage_path": null
+    },
+    {
       "id": "mi",
       "label": "MI",
       "available": true,
@@ -1313,6 +1660,104 @@
       },
       "largest_shard_warning_level": "none",
       "coverage_path": "/data/coverage.mo.v1.geojson"
+    },
+    {
+      "id": "ms",
+      "label": "MS",
+      "available": true,
+      "bounds": [
+        [
+          -89.59780800041779,
+          34.2924839997266
+        ],
+        [
+          -89.47380499967073,
+          34.40870799966796
+        ]
+      ],
+      "data_path": null,
+      "tree_count": 172,
+      "city_count": 1,
+      "cities": [
+        "Oxford"
+      ],
+      "species_counts": {
+        "cherry": 9,
+        "plum": 0,
+        "peach": 0,
+        "magnolia": 160,
+        "crabapple": 3
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "raw_bytes": 90049,
+      "gzip_bytes": 4475,
+      "warning_level": "none",
+      "aggregate_raw_bytes": 90049,
+      "aggregate_gzip_bytes": 4475,
+      "aggregate_warning_level": "none",
+      "largest_shard_raw_bytes": 90049,
+      "largest_shard_gzip_bytes": 4475,
+      "largest_shard_area": "Oxford",
+      "area_split": {
+        "strategy": "area_shard",
+        "index_path": "/data/trees.ms.area-index.v2.json",
+        "area_count": 1,
+        "shard_count": 1,
+        "ready": true
+      },
+      "largest_shard_warning_level": "none",
+      "coverage_path": "/data/coverage.ms.v1.geojson"
+    },
+    {
+      "id": "mt",
+      "label": "MT",
+      "available": true,
+      "bounds": [
+        [
+          -111.11979600024759,
+          45.63286999975659
+        ],
+        [
+          -110.98425400043716,
+          45.73325800020942
+        ]
+      ],
+      "data_path": null,
+      "tree_count": 185,
+      "city_count": 1,
+      "cities": [
+        "Bozeman"
+      ],
+      "species_counts": {
+        "cherry": 11,
+        "plum": 9,
+        "peach": 0,
+        "magnolia": 0,
+        "crabapple": 165
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "raw_bytes": 94543,
+      "gzip_bytes": 4942,
+      "warning_level": "none",
+      "aggregate_raw_bytes": 94543,
+      "aggregate_gzip_bytes": 4942,
+      "aggregate_warning_level": "none",
+      "largest_shard_raw_bytes": 94543,
+      "largest_shard_gzip_bytes": 4942,
+      "largest_shard_area": "Bozeman",
+      "area_split": {
+        "strategy": "area_shard",
+        "index_path": "/data/trees.mt.area-index.v2.json",
+        "area_count": 1,
+        "shard_count": 1,
+        "ready": true
+      },
+      "largest_shard_warning_level": "none",
+      "coverage_path": "/data/coverage.mt.v1.geojson"
     },
     {
       "id": "nb",
@@ -2271,6 +2716,104 @@
       "coverage_path": "/data/coverage.ri.v1.geojson"
     },
     {
+      "id": "sc",
+      "label": "SC",
+      "available": true,
+      "bounds": [
+        [
+          -81.17118699977014,
+          33.9353810000095
+        ],
+        [
+          -80.70393300022938,
+          34.144822999666765
+        ]
+      ],
+      "data_path": null,
+      "tree_count": 1,
+      "city_count": 1,
+      "cities": [
+        "Columbia"
+      ],
+      "species_counts": {
+        "cherry": 0,
+        "plum": 0,
+        "peach": 0,
+        "magnolia": 1,
+        "crabapple": 0
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "raw_bytes": 632,
+      "gzip_bytes": 379,
+      "warning_level": "none",
+      "aggregate_raw_bytes": 632,
+      "aggregate_gzip_bytes": 379,
+      "aggregate_warning_level": "none",
+      "largest_shard_raw_bytes": 632,
+      "largest_shard_gzip_bytes": 379,
+      "largest_shard_area": "Columbia",
+      "area_split": {
+        "strategy": "area_shard",
+        "index_path": "/data/trees.sc.area-index.v2.json",
+        "area_count": 1,
+        "shard_count": 1,
+        "ready": true
+      },
+      "largest_shard_warning_level": "none",
+      "coverage_path": "/data/coverage.sc.v1.geojson"
+    },
+    {
+      "id": "sd",
+      "label": "SD",
+      "available": true,
+      "bounds": [
+        [
+          -96.83915600026606,
+          44.2679590002356
+        ],
+        [
+          -96.74083200038065,
+          44.34043200017833
+        ]
+      ],
+      "data_path": null,
+      "tree_count": 343,
+      "city_count": 1,
+      "cities": [
+        "Brookings"
+      ],
+      "species_counts": {
+        "cherry": 0,
+        "plum": 0,
+        "peach": 0,
+        "magnolia": 0,
+        "crabapple": 343
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "raw_bytes": 182080,
+      "gzip_bytes": 7402,
+      "warning_level": "none",
+      "aggregate_raw_bytes": 182080,
+      "aggregate_gzip_bytes": 7402,
+      "aggregate_warning_level": "none",
+      "largest_shard_raw_bytes": 182080,
+      "largest_shard_gzip_bytes": 7402,
+      "largest_shard_area": "Brookings",
+      "area_split": {
+        "strategy": "area_shard",
+        "index_path": "/data/trees.sd.area-index.v2.json",
+        "area_count": 1,
+        "shard_count": 1,
+        "ready": true
+      },
+      "largest_shard_warning_level": "none",
+      "coverage_path": "/data/coverage.sd.v1.geojson"
+    },
+    {
       "id": "sk",
       "label": "SK",
       "available": true,
@@ -2735,6 +3278,104 @@
       },
       "largest_shard_warning_level": "none",
       "coverage_path": "/data/coverage.wi.v1.geojson"
+    },
+    {
+      "id": "wv",
+      "label": "WV",
+      "available": true,
+      "bounds": [
+        [
+          -79.98816000008182,
+          39.57570000031281
+        ],
+        [
+          -79.89902600001325,
+          39.67484199981567
+        ]
+      ],
+      "data_path": null,
+      "tree_count": 222,
+      "city_count": 1,
+      "cities": [
+        "Morgantown"
+      ],
+      "species_counts": {
+        "cherry": 61,
+        "plum": 9,
+        "peach": 0,
+        "magnolia": 46,
+        "crabapple": 106
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "raw_bytes": 119518,
+      "gzip_bytes": 5994,
+      "warning_level": "none",
+      "aggregate_raw_bytes": 119518,
+      "aggregate_gzip_bytes": 5994,
+      "aggregate_warning_level": "none",
+      "largest_shard_raw_bytes": 119518,
+      "largest_shard_gzip_bytes": 5994,
+      "largest_shard_area": "Morgantown",
+      "area_split": {
+        "strategy": "area_shard",
+        "index_path": "/data/trees.wv.area-index.v2.json",
+        "area_count": 1,
+        "shard_count": 1,
+        "ready": true
+      },
+      "largest_shard_warning_level": "none",
+      "coverage_path": "/data/coverage.wv.v1.geojson"
+    },
+    {
+      "id": "wy",
+      "label": "WY",
+      "available": true,
+      "bounds": [
+        [
+          -105.69738000015147,
+          41.27733200023126
+        ],
+        [
+          -105.5282039999219,
+          41.33580399980886
+        ]
+      ],
+      "data_path": null,
+      "tree_count": 1503,
+      "city_count": 1,
+      "cities": [
+        "Laramie"
+      ],
+      "species_counts": {
+        "cherry": 627,
+        "plum": 35,
+        "peach": 0,
+        "magnolia": 0,
+        "crabapple": 841
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "raw_bytes": 718669,
+      "gzip_bytes": 34088,
+      "warning_level": "none",
+      "aggregate_raw_bytes": 718669,
+      "aggregate_gzip_bytes": 34088,
+      "aggregate_warning_level": "none",
+      "largest_shard_raw_bytes": 718669,
+      "largest_shard_gzip_bytes": 34088,
+      "largest_shard_area": "Laramie",
+      "area_split": {
+        "strategy": "area_shard",
+        "index_path": "/data/trees.wy.area-index.v2.json",
+        "area_count": 1,
+        "shard_count": 1,
+        "ready": true
+      },
+      "largest_shard_warning_level": "none",
+      "coverage_path": "/data/coverage.wy.v1.geojson"
     }
   ],
   "areas": [
@@ -2907,6 +3548,20 @@
       "state_province": "AB"
     },
     {
+      "jurisdiction": "Juneau",
+      "region": "ak",
+      "tree_count": 6,
+      "species_counts": {
+        "cherry": 1,
+        "plum": 0,
+        "peach": 0,
+        "magnolia": 0,
+        "crabapple": 5
+      },
+      "jurisdiction_type": "city",
+      "state_province": "AK"
+    },
+    {
       "jurisdiction": "Auburn",
       "region": "al",
       "tree_count": 219,
@@ -2919,6 +3574,20 @@
       },
       "jurisdiction_type": "city",
       "state_province": "AL"
+    },
+    {
+      "jurisdiction": "Fayetteville AR",
+      "region": "ar",
+      "tree_count": 174,
+      "species_counts": {
+        "cherry": 44,
+        "plum": 51,
+        "peach": 0,
+        "magnolia": 42,
+        "crabapple": 37
+      },
+      "jurisdiction_type": "city",
+      "state_province": "AR"
     },
     {
       "jurisdiction": "Mesa",
@@ -4559,6 +5228,20 @@
       "state_province": "DC"
     },
     {
+      "jurisdiction": "Newark DE",
+      "region": "de",
+      "tree_count": 143,
+      "species_counts": {
+        "cherry": 13,
+        "plum": 73,
+        "peach": 0,
+        "magnolia": 35,
+        "crabapple": 22
+      },
+      "jurisdiction_type": "city",
+      "state_province": "DE"
+    },
+    {
       "jurisdiction": "Cape Coral",
       "region": "fl",
       "tree_count": 741,
@@ -4669,6 +5352,34 @@
       },
       "jurisdiction_type": "city",
       "state_province": "GA"
+    },
+    {
+      "jurisdiction": "Honolulu",
+      "region": "hi",
+      "tree_count": 1,
+      "species_counts": {
+        "cherry": 0,
+        "plum": 0,
+        "peach": 0,
+        "magnolia": 1,
+        "crabapple": 0
+      },
+      "jurisdiction_type": "city",
+      "state_province": "HI"
+    },
+    {
+      "jurisdiction": "Burlington IA",
+      "region": "ia",
+      "tree_count": 482,
+      "species_counts": {
+        "cherry": 61,
+        "plum": 1,
+        "peach": 0,
+        "magnolia": 121,
+        "crabapple": 299
+      },
+      "jurisdiction_type": "city",
+      "state_province": "IA"
     },
     {
       "jurisdiction": "Coeur d'Alene",
@@ -4865,6 +5576,20 @@
       },
       "jurisdiction_type": "city",
       "state_province": "KY"
+    },
+    {
+      "jurisdiction": "Baton Rouge",
+      "region": "la",
+      "tree_count": 1863,
+      "species_counts": {
+        "cherry": 33,
+        "plum": 40,
+        "peach": 3,
+        "magnolia": 1783,
+        "crabapple": 4
+      },
+      "jurisdiction_type": "city",
+      "state_province": "LA"
     },
     {
       "jurisdiction": "Belmont",
@@ -5133,6 +5858,20 @@
       "state_province": "MD"
     },
     {
+      "jurisdiction": "Portland ME",
+      "region": "me",
+      "tree_count": 759,
+      "species_counts": {
+        "cherry": 526,
+        "plum": 1,
+        "peach": 1,
+        "magnolia": 85,
+        "crabapple": 146
+      },
+      "jurisdiction_type": "city",
+      "state_province": "ME"
+    },
+    {
       "jurisdiction": "Ann Arbor",
       "region": "mi",
       "tree_count": 3756,
@@ -5313,6 +6052,34 @@
       },
       "jurisdiction_type": "city",
       "state_province": "MO"
+    },
+    {
+      "jurisdiction": "Oxford",
+      "region": "ms",
+      "tree_count": 172,
+      "species_counts": {
+        "cherry": 9,
+        "plum": 0,
+        "peach": 0,
+        "magnolia": 160,
+        "crabapple": 3
+      },
+      "jurisdiction_type": "city",
+      "state_province": "MS"
+    },
+    {
+      "jurisdiction": "Bozeman",
+      "region": "mt",
+      "tree_count": 185,
+      "species_counts": {
+        "cherry": 11,
+        "plum": 9,
+        "peach": 0,
+        "magnolia": 0,
+        "crabapple": 165
+      },
+      "jurisdiction_type": "city",
+      "state_province": "MT"
     },
     {
       "jurisdiction": "Fredericton",
@@ -6505,6 +7272,34 @@
       "state_province": "RI"
     },
     {
+      "jurisdiction": "Columbia",
+      "region": "sc",
+      "tree_count": 1,
+      "species_counts": {
+        "cherry": 0,
+        "plum": 0,
+        "peach": 0,
+        "magnolia": 1,
+        "crabapple": 0
+      },
+      "jurisdiction_type": "city",
+      "state_province": "SC"
+    },
+    {
+      "jurisdiction": "Brookings",
+      "region": "sd",
+      "tree_count": 343,
+      "species_counts": {
+        "cherry": 0,
+        "plum": 0,
+        "peach": 0,
+        "magnolia": 0,
+        "crabapple": 343
+      },
+      "jurisdiction_type": "city",
+      "state_province": "SD"
+    },
+    {
       "jurisdiction": "Moose Jaw",
       "region": "sk",
       "tree_count": 33,
@@ -7567,6 +8362,34 @@
       },
       "jurisdiction_type": "city",
       "state_province": "WI"
+    },
+    {
+      "jurisdiction": "Morgantown",
+      "region": "wv",
+      "tree_count": 222,
+      "species_counts": {
+        "cherry": 61,
+        "plum": 9,
+        "peach": 0,
+        "magnolia": 46,
+        "crabapple": 106
+      },
+      "jurisdiction_type": "city",
+      "state_province": "WV"
+    },
+    {
+      "jurisdiction": "Laramie",
+      "region": "wy",
+      "tree_count": 1503,
+      "species_counts": {
+        "cherry": 627,
+        "plum": 35,
+        "peach": 0,
+        "magnolia": 0,
+        "crabapple": 841
+      },
+      "jurisdiction_type": "city",
+      "state_province": "WY"
     }
   ],
   "sources": [
@@ -7724,6 +8547,15 @@
       "note": "Integrated from the official City of Barrie public tree ArcGIS layer after restricting to `TREE_STATUS = 'ACTIVE'`."
     },
     {
+      "name": "Tree Inventory Map1",
+      "city": "Baton Rouge",
+      "endpoint": "https://www.brla.gov/1851/Street-Trees",
+      "last_edit_at": "2025-10-08T20:48:07.630000+00:00",
+      "records_fetched": 2885,
+      "records_included": 1863,
+      "note": "Integrated from the official City of Baton Rouge public tree inventory ArcGIS layer and clipped to the official jurisdiction boundary."
+    },
+    {
       "name": "City of Bell Tree Inventory Benefits",
       "city": "Bell",
       "endpoint": "https://services2.arcgis.com/yrktbS5Xw87hJQvs/arcgis/rest/services/City_of_Bell_Tree_Inventory_Benefits_WFL1/FeatureServer",
@@ -7811,6 +8643,15 @@
       "note": "Integrated from the official Nevada Division of Forestry Clark County Schools Tree Inventory after clipping blossom rows to the official Boulder City boundary."
     },
     {
+      "name": "Public Arborist",
+      "city": "Bozeman",
+      "endpoint": "https://gisweb.bozeman.net/Html5Viewer/?viewer=planning",
+      "last_edit_at": "2023-09-11T20:11:30.615000+00:00",
+      "records_fetched": 261,
+      "records_included": 185,
+      "note": "Integrated from the official City of Bozeman public arborist ArcGIS layer and clipped to the official jurisdiction boundary."
+    },
+    {
       "name": "Tree Inventory",
       "city": "Brampton",
       "endpoint": "https://mapsdev.brampton.ca/arcgis/rest/services/ParksOps/Tree_Inventory/MapServer",
@@ -7845,6 +8686,15 @@
       "records_fetched": 8208,
       "records_included": 409,
       "note": "Integrated from the official City of Brighton public TreeKeeper inventory linked from the city's Open Space & Forestry page."
+    },
+    {
+      "name": "Tree Inventory",
+      "city": "Brookings",
+      "endpoint": "https://pg-cloud.com/SouthDakota/",
+      "last_edit_at": "",
+      "records_fetched": 268284,
+      "records_included": 343,
+      "note": "Integrated via the official South Dakota Department of Agriculture and Natural Resources public TreePlotter inventory and clipped to the official Brookings boundary."
     },
     {
       "name": "Buena Park i-Tree Benefits",
@@ -7889,6 +8739,15 @@
       "records_fetched": 1737,
       "records_included": 1621,
       "note": "Integrated from the official City of Burlington public urban-forestry tree layer after restricting to living trees."
+    },
+    {
+      "name": "TreeKeeper Inventory",
+      "city": "Burlington IA",
+      "endpoint": "https://burlingtonia.treekeepersoftware.com",
+      "last_edit_at": "",
+      "records_fetched": 6299,
+      "records_included": 482,
+      "note": "Integrated from the official City of Burlington, Iowa public TreeKeeper inventory."
     },
     {
       "name": "Public Trees",
@@ -8033,6 +8892,15 @@
       "records_fetched": 56,
       "records_included": 51,
       "note": "Integrated from the official Vermont Municipal Tree Inventory rows for the Town of Colchester."
+    },
+    {
+      "name": "South Carolina Champion Tree Database",
+      "city": "Columbia",
+      "endpoint": "https://www.arcgis.com/home/item.html?id=5f45b5c83eb1454db0f2f1ffecf5dcc9",
+      "last_edit_at": "2024-12-04T18:55:48.246000+00:00",
+      "records_fetched": 1,
+      "records_included": 1,
+      "note": "Integrated from Clemson University's official South Carolina Champion Tree Database after clipping blossom-tree points to the official Columbia boundary."
     },
     {
       "name": "Tree Inventory",
@@ -8319,6 +9187,15 @@
       "records_fetched": 2887,
       "records_included": 2479,
       "note": "Integrated from the official City of Fargo public forestry ArcGIS layer and clipped to the official jurisdiction boundary."
+    },
+    {
+      "name": "Arboretum 2014",
+      "city": "Fayetteville AR",
+      "endpoint": "https://maps.uark.edu/arboretum/",
+      "last_edit_at": "2025-10-13T19:19:10.289000+00:00",
+      "records_fetched": 216,
+      "records_included": 174,
+      "note": "Integrated from the official University of Arkansas public arboretum ArcGIS layer and clipped to the official Fayetteville boundary."
     },
     {
       "name": "TreeKeeper Inventory",
@@ -8635,6 +9512,15 @@
       "note": "Integrated from the official City of Hoboken public tree inventory ArcGIS layer."
     },
     {
+      "name": "Campus Tree Finder",
+      "city": "Honolulu",
+      "endpoint": "https://map.hawaii.edu/?id=2426",
+      "last_edit_at": "",
+      "records_fetched": 169,
+      "records_included": 1,
+      "note": "Integrated from the official University of Hawaii at Manoa Campus Tree Finder ArcGIS layer and clipped to the official Honolulu boundary."
+    },
+    {
       "name": "COH Urban Forestry Trees",
       "city": "Houston",
       "endpoint": "https://www.arcgis.com/home/item.html?id=ef3851fa482d41d49cf2d82a399919f5",
@@ -8696,6 +9582,15 @@
       "records_fetched": 98,
       "records_included": 8,
       "note": "Integrated from the official City of Johns Creek public Tree Inventory ArcGIS layer using the published species labels."
+    },
+    {
+      "name": "Final Tree Map",
+      "city": "Juneau",
+      "endpoint": "https://juneau.org/parks-recreation/cemeteries/juneau-gardens-cemetery",
+      "last_edit_at": "2024-09-13T20:04:51.417000+00:00",
+      "records_fetched": 8,
+      "records_included": 6,
+      "note": "Integrated from the official City and Borough of Juneau public cemetery tree ArcGIS layer and clipped to the official jurisdiction boundary."
     },
     {
       "name": "TreeKeeper Inventory",
@@ -8820,6 +9715,15 @@
       "records_fetched": 3072,
       "records_included": 2900,
       "note": "Integrated from the official Township of Langley public tree inventory ArcGIS layer and official jurisdiction boundary."
+    },
+    {
+      "name": "Laramie Trees",
+      "city": "Laramie",
+      "endpoint": "https://www.arcgis.com/home/search.html?q=owner%3Ai5xRZLABP6oUOcld%20Laramie%20trees",
+      "last_edit_at": "",
+      "records_fetched": 1503,
+      "records_included": 1503,
+      "note": "Integrated from the official City of Laramie public ArcGIS tree layers after merging street, park, and other-tree inventories and clipping to the official jurisdiction boundary."
     },
     {
       "name": "CLV Tree Sites",
@@ -9154,6 +10058,15 @@
       "note": "Integrated from the official Santa Clara County public tree inventory service using the City = Morgan Hill subset and official jurisdiction boundary."
     },
     {
+      "name": "WVU TreeScape",
+      "city": "Morgantown",
+      "endpoint": "https://experience.arcgis.com/experience/ff2c1ba0271d46419e21b84d2f89cd3f",
+      "last_edit_at": "2025-10-08T15:14:53.434000+00:00",
+      "records_fetched": 236,
+      "records_included": 222,
+      "note": "Integrated from the official West Virginia University TreeScape ArcGIS layer and clipped to the official Morgantown boundary."
+    },
+    {
       "name": "Tree Inventory",
       "city": "Morristown",
       "endpoint": "https://services.arcgis.com/xhDV83hFoiDFnMbw/arcgis/rest/services/Legacy_Trees_2021/FeatureServer",
@@ -9242,6 +10155,15 @@
       "records_fetched": 1456,
       "records_included": 28,
       "note": "Integrated from the official Newark public TreeKeeper inventory and jurisdiction boundary."
+    },
+    {
+      "name": "Park Trees",
+      "city": "Newark DE",
+      "endpoint": "https://www.newarkde.gov/166/Parks-Recreation",
+      "last_edit_at": "",
+      "records_fetched": 222,
+      "records_included": 143,
+      "note": "Integrated from the official City of Newark public parks tree ArcGIS layer and clipped to the official Newark boundary."
     },
     {
       "name": "Street Trees",
@@ -9423,6 +10345,15 @@
       "note": "Integrated from the official City of Ottawa Tree Inventory ArcGIS layer and official city boundary."
     },
     {
+      "name": "Tree Inventory",
+      "city": "Oxford",
+      "endpoint": "https://pg-cloud.com/UniversityOfMississippi/",
+      "last_edit_at": "",
+      "records_fetched": 6632,
+      "records_included": 172,
+      "note": "Integrated via the official University of Mississippi public TreePlotter inventory page and clipped to the official Oxford boundary."
+    },
+    {
       "name": "Trees",
       "city": "Oxnard",
       "endpoint": "https://maps.oxnard.org/portal/apps/webappviewer/index.html?id=2b5e4c2ecf4a49fa82d3ecf924ff8ad7",
@@ -9536,6 +10467,15 @@
       "last_edit_at": "",
       "records_fetched": 252205,
       "records_included": 24775
+    },
+    {
+      "name": "Trees",
+      "city": "Portland ME",
+      "endpoint": "https://www.portlandmaine.gov/154/Urban-Forest",
+      "last_edit_at": "",
+      "records_fetched": 1827,
+      "records_included": 759,
+      "note": "Integrated from the official City of Portland public urban-forest ArcGIS layer and clipped to the official Portland, Maine boundary."
     },
     {
       "name": "Tree",

@@ -15,7 +15,7 @@ export type Language =
   | "ja-JP"
   | "fr-FR"
   | "vi-VN";
-export type CoverageRegion = "ab" | "az" | "bc" | "ca" | "co" | "ct" | "dc" | "fl" | "ga" | "il" | "in" | "ma" | "mb" | "md" | "mi" | "mo" | "nb" | "nc" | "nh" | "nj" | "ns" | "nv" | "ny" | "on" | "or" | "pa" | "pe" | "qc" | "ri" | "sk" | "tn" | "tx" | "ut" | "va" | "vt" | "wa" | "wi";
+export type CoverageRegion = "ab" | "ak" | "al" | "ar" | "az" | "bc" | "ca" | "co" | "ct" | "dc" | "de" | "fl" | "ga" | "hi" | "ia" | "id" | "il" | "in" | "ks" | "ky" | "la" | "ma" | "mb" | "md" | "me" | "mi" | "mn" | "mo" | "ms" | "mt" | "nb" | "nc" | "nd" | "ne" | "nh" | "nj" | "nl" | "nm" | "ns" | "nv" | "ny" | "oh" | "ok" | "on" | "or" | "pa" | "pe" | "qc" | "ri" | "sc" | "sd" | "sk" | "tn" | "tx" | "ut" | "va" | "vt" | "wa" | "wi" | "wv" | "wy";
 export type RegionWarningLevel = "none" | "warning" | "high_warning" | "hard_fail";
 export type RegionAggregateAdvisoryLevel = "none" | "watch" | "large" | "very_large";
 export type SpeciesCounts = Record<SpeciesGroup, number>;

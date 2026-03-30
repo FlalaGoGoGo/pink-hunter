@@ -132,9 +132,20 @@ type BoundsTuple = [[number, number], [number, number]];
 
 const REGION_CITY_OVERRIDES: Partial<Record<string, CoverageRegion>> = {
   Denver: "co",
+  Juneau: "ak",
+  Honolulu: "hi",
   Atlanta: "ga",
   "Johns Creek": "ga",
   "Sandy Springs": "ga",
+  "Fayetteville AR": "ar",
+  "Newark DE": "de",
+  "Baton Rouge": "la",
+  "Portland ME": "me",
+  Oxford: "ms",
+  Bozeman: "mt",
+  Clemson: "sc",
+  Morgantown: "wv",
+  Laramie: "wy",
   Austin: "tx",
   Dallas: "tx",
   "Las Vegas": "nv",
@@ -266,7 +277,7 @@ const REGION_CITY_OVERRIDES: Partial<Record<string, CoverageRegion>> = {
   "San Jose": "ca"
 };
 
-const AREA_STATE_SUFFIX_PATTERN = /(?:, *| +)(AB|AZ|BC|CA|CO|CT|DC|FL|GA|IL|IN|MA|MB|MD|MI|MO|NB|NC|NH|NJ|NS|NV|NY|ON|OR|PA|PE|QC|RI|SK|TN|TX|UT|VA|VT|WA|WI)$/i;
+const AREA_STATE_SUFFIX_PATTERN = /(?:, *| +)(AB|AK|AL|AR|AZ|BC|CA|CO|CT|DC|DE|FL|GA|HI|IA|ID|IL|IN|KS|KY|LA|MA|MB|MD|ME|MI|MN|MO|MS|MT|NB|NC|ND|NE|NH|NJ|NL|NM|NS|NV|NY|OH|OK|ON|OR|PA|PE|QC|RI|SC|SD|SK|TN|TX|UT|VA|VT|WA|WI|WV|WY)$/i;
 
 function matchedAreaStateCode(city: string): string | null {
   const match = city.match(AREA_STATE_SUFFIX_PATTERN);
@@ -1411,38 +1422,60 @@ const REGION_DEFAULT_FOCUS_BOUNDS: Partial<Record<CoverageRegion, Record<LayoutM
 
 type CountryKey = "us" | "ca";
 
-const CANADIAN_COVERAGE_REGIONS = new Set<CoverageRegion>(["ab", "bc", "mb", "nb", "ns", "on", "pe", "qc", "sk"]);
+const CANADIAN_COVERAGE_REGIONS = new Set<CoverageRegion>(["ab", "bc", "mb", "nb", "nl", "ns", "on", "pe", "qc", "sk"]);
 
 const REGION_SORT_LABELS: Record<CoverageRegion, string> = {
   ab: "Alberta",
+  ak: "Alaska",
+  al: "Alabama",
+  ar: "Arkansas",
   az: "Arizona",
   bc: "British Columbia",
   ca: "California",
   co: "Colorado",
   ct: "Connecticut",
   dc: "Washington, DC",
+  de: "Delaware",
   fl: "Florida",
   ga: "Georgia",
+  hi: "Hawaii",
+  ia: "Iowa",
+  id: "Idaho",
   il: "Illinois",
   in: "Indiana",
+  ks: "Kansas",
+  ky: "Kentucky",
+  la: "Louisiana",
   ma: "Massachusetts",
   mb: "Manitoba",
   md: "Maryland",
+  me: "Maine",
   mi: "Michigan",
+  mn: "Minnesota",
   mo: "Missouri",
+  ms: "Mississippi",
+  mt: "Montana",
   nb: "New Brunswick",
   nc: "North Carolina",
+  nd: "North Dakota",
+  ne: "Nebraska",
   nh: "New Hampshire",
   nj: "New Jersey",
+  nl: "Newfoundland and Labrador",
+  nm: "New Mexico",
   ns: "Nova Scotia",
   nv: "Nevada",
   ny: "New York",
+  oh: "Ohio",
+  ok: "Oklahoma",
   on: "Ontario",
   or: "Oregon",
   pa: "Pennsylvania",
   pe: "Prince Edward Island",
   qc: "Quebec",
   ri: "Rhode Island",
+  sc: "South Carolina",
+  sd: "South Dakota",
   sk: "Saskatchewan",
   tn: "Tennessee",
   tx: "Texas",
@@ -1450,7 +1483,9 @@ const REGION_SORT_LABELS: Record<CoverageRegion, string> = {
   va: "Virginia",
   vt: "Vermont",
   wa: "Washington",
-  wi: "Wisconsin"
+  wi: "Wisconsin",
+  wv: "West Virginia",
+  wy: "Wyoming"
 };
 
 function countryKeyForRegion(region: CoverageRegion): CountryKey {
@@ -2227,24 +2262,34 @@ function formatLanguageList(language: Language, items: string[]): string {
 }
 
 function formatCoverageScope(language: Language, regions: CoverageRegion[]): string {
-  const grouped = new Map<CountryKey, string[]>();
+  const covered = new Set(regions);
+  const coveredUsStateCount = [...covered].filter(
+    (region) => countryKeyForRegion(region) === "us" && region !== "dc"
+  ).length;
+  const coveredCanadianProvinceCount = [...covered].filter((region) => countryKeyForRegion(region) === "ca").length;
 
-  regions.forEach((region) => {
-    const country = countryKeyForRegion(region);
-    const current = grouped.get(country) ?? [];
-    current.push(region.toUpperCase());
-    grouped.set(country, current);
-  });
+  const usTotal = 50;
+  const caTotal = 10;
 
-  const countryOrder: CountryKey[] = ["us", "ca"];
-
-  return countryOrder
-    .filter((country) => grouped.has(country))
-    .map((country) => {
-      const labels = [...(grouped.get(country) ?? [])].sort((left, right) => left.localeCompare(right));
-      return `${COUNTRY_LABELS[language][country]} (${formatLanguageList(language, labels)})`;
-    })
-    .join("; ");
+  switch (language) {
+    case "zh-CN":
+      return `美国 ${coveredUsStateCount}/${usTotal} 个州、加拿大 ${coveredCanadianProvinceCount}/${caTotal} 个省`;
+    case "zh-TW":
+      return `美國 ${coveredUsStateCount}/${usTotal} 個州、加拿大 ${coveredCanadianProvinceCount}/${caTotal} 個省`;
+    case "es-ES":
+      return `${coveredUsStateCount} de ${usTotal} estados de EE. UU. y ${coveredCanadianProvinceCount} de ${caTotal} provincias de Canada`;
+    case "ko-KR":
+      return `미국 ${usTotal}개 주 중 ${coveredUsStateCount}개, 캐나다 ${caTotal}개 주 중 ${coveredCanadianProvinceCount}개`;
+    case "ja-JP":
+      return `アメリカ ${usTotal} 州中 ${coveredUsStateCount} 州、カナダ ${caTotal} 州中 ${coveredCanadianProvinceCount} 州`;
+    case "fr-FR":
+      return `${coveredUsStateCount} des ${usTotal} Etats americains et ${coveredCanadianProvinceCount} des ${caTotal} provinces canadiennes`;
+    case "vi-VN":
+      return `${coveredUsStateCount}/${usTotal} bang cua Hoa Ky va ${coveredCanadianProvinceCount}/${caTotal} tinh cua Canada`;
+    case "en-US":
+    default:
+      return `${coveredUsStateCount} of ${usTotal} U.S. states and ${coveredCanadianProvinceCount} of ${caTotal} Canadian provinces`;
+  }
 }
 
 function createSelectedBloomImageData(): ImageData {

@@ -11,6 +11,7 @@ import re
 import subprocess
 import sys
 import io
+import html
 import time
 from collections import Counter
 from functools import lru_cache
@@ -147,6 +148,7 @@ from etl.build_data import (
     expand_abbreviated_botanical_name,
     fetch_all_features,
     fetch_binary,
+    fetch_city_boundary_feature,
     fetch_json,
     fetch_ods_export_rows,
     fetch_soda_count,
@@ -2016,6 +2018,14 @@ MID_SOUTH_TREEKEEPER_CONFIGS: dict[str, dict[str, Any]] = {
         "note": "Integrated from the official City of Bloomington public TreeKeeper inventory.",
         "use_zip_index": False,
     },
+    "Burlington IA": {
+        "base_url": "https://burlingtonia.treekeepersoftware.com",
+        "uid": "pinkhunter-burlington-ia",
+        "region": "ia",
+        "source_department": "City of Burlington",
+        "note": "Integrated from the official City of Burlington, Iowa public TreeKeeper inventory.",
+        "use_zip_index": False,
+    },
     "Erie": {
         "base_url": "https://erieco.treekeepersoftware.com",
         "uid": "pinkhunter-erie-co",
@@ -2193,6 +2203,14 @@ ZERO_COVERAGE_TREEPLOTTER_CONFIGS: dict[str, dict[str, Any]] = {
         "note": "Integrated via the official City of Moorhead public TreePlotter inventory page and official jurisdiction boundary clipping.",
         "clip_to_boundary": True,
     },
+    "Brookings": {
+        "folder": "SouthDakota",
+        "landing_url": "https://pg-cloud.com/SouthDakota/",
+        "region": "sd",
+        "source_department": "South Dakota Department of Agriculture and Natural Resources",
+        "note": "Integrated via the official South Dakota Department of Agriculture and Natural Resources public TreePlotter inventory and clipped to the official Brookings boundary.",
+        "clip_to_boundary": True,
+    },
 }
 
 ZERO_COVERAGE_ARCGIS_CONFIGS: dict[str, dict[str, Any]] = {
@@ -2280,6 +2298,79 @@ ZERO_COVERAGE_ARCGIS_CONFIGS: dict[str, dict[str, Any]] = {
         "source_department": "City of Tulsa",
         "ownership_raw": "City of Tulsa",
         "note": "Integrated from the official City of Tulsa public tree inventory ArcGIS layer and clipped to the official jurisdiction boundary.",
+        "clip_to_boundary": True,
+    },
+    "Baton Rouge": {
+        "region": "la",
+        "layer_url": "https://services.arcgis.com/KYvXadMcgf0K1EzK/arcgis/rest/services/Tree_Inventory_Map1/FeatureServer/7",
+        "dataset_page": "https://www.brla.gov/1851/Street-Trees",
+        "where": "UPPER(CommonName) LIKE '%CHERRY%' OR UPPER(CommonName) LIKE '%PLUM%' OR UPPER(CommonName) LIKE '%PEACH%' OR UPPER(CommonName) LIKE '%MAGNOLIA%' OR UPPER(CommonName) LIKE '%CRABAPPLE%' OR UPPER(CommonName) LIKE '%APPLE%' OR UPPER(LatinName) LIKE 'PRUNUS%' OR UPPER(LatinName) LIKE 'MALUS%' OR UPPER(LatinName) LIKE 'MAGNOLIA%'",
+        "object_id_field": "OBJECTID",
+        "common_field": "CommonName",
+        "scientific_field": "LatinName",
+        "source_name": "Tree Inventory Map1",
+        "source_department": "City of Baton Rouge",
+        "ownership_raw": "City of Baton Rouge",
+        "note": "Integrated from the official City of Baton Rouge public tree inventory ArcGIS layer and clipped to the official jurisdiction boundary.",
+        "clip_to_boundary": True,
+    },
+    "Bozeman": {
+        "region": "mt",
+        "layer_url": "https://services.arcgis.com/9ecg2KpMLcsUv1Oh/arcgis/rest/services/Public_Arborist_16/FeatureServer/0",
+        "dataset_page": "https://gisweb.bozeman.net/Html5Viewer/?viewer=planning",
+        "where": "UPPER(ComName) LIKE '%CHERRY%' OR UPPER(ComName) LIKE '%PLUM%' OR UPPER(ComName) LIKE '%PEACH%' OR UPPER(ComName) LIKE '%MAGNOLIA%' OR UPPER(ComName) LIKE '%CRABAPPLE%' OR UPPER(ComName) LIKE '%APPLE%' OR UPPER(Genus) LIKE 'PRUNUS%' OR UPPER(Genus) LIKE 'MALUS%' OR UPPER(Genus) LIKE 'MAGNOLIA%'",
+        "object_id_field": "OBJECTID",
+        "common_field": "ComName",
+        "genus_field": "Genus",
+        "species_field": "Species",
+        "source_name": "Public Arborist",
+        "source_department": "City of Bozeman",
+        "ownership_raw": "City of Bozeman",
+        "note": "Integrated from the official City of Bozeman public arborist ArcGIS layer and clipped to the official jurisdiction boundary.",
+        "clip_to_boundary": True,
+    },
+    "Columbia": {
+        "region": "sc",
+        "layer_url": "https://services1.arcgis.com/x5wCko8UnSi4h0CB/ArcGIS/rest/services/South_Carolina_Champion_Tree_Database/FeatureServer/0",
+        "dataset_page": "https://www.arcgis.com/home/item.html?id=5f45b5c83eb1454db0f2f1ffecf5dcc9",
+        "where": "UPPER(tree_common_name) LIKE '%CHERRY%' OR UPPER(tree_common_name) LIKE '%PLUM%' OR UPPER(tree_common_name) LIKE '%PEACH%' OR UPPER(tree_common_name) LIKE '%MAGNOLIA%' OR UPPER(tree_common_name) LIKE '%CRABAPPLE%' OR UPPER(tree_common_name) LIKE '%APPLE%' OR UPPER(tree_science_name) LIKE 'PRUNUS%' OR UPPER(tree_science_name) LIKE 'MALUS%' OR UPPER(tree_science_name) LIKE 'MAGNOLIA%'",
+        "object_id_field": "OBJECTID",
+        "common_field": "tree_common_name",
+        "scientific_field": "tree_science_name",
+        "lon_field": "Longitude",
+        "lat_field": "Latitude",
+        "source_name": "South Carolina Champion Tree Database",
+        "source_department": "Clemson University",
+        "ownership_raw": "Clemson University / Statewide champion tree inventory",
+        "note": "Integrated from Clemson University's official South Carolina Champion Tree Database after clipping blossom-tree points to the official Columbia boundary.",
+        "clip_to_boundary": True,
+    },
+    "Juneau": {
+        "region": "ak",
+        "layer_url": "https://services6.arcgis.com/BWss3QchpgiQNW02/arcgis/rest/services/Final_Tree_Map/FeatureServer/0",
+        "dataset_page": "https://juneau.org/parks-recreation/cemeteries/juneau-gardens-cemetery",
+        "where": "UPPER(CommonName) LIKE '%CHERRY%' OR UPPER(CommonName) LIKE '%PLUM%' OR UPPER(CommonName) LIKE '%PEACH%' OR UPPER(CommonName) LIKE '%MAGNOLIA%' OR UPPER(CommonName) LIKE '%CRABAPPLE%' OR UPPER(CommonName) LIKE '%APPLE%' OR UPPER(LatinName) LIKE 'PRUNUS%' OR UPPER(LatinName) LIKE 'MALUS%' OR UPPER(LatinName) LIKE 'MAGNOLIA%'",
+        "object_id_field": "FID",
+        "common_field": "CommonName",
+        "scientific_field": "LatinName",
+        "source_name": "Final Tree Map",
+        "source_department": "City and Borough of Juneau",
+        "ownership_raw": "City and Borough of Juneau",
+        "note": "Integrated from the official City and Borough of Juneau public cemetery tree ArcGIS layer and clipped to the official jurisdiction boundary.",
+        "clip_to_boundary": True,
+    },
+    "Morgantown": {
+        "region": "wv",
+        "layer_url": "https://services9.arcgis.com/oBiZycLxRnTJhJER/arcgis/rest/services/Nov_22_WVU_Tree_2_view/FeatureServer/0",
+        "dataset_page": "https://experience.arcgis.com/experience/ff2c1ba0271d46419e21b84d2f89cd3f",
+        "where": "UPPER(CommonName) LIKE '%CHERRY%' OR UPPER(CommonName) LIKE '%PLUM%' OR UPPER(CommonName) LIKE '%PEACH%' OR UPPER(CommonName) LIKE '%MAGNOLIA%' OR UPPER(CommonName) LIKE '%CRABAPPLE%' OR UPPER(CommonName) LIKE '%APPLE%' OR UPPER(LatinName) LIKE 'PRUNUS%' OR UPPER(LatinName) LIKE 'MALUS%' OR UPPER(LatinName) LIKE 'MAGNOLIA%'",
+        "object_id_field": "FID",
+        "common_field": "CommonName",
+        "scientific_field": "LatinName",
+        "source_name": "WVU TreeScape",
+        "source_department": "West Virginia University",
+        "ownership_raw": "West Virginia University",
+        "note": "Integrated from the official West Virginia University TreeScape ArcGIS layer and clipped to the official Morgantown boundary.",
         "clip_to_boundary": True,
     },
 }
@@ -5049,6 +5140,19 @@ def merge_city_results(
             "note": note,
         },
     }
+
+
+def relabel_publish_result(result: dict[str, Any], city: str) -> dict[str, Any]:
+    result["city"] = city
+    for feature in result.get("features", []):
+        properties = feature.setdefault("properties", {})
+        properties["city"] = city
+    for row in result.get("normalized_rows", []):
+        row["city"] = city
+    source = result.get("source")
+    if isinstance(source, dict):
+        source["city"] = city
+    return result
 
 
 def domain_lookup(layer_info: dict[str, Any], field_name: str) -> dict[Any, str]:
@@ -11718,6 +11822,198 @@ def fetch_nashville_cherry_sites() -> dict[str, Any]:
     }
 
 
+def fetch_fayetteville_ar() -> dict[str, Any]:
+    result = fetch_arcgis_inventory_city_result(
+        city="Fayetteville",
+        region="ar",
+        layer_url="https://services6.arcgis.com/NscFgFhf5MwmFH31/arcgis/rest/services/Arboretum_2014/FeatureServer/0",
+        dataset_page="https://maps.uark.edu/arboretum/",
+        where="UPPER(COMMON) LIKE '%CHERRY%' OR UPPER(COMMON) LIKE '%PLUM%' OR UPPER(COMMON) LIKE '%PEACH%' OR UPPER(COMMON) LIKE '%MAGNOLIA%' OR UPPER(COMMON) LIKE '%CRABAPPLE%' OR UPPER(COMMON) LIKE '%APPLE%' OR UPPER(BOTANICAL) LIKE 'PRUNUS%' OR UPPER(BOTANICAL) LIKE 'MALUS%' OR UPPER(BOTANICAL) LIKE 'MAGNOLIA%'",
+        out_fields=["OBJECTID", "COMMON", "BOTANICAL"],
+        object_id_field="OBJECTID",
+        source_name="Arboretum 2014",
+        source_department="University of Arkansas",
+        ownership_raw="University of Arkansas",
+        note="Integrated from the official University of Arkansas public arboretum ArcGIS layer and clipped to the official Fayetteville boundary.",
+        clip_to_boundary=True,
+        common_field="COMMON",
+        scientific_field="BOTANICAL",
+    )
+    return relabel_publish_result(result, "Fayetteville AR")
+
+
+def fetch_newark_de() -> dict[str, Any]:
+    result = fetch_arcgis_inventory_city_result(
+        city="Newark",
+        region="de",
+        layer_url="https://giswa.cityofnewarkde.us/server/rest/services/TylerMunis/Munis_ArcGIS_ParkRec_Server_FS/FeatureServer/3",
+        dataset_page="https://www.newarkde.gov/166/Parks-Recreation",
+        where="UPPER(NAME) LIKE '%CHERRY%' OR UPPER(NAME) LIKE '%PLUM%' OR UPPER(NAME) LIKE '%PEACH%' OR UPPER(NAME) LIKE '%MAGNOLIA%' OR UPPER(NAME) LIKE '%CRABAPPLE%' OR UPPER(NAME) LIKE '%APPLE%' OR UPPER(GENUS) LIKE 'PRUNUS%' OR UPPER(GENUS) LIKE 'MALUS%' OR UPPER(GENUS) LIKE 'MAGNOLIA%'",
+        out_fields=["OBJECTID_1", "OBJECTID", "NAME", "GENUS", "SPECIES"],
+        object_id_field="OBJECTID_1",
+        source_name="Park Trees",
+        source_department="City of Newark",
+        ownership_raw="City of Newark",
+        note="Integrated from the official City of Newark public parks tree ArcGIS layer and clipped to the official Newark boundary.",
+        clip_to_boundary=True,
+        common_field="NAME",
+        genus_field="GENUS",
+        species_field="SPECIES",
+    )
+    return relabel_publish_result(result, "Newark DE")
+
+
+def fetch_portland_me() -> dict[str, Any]:
+    layer_url = "https://gis.portlandmaine.gov/maps/rest/services/ParksRec/Trees/MapServer/1"
+    dataset_page = "https://www.portlandmaine.gov/154/Urban-Forest"
+    where = (
+        "UPPER(CommonName) LIKE '%CHERRY%' OR UPPER(CommonName) LIKE '%PLUM%' OR UPPER(CommonName) LIKE '%PEACH%' OR "
+        "UPPER(CommonName) LIKE '%MAGNOLIA%' OR UPPER(CommonName) LIKE '%CRABAPPLE%' OR UPPER(CommonName) LIKE '%APPLE%' OR "
+        "UPPER(BotanicalName) LIKE 'PRUNUS%' OR UPPER(BotanicalName) LIKE 'MALUS%' OR UPPER(BotanicalName) LIKE 'MAGNOLIA%'"
+    )
+    features = fetch_arcgis_features_by_object_ids(
+        layer_url,
+        where=where,
+        out_fields=["OBJECTID", "FacilityID", "CommonName", "BotanicalName"],
+        object_id_field="OBJECTID",
+    )
+    boundary_feature = fetch_city_boundary_feature("Portland", state_id="me")
+    boundary_geometry = (boundary_feature or {}).get("geometry")
+    if not boundary_geometry:
+        raise RuntimeError("Official Portland, ME boundary is unavailable.")
+    clipped = [
+        feature
+        for feature in features
+        if (feature.get("geometry") or {}).get("x") is not None
+        and (feature.get("geometry") or {}).get("y") is not None
+        and point_in_geometry(feature["geometry"]["x"], feature["geometry"]["y"], boundary_geometry)
+    ]
+    result = build_arcgis_inventory_result(
+        city="Portland",
+        region="me",
+        features=clipped,
+        total_records=len(features),
+        last_edit_at=iso_from_epoch((fetch_json(layer_url, {"f": "pjson"}).get("editingInfo") or {}).get("lastEditDate")),
+        source_name="Trees",
+        source_department="City of Portland",
+        dataset_page=dataset_page,
+        ownership_raw="City of Portland",
+        note="Integrated from the official City of Portland public urban-forest ArcGIS layer and clipped to the official Portland, Maine boundary.",
+        object_id_field="OBJECTID",
+        common_field="CommonName",
+        scientific_field="BotanicalName",
+    )
+    return relabel_publish_result(result, "Portland ME")
+
+
+def fetch_honolulu() -> dict[str, Any]:
+    layer_url = "https://map.hawaii.edu/server/rest/services/MA/MA_PlantsJoined_Hosted_20231012/MapServer/16"
+    dataset_page = "https://map.hawaii.edu/?id=2426"
+    where = (
+        "STATUS='Living' AND PLHABIT='Tree' AND ("
+        "UPPER(VERNACULAR) LIKE '%CHERRY%' OR UPPER(VERNACULAR) LIKE '%PLUM%' OR "
+        "UPPER(VERNACULAR) LIKE '%PEACH%' OR UPPER(VERNACULAR) LIKE '%MAGNOLIA%' OR "
+        "UPPER(VERNACULAR) LIKE '%CRABAPPLE%' OR UPPER(VERNACULAR) LIKE '%APPLE%' OR "
+        "UPPER(SCIENTIFIC) LIKE 'PRUNUS%' OR UPPER(SCIENTIFIC) LIKE 'MALUS%' OR UPPER(SCIENTIFIC) LIKE 'MAGNOLIA%')"
+    )
+    layer_info = fetch_json(layer_url, {"f": "pjson"})
+    features = fetch_arcgis_features_by_object_ids(
+        layer_url,
+        where=where,
+        out_fields=["OBJECTID", "VERNACULAR", "SCIENTIFIC", "LONG_", "LAT", "STATUS", "PLHABIT"],
+        object_id_field="OBJECTID",
+    )
+    boundary = load_city_boundary_geometry("Honolulu", state_id="hi")
+    clipped: list[dict[str, Any]] = []
+    for feature in features:
+        attrs = feature.get("attributes", {})
+        lon = parse_floatish(attrs.get("LONG_"))
+        lat = parse_floatish(attrs.get("LAT"))
+        if lon is None or lat is None:
+            points = (feature.get("geometry") or {}).get("points") or []
+            if points and len(points[0]) >= 2:
+                lon = parse_floatish(points[0][0])
+                lat = parse_floatish(points[0][1])
+        if lon is None or lat is None:
+            continue
+        if boundary and not point_in_geometry(lon, lat, boundary):
+            continue
+        feature["geometry"] = {"x": lon, "y": lat}
+        clipped.append(feature)
+    return build_arcgis_inventory_result(
+        city="Honolulu",
+        region="hi",
+        features=clipped,
+        total_records=len(features),
+        last_edit_at=iso_from_epoch((layer_info.get("editingInfo") or {}).get("lastEditDate")),
+        source_name="Campus Tree Finder",
+        source_department="University of Hawaii at Manoa",
+        dataset_page=dataset_page,
+        ownership_raw="University of Hawaii at Manoa",
+        note="Integrated from the official University of Hawaii at Manoa Campus Tree Finder ArcGIS layer and clipped to the official Honolulu boundary.",
+        object_id_field="OBJECTID",
+        common_field="VERNACULAR",
+        scientific_field="SCIENTIFIC",
+        lon_field="LONG_",
+        lat_field="LAT",
+    )
+
+
+def fetch_oxford() -> dict[str, Any]:
+    return fetch_treeplotter_inventory(
+        city="Oxford",
+        folder="UniversityOfMississippi",
+        landing_url="https://pg-cloud.com/UniversityOfMississippi/",
+        dataset_page="https://pg-cloud.com/UniversityOfMississippi/",
+        source_note="Integrated via the official University of Mississippi public TreePlotter inventory page and clipped to the official Oxford boundary.",
+        region="ms",
+        source_name="Tree Inventory",
+        source_department="University of Mississippi",
+        ownership_raw="University of Mississippi",
+        clip_to_boundary=True,
+    )
+
+
+def fetch_laramie() -> dict[str, Any]:
+    dataset_page = "https://www.arcgis.com/home/search.html?q=owner%3Ai5xRZLABP6oUOcld%20Laramie%20trees"
+    where = (
+        "UPPER(Species) LIKE '%CHERRY%' OR UPPER(Species) LIKE '%PLUM%' OR UPPER(Species) LIKE '%PEACH%' OR "
+        "UPPER(Species) LIKE '%MAGNOLIA%' OR UPPER(Species) LIKE '%CRABAPPLE%' OR UPPER(Species) LIKE '%APPLE%' OR "
+        "UPPER(Species) LIKE 'PRUNUS%' OR UPPER(Species) LIKE 'MALUS%' OR UPPER(Species) LIKE 'MAGNOLIA%'"
+    )
+    results = [
+        fetch_arcgis_inventory_city_result(
+            city="Laramie",
+            region="wy",
+            layer_url=layer_url,
+            dataset_page=dataset_page,
+            where=where,
+            out_fields=["OBJECTID", "Species"],
+            object_id_field="OBJECTID",
+            source_name=source_name,
+            source_department="City of Laramie",
+            ownership_raw="City of Laramie",
+            note="Temporary partial result for Laramie layer merge.",
+            clip_to_boundary=True,
+            common_field="Species",
+        )
+        for layer_url, source_name in [
+            ("https://services1.arcgis.com/i5xRZLABP6oUOcld/arcgis/rest/services/Laramie_OtherTrees/FeatureServer/0", "Laramie Other Trees"),
+            ("https://services1.arcgis.com/i5xRZLABP6oUOcld/arcgis/rest/services/Laramie_ParkTrees/FeatureServer/0", "Laramie Park Trees"),
+            ("https://services1.arcgis.com/i5xRZLABP6oUOcld/arcgis/rest/services/Laramie_StreetTrees/FeatureServer/0", "Laramie Street Trees"),
+        ]
+    ]
+    return merge_city_results(
+        city="Laramie",
+        region="wy",
+        dataset_page=dataset_page,
+        source_name="Laramie Trees",
+        source_department="City of Laramie",
+        note="Integrated from the official City of Laramie public ArcGIS tree layers after merging street, park, and other-tree inventories and clipping to the official jurisdiction boundary.",
+        results=results,
+    )
+
+
 CITY_FETCHERS = {
     "Anaheim": fetch_anaheim,
     "Arlington": fetch_arlington,
@@ -11855,6 +12151,16 @@ CITY_FETCHERS.update({city: build_arcgis_fetcher(city, config) for city, config 
 CITY_FETCHERS.update({city: build_arcgis_fetcher(city, config) for city, config in ZERO_COVERAGE_ARCGIS_CONFIGS.items()})
 CITY_FETCHERS.update({city: build_geojson_fetcher(city, config) for city, config in CANADA_GEOJSON_CONFIGS.items()})
 CITY_FETCHERS.update({city: build_milwaukee_county_fetcher(city) for city in MILWAUKEE_COUNTY_SUPPORTED_CITIES})
+CITY_FETCHERS.update(
+    {
+        "Fayetteville AR": fetch_fayetteville_ar,
+        "Honolulu": fetch_honolulu,
+        "Laramie": fetch_laramie,
+        "Newark DE": fetch_newark_de,
+        "Oxford": fetch_oxford,
+        "Portland ME": fetch_portland_me,
+    }
+)
 
 
 def fetch_ames() -> dict[str, Any]:

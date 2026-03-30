@@ -1,0 +1,142 @@
+{
+  "generated_at": "2026-03-30T07:25:17.708535+00:00",
+  "region": "la",
+  "strategy": "area_shard",
+  "items": [
+    {
+      "jurisdiction": "Baton Rouge",
+      "slug": "baton-rouge",
+      "display_name": "Baton Rouge",
+      "jurisdiction_type": "city",
+      "state_province": "LA",
+      "country": "United States",
+      "bounds": [
+        [
+          -91.23490400042043,
+          30.338407999701282
+        ],
+        [
+          -91.00130300014014,
+          30.558941000020194
+        ]
+      ],
+      "tree_count": 1863,
+      "zip_codes": [
+        "70801",
+        "70802",
+        "70805",
+        "70806",
+        "70807",
+        "70808",
+        "70809",
+        "70810",
+        "70811",
+        "70814",
+        "70815",
+        "70816",
+        "70820",
+        "70836"
+      ],
+      "species_counts": {
+        "cherry": 33,
+        "plum": 40,
+        "peach": 3,
+        "magnolia": 1783,
+        "crabapple": 4
+      },
+      "ownership_counts": {
+        "public": 1863,
+        "private": 0,
+        "unknown": 0
+      },
+      "species_ownership_counts": {
+        "cherry": {
+          "public": 33,
+          "private": 0,
+          "unknown": 0
+        },
+        "plum": {
+          "public": 40,
+          "private": 0,
+          "unknown": 0
+        },
+        "peach": {
+          "public": 3,
+          "private": 0,
+          "unknown": 0
+        },
+        "magnolia": {
+          "public": 1783,
+          "private": 0,
+          "unknown": 0
+        },
+        "crabapple": {
+          "public": 4,
+          "private": 0,
+          "unknown": 0
+        }
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "baton-rouge-001",
+          "bounds": [
+            [
+              -91.20372082867517,
+              30.34287640429788
+            ],
+            [
+              -91.01573029125113,
+              30.542080014038284
+            ]
+          ],
+          "data_path": "/data/trees.la.area.baton-rouge.v2.geojson",
+          "tree_count": 1863,
+          "ownership_counts": {
+            "public": 1863,
+            "private": 0,
+            "unknown": 0
+          },
+          "species_counts": {
+            "cherry": 33,
+            "plum": 40,
+            "peach": 3,
+            "magnolia": 1783,
+            "crabapple": 4
+          },
+          "species_ownership_counts": {
+            "cherry": {
+              "public": 33,
+              "private": 0,
+              "unknown": 0
+            },
+            "plum": {
+              "public": 40,
+              "private": 0,
+              "unknown": 0
+            },
+            "peach": {
+              "public": 3,
+              "private": 0,
+              "unknown": 0
+            },
+            "magnolia": {
+              "public": 1783,
+              "private": 0,
+              "unknown": 0
+            },
+            "crabapple": {
+              "public": 4,
+              "private": 0,
+              "unknown": 0
+            }
+          },
+          "raw_bytes": 1025690,
+          "gzip_bytes": 39544
+        }
+      ]
+    }
+  ]
+}

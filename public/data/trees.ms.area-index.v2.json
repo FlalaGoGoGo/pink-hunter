@@ -1,0 +1,130 @@
+{
+  "generated_at": "2026-03-30T07:25:17.708535+00:00",
+  "region": "ms",
+  "strategy": "area_shard",
+  "items": [
+    {
+      "jurisdiction": "Oxford",
+      "slug": "oxford",
+      "display_name": "Oxford",
+      "jurisdiction_type": "city",
+      "state_province": "MS",
+      "country": "United States",
+      "bounds": [
+        [
+          -89.59780800041779,
+          34.2924839997266
+        ],
+        [
+          -89.47380499967073,
+          34.40870799966796
+        ]
+      ],
+      "tree_count": 172,
+      "zip_codes": [
+        "38655",
+        "38677"
+      ],
+      "species_counts": {
+        "cherry": 9,
+        "plum": 0,
+        "peach": 0,
+        "magnolia": 160,
+        "crabapple": 3
+      },
+      "ownership_counts": {
+        "public": 172,
+        "private": 0,
+        "unknown": 0
+      },
+      "species_ownership_counts": {
+        "cherry": {
+          "public": 9,
+          "private": 0,
+          "unknown": 0
+        },
+        "plum": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        },
+        "peach": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        },
+        "magnolia": {
+          "public": 160,
+          "private": 0,
+          "unknown": 0
+        },
+        "crabapple": {
+          "public": 3,
+          "private": 0,
+          "unknown": 0
+        }
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "oxford-001",
+          "bounds": [
+            [
+              -89.54668442,
+              34.35208507465106
+            ],
+            [
+              -89.52536938000001,
+              34.36813021
+            ]
+          ],
+          "data_path": "/data/trees.ms.area.oxford.v2.geojson",
+          "tree_count": 172,
+          "ownership_counts": {
+            "public": 172,
+            "private": 0,
+            "unknown": 0
+          },
+          "species_counts": {
+            "cherry": 9,
+            "plum": 0,
+            "peach": 0,
+            "magnolia": 160,
+            "crabapple": 3
+          },
+          "species_ownership_counts": {
+            "cherry": {
+              "public": 9,
+              "private": 0,
+              "unknown": 0
+            },
+            "plum": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            },
+            "peach": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            },
+            "magnolia": {
+              "public": 160,
+              "private": 0,
+              "unknown": 0
+            },
+            "crabapple": {
+              "public": 3,
+              "private": 0,
+              "unknown": 0
+            }
+          },
+          "raw_bytes": 90049,
+          "gzip_bytes": 4475
+        }
+      ]
+    }
+  ]
+}

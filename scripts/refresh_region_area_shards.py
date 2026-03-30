@@ -160,7 +160,7 @@ def write_region_area_shards(data_dir: Path, region_entry: dict[str, object], ge
                 "display_name": display_name_for_jurisdiction(jurisdiction),
                 "jurisdiction_type": "county" if jurisdiction == "Arlington" or jurisdiction.endswith(" County") else "city",
                 "state_province": region_id.upper(),
-                "country": "Canada" if region_id in {"ab", "bc", "mb", "nb", "ns", "on", "pe", "qc", "sk"} else "United States",
+                "country": "Canada" if region_id in {"ab", "bc", "mb", "nb", "nl", "ns", "on", "pe", "qc", "sk"} else "United States",
                 "bounds": area_bounds,
                 "tree_count": len(features),
                 "zip_codes": summarize_zip_codes(features),

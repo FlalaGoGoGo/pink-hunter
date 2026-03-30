@@ -119,6 +119,19 @@ Last updated: 2026-03-29 (America/Los_Angeles)
 ## Integrated Cities And Extraction Notes
 | City | Source family | Key fields / parser | Geometry handling | Notes |
 |---|---|---|---|---|
+| Burlington IA | TreeKeeper | auto-detected public species field from TreeKeeper grid rows | direct lon/lat or `SITE_GEOMETRY` JSON, then official-boundary clipping | Official City of Burlington, Iowa public TreeKeeper inventory integrated with the official jurisdiction boundary |
+| Portland ME | ArcGIS MapServer | `CommonName`, `BotanicalName` | ArcGIS point geometry plus explicit Maine Census boundary fetch | Official City of Portland urban-forest layer clipped to the Portland, Maine boundary to avoid the existing Portland, OR special-boundary override |
+| Baton Rouge | ArcGIS FeatureServer | `CommonName`, `LatinName` | ArcGIS point geometry | Official City of Baton Rouge public tree inventory layer clipped to the official jurisdiction boundary |
+| Laramie | ArcGIS FeatureServer (3 layers) | `Species` across merged street / park / other layers | ArcGIS point geometry across merged layers | Official City of Laramie tree layers are merged before publish, then clipped to the official jurisdiction boundary |
+| Brookings | TreePlotter | TreePlotter public alias fields | TreePlotter WKB point hex in Web Mercator, then official-boundary clipping | Official South Dakota Department of Agriculture and Natural Resources public TreePlotter inventory clipped to the official Brookings boundary |
+| Morgantown | ArcGIS FeatureServer | `CommonName`, `LatinName` | ArcGIS point geometry | Official West Virginia University TreeScape layer clipped to the official Morgantown boundary |
+| Bozeman | ArcGIS FeatureServer | `ComName`, `Genus` + `Species` | ArcGIS point geometry | Official City of Bozeman public arborist layer clipped to the official jurisdiction boundary |
+| Fayetteville AR | ArcGIS FeatureServer | `COMMON`, `BOTANICAL` | ArcGIS point geometry | Official University of Arkansas arboretum layer clipped to the official Fayetteville, Arkansas boundary and relabeled to avoid collision with Fayetteville, NC |
+| Oxford | TreePlotter | TreePlotter public alias fields | TreePlotter WKB point hex in Web Mercator, then official-boundary clipping | Official University of Mississippi public TreePlotter inventory clipped to the official Oxford boundary |
+| Newark DE | ArcGIS FeatureServer | `NAME`, `GENUS` + `SPECIES` | ArcGIS point geometry | Official City of Newark parks tree layer clipped to the official Newark, Delaware boundary and relabeled to avoid collision with Newark, NJ |
+| Juneau | ArcGIS FeatureServer | `CommonName`, `LatinName` | ArcGIS point geometry | Official City and Borough of Juneau public cemetery tree layer clipped to the official jurisdiction boundary |
+| Honolulu | ArcGIS MapServer | `VERNACULAR`, `SCIENTIFIC`, `LONG_`, `LAT` | ArcGIS `points` geometry normalized to lon/lat attributes before boundary clipping | Official University of Hawaii at Manoa Campus Tree Finder clipped to the official Honolulu boundary |
+| Columbia | ArcGIS FeatureServer | `tree_common_name`, `tree_science_name`, `Longitude`, `Latitude` | Attribute lon/lat fields with official-boundary clipping | Clemson University champion tree database clipped to the official Columbia boundary |
 | Lincoln | ArcGIS MapServer | `CommonName`, `ScientificName` | ArcGIS point geometry | Official City of Lincoln public trees layer clipped to the official jurisdiction boundary |
 | Coeur d'Alene | TreePlotter | TreePlotter public alias fields | TreePlotter WKB point hex in Web Mercator, then official-boundary clipping | Official Idaho Department of Lands statewide TreePlotter inventory clipped to the official Coeur d'Alene boundary |
 | Fargo | ArcGIS MapServer | `COMMON_NAME`, `BOTANICAL_NAME` | ArcGIS point geometry | Official City of Fargo public forestry layer clipped to the official jurisdiction boundary |

@@ -22,6 +22,19 @@ Current state: no cities are parked in `A2` right now.
 ## A1 — Official Point-Tree Data Confirmed, In-Scope Trees Present, Already Integrated
 | Done | City | Included Trees | Boundary Rule | Notes |
 |---|---|---:|---|---|
+| ✅ | Burlington IA | 482 | Official jurisdiction boundary | Official City of Burlington, Iowa public TreeKeeper inventory integrated with the official jurisdiction boundary |
+| ✅ | Portland ME | 759 | Official jurisdiction boundary | Official City of Portland public urban-forest ArcGIS layer integrated after clipping to the official Portland, Maine Census boundary |
+| ✅ | Baton Rouge | 1,863 | Official jurisdiction boundary | Official City of Baton Rouge public tree inventory ArcGIS layer integrated with the official jurisdiction boundary |
+| ✅ | Laramie | 1,503 | Official jurisdiction boundary | Official City of Laramie public ArcGIS street-tree, park-tree, and other-tree layers merged and clipped to the official jurisdiction boundary |
+| ✅ | Brookings | 343 | Official jurisdiction boundary | Official South Dakota Department of Agriculture and Natural Resources public TreePlotter inventory integrated after clipping to the official Brookings boundary |
+| ✅ | Morgantown | 222 | Official jurisdiction boundary | Official West Virginia University TreeScape ArcGIS layer integrated with the official Morgantown boundary |
+| ✅ | Bozeman | 185 | Official jurisdiction boundary | Official City of Bozeman public arborist ArcGIS layer integrated with the official jurisdiction boundary |
+| ✅ | Fayetteville AR | 174 | Official jurisdiction boundary | Official University of Arkansas public arboretum ArcGIS layer integrated after clipping to the official Fayetteville, Arkansas boundary |
+| ✅ | Oxford | 172 | Official jurisdiction boundary | Official University of Mississippi public TreePlotter inventory integrated via the public TreePlotter page and official Oxford boundary clipping |
+| ✅ | Newark DE | 143 | Official jurisdiction boundary | Official City of Newark public parks tree ArcGIS layer integrated after clipping to the official Newark, Delaware boundary |
+| ✅ | Juneau | 6 | Official jurisdiction boundary | Official City and Borough of Juneau public cemetery tree ArcGIS layer integrated with the official jurisdiction boundary |
+| ✅ | Honolulu | 1 | Official jurisdiction boundary | Official University of Hawaii at Manoa Campus Tree Finder ArcGIS layer integrated using attribute lon/lat plus the official Honolulu boundary |
+| ✅ | Columbia | 1 | Official jurisdiction boundary | Clemson University official South Carolina Champion Tree Database integrated after clipping blossom-tree points to the official Columbia boundary |
 | ✅ | Lincoln | 9,063 | Official jurisdiction boundary | Official City of Lincoln public trees ArcGIS layer integrated with the official jurisdiction boundary |
 | ✅ | Coeur d'Alene | 2,954 | Official jurisdiction boundary | Official Idaho Department of Lands public TreePlotter inventory integrated after clipping statewide inventory points to the official Coeur d'Alene boundary |
 | ✅ | Fargo | 2,479 | Official jurisdiction boundary | Official City of Fargo public forestry ArcGIS layer integrated with the official jurisdiction boundary |
@@ -361,6 +374,7 @@ These cities are not in `A2` yet because the official point-tree source is still
 ### Gray Coverage (Official Boundary Resolved, No Official Public Tree Dataset)
 | Done | City | Status | Boundary Rule | Notes |
 |---|---|---|---|---|
+| 🩶 | St. John's (NL) | Research blocker | Official jurisdiction boundary | Government of Newfoundland and Labrador GeoHub, City of St. John's GIS, and Memorial University official public map endpoints were reviewed, but no verified official public blossom-scope single-tree dataset is currently publishable |
 | 🩶 | Alexandria | In gray coverage | Official jurisdiction boundary | Official City of Alexandria urban-forestry and GIS pages were reviewed, but no public single-tree species inventory was confirmed |
 | 🩶 | Burnaby | In gray coverage | Official jurisdiction boundary | Official Burnaby GIS/open-data sources were reviewed; no public single-tree species inventory was confirmed |
 | 🩶 | Beaverton | In gray coverage | Official jurisdiction boundary | Official inventory web maps exist, but the raw city tree inventory service currently requires a token and is not publicly queryable for stable ETL access |

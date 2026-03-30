@@ -1,0 +1,129 @@
+{
+  "generated_at": "2026-03-30T07:44:37.900410+00:00",
+  "region": "ia",
+  "strategy": "area_shard",
+  "items": [
+    {
+      "jurisdiction": "Burlington IA",
+      "slug": "burlington-ia",
+      "display_name": "Burlington IA",
+      "jurisdiction_type": "city",
+      "state_province": "IA",
+      "country": "United States",
+      "bounds": [
+        [
+          -91.14612800233,
+          40.778742437093
+        ],
+        [
+          -91.096440781458,
+          40.842847539076
+        ]
+      ],
+      "tree_count": 482,
+      "zip_codes": [
+        "None"
+      ],
+      "species_counts": {
+        "cherry": 61,
+        "plum": 1,
+        "peach": 0,
+        "magnolia": 121,
+        "crabapple": 299
+      },
+      "ownership_counts": {
+        "public": 482,
+        "private": 0,
+        "unknown": 0
+      },
+      "species_ownership_counts": {
+        "cherry": {
+          "public": 61,
+          "private": 0,
+          "unknown": 0
+        },
+        "plum": {
+          "public": 1,
+          "private": 0,
+          "unknown": 0
+        },
+        "peach": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        },
+        "magnolia": {
+          "public": 121,
+          "private": 0,
+          "unknown": 0
+        },
+        "crabapple": {
+          "public": 299,
+          "private": 0,
+          "unknown": 0
+        }
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "burlington-ia-001",
+          "bounds": [
+            [
+              -91.14612800233,
+              40.778742437093
+            ],
+            [
+              -91.096440781458,
+              40.842847539076
+            ]
+          ],
+          "data_path": "/data/trees.ia.area.burlington-ia.v2.geojson",
+          "tree_count": 482,
+          "ownership_counts": {
+            "public": 482,
+            "private": 0,
+            "unknown": 0
+          },
+          "species_counts": {
+            "cherry": 61,
+            "plum": 1,
+            "peach": 0,
+            "magnolia": 121,
+            "crabapple": 299
+          },
+          "species_ownership_counts": {
+            "cherry": {
+              "public": 61,
+              "private": 0,
+              "unknown": 0
+            },
+            "plum": {
+              "public": 1,
+              "private": 0,
+              "unknown": 0
+            },
+            "peach": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            },
+            "magnolia": {
+              "public": 121,
+              "private": 0,
+              "unknown": 0
+            },
+            "crabapple": {
+              "public": 299,
+              "private": 0,
+              "unknown": 0
+            }
+          },
+          "raw_bytes": 257708,
+          "gzip_bytes": 11366
+        }
+      ]
+    }
+  ]
+}

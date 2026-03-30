@@ -21,6 +21,8 @@ Live domain:
 - Published region data must pass `./scripts/check_region_data_sizes.py --data-dir public/data` before sync/push.
 
 ## Coverage Areas
+All 50 U.S. states now have at least one covered city. On the Canada side, 9 of 10 provinces are covered; Newfoundland and Labrador is still waiting on a verified official public single-tree source that meets the project rules.
+
 <details>
 <summary>Alabama</summary>
 
@@ -32,6 +34,13 @@ Live domain:
 <summary>Idaho</summary>
 
 - Coeur d'Alene
+
+</details>
+
+<details>
+<summary>Iowa</summary>
+
+- Burlington IA
 
 </details>
 
@@ -88,6 +97,90 @@ Live domain:
 <summary>Oklahoma</summary>
 
 - Tulsa
+
+</details>
+
+<details>
+<summary>Alaska</summary>
+
+- Juneau
+
+</details>
+
+<details>
+<summary>Arkansas</summary>
+
+- Fayetteville AR
+
+</details>
+
+<details>
+<summary>Delaware</summary>
+
+- Newark DE
+
+</details>
+
+<details>
+<summary>Hawaii</summary>
+
+- Honolulu
+
+</details>
+
+<details>
+<summary>Louisiana</summary>
+
+- Baton Rouge
+
+</details>
+
+<details>
+<summary>Maine</summary>
+
+- Portland ME
+
+</details>
+
+<details>
+<summary>Mississippi</summary>
+
+- Oxford
+
+</details>
+
+<details>
+<summary>Montana</summary>
+
+- Bozeman
+
+</details>
+
+<details>
+<summary>South Carolina</summary>
+
+- Columbia
+
+</details>
+
+<details>
+<summary>South Dakota</summary>
+
+- Brookings
+
+</details>
+
+<details>
+<summary>West Virginia</summary>
+
+- Morgantown
+
+</details>
+
+<details>
+<summary>Wyoming</summary>
+
+- Laramie
 
 </details>
 
