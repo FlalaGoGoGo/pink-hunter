@@ -1027,6 +1027,7 @@ const FIND_PANEL_COPY: Record<
     jumpCountry: "Pays",
     jumpState: "État",
     jumpProvince: "Province",
+    jumpPrefecture: "Préfecture",
     jumpAnyState: "Tout état",
     jumpAnyProvince: "Toute province",
     jumpAnyPrefecture: "Toute préfecture",
