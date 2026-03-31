@@ -3,7 +3,7 @@ import type { Feature, FeatureCollection, Geometry, MultiPolygon, Point, Polygon
 export type SpeciesGroup = "cherry" | "plum" | "peach" | "magnolia" | "crabapple";
 
 export type OwnershipGroup = "public" | "private" | "unknown";
-export type JurisdictionType = "city" | "county" | "district";
+export type JurisdictionType = "city" | "county" | "district" | "ward";
 export type TreeCoordSource = "official" | "osm_verified" | "manual_pdf";
 
 export type Language =
@@ -15,7 +15,7 @@ export type Language =
   | "ja-JP"
   | "fr-FR"
   | "vi-VN";
-export type CoverageRegion = "ab" | "ak" | "al" | "ar" | "az" | "bc" | "ca" | "co" | "ct" | "dc" | "de" | "fl" | "ga" | "hi" | "ia" | "id" | "il" | "in" | "ks" | "ky" | "la" | "ma" | "mb" | "md" | "me" | "mi" | "mn" | "mo" | "ms" | "mt" | "nb" | "nc" | "nd" | "ne" | "nh" | "nj" | "nl" | "nm" | "ns" | "nv" | "ny" | "oh" | "ok" | "on" | "or" | "pa" | "pe" | "qc" | "ri" | "sc" | "sd" | "sk" | "tn" | "tx" | "ut" | "va" | "vt" | "wa" | "wi" | "wv" | "wy";
+export type CoverageRegion = "ab" | "ak" | "al" | "ar" | "az" | "bc" | "ca" | "co" | "ct" | "dc" | "de" | "fl" | "ga" | "hi" | "ia" | "id" | "il" | "in" | "ks" | "ky" | "la" | "ma" | "mb" | "md" | "me" | "mi" | "mn" | "mo" | "ms" | "mt" | "nb" | "nc" | "nd" | "ne" | "nh" | "nj" | "nl" | "nm" | "ns" | "nv" | "ny" | "oh" | "ok" | "on" | "or" | "pa" | "pe" | "qc" | "ri" | "sc" | "sd" | "sk" | "tn" | "tokyo" | "tx" | "ut" | "va" | "vt" | "wa" | "wi" | "wv" | "wy";
 export type RegionWarningLevel = "none" | "warning" | "high_warning" | "hard_fail";
 export type RegionAggregateAdvisoryLevel = "none" | "watch" | "large" | "very_large";
 export type SpeciesCounts = Record<SpeciesGroup, number>;
@@ -64,7 +64,7 @@ export interface CoverageFeatureProps {
   id: string;
   status: "covered" | "official_unavailable";
   jurisdiction: string;
-  country_id: "us" | "ca";
+  country_id: "us" | "ca" | "jp";
   state_id: string;
   area_type: JurisdictionType;
   note: string;
@@ -157,7 +157,7 @@ export interface AreaSummary {
 }
 
 export interface JumpCountry {
-  id: "us" | "ca";
+  id: "us" | "ca" | "jp";
   label: string;
   emoji: string;
   bounds: [[number, number], [number, number]];

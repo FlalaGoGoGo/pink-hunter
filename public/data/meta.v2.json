@@ -1,6 +1,6 @@
 {
   "version": "v2",
-  "generated_at": "2026-03-30T07:45:10.046936+00:00",
+  "generated_at": "2026-03-31T03:29:46.047842+00:00",
   "default_region": "wa",
   "coverage_rule": "official_jurisdiction_boundary_only",
   "coverage_skipped_cities": [
@@ -101,16 +101,16 @@
     "Yarrow Point"
   ],
   "coverage_official_unavailable_skipped_cities": [],
-  "source_count": 357,
-  "total_records": 4139917,
-  "included_records": 857819,
+  "source_count": 358,
+  "total_records": 4153083,
+  "included_records": 859975,
   "unknown_records": 1955121,
   "species_counts": {
-    "cherry": 267188,
-    "plum": 123592,
-    "peach": 8190,
-    "magnolia": 187956,
-    "crabapple": 270893
+    "cherry": 267881,
+    "plum": 123593,
+    "peach": 8236,
+    "magnolia": 187989,
+    "crabapple": 272276
   },
   "regions": [
     {
@@ -2915,6 +2915,55 @@
       },
       "largest_shard_warning_level": "none",
       "coverage_path": "/data/coverage.tn.v1.geojson"
+    },
+    {
+      "id": "tokyo",
+      "label": "Tokyo",
+      "available": true,
+      "bounds": [
+        [
+          139.73570486,
+          35.73856847
+        ],
+        [
+          139.85880036,
+          35.81770595
+        ]
+      ],
+      "data_path": null,
+      "tree_count": 2156,
+      "city_count": 1,
+      "cities": [
+        "Adachi Ward"
+      ],
+      "species_counts": {
+        "cherry": 693,
+        "plum": 1,
+        "peach": 46,
+        "magnolia": 33,
+        "crabapple": 1383
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "raw_bytes": 1176449,
+      "gzip_bytes": 43903,
+      "warning_level": "none",
+      "aggregate_raw_bytes": 1176449,
+      "aggregate_gzip_bytes": 43903,
+      "aggregate_warning_level": "none",
+      "largest_shard_raw_bytes": 1176449,
+      "largest_shard_gzip_bytes": 43903,
+      "largest_shard_area": "Adachi Ward",
+      "area_split": {
+        "strategy": "area_shard",
+        "index_path": "/data/trees.tokyo.area-index.v2.json",
+        "area_count": 1,
+        "shard_count": 1,
+        "ready": true
+      },
+      "largest_shard_warning_level": "none",
+      "coverage_path": "/data/coverage.tokyo.v1.geojson"
     },
     {
       "id": "tx",
@@ -7398,6 +7447,20 @@
       "state_province": "TN"
     },
     {
+      "jurisdiction": "Adachi Ward",
+      "region": "tokyo",
+      "tree_count": 2156,
+      "species_counts": {
+        "cherry": 693,
+        "plum": 1,
+        "peach": 46,
+        "magnolia": 33,
+        "crabapple": 1383
+      },
+      "jurisdiction_type": "ward",
+      "state_province": "Tokyo"
+    },
+    {
       "jurisdiction": "Austin",
       "region": "tx",
       "tree_count": 675,
@@ -8401,6 +8464,15 @@
       "records_fetched": 972,
       "records_included": 938,
       "note": "Integrated from the public Tree Inventory 2019 ArcGIS service referenced by City of Abbotsford tree-management materials and official jurisdiction boundary."
+    },
+    {
+      "name": "Street Trees / 街路樹",
+      "city": "Adachi Ward",
+      "endpoint": "https://catalog.data.metro.tokyo.lg.jp/dataset/t000008d2000000024",
+      "last_edit_at": "",
+      "records_fetched": 13479,
+      "records_included": 2156,
+      "note": "Integrated from the official Tokyo Metropolitan Government `Street Trees` single-tree shapefile for ward roads (`区部都道（単木単位）`) after filtering to `足立区` and clipping to the official MLIT 2024 administrative boundary for Adachi Ward."
     },
     {
       "name": "Edible Trees",

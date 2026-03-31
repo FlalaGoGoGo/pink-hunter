@@ -147,6 +147,7 @@ const REGION_CITY_OVERRIDES: Partial<Record<string, CoverageRegion>> = {
   Morgantown: "wv",
   Laramie: "wy",
   Austin: "tx",
+  "Adachi Ward": "tokyo",
   Dallas: "tx",
   "Las Vegas": "nv",
   Arlington: "va",
@@ -300,6 +301,10 @@ const JURISDICTION_OVERRIDES: Partial<Record<string, { displayName: string; type
   "Vancouver WA": {
     displayName: "Vancouver",
     type: "city"
+  },
+  "Adachi Ward": {
+    displayName: "Adachi Ward",
+    type: "ward"
   }
 };
 
@@ -530,13 +535,13 @@ const ABOUT_COPY: Record<
     summaryNote: "The counts below summarize the trees currently included on the site, first by species, then by region and area.",
     summaryCoverageLead: "Currently covering",
     summaryAllTitle: "All Covered Trees",
-    summaryByRegionTitle: "By State / Province",
-    summaryByAreaTitle: "By City / County",
+    summaryByRegionTitle: "By State / Province / Prefecture",
+    summaryByAreaTitle: "By Municipality / City / County",
     summaryTotalLabel: "Total trees",
-    summarySearchPlaceholder: "Search states or provinces",
-    summaryEmpty: "No state or province matched this search.",
-    summaryAreaSearchPlaceholder: "Search cities or counties",
-    summaryAreaEmpty: "No city or county matched this search.",
+    summarySearchPlaceholder: "Search states, provinces, or prefectures",
+    summaryEmpty: "No state, province, or prefecture matched this search.",
+    summaryAreaSearchPlaceholder: "Search municipalities, cities, or counties",
+    summaryAreaEmpty: "No municipality, city, or county matched this search.",
     sourcesTitle: "Data Sources",
     sourcesSearchPlaceholder: "Search data sources",
     sourcesEmpty: "No data sources matched this search.",
@@ -560,16 +565,16 @@ const ABOUT_COPY: Record<
       "Pink Hunter 是一个春季粉色花树地图项目，帮助大家在花季里更快找到樱花、李花、桃花、木兰和海棠。这个项目不只是找花，也希望教大家分辨这些常被误认的花树，让“粉色花都叫樱花”这件事少一点。"
     ],
     summaryTitle: "数据总结",
-    summaryNote: "下面的统计展示了当前网站已收录的树木数量，先按花种汇总，再按州/省和地区汇总。",
+    summaryNote: "下面的统计展示了当前网站已收录的树木数量，先按花种汇总，再按州/省/都道府县与地区汇总。",
     summaryCoverageLead: "目前覆盖",
     summaryAllTitle: "全站收录",
-    summaryByRegionTitle: "按州/省统计",
-    summaryByAreaTitle: "按城市 / 县统计",
+    summaryByRegionTitle: "按州/省/都道府县统计",
+    summaryByAreaTitle: "按自治体 / 城市 / 县统计",
     summaryTotalLabel: "总树数",
-    summarySearchPlaceholder: "搜索州或省",
-    summaryEmpty: "没有匹配的州或省。",
-    summaryAreaSearchPlaceholder: "搜索城市或县",
-    summaryAreaEmpty: "没有匹配的城市或县。",
+    summarySearchPlaceholder: "搜索州、省或都道府县",
+    summaryEmpty: "没有匹配的州、省或都道府县。",
+    summaryAreaSearchPlaceholder: "搜索自治体、城市或县",
+    summaryAreaEmpty: "没有匹配的自治体、城市或县。",
     sourcesTitle: "数据源",
     sourcesSearchPlaceholder: "搜索数据源",
     sourcesEmpty: "没有匹配的数据源。",
@@ -593,16 +598,16 @@ const ABOUT_COPY: Record<
       "Pink Hunter 是一個春季粉色花樹地圖專案，幫助大家在花季裡更快找到櫻花、李花、桃花、木蘭和海棠。這個專案不只是找花，也希望教大家分辨這些常被誤認的花樹，讓「粉色花都叫櫻花」這件事少一點。"
     ],
     summaryTitle: "資料總結",
-    summaryNote: "以下統計展示目前網站已收錄的樹木數量，先按花種彙總，再按州／省和地區彙總。",
+    summaryNote: "以下統計展示目前網站已收錄的樹木數量，先按花種彙總，再按州／省／都道府縣與地區彙總。",
     summaryCoverageLead: "目前覆蓋",
     summaryAllTitle: "全站收錄",
-    summaryByRegionTitle: "按州／省統計",
-    summaryByAreaTitle: "按城市／縣統計",
+    summaryByRegionTitle: "按州／省／都道府縣統計",
+    summaryByAreaTitle: "按自治體／城市／縣統計",
     summaryTotalLabel: "總樹數",
-    summarySearchPlaceholder: "搜尋州或省",
-    summaryEmpty: "沒有符合的州或省。",
-    summaryAreaSearchPlaceholder: "搜尋城市或縣",
-    summaryAreaEmpty: "沒有符合的城市或縣。",
+    summarySearchPlaceholder: "搜尋州、省或都道府縣",
+    summaryEmpty: "沒有符合的州、省或都道府縣。",
+    summaryAreaSearchPlaceholder: "搜尋自治體、城市或縣",
+    summaryAreaEmpty: "沒有符合的自治體、城市或縣。",
     sourcesTitle: "資料來源",
     sourcesSearchPlaceholder: "搜尋資料來源",
     sourcesEmpty: "沒有符合的資料來源。",
@@ -630,12 +635,12 @@ const ABOUT_COPY: Record<
       "Los conteos siguientes resumen los árboles que el sitio incluye actualmente, primero por especie y luego por estado, provincia y área.",
     summaryCoverageLead: "Cobertura actual",
     summaryAllTitle: "Todos los árboles cubiertos",
-    summaryByRegionTitle: "Por estado / provincia",
-    summaryByAreaTitle: "Por ciudad / condado",
+    summaryByRegionTitle: "Por estado / provincia / prefectura",
+    summaryByAreaTitle: "Por municipio / ciudad / condado",
     summaryTotalLabel: "Total de árboles",
-    summarySearchPlaceholder: "Buscar estado o provincia",
+    summarySearchPlaceholder: "Buscar estado, provincia o prefectura",
     summaryEmpty: "Ningún estado o provincia coincide con esta búsqueda.",
-    summaryAreaSearchPlaceholder: "Buscar ciudades o condados",
+    summaryAreaSearchPlaceholder: "Buscar municipios, ciudades o condados",
     summaryAreaEmpty: "Ninguna ciudad o condado coincide con esta búsqueda.",
     sourcesTitle: "Fuentes de datos",
     sourcesSearchPlaceholder: "Buscar fuentes de datos",
@@ -663,12 +668,12 @@ const ABOUT_COPY: Record<
     summaryNote: "아래 수치는 현재 사이트에 포함된 나무를 먼저 종별로, 그다음 주/주(省)와 지역별로 요약한 것입니다.",
     summaryCoverageLead: "현재 범위",
     summaryAllTitle: "전체 수록 현황",
-    summaryByRegionTitle: "주 / 주(省)별 통계",
-    summaryByAreaTitle: "시 / 카운티별 통계",
+    summaryByRegionTitle: "주 / 주(省) / 도도부현별 통계",
+    summaryByAreaTitle: "자치체 / 시 / 카운티별 통계",
     summaryTotalLabel: "총 나무 수",
-    summarySearchPlaceholder: "주 또는 주(省) 검색",
+    summarySearchPlaceholder: "주, 도 또는 도도부현 검색",
     summaryEmpty: "검색과 일치하는 주 또는 주(省)가 없습니다.",
-    summaryAreaSearchPlaceholder: "시 또는 카운티 검색",
+    summaryAreaSearchPlaceholder: "자치체, 시 또는 카운티 검색",
     summaryAreaEmpty: "검색과 일치하는 시 또는 카운티가 없습니다.",
     sourcesTitle: "데이터 출처",
     sourcesSearchPlaceholder: "데이터 출처 검색",
@@ -696,12 +701,12 @@ const ABOUT_COPY: Record<
     summaryNote: "以下の数は、現在このサイトに収録されている樹木を、まず花種別に、その次に州・省と地区別にまとめたものです。",
     summaryCoverageLead: "現在の対象範囲",
     summaryAllTitle: "全体集計",
-    summaryByRegionTitle: "州・省ごとの集計",
-    summaryByAreaTitle: "市・郡ごとの集計",
+    summaryByRegionTitle: "州・省・都道府県ごとの集計",
+    summaryByAreaTitle: "自治体・市・郡ごとの集計",
     summaryTotalLabel: "総本数",
-    summarySearchPlaceholder: "州・省を検索",
+    summarySearchPlaceholder: "州・省・都道府県を検索",
     summaryEmpty: "一致する州・省はありません。",
-    summaryAreaSearchPlaceholder: "市または郡を検索",
+    summaryAreaSearchPlaceholder: "自治体・市・郡を検索",
     summaryAreaEmpty: "一致する市または郡はありません。",
     sourcesTitle: "データソース",
     sourcesSearchPlaceholder: "データソースを検索",
@@ -730,12 +735,12 @@ const ABOUT_COPY: Record<
       "Les chiffres ci-dessous résument les arbres actuellement inclus sur le site, d'abord par espèce, puis par État, province et zone.",
     summaryCoverageLead: "Couverture actuelle",
     summaryAllTitle: "Tous les arbres couverts",
-    summaryByRegionTitle: "Par État / province",
-    summaryByAreaTitle: "Par ville / comté",
+    summaryByRegionTitle: "Par État / province / préfecture",
+    summaryByAreaTitle: "Par municipalité / ville / comté",
     summaryTotalLabel: "Total d'arbres",
-    summarySearchPlaceholder: "Rechercher un État ou une province",
+    summarySearchPlaceholder: "Rechercher un État, une province ou une préfecture",
     summaryEmpty: "Aucun État ou province ne correspond à cette recherche.",
-    summaryAreaSearchPlaceholder: "Rechercher une ville ou un comté",
+    summaryAreaSearchPlaceholder: "Rechercher une municipalité, une ville ou un comté",
     summaryAreaEmpty: "Aucune ville ou aucun comté ne correspond à cette recherche.",
     sourcesTitle: "Sources de données",
     sourcesSearchPlaceholder: "Rechercher une source",
@@ -764,12 +769,12 @@ const ABOUT_COPY: Record<
       "Các số liệu dưới đây tóm tắt số cây hiện đã được đưa vào trang web, trước theo loài hoa, sau theo bang, tỉnh bang và khu vực.",
     summaryCoverageLead: "Hiện đang bao phủ",
     summaryAllTitle: "Toàn bộ cây đã phủ",
-    summaryByRegionTitle: "Theo bang / tỉnh bang",
-    summaryByAreaTitle: "Theo thành phố / quận hạt",
+    summaryByRegionTitle: "Theo bang / tỉnh / prefecture",
+    summaryByAreaTitle: "Theo đô thị / thành phố / quận hạt",
     summaryTotalLabel: "Tổng số cây",
-    summarySearchPlaceholder: "Tìm bang hoặc tỉnh bang",
+    summarySearchPlaceholder: "Tìm bang, tỉnh hoặc prefecture",
     summaryEmpty: "Không có bang hoặc tỉnh bang nào khớp.",
-    summaryAreaSearchPlaceholder: "Tìm thành phố hoặc quận hạt",
+    summaryAreaSearchPlaceholder: "Tìm đô thị, thành phố hoặc quận hạt",
     summaryAreaEmpty: "Không có thành phố hoặc quận hạt nào khớp.",
     sourcesTitle: "Nguồn dữ liệu",
     sourcesSearchPlaceholder: "Tìm nguồn dữ liệu",
@@ -806,8 +811,10 @@ const FIND_PANEL_COPY: Record<
     jumpCountry: string;
     jumpState: string;
     jumpProvince: string;
+    jumpPrefecture: string;
     jumpAnyState: string;
     jumpAnyProvince: string;
+    jumpAnyPrefecture: string;
     jumpCoveredAreaCount: string;
     jumpButton: string;
     searchState: string;
@@ -831,13 +838,15 @@ const FIND_PANEL_COPY: Record<
     jumpTitle: "Jump to an area",
     jumpBody: "Choose an area, then press the Jump button below and the map will move there.",
     jumpLoadBody: "To keep the home page fast, Pink Hunter loads the Jump browser only when you ask for it.",
-    jumpLoadButton: "Load states and cities",
-    jumpLoadingBody: "Loading states and cities...",
+    jumpLoadButton: "Load regions and areas",
+    jumpLoadingBody: "Loading regions and areas...",
     jumpCountry: "Country",
     jumpState: "State",
     jumpProvince: "Province",
+    jumpPrefecture: "Prefecture",
     jumpAnyState: "Any state",
     jumpAnyProvince: "Any province",
+    jumpAnyPrefecture: "Any prefecture",
     jumpCoveredAreaCount: "{count} covered areas",
     jumpButton: "Jump",
     searchState: "Search state",
@@ -859,13 +868,15 @@ const FIND_PANEL_COPY: Record<
     jumpTitle: "跳转至指定区域",
     jumpBody: "选择一个区域，并点击下方「跳转」按钮，地图会跳转过去。",
     jumpLoadBody: "为了让首页更快，Pink Hunter 会在你需要时才加载跳转浏览器。",
-    jumpLoadButton: "加载州和城市列表",
-    jumpLoadingBody: "正在加载州和城市列表...",
+    jumpLoadButton: "加载行政区和地区列表",
+    jumpLoadingBody: "正在加载行政区和地区列表...",
     jumpCountry: "国家",
     jumpState: "州",
     jumpProvince: "省",
+    jumpPrefecture: "都道府县",
     jumpAnyState: "任意州",
     jumpAnyProvince: "任意省",
+    jumpAnyPrefecture: "任意都道府县",
     jumpCoveredAreaCount: "{count} 个已覆盖区域",
     jumpButton: "跳转",
     searchState: "搜索州",
@@ -887,13 +898,15 @@ const FIND_PANEL_COPY: Record<
     jumpTitle: "跳轉至指定區域",
     jumpBody: "選擇一個區域，並點擊下方「跳轉」按鈕，地圖會跳轉過去。",
     jumpLoadBody: "為了讓首頁更快，Pink Hunter 會在你需要時才載入跳轉瀏覽器。",
-    jumpLoadButton: "載入州與城市列表",
-    jumpLoadingBody: "正在載入州與城市列表...",
+    jumpLoadButton: "載入行政區和地區列表",
+    jumpLoadingBody: "正在載入行政區和地區列表...",
     jumpCountry: "國家",
     jumpState: "州",
     jumpProvince: "省",
+    jumpPrefecture: "都道府縣",
     jumpAnyState: "任意州",
     jumpAnyProvince: "任意省",
+    jumpAnyPrefecture: "任意都道府縣",
     jumpCoveredAreaCount: "{count} 個已覆蓋區域",
     jumpButton: "跳轉",
     searchState: "搜尋州",
@@ -916,13 +929,15 @@ const FIND_PANEL_COPY: Record<
     jumpTitle: "Ir a una zona",
     jumpBody: "Elige una zona y luego pulsa el botón de salto de abajo para mover el mapa hasta allí.",
     jumpLoadBody: "Para que la página inicial siga siendo rápida, Pink Hunter solo carga el navegador de salto cuando lo pides.",
-    jumpLoadButton: "Cargar estados y ciudades",
-    jumpLoadingBody: "Cargando estados y ciudades...",
+    jumpLoadButton: "Cargar regiones y áreas",
+    jumpLoadingBody: "Cargando regiones y áreas...",
     jumpCountry: "País",
     jumpState: "Estado",
     jumpProvince: "Provincia",
+    jumpPrefecture: "Prefectura",
     jumpAnyState: "Cualquier estado",
     jumpAnyProvince: "Cualquier provincia",
+    jumpAnyPrefecture: "Cualquier prefectura",
     jumpCoveredAreaCount: "{count} zonas cubiertas",
     jumpButton: "Saltar",
     searchState: "Buscar estado",
@@ -945,13 +960,15 @@ const FIND_PANEL_COPY: Record<
     jumpTitle: "지정한 지역으로 이동",
     jumpBody: "지역을 선택한 뒤 아래의 이동 버튼을 누르면 지도가 그곳으로 이동합니다.",
     jumpLoadBody: "홈페이지를 빠르게 유지하기 위해 Pink Hunter는 필요할 때만 점프 브라우저를 불러옵니다.",
-    jumpLoadButton: "주와 도시 불러오기",
-    jumpLoadingBody: "주와 도시를 불러오는 중...",
+    jumpLoadButton: "지역과 구역 불러오기",
+    jumpLoadingBody: "지역과 구역을 불러오는 중...",
     jumpCountry: "국가",
     jumpState: "주",
     jumpProvince: "도",
+    jumpPrefecture: "도도부현",
     jumpAnyState: "모든 주",
     jumpAnyProvince: "모든 도",
+    jumpAnyPrefecture: "모든 도도부현",
     jumpCoveredAreaCount: "커버된 구역 {count}곳",
     jumpButton: "이동",
     searchState: "주 검색",
@@ -974,13 +991,15 @@ const FIND_PANEL_COPY: Record<
     jumpTitle: "指定した地域へ移動",
     jumpBody: "地域を選び、下の移動ボタンを押すと地図がその場所へ移動します。",
     jumpLoadBody: "トップページを軽く保つため、Pink Hunter は必要になるまで Jump ブラウザを読み込みません。",
-    jumpLoadButton: "州と都市を読み込む",
-    jumpLoadingBody: "州と都市を読み込み中...",
+    jumpLoadButton: "地域とエリアを読み込む",
+    jumpLoadingBody: "地域とエリアを読み込み中...",
     jumpCountry: "国",
     jumpState: "州",
     jumpProvince: "県",
+    jumpPrefecture: "都道府県",
     jumpAnyState: "すべての州",
     jumpAnyProvince: "すべての県",
+    jumpAnyPrefecture: "すべての都道府県",
     jumpCoveredAreaCount: "カバー済みエリア {count}件",
     jumpButton: "移動",
     searchState: "州を検索",
@@ -1003,13 +1022,14 @@ const FIND_PANEL_COPY: Record<
     jumpTitle: "Aller à une zone",
     jumpBody: "Choisissez une zone puis appuyez sur le bouton ci-dessous pour déplacer la carte vers cet endroit.",
     jumpLoadBody: "Pour garder la page d’accueil rapide, Pink Hunter ne charge le navigateur Jump que lorsque vous le demandez.",
-    jumpLoadButton: "Charger états et villes",
-    jumpLoadingBody: "Chargement des états et des villes...",
+    jumpLoadButton: "Charger régions et zones",
+    jumpLoadingBody: "Chargement des régions et zones...",
     jumpCountry: "Pays",
     jumpState: "État",
     jumpProvince: "Province",
     jumpAnyState: "Tout état",
     jumpAnyProvince: "Toute province",
+    jumpAnyPrefecture: "Toute préfecture",
     jumpCoveredAreaCount: "{count} zones couvertes",
     jumpButton: "Aller",
     searchState: "Rechercher un état",
@@ -1032,13 +1052,15 @@ const FIND_PANEL_COPY: Record<
     jumpTitle: "Nhảy tới khu vực cụ thể",
     jumpBody: "Chọn một khu vực rồi bấm nút nhảy bên dưới để đưa bản đồ tới đó.",
     jumpLoadBody: "Để trang chủ luôn nhẹ, Pink Hunter chỉ tải trình duyệt Jump khi bạn thật sự cần.",
-    jumpLoadButton: "Tải tiểu bang và thành phố",
-    jumpLoadingBody: "Đang tải tiểu bang và thành phố...",
+    jumpLoadButton: "Tải vùng và khu vực",
+    jumpLoadingBody: "Đang tải vùng và khu vực...",
     jumpCountry: "Quốc gia",
     jumpState: "Tiểu bang",
     jumpProvince: "Tỉnh",
+    jumpPrefecture: "Tỉnh cấp prefecture",
     jumpAnyState: "Mọi tiểu bang",
     jumpAnyProvince: "Mọi tỉnh",
+    jumpAnyPrefecture: "Mọi prefecture",
     jumpCoveredAreaCount: "{count} khu vực đã phủ",
     jumpButton: "Nhảy",
     searchState: "Tìm tiểu bang",
@@ -1420,9 +1442,10 @@ const REGION_DEFAULT_FOCUS_BOUNDS: Partial<Record<CoverageRegion, Record<LayoutM
   }
 };
 
-type CountryKey = "us" | "ca";
+type CountryKey = "us" | "ca" | "jp";
 
 const CANADIAN_COVERAGE_REGIONS = new Set<CoverageRegion>(["ab", "bc", "mb", "nb", "nl", "ns", "on", "pe", "qc", "sk"]);
+const JAPAN_COVERAGE_REGIONS = new Set<CoverageRegion>(["tokyo"]);
 
 const REGION_SORT_LABELS: Record<CoverageRegion, string> = {
   ab: "Alberta",
@@ -1478,6 +1501,7 @@ const REGION_SORT_LABELS: Record<CoverageRegion, string> = {
   sd: "South Dakota",
   sk: "Saskatchewan",
   tn: "Tennessee",
+  tokyo: "Tokyo",
   tx: "Texas",
   ut: "Utah",
   va: "Virginia",
@@ -1489,21 +1513,25 @@ const REGION_SORT_LABELS: Record<CoverageRegion, string> = {
 };
 
 function countryKeyForRegion(region: CoverageRegion): CountryKey {
+  if (JAPAN_COVERAGE_REGIONS.has(region)) {
+    return "jp";
+  }
   return CANADIAN_COVERAGE_REGIONS.has(region) ? "ca" : "us";
 }
 
 function countryEmojiForRegion(region: CoverageRegion): string {
-  return countryKeyForRegion(region) === "ca" ? "🇨🇦" : "🇺🇸";
+  const country = countryKeyForRegion(region);
+  return country === "ca" ? "🇨🇦" : country === "jp" ? "🇯🇵" : "🇺🇸";
 }
 const COUNTRY_LABELS: Record<Language, Record<CountryKey, string>> = {
-  "en-US": { us: "United States", ca: "Canada" },
-  "zh-CN": { us: "美国", ca: "加拿大" },
-  "zh-TW": { us: "美國", ca: "加拿大" },
-  "es-ES": { us: "Estados Unidos", ca: "Canadá" },
-  "ko-KR": { us: "미국", ca: "캐나다" },
-  "ja-JP": { us: "アメリカ", ca: "カナダ" },
-  "fr-FR": { us: "États-Unis", ca: "Canada" },
-  "vi-VN": { us: "Hoa Kỳ", ca: "Canada" }
+  "en-US": { us: "United States", ca: "Canada", jp: "Japan" },
+  "zh-CN": { us: "美国", ca: "加拿大", jp: "日本" },
+  "zh-TW": { us: "美國", ca: "加拿大", jp: "日本" },
+  "es-ES": { us: "Estados Unidos", ca: "Canadá", jp: "Japón" },
+  "ko-KR": { us: "미국", ca: "캐나다", jp: "일본" },
+  "ja-JP": { us: "アメリカ", ca: "カナダ", jp: "日本" },
+  "fr-FR": { us: "États-Unis", ca: "Canada", jp: "Japon" },
+  "vi-VN": { us: "Hoa Kỳ", ca: "Canada", jp: "Nhật Bản" }
 };
 const SUBNATIONAL_LABELS: Partial<Record<Language, Record<string, string>>> = {
   "zh-CN": {
@@ -1570,7 +1598,8 @@ const SUBNATIONAL_LABELS: Partial<Record<Language, Record<string, string>>> = {
     PE: "爱德华王子岛省",
     QC: "魁北克省",
     SK: "萨斯喀彻温省",
-    YT: "育空地区"
+    YT: "育空地区",
+    TOKYO: "东京都"
   },
   "zh-TW": {
     AL: "阿拉巴馬州",
@@ -1636,7 +1665,8 @@ const SUBNATIONAL_LABELS: Partial<Record<Language, Record<string, string>>> = {
     PE: "愛德華王子島省",
     QC: "魁北克省",
     SK: "薩斯喀徹溫省",
-    YT: "育空地區"
+    YT: "育空地區",
+    TOKYO: "東京都"
   }
 };
 interface SelectedTree {
@@ -2197,7 +2227,16 @@ function jurisdictionTypeForCity(city: string): JurisdictionType {
 }
 
 function jurisdictionTypeLabel(language: Language, areaType: JurisdictionType): string {
-  return t(language, areaType === "county" ? "countyBadge" : "cityBadge");
+  if (areaType === "county") {
+    return t(language, "countyBadge");
+  }
+  if (areaType === "district") {
+    return t(language, "districtBadge");
+  }
+  if (areaType === "ward") {
+    return t(language, "wardBadge");
+  }
+  return t(language, "cityBadge");
 }
 
 function areaTypeLabel(language: Language, city: string, explicitType?: JurisdictionType): string {
@@ -2205,7 +2244,7 @@ function areaTypeLabel(language: Language, city: string, explicitType?: Jurisdic
 }
 
 function jurisdictionTypeClassName(areaType: JurisdictionType): string {
-  return areaType === "county" ? "county" : "city";
+  return areaType === "county" || areaType === "district" ? "county" : "city";
 }
 
 function areaTypeClassName(city: string, explicitType?: JurisdictionType): string {
@@ -2242,28 +2281,30 @@ function formatCoverageScope(language: Language, regions: CoverageRegion[]): str
     (region) => countryKeyForRegion(region) === "us" && region !== "dc"
   ).length;
   const coveredCanadianProvinceCount = [...covered].filter((region) => countryKeyForRegion(region) === "ca").length;
+  const coveredJapanesePrefectureCount = [...covered].filter((region) => countryKeyForRegion(region) === "jp").length;
 
   const usTotal = 50;
   const caTotal = 10;
+  const jpTotal = 47;
 
   switch (language) {
     case "zh-CN":
-      return `美国 ${coveredUsStateCount}/${usTotal} 个州、加拿大 ${coveredCanadianProvinceCount}/${caTotal} 个省`;
+      return `美国 ${coveredUsStateCount}/${usTotal} 个州、加拿大 ${coveredCanadianProvinceCount}/${caTotal} 个省、日本 ${coveredJapanesePrefectureCount}/${jpTotal} 个都道府县`;
     case "zh-TW":
-      return `美國 ${coveredUsStateCount}/${usTotal} 個州、加拿大 ${coveredCanadianProvinceCount}/${caTotal} 個省`;
+      return `美國 ${coveredUsStateCount}/${usTotal} 個州、加拿大 ${coveredCanadianProvinceCount}/${caTotal} 個省、日本 ${coveredJapanesePrefectureCount}/${jpTotal} 個都道府縣`;
     case "es-ES":
-      return `${coveredUsStateCount} de ${usTotal} estados de EE. UU. y ${coveredCanadianProvinceCount} de ${caTotal} provincias de Canada`;
+      return `${coveredUsStateCount} de ${usTotal} estados de EE. UU., ${coveredCanadianProvinceCount} de ${caTotal} provincias de Canadá y ${coveredJapanesePrefectureCount} de ${jpTotal} prefecturas de Japón`;
     case "ko-KR":
-      return `미국 ${usTotal}개 주 중 ${coveredUsStateCount}개, 캐나다 ${caTotal}개 주 중 ${coveredCanadianProvinceCount}개`;
+      return `미국 ${usTotal}개 주 중 ${coveredUsStateCount}개, 캐나다 ${caTotal}개 주 중 ${coveredCanadianProvinceCount}개, 일본 ${jpTotal}개 도도부현 중 ${coveredJapanesePrefectureCount}개`;
     case "ja-JP":
-      return `アメリカ ${usTotal} 州中 ${coveredUsStateCount} 州、カナダ ${caTotal} 州中 ${coveredCanadianProvinceCount} 州`;
+      return `アメリカ ${usTotal} 州中 ${coveredUsStateCount} 州、カナダ ${caTotal} 州中 ${coveredCanadianProvinceCount} 州、日本 ${jpTotal} 都道府県中 ${coveredJapanesePrefectureCount} 都道府県`;
     case "fr-FR":
-      return `${coveredUsStateCount} des ${usTotal} Etats americains et ${coveredCanadianProvinceCount} des ${caTotal} provinces canadiennes`;
+      return `${coveredUsStateCount} des ${usTotal} États américains, ${coveredCanadianProvinceCount} des ${caTotal} provinces canadiennes et ${coveredJapanesePrefectureCount} des ${jpTotal} préfectures japonaises`;
     case "vi-VN":
-      return `${coveredUsStateCount}/${usTotal} bang cua Hoa Ky va ${coveredCanadianProvinceCount}/${caTotal} tinh cua Canada`;
+      return `${coveredUsStateCount}/${usTotal} bang cua Hoa Ky, ${coveredCanadianProvinceCount}/${caTotal} tinh cua Canada va ${coveredJapanesePrefectureCount}/${jpTotal} tinh cap prefecture cua Nhat Ban`;
     case "en-US":
     default:
-      return `${coveredUsStateCount} of ${usTotal} U.S. states and ${coveredCanadianProvinceCount} of ${caTotal} Canadian provinces`;
+      return `${coveredUsStateCount} of ${usTotal} U.S. states, ${coveredCanadianProvinceCount} of ${caTotal} Canadian provinces, and ${coveredJapanesePrefectureCount} of ${jpTotal} Japanese prefectures`;
   }
 }
 
@@ -3931,8 +3972,18 @@ export default function App(): JSX.Element {
   const findPanelCopy = FIND_PANEL_COPY[language];
   const discoveryCopy = DISCOVERY_COPY[language];
   const featuredAreaUiCopy = featuredAreaCopy(language);
-  const jumpSubnationalLabel = jumpCountry === "us" ? findPanelCopy.jumpState : findPanelCopy.jumpProvince;
-  const jumpAnySubnationalLabel = jumpCountry === "us" ? findPanelCopy.jumpAnyState : findPanelCopy.jumpAnyProvince;
+  const jumpSubnationalLabel =
+    jumpCountry === "us"
+      ? findPanelCopy.jumpState
+      : jumpCountry === "ca"
+        ? findPanelCopy.jumpProvince
+        : findPanelCopy.jumpPrefecture;
+  const jumpAnySubnationalLabel =
+    jumpCountry === "us"
+      ? findPanelCopy.jumpAnyState
+      : jumpCountry === "ca"
+        ? findPanelCopy.jumpAnyProvince
+        : findPanelCopy.jumpAnyPrefecture;
 
   const getJumpAreaDisplayStatus = useCallback(
     (area: JumpArea): JumpAreaDisplayStatusInfo =>

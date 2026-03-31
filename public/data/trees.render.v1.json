@@ -1,17 +1,17 @@
 {
-  "generated_at": "2026-03-30T07:50:08+00:00",
+  "generated_at": "2026-03-31T03:41:02+00:00",
   "path": "/data/trees.render.v1.pmtiles",
   "vector_layer": "trees",
   "minzoom": 8,
   "maxzoom": 15,
-  "tree_count": 857819,
+  "tree_count": 859975,
   "bounds": [
     [
       -178.4435930001603,
       21.19923799969125
     ],
     [
-      -63.073678316420455,
+      139.85880036,
       58.97133700005607
     ]
   ],
@@ -68,6 +68,7 @@
     "sd",
     "sk",
     "tn",
+    "tokyo",
     "tx",
     "ut",
     "va",

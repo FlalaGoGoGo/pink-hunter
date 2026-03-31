@@ -6,6 +6,7 @@ import ast
 import csv
 import datetime as dt
 import json
+import math
 import os
 import re
 import subprocess
@@ -140,6 +141,8 @@ from etl.build_data import (
     SOUTH_SF_GRIDS_ENDPOINT,
     SOUTH_SF_SEARCH_ENDPOINT,
     SUBTYPE_MAPPING_PATH,
+    TOKYO_METRO_STREET_TREES_DATASET_PAGE,
+    TOKYO_METRO_STREET_TREES_ZIP,
     TORONTO_DATASET_PAGE,
     assign_zip_code,
     canonical_ownership,
@@ -12014,7 +12017,165 @@ def fetch_laramie() -> dict[str, Any]:
     )
 
 
+def _grs80_meridional_arc(phi_radians: float) -> float:
+    a = 6378137.0
+    flattening = 1 / 298.257222101
+    eccentricity_sq = 2 * flattening - flattening * flattening
+    return a * (
+        (1 - eccentricity_sq / 4 - 3 * eccentricity_sq**2 / 64 - 5 * eccentricity_sq**3 / 256) * phi_radians
+        - (3 * eccentricity_sq / 8 + 3 * eccentricity_sq**2 / 32 + 45 * eccentricity_sq**3 / 1024)
+        * math.sin(2 * phi_radians)
+        + (15 * eccentricity_sq**2 / 256 + 45 * eccentricity_sq**3 / 1024) * math.sin(4 * phi_radians)
+        - (35 * eccentricity_sq**3 / 3072) * math.sin(6 * phi_radians)
+    )
+
+
+def jgd2011_japan_zone9_to_lon_lat(x: float, y: float) -> tuple[float, float]:
+    a = 6378137.0
+    flattening = 1 / 298.257222101
+    eccentricity_sq = 2 * flattening - flattening * flattening
+    second_eccentricity_sq = eccentricity_sq / (1 - eccentricity_sq)
+    scale_factor = 0.9999
+    lon_origin = math.radians(139 + 50 / 60)
+    lat_origin = math.radians(36.0)
+
+    meridional_arc_origin = _grs80_meridional_arc(lat_origin)
+    meridional_arc = meridional_arc_origin + y / scale_factor
+    mu = meridional_arc / (a * (1 - eccentricity_sq / 4 - 3 * eccentricity_sq**2 / 64 - 5 * eccentricity_sq**3 / 256))
+    e1 = (1 - math.sqrt(1 - eccentricity_sq)) / (1 + math.sqrt(1 - eccentricity_sq))
+    j1 = 3 * e1 / 2 - 27 * e1**3 / 32
+    j2 = 21 * e1**2 / 16 - 55 * e1**4 / 32
+    j3 = 151 * e1**3 / 96
+    j4 = 1097 * e1**4 / 512
+    footprint_lat = (
+        mu
+        + j1 * math.sin(2 * mu)
+        + j2 * math.sin(4 * mu)
+        + j3 * math.sin(6 * mu)
+        + j4 * math.sin(8 * mu)
+    )
+
+    sin_fp = math.sin(footprint_lat)
+    cos_fp = math.cos(footprint_lat)
+    tan_fp = math.tan(footprint_lat)
+    c1 = second_eccentricity_sq * cos_fp * cos_fp
+    t1 = tan_fp * tan_fp
+    n1 = a / math.sqrt(1 - eccentricity_sq * sin_fp * sin_fp)
+    r1 = a * (1 - eccentricity_sq) / (1 - eccentricity_sq * sin_fp * sin_fp) ** 1.5
+    d = x / (n1 * scale_factor)
+
+    lat = footprint_lat - (n1 * tan_fp / r1) * (
+        d * d / 2
+        - (5 + 3 * t1 + 10 * c1 - 4 * c1 * c1 - 9 * second_eccentricity_sq) * d**4 / 24
+        + (61 + 90 * t1 + 298 * c1 + 45 * t1 * t1 - 252 * second_eccentricity_sq - 3 * c1 * c1) * d**6 / 720
+    )
+    lon = lon_origin + (
+        d
+        - (1 + 2 * t1 + c1) * d**3 / 6
+        + (5 - 2 * c1 + 28 * t1 - 3 * c1 * c1 + 8 * second_eccentricity_sq + 24 * t1 * t1) * d**5 / 120
+    ) / cos_fp
+
+    return math.degrees(lon), math.degrees(lat)
+
+
+def fetch_adachi_ward() -> dict[str, Any]:
+    reader, _prj_text = load_zipped_shapefile(TOKYO_METRO_STREET_TREES_ZIP, member_hint="_pt")
+    field_names = [field[0] for field in reader.fields[1:]]
+    mapping_rows = load_mapping(MAPPING_PATH)
+    subtype_rows = load_subtype_mapping(SUBTYPE_MAPPING_PATH)
+    boundary_geometry = load_city_boundary_geometry("Adachi Ward", state_id="tokyo", country_id="jp")
+
+    output_features: list[dict[str, Any]] = []
+    normalized_rows: list[dict[str, Any]] = []
+    ward_rows = 0
+
+    for shape_record in reader.iterShapeRecords():
+        shape = shape_record.shape
+        if not shape.points:
+            continue
+        attrs = dict(zip(field_names, list(shape_record.record), strict=False))
+        municipality_name = clean_display_name(attrs.get("区市町村"))
+        if municipality_name != "足立区":
+            continue
+        ward_rows += 1
+
+        point_x, point_y = shape.points[0][:2]
+        lon, lat = jgd2011_japan_zone9_to_lon_lat(float(point_x), float(point_y))
+        if boundary_geometry and not point_in_geometry(lon, lat, boundary_geometry):
+            continue
+
+        common_name = clean_common_name(attrs.get("樹種"))
+        scientific_raw = generic_scientific_name_for_common_hint(common_name)
+        scientific_normalized = normalize_scientific_name(scientific_raw)
+        species_group, subtype_name = classify_tree_record(scientific_raw, common_name, mapping_rows, subtype_rows)
+        ownership_raw = "Tokyo Metropolitan Government"
+        serial_token = slugify_token(str(attrs.get("整理番号") or "")) or f"{ward_rows:06d}"
+        lat_token = int(round((lat + 90.0) * 1_000_000))
+        lon_token = int(round((lon + 180.0) * 1_000_000))
+        row_id = f"adachi-ward-{serial_token}-{lat_token}-{lon_token}"
+
+        normalized_rows.append(
+            {
+                "id": row_id,
+                "city": "Adachi Ward",
+                "source_dataset": "Street Trees / 街路樹",
+                "scientific_raw": scientific_raw,
+                "scientific_normalized": scientific_normalized,
+                "common_name": common_name or "",
+                "subtype_name": subtype_name or "",
+                "zip_code": "",
+                "species_group": species_group or "",
+                "ownership": canonical_ownership(ownership_raw),
+                "ownership_raw": ownership_raw,
+                "lat": lat,
+                "lon": lon,
+                "included": "1" if species_group else "",
+            }
+        )
+
+        if not species_group:
+            continue
+
+        output_features.append(
+            {
+                "type": "Feature",
+                "geometry": {"type": "Point", "coordinates": [lon, lat]},
+                "properties": {
+                    "id": row_id,
+                    "species_group": species_group,
+                    "scientific_name": scientific_raw,
+                    "common_name": common_name,
+                    "subtype_name": subtype_name,
+                    "zip_code": None,
+                    "ownership": canonical_ownership(ownership_raw),
+                    "ownership_raw": ownership_raw,
+                    "city": "Adachi Ward",
+                    "source_dataset": "Street Trees / 街路樹",
+                    "source_department": "Tokyo Metropolitan Government",
+                    "source_last_edit_at": "",
+                },
+            }
+        )
+
+    return {
+        "city": "Adachi Ward",
+        "region": "tokyo",
+        "features": output_features,
+        "normalized_rows": normalized_rows,
+        "source": {
+            "name": "Street Trees / 街路樹",
+            "city": "Adachi Ward",
+            "endpoint": TOKYO_METRO_STREET_TREES_DATASET_PAGE,
+            "last_edit_at": "",
+            "records_fetched": ward_rows,
+            "records_included": len(output_features),
+            "note": "Integrated from the official Tokyo Metropolitan Government `Street Trees` single-tree shapefile for ward roads (`区部都道（単木単位）`) after filtering to `足立区` and clipping to the official MLIT 2024 administrative boundary for Adachi Ward.",
+        },
+    }
+
+
 CITY_FETCHERS = {
+    "Adachi Ward": fetch_adachi_ward,
     "Anaheim": fetch_anaheim,
     "Arlington": fetch_arlington,
     "Austin": fetch_austin,

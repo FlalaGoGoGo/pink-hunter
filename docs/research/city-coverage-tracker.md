@@ -374,7 +374,8 @@ These cities are not in `A2` yet because the official point-tree source is still
 ### Gray Coverage (Official Boundary Resolved, No Official Public Tree Dataset)
 | Done | City | Status | Boundary Rule | Notes |
 |---|---|---|---|---|
-| 🩶 | St. John's (NL) | Research blocker | Official jurisdiction boundary | Government of Newfoundland and Labrador GeoHub, City of St. John's GIS, and Memorial University official public map endpoints were reviewed, but no verified official public blossom-scope single-tree dataset is currently publishable |
+| 🩶 | St. John's (NL) | Research blocker | Official jurisdiction boundary | Government of Newfoundland and Labrador GeoHub, City of St. John's official GIS, St. John's ArcGIS Online public items (`Tree Requests`, `Re-Leaf Application`, `Parks_Data`), and Memorial University official public map endpoints (`campus_map` Concept3D and Botanical Garden audio-tour pages) were reviewed; the accessible public layers are forms, park polygons, roads/buildings, or garden/tour stops, but no verified official public blossom-scope single-tree dataset is currently publishable |
+| 🩶 | Mount Pearl (NL) | In gray coverage | Official jurisdiction boundary | Official City of Mount Pearl GIS / ArcGIS Online public maps and REST services were reviewed, but the accessible public layers are roads, buildings, parcels, and infrastructure only; no verified public single-tree species inventory was confirmed |
 | 🩶 | Alexandria | In gray coverage | Official jurisdiction boundary | Official City of Alexandria urban-forestry and GIS pages were reviewed, but no public single-tree species inventory was confirmed |
 | 🩶 | Burnaby | In gray coverage | Official jurisdiction boundary | Official Burnaby GIS/open-data sources were reviewed; no public single-tree species inventory was confirmed |
 | 🩶 | Beaverton | In gray coverage | Official jurisdiction boundary | Official inventory web maps exist, but the raw city tree inventory service currently requires a token and is not publicly queryable for stable ETL access |
@@ -675,6 +676,11 @@ These cities are not in `A2` yet because the official point-tree source is still
 - Integrated `Dallas` from the official City of Dallas public TreeKeeper inventory linked from the city forestry page.
 - Rechecked `Chicago`; official City of Chicago open-data and ArcGIS entry points reviewed in this round did not confirm a public citywide single-tree species inventory.
 - Integrated `Houston` from the official City of Houston public `COH Urban Forestry Trees` ArcGIS layer after confirming a stable blossom-filter path on `SPECIES`.
+
+## March 2026 Japan Municipality Pilot
+- Integrated `Adachi Ward` from the official Tokyo Metropolitan Government `Street Trees / 街路樹` shapefile, using the published `区部都道（単木単位）` point layer and filtering rows to `足立区`.
+- Clipped the Tokyo rows to the official MLIT 2024 administrative boundary (`N03`) for `東京都 / 足立区` before publish.
+- Extended the publish and jump pipeline so Japan can be modeled as `country = jp`, `prefecture = tokyo`, and municipality-level `ward` areas without changing the database schema.
 
 ## March 2026 Intermountain / Great Lakes Follow-up
 - Integrated `Las Vegas` from the official City of Las Vegas `CLV Tree Sites` ArcGIS layer using blossom filtering on `SPP_BOT` / `SPP_COM`.

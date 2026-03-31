@@ -1,6 +1,6 @@
 # City ETL Methods
 
-Last updated: 2026-03-29 (America/Los_Angeles)
+Last updated: 2026-03-30 (America/Los_Angeles)
 
 ## Purpose
 - Record how each covered city is ingested so future species expansion can reuse the same pipeline.
@@ -16,6 +16,7 @@ Last updated: 2026-03-29 (America/Los_Angeles)
   - Washington state: state ZIP polygons from `ZIP_LAYER`
   - Washington DC: census ZCTA polygons from `US_CENSUS_ZCTA_LAYER`
 - Non-US cities currently keep `zip_code` blank and surface as `unknown` in the UI until a stable official postal-boundary source is added.
+- Jurisdiction labels can be broader than `city`; the Japan pilot uses `prefecture -> municipality/ward` while preserving the same published area-index contract.
 - Unincorporated place names are tracked separately; they are not added to coverage until there is an official municipal or explicitly supported jurisdiction boundary/data path.
 - Broad taxonomy is scientific-name first, then curated subtype keywords.
 - Controlled common-name fallback is allowed when the source exposes either an explicitly generic genus-level scientific value (for example `Prunus sp.` / `Malus sp.` / `Magnolia sp.`) or a strong official blossom common-name label without a cleaner public scientific field.
@@ -66,9 +67,8 @@ Last updated: 2026-03-29 (America/Los_Angeles)
 
 ### Downloaded Shapefile
 - Used for official sources that publish a stable public shapefile or ArcGIS item download but not a clean public query layer.
-- Current ETL uses:
-  - `pyshp`
-  - `pyproj`
+- Recent examples: `Berkeley` and `Adachi Ward`.
+- Current ETL uses `pyshp` plus source-specific projection handling before WGS84 clipping. The Tokyo pilot uses the official JGD2011 Japan Plane Rectangular Zone 9 definition from the published `.prj` to normalize point coordinates before boundary clipping.
 - Shapefile geometry is transformed to WGS84 before taxonomy mapping and ZIP assignment.
 - Official item pages or city open-data pages remain the source-of-truth links in metadata.
 
@@ -119,6 +119,7 @@ Last updated: 2026-03-29 (America/Los_Angeles)
 ## Integrated Cities And Extraction Notes
 | City | Source family | Key fields / parser | Geometry handling | Notes |
 |---|---|---|---|---|
+| Adachi Ward | Downloaded Shapefile | `樹種名`, `整理番号`, `区市町村` | official Tokyo projected point shapefile -> JGD2011 Zone 9 inverse projection -> official MLIT boundary clipping | Official Tokyo Metropolitan Government `Street Trees / 街路樹` point shapefile filtered to `足立区`, then clipped to the official MLIT 2024 administrative boundary for Adachi Ward |
 | Burlington IA | TreeKeeper | auto-detected public species field from TreeKeeper grid rows | direct lon/lat or `SITE_GEOMETRY` JSON, then official-boundary clipping | Official City of Burlington, Iowa public TreeKeeper inventory integrated with the official jurisdiction boundary |
 | Portland ME | ArcGIS MapServer | `CommonName`, `BotanicalName` | ArcGIS point geometry plus explicit Maine Census boundary fetch | Official City of Portland urban-forest layer clipped to the Portland, Maine boundary to avoid the existing Portland, OR special-boundary override |
 | Baton Rouge | ArcGIS FeatureServer | `CommonName`, `LatinName` | ArcGIS point geometry | Official City of Baton Rouge public tree inventory layer clipped to the official jurisdiction boundary |

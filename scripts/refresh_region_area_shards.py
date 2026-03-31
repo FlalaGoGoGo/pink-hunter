@@ -15,10 +15,12 @@ if str(ROOT) not in sys.path:
 
 from etl.build_data import (  # noqa: E402
     REGION_LABELS,
+    boundary_area_type_for_jurisdiction,
     bounds_from_bounds_list,
     bounds_from_features,
     classify_aggregate_advisory_level,
     classify_publish_warning_level,
+    country_for_region,
     encode_feature_collection,
     load_city_boundary_bounds,
     slugify_token,
@@ -41,6 +43,15 @@ DISPLAY_NAME_OVERRIDES = {
 
 def display_name_for_jurisdiction(jurisdiction: str) -> str:
     return DISPLAY_NAME_OVERRIDES.get(jurisdiction, jurisdiction)
+
+
+def country_name_for_region(region_id: str) -> str:
+    country_id = country_for_region(region_id)
+    if country_id == "ca":
+        return "Canada"
+    if country_id == "jp":
+        return "Japan"
+    return "United States"
 
 
 def normalize_publish_area_filenames(data_dir: Path, region_id: str) -> None:
@@ -158,9 +169,9 @@ def write_region_area_shards(data_dir: Path, region_entry: dict[str, object], ge
                 "jurisdiction": jurisdiction,
                 "slug": area_slug,
                 "display_name": display_name_for_jurisdiction(jurisdiction),
-                "jurisdiction_type": "county" if jurisdiction == "Arlington" or jurisdiction.endswith(" County") else "city",
-                "state_province": region_id.upper(),
-                "country": "Canada" if region_id in {"ab", "bc", "mb", "nb", "nl", "ns", "on", "pe", "qc", "sk"} else "United States",
+                "jurisdiction_type": boundary_area_type_for_jurisdiction(jurisdiction),
+                "state_province": REGION_LABELS.get(region_id, region_id.upper()),
+                "country": country_name_for_region(region_id),
                 "bounds": area_bounds,
                 "tree_count": len(features),
                 "zip_codes": summarize_zip_codes(features),

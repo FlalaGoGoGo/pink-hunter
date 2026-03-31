@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-03-30T07:44:37.900410+00:00",
+  "generated_at": "2026-03-31T03:29:14.915351+00:00",
   "countries": [
     {
       "id": "ca",
@@ -13,6 +13,21 @@
         [
           -52.5,
           83.2
+        ]
+      ]
+    },
+    {
+      "id": "jp",
+      "label": "Japan",
+      "emoji": "🇯🇵",
+      "bounds": [
+        [
+          139.73570486,
+          35.73856847
+        ],
+        [
+          139.85880036,
+          35.81770595
         ]
       ]
     },
@@ -253,6 +268,23 @@
         ]
       ],
       "region_hint": null
+    },
+    {
+      "id": "tokyo",
+      "country_id": "jp",
+      "code": "Tokyo",
+      "label": "Tokyo",
+      "bounds": [
+        [
+          139.73570486,
+          35.73856847
+        ],
+        [
+          139.85880036,
+          35.81770595
+        ]
+      ],
+      "region_hint": "tokyo"
     },
     {
       "id": "al",
@@ -2981,6 +3013,26 @@
         ]
       ],
       "region_hint": "sk",
+      "coverage_status": "covered"
+    },
+    {
+      "id": "tokyo:adachi-ward",
+      "country_id": "jp",
+      "state_id": "tokyo",
+      "jurisdiction": "Adachi Ward",
+      "display_name": "Adachi Ward",
+      "area_type": "ward",
+      "bounds": [
+        [
+          139.73570486,
+          35.73856847
+        ],
+        [
+          139.85880036,
+          35.81770595
+        ]
+      ],
+      "region_hint": "tokyo",
       "coverage_status": "covered"
     },
     {

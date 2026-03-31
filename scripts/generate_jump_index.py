@@ -90,6 +90,7 @@ REGION_COUNTRY: dict[str, str] = {
     "sd": "us",
     "sk": "ca",
     "tn": "us",
+    "tokyo": "jp",
     "tx": "us",
     "ut": "us",
     "va": "us",
@@ -154,6 +155,7 @@ REGION_FULL_NAMES: dict[str, str] = {
     "sd": "South Dakota",
     "sk": "Saskatchewan",
     "tn": "Tennessee",
+    "tokyo": "Tokyo",
     "tx": "Texas",
     "ut": "Utah",
     "va": "Virginia",
@@ -234,13 +236,20 @@ CANADA_PROVINCE_META: dict[str, dict[str, Any]] = {
     "yt": {"label": "Yukon", "bounds": [[-141.1, 59.9], [-123.8, 69.7]]},
 }
 
+JAPAN_PREFECTURE_META: dict[str, dict[str, Any]] = {
+    "tokyo": {"label": "Tokyo", "code": "Tokyo"},
+}
+
 COUNTRY_META = {
     "us": {"label": "United States", "emoji": "🇺🇸"},
     "ca": {"label": "Canada", "emoji": "🇨🇦"},
+    "jp": {"label": "Japan", "emoji": "🇯🇵"},
 }
 
 
 def country_for_region(region: str) -> str:
+    if region in JAPAN_PREFECTURE_META:
+        return "jp"
     return REGION_COUNTRY.get(region, "ca" if region in CANADA_PROVINCE_META else "us")
 
 
@@ -351,6 +360,7 @@ COVERED_REGION_BY_STATE_CODE = {
     "sd": "sd",
     "sk": "sk",
     "tn": "tn",
+    "tokyo": "tokyo",
     "tx": "tx",
     "ut": "ut",
     "va": "va",
@@ -372,6 +382,7 @@ JURISDICTION_TYPE_OVERRIDES = {
     "Montgomery County": "county",
     "Washington DC": "district",
     "North Vancouver District": "district",
+    "Adachi Ward": "ward",
 }
 
 
@@ -459,6 +470,8 @@ def infer_jurisdiction_type(name: str) -> str:
         return JURISDICTION_TYPE_OVERRIDES[name]
     if name.endswith(" County"):
         return "county"
+    if name.endswith(" Ward") or name.endswith("区"):
+        return "ward"
     return "city"
 
 
@@ -889,6 +902,31 @@ def build_jump_index(data_dir: Path) -> dict[str, Any]:
                 "country_id": "ca",
                 "code": state_id.upper(),
                 "label": province_meta["label"],
+                "bounds": state_bounds,
+                "region_hint": COVERED_REGION_BY_STATE_CODE.get(state_id),
+            }
+        )
+
+    for state_id, prefecture_meta in JAPAN_PREFECTURE_META.items():
+        state_bounds = existing_state_bounds_by_id.get(state_id)
+        if not state_bounds and state_id in region_meta_by_id and region_meta_by_id[state_id].get("bounds"):
+            state_bounds = region_meta_by_id[state_id]["bounds"]
+        if not state_bounds:
+            state_bounds = union_bounds(
+                [
+                    item["bounds"]
+                    for item in area_map.values()
+                    if item.get("country_id") == "jp" and item.get("state_id") == state_id and item.get("bounds")
+                ]
+            )
+        if not state_bounds:
+            continue
+        states.append(
+            {
+                "id": state_id,
+                "country_id": "jp",
+                "code": str(prefecture_meta.get("code") or prefecture_meta["label"]),
+                "label": prefecture_meta["label"],
                 "bounds": state_bounds,
                 "region_hint": COVERED_REGION_BY_STATE_CODE.get(state_id),
             }

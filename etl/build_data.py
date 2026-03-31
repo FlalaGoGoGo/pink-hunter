@@ -234,6 +234,10 @@ MONTREAL_DATASET_PAGE = "https://donnees.montreal.ca/fr/dataset/arbres"
 TORONTO_STREET_TREE_CSV = "https://ckan0.cf.opendata.inter.prod-toronto.ca/dataset/6ac4569e-fd37-4cbc-ac63-db3624c5f6a2/resource/b65cd31d-fabc-4222-83ef-8ddd11295d2b/download/street-tree-data-4326.csv"
 TORONTO_BOUNDARY_ZIP = "https://ckan0.cf.opendata.inter.prod-toronto.ca/dataset/841fb820-46d0-46ac-8dcb-d20f27e57bcc/resource/41bf97f0-da1a-46a9-ac25-5ce0078d6760/download/toronto-boundary-wgs84.zip"
 TORONTO_DATASET_PAGE = "https://open.toronto.ca/dataset/street-tree-data/"
+TOKYO_METRO_STREET_TREES_ZIP = "https://data.storage.data.metro.tokyo.lg.jp/toshiseibi/02_gairoju.zip"
+TOKYO_METRO_STREET_TREES_DATASET_PAGE = "https://catalog.data.metro.tokyo.lg.jp/dataset/t000008d2000000024"
+TOKYO_ADMIN_BOUNDARY_ZIP = "https://nlftp.mlit.go.jp/ksj/gml/data/N03/N03-2024/N03-20240101_13_GML.zip"
+TOKYO_ADMIN_BOUNDARY_DATASET_PAGE = "https://nlftp.mlit.go.jp/ksj/gml/datalist/KsjTmplt-N03-2024.html"
 HALIFAX_HRM_BOUNDARY_LAYER = (
     "https://services2.arcgis.com/11XBiaBYA9Ep0yNJ/arcgis/rest/services/NSPW_HRM_Service_Exchange_Boundary_2022/FeatureServer/0"
 )
@@ -318,6 +322,7 @@ REGION_LABELS: dict[str, str] = {
     "sd": "SD",
     "sk": "SK",
     "tn": "TN",
+    "tokyo": "Tokyo",
     "tx": "TX",
     "ut": "UT",
     "va": "VA",
@@ -329,6 +334,7 @@ REGION_LABELS: dict[str, str] = {
 }
 SPECIES_GROUPS: list[str] = ["cherry", "plum", "peach", "magnolia", "crabapple"]
 REGION_CITY_OVERRIDES: dict[str, str] = {
+    "Adachi Ward": "tokyo",
     "Albuquerque": "nm",
     "Ames": "ia",
     "Andover": "ks",
@@ -702,6 +708,13 @@ REGION_CITY_OVERRIDES: dict[str, str] = {
 }
 
 CITY_BOUNDARY_HINTS: dict[str, dict[str, str]] = {
+    "Adachi Ward": {
+        "state": "tokyo",
+        "boundary_source": "japan_n03_geojson",
+        "jp_prefecture_name": "東京都",
+        "jp_municipality_name": "足立区",
+        "jp_boundary_zip_url": TOKYO_ADMIN_BOUNDARY_ZIP,
+    },
     "Ann Arbor": {"state": "26"},
     "Mesa": {"state": "04"},
     "Phoenix": {"state": "04"},
@@ -1260,6 +1273,7 @@ BOUNDARY_CACHE_ROOT = REFERENCE_DIR / "boundaries"
 BOUNDARY_CATALOG_PATH = REFERENCE_DIR / "boundary_catalog.v1.json"
 COVERAGE_STATUS_REGISTRY_PATH = REFERENCE_DIR / "coverage_status_registry.v1.json"
 CANADIAN_REGION_IDS = {"ab", "bc", "mb", "nb", "nl", "ns", "on", "pe", "qc", "sk"}
+JAPAN_REGION_IDS = {"tokyo"}
 
 UW_SUPPLEMENTAL_PATH = SUPPLEMENTAL_DIR / "uw_prunus_overpass.json"
 UW_FEATURED_AREA_REFERENCE_PATH = REFERENCE_DIR / "uw_featured_area_reference.v1.json"
@@ -2137,31 +2151,73 @@ def transformer_from_prj(prj_text: str | None) -> Any | None:
     return transformer_class.from_crs(source_crs, crs_class.from_epsg(4326), always_xy=True)
 
 
-def load_zipped_shapefile(zip_url: str) -> tuple[Any, str | None]:
+def _select_zip_member(file_names: list[str], suffix: str, *, member_hint: str | None = None) -> str:
+    candidates = [name for name in file_names if Path(name).suffix.lower() == suffix and not name.endswith("/")]
+    if member_hint:
+        candidates = [name for name in candidates if member_hint in name]
+    if not candidates:
+        raise RuntimeError(f"Missing {suffix} member in archive (hint={member_hint!r}).")
+    if len(candidates) > 1:
+        raise RuntimeError(f"Ambiguous {suffix} members in archive (hint={member_hint!r}): {candidates}")
+    return candidates[0]
+
+
+def load_zipped_shapefile(zip_url: str, *, member_hint: str | None = None) -> tuple[Any, str | None]:
     payload = fetch_binary(zip_url)
     archive = _require_zipfile().ZipFile(io.BytesIO(payload))
-    members = {Path(name).suffix.lower(): name for name in archive.namelist() if not name.endswith("/")}
-    shp_name = members.get(".shp")
-    shx_name = members.get(".shx")
-    dbf_name = members.get(".dbf")
-    if not shp_name or not shx_name or not dbf_name:
+    file_names = [name for name in archive.namelist() if not name.endswith("/")]
+    shp_name = _select_zip_member(file_names, ".shp", member_hint=member_hint)
+    stem = str(Path(shp_name).with_suffix(""))
+
+    def paired_member(suffix: str) -> str | None:
+        for name in file_names:
+            if str(Path(name).with_suffix("")) == stem and Path(name).suffix.lower() == suffix:
+                return name
+        return None
+
+    shx_name = paired_member(".shx")
+    dbf_name = paired_member(".dbf")
+    if not shx_name or not dbf_name:
         raise RuntimeError(f"Missing one or more shapefile members in archive: {zip_url}")
-    prj_name = members.get(".prj")
-    cpg_name = members.get(".cpg")
+    prj_name = paired_member(".prj")
+    cpg_name = paired_member(".cpg")
     prj_text = archive.read(prj_name).decode("utf-8", "ignore") if prj_name else None
     encoding = decode_cpg(archive.read(cpg_name) if cpg_name else None)
+    shp_payload = archive.read(shp_name)
+    shx_payload = archive.read(shx_name)
+    dbf_payload = archive.read(dbf_name)
     shapefile_module = _require_shapefile()
-    reader = shapefile_module.Reader(
-        shp=io.BytesIO(archive.read(shp_name)),
-        shx=io.BytesIO(archive.read(shx_name)),
-        dbf=io.BytesIO(archive.read(dbf_name)),
-        encoding=encoding,
-    )
-    return reader, prj_text
+
+    for candidate_encoding in dict.fromkeys([encoding, "cp932", "shift_jis", "utf-8"]):
+        try:
+            reader = shapefile_module.Reader(
+                shp=io.BytesIO(shp_payload),
+                shx=io.BytesIO(shx_payload),
+                dbf=io.BytesIO(dbf_payload),
+                encoding=candidate_encoding,
+            )
+            return reader, prj_text
+        except UnicodeDecodeError:
+            continue
+
+    raise RuntimeError(f"Unable to decode shapefile DBF encoding for archive: {zip_url}")
 
 
-def load_zipped_point_shapefile_rows(zip_url: str) -> list[dict[str, Any]]:
-    reader, prj_text = load_zipped_shapefile(zip_url)
+def load_zipped_geojson_features(zip_url: str, *, member_hint: str | None = None) -> list[dict[str, Any]]:
+    payload = fetch_binary(zip_url)
+    archive = _require_zipfile().ZipFile(io.BytesIO(payload))
+    file_names = [name for name in archive.namelist() if not name.endswith("/")]
+    geojson_name = _select_zip_member(file_names, ".geojson", member_hint=member_hint)
+    geojson_payload = json.loads(archive.read(geojson_name).decode("utf-8-sig"))
+    if geojson_payload.get("type") == "FeatureCollection":
+        return list(geojson_payload.get("features") or [])
+    if geojson_payload.get("type") == "Feature":
+        return [geojson_payload]
+    raise RuntimeError(f"Unsupported GeoJSON payload in archive: {zip_url}")
+
+
+def load_zipped_point_shapefile_rows(zip_url: str, *, member_hint: str | None = None) -> list[dict[str, Any]]:
+    reader, prj_text = load_zipped_shapefile(zip_url, member_hint=member_hint)
     transformer = transformer_from_prj(prj_text)
     field_names = [field[0] for field in reader.fields[1:]]
     rows: list[dict[str, Any]] = []
@@ -2847,34 +2903,32 @@ def classify_with_common_hint(
     if normalized not in GENERIC_SCIENTIFIC_NAMES:
         return None
 
-    hint = normalize_lookup_text(common_name)
-    has_apple_token = hint == "apple" or hint.startswith("apple ") or hint.endswith(" apple") or " apple " in hint
-    if "cherry" in hint:
-        return "cherry"
-    if "plum" in hint:
-        return "plum"
-    if "peach" in hint:
-        return "peach"
-    if "magnolia" in hint:
-        return "magnolia"
-    if "crabapple" in hint or "crab apple" in hint or has_apple_token:
-        return "crabapple"
-    return None
+    return tree_hint_species_group(common_name)
 
 
 def tree_hint_species_group(common_name: str | None) -> str | None:
     hint = normalize_lookup_text(common_name)
     has_apple_token = hint == "apple" or hint.startswith("apple ") or hint.endswith(" apple") or " apple " in hint
+    if "cherry" in hint or "サクラ" in hint or "桜" in hint:
+        return "cherry"
+    if hint in {"ウメ", "梅", "ニワウメ", "ウメ類", "ミロバランスモモ"}:
+        return "plum"
+    if hint in {"モモ", "桃", "ハナモモ", "ホウキモモ", "テルテモモ", "モモ属"}:
+        return "peach"
+    if hint in {"モクレン", "モクレン属", "コブシ", "ハクモクレン", "シモクレン", "シデコブシ", "トウモクレン"}:
+        return "magnolia"
+    if hint in {"ハナカイドウ", "カイドウ", "ヒメリンゴ", "ハナリンゴ", "イヌリンゴ", "リンゴ", "ズミ"}:
+        return "crabapple"
+    if "magnolia" in hint:
+        return "magnolia"
+    if "crabapple" in hint or "crab apple" in hint or has_apple_token:
+        return "crabapple"
     if "cherry" in hint:
         return "cherry"
     if "plum" in hint:
         return "plum"
     if "peach" in hint:
         return "peach"
-    if "magnolia" in hint:
-        return "magnolia"
-    if "crabapple" in hint or "crab apple" in hint or has_apple_token:
-        return "crabapple"
     return None
 
 
@@ -3120,12 +3174,16 @@ def load_json_file(path: Path) -> Any:
 
 
 def country_for_region(region: str) -> str:
+    if region in JAPAN_REGION_IDS:
+        return "jp"
     return "ca" if region in CANADIAN_REGION_IDS else "us"
 
 
 def boundary_area_type_for_jurisdiction(jurisdiction: str) -> str:
     if jurisdiction == "Washington DC" or jurisdiction.endswith(" District"):
         return "district"
+    if jurisdiction.endswith(" Ward") or jurisdiction.endswith("区"):
+        return "ward"
     if jurisdiction == "Arlington" or jurisdiction.endswith(" County"):
         return "county"
     return "city"
@@ -3302,6 +3360,8 @@ def region_for_city(city: str) -> str:
         return REGION_CITY_OVERRIDES[city]
     hint = CITY_BOUNDARY_HINTS.get(city, {})
     state = str(hint.get("state", "")).strip()
+    if state == "tokyo":
+        return "tokyo"
     if state == "53":
         return "wa"
     if state == "06":
@@ -3913,6 +3973,35 @@ def fetch_special_city_boundary_feature(city: str) -> dict[str, Any] | None:
             city,
             {"type": "MultiPolygon", "coordinates": polygons},
             source="Ville de Montréal Données ouvertes",
+        )
+
+    if boundary_source == "japan_n03_geojson":
+        boundary_zip_url = str(hint.get("jp_boundary_zip_url") or TOKYO_ADMIN_BOUNDARY_ZIP).strip()
+        prefecture_name = str(hint.get("jp_prefecture_name") or "").strip()
+        municipality_name = str(hint.get("jp_municipality_name") or city).strip()
+        polygons: list[Any] = []
+        for feature in load_zipped_geojson_features(boundary_zip_url, member_hint=".geojson"):
+            properties = feature.get("properties") or {}
+            if prefecture_name and str(properties.get("N03_001") or "").strip() != prefecture_name:
+                continue
+            if str(properties.get("N03_004") or "").strip() != municipality_name:
+                continue
+            geometry = feature.get("geometry") or {}
+            geom_type = geometry.get("type")
+            coordinates = geometry.get("coordinates") or []
+            if geom_type == "Polygon":
+                polygons.append(coordinates)
+            elif geom_type == "MultiPolygon":
+                polygons.extend(coordinates)
+        if not polygons:
+            return None
+        geometry = {"type": "Polygon", "coordinates": polygons[0]} if len(polygons) == 1 else {"type": "MultiPolygon", "coordinates": polygons}
+        return make_city_boundary_feature(
+            city,
+            geometry,
+            source="MLIT National Land Numerical Information 2024 Administrative Area Data",
+            state_id="tokyo",
+            country_id="jp",
         )
 
     if boundary_source == "statcan_csd":
@@ -7216,6 +7305,7 @@ def main() -> int:
         "pe": "Canada",
         "qc": "Canada",
         "sk": "Canada",
+        "tokyo": "Japan",
     }
     display_name_overrides = {
         "Arlington": "Arlington County",
@@ -7322,16 +7412,17 @@ def main() -> int:
                         largest_shard_area = city
                     extra_output_names.append(shard_file_name)
 
-                jurisdiction_type = "county" if city == "Arlington" or city.endswith(" County") else "city"
+                jurisdiction_type = boundary_area_type_for_jurisdiction(city)
                 city_bounds = load_city_boundary_bounds(city, state_id=region_id) or bounds_from_features(city_features)
+                country_name = country_by_region.get(region_id, "Japan" if country_for_region(region_id) == "jp" else "United States")
                 area_entries.append(
                     {
                         "jurisdiction": city,
                         "slug": city_slug,
                         "display_name": display_name_overrides.get(city, city),
                         "jurisdiction_type": jurisdiction_type,
-                        "state_province": region_id.upper(),
-                        "country": country_by_region.get(region_id, "United States"),
+                        "state_province": REGION_LABELS.get(region_id, region_id.upper()),
+                        "country": country_name,
                         "bounds": city_bounds,
                         "tree_count": len(city_features),
                         "zip_codes": summarize_zip_codes(city_features),
@@ -7349,7 +7440,7 @@ def main() -> int:
                         "tree_count": len(city_features),
                         "species_counts": summarize_species_counts(city_features),
                         "jurisdiction_type": jurisdiction_type,
-                        "state_province": region_id.upper(),
+                        "state_province": REGION_LABELS.get(region_id, region_id.upper()),
                     }
                 )
 

@@ -21,7 +21,14 @@ Live domain:
 - Published region data must pass `./scripts/check_region_data_sizes.py --data-dir public/data` before sync/push.
 
 ## Coverage Areas
-All 50 U.S. states now have at least one covered city. On the Canada side, 9 of 10 provinces are covered; Newfoundland and Labrador is still waiting on a verified official public single-tree source that meets the project rules.
+All 50 U.S. states now have at least one covered city. On the Canada side, 9 of 10 provinces are covered; Newfoundland and Labrador is still waiting on a verified official public single-tree source that meets the project rules. Japan pilot coverage has now started at the municipality level with `Tokyo -> Adachi Ward`, sourced from the official Tokyo Metropolitan Government single-tree street-tree dataset.
+
+<details>
+<summary>Tokyo (Japan)</summary>
+
+- Adachi Ward
+
+</details>
 
 <details>
 <summary>Alabama</summary>
