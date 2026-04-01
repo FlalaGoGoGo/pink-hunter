@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-03-28T05:21:40.296288+00:00",
+  "generated_at": "2026-04-01T21:16:07.464030+00:00",
   "region": "ca",
   "strategy": "area_shard",
   "items": [
@@ -5871,6 +5871,128 @@
       ]
     },
     {
+      "jurisdiction": "Palm Springs",
+      "slug": "palm-springs",
+      "display_name": "Palm Springs",
+      "jurisdiction_type": "city",
+      "state_province": "CA",
+      "country": "United States",
+      "bounds": [
+        [
+          -116.68472299987266,
+          33.612422000012444
+        ],
+        [
+          -116.44281200020764,
+          33.93207400022235
+        ]
+      ],
+      "tree_count": 6,
+      "zip_codes": [
+        "92262"
+      ],
+      "species_counts": {
+        "cherry": 0,
+        "plum": 2,
+        "peach": 3,
+        "magnolia": 1,
+        "crabapple": 0
+      },
+      "ownership_counts": {
+        "public": 6,
+        "private": 0,
+        "unknown": 0
+      },
+      "species_ownership_counts": {
+        "cherry": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        },
+        "plum": {
+          "public": 2,
+          "private": 0,
+          "unknown": 0
+        },
+        "peach": {
+          "public": 3,
+          "private": 0,
+          "unknown": 0
+        },
+        "magnolia": {
+          "public": 1,
+          "private": 0,
+          "unknown": 0
+        },
+        "crabapple": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        }
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "palm-springs-001",
+          "bounds": [
+            [
+              -116.55186973152843,
+              33.81939739348912
+            ],
+            [
+              -116.5044060512686,
+              33.86790548483029
+            ]
+          ],
+          "data_path": "/data/trees.ca.area.palm-springs.v2.geojson",
+          "tree_count": 6,
+          "ownership_counts": {
+            "public": 6,
+            "private": 0,
+            "unknown": 0
+          },
+          "species_counts": {
+            "cherry": 0,
+            "plum": 2,
+            "peach": 3,
+            "magnolia": 1,
+            "crabapple": 0
+          },
+          "species_ownership_counts": {
+            "cherry": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            },
+            "plum": {
+              "public": 2,
+              "private": 0,
+              "unknown": 0
+            },
+            "peach": {
+              "public": 3,
+              "private": 0,
+              "unknown": 0
+            },
+            "magnolia": {
+              "public": 1,
+              "private": 0,
+              "unknown": 0
+            },
+            "crabapple": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            }
+          },
+          "raw_bytes": 3228,
+          "gzip_bytes": 573
+        }
+      ]
+    },
+    {
       "jurisdiction": "Palo Alto",
       "slug": "palo-alto",
       "display_name": "Palo Alto",
@@ -9869,6 +9991,128 @@
       ]
     },
     {
+      "jurisdiction": "Turlock",
+      "slug": "turlock",
+      "display_name": "Turlock",
+      "jurisdiction_type": "city",
+      "state_province": "CA",
+      "country": "United States",
+      "bounds": [
+        [
+          -120.9036370000468,
+          37.466332999994776
+        ],
+        [
+          -120.81207799966539,
+          37.53715400024486
+        ]
+      ],
+      "tree_count": 3,
+      "zip_codes": [
+        "95380"
+      ],
+      "species_counts": {
+        "cherry": 0,
+        "plum": 0,
+        "peach": 0,
+        "magnolia": 3,
+        "crabapple": 0
+      },
+      "ownership_counts": {
+        "public": 3,
+        "private": 0,
+        "unknown": 0
+      },
+      "species_ownership_counts": {
+        "cherry": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        },
+        "plum": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        },
+        "peach": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        },
+        "magnolia": {
+          "public": 3,
+          "private": 0,
+          "unknown": 0
+        },
+        "crabapple": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        }
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "turlock-001",
+          "bounds": [
+            [
+              -120.83228591227038,
+              37.50054527696307
+            ],
+            [
+              -120.83176405719567,
+              37.50056418373787
+            ]
+          ],
+          "data_path": "/data/trees.ca.area.turlock.v2.geojson",
+          "tree_count": 3,
+          "ownership_counts": {
+            "public": 3,
+            "private": 0,
+            "unknown": 0
+          },
+          "species_counts": {
+            "cherry": 0,
+            "plum": 0,
+            "peach": 0,
+            "magnolia": 3,
+            "crabapple": 0
+          },
+          "species_ownership_counts": {
+            "cherry": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            },
+            "plum": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            },
+            "peach": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            },
+            "magnolia": {
+              "public": 3,
+              "private": 0,
+              "unknown": 0
+            },
+            "crabapple": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            }
+          },
+          "raw_bytes": 1810,
+          "gzip_bytes": 433
+        }
+      ]
+    },
+    {
       "jurisdiction": "Ventura",
       "slug": "ventura",
       "display_name": "Ventura",
@@ -10111,6 +10355,128 @@
           },
           "raw_bytes": 60301,
           "gzip_bytes": 2997
+        }
+      ]
+    },
+    {
+      "jurisdiction": "Watsonville",
+      "slug": "watsonville",
+      "display_name": "Watsonville",
+      "jurisdiction_type": "city",
+      "state_province": "CA",
+      "country": "United States",
+      "bounds": [
+        [
+          -121.82731200041982,
+          36.88425999984524
+        ],
+        [
+          -121.73241300003166,
+          37.01917900012514
+        ]
+      ],
+      "tree_count": 3,
+      "zip_codes": [
+        "None"
+      ],
+      "species_counts": {
+        "cherry": 0,
+        "plum": 2,
+        "peach": 0,
+        "magnolia": 0,
+        "crabapple": 1
+      },
+      "ownership_counts": {
+        "public": 3,
+        "private": 0,
+        "unknown": 0
+      },
+      "species_ownership_counts": {
+        "cherry": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        },
+        "plum": {
+          "public": 2,
+          "private": 0,
+          "unknown": 0
+        },
+        "peach": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        },
+        "magnolia": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        },
+        "crabapple": {
+          "public": 1,
+          "private": 0,
+          "unknown": 0
+        }
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "watsonville-001",
+          "bounds": [
+            [
+              -121.70948740019453,
+              37.01125595017872
+            ],
+            [
+              -121.70635099975368,
+              37.01276778013406
+            ]
+          ],
+          "data_path": "/data/trees.ca.area.watsonville.v2.geojson",
+          "tree_count": 3,
+          "ownership_counts": {
+            "public": 3,
+            "private": 0,
+            "unknown": 0
+          },
+          "species_counts": {
+            "cherry": 0,
+            "plum": 2,
+            "peach": 0,
+            "magnolia": 0,
+            "crabapple": 1
+          },
+          "species_ownership_counts": {
+            "cherry": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            },
+            "plum": {
+              "public": 2,
+              "private": 0,
+              "unknown": 0
+            },
+            "peach": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            },
+            "magnolia": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            },
+            "crabapple": {
+              "public": 1,
+              "private": 0,
+              "unknown": 0
+            }
+          },
+          "raw_bytes": 1876,
+          "gzip_bytes": 495
         }
       ]
     },

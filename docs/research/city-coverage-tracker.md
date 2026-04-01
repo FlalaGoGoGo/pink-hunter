@@ -354,6 +354,16 @@ Current state: no cities are parked in `A2` right now.
 | ✅ | Puyallup | 76 | Official jurisdiction boundary | City Maintained Street Trees |
 | ✅ | Gig Harbor | 63 | Official jurisdiction boundary | PW Trees Public Viewer |
 | ✅ | SeaTac | 38 | Official jurisdiction boundary | Genus/common-name normalization added |
+| ✅ | Oak Harbor | 207 | Official jurisdiction boundary | Official City of Oak Harbor `Tree Inventory` layer integrated from the city ArcGIS service |
+| ✅ | Olympia | 97 | Official jurisdiction boundary | Official Washington State Capitol Campus urban-forest inventory integrated and clipped to the official Olympia boundary |
+| ✅ | Pullman | 477 | Official jurisdiction boundary | Official Washington State University public campus tree inventory integrated and clipped to the official Pullman boundary |
+| ✅ | Beaverton | 13 | Official jurisdiction boundary | Official City of Beaverton `Street of Trees` layer integrated from the city ArcGIS service |
+| ✅ | Keizer | 31 | Official jurisdiction boundary | Official City of Keizer public tree inventory layer integrated from the city ArcGIS service |
+| ✅ | Tualatin | 301 | Official jurisdiction boundary | Official City of Tualatin `Street Trees View` layer integrated from the city ArcGIS service |
+| ✅ | West Linn | 393 | Official jurisdiction boundary | Official City of West Linn public street-tree inventory integrated after coded-value domain decoding |
+| ✅ | Palm Springs | 6 | Official jurisdiction boundary | Official City of Palm Springs public `Tree Inventory 2015` layer integrated from the city ArcGIS service |
+| ✅ | Turlock | 3 | Official jurisdiction boundary | Official California State University, Stanislaus public `Turlock Tree Inventory` layer integrated and clipped to the official Turlock boundary |
+| ✅ | Watsonville | 3 | Official jurisdiction boundary | Official `Tree Inventories in Santa Clara County` shared ArcGIS service subset to `City = 'Watsonville'` |
 
 ## B — Official Point-Tree Data Exists But Is Not Product-Ready
 These cities are not in `A2` yet because the official point-tree source is still partial, blocked, or otherwise not publish-ready under the current rules.
@@ -378,7 +388,6 @@ These cities are not in `A2` yet because the official point-tree source is still
 | 🩶 | Mount Pearl (NL) | In gray coverage | Official jurisdiction boundary | Official City of Mount Pearl GIS / ArcGIS Online public maps and REST services were reviewed, but the accessible public layers are roads, buildings, parcels, and infrastructure only; no verified public single-tree species inventory was confirmed |
 | 🩶 | Alexandria | In gray coverage | Official jurisdiction boundary | Official City of Alexandria urban-forestry and GIS pages were reviewed, but no public single-tree species inventory was confirmed |
 | 🩶 | Burnaby | In gray coverage | Official jurisdiction boundary | Official Burnaby GIS/open-data sources were reviewed; no public single-tree species inventory was confirmed |
-| 🩶 | Beaverton | In gray coverage | Official jurisdiction boundary | Official inventory web maps exist, but the raw city tree inventory service currently requires a token and is not publicly queryable for stable ETL access |
 | 🩶 | Delta | In gray coverage | Official jurisdiction boundary | Official Delta GIS/open-data sources were reviewed; no public single-tree species inventory was confirmed |
 | 🩶 | Alameda | In gray coverage | Official jurisdiction boundary | Official city tree and urban-forest materials were reviewed, but no verified public citywide single-tree dataset was confirmed in this round |
 | 🩶 | Daly City | In gray coverage | Official jurisdiction boundary | Official city urban-forestry and GIS entry points were reviewed, but no verified public citywide single-tree species dataset was confirmed in this round |
@@ -420,7 +429,6 @@ These cities are not in `A2` yet because the official point-tree source is still
 | ⚠️ | Tacoma | Not usable yet | Official city ArcGIS content found in this round was canopy-height mapping, not a public single-tree species point inventory |
 | ⚠️ | Burien | Not usable | Species values are internal codes (e.g. `ULFR`) without public mapping table |
 | ⚠️ | Lynnwood | Not usable yet | Official ArcGIS content found in this round was a South Lynnwood urban-forest project web map, not a citywide single-tree species inventory |
-| ⚠️ | Olympia | Not usable yet | Search turned up a 2007 street-tree layer owned by a non-city account; no current official city single-tree species layer was confirmed |
 | ⚠️ | Ontario (CA) | Not found yet | Official city site and GIS entry points reviewed in this round did not confirm a public citywide single-tree species inventory |
 | ⚠️ | Chicago | Official unavailable (gray coverage) | Official City of Chicago open-data and ArcGIS entry points reviewed in this round did not confirm a public citywide single-tree species inventory |
 | ⚠️ | Phoenix | Official unavailable (gray coverage) | Official City of Phoenix open-data CKAN catalog, ArcGIS entries, and urban-forest materials reviewed in this round did not confirm a public citywide single-tree species inventory |
@@ -465,7 +473,7 @@ These cities are not in `A2` yet because the official point-tree source is still
 | ⚠️ | Bonney Lake | No tree layer in public portal | Official `BL_Public_Portal_WFL1` was checked and does not expose a tree inventory layer |
 | ⚠️ | Lacey | Open data searched, no tree layer found | Official `data.cityoflacey.org` search in this round did not surface a public single-tree species dataset |
 | ⚠️ | Tumwater | GIS pages found, no tree layer found | Official GIS/open-data entry points were reviewed in this round, but no public single-tree species point layer was confirmed |
-| ⚠️ | Vancouver WA | Not usable yet | Official city geohub search in this round surfaced urban-tree-canopy and signage inventory layers, but not a public single-tree species inventory |
+| ⚠️ | Vancouver WA | Outside official city boundary | Official Washington State University Vancouver public campus tree inventory is queryable, but clipping it to the official Vancouver, Washington boundary currently yields 0 in-scope city rows |
 | ⚠️ | Essex County, NJ | Not found yet | Official county open-data entry points were reviewed, but no verified countywide single-tree species inventory was confirmed |
 | ⚠️ | Mount Vernon | Not found yet | Official city GIS / urban-forestry entry points reviewed in this round did not confirm a public citywide single-tree inventory |
 | ⚠️ | Burlington, WA | Not found yet | Official city pages reviewed in this round did not confirm a public citywide single-tree inventory |
@@ -517,6 +525,11 @@ These cities are not in `A2` yet because the official point-tree source is still
 - Added gray coverage for `Santa Clara`, `Napa`, `Richmond (CA)`, `Santa Cruz`, `Santa Rosa`, and `Stockton` after city-site and official data portal review did not confirm a public citywide single-tree species dataset.
 - Fixed a bad legacy `Palo Alto` boundary cache by switching the city boundary back to the official Census place geometry; this removed the incorrect East Bay pink polygon that had been covering Hayward / Livermore / Fremont in the map UI.
 
+## April 2026 West Coast Expansion
+- Integrated `Watsonville`, `Palm Springs`, and `Turlock` from official California ArcGIS inventories.
+- Integrated `Beaverton`, `Keizer`, `Tualatin`, and `West Linn` from official Oregon ArcGIS street-tree inventories; `West Linn` required coded-value domain decoding and `Beaverton` moved out of gray coverage after the official public `Street of Trees` feature service became queryable.
+- Integrated `Oak Harbor`, `Olympia`, and `Pullman` from official Washington inventories, including state-campus and university inventories clipped to official city boundaries.
+
 ## March 2026 BC Expansion
 - Integrated `Vancouver BC` from the official City of Vancouver OpenDataSoft `public-trees` dataset.
 - Integrated `Victoria BC` from the official City of Victoria `Tree Species (Parks trees database)` layer.
@@ -533,7 +546,7 @@ These cities are not in `A2` yet because the official point-tree source is still
   - EWKB point decoding with `SRID=3857`
   - species-name resolution through the public `species` lookup table rather than integer foreign keys in `trees`
 - Added gray coverage for `Redwood City`, `Alameda`, `Hayward`, and `Daly City` after official-source review did not confirm a public citywide single-tree species dataset.
-- Added gray coverage for `Beaverton`, `Gresham`, `Hillsboro`, `Salem`, and `Tigard` after official-source review did not confirm a public citywide single-tree species dataset or raw public endpoint.
+- Added gray coverage for `Gresham`, `Hillsboro`, `Salem`, and `Tigard` after official-source review did not confirm a public citywide single-tree species dataset or raw public endpoint.
 
 ## March 2026 Texas / South Bay Expansion
 - Integrated `Houston` from the official City of Houston public `COH Urban Forestry Trees` web-map service using blossom filtering on `SPECIES` and the official jurisdiction boundary.

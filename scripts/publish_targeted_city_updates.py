@@ -430,6 +430,40 @@ WEST_SACRAMENTO_DATASET_PAGE = "https://gis.cityofwestsacramento.org/server/rest
 SUNNYVALE_TREES_LAYER = "https://services.arcgis.com/NkcnS0qk4w2wasOJ/arcgis/rest/services/Tree_Inventories_in_Santa_Clara_County_WFL1/FeatureServer/0"
 SUNNYVALE_DATASET_PAGE = "https://www.arcgis.com/home/item.html?id=58f9d735c5b94915ba5374c82415a26f"
 SANTA_CLARA_COUNTY_TREES_DATASET_PAGE = SUNNYVALE_DATASET_PAGE
+LA_COUNTY_PARKWAY_TREES_LAYER = (
+    "https://services.arcgis.com/RmCCgQtiZLDCtblq/arcgis/rest/services/Public_Works_Road_Maintenance_Division_Tree_Inventory_(Public_View)/FeatureServer/0"
+)
+LA_COUNTY_PARKWAY_TREES_DATASET_PAGE = "https://www.arcgis.com/home/item.html?id=b61715f22a944b27baa8a53d0621098e"
+TUALATIN_TREES_LAYER = "https://services7.arcgis.com/cw66lBk1O7OM8APn/arcgis/rest/services/Street_Trees_View_2/FeatureServer/0"
+TUALATIN_DATASET_PAGE = "https://www.tualatinoregon.gov/publicworks/street-trees"
+BEAVERTON_TREES_LAYER = "https://services.arcgis.com/mpOrhWpH9jj0z4rU/arcgis/rest/services/Street_of_Trees/FeatureServer/0"
+BEAVERTON_DATASET_PAGE = "https://www.arcgis.com/home/item.html?id=7d87d504ce3f4db6bfb7db1ee8fb5b7b"
+OLYMPIA_CAPITOL_TREES_LAYER = (
+    "https://services.arcgis.com/4x406oNViizbGo13/arcgis/rest/services/urban_forestry_data_capitol_campus/FeatureServer/0"
+)
+OLYMPIA_CAPITOL_TREES_DATASET_PAGE = "https://www.arcgis.com/home/item.html?id=e255956e59d14101a6bd3a6f1b7c0dc2"
+OAK_HARBOR_TREES_LAYER = "https://services9.arcgis.com/SVlf413Qqlzv09Uo/ArcGIS/rest/services/Tree_Inventory/FeatureServer/0"
+OAK_HARBOR_DATASET_PAGE = "https://www.arcgis.com/home/item.html?id=ebd124703324478787010c325a9c0f73"
+KEIZER_TREES_LAYER = (
+    "https://services3.arcgis.com/hrGHbYKdjpN9Dagg/arcgis/rest/services/service_eb501bd83b86481e892d71e6218924b6/FeatureServer/0"
+)
+KEIZER_DATASET_PAGE = "https://www.arcgis.com/home/item.html?id=c8a6ecf5800a4e0ca4c4259c019fd533"
+PALM_SPRINGS_TREES_LAYER = "https://services.arcgis.com/f48yV21HSEYeCYMI/arcgis/rest/services/COPS_Tree_Inventory/FeatureServer/0"
+PALM_SPRINGS_DATASET_PAGE = "https://www.arcgis.com/home/item.html?id=7bdf833d4f894a7dbdcfba2d44662c27"
+PULLMAN_WSU_TREES_LAYER = (
+    "https://services6.arcgis.com/AK42VSd2ESNY4Vkp/arcgis/rest/services/Tree_Inventory_(ViewLayer)/FeatureServer/0"
+)
+PULLMAN_WSU_DATASET_PAGE = "https://www.arcgis.com/home/item.html?id=d2260e07fae34a8eba4438163ad94d2c"
+TURLOCK_TREES_LAYER = (
+    "https://services6.arcgis.com/rX5atNlsxFq7LIpv/arcgis/rest/services/Turlock_Tree_Inventory_(public)/FeatureServer/0"
+)
+TURLOCK_DATASET_PAGE = "https://www.arcgis.com/home/item.html?id=9bcd8b2ac6904349a8f542944e6740ae"
+VANCOUVER_WSU_TREES_LAYER = (
+    "https://services6.arcgis.com/AK42VSd2ESNY4Vkp/arcgis/rest/services/WSU_Vancouver_Tree_Inventory_(ViewLayer)/FeatureServer/0"
+)
+VANCOUVER_WSU_DATASET_PAGE = "https://www.arcgis.com/home/item.html?id=821d78d6833c4dda9fbb79d4223312b9"
+WEST_LINN_TREES_LAYER = "https://services.arcgis.com/Ku7Ma4Cmib83lqGs/arcgis/rest/services/StreetTrees/FeatureServer/8"
+WEST_LINN_DATASET_PAGE = "https://www.arcgis.com/home/item.html?id=4d2ce87a8afe40d5b304473780afd439"
 PASADENA_TREES_LAYER = "https://services2.arcgis.com/zNjnZafDYCAJAbN0/arcgis/rest/services/Street_ROW_Trees/FeatureServer/0"
 PASADENA_DATASET_PAGE = "https://services2.arcgis.com/zNjnZafDYCAJAbN0/arcgis/rest/services/Street_ROW_Trees/FeatureServer"
 BEVERLY_HILLS_TREES_LAYER = "https://services5.arcgis.com/7CXE3aevo18HlHBC/arcgis/rest/services/Trees_of_Beverly_Hills/FeatureServer/0"
@@ -850,6 +884,115 @@ GROTON_BLOSSOM_WHERE = (
     "UPPER(CommonName) LIKE '%CRABAPPLE%' OR "
     "UPPER(CommonName) LIKE '%APPLE%'"
 )
+LA_COUNTY_PARKWAY_BLOSSOM_WHERE = (
+    "UPPER(SCIENTIFIC_NAME) LIKE 'PRUNUS%' OR "
+    "UPPER(SCIENTIFIC_NAME) LIKE 'MALUS%' OR "
+    "UPPER(SCIENTIFIC_NAME) LIKE 'MAGNOLIA%' OR "
+    "UPPER(COMMON_editable) LIKE '%CHERRY%' OR "
+    "UPPER(COMMON_editable) LIKE '%PLUM%' OR "
+    "UPPER(COMMON_editable) LIKE '%PEACH%' OR "
+    "UPPER(COMMON_editable) LIKE '%MAGNOLIA%' OR "
+    "UPPER(COMMON_editable) LIKE '%CRABAPPLE%' OR "
+    "UPPER(COMMON_editable) LIKE '%APPLE%'"
+)
+TUALATIN_BLOSSOM_WHERE = (
+    "(TREE_REMOVED IS NULL OR UPPER(TREE_REMOVED) NOT IN ('YES','Y','TRUE','1')) AND ("
+    "UPPER(GENUS) LIKE 'PRUNUS%' OR "
+    "UPPER(GENUS) LIKE 'MALUS%' OR "
+    "UPPER(GENUS) LIKE 'MAGNOLIA%' OR "
+    "UPPER(SPECIES) LIKE '%CHERRY%' OR "
+    "UPPER(SPECIES) LIKE '%PLUM%' OR "
+    "UPPER(SPECIES) LIKE '%PEACH%' OR "
+    "UPPER(SPECIES) LIKE '%MAGNOLIA%' OR "
+    "UPPER(SPECIES) LIKE '%CRABAPPLE%' OR "
+    "UPPER(SPECIES) LIKE '%APPLE%'"
+    ")"
+)
+BEAVERTON_BLOSSOM_WHERE = (
+    "TREESTATUS = 'Existing' AND ("
+    "UPPER(BOTNAME) LIKE 'PRUNUS%' OR "
+    "UPPER(BOTNAME) LIKE 'MALUS%' OR "
+    "UPPER(BOTNAME) LIKE 'MAGNOLIA%' OR "
+    "UPPER(TREEDESCRIP) LIKE '%CHERRY%' OR "
+    "UPPER(TREEDESCRIP) LIKE '%PLUM%' OR "
+    "UPPER(TREEDESCRIP) LIKE '%PEACH%' OR "
+    "UPPER(TREEDESCRIP) LIKE '%MAGNOLIA%' OR "
+    "UPPER(TREEDESCRIP) LIKE '%CRABAPPLE%' OR "
+    "UPPER(TREEDESCRIP) LIKE '%APPLE%'"
+    ")"
+)
+OLYMPIA_CAPITOL_BLOSSOM_WHERE = (
+    "UPPER(species) LIKE '%CHERRY%' OR "
+    "UPPER(species) LIKE '%PLUM%' OR "
+    "UPPER(species) LIKE '%PEACH%' OR "
+    "UPPER(species) LIKE '%MAGNOLIA%' OR "
+    "UPPER(species) LIKE '%CRABAPPLE%' OR "
+    "UPPER(species) LIKE '%APPLE%'"
+)
+OAK_HARBOR_BLOSSOM_WHERE = (
+    "UPPER(species) LIKE '%CHERRY%' OR "
+    "UPPER(species) LIKE '%PLUM%' OR "
+    "UPPER(species) LIKE '%PEAR%' OR "
+    "UPPER(species) LIKE '%MAGNOLIA%' OR "
+    "UPPER(species) LIKE '%CRABAPPLE%' OR "
+    "UPPER(species) LIKE '%APPLE%'"
+)
+KEIZER_BLOSSOM_WHERE = (
+    "UPPER(scientific) LIKE 'PRUNUS%' OR "
+    "UPPER(scientific) LIKE 'MALUS%' OR "
+    "UPPER(scientific) LIKE 'MAGNOLIA%' OR "
+    "UPPER(species) LIKE '%CHERRY%' OR "
+    "UPPER(species) LIKE '%PLUM%' OR "
+    "UPPER(species) LIKE '%PEAR%' OR "
+    "UPPER(species) LIKE '%MAGNOLIA%' OR "
+    "UPPER(species) LIKE '%CRABAPPLE%' OR "
+    "UPPER(species) LIKE '%APPLE%'"
+)
+PALM_SPRINGS_BLOSSOM_WHERE = (
+    "UPPER(BOTANICAL) LIKE 'PRUNUS%' OR "
+    "UPPER(BOTANICAL) LIKE 'MALUS%' OR "
+    "UPPER(BOTANICAL) LIKE 'MAGNOLIA%' OR "
+    "UPPER(COMMON) LIKE '%CHERRY%' OR "
+    "UPPER(COMMON) LIKE '%PLUM%' OR "
+    "UPPER(COMMON) LIKE '%PEAR%' OR "
+    "UPPER(COMMON) LIKE '%MAGNOLIA%' OR "
+    "UPPER(COMMON) LIKE '%CRABAPPLE%' OR "
+    "UPPER(COMMON) LIKE '%APPLE%'"
+)
+PULLMAN_WSU_BLOSSOM_WHERE = (
+    "UPPER(CommonName) LIKE '%CHERRY%' OR "
+    "UPPER(CommonName) LIKE '%PLUM%' OR "
+    "UPPER(CommonName) LIKE '%PEAR%' OR "
+    "UPPER(CommonName) LIKE '%MAGNOLIA%' OR "
+    "UPPER(CommonName) LIKE '%CRABAPPLE%' OR "
+    "UPPER(CommonName) LIKE '%APPLE%' OR "
+    "UPPER(Genus) LIKE 'PRUNUS%' OR "
+    "UPPER(Genus) LIKE 'MALUS%' OR "
+    "UPPER(Genus) LIKE 'MAGNOLIA%'"
+)
+TURLOCK_BLOSSOM_WHERE = (
+    "UPPER(scientific_name) LIKE 'PRUNUS%' OR "
+    "UPPER(scientific_name) LIKE 'MALUS%' OR "
+    "UPPER(scientific_name) LIKE 'MAGNOLIA%' OR "
+    "UPPER(common_name) LIKE '%CHERRY%' OR "
+    "UPPER(common_name) LIKE '%PLUM%' OR "
+    "UPPER(common_name) LIKE '%PEAR%' OR "
+    "UPPER(common_name) LIKE '%MAGNOLIA%' OR "
+    "UPPER(common_name) LIKE '%CRABAPPLE%' OR "
+    "UPPER(common_name) LIKE '%APPLE%'"
+)
+VANCOUVER_WSU_BLOSSOM_WHERE = (
+    "UPPER(commonname) LIKE '%CHERRY%' OR "
+    "UPPER(commonname) LIKE '%PLUM%' OR "
+    "UPPER(commonname) LIKE '%PEAR%' OR "
+    "UPPER(commonname) LIKE '%MAGNOLIA%' OR "
+    "UPPER(commonname) LIKE '%CRABAPPLE%' OR "
+    "UPPER(commonname) LIKE '%APPLE%' OR "
+    "UPPER(genus) LIKE 'PRUNUS%' OR "
+    "UPPER(genus) LIKE 'MALUS%' OR "
+    "UPPER(genus) LIKE 'MAGNOLIA%'"
+)
+WEST_LINN_BLOSSOM_WHERE = "GENUS IN ('PRUN','MALU','MAGN') OR COMMONNAME IN ('APPL','CHER','CLEV','CRAB','MAGN','PEAR','RDSP','THUN')"
 RICHMOND_VA_BLOSSOM_WHERE = (
     "Status = 'In Service' AND ("
     "UPPER(SPP) LIKE 'PRUNUS%' OR "
@@ -4240,6 +4383,121 @@ UNCOVERED_STATE_ARCGIS_CONFIGS: dict[str, dict[str, Any]] = {
         "clip_to_boundary": True,
     },
 }
+
+WEST_COAST_ARCGIS_CONFIGS: dict[str, dict[str, Any]] = {
+    "Keizer": {
+        "region": "or",
+        "layer_url": KEIZER_TREES_LAYER,
+        "dataset_page": KEIZER_DATASET_PAGE,
+        "where": KEIZER_BLOSSOM_WHERE,
+        "object_id_field": "objectid",
+        "common_field": "species",
+        "scientific_field": "scientific",
+        "source_name": "Keizer Tree Inventory",
+        "source_department": "City of Keizer",
+        "ownership_raw": "City of Keizer",
+        "note": "Integrated from the official City of Keizer public tree-inventory ArcGIS layer and clipped to the official Keizer boundary.",
+        "clip_to_boundary": True,
+    },
+    "Oak Harbor": {
+        "region": "wa",
+        "layer_url": OAK_HARBOR_TREES_LAYER,
+        "dataset_page": OAK_HARBOR_DATASET_PAGE,
+        "where": OAK_HARBOR_BLOSSOM_WHERE,
+        "object_id_field": "OBJECTID",
+        "common_field": "species",
+        "source_name": "Tree Inventory",
+        "source_department": "City of Oak Harbor",
+        "ownership_raw": "City of Oak Harbor",
+        "note": "Integrated from the official City of Oak Harbor public tree-inventory ArcGIS layer and clipped to the official Oak Harbor boundary.",
+        "clip_to_boundary": True,
+    },
+    "Olympia": {
+        "region": "wa",
+        "layer_url": OLYMPIA_CAPITOL_TREES_LAYER,
+        "dataset_page": OLYMPIA_CAPITOL_TREES_DATASET_PAGE,
+        "where": OLYMPIA_CAPITOL_BLOSSOM_WHERE,
+        "object_id_field": "OBJECTID",
+        "common_field": "species",
+        "source_name": "Capitol Campus Urban Forest Inventory",
+        "source_department": "Washington State Department of Natural Resources",
+        "ownership_raw": "Washington State Department of Natural Resources",
+        "note": "Integrated from the official Washington State Department of Natural Resources Capitol Campus Urban Forest Inventory and clipped to the official Olympia boundary.",
+        "clip_to_boundary": True,
+    },
+    "Palm Springs": {
+        "region": "ca",
+        "layer_url": PALM_SPRINGS_TREES_LAYER,
+        "dataset_page": PALM_SPRINGS_DATASET_PAGE,
+        "where": PALM_SPRINGS_BLOSSOM_WHERE,
+        "object_id_field": "FID",
+        "common_field": "COMMON",
+        "scientific_field": "BOTANICAL",
+        "source_name": "Tree Inventory 2015",
+        "source_department": "City of Palm Springs",
+        "ownership_raw": "City of Palm Springs",
+        "note": "Integrated from the official City of Palm Springs public tree-inventory ArcGIS layer and clipped to the official Palm Springs boundary.",
+        "clip_to_boundary": True,
+    },
+    "Pullman": {
+        "region": "wa",
+        "layer_url": PULLMAN_WSU_TREES_LAYER,
+        "dataset_page": PULLMAN_WSU_DATASET_PAGE,
+        "where": PULLMAN_WSU_BLOSSOM_WHERE,
+        "object_id_field": "OBJECTID",
+        "common_field": "CommonName",
+        "genus_field": "Genus",
+        "species_field": "Species",
+        "source_name": "Tree Inventory (ViewLayer)",
+        "source_department": "Washington State University",
+        "ownership_raw": "Washington State University",
+        "note": "Integrated from the official Washington State University public campus tree inventory and clipped to the official Pullman boundary.",
+        "clip_to_boundary": True,
+    },
+    "Tualatin": {
+        "region": "or",
+        "layer_url": TUALATIN_TREES_LAYER,
+        "dataset_page": TUALATIN_DATASET_PAGE,
+        "where": TUALATIN_BLOSSOM_WHERE,
+        "object_id_field": "OBJECTID",
+        "common_field": "SPECIES",
+        "scientific_field": "GENUS",
+        "source_name": "Street Trees View",
+        "source_department": "City of Tualatin",
+        "ownership_raw": "City of Tualatin",
+        "note": "Integrated from the official City of Tualatin public street-tree ArcGIS layer and clipped to the official Tualatin boundary.",
+        "clip_to_boundary": True,
+    },
+    "Turlock": {
+        "region": "ca",
+        "layer_url": TURLOCK_TREES_LAYER,
+        "dataset_page": TURLOCK_DATASET_PAGE,
+        "where": TURLOCK_BLOSSOM_WHERE,
+        "object_id_field": "OBJECTID",
+        "common_field": "common_name",
+        "scientific_field": "scientific_name",
+        "source_name": "Turlock Tree Inventory (public)",
+        "source_department": "California State University, Stanislaus",
+        "ownership_raw": "California State University, Stanislaus",
+        "note": "Integrated from the official California State University, Stanislaus public Crane Park tree inventory and clipped to the official Turlock boundary.",
+        "clip_to_boundary": True,
+    },
+    "Beaverton": {
+        "region": "or",
+        "layer_url": BEAVERTON_TREES_LAYER,
+        "dataset_page": BEAVERTON_DATASET_PAGE,
+        "where": BEAVERTON_BLOSSOM_WHERE,
+        "object_id_field": "OBJECTID",
+        "common_field": "TREEDESCRIP",
+        "botanical_field": "BOTNAME",
+        "source_name": "Street of Trees",
+        "source_department": "City of Beaverton",
+        "ownership_raw": "City of Beaverton",
+        "note": "Integrated from the official City of Beaverton public Street of Trees inventory and clipped to the official Beaverton boundary.",
+        "clip_to_boundary": True,
+    },
+}
+
 
 CANADA_GEOJSON_CONFIGS: dict[str, dict[str, Any]] = {
     "Longueuil": {
@@ -9114,6 +9372,46 @@ def fetch_saratoga() -> dict[str, Any]:
     return fetch_santa_clara_county_city("Saratoga")
 
 
+def fetch_watsonville() -> dict[str, Any]:
+    return fetch_santa_clara_county_city("Watsonville")
+
+
+def fetch_west_linn() -> dict[str, Any]:
+    layer_info = fetch_json_via_curl_url(f"{WEST_LINN_TREES_LAYER}?f=pjson")
+    total_payload = post_form_json_via_curl(
+        f"{WEST_LINN_TREES_LAYER}/query",
+        [("where", WEST_LINN_BLOSSOM_WHERE), ("returnCountOnly", "true"), ("f", "pjson")],
+    )
+    genus_domain = domain_lookup(layer_info, "GENUS")
+    common_domain = domain_lookup(layer_info, "COMMONNAME")
+    features = fetch_arcgis_features_by_object_ids(
+        WEST_LINN_TREES_LAYER,
+        where=WEST_LINN_BLOSSOM_WHERE,
+        out_fields=["OBJECTID", "GENUS", "COMMONNAME"],
+        object_id_field="OBJECTID",
+    )
+    features = clip_features_to_city_boundary("West Linn", "or", features)
+    for feature in features:
+        attrs = feature.setdefault("attributes", {})
+        attrs["PH_GENUS"] = clean_display_name(genus_domain.get(attrs.get("GENUS"))) or ""
+        attrs["PH_COMMON_NAME"] = clean_common_name(common_domain.get(attrs.get("COMMONNAME"))) or ""
+    return build_arcgis_inventory_result(
+        city="West Linn",
+        region="or",
+        features=features,
+        total_records=int(total_payload.get("count") or len(features)),
+        last_edit_at=iso_from_epoch((layer_info.get("editingInfo") or {}).get("lastEditDate")),
+        source_name="Street Tree Inventory",
+        source_department="City of West Linn",
+        dataset_page=WEST_LINN_DATASET_PAGE,
+        ownership_raw="City of West Linn",
+        note="Integrated from the official City of West Linn public street-tree inventory after decoding coded species domains and clipping to the official West Linn boundary.",
+        object_id_field="OBJECTID",
+        common_field="PH_COMMON_NAME",
+        genus_field="PH_GENUS",
+    )
+
+
 def fetch_pasadena() -> dict[str, Any]:
     return fetch_arcgis_inventory_city(
         city="Pasadena",
@@ -12278,6 +12576,8 @@ CITY_FETCHERS = {
     "Torrance": fetch_torrance,
     "Ventura": fetch_ventura,
     "Vista": fetch_vista,
+    "Watsonville": fetch_watsonville,
+    "West Linn": fetch_west_linn,
     "Windsor": fetch_windsor,
     "West Covina": fetch_west_covina,
     "West Hollywood": fetch_west_hollywood,
@@ -12309,6 +12609,7 @@ CITY_FETCHERS.update({city: build_treeplotter_fetcher(city, config) for city, co
 CITY_FETCHERS.update({city: build_treeplotter_fetcher(city, config) for city, config in ZERO_COVERAGE_TREEPLOTTER_CONFIGS.items()})
 CITY_FETCHERS.update({city: build_nyc_metro_arcgis_fetcher(city, config) for city, config in NYC_METRO_ARCGIS_CONFIGS.items()})
 CITY_FETCHERS.update({city: build_arcgis_fetcher(city, config) for city, config in UNCOVERED_STATE_ARCGIS_CONFIGS.items()})
+CITY_FETCHERS.update({city: build_arcgis_fetcher(city, config) for city, config in WEST_COAST_ARCGIS_CONFIGS.items()})
 CITY_FETCHERS.update({city: build_arcgis_fetcher(city, config) for city, config in ZERO_COVERAGE_ARCGIS_CONFIGS.items()})
 CITY_FETCHERS.update({city: build_geojson_fetcher(city, config) for city, config in CANADA_GEOJSON_CONFIGS.items()})
 CITY_FETCHERS.update({city: build_milwaukee_county_fetcher(city) for city in MILWAUKEE_COUNTY_SUPPORTED_CITIES})

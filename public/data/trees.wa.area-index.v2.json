@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-03-28T05:21:40.296288+00:00",
+  "generated_at": "2026-04-01T21:16:07.464030+00:00",
   "region": "wa",
   "strategy": "area_shard",
   "items": [
@@ -738,6 +738,372 @@
           },
           "raw_bytes": 1565889,
           "gzip_bytes": 74788
+        }
+      ]
+    },
+    {
+      "jurisdiction": "Oak Harbor",
+      "slug": "oak-harbor",
+      "display_name": "Oak Harbor",
+      "jurisdiction_type": "city",
+      "state_province": "WA",
+      "country": "United States",
+      "bounds": [
+        [
+          -122.70092100012857,
+          48.26413000005813
+        ],
+        [
+          -122.55338300042195,
+          48.325922999899106
+        ]
+      ],
+      "tree_count": 207,
+      "zip_codes": [
+        "98277"
+      ],
+      "species_counts": {
+        "cherry": 194,
+        "plum": 0,
+        "peach": 0,
+        "magnolia": 1,
+        "crabapple": 12
+      },
+      "ownership_counts": {
+        "public": 207,
+        "private": 0,
+        "unknown": 0
+      },
+      "species_ownership_counts": {
+        "cherry": {
+          "public": 194,
+          "private": 0,
+          "unknown": 0
+        },
+        "plum": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        },
+        "peach": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        },
+        "magnolia": {
+          "public": 1,
+          "private": 0,
+          "unknown": 0
+        },
+        "crabapple": {
+          "public": 12,
+          "private": 0,
+          "unknown": 0
+        }
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "oak-harbor-001",
+          "bounds": [
+            [
+              -122.68457731046765,
+              48.28343552470742
+            ],
+            [
+              -122.6318006372279,
+              48.30603262682689
+            ]
+          ],
+          "data_path": "/data/trees.wa.area.oak-harbor.v2.geojson",
+          "tree_count": 207,
+          "ownership_counts": {
+            "public": 207,
+            "private": 0,
+            "unknown": 0
+          },
+          "species_counts": {
+            "cherry": 194,
+            "plum": 0,
+            "peach": 0,
+            "magnolia": 1,
+            "crabapple": 12
+          },
+          "species_ownership_counts": {
+            "cherry": {
+              "public": 194,
+              "private": 0,
+              "unknown": 0
+            },
+            "plum": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            },
+            "peach": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            },
+            "magnolia": {
+              "public": 1,
+              "private": 0,
+              "unknown": 0
+            },
+            "crabapple": {
+              "public": 12,
+              "private": 0,
+              "unknown": 0
+            }
+          },
+          "raw_bytes": 110023,
+          "gzip_bytes": 5202
+        }
+      ]
+    },
+    {
+      "jurisdiction": "Olympia",
+      "slug": "olympia",
+      "display_name": "Olympia",
+      "jurisdiction_type": "city",
+      "state_province": "WA",
+      "country": "United States",
+      "bounds": [
+        [
+          -122.97093199987181,
+          47.00074700002238
+        ],
+        [
+          -122.8231499997677,
+          47.07822600016516
+        ]
+      ],
+      "tree_count": 97,
+      "zip_codes": [
+        "98501"
+      ],
+      "species_counts": {
+        "cherry": 81,
+        "plum": 2,
+        "peach": 0,
+        "magnolia": 9,
+        "crabapple": 5
+      },
+      "ownership_counts": {
+        "public": 97,
+        "private": 0,
+        "unknown": 0
+      },
+      "species_ownership_counts": {
+        "cherry": {
+          "public": 81,
+          "private": 0,
+          "unknown": 0
+        },
+        "plum": {
+          "public": 2,
+          "private": 0,
+          "unknown": 0
+        },
+        "peach": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        },
+        "magnolia": {
+          "public": 9,
+          "private": 0,
+          "unknown": 0
+        },
+        "crabapple": {
+          "public": 5,
+          "private": 0,
+          "unknown": 0
+        }
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "olympia-001",
+          "bounds": [
+            [
+              -122.90606741267347,
+              47.034549548944085
+            ],
+            [
+              -122.90104132332901,
+              47.03795900253829
+            ]
+          ],
+          "data_path": "/data/trees.wa.area.olympia.v2.geojson",
+          "tree_count": 97,
+          "ownership_counts": {
+            "public": 97,
+            "private": 0,
+            "unknown": 0
+          },
+          "species_counts": {
+            "cherry": 81,
+            "plum": 2,
+            "peach": 0,
+            "magnolia": 9,
+            "crabapple": 5
+          },
+          "species_ownership_counts": {
+            "cherry": {
+              "public": 81,
+              "private": 0,
+              "unknown": 0
+            },
+            "plum": {
+              "public": 2,
+              "private": 0,
+              "unknown": 0
+            },
+            "peach": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            },
+            "magnolia": {
+              "public": 9,
+              "private": 0,
+              "unknown": 0
+            },
+            "crabapple": {
+              "public": 5,
+              "private": 0,
+              "unknown": 0
+            }
+          },
+          "raw_bytes": 54580,
+          "gzip_bytes": 2663
+        }
+      ]
+    },
+    {
+      "jurisdiction": "Pullman",
+      "slug": "pullman",
+      "display_name": "Pullman",
+      "jurisdiction_type": "city",
+      "state_province": "WA",
+      "country": "United States",
+      "bounds": [
+        [
+          -117.22238000021906,
+          46.70455700014387
+        ],
+        [
+          -117.09427800030527,
+          46.76241699971631
+        ]
+      ],
+      "tree_count": 477,
+      "zip_codes": [
+        "99163"
+      ],
+      "species_counts": {
+        "cherry": 111,
+        "plum": 34,
+        "peach": 0,
+        "magnolia": 40,
+        "crabapple": 292
+      },
+      "ownership_counts": {
+        "public": 477,
+        "private": 0,
+        "unknown": 0
+      },
+      "species_ownership_counts": {
+        "cherry": {
+          "public": 111,
+          "private": 0,
+          "unknown": 0
+        },
+        "plum": {
+          "public": 34,
+          "private": 0,
+          "unknown": 0
+        },
+        "peach": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        },
+        "magnolia": {
+          "public": 40,
+          "private": 0,
+          "unknown": 0
+        },
+        "crabapple": {
+          "public": 292,
+          "private": 0,
+          "unknown": 0
+        }
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "pullman-001",
+          "bounds": [
+            [
+              -117.17181365026728,
+              46.7238224861844
+            ],
+            [
+              -117.14889585297685,
+              46.7447680664073
+            ]
+          ],
+          "data_path": "/data/trees.wa.area.pullman.v2.geojson",
+          "tree_count": 477,
+          "ownership_counts": {
+            "public": 477,
+            "private": 0,
+            "unknown": 0
+          },
+          "species_counts": {
+            "cherry": 111,
+            "plum": 34,
+            "peach": 0,
+            "magnolia": 40,
+            "crabapple": 292
+          },
+          "species_ownership_counts": {
+            "cherry": {
+              "public": 111,
+              "private": 0,
+              "unknown": 0
+            },
+            "plum": {
+              "public": 34,
+              "private": 0,
+              "unknown": 0
+            },
+            "peach": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            },
+            "magnolia": {
+              "public": 40,
+              "private": 0,
+              "unknown": 0
+            },
+            "crabapple": {
+              "public": 292,
+              "private": 0,
+              "unknown": 0
+            }
+          },
+          "raw_bytes": 259492,
+          "gzip_bytes": 13016
         }
       ]
     },

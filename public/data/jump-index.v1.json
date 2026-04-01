@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-03-31T03:29:14.915351+00:00",
+  "generated_at": "2026-04-01T21:33:08.676666+00:00",
   "countries": [
     {
       "id": "ca",
@@ -23033,7 +23033,7 @@
         ]
       ],
       "region_hint": "ca",
-      "coverage_status": "untracked"
+      "coverage_status": "covered"
     },
     {
       "id": "ca:palmdale",
@@ -26313,7 +26313,7 @@
         ]
       ],
       "region_hint": "ca",
-      "coverage_status": "untracked"
+      "coverage_status": "covered"
     },
     {
       "id": "ca:tustin",
@@ -26713,7 +26713,7 @@
         ]
       ],
       "region_hint": "ca",
-      "coverage_status": "untracked"
+      "coverage_status": "covered"
     },
     {
       "id": "ca:weed",
@@ -86673,7 +86673,7 @@
         ]
       ],
       "region_hint": "or",
-      "coverage_status": "official_unavailable"
+      "coverage_status": "covered"
     },
     {
       "id": "or:bend",
@@ -88824,16 +88824,16 @@
       "area_type": "city",
       "bounds": [
         [
-          -123.0572,
-          44.974
+          -123.05715299973089,
+          44.97275400006109
         ],
         [
-          -122.991,
-          45.037
+          -122.99096500023957,
+          45.037235000265326
         ]
       ],
       "region_hint": "or",
-      "coverage_status": "untracked"
+      "coverage_status": "covered"
     },
     {
       "id": "or:king",
@@ -91184,16 +91184,16 @@
       "area_type": "city",
       "bounds": [
         [
-          -122.8178,
-          45.347
+          -122.81782999968705,
+          45.346897000048415
         ],
         [
-          -122.7219,
-          45.403
+          -122.72191400039605,
+          45.40303900019737
         ]
       ],
       "region_hint": "or",
-      "coverage_status": "untracked"
+      "coverage_status": "covered"
     },
     {
       "id": "or:turner",
@@ -91564,16 +91564,16 @@
       "area_type": "city",
       "bounds": [
         [
-          -122.6774,
-          45.3377
+          -122.67741399985975,
+          45.33767399999446
         ],
         [
-          -122.6028,
-          45.3999
+          -122.60278999968871,
+          45.400769999927064
         ]
       ],
       "region_hint": "or",
-      "coverage_status": "untracked"
+      "coverage_status": "covered"
     },
     {
       "id": "or:westfir",
@@ -171004,16 +171004,16 @@
       "area_type": "city",
       "bounds": [
         [
-          -122.7009,
-          48.2641
+          -122.70092100012857,
+          48.26413000005813
         ],
         [
-          -122.5534,
-          48.3257
+          -122.55338300042195,
+          48.325922999899106
         ]
       ],
       "region_hint": "wa",
-      "coverage_status": "untracked"
+      "coverage_status": "covered"
     },
     {
       "id": "wa:oakesdale",
@@ -171153,7 +171153,7 @@
         ]
       ],
       "region_hint": "wa",
-      "coverage_status": "official_unavailable"
+      "coverage_status": "covered"
     },
     {
       "id": "wa:omak",
@@ -171544,16 +171544,16 @@
       "area_type": "city",
       "bounds": [
         [
-          -117.2224,
-          46.7083
+          -117.22238000021906,
+          46.70455700014387
         ],
         [
-          -117.0943,
-          46.7624
+          -117.09427800030527,
+          46.76241699971631
         ]
       ],
       "region_hint": "wa",
-      "coverage_status": "untracked"
+      "coverage_status": "covered"
     },
     {
       "id": "wa:puyallup",
@@ -172954,6 +172954,26 @@
       ],
       "region_hint": "wa",
       "coverage_status": "official_unavailable"
+    },
+    {
+      "id": "wa:vancouver",
+      "country_id": "us",
+      "state_id": "wa",
+      "jurisdiction": "Vancouver",
+      "display_name": "Vancouver",
+      "area_type": "city",
+      "bounds": [
+        [
+          -122.77451099988176,
+          45.576895000071
+        ],
+        [
+          -122.46450200007338,
+          45.6980029997628
+        ]
+      ],
+      "region_hint": "wa",
+      "coverage_status": "untracked"
     },
     {
       "id": "wa:wahkiakum-county",

@@ -1,6 +1,6 @@
 {
   "version": "v2",
-  "generated_at": "2026-03-31T03:29:46.047842+00:00",
+  "generated_at": "2026-04-01T21:33:54.048745+00:00",
   "default_region": "wa",
   "coverage_rule": "official_jurisdiction_boundary_only",
   "coverage_skipped_cities": [
@@ -38,7 +38,6 @@
     "Chicago",
     "Montgomery County",
     "Detroit",
-    "Beaverton",
     "Gresham",
     "Hillsboro",
     "Salem",
@@ -84,7 +83,6 @@
     "Newcastle",
     "Normandy Park",
     "North Bend",
-    "Olympia",
     "Port Orchard",
     "Richland",
     "Skykomish",
@@ -101,16 +99,16 @@
     "Yarrow Point"
   ],
   "coverage_official_unavailable_skipped_cities": [],
-  "source_count": 358,
-  "total_records": 4153083,
-  "included_records": 859975,
-  "unknown_records": 1955121,
+  "source_count": 376,
+  "total_records": 4155654,
+  "included_records": 861506,
+  "unknown_records": 1956098,
   "species_counts": {
-    "cherry": 267881,
-    "plum": 123593,
-    "peach": 8236,
-    "magnolia": 187989,
-    "crabapple": 272276
+    "cherry": 268618,
+    "plum": 123988,
+    "peach": 8239,
+    "magnolia": 188051,
+    "crabapple": 272610
   },
   "regions": [
     {
@@ -448,14 +446,14 @@
           32.534786999728034
         ],
         [
-          -116.90518099986093,
+          -116.44281200020764,
           38.722790000174555
         ]
       ],
       "data_path": null,
       "coverage_path": "/data/coverage.ca.v1.geojson",
-      "tree_count": 206417,
-      "city_count": 83,
+      "tree_count": 206429,
+      "city_count": 86,
       "cities": [
         "Anaheim",
         "Azusa",
@@ -503,6 +501,7 @@
         "Norwalk",
         "Oakland",
         "Oxnard",
+        "Palm Springs",
         "Palo Alto",
         "Pasadena",
         "Pleasanton",
@@ -534,8 +533,10 @@
         "Sunnyvale",
         "Thousand Oaks",
         "Torrance",
+        "Turlock",
         "Ventura",
         "Vista",
+        "Watsonville",
         "West Covina",
         "West Hollywood",
         "West Sacramento",
@@ -543,20 +544,20 @@
       ],
       "species_counts": {
         "cherry": 16935,
-        "plum": 46428,
-        "peach": 4917,
-        "magnolia": 133334,
-        "crabapple": 4803
+        "plum": 46432,
+        "peach": 4920,
+        "magnolia": 133338,
+        "crabapple": 4804
       },
       "ownership_groups": [
         "public",
         "private"
       ],
-      "raw_bytes": 107320629,
-      "gzip_bytes": 4453642,
+      "raw_bytes": 107327543,
+      "gzip_bytes": 4455143,
       "warning_level": "none",
-      "aggregate_raw_bytes": 107320629,
-      "aggregate_gzip_bytes": 4453642,
+      "aggregate_raw_bytes": 107327543,
+      "aggregate_gzip_bytes": 4455143,
       "aggregate_warning_level": "very_large",
       "largest_shard_raw_bytes": 10127602,
       "largest_shard_gzip_bytes": 389054,
@@ -566,8 +567,8 @@
       "area_split": {
         "strategy": "area_shard",
         "index_path": "/data/trees.ca.area-index.v2.json",
-        "area_count": 83,
-        "shard_count": 85,
+        "area_count": 86,
+        "shard_count": 88,
         "ready": true
       }
     },
@@ -2474,28 +2475,32 @@
       ],
       "data_path": null,
       "coverage_path": "/data/coverage.or.v1.geojson",
-      "tree_count": 34314,
-      "city_count": 3,
+      "tree_count": 35052,
+      "city_count": 7,
       "cities": [
+        "Beaverton",
         "Corvallis",
         "Eugene",
-        "Portland"
+        "Keizer",
+        "Portland",
+        "Tualatin",
+        "West Linn"
       ],
       "species_counts": {
-        "cherry": 8705,
-        "plum": 8346,
+        "cherry": 9056,
+        "plum": 8701,
         "peach": 289,
-        "magnolia": 6088,
-        "crabapple": 10886
+        "magnolia": 6096,
+        "crabapple": 10910
       },
       "ownership_groups": [
         "public"
       ],
-      "raw_bytes": 18161270,
-      "gzip_bytes": 820829,
+      "raw_bytes": 18533054,
+      "gzip_bytes": 839702,
       "warning_level": "none",
-      "aggregate_raw_bytes": 18161270,
-      "aggregate_gzip_bytes": 820829,
+      "aggregate_raw_bytes": 18533054,
+      "aggregate_gzip_bytes": 839702,
       "aggregate_warning_level": "none",
       "largest_shard_raw_bytes": 6510618,
       "largest_shard_gzip_bytes": 292466,
@@ -2505,8 +2510,8 @@
       "area_split": {
         "strategy": "area_shard",
         "index_path": "/data/trees.or.area-index.v2.json",
-        "area_count": 3,
-        "shard_count": 4,
+        "area_count": 7,
+        "shard_count": 8,
         "ready": true
       }
     },
@@ -3203,18 +3208,18 @@
       "available": true,
       "bounds": [
         [
-          -122.62628600008684,
+          -122.97093199987181,
           46.02951299996669
         ],
         [
-          -117.30386400032863,
+          -117.09427800030527,
           48.81749899988645
         ]
       ],
       "data_path": null,
       "coverage_path": "/data/coverage.wa.v1.geojson",
-      "tree_count": 86604,
-      "city_count": 17,
+      "tree_count": 87385,
+      "city_count": 20,
       "cities": [
         "Bellevue",
         "Bellingham",
@@ -3222,6 +3227,9 @@
         "Gig Harbor",
         "Kenmore",
         "Kirkland",
+        "Oak Harbor",
+        "Olympia",
+        "Pullman",
         "Puyallup",
         "Redmond",
         "Renton",
@@ -3235,21 +3243,21 @@
         "Yakima"
       ],
       "species_counts": {
-        "cherry": 33479,
-        "plum": 25908,
+        "cherry": 33865,
+        "plum": 25944,
         "peach": 383,
-        "magnolia": 7184,
-        "crabapple": 19650
+        "magnolia": 7234,
+        "crabapple": 19959
       },
       "ownership_groups": [
         "public",
         "private"
       ],
-      "raw_bytes": 57848265,
-      "gzip_bytes": 2396860,
+      "raw_bytes": 58272360,
+      "gzip_bytes": 2417741,
       "warning_level": "none",
-      "aggregate_raw_bytes": 57848265,
-      "aggregate_gzip_bytes": 2396860,
+      "aggregate_raw_bytes": 58272360,
+      "aggregate_gzip_bytes": 2417741,
       "aggregate_warning_level": "very_large",
       "largest_shard_raw_bytes": 11769936,
       "largest_shard_gzip_bytes": 485947,
@@ -3259,8 +3267,8 @@
       "area_split": {
         "strategy": "area_shard",
         "index_path": "/data/trees.wa.area-index.v2.json",
-        "area_count": 17,
-        "shard_count": 20,
+        "area_count": 20,
+        "shard_count": 23,
         "ready": true
       }
     },
@@ -4563,6 +4571,20 @@
       "state_province": "CA"
     },
     {
+      "jurisdiction": "Palm Springs",
+      "region": "ca",
+      "tree_count": 6,
+      "species_counts": {
+        "cherry": 0,
+        "plum": 2,
+        "peach": 3,
+        "magnolia": 1,
+        "crabapple": 0
+      },
+      "jurisdiction_type": "city",
+      "state_province": "CA"
+    },
+    {
       "jurisdiction": "Palo Alto",
       "region": "ca",
       "tree_count": 4996,
@@ -4997,6 +5019,20 @@
       "state_province": "CA"
     },
     {
+      "jurisdiction": "Turlock",
+      "region": "ca",
+      "tree_count": 3,
+      "species_counts": {
+        "cherry": 0,
+        "plum": 0,
+        "peach": 0,
+        "magnolia": 3,
+        "crabapple": 0
+      },
+      "jurisdiction_type": "city",
+      "state_province": "CA"
+    },
+    {
       "jurisdiction": "Ventura",
       "region": "ca",
       "tree_count": 1322,
@@ -5020,6 +5056,20 @@
         "peach": 1,
         "magnolia": 81,
         "crabapple": 0
+      },
+      "jurisdiction_type": "city",
+      "state_province": "CA"
+    },
+    {
+      "jurisdiction": "Watsonville",
+      "region": "ca",
+      "tree_count": 3,
+      "species_counts": {
+        "cherry": 0,
+        "plum": 2,
+        "peach": 0,
+        "magnolia": 0,
+        "crabapple": 1
       },
       "jurisdiction_type": "city",
       "state_province": "CA"
@@ -7125,6 +7175,20 @@
       "state_province": "ON"
     },
     {
+      "jurisdiction": "Beaverton",
+      "region": "or",
+      "tree_count": 13,
+      "species_counts": {
+        "cherry": 3,
+        "plum": 3,
+        "peach": 0,
+        "magnolia": 2,
+        "crabapple": 5
+      },
+      "jurisdiction_type": "city",
+      "state_province": "OR"
+    },
+    {
       "jurisdiction": "Corvallis",
       "region": "or",
       "tree_count": 1359,
@@ -7153,6 +7217,20 @@
       "state_province": "OR"
     },
     {
+      "jurisdiction": "Keizer",
+      "region": "or",
+      "tree_count": 31,
+      "species_counts": {
+        "cherry": 29,
+        "plum": 1,
+        "peach": 0,
+        "magnolia": 0,
+        "crabapple": 1
+      },
+      "jurisdiction_type": "city",
+      "state_province": "OR"
+    },
+    {
       "jurisdiction": "Portland",
       "region": "or",
       "tree_count": 24775,
@@ -7162,6 +7240,34 @@
         "peach": 259,
         "magnolia": 5191,
         "crabapple": 9477
+      },
+      "jurisdiction_type": "city",
+      "state_province": "OR"
+    },
+    {
+      "jurisdiction": "Tualatin",
+      "region": "or",
+      "tree_count": 301,
+      "species_counts": {
+        "cherry": 132,
+        "plum": 162,
+        "peach": 0,
+        "magnolia": 4,
+        "crabapple": 3
+      },
+      "jurisdiction_type": "city",
+      "state_province": "OR"
+    },
+    {
+      "jurisdiction": "West Linn",
+      "region": "or",
+      "tree_count": 393,
+      "species_counts": {
+        "cherry": 187,
+        "plum": 189,
+        "peach": 0,
+        "magnolia": 2,
+        "crabapple": 15
       },
       "jurisdiction_type": "city",
       "state_province": "OR"
@@ -8049,6 +8155,48 @@
       "state_province": "WA"
     },
     {
+      "jurisdiction": "Oak Harbor",
+      "region": "wa",
+      "tree_count": 207,
+      "species_counts": {
+        "cherry": 194,
+        "plum": 0,
+        "peach": 0,
+        "magnolia": 1,
+        "crabapple": 12
+      },
+      "jurisdiction_type": "city",
+      "state_province": "WA"
+    },
+    {
+      "jurisdiction": "Olympia",
+      "region": "wa",
+      "tree_count": 97,
+      "species_counts": {
+        "cherry": 81,
+        "plum": 2,
+        "peach": 0,
+        "magnolia": 9,
+        "crabapple": 5
+      },
+      "jurisdiction_type": "city",
+      "state_province": "WA"
+    },
+    {
+      "jurisdiction": "Pullman",
+      "region": "wa",
+      "tree_count": 477,
+      "species_counts": {
+        "cherry": 111,
+        "plum": 34,
+        "peach": 0,
+        "magnolia": 40,
+        "crabapple": 292
+      },
+      "jurisdiction_type": "city",
+      "state_province": "WA"
+    },
+    {
       "jurisdiction": "Puyallup",
       "region": "wa",
       "tree_count": 76,
@@ -8628,6 +8776,15 @@
       "note": "Integrated from the official City of Baton Rouge public tree inventory ArcGIS layer and clipped to the official jurisdiction boundary."
     },
     {
+      "name": "Street of Trees",
+      "city": "Beaverton",
+      "endpoint": "https://www.arcgis.com/home/item.html?id=7d87d504ce3f4db6bfb7db1ee8fb5b7b",
+      "last_edit_at": "2025-12-19T16:15:13.054000+00:00",
+      "records_fetched": 16,
+      "records_included": 13,
+      "note": "Integrated from the official City of Beaverton public Street of Trees inventory and clipped to the official Beaverton boundary."
+    },
+    {
       "name": "City of Bell Tree Inventory Benefits",
       "city": "Bell",
       "endpoint": "https://services2.arcgis.com/yrktbS5Xw87hJQvs/arcgis/rest/services/City_of_Bell_Tree_Inventory_Benefits_WFL1/FeatureServer",
@@ -8930,6 +9087,15 @@
       "note": "Integrated from the official City of Citrus Heights urban forestry tree inventory layer and official jurisdiction boundary."
     },
     {
+      "name": "Public Works Road Maintenance Division Tree Inventory",
+      "city": "Claremont",
+      "endpoint": "https://www.arcgis.com/home/item.html?id=b61715f22a944b27baa8a53d0621098e",
+      "last_edit_at": "2026-04-01T19:12:52.064000+00:00",
+      "records_fetched": 0,
+      "records_included": 0,
+      "note": "Integrated from the official Los Angeles County Public Works Parkway Tree Inventory by filtering `COMMUNITY = 'CLAREMONT'` and clipping to the official Claremont boundary."
+    },
+    {
       "name": "TreeKeeper Inventory",
       "city": "Clarksville",
       "endpoint": "https://clarksvilletn.treekeepersoftware.com",
@@ -9116,6 +9282,15 @@
       "records_fetched": 102,
       "records_included": 66,
       "note": "Integrated from the official University of North Texas public 2023 tree inventory after clipping blossom rows to the official Denton boundary."
+    },
+    {
+      "name": "Public Works Road Maintenance Division Tree Inventory",
+      "city": "Duarte",
+      "endpoint": "https://www.arcgis.com/home/item.html?id=b61715f22a944b27baa8a53d0621098e",
+      "last_edit_at": "2026-04-01T19:12:52.064000+00:00",
+      "records_fetched": 0,
+      "records_included": 0,
+      "note": "Integrated from the official Los Angeles County Public Works Parkway Tree Inventory by filtering `COMMUNITY = 'DUARTE'` and clipping to the official Duarte boundary."
     },
     {
       "name": "TreeKeeper Inventory",
@@ -9548,6 +9723,15 @@
       "note": "Integrated from the official City of Hartford public TreeKeeper inventory."
     },
     {
+      "name": "Public Works Road Maintenance Division Tree Inventory",
+      "city": "Hawthorne",
+      "endpoint": "https://www.arcgis.com/home/item.html?id=b61715f22a944b27baa8a53d0621098e",
+      "last_edit_at": "2026-04-01T19:12:52.064000+00:00",
+      "records_fetched": 0,
+      "records_included": 0,
+      "note": "Integrated from the official Los Angeles County Public Works Parkway Tree Inventory by filtering `COMMUNITY = 'HAWTHORNE'` and clipping to the official Hawthorne boundary."
+    },
+    {
       "name": "Clark County Schools Tree Inventory",
       "city": "Henderson",
       "endpoint": "https://www.arcgis.com/home/item.html?id=d4f540a74ca345a7a8371eb7e8ebc321",
@@ -9683,6 +9867,15 @@
       "note": "Integrated from the official City of Kamloops public parks tree ArcGIS layer after restricting to public rows."
     },
     {
+      "name": "Keizer Tree Inventory",
+      "city": "Keizer",
+      "endpoint": "https://www.arcgis.com/home/item.html?id=c8a6ecf5800a4e0ca4c4259c019fd533",
+      "last_edit_at": "2026-03-12T15:55:41.855000+00:00",
+      "records_fetched": 110,
+      "records_included": 31,
+      "note": "Integrated from the official City of Keizer public tree-inventory ArcGIS layer and clipped to the official Keizer boundary."
+    },
+    {
       "name": "Tree Inventory",
       "city": "Kelowna",
       "endpoint": "https://geoportal.kelowna.ca/arcgis/rest/services/ArcGISOnline/OpenData_Environment/MapServer/17",
@@ -9742,6 +9935,15 @@
       "records_fetched": 468,
       "records_included": 314,
       "note": "Integrated from the official City of La Canada Flintridge public tree inventory layer and official jurisdiction boundary."
+    },
+    {
+      "name": "Public Works Road Maintenance Division Tree Inventory",
+      "city": "La Habra Heights",
+      "endpoint": "https://www.arcgis.com/home/item.html?id=b61715f22a944b27baa8a53d0621098e",
+      "last_edit_at": "2026-04-01T19:12:52.064000+00:00",
+      "records_fetched": 0,
+      "records_included": 0,
+      "note": "Integrated from the official Los Angeles County Public Works Parkway Tree Inventory by filtering `COMMUNITY = 'LA HABRA HEIGHTS'` and clipping to the official La Habra Heights boundary."
     },
     {
       "name": "Tree Inventory",
@@ -9859,6 +10061,15 @@
       "records_fetched": 5596,
       "records_included": 4708,
       "note": "Integrated from the official City of London `Status Active` tree inventory ArcGIS layer."
+    },
+    {
+      "name": "Public Works Road Maintenance Division Tree Inventory",
+      "city": "Long Beach",
+      "endpoint": "https://www.arcgis.com/home/item.html?id=b61715f22a944b27baa8a53d0621098e",
+      "last_edit_at": "2026-04-01T19:12:52.064000+00:00",
+      "records_fetched": 0,
+      "records_included": 0,
+      "note": "Integrated from the official Los Angeles County Public Works Parkway Tree Inventory by filtering `COMMUNITY = 'LONG BEACH'` and clipping to the official Long Beach boundary."
     },
     {
       "name": "Tree Inv noedit",
@@ -10074,6 +10285,15 @@
       "records_fetched": 372,
       "records_included": 354,
       "note": "Integrated from the official City of Moncton public trees ArcGIS layer after applying the public BOTNAME blossom-code mapping and official boundary clipping."
+    },
+    {
+      "name": "Public Works Road Maintenance Division Tree Inventory",
+      "city": "Monrovia",
+      "endpoint": "https://www.arcgis.com/home/item.html?id=b61715f22a944b27baa8a53d0621098e",
+      "last_edit_at": "2026-04-01T19:12:52.064000+00:00",
+      "records_fetched": 0,
+      "records_included": 0,
+      "note": "Integrated from the official Los Angeles County Public Works Parkway Tree Inventory by filtering `COMMUNITY = 'MONROVIA'` and clipping to the official Monrovia boundary."
     },
     {
       "name": "Tree Inventory",
@@ -10364,6 +10584,15 @@
       "note": "Integrated from the official Milwaukee County public tree viewer and official jurisdiction boundary clipping."
     },
     {
+      "name": "Tree Inventory",
+      "city": "Oak Harbor",
+      "endpoint": "https://www.arcgis.com/home/item.html?id=ebd124703324478787010c325a9c0f73",
+      "last_edit_at": "2024-12-05T15:40:43.125000+00:00",
+      "records_fetched": 270,
+      "records_included": 207,
+      "note": "Integrated from the official City of Oak Harbor public tree-inventory ArcGIS layer and clipped to the official Oak Harbor boundary."
+    },
+    {
       "name": "Oakland Street Trees",
       "city": "Oakland",
       "endpoint": "https://data.oaklandca.gov/Environmental/Oakland-Street-Trees/4jcx-enxf",
@@ -10388,6 +10617,15 @@
       "records_fetched": 1384,
       "records_included": 940,
       "note": "Integrated from the official Town of Okotoks public tree inventory ArcGIS layer after restricting to established trees."
+    },
+    {
+      "name": "Capitol Campus Urban Forest Inventory",
+      "city": "Olympia",
+      "endpoint": "https://www.arcgis.com/home/item.html?id=e255956e59d14101a6bd3a6f1b7c0dc2",
+      "last_edit_at": "",
+      "records_fetched": 97,
+      "records_included": 97,
+      "note": "Integrated from the official Washington State Department of Natural Resources Capitol Campus Urban Forest Inventory and clipped to the official Olympia boundary."
     },
     {
       "name": "TreeKeeper Inventory",
@@ -10433,6 +10671,15 @@
       "records_fetched": 5373,
       "records_included": 5054,
       "note": "Integrated from the official City of Oxnard public trees layer and official jurisdiction boundary."
+    },
+    {
+      "name": "Tree Inventory 2015",
+      "city": "Palm Springs",
+      "endpoint": "https://www.arcgis.com/home/item.html?id=7bdf833d4f894a7dbdcfba2d44662c27",
+      "last_edit_at": "2025-12-02T01:35:30.275000+00:00",
+      "records_fetched": 96,
+      "records_included": 6,
+      "note": "Integrated from the official City of Palm Springs public tree-inventory ArcGIS layer and clipped to the official Palm Springs boundary."
     },
     {
       "name": "Tree Data",
@@ -10584,6 +10831,15 @@
       "records_fetched": 2448,
       "records_included": 1567,
       "note": "Integrated from the official City of Providence open-data tree inventory and official jurisdiction boundary."
+    },
+    {
+      "name": "Tree Inventory (ViewLayer)",
+      "city": "Pullman",
+      "endpoint": "https://www.arcgis.com/home/item.html?id=d2260e07fae34a8eba4438163ad94d2c",
+      "last_edit_at": "2026-03-19T18:08:50.935000+00:00",
+      "records_fetched": 722,
+      "records_included": 477,
+      "note": "Integrated from the official Washington State University public campus tree inventory and clipped to the official Pullman boundary."
     },
     {
       "name": "City Maintained Street Trees",
@@ -11283,6 +11539,15 @@
       "note": "Integrated via the public Troy TreePlotter inventory page and official jurisdiction boundary clipping."
     },
     {
+      "name": "Street Trees View",
+      "city": "Tualatin",
+      "endpoint": "https://www.tualatinoregon.gov/publicworks/street-trees",
+      "last_edit_at": "2026-03-27T20:14:10.598000+00:00",
+      "records_fetched": 332,
+      "records_included": 301,
+      "note": "Integrated from the official City of Tualatin public street-tree ArcGIS layer and clipped to the official Tualatin boundary."
+    },
+    {
       "name": "Trees",
       "city": "Tulsa",
       "endpoint": "https://www.arcgis.com/apps/webappviewer/index.html?id=6329b4beb7dc4c478610e21ea310ec4a",
@@ -11290,6 +11555,15 @@
       "records_fetched": 149,
       "records_included": 104,
       "note": "Integrated from the official City of Tulsa public tree inventory ArcGIS layer and clipped to the official jurisdiction boundary."
+    },
+    {
+      "name": "Turlock Tree Inventory (public)",
+      "city": "Turlock",
+      "endpoint": "https://www.arcgis.com/home/item.html?id=9bcd8b2ac6904349a8f542944e6740ae",
+      "last_edit_at": "2025-10-20T00:12:20.368000+00:00",
+      "records_fetched": 3,
+      "records_included": 3,
+      "note": "Integrated from the official California State University, Stanislaus public Crane Park tree inventory and clipped to the official Turlock boundary."
     },
     {
       "name": "TreeKeeper Inventory",
@@ -11308,6 +11582,15 @@
       "records_fetched": 20858,
       "records_included": 752,
       "note": "Integrated from the official City of Valparaiso public TreeKeeper inventory."
+    },
+    {
+      "name": "WSU Vancouver Tree Inventory (ViewLayer)",
+      "city": "Vancouver",
+      "endpoint": "https://www.arcgis.com/home/item.html?id=821d78d6833c4dda9fbb79d4223312b9",
+      "last_edit_at": "2026-01-21T00:09:29.850000+00:00",
+      "records_fetched": 0,
+      "records_included": 0,
+      "note": "Integrated from the official Washington State University Vancouver public campus tree inventory and clipped to the official Vancouver, WA boundary."
     },
     {
       "name": "Public trees",
@@ -11405,6 +11688,15 @@
       "note": "Integrated from the official City of Waterloo public street-tree ArcGIS layer after restricting to `STATUS = 'Existing'`."
     },
     {
+      "name": "Tree Inventories in Santa Clara County",
+      "city": "Watsonville",
+      "endpoint": "https://www.arcgis.com/home/item.html?id=58f9d735c5b94915ba5374c82415a26f",
+      "last_edit_at": "2021-08-11T14:36:02.375000+00:00",
+      "records_fetched": 3,
+      "records_included": 3,
+      "note": "Integrated from the official Santa Clara County public tree inventory service using the City = Watsonville subset and official jurisdiction boundary."
+    },
+    {
       "name": "Tree Points - All (view)",
       "city": "Wauwatosa",
       "endpoint": "https://experience.arcgis.com/experience/b1d9ccfd3a2949728e5b445bfdc78935",
@@ -11466,6 +11758,15 @@
       "records_fetched": 505,
       "records_included": 438,
       "note": "Integrated from the official City of West Hollywood public tree inventory dataset and official jurisdiction boundary."
+    },
+    {
+      "name": "Street Tree Inventory",
+      "city": "West Linn",
+      "endpoint": "https://www.arcgis.com/home/item.html?id=4d2ce87a8afe40d5b304473780afd439",
+      "last_edit_at": "2020-06-15T10:17:44.576000+00:00",
+      "records_fetched": 922,
+      "records_included": 393,
+      "note": "Integrated from the official City of West Linn public street-tree inventory after decoding coded species domains and clipping to the official West Linn boundary."
     },
     {
       "name": "Trees",
@@ -11583,6 +11884,15 @@
       "records_fetched": 156,
       "records_included": 6,
       "note": "Integrated from the official Milwaukee County public tree viewer and official jurisdiction boundary clipping."
+    },
+    {
+      "name": "Public Works Road Maintenance Division Tree Inventory",
+      "city": "Whittier",
+      "endpoint": "https://www.arcgis.com/home/item.html?id=b61715f22a944b27baa8a53d0621098e",
+      "last_edit_at": "2026-04-01T19:12:52.064000+00:00",
+      "records_fetched": 0,
+      "records_included": 0,
+      "note": "Integrated from the official Los Angeles County Public Works Parkway Tree Inventory by filtering `COMMUNITY = 'WHITTIER'` and clipping to the official Whittier boundary."
     },
     {
       "name": "City Trees In Park / City Trees In Right Of Way",

@@ -1,8 +1,130 @@
 {
-  "generated_at": "2026-03-29T02:09:45.932965+00:00",
+  "generated_at": "2026-04-01T21:33:08.676666+00:00",
   "region": "or",
   "strategy": "area_shard",
   "items": [
+    {
+      "jurisdiction": "Beaverton",
+      "slug": "beaverton",
+      "display_name": "Beaverton",
+      "jurisdiction_type": "city",
+      "state_province": "OR",
+      "country": "United States",
+      "bounds": [
+        [
+          -122.8777033936799,
+          45.42466006878904
+        ],
+        [
+          -122.74365611431203,
+          45.542964137589706
+        ]
+      ],
+      "tree_count": 13,
+      "zip_codes": [
+        "97005"
+      ],
+      "species_counts": {
+        "cherry": 3,
+        "plum": 3,
+        "peach": 0,
+        "magnolia": 2,
+        "crabapple": 5
+      },
+      "ownership_counts": {
+        "public": 13,
+        "private": 0,
+        "unknown": 0
+      },
+      "species_ownership_counts": {
+        "cherry": {
+          "public": 3,
+          "private": 0,
+          "unknown": 0
+        },
+        "plum": {
+          "public": 3,
+          "private": 0,
+          "unknown": 0
+        },
+        "peach": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        },
+        "magnolia": {
+          "public": 2,
+          "private": 0,
+          "unknown": 0
+        },
+        "crabapple": {
+          "public": 5,
+          "private": 0,
+          "unknown": 0
+        }
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "beaverton-001",
+          "bounds": [
+            [
+              -122.79777338236839,
+              45.48295888733406
+            ],
+            [
+              -122.79449510781765,
+              45.48599283215384
+            ]
+          ],
+          "data_path": "/data/trees.or.area.beaverton.v2.geojson",
+          "tree_count": 13,
+          "ownership_counts": {
+            "public": 13,
+            "private": 0,
+            "unknown": 0
+          },
+          "species_counts": {
+            "cherry": 3,
+            "plum": 3,
+            "peach": 0,
+            "magnolia": 2,
+            "crabapple": 5
+          },
+          "species_ownership_counts": {
+            "cherry": {
+              "public": 3,
+              "private": 0,
+              "unknown": 0
+            },
+            "plum": {
+              "public": 3,
+              "private": 0,
+              "unknown": 0
+            },
+            "peach": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            },
+            "magnolia": {
+              "public": 2,
+              "private": 0,
+              "unknown": 0
+            },
+            "crabapple": {
+              "public": 5,
+              "private": 0,
+              "unknown": 0
+            }
+          },
+          "raw_bytes": 7029,
+          "gzip_bytes": 968
+        }
+      ]
+    },
     {
       "jurisdiction": "Corvallis",
       "slug": "corvallis",
@@ -255,6 +377,128 @@
       ]
     },
     {
+      "jurisdiction": "Keizer",
+      "slug": "keizer",
+      "display_name": "Keizer",
+      "jurisdiction_type": "city",
+      "state_province": "OR",
+      "country": "United States",
+      "bounds": [
+        [
+          -123.05715299973089,
+          44.97275400006109
+        ],
+        [
+          -122.99096500023957,
+          45.037235000265326
+        ]
+      ],
+      "tree_count": 31,
+      "zip_codes": [
+        "97303"
+      ],
+      "species_counts": {
+        "cherry": 29,
+        "plum": 1,
+        "peach": 0,
+        "magnolia": 0,
+        "crabapple": 1
+      },
+      "ownership_counts": {
+        "public": 31,
+        "private": 0,
+        "unknown": 0
+      },
+      "species_ownership_counts": {
+        "cherry": {
+          "public": 29,
+          "private": 0,
+          "unknown": 0
+        },
+        "plum": {
+          "public": 1,
+          "private": 0,
+          "unknown": 0
+        },
+        "peach": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        },
+        "magnolia": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        },
+        "crabapple": {
+          "public": 1,
+          "private": 0,
+          "unknown": 0
+        }
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "keizer-001",
+          "bounds": [
+            [
+              -123.03209927630704,
+              44.97890297
+            ],
+            [
+              -122.99634953366204,
+              45.01107193219133
+            ]
+          ],
+          "data_path": "/data/trees.or.area.keizer.v2.geojson",
+          "tree_count": 31,
+          "ownership_counts": {
+            "public": 31,
+            "private": 0,
+            "unknown": 0
+          },
+          "species_counts": {
+            "cherry": 29,
+            "plum": 1,
+            "peach": 0,
+            "magnolia": 0,
+            "crabapple": 1
+          },
+          "species_ownership_counts": {
+            "cherry": {
+              "public": 29,
+              "private": 0,
+              "unknown": 0
+            },
+            "plum": {
+              "public": 1,
+              "private": 0,
+              "unknown": 0
+            },
+            "peach": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            },
+            "magnolia": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            },
+            "crabapple": {
+              "public": 1,
+              "private": 0,
+              "unknown": 0
+            }
+          },
+          "raw_bytes": 16157,
+          "gzip_bytes": 1077
+        }
+      ]
+    },
+    {
       "jurisdiction": "Portland",
       "slug": "portland",
       "display_name": "Portland",
@@ -429,6 +673,250 @@
           },
           "raw_bytes": 6498911,
           "gzip_bytes": 293757
+        }
+      ]
+    },
+    {
+      "jurisdiction": "Tualatin",
+      "slug": "tualatin",
+      "display_name": "Tualatin",
+      "jurisdiction_type": "city",
+      "state_province": "OR",
+      "country": "United States",
+      "bounds": [
+        [
+          -122.81782999968705,
+          45.346897000048415
+        ],
+        [
+          -122.72191400039605,
+          45.40303900019737
+        ]
+      ],
+      "tree_count": 301,
+      "zip_codes": [
+        "97062"
+      ],
+      "species_counts": {
+        "cherry": 132,
+        "plum": 162,
+        "peach": 0,
+        "magnolia": 4,
+        "crabapple": 3
+      },
+      "ownership_counts": {
+        "public": 301,
+        "private": 0,
+        "unknown": 0
+      },
+      "species_ownership_counts": {
+        "cherry": {
+          "public": 132,
+          "private": 0,
+          "unknown": 0
+        },
+        "plum": {
+          "public": 162,
+          "private": 0,
+          "unknown": 0
+        },
+        "peach": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        },
+        "magnolia": {
+          "public": 4,
+          "private": 0,
+          "unknown": 0
+        },
+        "crabapple": {
+          "public": 3,
+          "private": 0,
+          "unknown": 0
+        }
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "tualatin-001",
+          "bounds": [
+            [
+              -122.79910737063757,
+              45.35371707709718
+            ],
+            [
+              -122.72869946939788,
+              45.3944938573604
+            ]
+          ],
+          "data_path": "/data/trees.or.area.tualatin.v2.geojson",
+          "tree_count": 301,
+          "ownership_counts": {
+            "public": 301,
+            "private": 0,
+            "unknown": 0
+          },
+          "species_counts": {
+            "cherry": 132,
+            "plum": 162,
+            "peach": 0,
+            "magnolia": 4,
+            "crabapple": 3
+          },
+          "species_ownership_counts": {
+            "cherry": {
+              "public": 132,
+              "private": 0,
+              "unknown": 0
+            },
+            "plum": {
+              "public": 162,
+              "private": 0,
+              "unknown": 0
+            },
+            "peach": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            },
+            "magnolia": {
+              "public": 4,
+              "private": 0,
+              "unknown": 0
+            },
+            "crabapple": {
+              "public": 3,
+              "private": 0,
+              "unknown": 0
+            }
+          },
+          "raw_bytes": 148868,
+          "gzip_bytes": 7260
+        }
+      ]
+    },
+    {
+      "jurisdiction": "West Linn",
+      "slug": "west-linn",
+      "display_name": "West Linn",
+      "jurisdiction_type": "city",
+      "state_province": "OR",
+      "country": "United States",
+      "bounds": [
+        [
+          -122.67741399985975,
+          45.33767399999446
+        ],
+        [
+          -122.60278999968871,
+          45.400769999927064
+        ]
+      ],
+      "tree_count": 393,
+      "zip_codes": [
+        "97068"
+      ],
+      "species_counts": {
+        "cherry": 187,
+        "plum": 189,
+        "peach": 0,
+        "magnolia": 2,
+        "crabapple": 15
+      },
+      "ownership_counts": {
+        "public": 393,
+        "private": 0,
+        "unknown": 0
+      },
+      "species_ownership_counts": {
+        "cherry": {
+          "public": 187,
+          "private": 0,
+          "unknown": 0
+        },
+        "plum": {
+          "public": 189,
+          "private": 0,
+          "unknown": 0
+        },
+        "peach": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        },
+        "magnolia": {
+          "public": 2,
+          "private": 0,
+          "unknown": 0
+        },
+        "crabapple": {
+          "public": 15,
+          "private": 0,
+          "unknown": 0
+        }
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "west-linn-001",
+          "bounds": [
+            [
+              -122.67158240772902,
+              45.343710107966835
+            ],
+            [
+              -122.62305974316158,
+              45.38192886547647
+            ]
+          ],
+          "data_path": "/data/trees.or.area.west-linn.v2.geojson",
+          "tree_count": 393,
+          "ownership_counts": {
+            "public": 393,
+            "private": 0,
+            "unknown": 0
+          },
+          "species_counts": {
+            "cherry": 187,
+            "plum": 189,
+            "peach": 0,
+            "magnolia": 2,
+            "crabapple": 15
+          },
+          "species_ownership_counts": {
+            "cherry": {
+              "public": 187,
+              "private": 0,
+              "unknown": 0
+            },
+            "plum": {
+              "public": 189,
+              "private": 0,
+              "unknown": 0
+            },
+            "peach": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            },
+            "magnolia": {
+              "public": 2,
+              "private": 0,
+              "unknown": 0
+            },
+            "crabapple": {
+              "public": 15,
+              "private": 0,
+              "unknown": 0
+            }
+          },
+          "raw_bytes": 199730,
+          "gzip_bytes": 9568
         }
       ]
     }

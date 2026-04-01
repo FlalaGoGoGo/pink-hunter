@@ -211,6 +211,9 @@ All 50 U.S. states now have at least one covered city. On the Canada side, 9 of 
 - Walla Walla
 - Puyallup
 - Gig Harbor
+- Oak Harbor
+- Olympia
+- Pullman
 
 </details>
 
@@ -602,9 +605,13 @@ All 50 U.S. states now have at least one covered city. On the Canada side, 9 of 
 <details>
 <summary>Oregon</summary>
 
+- Beaverton
 - Corvallis
 - Eugene
+- Keizer
 - Portland
+- Tualatin
+- West Linn
 
 </details>
 
@@ -658,6 +665,7 @@ All 50 U.S. states now have at least one covered city. On the Canada side, 9 of 
 - Oakland
 - Oxnard
 - Palo Alto
+- Palm Springs
 - Pasadena
 - Pleasanton
 - Pomona
@@ -688,11 +696,13 @@ All 50 U.S. states now have at least one covered city. On the Canada side, 9 of 
 - Sunnyvale
 - Thousand Oaks
 - Torrance
+- Turlock
 - Ventura
 - Vista
 - West Covina
 - West Hollywood
 - West Sacramento
+- Watsonville
 - Yorba Linda
 
 </details>
@@ -737,7 +747,7 @@ All 50 U.S. states now have at least one covered city. On the Canada side, 9 of 
 
 ### Gray Coverage
 - Gray coverage marks cities whose official boundary is public but whose official public single-tree dataset is not available yet.
-- Current gray-coverage examples include `Alexandria`, `Montgomery County`, `Newark`, `Santa Clara`, `Monterey`, `Napa`, `Richmond (CA)`, `Santa Cruz`, `Santa Rosa`, `Stockton`, `Redwood City`, `Alameda`, `Hayward`, `Daly City`, `Long Beach`, `Santa Ana`, `Beaverton`, `Gresham`, `Hillsboro`, `Salem`, `Tigard`, `Burnaby`, `Delta`, `Langley City`, `Richmond BC`, `Saanich`, and `Surrey`.
+- Current gray-coverage examples include `Alexandria`, `Montgomery County`, `Newark`, `Santa Clara`, `Monterey`, `Napa`, `Richmond (CA)`, `Santa Cruz`, `Santa Rosa`, `Stockton`, `Redwood City`, `Alameda`, `Hayward`, `Daly City`, `Long Beach`, `Santa Ana`, `Gresham`, `Hillsboro`, `Salem`, `Tigard`, `Burnaby`, `Delta`, `Langley City`, `Richmond BC`, `Saanich`, and `Surrey`.
 - Tracking details: [docs/research/city-coverage-tracker.md](docs/research/city-coverage-tracker.md)
 
 ## Official Data Sources
@@ -761,6 +771,9 @@ All 50 U.S. states now have at least one covered city. On the Canada side, 9 of 
 - Walla Walla: [City of Walla Walla Trees](https://gis2.ci.walla-walla.wa.us/arcgis/rest/services/Basemap/GISBaseMap_TreesVisible/MapServer/0)
 - Puyallup: [City Maintained Street Trees](https://services8.arcgis.com/5K6vnOH0GkPyJs6A/arcgis/rest/services/City_Maintained_Street_Trees/FeatureServer/0)
 - Gig Harbor: [PW Trees Public Viewer](https://services3.arcgis.com/FjNT4j1knnY5Wsw5/arcgis/rest/services/PW_Trees_Public_Viewer/FeatureServer/0)
+- Oak Harbor: [Tree Inventory](https://services9.arcgis.com/SVlf413Qqlzv09Uo/ArcGIS/rest/services/Tree_Inventory/FeatureServer/0)
+- Olympia: [Capitol Campus Urban Forest Inventory](https://services.arcgis.com/4x406oNViizbGo13/arcgis/rest/services/urban_forestry_data_capitol_campus/FeatureServer/0)
+- Pullman: [Tree Inventory (ViewLayer)](https://services6.arcgis.com/AK42VSd2ESNY4Vkp/arcgis/rest/services/Tree_Inventory_(ViewLayer)/FeatureServer/0)
 
 </details>
 
@@ -1123,7 +1136,11 @@ All 50 U.S. states now have at least one covered city. On the Canada side, 9 of 
 <details>
 <summary>Oregon</summary>
 
+- Beaverton: [Street of Trees](https://services.arcgis.com/mpOrhWpH9jj0z4rU/arcgis/rest/services/Street_of_Trees/FeatureServer/0)
+- Keizer: [Keizer Tree Inventory](https://services3.arcgis.com/hrGHbYKdjpN9Dagg/arcgis/rest/services/service_eb501bd83b86481e892d71e6218924b6/FeatureServer/0)
 - Portland: [Street Tree Inventory - Active Records](https://www.portlandmaps.com/od/rest/services/COP_OpenData_Environment/MapServer/1415)
+- Tualatin: [Street Trees View](https://services7.arcgis.com/cw66lBk1O7OM8APn/arcgis/rest/services/Street_Trees_View_2/FeatureServer/0)
+- West Linn: [StreetTrees](https://services.arcgis.com/Ku7Ma4Cmib83lqGs/arcgis/rest/services/StreetTrees/FeatureServer/8)
 
 </details>
 
@@ -1143,6 +1160,9 @@ All 50 U.S. states now have at least one covered city. On the Canada side, 9 of 
 - El Segundo: [El Segundo Tree Inventory](https://services2.arcgis.com/yrktbS5Xw87hJQvs/arcgis/rest/services/TreeInvElSegundo_Public/FeatureServer/0)
 - Fontana: [Fontana i-Tree Inventory](https://services2.arcgis.com/yrktbS5Xw87hJQvs/arcgis/rest/services/Fontana_iTree_Inv/FeatureServer/0)
 - Fremont: [Tree Inventory / Tree Value](https://www.fremont.gov/government/departments/maintenance-operations/urban-forestry/tree-inventory-tree-value)
+- Palm Springs: [Tree Inventory 2015](https://services.arcgis.com/f48yV21HSEYeCYMI/arcgis/rest/services/COPS_Tree_Inventory/FeatureServer/0)
+- Turlock: [Turlock Tree Inventory (public)](https://services6.arcgis.com/rX5atNlsxFq7LIpv/arcgis/rest/services/Turlock_Tree_Inventory_(public)/FeatureServer/0)
+- Watsonville: [Tree Inventories in Santa Clara County](https://www.arcgis.com/home/item.html?id=58f9d735c5b94915ba5374c82415a26f)
 - Fullerton: [Fullerton Tree Benefits](https://services2.arcgis.com/yrktbS5Xw87hJQvs/arcgis/rest/services/Fullerton_Tree_Benefits_WFL1/FeatureServer/0)
 - Gilroy: [Tree Inventories in Santa Clara County](https://www.arcgis.com/home/item.html?id=58f9d735c5b94915ba5374c82415a26f)
 - Irvine: [City Trees](https://gis.cityofirvine.org/arcgis/rest/services/City_Landscape/MapServer/0)
