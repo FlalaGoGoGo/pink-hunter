@@ -361,6 +361,16 @@ Current state: no cities are parked in `A2` right now.
 | ✅ | Keizer | 31 | Official jurisdiction boundary | Official City of Keizer public tree inventory layer integrated from the city ArcGIS service |
 | ✅ | Tualatin | 301 | Official jurisdiction boundary | Official City of Tualatin `Street Trees View` layer integrated from the city ArcGIS service |
 | ✅ | West Linn | 393 | Official jurisdiction boundary | Official City of West Linn public street-tree inventory integrated after coded-value domain decoding |
+| ✅ | Albany | 1,692 | Official jurisdiction boundary | Official Oregon Department of Forestry public statewide TreePlotter inventory clipped to the official Albany boundary |
+| ✅ | Salem | 1,447 | Official jurisdiction boundary | Official Oregon Department of Forestry public statewide TreePlotter inventory clipped to the official Salem boundary |
+| ✅ | Wilsonville | 910 | Official jurisdiction boundary | Official Oregon Department of Forestry public statewide TreePlotter inventory clipped to the official Wilsonville boundary |
+| ✅ | Grants Pass | 245 | Official jurisdiction boundary | Official Oregon Department of Forestry public statewide TreePlotter inventory clipped to the official Grants Pass boundary |
+| ✅ | Springfield | 83 | Official jurisdiction boundary | Official Oregon Department of Forestry public statewide TreePlotter inventory clipped to the official Springfield boundary |
+| ✅ | Redmond | 58 | Official jurisdiction boundary | Official Oregon Department of Forestry public statewide TreePlotter inventory clipped to the official Redmond boundary |
+| ✅ | Oregon City | 33 | Official jurisdiction boundary | Official Oregon Department of Forestry public statewide TreePlotter inventory clipped to the official Oregon City boundary |
+| ✅ | Forest Grove | 25 | Official jurisdiction boundary | Official Oregon Department of Forestry public statewide TreePlotter inventory clipped to the official Forest Grove boundary |
+| ✅ | Happy Valley | 12 | Official jurisdiction boundary | Official Oregon Department of Forestry public statewide TreePlotter inventory clipped to the official Happy Valley boundary |
+| ✅ | Lake Oswego | 7 | Official jurisdiction boundary | Official Oregon Department of Forestry public statewide TreePlotter inventory clipped to the official Lake Oswego boundary |
 | ✅ | Palm Springs | 6 | Official jurisdiction boundary | Official City of Palm Springs public `Tree Inventory 2015` layer integrated from the city ArcGIS service |
 | ✅ | Turlock | 3 | Official jurisdiction boundary | Official California State University, Stanislaus public `Turlock Tree Inventory` layer integrated and clipped to the official Turlock boundary |
 | ✅ | Watsonville | 3 | Official jurisdiction boundary | Official `Tree Inventories in Santa Clara County` shared ArcGIS service subset to `City = 'Watsonville'` |
@@ -406,7 +416,6 @@ These cities are not in `A2` yet because the official point-tree source is still
 | 🩶 | Richmond (CA) | In gray coverage | Official jurisdiction boundary | Official Richmond, CA ArcGIS and city data searches did not confirm a public citywide public single-tree species dataset |
 | 🩶 | Richmond BC | In gray coverage | Official jurisdiction boundary | Official City of Richmond GIS boundary services were confirmed, but no public citywide single-tree species inventory was confirmed in this round |
 | 🩶 | Saanich | In gray coverage | Official jurisdiction boundary | Official Saanich GIS/open-data sources were reviewed; no public single-tree species inventory was confirmed |
-| 🩶 | Salem | In gray coverage | Official jurisdiction boundary | Official ArcGIS and city GIS searches did not confirm a public citywide single-tree species dataset |
 | 🩶 | Santa Ana | In gray coverage | Official jurisdiction boundary | Official City of Santa Ana public tree resources expose neighborhood street-tree species maps, but not a public citywide single-tree species inventory |
 | 🩶 | Santa Cruz | In gray coverage | Official jurisdiction boundary | Official ArcGIS and city GIS searches did not confirm a public citywide single-tree species dataset |
 | 🩶 | Santa Clara | In gray coverage | Official jurisdiction boundary | Official city urban-forest materials were reviewed, but no public citywide single-tree species dataset was confirmed |
@@ -524,6 +533,11 @@ These cities are not in `A2` yet because the official point-tree source is still
 - Integrated `Sunnyvale` from the official Santa Clara County public `Tree Inventories in Santa Clara County` service using the `City = Sunnyvale` subset and the official jurisdiction boundary.
 - Added gray coverage for `Santa Clara`, `Napa`, `Richmond (CA)`, `Santa Cruz`, `Santa Rosa`, and `Stockton` after city-site and official data portal review did not confirm a public citywide single-tree species dataset.
 - Fixed a bad legacy `Palo Alto` boundary cache by switching the city boundary back to the official Census place geometry; this removed the incorrect East Bay pink polygon that had been covering Hayward / Livermore / Fremont in the map UI.
+
+## April 2026 Oregon TreePlotter Expansion
+- Integrated `Albany`, `Salem`, `Wilsonville`, `Grants Pass`, `Springfield`, `Redmond`, `Oregon City`, `Forest Grove`, `Happy Valley`, and `Lake Oswego` from the official Oregon Department of Forestry public TreePlotter inventory, clipped to official city boundaries.
+- The statewide Oregon public TreePlotter returned `318,543` raw rows and `10,487` blossom-scope rows in this pass; the newly published city counts are `Albany 1,692`, `Salem 1,447`, `Wilsonville 910`, `Grants Pass 245`, `Springfield 83`, `Redmond 58`, `Oregon City 33`, `Forest Grove 25`, `Happy Valley 12`, and `Lake Oswego 7`.
+- `Portland`, `Gresham`, `Hillsboro`, and `Tigard` were rechecked against the same official statewide source in this round and still returned `0` in-scope blossom rows under the current species mapping.
 
 ## April 2026 West Coast Expansion
 - Integrated `Watsonville`, `Palm Springs`, and `Turlock` from official California ArcGIS inventories.

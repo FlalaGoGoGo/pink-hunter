@@ -7,11 +7,6 @@ import sys
 from urllib.error import HTTPError, URLError
 from urllib.parse import urlencode
 from urllib.request import urlopen
-
-try:
-    import requests  # type: ignore
-except ImportError:  # pragma: no cover - optional runtime dependency
-    requests = None
 from pathlib import Path
 from typing import Any
 
@@ -245,6 +240,9 @@ COUNTRY_META = {
     "ca": {"label": "Canada", "emoji": "🇨🇦"},
     "jp": {"label": "Japan", "emoji": "🇯🇵"},
 }
+
+_REQUESTS_MODULE: Any | None = None
+_REQUESTS_LOADED = False
 
 
 def country_for_region(region: str) -> str:
@@ -525,7 +523,20 @@ def load_json(path: Path) -> Any:
     return json.loads(path.read_text(encoding="utf-8"))
 
 
+def get_requests_module() -> Any | None:
+    global _REQUESTS_MODULE, _REQUESTS_LOADED
+    if not _REQUESTS_LOADED:
+        try:
+            import requests as requests_module  # type: ignore
+        except ImportError:  # pragma: no cover - optional runtime dependency
+            requests_module = None
+        _REQUESTS_MODULE = requests_module
+        _REQUESTS_LOADED = True
+    return _REQUESTS_MODULE
+
+
 def fetch_json(url: str, params: dict[str, Any]) -> Any:
+    requests = get_requests_module()
     if requests is not None:
         response = requests.get(url, params=params, timeout=90)
         response.raise_for_status()
@@ -535,15 +546,11 @@ def fetch_json(url: str, params: dict[str, Any]) -> Any:
         return json.loads(response.read().decode("utf-8"))
 
 
-REQUEST_EXCEPTIONS = tuple(
-    exc
-    for exc in (
-        getattr(requests, "RequestException", None),
-        HTTPError,
-        URLError,
-    )
-    if exc is not None
-)
+def is_request_exception(exc: Exception) -> bool:
+    requests = get_requests_module()
+    if requests is not None and isinstance(exc, requests.RequestException):
+        return True
+    return isinstance(exc, (HTTPError, URLError))
 
 
 def fetch_us_state_extent(state_fips: str) -> list[list[float]] | None:
@@ -877,8 +884,11 @@ def build_jump_index(data_dir: Path) -> dict[str, Any]:
             if state_fips:
                 try:
                     state_bounds = fetch_us_state_extent(state_fips)
-                except REQUEST_EXCEPTIONS:
-                    state_bounds = None
+                except Exception as exc:
+                    if is_request_exception(exc):
+                        state_bounds = None
+                    else:
+                        raise
         if not state_bounds:
             continue
         states.append(

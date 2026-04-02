@@ -1,6 +1,6 @@
 {
   "version": "v2",
-  "generated_at": "2026-04-01T21:33:54.048745+00:00",
+  "generated_at": "2026-04-02T02:36:21.123163+00:00",
   "default_region": "wa",
   "coverage_rule": "official_jurisdiction_boundary_only",
   "coverage_skipped_cities": [
@@ -40,7 +40,6 @@
     "Detroit",
     "Gresham",
     "Hillsboro",
-    "Salem",
     "Tigard",
     "Alexandria",
     "Auburn",
@@ -101,14 +100,14 @@
   "coverage_official_unavailable_skipped_cities": [],
   "source_count": 376,
   "total_records": 4155654,
-  "included_records": 861506,
+  "included_records": 866018,
   "unknown_records": 1956098,
   "species_counts": {
-    "cherry": 268618,
-    "plum": 123988,
-    "peach": 8239,
-    "magnolia": 188051,
-    "crabapple": 272610
+    "cherry": 270918,
+    "plum": 124816,
+    "peach": 8259,
+    "magnolia": 188621,
+    "crabapple": 273404
   },
   "regions": [
     {
@@ -2465,42 +2464,52 @@
       "available": true,
       "bounds": [
         [
-          -123.33623299981545,
-          43.987478999691405
+          -123.39131499988844,
+          42.389785000214346
         ],
         [
-          -122.47203838021687,
+          -121.13354799961765,
           45.652886166421595
         ]
       ],
       "data_path": null,
       "coverage_path": "/data/coverage.or.v1.geojson",
-      "tree_count": 35052,
-      "city_count": 7,
+      "tree_count": 39564,
+      "city_count": 17,
       "cities": [
+        "Albany",
         "Beaverton",
         "Corvallis",
         "Eugene",
+        "Forest Grove",
+        "Grants Pass",
+        "Happy Valley",
         "Keizer",
+        "Lake Oswego",
+        "Oregon City",
         "Portland",
+        "Redmond",
+        "Salem",
+        "Springfield",
         "Tualatin",
-        "West Linn"
+        "West Linn",
+        "Wilsonville"
       ],
       "species_counts": {
-        "cherry": 9056,
-        "plum": 8701,
-        "peach": 289,
-        "magnolia": 6096,
-        "crabapple": 10910
+        "cherry": 11356,
+        "plum": 9529,
+        "peach": 309,
+        "magnolia": 6666,
+        "crabapple": 11704
       },
       "ownership_groups": [
         "public"
       ],
-      "raw_bytes": 18533054,
-      "gzip_bytes": 839702,
+      "raw_bytes": 20848173,
+      "gzip_bytes": 946824,
       "warning_level": "none",
-      "aggregate_raw_bytes": 18533054,
-      "aggregate_gzip_bytes": 839702,
+      "aggregate_raw_bytes": 20848173,
+      "aggregate_gzip_bytes": 946824,
       "aggregate_warning_level": "none",
       "largest_shard_raw_bytes": 6510618,
       "largest_shard_gzip_bytes": 292466,
@@ -2510,8 +2519,8 @@
       "area_split": {
         "strategy": "area_shard",
         "index_path": "/data/trees.or.area-index.v2.json",
-        "area_count": 7,
-        "shard_count": 8,
+        "area_count": 17,
+        "shard_count": 18,
         "ready": true
       }
     },
@@ -7175,6 +7184,20 @@
       "state_province": "ON"
     },
     {
+      "jurisdiction": "Albany",
+      "region": "or",
+      "tree_count": 1692,
+      "species_counts": {
+        "cherry": 1166,
+        "plum": 141,
+        "peach": 10,
+        "magnolia": 61,
+        "crabapple": 314
+      },
+      "jurisdiction_type": "city",
+      "state_province": "OR"
+    },
+    {
       "jurisdiction": "Beaverton",
       "region": "or",
       "tree_count": 13,
@@ -7217,6 +7240,48 @@
       "state_province": "OR"
     },
     {
+      "jurisdiction": "Forest Grove",
+      "region": "or",
+      "tree_count": 25,
+      "species_counts": {
+        "cherry": 13,
+        "plum": 7,
+        "peach": 0,
+        "magnolia": 2,
+        "crabapple": 3
+      },
+      "jurisdiction_type": "city",
+      "state_province": "OR"
+    },
+    {
+      "jurisdiction": "Grants Pass",
+      "region": "or",
+      "tree_count": 245,
+      "species_counts": {
+        "cherry": 49,
+        "plum": 122,
+        "peach": 0,
+        "magnolia": 22,
+        "crabapple": 52
+      },
+      "jurisdiction_type": "city",
+      "state_province": "OR"
+    },
+    {
+      "jurisdiction": "Happy Valley",
+      "region": "or",
+      "tree_count": 12,
+      "species_counts": {
+        "cherry": 2,
+        "plum": 2,
+        "peach": 0,
+        "magnolia": 1,
+        "crabapple": 7
+      },
+      "jurisdiction_type": "city",
+      "state_province": "OR"
+    },
+    {
       "jurisdiction": "Keizer",
       "region": "or",
       "tree_count": 31,
@@ -7231,6 +7296,34 @@
       "state_province": "OR"
     },
     {
+      "jurisdiction": "Lake Oswego",
+      "region": "or",
+      "tree_count": 7,
+      "species_counts": {
+        "cherry": 7,
+        "plum": 0,
+        "peach": 0,
+        "magnolia": 0,
+        "crabapple": 0
+      },
+      "jurisdiction_type": "city",
+      "state_province": "OR"
+    },
+    {
+      "jurisdiction": "Oregon City",
+      "region": "or",
+      "tree_count": 33,
+      "species_counts": {
+        "cherry": 14,
+        "plum": 0,
+        "peach": 0,
+        "magnolia": 0,
+        "crabapple": 19
+      },
+      "jurisdiction_type": "city",
+      "state_province": "OR"
+    },
+    {
       "jurisdiction": "Portland",
       "region": "or",
       "tree_count": 24775,
@@ -7240,6 +7333,48 @@
         "peach": 259,
         "magnolia": 5191,
         "crabapple": 9477
+      },
+      "jurisdiction_type": "city",
+      "state_province": "OR"
+    },
+    {
+      "jurisdiction": "Redmond",
+      "region": "or",
+      "tree_count": 58,
+      "species_counts": {
+        "cherry": 0,
+        "plum": 0,
+        "peach": 0,
+        "magnolia": 0,
+        "crabapple": 58
+      },
+      "jurisdiction_type": "city",
+      "state_province": "OR"
+    },
+    {
+      "jurisdiction": "Salem",
+      "region": "or",
+      "tree_count": 1447,
+      "species_counts": {
+        "cherry": 667,
+        "plum": 356,
+        "peach": 3,
+        "magnolia": 167,
+        "crabapple": 254
+      },
+      "jurisdiction_type": "city",
+      "state_province": "OR"
+    },
+    {
+      "jurisdiction": "Springfield",
+      "region": "or",
+      "tree_count": 83,
+      "species_counts": {
+        "cherry": 8,
+        "plum": 0,
+        "peach": 0,
+        "magnolia": 29,
+        "crabapple": 46
       },
       "jurisdiction_type": "city",
       "state_province": "OR"
@@ -7268,6 +7403,20 @@
         "peach": 0,
         "magnolia": 2,
         "crabapple": 15
+      },
+      "jurisdiction_type": "city",
+      "state_province": "OR"
+    },
+    {
+      "jurisdiction": "Wilsonville",
+      "region": "or",
+      "tree_count": 910,
+      "species_counts": {
+        "cherry": 374,
+        "plum": 200,
+        "peach": 7,
+        "magnolia": 288,
+        "crabapple": 41
       },
       "jurisdiction_type": "city",
       "state_province": "OR"

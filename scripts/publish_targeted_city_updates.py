@@ -194,6 +194,11 @@ MILPITAS_DATASET_PAGE = "https://services8.arcgis.com/OPmRdssd8jj0bT5H/arcgis/re
 SAN_RAFAEL_BOUNDARY_DATASET_PAGE = "https://www.arcgis.com/home/item.html?id=4c64d7f5f8384283ae83be8fd861afb4"
 TREEPLOTTER_CLIENT_VERSION = "v3.9.65"
 FREMONT_DB_ENDPOINT = "https://pg-cloud.com/main/server/db.php"
+OREGON_ODF_TREEPLOTTER_FOLDER = "Oregon"
+OREGON_ODF_TREEPLOTTER_LANDING_URL = "https://pg-cloud.com/Oregon/"
+OREGON_ODF_TREEPLOTTER_DATASET_PAGE = (
+    "https://www.oregon.gov/odf/forestbenefits/pages/tree-plotter-inventory-resources.aspx"
+)
 SALINAS_DATASET = "https://cityofsalinas.opendatasoft.com/api/explore/v2.1/catalog/datasets/tree-inventory"
 PITTSBURGH_BASE = "https://pittsburghpa.treekeepersoftware.com"
 PITTSBURGH_SEARCH_ENDPOINT = f"{PITTSBURGH_BASE}/cffiles/search.cfc"
@@ -2358,6 +2363,20 @@ ZERO_COVERAGE_TREEPLOTTER_CONFIGS: dict[str, dict[str, Any]] = {
         "clip_to_boundary": True,
     },
 }
+
+OREGON_ODF_TREEPLOTTER_CITIES: tuple[str, ...] = (
+    "Albany",
+    "Salem",
+    "Wilsonville",
+    "Grants Pass",
+    "Springfield",
+    "Redmond",
+    "Oregon City",
+    "Forest Grove",
+    "Happy Valley",
+    "Lake Oswego",
+)
+
 
 ZERO_COVERAGE_ARCGIS_CONFIGS: dict[str, dict[str, Any]] = {
     "Andover": {
@@ -7341,6 +7360,194 @@ def build_treeplotter_fetcher(city: str, config: dict[str, Any]) -> Any:
         boundary_layer=config.get("boundary_layer"),
         clip_to_boundary=bool(config.get("clip_to_boundary", False)),
     )
+
+
+def build_cached_treeplotter_city_result(
+    *,
+    city: str,
+    region: str,
+    rows: list[dict[str, Any]],
+    total_records: int,
+    dataset_page: str,
+    source_name: str,
+    source_department: str,
+    ownership_raw: str,
+    note: str,
+) -> dict[str, Any]:
+    zip_index = fetch_us_city_zip_index(city, state_id=region)
+    boundary_geometry = load_city_boundary_geometry(city, state_id=region)
+    city_slug = slugify_token(city)
+
+    output_features: list[dict[str, Any]] = []
+    normalized_rows: list[dict[str, Any]] = []
+    for row in rows:
+        lon = float(row["lon"])
+        lat = float(row["lat"])
+        if boundary_geometry and not point_in_geometry(lon, lat, boundary_geometry):
+            continue
+
+        zip_code = assign_zip_code(lon, lat, zip_index)
+        row_id = f"{city_slug}-{row['pid']}"
+        normalized_rows.append(
+            {
+                "id": row_id,
+                "city": city,
+                "source_dataset": source_name,
+                "scientific_raw": row["scientific_raw"],
+                "scientific_normalized": row["scientific_normalized"],
+                "common_name": row["common_name"],
+                "subtype_name": row["subtype_name"],
+                "zip_code": zip_code or "",
+                "species_group": row["species_group"],
+                "ownership": canonical_ownership(ownership_raw),
+                "ownership_raw": ownership_raw,
+                "lat": lat,
+                "lon": lon,
+                "included": "1",
+            }
+        )
+        output_features.append(
+            {
+                "type": "Feature",
+                "geometry": {"type": "Point", "coordinates": [lon, lat]},
+                "properties": {
+                    "id": row_id,
+                    "species_group": row["species_group"],
+                    "scientific_name": row["scientific_raw"],
+                    "common_name": row["common_name"],
+                    "subtype_name": row["subtype_name"],
+                    "zip_code": zip_code,
+                    "ownership": canonical_ownership(ownership_raw),
+                    "ownership_raw": ownership_raw,
+                    "city": city,
+                    "source_dataset": source_name,
+                    "source_department": source_department,
+                    "source_last_edit_at": "",
+                },
+            }
+        )
+
+    return {
+        "city": city,
+        "region": region,
+        "features": output_features,
+        "normalized_rows": normalized_rows,
+        "source": {
+            "name": source_name,
+            "city": city,
+            "endpoint": dataset_page,
+            "last_edit_at": "",
+            "records_fetched": total_records,
+            "records_included": len(output_features),
+            "note": note,
+        },
+    }
+
+
+@lru_cache(maxsize=1)
+def load_oregon_odf_treeplotter_rows() -> tuple[list[dict[str, Any]], int]:
+    mapping_rows = load_mapping(MAPPING_PATH)
+    subtype_rows = load_subtype_mapping(SUBTYPE_MAPPING_PATH)
+    cookie_path = init_treeplotter_session(OREGON_ODF_TREEPLOTTER_FOLDER, OREGON_ODF_TREEPLOTTER_LANDING_URL)
+    try:
+        lookup_rows = retrieve_treeplotter_rows(
+            OREGON_ODF_TREEPLOTTER_FOLDER,
+            "species",
+            {
+                "pid": {"data_type": "integer", "input_type": "number"},
+                "sp_code": {"data_type": "character varying", "input_type": "text"},
+                "genus": {"data_type": "character varying", "input_type": "text"},
+                "latin_name": {"data_type": "character varying", "input_type": "text"},
+                "common_name": {"data_type": "character varying", "input_type": "text"},
+                "cultivar": {"data_type": "character varying", "input_type": "text"},
+            },
+            cookie_path=cookie_path,
+        )
+        species_lookup: dict[Any, dict[str, str]] = {}
+        for row in lookup_rows:
+            pid = row["pid"]["val"]
+            species_lookup[pid] = {
+                "latin_name": row["latin_name"]["alias"] or row["latin_name"]["val"] or "",
+                "common_name": row["common_name"]["alias"] or row["common_name"]["val"] or "",
+            }
+
+        tree_rows = retrieve_treeplotter_rows(
+            OREGON_ODF_TREEPLOTTER_FOLDER,
+            "trees",
+            {
+                "pid": {"data_type": "integer", "input_type": "number"},
+                "geom": {"data_type": "geometry", "input_type": "hidden"},
+                "species_common": {"data_type": "integer", "input_type": "select"},
+                "species_latin": {"data_type": "integer", "input_type": "select"},
+                "species_code": {"data_type": "integer", "input_type": "select"},
+                "species_cultivar": {"data_type": "integer", "input_type": "select"},
+                "organization": {"data_type": "character varying", "input_type": "text"},
+                "park_name": {"data_type": "character varying", "input_type": "text"},
+                "status": {"data_type": "integer", "input_type": "select"},
+            },
+            cookie_path=cookie_path,
+            limit=5000,
+        )
+    finally:
+        Path(cookie_path).unlink(missing_ok=True)
+
+    rows: list[dict[str, Any]] = []
+    for row in tree_rows:
+        geom_hex = row.get("geom", {}).get("val") or row.get("geom", {}).get("alias")
+        point = decode_wkb_point_hex(geom_hex)
+        if not point:
+            continue
+        lon, lat = web_mercator_to_lon_lat(*point)
+        species_id = (
+            row.get("species_latin", {}).get("val")
+            or row.get("species_common", {}).get("val")
+            or row.get("species_code", {}).get("val")
+        )
+        species_info = species_lookup.get(species_id, {})
+        common_name = clean_display_name(species_info.get("common_name")) or ""
+        latin_name = species_info.get("latin_name") or ""
+        scientific_raw = expand_abbreviated_botanical_name(latin_name, common_name)
+        if not scientific_raw:
+            scientific_raw = generic_scientific_name_for_common_hint(common_name)
+        scientific_normalized = normalize_scientific_name(scientific_raw)
+        species_group, subtype_name = classify_tree_record(scientific_raw, common_name, mapping_rows, subtype_rows)
+        if not species_group:
+            continue
+        rows.append(
+            {
+                "pid": row.get("pid", {}).get("val"),
+                "lon": lon,
+                "lat": lat,
+                "scientific_raw": scientific_raw,
+                "scientific_normalized": scientific_normalized,
+                "common_name": common_name,
+                "subtype_name": subtype_name or "",
+                "species_group": species_group,
+            }
+        )
+
+    return rows, len(tree_rows)
+
+
+def build_oregon_odf_treeplotter_fetcher(city: str) -> Any:
+    def fetcher(city: str = city) -> dict[str, Any]:
+        rows, total_records = load_oregon_odf_treeplotter_rows()
+        return build_cached_treeplotter_city_result(
+            city=city,
+            region="or",
+            rows=rows,
+            total_records=total_records,
+            dataset_page=OREGON_ODF_TREEPLOTTER_DATASET_PAGE,
+            source_name="Tree Inventory",
+            source_department="Oregon Department of Forestry",
+            ownership_raw="Oregon Department of Forestry",
+            note=(
+                "Integrated via the official Oregon Department of Forestry TreePlotter inventory "
+                "and clipped to the official city boundary."
+            ),
+        )
+
+    return fetcher
 
 
 def fetch_south_san_francisco() -> dict[str, Any]:
@@ -12607,6 +12814,7 @@ CITY_FETCHERS.update({city: build_treeplotter_fetcher(city, config) for city, co
 CITY_FETCHERS.update({city: build_treekeeper_fetcher(city, config) for city, config in MID_SOUTH_TREEKEEPER_CONFIGS.items()})
 CITY_FETCHERS.update({city: build_treeplotter_fetcher(city, config) for city, config in MID_SOUTH_TREEPLOTTER_CONFIGS.items()})
 CITY_FETCHERS.update({city: build_treeplotter_fetcher(city, config) for city, config in ZERO_COVERAGE_TREEPLOTTER_CONFIGS.items()})
+CITY_FETCHERS.update({city: build_oregon_odf_treeplotter_fetcher(city) for city in OREGON_ODF_TREEPLOTTER_CITIES})
 CITY_FETCHERS.update({city: build_nyc_metro_arcgis_fetcher(city, config) for city, config in NYC_METRO_ARCGIS_CONFIGS.items()})
 CITY_FETCHERS.update({city: build_arcgis_fetcher(city, config) for city, config in UNCOVERED_STATE_ARCGIS_CONFIGS.items()})
 CITY_FETCHERS.update({city: build_arcgis_fetcher(city, config) for city, config in WEST_COAST_ARCGIS_CONFIGS.items()})

@@ -605,13 +605,23 @@ All 50 U.S. states now have at least one covered city. On the Canada side, 9 of 
 <details>
 <summary>Oregon</summary>
 
+- Albany
 - Beaverton
 - Corvallis
 - Eugene
+- Forest Grove
+- Grants Pass
+- Happy Valley
 - Keizer
+- Lake Oswego
+- Oregon City
 - Portland
+- Redmond
+- Salem
+- Springfield
 - Tualatin
 - West Linn
+- Wilsonville
 
 </details>
 
@@ -1136,6 +1146,7 @@ All 50 U.S. states now have at least one covered city. On the Canada side, 9 of 
 <details>
 <summary>Oregon</summary>
 
+- Albany / Forest Grove / Grants Pass / Happy Valley / Lake Oswego / Oregon City / Redmond / Salem / Springfield / Wilsonville: [Oregon Department of Forestry TreePlotter inventory resources](https://www.oregon.gov/odf/forestbenefits/pages/tree-plotter-inventory-resources.aspx)
 - Beaverton: [Street of Trees](https://services.arcgis.com/mpOrhWpH9jj0z4rU/arcgis/rest/services/Street_of_Trees/FeatureServer/0)
 - Keizer: [Keizer Tree Inventory](https://services3.arcgis.com/hrGHbYKdjpN9Dagg/arcgis/rest/services/service_eb501bd83b86481e892d71e6218924b6/FeatureServer/0)
 - Portland: [Street Tree Inventory - Active Records](https://www.portlandmaps.com/od/rest/services/COP_OpenData_Environment/MapServer/1415)
