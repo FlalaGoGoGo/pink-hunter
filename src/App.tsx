@@ -812,6 +812,9 @@ const FIND_PANEL_COPY: Record<
     jumpState: string;
     jumpProvince: string;
     jumpPrefecture: string;
+    jumpAreaUs: string;
+    jumpAreaCa: string;
+    jumpAreaJp: string;
     jumpAnyState: string;
     jumpAnyProvince: string;
     jumpAnyPrefecture: string;
@@ -819,6 +822,9 @@ const FIND_PANEL_COPY: Record<
     jumpButton: string;
     searchState: string;
     searchProvince: string;
+    searchAreaUs: string;
+    searchAreaCa: string;
+    searchAreaJp: string;
     filtersTitle: string;
     filtersGuideBody: string;
     filtersLockedBody: string;
@@ -844,6 +850,9 @@ const FIND_PANEL_COPY: Record<
     jumpState: "State",
     jumpProvince: "Province",
     jumpPrefecture: "Prefecture",
+    jumpAreaUs: "City / County",
+    jumpAreaCa: "Municipality / City / County",
+    jumpAreaJp: "Municipality / City / Ward",
     jumpAnyState: "Any state",
     jumpAnyProvince: "Any province",
     jumpAnyPrefecture: "Any prefecture",
@@ -851,6 +860,9 @@ const FIND_PANEL_COPY: Record<
     jumpButton: "Jump",
     searchState: "Search state",
     searchProvince: "Search province",
+    searchAreaUs: "Search city or county",
+    searchAreaCa: "Search municipality, city, or county",
+    searchAreaJp: "Search municipality, city, or ward",
     filtersTitle: "Filters",
     filtersGuideBody: "After a city's trees are loaded, refine what you want to see by species or ownership.",
     filtersLockedBody: "Choose a pink city first, then load that city's trees to unlock filters.",
@@ -874,6 +886,9 @@ const FIND_PANEL_COPY: Record<
     jumpState: "州",
     jumpProvince: "省",
     jumpPrefecture: "都道府县",
+    jumpAreaUs: "城市 / 县",
+    jumpAreaCa: "自治体 / 城市 / 县",
+    jumpAreaJp: "自治体 / 城市 / 区",
     jumpAnyState: "任意州",
     jumpAnyProvince: "任意省",
     jumpAnyPrefecture: "任意都道府县",
@@ -881,6 +896,9 @@ const FIND_PANEL_COPY: Record<
     jumpButton: "跳转",
     searchState: "搜索州",
     searchProvince: "搜索省",
+    searchAreaUs: "搜索城市或县",
+    searchAreaCa: "搜索自治体、城市或县",
+    searchAreaJp: "搜索自治体、城市或区",
     filtersTitle: "筛选",
     filtersGuideBody: "加载城市树木后，你可以继续按树种或产权自由调整筛选条件。",
     filtersLockedBody: "请先选择一个粉色城市，并加载该城市的树木后再使用筛选。",
@@ -904,6 +922,9 @@ const FIND_PANEL_COPY: Record<
     jumpState: "州",
     jumpProvince: "省",
     jumpPrefecture: "都道府縣",
+    jumpAreaUs: "城市 / 縣",
+    jumpAreaCa: "自治體 / 城市 / 縣",
+    jumpAreaJp: "自治體 / 城市 / 區",
     jumpAnyState: "任意州",
     jumpAnyProvince: "任意省",
     jumpAnyPrefecture: "任意都道府縣",
@@ -911,6 +932,9 @@ const FIND_PANEL_COPY: Record<
     jumpButton: "跳轉",
     searchState: "搜尋州",
     searchProvince: "搜尋省",
+    searchAreaUs: "搜尋城市或縣",
+    searchAreaCa: "搜尋自治體、城市或縣",
+    searchAreaJp: "搜尋自治體、城市或區",
     filtersTitle: "篩選",
     filtersGuideBody: "載入城市樹木後，你可以再依樹種或產權自由調整篩選條件。",
     filtersLockedBody: "請先選擇一個粉色城市，並載入該城市的樹木後再使用篩選。",
@@ -935,6 +959,9 @@ const FIND_PANEL_COPY: Record<
     jumpState: "Estado",
     jumpProvince: "Provincia",
     jumpPrefecture: "Prefectura",
+    jumpAreaUs: "Ciudad / condado",
+    jumpAreaCa: "Municipio / ciudad / condado",
+    jumpAreaJp: "Municipio / ciudad / distrito",
     jumpAnyState: "Cualquier estado",
     jumpAnyProvince: "Cualquier provincia",
     jumpAnyPrefecture: "Cualquier prefectura",
@@ -942,6 +969,9 @@ const FIND_PANEL_COPY: Record<
     jumpButton: "Saltar",
     searchState: "Buscar estado",
     searchProvince: "Buscar provincia",
+    searchAreaUs: "Buscar ciudad o condado",
+    searchAreaCa: "Buscar municipio, ciudad o condado",
+    searchAreaJp: "Buscar municipio, ciudad o distrito",
     filtersTitle: "Filtros",
     filtersGuideBody: "Cuando cargues los árboles de una ciudad, ajusta los filtros por especie o propiedad.",
     filtersLockedBody: "Primero elige una ciudad rosa y carga sus árboles para desbloquear los filtros.",
@@ -966,6 +996,9 @@ const FIND_PANEL_COPY: Record<
     jumpState: "주",
     jumpProvince: "도",
     jumpPrefecture: "도도부현",
+    jumpAreaUs: "시 / 카운티",
+    jumpAreaCa: "자치체 / 시 / 카운티",
+    jumpAreaJp: "자치체 / 시 / 구",
     jumpAnyState: "모든 주",
     jumpAnyProvince: "모든 도",
     jumpAnyPrefecture: "모든 도도부현",
@@ -973,6 +1006,9 @@ const FIND_PANEL_COPY: Record<
     jumpButton: "이동",
     searchState: "주 검색",
     searchProvince: "도 검색",
+    searchAreaUs: "시 또는 카운티 검색",
+    searchAreaCa: "자치체, 시 또는 카운티 검색",
+    searchAreaJp: "자치체, 시 또는 구 검색",
     filtersTitle: "필터",
     filtersGuideBody: "도시 나무를 불러온 뒤 종이나 소유권으로 원하는 결과만 남길 수 있습니다.",
     filtersLockedBody: "먼저 분홍 도시를 선택하고 그 도시의 나무를 불러와야 필터를 사용할 수 있습니다.",
@@ -997,6 +1033,9 @@ const FIND_PANEL_COPY: Record<
     jumpState: "州",
     jumpProvince: "県",
     jumpPrefecture: "都道府県",
+    jumpAreaUs: "市 / 郡",
+    jumpAreaCa: "自治体 / 市 / 郡",
+    jumpAreaJp: "自治体 / 市 / 区",
     jumpAnyState: "すべての州",
     jumpAnyProvince: "すべての県",
     jumpAnyPrefecture: "すべての都道府県",
@@ -1004,6 +1043,9 @@ const FIND_PANEL_COPY: Record<
     jumpButton: "移動",
     searchState: "州を検索",
     searchProvince: "県を検索",
+    searchAreaUs: "市または郡を検索",
+    searchAreaCa: "自治体・市・郡を検索",
+    searchAreaJp: "自治体・市・区を検索",
     filtersTitle: "フィルター",
     filtersGuideBody: "都市の木を読み込んだあと、樹種や所有区分で表示を絞り込めます。",
     filtersLockedBody: "まずピンクの都市を選び、その都市の木を読み込むとフィルターが使えます。",
@@ -1028,6 +1070,9 @@ const FIND_PANEL_COPY: Record<
     jumpState: "État",
     jumpProvince: "Province",
     jumpPrefecture: "Préfecture",
+    jumpAreaUs: "Ville / comté",
+    jumpAreaCa: "Municipalité / ville / comté",
+    jumpAreaJp: "Municipalité / ville / arrondissement",
     jumpAnyState: "Tout état",
     jumpAnyProvince: "Toute province",
     jumpAnyPrefecture: "Toute préfecture",
@@ -1035,6 +1080,9 @@ const FIND_PANEL_COPY: Record<
     jumpButton: "Aller",
     searchState: "Rechercher un état",
     searchProvince: "Rechercher une province",
+    searchAreaUs: "Rechercher une ville ou un comté",
+    searchAreaCa: "Rechercher une municipalité, une ville ou un comté",
+    searchAreaJp: "Rechercher une municipalité, une ville ou un arrondissement",
     filtersTitle: "Filtres",
     filtersGuideBody: "Après avoir chargé les arbres d’une ville, affinez l’affichage par espèce ou type de propriété.",
     filtersLockedBody: "Choisissez d’abord une ville rose et chargez ses arbres pour activer les filtres.",
@@ -1059,6 +1107,9 @@ const FIND_PANEL_COPY: Record<
     jumpState: "Tiểu bang",
     jumpProvince: "Tỉnh",
     jumpPrefecture: "Tỉnh cấp prefecture",
+    jumpAreaUs: "Thành phố / quận hạt",
+    jumpAreaCa: "Đô thị / thành phố / quận hạt",
+    jumpAreaJp: "Đô thị / thành phố / phường",
     jumpAnyState: "Mọi tiểu bang",
     jumpAnyProvince: "Mọi tỉnh",
     jumpAnyPrefecture: "Mọi prefecture",
@@ -1066,6 +1117,9 @@ const FIND_PANEL_COPY: Record<
     jumpButton: "Nhảy",
     searchState: "Tìm tiểu bang",
     searchProvince: "Tìm tỉnh",
+    searchAreaUs: "Tìm thành phố hoặc quận hạt",
+    searchAreaCa: "Tìm đô thị, thành phố hoặc quận hạt",
+    searchAreaJp: "Tìm đô thị, thành phố hoặc phường",
     filtersTitle: "Bộ lọc",
     filtersGuideBody: "Sau khi tải cây của một thành phố, bạn có thể lọc theo loài hoặc quyền sở hữu.",
     filtersLockedBody: "Hãy chọn một thành phố màu hồng và tải cây của thành phố đó trước khi dùng bộ lọc.",
@@ -3985,6 +4039,18 @@ export default function App(): JSX.Element {
       : jumpCountry === "ca"
         ? findPanelCopy.jumpAnyProvince
         : findPanelCopy.jumpAnyPrefecture;
+  const jumpAreaLabel =
+    jumpCountry === "us"
+      ? findPanelCopy.jumpAreaUs
+      : jumpCountry === "ca"
+        ? findPanelCopy.jumpAreaCa
+        : findPanelCopy.jumpAreaJp;
+  const jumpAreaSearchPlaceholder =
+    jumpCountry === "us"
+      ? findPanelCopy.searchAreaUs
+      : jumpCountry === "ca"
+        ? findPanelCopy.searchAreaCa
+        : findPanelCopy.searchAreaJp;
 
   const getJumpAreaDisplayStatus = useCallback(
     (area: JumpArea): JumpAreaDisplayStatusInfo =>
@@ -6294,7 +6360,7 @@ export default function App(): JSX.Element {
               </div>
             </div>
             <div className="jump-field">
-              <span>{t(language, "jumpArea")}</span>
+              <span>{jumpAreaLabel}</span>
               <div className="jump-picker" ref={jumpAreaMenuRef}>
                 <button
                   aria-expanded={jumpAreaMenuOpen}
@@ -6314,7 +6380,7 @@ export default function App(): JSX.Element {
                           : "jump-picker-trigger-copy jump-picker-trigger-placeholder"
                       }
                     >
-                      {selectedJumpAreaLabel ?? t(language, "searchCityPlaceholder")}
+                      {selectedJumpAreaLabel ?? jumpAreaSearchPlaceholder}
                     </span>
                     {selectedJumpAreaStatus ? (
                       <span className={`jump-area-status-badge ${selectedJumpAreaStatus.kind}`}>
@@ -6329,7 +6395,7 @@ export default function App(): JSX.Element {
                     <input
                       className="filter-search-input jump-area-search-input"
                       onChange={(event) => setJumpAreaQuery(event.target.value)}
-                      placeholder={t(language, "searchCityPlaceholder")}
+                      placeholder={jumpAreaSearchPlaceholder}
                       type="search"
                       value={jumpAreaQuery}
                     />
