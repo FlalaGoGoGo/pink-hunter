@@ -88,6 +88,7 @@ const POINT_LAYER_IDS = [
   "tree-crabapple"
 ] as const;
 const ALL_OWNERSHIP = ["public", "private", "unknown"] as const;
+const CITY_PIN_JURISDICTION_TYPES: readonly JurisdictionType[] = ["city", "ward"];
 const DEFAULT_CENTER: [number, number] = [-122.315, 47.55];
 const DEFAULT_ZOOM = 8.45;
 const POSITRON_STYLE_URL = "https://basemaps.cartocdn.com/gl/positron-gl-style/style.json";
@@ -3458,7 +3459,7 @@ export default function App(): JSX.Element {
     () =>
       showDiscoveryOverlays
         ? visibleAreaEntries.filter(
-        ({ item }) => item.tree_count > 0 && item.jurisdiction_type === "city"
+        ({ item }) => item.tree_count > 0 && CITY_PIN_JURISDICTION_TYPES.includes(item.jurisdiction_type)
       )
         : [],
     [showDiscoveryOverlays, visibleAreaEntries]
