@@ -199,6 +199,19 @@ OREGON_ODF_TREEPLOTTER_LANDING_URL = "https://pg-cloud.com/Oregon/"
 OREGON_ODF_TREEPLOTTER_DATASET_PAGE = (
     "https://www.oregon.gov/odf/forestbenefits/pages/tree-plotter-inventory-resources.aspx"
 )
+TOKYO_WARD_CONFIGS: dict[str, dict[str, str]] = {
+    "Adachi Ward": {"municipality_name_jp": "足立区"},
+    "Chiyoda Ward": {"municipality_name_jp": "千代田区"},
+    "Edogawa Ward": {"municipality_name_jp": "江戸川区"},
+    "Kita Ward": {"municipality_name_jp": "北区"},
+    "Koto Ward": {"municipality_name_jp": "江東区"},
+    "Nakano Ward": {"municipality_name_jp": "中野区"},
+    "Nerima Ward": {"municipality_name_jp": "練馬区"},
+    "Ota Ward": {"municipality_name_jp": "大田区"},
+    "Setagaya Ward": {"municipality_name_jp": "世田谷区"},
+    "Shinagawa Ward": {"municipality_name_jp": "品川区"},
+    "Shinjuku Ward": {"municipality_name_jp": "新宿区"},
+}
 SALINAS_DATASET = "https://cityofsalinas.opendatasoft.com/api/explore/v2.1/catalog/datasets/tree-inventory"
 PITTSBURGH_BASE = "https://pittsburghpa.treekeepersoftware.com"
 PITTSBURGH_SEARCH_ENDPOINT = f"{PITTSBURGH_BASE}/cffiles/search.cfc"
@@ -7550,6 +7563,143 @@ def build_oregon_odf_treeplotter_fetcher(city: str) -> Any:
     return fetcher
 
 
+@lru_cache(maxsize=1)
+def load_tokyo_metro_street_tree_rows() -> tuple[list[dict[str, Any]], Counter[str]]:
+    reader, _prj_text = load_zipped_shapefile(TOKYO_METRO_STREET_TREES_ZIP, member_hint="_pt")
+    field_names = [field[0] for field in reader.fields[1:]]
+    mapping_rows = load_mapping(MAPPING_PATH)
+    subtype_rows = load_subtype_mapping(SUBTYPE_MAPPING_PATH)
+    rows: list[dict[str, Any]] = []
+    municipality_counts: Counter[str] = Counter()
+
+    for shape_record in reader.iterShapeRecords():
+        shape = shape_record.shape
+        if not shape.points:
+            continue
+
+        attrs = dict(zip(field_names, list(shape_record.record), strict=False))
+        municipality_name_jp = clean_display_name(attrs.get("区市町村"))
+        if not municipality_name_jp:
+            continue
+        municipality_counts[municipality_name_jp] += 1
+
+        point_x, point_y = shape.points[0][:2]
+        lon, lat = jgd2011_japan_zone9_to_lon_lat(float(point_x), float(point_y))
+        common_name = clean_common_name(attrs.get("樹種") or attrs.get("樹種名"))
+        scientific_raw = generic_scientific_name_for_common_hint(common_name)
+        scientific_normalized = normalize_scientific_name(scientific_raw)
+        species_group, subtype_name = classify_tree_record(scientific_raw, common_name, mapping_rows, subtype_rows)
+        serial_token = slugify_token(str(attrs.get("整理番号") or "")) or f"{municipality_counts[municipality_name_jp]:06d}"
+        lat_token = int(round((lat + 90.0) * 1_000_000))
+        lon_token = int(round((lon + 180.0) * 1_000_000))
+
+        rows.append(
+            {
+                "municipality_name_jp": municipality_name_jp,
+                "common_name": common_name or "",
+                "scientific_raw": scientific_raw,
+                "scientific_normalized": scientific_normalized,
+                "subtype_name": subtype_name or "",
+                "species_group": species_group or "",
+                "ownership_raw": "Tokyo Metropolitan Government",
+                "lon": lon,
+                "lat": lat,
+                "serial_token": serial_token,
+                "lat_token": lat_token,
+                "lon_token": lon_token,
+            }
+        )
+
+    return rows, municipality_counts
+
+
+def build_tokyo_ward_fetcher(city: str, config: dict[str, str]) -> Any:
+    municipality_name_jp = config["municipality_name_jp"]
+
+    def fetcher(city: str = city, municipality_name_jp: str = municipality_name_jp) -> dict[str, Any]:
+        rows, municipality_counts = load_tokyo_metro_street_tree_rows()
+        boundary_geometry = load_city_boundary_geometry(city, state_id="tokyo", country_id="jp")
+
+        output_features: list[dict[str, Any]] = []
+        normalized_rows: list[dict[str, Any]] = []
+        city_slug = slugify_token(city)
+
+        for row in rows:
+            if row["municipality_name_jp"] != municipality_name_jp:
+                continue
+            lon = float(row["lon"])
+            lat = float(row["lat"])
+            if boundary_geometry and not point_in_geometry(lon, lat, boundary_geometry):
+                continue
+
+            row_id = f"{city_slug}-{row['serial_token']}-{row['lat_token']}-{row['lon_token']}"
+            normalized_rows.append(
+                {
+                    "id": row_id,
+                    "city": city,
+                    "source_dataset": "Street Trees / 街路樹",
+                    "scientific_raw": row["scientific_raw"],
+                    "scientific_normalized": row["scientific_normalized"],
+                    "common_name": row["common_name"],
+                    "subtype_name": row["subtype_name"],
+                    "zip_code": "",
+                    "species_group": row["species_group"],
+                    "ownership": canonical_ownership(row["ownership_raw"]),
+                    "ownership_raw": row["ownership_raw"],
+                    "lat": lat,
+                    "lon": lon,
+                    "included": "1" if row["species_group"] else "",
+                }
+            )
+
+            if not row["species_group"]:
+                continue
+
+            output_features.append(
+                {
+                    "type": "Feature",
+                    "geometry": {"type": "Point", "coordinates": [lon, lat]},
+                    "properties": {
+                        "id": row_id,
+                        "species_group": row["species_group"],
+                        "scientific_name": row["scientific_raw"],
+                        "common_name": row["common_name"],
+                        "subtype_name": row["subtype_name"],
+                        "zip_code": None,
+                        "ownership": canonical_ownership(row["ownership_raw"]),
+                        "ownership_raw": row["ownership_raw"],
+                        "city": city,
+                        "source_dataset": "Street Trees / 街路樹",
+                        "source_department": "Tokyo Metropolitan Government",
+                        "source_last_edit_at": "",
+                    },
+                }
+            )
+
+        return {
+            "city": city,
+            "region": "tokyo",
+            "features": output_features,
+            "normalized_rows": normalized_rows,
+            "source": {
+                "name": "Street Trees / 街路樹",
+                "city": city,
+                "endpoint": TOKYO_METRO_STREET_TREES_DATASET_PAGE,
+                "last_edit_at": "",
+                "records_fetched": municipality_counts.get(municipality_name_jp, 0),
+                "records_included": len(output_features),
+                "note": (
+                    "Integrated from the official Tokyo Metropolitan Government `Street Trees` "
+                    "single-tree shapefile for ward roads (`区部都道（単木単位）`) after "
+                    f"filtering to `{municipality_name_jp}` and clipping to the official MLIT 2024 "
+                    f"administrative boundary for {city}."
+                ),
+            },
+        }
+
+    return fetcher
+
+
 def fetch_south_san_francisco() -> dict[str, Any]:
     _boundary_info = fetch_json(SOUTH_SF_BOUNDARY_LAYER, {"f": "pjson"})
     summary_payload, rows = fetch_treekeeper_rows(
@@ -12583,104 +12733,7 @@ def jgd2011_japan_zone9_to_lon_lat(x: float, y: float) -> tuple[float, float]:
     return math.degrees(lon), math.degrees(lat)
 
 
-def fetch_adachi_ward() -> dict[str, Any]:
-    reader, _prj_text = load_zipped_shapefile(TOKYO_METRO_STREET_TREES_ZIP, member_hint="_pt")
-    field_names = [field[0] for field in reader.fields[1:]]
-    mapping_rows = load_mapping(MAPPING_PATH)
-    subtype_rows = load_subtype_mapping(SUBTYPE_MAPPING_PATH)
-    boundary_geometry = load_city_boundary_geometry("Adachi Ward", state_id="tokyo", country_id="jp")
-
-    output_features: list[dict[str, Any]] = []
-    normalized_rows: list[dict[str, Any]] = []
-    ward_rows = 0
-
-    for shape_record in reader.iterShapeRecords():
-        shape = shape_record.shape
-        if not shape.points:
-            continue
-        attrs = dict(zip(field_names, list(shape_record.record), strict=False))
-        municipality_name = clean_display_name(attrs.get("区市町村"))
-        if municipality_name != "足立区":
-            continue
-        ward_rows += 1
-
-        point_x, point_y = shape.points[0][:2]
-        lon, lat = jgd2011_japan_zone9_to_lon_lat(float(point_x), float(point_y))
-        if boundary_geometry and not point_in_geometry(lon, lat, boundary_geometry):
-            continue
-
-        common_name = clean_common_name(attrs.get("樹種"))
-        scientific_raw = generic_scientific_name_for_common_hint(common_name)
-        scientific_normalized = normalize_scientific_name(scientific_raw)
-        species_group, subtype_name = classify_tree_record(scientific_raw, common_name, mapping_rows, subtype_rows)
-        ownership_raw = "Tokyo Metropolitan Government"
-        serial_token = slugify_token(str(attrs.get("整理番号") or "")) or f"{ward_rows:06d}"
-        lat_token = int(round((lat + 90.0) * 1_000_000))
-        lon_token = int(round((lon + 180.0) * 1_000_000))
-        row_id = f"adachi-ward-{serial_token}-{lat_token}-{lon_token}"
-
-        normalized_rows.append(
-            {
-                "id": row_id,
-                "city": "Adachi Ward",
-                "source_dataset": "Street Trees / 街路樹",
-                "scientific_raw": scientific_raw,
-                "scientific_normalized": scientific_normalized,
-                "common_name": common_name or "",
-                "subtype_name": subtype_name or "",
-                "zip_code": "",
-                "species_group": species_group or "",
-                "ownership": canonical_ownership(ownership_raw),
-                "ownership_raw": ownership_raw,
-                "lat": lat,
-                "lon": lon,
-                "included": "1" if species_group else "",
-            }
-        )
-
-        if not species_group:
-            continue
-
-        output_features.append(
-            {
-                "type": "Feature",
-                "geometry": {"type": "Point", "coordinates": [lon, lat]},
-                "properties": {
-                    "id": row_id,
-                    "species_group": species_group,
-                    "scientific_name": scientific_raw,
-                    "common_name": common_name,
-                    "subtype_name": subtype_name,
-                    "zip_code": None,
-                    "ownership": canonical_ownership(ownership_raw),
-                    "ownership_raw": ownership_raw,
-                    "city": "Adachi Ward",
-                    "source_dataset": "Street Trees / 街路樹",
-                    "source_department": "Tokyo Metropolitan Government",
-                    "source_last_edit_at": "",
-                },
-            }
-        )
-
-    return {
-        "city": "Adachi Ward",
-        "region": "tokyo",
-        "features": output_features,
-        "normalized_rows": normalized_rows,
-        "source": {
-            "name": "Street Trees / 街路樹",
-            "city": "Adachi Ward",
-            "endpoint": TOKYO_METRO_STREET_TREES_DATASET_PAGE,
-            "last_edit_at": "",
-            "records_fetched": ward_rows,
-            "records_included": len(output_features),
-            "note": "Integrated from the official Tokyo Metropolitan Government `Street Trees` single-tree shapefile for ward roads (`区部都道（単木単位）`) after filtering to `足立区` and clipping to the official MLIT 2024 administrative boundary for Adachi Ward.",
-        },
-    }
-
-
 CITY_FETCHERS = {
-    "Adachi Ward": fetch_adachi_ward,
     "Anaheim": fetch_anaheim,
     "Arlington": fetch_arlington,
     "Austin": fetch_austin,
@@ -12815,6 +12868,7 @@ CITY_FETCHERS.update({city: build_treekeeper_fetcher(city, config) for city, con
 CITY_FETCHERS.update({city: build_treeplotter_fetcher(city, config) for city, config in MID_SOUTH_TREEPLOTTER_CONFIGS.items()})
 CITY_FETCHERS.update({city: build_treeplotter_fetcher(city, config) for city, config in ZERO_COVERAGE_TREEPLOTTER_CONFIGS.items()})
 CITY_FETCHERS.update({city: build_oregon_odf_treeplotter_fetcher(city) for city in OREGON_ODF_TREEPLOTTER_CITIES})
+CITY_FETCHERS.update({city: build_tokyo_ward_fetcher(city, config) for city, config in TOKYO_WARD_CONFIGS.items()})
 CITY_FETCHERS.update({city: build_nyc_metro_arcgis_fetcher(city, config) for city, config in NYC_METRO_ARCGIS_CONFIGS.items()})
 CITY_FETCHERS.update({city: build_arcgis_fetcher(city, config) for city, config in UNCOVERED_STATE_ARCGIS_CONFIGS.items()})
 CITY_FETCHERS.update({city: build_arcgis_fetcher(city, config) for city, config in WEST_COAST_ARCGIS_CONFIGS.items()})

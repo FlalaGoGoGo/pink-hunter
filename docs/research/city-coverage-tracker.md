@@ -709,6 +709,11 @@ These cities are not in `A2` yet because the official point-tree source is still
 - Clipped the Tokyo rows to the official MLIT 2024 administrative boundary (`N03`) for `東京都 / 足立区` before publish.
 - Extended the publish and jump pipeline so Japan can be modeled as `country = jp`, `prefecture = tokyo`, and municipality-level `ward` areas without changing the database schema.
 
+## April 2026 Tokyo Ward Expansion
+- Reused the same official Tokyo Metropolitan Government `Street Trees / 街路樹` single-tree shapefile and the existing MLIT 2024 administrative-boundary clipping path to add 10 more Tokyo wards without any schema changes.
+- Integrated `Chiyoda Ward (379)`, `Edogawa Ward (1518)`, `Kita Ward (410)`, `Koto Ward (1203)`, `Nakano Ward (459)`, `Nerima Ward (1114)`, `Ota Ward (406)`, `Setagaya Ward (463)`, `Shinagawa Ward (293)`, and `Shinjuku Ward (751)`.
+- Tokyo now covers `11` wards and `9,152` in-scope blossom trees from the official `区部都道（単木単位）` source.
+
 ## March 2026 Intermountain / Great Lakes Follow-up
 - Integrated `Las Vegas` from the official City of Las Vegas `CLV Tree Sites` ArcGIS layer using blossom filtering on `SPP_BOT` / `SPP_COM`.
 - Integrated `Salt Lake City` from the official Salt Lake City Public Lands `Urban Forestry Inventory` ArcGIS layer; `Vacant = Yes` rows are excluded before blossom classification.

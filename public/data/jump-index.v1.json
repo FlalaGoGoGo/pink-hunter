@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-04-02T02:36:21.123163+00:00",
+  "generated_at": "2026-04-09T18:24:08.636508+00:00",
   "countries": [
     {
       "id": "ca",
@@ -3030,6 +3030,206 @@
         [
           139.85880036,
           35.81770595
+        ]
+      ],
+      "region_hint": "tokyo",
+      "coverage_status": "covered"
+    },
+    {
+      "id": "tokyo:chiyoda-ward",
+      "country_id": "jp",
+      "state_id": "tokyo",
+      "jurisdiction": "Chiyoda Ward",
+      "display_name": "Chiyoda Ward",
+      "area_type": "ward",
+      "bounds": [
+        [
+          139.73000136,
+          35.66858817
+        ],
+        [
+          139.7826608,
+          35.70535159
+        ]
+      ],
+      "region_hint": "tokyo",
+      "coverage_status": "covered"
+    },
+    {
+      "id": "tokyo:edogawa-ward",
+      "country_id": "jp",
+      "state_id": "tokyo",
+      "jurisdiction": "Edogawa Ward",
+      "display_name": "Edogawa Ward",
+      "area_type": "ward",
+      "bounds": [
+        [
+          139.83311805,
+          35.63267887
+        ],
+        [
+          139.91890837,
+          35.75076503
+        ]
+      ],
+      "region_hint": "tokyo",
+      "coverage_status": "covered"
+    },
+    {
+      "id": "tokyo:kita-ward",
+      "country_id": "jp",
+      "state_id": "tokyo",
+      "jurisdiction": "Kita Ward",
+      "display_name": "Kita Ward",
+      "area_type": "ward",
+      "bounds": [
+        [
+          139.68939769,
+          35.73157795
+        ],
+        [
+          139.77112467,
+          35.798904
+        ]
+      ],
+      "region_hint": "tokyo",
+      "coverage_status": "covered"
+    },
+    {
+      "id": "tokyo:koto-ward",
+      "country_id": "jp",
+      "state_id": "tokyo",
+      "jurisdiction": "Koto Ward",
+      "display_name": "Koto Ward",
+      "area_type": "ward",
+      "bounds": [
+        [
+          139.77134969,
+          35.58965564
+        ],
+        [
+          139.84822678,
+          35.70800764
+        ]
+      ],
+      "region_hint": "tokyo",
+      "coverage_status": "covered"
+    },
+    {
+      "id": "tokyo:nakano-ward",
+      "country_id": "jp",
+      "state_id": "tokyo",
+      "jurisdiction": "Nakano Ward",
+      "display_name": "Nakano Ward",
+      "area_type": "ward",
+      "bounds": [
+        [
+          139.62432764,
+          35.67634792
+        ],
+        [
+          139.69433114,
+          35.73538167
+        ]
+      ],
+      "region_hint": "tokyo",
+      "coverage_status": "covered"
+    },
+    {
+      "id": "tokyo:nerima-ward",
+      "country_id": "jp",
+      "state_id": "tokyo",
+      "jurisdiction": "Nerima Ward",
+      "display_name": "Nerima Ward",
+      "area_type": "ward",
+      "bounds": [
+        [
+          139.56278584,
+          35.71191225
+        ],
+        [
+          139.68130664,
+          35.77982569
+        ]
+      ],
+      "region_hint": "tokyo",
+      "coverage_status": "covered"
+    },
+    {
+      "id": "tokyo:ota-ward",
+      "country_id": "jp",
+      "state_id": "tokyo",
+      "jurisdiction": "Ota Ward",
+      "display_name": "Ota Ward",
+      "area_type": "ward",
+      "bounds": [
+        [
+          139.65297477,
+          35.52819808
+        ],
+        [
+          139.82602778,
+          35.61321017
+        ]
+      ],
+      "region_hint": "tokyo",
+      "coverage_status": "covered"
+    },
+    {
+      "id": "tokyo:setagaya-ward",
+      "country_id": "jp",
+      "state_id": "tokyo",
+      "jurisdiction": "Setagaya Ward",
+      "display_name": "Setagaya Ward",
+      "area_type": "ward",
+      "bounds": [
+        [
+          139.58248864,
+          35.59014636
+        ],
+        [
+          139.68639616,
+          35.68281567
+        ]
+      ],
+      "region_hint": "tokyo",
+      "coverage_status": "covered"
+    },
+    {
+      "id": "tokyo:shinagawa-ward",
+      "country_id": "jp",
+      "state_id": "tokyo",
+      "jurisdiction": "Shinagawa Ward",
+      "display_name": "Shinagawa Ward",
+      "area_type": "ward",
+      "bounds": [
+        [
+          139.69539272,
+          35.58492977
+        ],
+        [
+          139.77359552,
+          35.64184756
+        ]
+      ],
+      "region_hint": "tokyo",
+      "coverage_status": "covered"
+    },
+    {
+      "id": "tokyo:shinjuku-ward",
+      "country_id": "jp",
+      "state_id": "tokyo",
+      "jurisdiction": "Shinjuku Ward",
+      "display_name": "Shinjuku Ward",
+      "area_type": "ward",
+      "bounds": [
+        [
+          139.67343778,
+          35.67343308
+        ],
+        [
+          139.74587044,
+          35.72951995
         ]
       ],
       "region_hint": "tokyo",

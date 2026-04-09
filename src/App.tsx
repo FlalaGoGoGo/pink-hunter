@@ -148,6 +148,16 @@ const REGION_CITY_OVERRIDES: Partial<Record<string, CoverageRegion>> = {
   Laramie: "wy",
   Austin: "tx",
   "Adachi Ward": "tokyo",
+  "Chiyoda Ward": "tokyo",
+  "Edogawa Ward": "tokyo",
+  "Kita Ward": "tokyo",
+  "Koto Ward": "tokyo",
+  "Nakano Ward": "tokyo",
+  "Nerima Ward": "tokyo",
+  "Ota Ward": "tokyo",
+  "Setagaya Ward": "tokyo",
+  "Shinagawa Ward": "tokyo",
+  "Shinjuku Ward": "tokyo",
   Dallas: "tx",
   "Las Vegas": "nv",
   Arlington: "va",
@@ -304,6 +314,46 @@ const JURISDICTION_OVERRIDES: Partial<Record<string, { displayName: string; type
   },
   "Adachi Ward": {
     displayName: "Adachi Ward",
+    type: "ward"
+  },
+  "Chiyoda Ward": {
+    displayName: "Chiyoda Ward",
+    type: "ward"
+  },
+  "Edogawa Ward": {
+    displayName: "Edogawa Ward",
+    type: "ward"
+  },
+  "Kita Ward": {
+    displayName: "Kita Ward",
+    type: "ward"
+  },
+  "Koto Ward": {
+    displayName: "Koto Ward",
+    type: "ward"
+  },
+  "Nakano Ward": {
+    displayName: "Nakano Ward",
+    type: "ward"
+  },
+  "Nerima Ward": {
+    displayName: "Nerima Ward",
+    type: "ward"
+  },
+  "Ota Ward": {
+    displayName: "Ota Ward",
+    type: "ward"
+  },
+  "Setagaya Ward": {
+    displayName: "Setagaya Ward",
+    type: "ward"
+  },
+  "Shinagawa Ward": {
+    displayName: "Shinagawa Ward",
+    type: "ward"
+  },
+  "Shinjuku Ward": {
+    displayName: "Shinjuku Ward",
     type: "ward"
   }
 };

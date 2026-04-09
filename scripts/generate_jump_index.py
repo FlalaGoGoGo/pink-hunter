@@ -381,6 +381,16 @@ JURISDICTION_TYPE_OVERRIDES = {
     "Washington DC": "district",
     "North Vancouver District": "district",
     "Adachi Ward": "ward",
+    "Chiyoda Ward": "ward",
+    "Edogawa Ward": "ward",
+    "Kita Ward": "ward",
+    "Koto Ward": "ward",
+    "Nakano Ward": "ward",
+    "Nerima Ward": "ward",
+    "Ota Ward": "ward",
+    "Setagaya Ward": "ward",
+    "Shinagawa Ward": "ward",
+    "Shinjuku Ward": "ward",
 }
 
 
