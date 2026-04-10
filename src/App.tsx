@@ -135,12 +135,20 @@ const REGION_CITY_OVERRIDES: Partial<Record<string, CoverageRegion>> = {
   Denver: "co",
   Juneau: "ak",
   Honolulu: "hi",
+  Ebetsu: "hokkaido",
   Atlanta: "ga",
+  Chikuma: "nagano",
   "Johns Creek": "ga",
   "Sandy Springs": "ga",
   "Fayetteville AR": "ar",
   "Newark DE": "de",
   "Baton Rouge": "la",
+  Hadano: "kanagawa",
+  Hino: "tokyo",
+  Inagi: "tokyo",
+  Iwaki: "fukushima",
+  Kodaira: "tokyo",
+  Kunitachi: "tokyo",
   "Portland ME": "me",
   Oxford: "ms",
   Bozeman: "mt",
@@ -317,12 +325,32 @@ const JURISDICTION_OVERRIDES: Partial<Record<string, { displayName: string; type
     displayName: "Adachi Ward",
     type: "ward"
   },
+  "Arakawa Ward": {
+    displayName: "Arakawa Ward",
+    type: "ward"
+  },
+  "Bunkyo Ward": {
+    displayName: "Bunkyo Ward",
+    type: "ward"
+  },
   "Chiyoda Ward": {
     displayName: "Chiyoda Ward",
     type: "ward"
   },
+  "Chuo Ward": {
+    displayName: "Chuo Ward",
+    type: "ward"
+  },
   "Edogawa Ward": {
     displayName: "Edogawa Ward",
+    type: "ward"
+  },
+  "Itabashi Ward": {
+    displayName: "Itabashi Ward",
+    type: "ward"
+  },
+  "Katsushika Ward": {
+    displayName: "Katsushika Ward",
     type: "ward"
   },
   "Kita Ward": {
@@ -331,6 +359,14 @@ const JURISDICTION_OVERRIDES: Partial<Record<string, { displayName: string; type
   },
   "Koto Ward": {
     displayName: "Koto Ward",
+    type: "ward"
+  },
+  "Meguro Ward": {
+    displayName: "Meguro Ward",
+    type: "ward"
+  },
+  "Minato Ward": {
+    displayName: "Minato Ward",
     type: "ward"
   },
   "Nakano Ward": {
@@ -349,12 +385,32 @@ const JURISDICTION_OVERRIDES: Partial<Record<string, { displayName: string; type
     displayName: "Setagaya Ward",
     type: "ward"
   },
+  "Shibuya Ward": {
+    displayName: "Shibuya Ward",
+    type: "ward"
+  },
   "Shinagawa Ward": {
     displayName: "Shinagawa Ward",
     type: "ward"
   },
   "Shinjuku Ward": {
     displayName: "Shinjuku Ward",
+    type: "ward"
+  },
+  "Suginami Ward": {
+    displayName: "Suginami Ward",
+    type: "ward"
+  },
+  "Sumida Ward": {
+    displayName: "Sumida Ward",
+    type: "ward"
+  },
+  "Taito Ward": {
+    displayName: "Taito Ward",
+    type: "ward"
+  },
+  "Toshima Ward": {
+    displayName: "Toshima Ward",
     type: "ward"
   }
 };
@@ -1551,7 +1607,7 @@ const REGION_DEFAULT_FOCUS_BOUNDS: Partial<Record<CoverageRegion, Record<LayoutM
 type CountryKey = "us" | "ca" | "jp";
 
 const CANADIAN_COVERAGE_REGIONS = new Set<CoverageRegion>(["ab", "bc", "mb", "nb", "nl", "ns", "on", "pe", "qc", "sk"]);
-const JAPAN_COVERAGE_REGIONS = new Set<CoverageRegion>(["tokyo"]);
+const JAPAN_COVERAGE_REGIONS = new Set<CoverageRegion>(["fukushima", "hokkaido", "kanagawa", "nagano", "tokyo"]);
 
 const REGION_SORT_LABELS: Record<CoverageRegion, string> = {
   ab: "Alberta",
@@ -1566,12 +1622,15 @@ const REGION_SORT_LABELS: Record<CoverageRegion, string> = {
   dc: "Washington, DC",
   de: "Delaware",
   fl: "Florida",
+  fukushima: "Fukushima",
   ga: "Georgia",
   hi: "Hawaii",
+  hokkaido: "Hokkaido",
   ia: "Iowa",
   id: "Idaho",
   il: "Illinois",
   in: "Indiana",
+  kanagawa: "Kanagawa",
   ks: "Kansas",
   ky: "Kentucky",
   la: "Louisiana",
@@ -1590,6 +1649,7 @@ const REGION_SORT_LABELS: Record<CoverageRegion, string> = {
   ne: "Nebraska",
   nh: "New Hampshire",
   nj: "New Jersey",
+  nagano: "Nagano",
   nl: "Newfoundland and Labrador",
   nm: "New Mexico",
   ns: "Nova Scotia",

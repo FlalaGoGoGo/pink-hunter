@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-04-09T18:24:08.636508+00:00",
+  "generated_at": "2026-04-10T01:04:23.116453+00:00",
   "region": "tokyo",
   "strategy": "area_shard",
   "items": [
@@ -126,6 +126,250 @@
       ]
     },
     {
+      "jurisdiction": "Arakawa Ward",
+      "slug": "arakawa-ward",
+      "display_name": "Arakawa Ward",
+      "jurisdiction_type": "ward",
+      "state_province": "Tokyo",
+      "country": "Japan",
+      "bounds": [
+        [
+          139.7496375,
+          35.724611
+        ],
+        [
+          139.81466119,
+          35.75485517
+        ]
+      ],
+      "tree_count": 255,
+      "zip_codes": [
+        "None"
+      ],
+      "species_counts": {
+        "cherry": 11,
+        "plum": 1,
+        "peach": 105,
+        "magnolia": 4,
+        "crabapple": 134
+      },
+      "ownership_counts": {
+        "public": 255,
+        "private": 0,
+        "unknown": 0
+      },
+      "species_ownership_counts": {
+        "cherry": {
+          "public": 11,
+          "private": 0,
+          "unknown": 0
+        },
+        "plum": {
+          "public": 1,
+          "private": 0,
+          "unknown": 0
+        },
+        "peach": {
+          "public": 105,
+          "private": 0,
+          "unknown": 0
+        },
+        "magnolia": {
+          "public": 4,
+          "private": 0,
+          "unknown": 0
+        },
+        "crabapple": {
+          "public": 134,
+          "private": 0,
+          "unknown": 0
+        }
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "arakawa-ward-001",
+          "bounds": [
+            [
+              139.76205790000012,
+              35.72917618994307
+            ],
+            [
+              139.80888240000004,
+              35.75059592994259
+            ]
+          ],
+          "data_path": "/data/trees.tokyo.area.arakawa-ward.v2.geojson",
+          "tree_count": 255,
+          "ownership_counts": {
+            "public": 255,
+            "private": 0,
+            "unknown": 0
+          },
+          "species_counts": {
+            "cherry": 11,
+            "plum": 1,
+            "peach": 105,
+            "magnolia": 4,
+            "crabapple": 134
+          },
+          "species_ownership_counts": {
+            "cherry": {
+              "public": 11,
+              "private": 0,
+              "unknown": 0
+            },
+            "plum": {
+              "public": 1,
+              "private": 0,
+              "unknown": 0
+            },
+            "peach": {
+              "public": 105,
+              "private": 0,
+              "unknown": 0
+            },
+            "magnolia": {
+              "public": 4,
+              "private": 0,
+              "unknown": 0
+            },
+            "crabapple": {
+              "public": 134,
+              "private": 0,
+              "unknown": 0
+            }
+          },
+          "raw_bytes": 139223,
+          "gzip_bytes": 6209
+        }
+      ]
+    },
+    {
+      "jurisdiction": "Bunkyo Ward",
+      "slug": "bunkyo-ward",
+      "display_name": "Bunkyo Ward",
+      "jurisdiction_type": "ward",
+      "state_province": "Tokyo",
+      "country": "Japan",
+      "bounds": [
+        [
+          139.71747294,
+          35.69963992
+        ],
+        [
+          139.7724017,
+          35.73585544
+        ]
+      ],
+      "tree_count": 186,
+      "zip_codes": [
+        "None"
+      ],
+      "species_counts": {
+        "cherry": 69,
+        "plum": 15,
+        "peach": 53,
+        "magnolia": 34,
+        "crabapple": 15
+      },
+      "ownership_counts": {
+        "public": 186,
+        "private": 0,
+        "unknown": 0
+      },
+      "species_ownership_counts": {
+        "cherry": {
+          "public": 69,
+          "private": 0,
+          "unknown": 0
+        },
+        "plum": {
+          "public": 15,
+          "private": 0,
+          "unknown": 0
+        },
+        "peach": {
+          "public": 53,
+          "private": 0,
+          "unknown": 0
+        },
+        "magnolia": {
+          "public": 34,
+          "private": 0,
+          "unknown": 0
+        },
+        "crabapple": {
+          "public": 15,
+          "private": 0,
+          "unknown": 0
+        }
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "bunkyo-ward-001",
+          "bounds": [
+            [
+              139.71891400000013,
+              35.701980469943656
+            ],
+            [
+              139.77222450000016,
+              35.733317769942985
+            ]
+          ],
+          "data_path": "/data/trees.tokyo.area.bunkyo-ward.v2.geojson",
+          "tree_count": 186,
+          "ownership_counts": {
+            "public": 186,
+            "private": 0,
+            "unknown": 0
+          },
+          "species_counts": {
+            "cherry": 69,
+            "plum": 15,
+            "peach": 53,
+            "magnolia": 34,
+            "crabapple": 15
+          },
+          "species_ownership_counts": {
+            "cherry": {
+              "public": 69,
+              "private": 0,
+              "unknown": 0
+            },
+            "plum": {
+              "public": 15,
+              "private": 0,
+              "unknown": 0
+            },
+            "peach": {
+              "public": 53,
+              "private": 0,
+              "unknown": 0
+            },
+            "magnolia": {
+              "public": 34,
+              "private": 0,
+              "unknown": 0
+            },
+            "crabapple": {
+              "public": 15,
+              "private": 0,
+              "unknown": 0
+            }
+          },
+          "raw_bytes": 99672,
+          "gzip_bytes": 4879
+        }
+      ]
+    },
+    {
       "jurisdiction": "Chiyoda Ward",
       "slug": "chiyoda-ward",
       "display_name": "Chiyoda Ward",
@@ -244,6 +488,128 @@
           },
           "raw_bytes": 202759,
           "gzip_bytes": 7858
+        }
+      ]
+    },
+    {
+      "jurisdiction": "Chuo Ward",
+      "slug": "chuo-ward",
+      "display_name": "Chuo Ward",
+      "jurisdiction_type": "ward",
+      "state_province": "Tokyo",
+      "country": "Japan",
+      "bounds": [
+        [
+          139.75855105,
+          35.6460388
+        ],
+        [
+          139.79275161,
+          35.69657131
+        ]
+      ],
+      "tree_count": 288,
+      "zip_codes": [
+        "None"
+      ],
+      "species_counts": {
+        "cherry": 123,
+        "plum": 6,
+        "peach": 125,
+        "magnolia": 34,
+        "crabapple": 0
+      },
+      "ownership_counts": {
+        "public": 288,
+        "private": 0,
+        "unknown": 0
+      },
+      "species_ownership_counts": {
+        "cherry": {
+          "public": 123,
+          "private": 0,
+          "unknown": 0
+        },
+        "plum": {
+          "public": 6,
+          "private": 0,
+          "unknown": 0
+        },
+        "peach": {
+          "public": 125,
+          "private": 0,
+          "unknown": 0
+        },
+        "magnolia": {
+          "public": 34,
+          "private": 0,
+          "unknown": 0
+        },
+        "crabapple": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        }
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "chuo-ward-001",
+          "bounds": [
+            [
+              139.76608700000014,
+              35.6556519999447
+            ],
+            [
+              139.78812700000006,
+              35.687255999944014
+            ]
+          ],
+          "data_path": "/data/trees.tokyo.area.chuo-ward.v2.geojson",
+          "tree_count": 288,
+          "ownership_counts": {
+            "public": 288,
+            "private": 0,
+            "unknown": 0
+          },
+          "species_counts": {
+            "cherry": 123,
+            "plum": 6,
+            "peach": 125,
+            "magnolia": 34,
+            "crabapple": 0
+          },
+          "species_ownership_counts": {
+            "cherry": {
+              "public": 123,
+              "private": 0,
+              "unknown": 0
+            },
+            "plum": {
+              "public": 6,
+              "private": 0,
+              "unknown": 0
+            },
+            "peach": {
+              "public": 125,
+              "private": 0,
+              "unknown": 0
+            },
+            "magnolia": {
+              "public": 34,
+              "private": 0,
+              "unknown": 0
+            },
+            "crabapple": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            }
+          },
+          "raw_bytes": 152326,
+          "gzip_bytes": 6104
         }
       ]
     },
@@ -370,6 +736,494 @@
       ]
     },
     {
+      "jurisdiction": "Hino",
+      "slug": "hino",
+      "display_name": "Hino",
+      "jurisdiction_type": "city",
+      "state_province": "Tokyo",
+      "country": "Japan",
+      "bounds": [
+        [
+          139.3573237,
+          35.63931611
+        ],
+        [
+          139.44201525,
+          35.69163141
+        ]
+      ],
+      "tree_count": 1,
+      "zip_codes": [
+        "None"
+      ],
+      "species_counts": {
+        "cherry": 1,
+        "plum": 0,
+        "peach": 0,
+        "magnolia": 0,
+        "crabapple": 0
+      },
+      "ownership_counts": {
+        "public": 0,
+        "private": 0,
+        "unknown": 1
+      },
+      "species_ownership_counts": {
+        "cherry": {
+          "public": 0,
+          "private": 0,
+          "unknown": 1
+        },
+        "plum": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        },
+        "peach": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        },
+        "magnolia": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        },
+        "crabapple": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        }
+      },
+      "ownership_groups": [
+        "unknown"
+      ],
+      "shards": [
+        {
+          "id": "hino-001",
+          "bounds": [
+            [
+              139.37934573709845,
+              35.64357721951489
+            ],
+            [
+              139.37934573709845,
+              35.64357721951489
+            ]
+          ],
+          "data_path": "/data/trees.tokyo.area.hino.v2.geojson",
+          "tree_count": 1,
+          "ownership_counts": {
+            "public": 0,
+            "private": 0,
+            "unknown": 1
+          },
+          "species_counts": {
+            "cherry": 1,
+            "plum": 0,
+            "peach": 0,
+            "magnolia": 0,
+            "crabapple": 0
+          },
+          "species_ownership_counts": {
+            "cherry": {
+              "public": 0,
+              "private": 0,
+              "unknown": 1
+            },
+            "plum": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            },
+            "peach": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            },
+            "magnolia": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            },
+            "crabapple": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            }
+          },
+          "raw_bytes": 551,
+          "gzip_bytes": 379
+        }
+      ]
+    },
+    {
+      "jurisdiction": "Inagi",
+      "slug": "inagi",
+      "display_name": "Inagi",
+      "jurisdiction_type": "city",
+      "state_province": "Tokyo",
+      "country": "Japan",
+      "bounds": [
+        [
+          139.4641582,
+          35.60431217
+        ],
+        [
+          139.52538875,
+          35.65268156
+        ]
+      ],
+      "tree_count": 8,
+      "zip_codes": [
+        "None"
+      ],
+      "species_counts": {
+        "cherry": 8,
+        "plum": 0,
+        "peach": 0,
+        "magnolia": 0,
+        "crabapple": 0
+      },
+      "ownership_counts": {
+        "public": 0,
+        "private": 0,
+        "unknown": 8
+      },
+      "species_ownership_counts": {
+        "cherry": {
+          "public": 0,
+          "private": 0,
+          "unknown": 8
+        },
+        "plum": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        },
+        "peach": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        },
+        "magnolia": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        },
+        "crabapple": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        }
+      },
+      "ownership_groups": [
+        "unknown"
+      ],
+      "shards": [
+        {
+          "id": "inagi-001",
+          "bounds": [
+            [
+              139.4792413,
+              35.62576816
+            ],
+            [
+              139.5015855,
+              35.63675419
+            ]
+          ],
+          "data_path": "/data/trees.tokyo.area.inagi.v2.geojson",
+          "tree_count": 8,
+          "ownership_counts": {
+            "public": 0,
+            "private": 0,
+            "unknown": 8
+          },
+          "species_counts": {
+            "cherry": 8,
+            "plum": 0,
+            "peach": 0,
+            "magnolia": 0,
+            "crabapple": 0
+          },
+          "species_ownership_counts": {
+            "cherry": {
+              "public": 0,
+              "private": 0,
+              "unknown": 8
+            },
+            "plum": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            },
+            "peach": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            },
+            "magnolia": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            },
+            "crabapple": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            }
+          },
+          "raw_bytes": 3783,
+          "gzip_bytes": 581
+        }
+      ]
+    },
+    {
+      "jurisdiction": "Itabashi Ward",
+      "slug": "itabashi-ward",
+      "display_name": "Itabashi Ward",
+      "jurisdiction_type": "ward",
+      "state_province": "Tokyo",
+      "country": "Japan",
+      "bounds": [
+        [
+          139.62448891,
+          35.73586992
+        ],
+        [
+          139.72272776,
+          35.80087869
+        ]
+      ],
+      "tree_count": 130,
+      "zip_codes": [
+        "None"
+      ],
+      "species_counts": {
+        "cherry": 6,
+        "plum": 16,
+        "peach": 97,
+        "magnolia": 11,
+        "crabapple": 0
+      },
+      "ownership_counts": {
+        "public": 130,
+        "private": 0,
+        "unknown": 0
+      },
+      "species_ownership_counts": {
+        "cherry": {
+          "public": 6,
+          "private": 0,
+          "unknown": 0
+        },
+        "plum": {
+          "public": 16,
+          "private": 0,
+          "unknown": 0
+        },
+        "peach": {
+          "public": 97,
+          "private": 0,
+          "unknown": 0
+        },
+        "magnolia": {
+          "public": 11,
+          "private": 0,
+          "unknown": 0
+        },
+        "crabapple": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        }
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "itabashi-ward-001",
+          "bounds": [
+            [
+              139.65892410000015,
+              35.74986283994262
+            ],
+            [
+              139.71077060000013,
+              35.78847071994179
+            ]
+          ],
+          "data_path": "/data/trees.tokyo.area.itabashi-ward.v2.geojson",
+          "tree_count": 130,
+          "ownership_counts": {
+            "public": 130,
+            "private": 0,
+            "unknown": 0
+          },
+          "species_counts": {
+            "cherry": 6,
+            "plum": 16,
+            "peach": 97,
+            "magnolia": 11,
+            "crabapple": 0
+          },
+          "species_ownership_counts": {
+            "cherry": {
+              "public": 6,
+              "private": 0,
+              "unknown": 0
+            },
+            "plum": {
+              "public": 16,
+              "private": 0,
+              "unknown": 0
+            },
+            "peach": {
+              "public": 97,
+              "private": 0,
+              "unknown": 0
+            },
+            "magnolia": {
+              "public": 11,
+              "private": 0,
+              "unknown": 0
+            },
+            "crabapple": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            }
+          },
+          "raw_bytes": 70283,
+          "gzip_bytes": 3312
+        }
+      ]
+    },
+    {
+      "jurisdiction": "Katsushika Ward",
+      "slug": "katsushika-ward",
+      "display_name": "Katsushika Ward",
+      "jurisdiction_type": "ward",
+      "state_province": "Tokyo",
+      "country": "Japan",
+      "bounds": [
+        [
+          139.81321047,
+          35.71085314
+        ],
+        [
+          139.8945683,
+          35.79734639
+        ]
+      ],
+      "tree_count": 232,
+      "zip_codes": [
+        "None"
+      ],
+      "species_counts": {
+        "cherry": 7,
+        "plum": 0,
+        "peach": 6,
+        "magnolia": 180,
+        "crabapple": 39
+      },
+      "ownership_counts": {
+        "public": 232,
+        "private": 0,
+        "unknown": 0
+      },
+      "species_ownership_counts": {
+        "cherry": {
+          "public": 7,
+          "private": 0,
+          "unknown": 0
+        },
+        "plum": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        },
+        "peach": {
+          "public": 6,
+          "private": 0,
+          "unknown": 0
+        },
+        "magnolia": {
+          "public": 180,
+          "private": 0,
+          "unknown": 0
+        },
+        "crabapple": {
+          "public": 39,
+          "private": 0,
+          "unknown": 0
+        }
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "katsushika-ward-001",
+          "bounds": [
+            [
+              139.85323650000007,
+              35.716700519943394
+            ],
+            [
+              139.86978770000007,
+              35.79408073994162
+            ]
+          ],
+          "data_path": "/data/trees.tokyo.area.katsushika-ward.v2.geojson",
+          "tree_count": 232,
+          "ownership_counts": {
+            "public": 232,
+            "private": 0,
+            "unknown": 0
+          },
+          "species_counts": {
+            "cherry": 7,
+            "plum": 0,
+            "peach": 6,
+            "magnolia": 180,
+            "crabapple": 39
+          },
+          "species_ownership_counts": {
+            "cherry": {
+              "public": 7,
+              "private": 0,
+              "unknown": 0
+            },
+            "plum": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            },
+            "peach": {
+              "public": 6,
+              "private": 0,
+              "unknown": 0
+            },
+            "magnolia": {
+              "public": 180,
+              "private": 0,
+              "unknown": 0
+            },
+            "crabapple": {
+              "public": 39,
+              "private": 0,
+              "unknown": 0
+            }
+          },
+          "raw_bytes": 126786,
+          "gzip_bytes": 5426
+        }
+      ]
+    },
+    {
       "jurisdiction": "Kita Ward",
       "slug": "kita-ward",
       "display_name": "Kita Ward",
@@ -492,6 +1346,128 @@
       ]
     },
     {
+      "jurisdiction": "Kodaira",
+      "slug": "kodaira",
+      "display_name": "Kodaira",
+      "jurisdiction_type": "city",
+      "state_province": "Tokyo",
+      "country": "Japan",
+      "bounds": [
+        [
+          139.42284805,
+          35.70803925
+        ],
+        [
+          139.52467109,
+          35.74585833
+        ]
+      ],
+      "tree_count": 6,
+      "zip_codes": [
+        "None"
+      ],
+      "species_counts": {
+        "cherry": 3,
+        "plum": 1,
+        "peach": 0,
+        "magnolia": 2,
+        "crabapple": 0
+      },
+      "ownership_counts": {
+        "public": 0,
+        "private": 0,
+        "unknown": 6
+      },
+      "species_ownership_counts": {
+        "cherry": {
+          "public": 0,
+          "private": 0,
+          "unknown": 3
+        },
+        "plum": {
+          "public": 0,
+          "private": 0,
+          "unknown": 1
+        },
+        "peach": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        },
+        "magnolia": {
+          "public": 0,
+          "private": 0,
+          "unknown": 2
+        },
+        "crabapple": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        }
+      },
+      "ownership_groups": [
+        "unknown"
+      ],
+      "shards": [
+        {
+          "id": "kodaira-001",
+          "bounds": [
+            [
+              139.440826,
+              35.718014
+            ],
+            [
+              139.514282,
+              35.737789
+            ]
+          ],
+          "data_path": "/data/trees.tokyo.area.kodaira.v2.geojson",
+          "tree_count": 6,
+          "ownership_counts": {
+            "public": 0,
+            "private": 0,
+            "unknown": 6
+          },
+          "species_counts": {
+            "cherry": 3,
+            "plum": 1,
+            "peach": 0,
+            "magnolia": 2,
+            "crabapple": 0
+          },
+          "species_ownership_counts": {
+            "cherry": {
+              "public": 0,
+              "private": 0,
+              "unknown": 3
+            },
+            "plum": {
+              "public": 0,
+              "private": 0,
+              "unknown": 1
+            },
+            "peach": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            },
+            "magnolia": {
+              "public": 0,
+              "private": 0,
+              "unknown": 2
+            },
+            "crabapple": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            }
+          },
+          "raw_bytes": 2887,
+          "gzip_bytes": 576
+        }
+      ]
+    },
+    {
       "jurisdiction": "Koto Ward",
       "slug": "koto-ward",
       "display_name": "Koto Ward",
@@ -610,6 +1586,372 @@
           },
           "raw_bytes": 644358,
           "gzip_bytes": 25663
+        }
+      ]
+    },
+    {
+      "jurisdiction": "Kunitachi",
+      "slug": "kunitachi",
+      "display_name": "Kunitachi",
+      "jurisdiction_type": "city",
+      "state_province": "Tokyo",
+      "country": "Japan",
+      "bounds": [
+        [
+          139.41756837,
+          35.67063767
+        ],
+        [
+          139.459611,
+          35.70441508
+        ]
+      ],
+      "tree_count": 4,
+      "zip_codes": [
+        "None"
+      ],
+      "species_counts": {
+        "cherry": 3,
+        "plum": 1,
+        "peach": 0,
+        "magnolia": 0,
+        "crabapple": 0
+      },
+      "ownership_counts": {
+        "public": 0,
+        "private": 0,
+        "unknown": 4
+      },
+      "species_ownership_counts": {
+        "cherry": {
+          "public": 0,
+          "private": 0,
+          "unknown": 3
+        },
+        "plum": {
+          "public": 0,
+          "private": 0,
+          "unknown": 1
+        },
+        "peach": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        },
+        "magnolia": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        },
+        "crabapple": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        }
+      },
+      "ownership_groups": [
+        "unknown"
+      ],
+      "shards": [
+        {
+          "id": "kunitachi-001",
+          "bounds": [
+            [
+              139.434845,
+              35.677238
+            ],
+            [
+              139.449585,
+              35.693478
+            ]
+          ],
+          "data_path": "/data/trees.tokyo.area.kunitachi.v2.geojson",
+          "tree_count": 4,
+          "ownership_counts": {
+            "public": 0,
+            "private": 0,
+            "unknown": 4
+          },
+          "species_counts": {
+            "cherry": 3,
+            "plum": 1,
+            "peach": 0,
+            "magnolia": 0,
+            "crabapple": 0
+          },
+          "species_ownership_counts": {
+            "cherry": {
+              "public": 0,
+              "private": 0,
+              "unknown": 3
+            },
+            "plum": {
+              "public": 0,
+              "private": 0,
+              "unknown": 1
+            },
+            "peach": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            },
+            "magnolia": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            },
+            "crabapple": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            }
+          },
+          "raw_bytes": 1897,
+          "gzip_bytes": 459
+        }
+      ]
+    },
+    {
+      "jurisdiction": "Meguro Ward",
+      "slug": "meguro-ward",
+      "display_name": "Meguro Ward",
+      "jurisdiction_type": "ward",
+      "state_province": "Tokyo",
+      "country": "Japan",
+      "bounds": [
+        [
+          139.66148297,
+          35.60064714
+        ],
+        [
+          139.71765433,
+          35.66394875
+        ]
+      ],
+      "tree_count": 86,
+      "zip_codes": [
+        "None"
+      ],
+      "species_counts": {
+        "cherry": 25,
+        "plum": 1,
+        "peach": 3,
+        "magnolia": 0,
+        "crabapple": 57
+      },
+      "ownership_counts": {
+        "public": 86,
+        "private": 0,
+        "unknown": 0
+      },
+      "species_ownership_counts": {
+        "cherry": {
+          "public": 25,
+          "private": 0,
+          "unknown": 0
+        },
+        "plum": {
+          "public": 1,
+          "private": 0,
+          "unknown": 0
+        },
+        "peach": {
+          "public": 3,
+          "private": 0,
+          "unknown": 0
+        },
+        "magnolia": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        },
+        "crabapple": {
+          "public": 57,
+          "private": 0,
+          "unknown": 0
+        }
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "meguro-ward-001",
+          "bounds": [
+            [
+              139.6783263000002,
+              35.612057069945685
+            ],
+            [
+              139.70744640000018,
+              35.65547441994473
+            ]
+          ],
+          "data_path": "/data/trees.tokyo.area.meguro-ward.v2.geojson",
+          "tree_count": 86,
+          "ownership_counts": {
+            "public": 86,
+            "private": 0,
+            "unknown": 0
+          },
+          "species_counts": {
+            "cherry": 25,
+            "plum": 1,
+            "peach": 3,
+            "magnolia": 0,
+            "crabapple": 57
+          },
+          "species_ownership_counts": {
+            "cherry": {
+              "public": 25,
+              "private": 0,
+              "unknown": 0
+            },
+            "plum": {
+              "public": 1,
+              "private": 0,
+              "unknown": 0
+            },
+            "peach": {
+              "public": 3,
+              "private": 0,
+              "unknown": 0
+            },
+            "magnolia": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            },
+            "crabapple": {
+              "public": 57,
+              "private": 0,
+              "unknown": 0
+            }
+          },
+          "raw_bytes": 47006,
+          "gzip_bytes": 2558
+        }
+      ]
+    },
+    {
+      "jurisdiction": "Minato Ward",
+      "slug": "minato-ward",
+      "display_name": "Minato Ward",
+      "jurisdiction_type": "ward",
+      "state_province": "Tokyo",
+      "country": "Japan",
+      "bounds": [
+        [
+          139.70856389,
+          35.62308395
+        ],
+        [
+          139.78237634,
+          35.68283223
+        ]
+      ],
+      "tree_count": 86,
+      "zip_codes": [
+        "None"
+      ],
+      "species_counts": {
+        "cherry": 60,
+        "plum": 7,
+        "peach": 6,
+        "magnolia": 13,
+        "crabapple": 0
+      },
+      "ownership_counts": {
+        "public": 86,
+        "private": 0,
+        "unknown": 0
+      },
+      "species_ownership_counts": {
+        "cherry": {
+          "public": 60,
+          "private": 0,
+          "unknown": 0
+        },
+        "plum": {
+          "public": 7,
+          "private": 0,
+          "unknown": 0
+        },
+        "peach": {
+          "public": 6,
+          "private": 0,
+          "unknown": 0
+        },
+        "magnolia": {
+          "public": 13,
+          "private": 0,
+          "unknown": 0
+        },
+        "crabapple": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        }
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "minato-ward-001",
+          "bounds": [
+            [
+              139.71359600000014,
+              35.625725999945374
+            ],
+            [
+              139.77109400000012,
+              35.68107499994419
+            ]
+          ],
+          "data_path": "/data/trees.tokyo.area.minato-ward.v2.geojson",
+          "tree_count": 86,
+          "ownership_counts": {
+            "public": 86,
+            "private": 0,
+            "unknown": 0
+          },
+          "species_counts": {
+            "cherry": 60,
+            "plum": 7,
+            "peach": 6,
+            "magnolia": 13,
+            "crabapple": 0
+          },
+          "species_ownership_counts": {
+            "cherry": {
+              "public": 60,
+              "private": 0,
+              "unknown": 0
+            },
+            "plum": {
+              "public": 7,
+              "private": 0,
+              "unknown": 0
+            },
+            "peach": {
+              "public": 6,
+              "private": 0,
+              "unknown": 0
+            },
+            "magnolia": {
+              "public": 13,
+              "private": 0,
+              "unknown": 0
+            },
+            "crabapple": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            }
+          },
+          "raw_bytes": 46032,
+          "gzip_bytes": 2403
         }
       ]
     },
@@ -1102,6 +2444,128 @@
       ]
     },
     {
+      "jurisdiction": "Shibuya Ward",
+      "slug": "shibuya-ward",
+      "display_name": "Shibuya Ward",
+      "jurisdiction_type": "ward",
+      "state_province": "Tokyo",
+      "country": "Japan",
+      "bounds": [
+        [
+          139.66159125,
+          35.64145814
+        ],
+        [
+          139.72356022,
+          35.6920245
+        ]
+      ],
+      "tree_count": 186,
+      "zip_codes": [
+        "None"
+      ],
+      "species_counts": {
+        "cherry": 164,
+        "plum": 7,
+        "peach": 0,
+        "magnolia": 11,
+        "crabapple": 4
+      },
+      "ownership_counts": {
+        "public": 186,
+        "private": 0,
+        "unknown": 0
+      },
+      "species_ownership_counts": {
+        "cherry": {
+          "public": 164,
+          "private": 0,
+          "unknown": 0
+        },
+        "plum": {
+          "public": 7,
+          "private": 0,
+          "unknown": 0
+        },
+        "peach": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        },
+        "magnolia": {
+          "public": 11,
+          "private": 0,
+          "unknown": 0
+        },
+        "crabapple": {
+          "public": 4,
+          "private": 0,
+          "unknown": 0
+        }
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "shibuya-ward-001",
+          "bounds": [
+            [
+              139.68001420000016,
+              35.64651445994492
+            ],
+            [
+              139.7124403000001,
+              35.67308466994432
+            ]
+          ],
+          "data_path": "/data/trees.tokyo.area.shibuya-ward.v2.geojson",
+          "tree_count": 186,
+          "ownership_counts": {
+            "public": 186,
+            "private": 0,
+            "unknown": 0
+          },
+          "species_counts": {
+            "cherry": 164,
+            "plum": 7,
+            "peach": 0,
+            "magnolia": 11,
+            "crabapple": 4
+          },
+          "species_ownership_counts": {
+            "cherry": {
+              "public": 164,
+              "private": 0,
+              "unknown": 0
+            },
+            "plum": {
+              "public": 7,
+              "private": 0,
+              "unknown": 0
+            },
+            "peach": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            },
+            "magnolia": {
+              "public": 11,
+              "private": 0,
+              "unknown": 0
+            },
+            "crabapple": {
+              "public": 4,
+              "private": 0,
+              "unknown": 0
+            }
+          },
+          "raw_bytes": 101942,
+          "gzip_bytes": 4266
+        }
+      ]
+    },
+    {
       "jurisdiction": "Shinagawa Ward",
       "slug": "shinagawa-ward",
       "display_name": "Shinagawa Ward",
@@ -1342,6 +2806,494 @@
           },
           "raw_bytes": 405773,
           "gzip_bytes": 14055
+        }
+      ]
+    },
+    {
+      "jurisdiction": "Suginami Ward",
+      "slug": "suginami-ward",
+      "display_name": "Suginami Ward",
+      "jurisdiction_type": "ward",
+      "state_province": "Tokyo",
+      "country": "Japan",
+      "bounds": [
+        [
+          139.58491917,
+          35.66580551
+        ],
+        [
+          139.66776947,
+          35.73044889
+        ]
+      ],
+      "tree_count": 211,
+      "zip_codes": [
+        "None"
+      ],
+      "species_counts": {
+        "cherry": 99,
+        "plum": 0,
+        "peach": 9,
+        "magnolia": 28,
+        "crabapple": 75
+      },
+      "ownership_counts": {
+        "public": 211,
+        "private": 0,
+        "unknown": 0
+      },
+      "species_ownership_counts": {
+        "cherry": {
+          "public": 99,
+          "private": 0,
+          "unknown": 0
+        },
+        "plum": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        },
+        "peach": {
+          "public": 9,
+          "private": 0,
+          "unknown": 0
+        },
+        "magnolia": {
+          "public": 28,
+          "private": 0,
+          "unknown": 0
+        },
+        "crabapple": {
+          "public": 75,
+          "private": 0,
+          "unknown": 0
+        }
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "suginami-ward-001",
+          "bounds": [
+            [
+              139.60026710000025,
+              35.67256270994436
+            ],
+            [
+              139.65973300000022,
+              35.72887119994311
+            ]
+          ],
+          "data_path": "/data/trees.tokyo.area.suginami-ward.v2.geojson",
+          "tree_count": 211,
+          "ownership_counts": {
+            "public": 211,
+            "private": 0,
+            "unknown": 0
+          },
+          "species_counts": {
+            "cherry": 99,
+            "plum": 0,
+            "peach": 9,
+            "magnolia": 28,
+            "crabapple": 75
+          },
+          "species_ownership_counts": {
+            "cherry": {
+              "public": 99,
+              "private": 0,
+              "unknown": 0
+            },
+            "plum": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            },
+            "peach": {
+              "public": 9,
+              "private": 0,
+              "unknown": 0
+            },
+            "magnolia": {
+              "public": 28,
+              "private": 0,
+              "unknown": 0
+            },
+            "crabapple": {
+              "public": 75,
+              "private": 0,
+              "unknown": 0
+            }
+          },
+          "raw_bytes": 114701,
+          "gzip_bytes": 5238
+        }
+      ]
+    },
+    {
+      "jurisdiction": "Sumida Ward",
+      "slug": "sumida-ward",
+      "display_name": "Sumida Ward",
+      "jurisdiction_type": "ward",
+      "state_province": "Tokyo",
+      "country": "Japan",
+      "bounds": [
+        [
+          139.78864635,
+          35.68677572
+        ],
+        [
+          139.84215477,
+          35.74342872
+        ]
+      ],
+      "tree_count": 247,
+      "zip_codes": [
+        "None"
+      ],
+      "species_counts": {
+        "cherry": 23,
+        "plum": 0,
+        "peach": 16,
+        "magnolia": 208,
+        "crabapple": 0
+      },
+      "ownership_counts": {
+        "public": 247,
+        "private": 0,
+        "unknown": 0
+      },
+      "species_ownership_counts": {
+        "cherry": {
+          "public": 23,
+          "private": 0,
+          "unknown": 0
+        },
+        "plum": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        },
+        "peach": {
+          "public": 16,
+          "private": 0,
+          "unknown": 0
+        },
+        "magnolia": {
+          "public": 208,
+          "private": 0,
+          "unknown": 0
+        },
+        "crabapple": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        }
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "sumida-ward-001",
+          "bounds": [
+            [
+              139.7967841000001,
+              35.68827445994401
+            ],
+            [
+              139.81854710000005,
+              35.727980719943126
+            ]
+          ],
+          "data_path": "/data/trees.tokyo.area.sumida-ward.v2.geojson",
+          "tree_count": 247,
+          "ownership_counts": {
+            "public": 247,
+            "private": 0,
+            "unknown": 0
+          },
+          "species_counts": {
+            "cherry": 23,
+            "plum": 0,
+            "peach": 16,
+            "magnolia": 208,
+            "crabapple": 0
+          },
+          "species_ownership_counts": {
+            "cherry": {
+              "public": 23,
+              "private": 0,
+              "unknown": 0
+            },
+            "plum": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            },
+            "peach": {
+              "public": 16,
+              "private": 0,
+              "unknown": 0
+            },
+            "magnolia": {
+              "public": 208,
+              "private": 0,
+              "unknown": 0
+            },
+            "crabapple": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            }
+          },
+          "raw_bytes": 132530,
+          "gzip_bytes": 5804
+        }
+      ]
+    },
+    {
+      "jurisdiction": "Taito Ward",
+      "slug": "taito-ward",
+      "display_name": "Taito Ward",
+      "jurisdiction_type": "ward",
+      "state_province": "Tokyo",
+      "country": "Japan",
+      "bounds": [
+        [
+          139.76278878,
+          35.69470378
+        ],
+        [
+          139.80971861,
+          35.73121822
+        ]
+      ],
+      "tree_count": 186,
+      "zip_codes": [
+        "None"
+      ],
+      "species_counts": {
+        "cherry": 111,
+        "plum": 0,
+        "peach": 9,
+        "magnolia": 45,
+        "crabapple": 21
+      },
+      "ownership_counts": {
+        "public": 186,
+        "private": 0,
+        "unknown": 0
+      },
+      "species_ownership_counts": {
+        "cherry": {
+          "public": 111,
+          "private": 0,
+          "unknown": 0
+        },
+        "plum": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        },
+        "peach": {
+          "public": 9,
+          "private": 0,
+          "unknown": 0
+        },
+        "magnolia": {
+          "public": 45,
+          "private": 0,
+          "unknown": 0
+        },
+        "crabapple": {
+          "public": 21,
+          "private": 0,
+          "unknown": 0
+        }
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "taito-ward-001",
+          "bounds": [
+            [
+              139.7686816000001,
+              35.70124490994373
+            ],
+            [
+              139.80766140000006,
+              35.72974790994309
+            ]
+          ],
+          "data_path": "/data/trees.tokyo.area.taito-ward.v2.geojson",
+          "tree_count": 186,
+          "ownership_counts": {
+            "public": 186,
+            "private": 0,
+            "unknown": 0
+          },
+          "species_counts": {
+            "cherry": 111,
+            "plum": 0,
+            "peach": 9,
+            "magnolia": 45,
+            "crabapple": 21
+          },
+          "species_ownership_counts": {
+            "cherry": {
+              "public": 111,
+              "private": 0,
+              "unknown": 0
+            },
+            "plum": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            },
+            "peach": {
+              "public": 9,
+              "private": 0,
+              "unknown": 0
+            },
+            "magnolia": {
+              "public": 45,
+              "private": 0,
+              "unknown": 0
+            },
+            "crabapple": {
+              "public": 21,
+              "private": 0,
+              "unknown": 0
+            }
+          },
+          "raw_bytes": 99601,
+          "gzip_bytes": 4659
+        }
+      ]
+    },
+    {
+      "jurisdiction": "Toshima Ward",
+      "slug": "toshima-ward",
+      "display_name": "Toshima Ward",
+      "jurisdiction_type": "ward",
+      "state_province": "Tokyo",
+      "country": "Japan",
+      "bounds": [
+        [
+          139.67734431,
+          35.71226577
+        ],
+        [
+          139.75276044,
+          35.74579267
+        ]
+      ],
+      "tree_count": 263,
+      "zip_codes": [
+        "None"
+      ],
+      "species_counts": {
+        "cherry": 162,
+        "plum": 1,
+        "peach": 29,
+        "magnolia": 27,
+        "crabapple": 44
+      },
+      "ownership_counts": {
+        "public": 263,
+        "private": 0,
+        "unknown": 0
+      },
+      "species_ownership_counts": {
+        "cherry": {
+          "public": 162,
+          "private": 0,
+          "unknown": 0
+        },
+        "plum": {
+          "public": 1,
+          "private": 0,
+          "unknown": 0
+        },
+        "peach": {
+          "public": 29,
+          "private": 0,
+          "unknown": 0
+        },
+        "magnolia": {
+          "public": 27,
+          "private": 0,
+          "unknown": 0
+        },
+        "crabapple": {
+          "public": 44,
+          "private": 0,
+          "unknown": 0
+        }
+      },
+      "ownership_groups": [
+        "public"
+      ],
+      "shards": [
+        {
+          "id": "toshima-ward-001",
+          "bounds": [
+            [
+              139.67837640000016,
+              35.71442705994341
+            ],
+            [
+              139.73235830000016,
+              35.74177749994282
+            ]
+          ],
+          "data_path": "/data/trees.tokyo.area.toshima-ward.v2.geojson",
+          "tree_count": 263,
+          "ownership_counts": {
+            "public": 263,
+            "private": 0,
+            "unknown": 0
+          },
+          "species_counts": {
+            "cherry": 162,
+            "plum": 1,
+            "peach": 29,
+            "magnolia": 27,
+            "crabapple": 44
+          },
+          "species_ownership_counts": {
+            "cherry": {
+              "public": 162,
+              "private": 0,
+              "unknown": 0
+            },
+            "plum": {
+              "public": 1,
+              "private": 0,
+              "unknown": 0
+            },
+            "peach": {
+              "public": 29,
+              "private": 0,
+              "unknown": 0
+            },
+            "magnolia": {
+              "public": 27,
+              "private": 0,
+              "unknown": 0
+            },
+            "crabapple": {
+              "public": 44,
+              "private": 0,
+              "unknown": 0
+            }
+          },
+          "raw_bytes": 141691,
+          "gzip_bytes": 6474
         }
       ]
     }

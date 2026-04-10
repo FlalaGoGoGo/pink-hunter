@@ -237,6 +237,10 @@ TORONTO_DATASET_PAGE = "https://open.toronto.ca/dataset/street-tree-data/"
 TOKYO_METRO_STREET_TREES_ZIP = "https://data.storage.data.metro.tokyo.lg.jp/toshiseibi/02_gairoju.zip"
 TOKYO_METRO_STREET_TREES_DATASET_PAGE = "https://catalog.data.metro.tokyo.lg.jp/dataset/t000008d2000000024"
 TOKYO_ADMIN_BOUNDARY_ZIP = "https://nlftp.mlit.go.jp/ksj/gml/data/N03/N03-2024/N03-20240101_13_GML.zip"
+HOKKAIDO_ADMIN_BOUNDARY_ZIP = "https://nlftp.mlit.go.jp/ksj/gml/data/N03/N03-2024/N03-20240101_01_GML.zip"
+FUKUSHIMA_ADMIN_BOUNDARY_ZIP = "https://nlftp.mlit.go.jp/ksj/gml/data/N03/N03-2024/N03-20240101_07_GML.zip"
+KANAGAWA_ADMIN_BOUNDARY_ZIP = "https://nlftp.mlit.go.jp/ksj/gml/data/N03/N03-2024/N03-20240101_14_GML.zip"
+NAGANO_ADMIN_BOUNDARY_ZIP = "https://nlftp.mlit.go.jp/ksj/gml/data/N03/N03-2024/N03-20240101_20_GML.zip"
 TOKYO_ADMIN_BOUNDARY_DATASET_PAGE = "https://nlftp.mlit.go.jp/ksj/gml/datalist/KsjTmplt-N03-2024.html"
 HALIFAX_HRM_BOUNDARY_LAYER = (
     "https://services2.arcgis.com/11XBiaBYA9Ep0yNJ/arcgis/rest/services/NSPW_HRM_Service_Exchange_Boundary_2022/FeatureServer/0"
@@ -283,10 +287,13 @@ REGION_LABELS: dict[str, str] = {
     "fl": "FL",
     "ga": "GA",
     "hi": "HI",
+    "hokkaido": "Hokkaido",
     "ia": "IA",
     "id": "ID",
     "il": "IL",
     "in": "IN",
+    "fukushima": "Fukushima",
+    "kanagawa": "Kanagawa",
     "ks": "KS",
     "ky": "KY",
     "la": "LA",
@@ -305,6 +312,7 @@ REGION_LABELS: dict[str, str] = {
     "ne": "NE",
     "nh": "NH",
     "nj": "NJ",
+    "nagano": "Nagano",
     "nl": "NL",
     "nm": "NM",
     "ns": "NS",
@@ -335,16 +343,36 @@ REGION_LABELS: dict[str, str] = {
 SPECIES_GROUPS: list[str] = ["cherry", "plum", "peach", "magnolia", "crabapple"]
 REGION_CITY_OVERRIDES: dict[str, str] = {
     "Adachi Ward": "tokyo",
+    "Arakawa Ward": "tokyo",
+    "Bunkyo Ward": "tokyo",
+    "Chikuma": "nagano",
     "Chiyoda Ward": "tokyo",
+    "Chuo Ward": "tokyo",
+    "Ebetsu": "hokkaido",
     "Edogawa Ward": "tokyo",
+    "Hadano": "kanagawa",
+    "Hino": "tokyo",
+    "Inagi": "tokyo",
+    "Itabashi Ward": "tokyo",
+    "Iwaki": "fukushima",
     "Kita Ward": "tokyo",
     "Koto Ward": "tokyo",
+    "Kunitachi": "tokyo",
+    "Katsushika Ward": "tokyo",
+    "Kodaira": "tokyo",
+    "Meguro Ward": "tokyo",
+    "Minato Ward": "tokyo",
     "Nakano Ward": "tokyo",
     "Nerima Ward": "tokyo",
     "Ota Ward": "tokyo",
     "Setagaya Ward": "tokyo",
+    "Shibuya Ward": "tokyo",
     "Shinagawa Ward": "tokyo",
     "Shinjuku Ward": "tokyo",
+    "Suginami Ward": "tokyo",
+    "Sumida Ward": "tokyo",
+    "Taito Ward": "tokyo",
+    "Toshima Ward": "tokyo",
     "Albuquerque": "nm",
     "Ames": "ia",
     "Andover": "ks",
@@ -725,6 +753,20 @@ CITY_BOUNDARY_HINTS: dict[str, dict[str, str]] = {
         "jp_municipality_name": "足立区",
         "jp_boundary_zip_url": TOKYO_ADMIN_BOUNDARY_ZIP,
     },
+    "Arakawa Ward": {
+        "state": "tokyo",
+        "boundary_source": "japan_n03_geojson",
+        "jp_prefecture_name": "東京都",
+        "jp_municipality_name": "荒川区",
+        "jp_boundary_zip_url": TOKYO_ADMIN_BOUNDARY_ZIP,
+    },
+    "Bunkyo Ward": {
+        "state": "tokyo",
+        "boundary_source": "japan_n03_geojson",
+        "jp_prefecture_name": "東京都",
+        "jp_municipality_name": "文京区",
+        "jp_boundary_zip_url": TOKYO_ADMIN_BOUNDARY_ZIP,
+    },
     "Chiyoda Ward": {
         "state": "tokyo",
         "boundary_source": "japan_n03_geojson",
@@ -732,12 +774,68 @@ CITY_BOUNDARY_HINTS: dict[str, dict[str, str]] = {
         "jp_municipality_name": "千代田区",
         "jp_boundary_zip_url": TOKYO_ADMIN_BOUNDARY_ZIP,
     },
+    "Chikuma": {
+        "state": "nagano",
+        "boundary_source": "japan_n03_geojson",
+        "jp_prefecture_name": "長野県",
+        "jp_municipality_name": "千曲市",
+        "jp_boundary_zip_url": NAGANO_ADMIN_BOUNDARY_ZIP,
+    },
+    "Chuo Ward": {
+        "state": "tokyo",
+        "boundary_source": "japan_n03_geojson",
+        "jp_prefecture_name": "東京都",
+        "jp_municipality_name": "中央区",
+        "jp_boundary_zip_url": TOKYO_ADMIN_BOUNDARY_ZIP,
+    },
+    "Ebetsu": {
+        "state": "hokkaido",
+        "boundary_source": "japan_n03_geojson",
+        "jp_prefecture_name": "北海道",
+        "jp_municipality_name": "江別市",
+        "jp_boundary_zip_url": HOKKAIDO_ADMIN_BOUNDARY_ZIP,
+    },
     "Edogawa Ward": {
         "state": "tokyo",
         "boundary_source": "japan_n03_geojson",
         "jp_prefecture_name": "東京都",
         "jp_municipality_name": "江戸川区",
         "jp_boundary_zip_url": TOKYO_ADMIN_BOUNDARY_ZIP,
+    },
+    "Hadano": {
+        "state": "kanagawa",
+        "boundary_source": "japan_n03_geojson",
+        "jp_prefecture_name": "神奈川県",
+        "jp_municipality_name": "秦野市",
+        "jp_boundary_zip_url": KANAGAWA_ADMIN_BOUNDARY_ZIP,
+    },
+    "Hino": {
+        "state": "tokyo",
+        "boundary_source": "japan_n03_geojson",
+        "jp_prefecture_name": "東京都",
+        "jp_municipality_name": "日野市",
+        "jp_boundary_zip_url": TOKYO_ADMIN_BOUNDARY_ZIP,
+    },
+    "Inagi": {
+        "state": "tokyo",
+        "boundary_source": "japan_n03_geojson",
+        "jp_prefecture_name": "東京都",
+        "jp_municipality_name": "稲城市",
+        "jp_boundary_zip_url": TOKYO_ADMIN_BOUNDARY_ZIP,
+    },
+    "Itabashi Ward": {
+        "state": "tokyo",
+        "boundary_source": "japan_n03_geojson",
+        "jp_prefecture_name": "東京都",
+        "jp_municipality_name": "板橋区",
+        "jp_boundary_zip_url": TOKYO_ADMIN_BOUNDARY_ZIP,
+    },
+    "Iwaki": {
+        "state": "fukushima",
+        "boundary_source": "japan_n03_geojson",
+        "jp_prefecture_name": "福島県",
+        "jp_municipality_name": "いわき市",
+        "jp_boundary_zip_url": FUKUSHIMA_ADMIN_BOUNDARY_ZIP,
     },
     "Kita Ward": {
         "state": "tokyo",
@@ -751,6 +849,41 @@ CITY_BOUNDARY_HINTS: dict[str, dict[str, str]] = {
         "boundary_source": "japan_n03_geojson",
         "jp_prefecture_name": "東京都",
         "jp_municipality_name": "江東区",
+        "jp_boundary_zip_url": TOKYO_ADMIN_BOUNDARY_ZIP,
+    },
+    "Kunitachi": {
+        "state": "tokyo",
+        "boundary_source": "japan_n03_geojson",
+        "jp_prefecture_name": "東京都",
+        "jp_municipality_name": "国立市",
+        "jp_boundary_zip_url": TOKYO_ADMIN_BOUNDARY_ZIP,
+    },
+    "Katsushika Ward": {
+        "state": "tokyo",
+        "boundary_source": "japan_n03_geojson",
+        "jp_prefecture_name": "東京都",
+        "jp_municipality_name": "葛飾区",
+        "jp_boundary_zip_url": TOKYO_ADMIN_BOUNDARY_ZIP,
+    },
+    "Kodaira": {
+        "state": "tokyo",
+        "boundary_source": "japan_n03_geojson",
+        "jp_prefecture_name": "東京都",
+        "jp_municipality_name": "小平市",
+        "jp_boundary_zip_url": TOKYO_ADMIN_BOUNDARY_ZIP,
+    },
+    "Meguro Ward": {
+        "state": "tokyo",
+        "boundary_source": "japan_n03_geojson",
+        "jp_prefecture_name": "東京都",
+        "jp_municipality_name": "目黒区",
+        "jp_boundary_zip_url": TOKYO_ADMIN_BOUNDARY_ZIP,
+    },
+    "Minato Ward": {
+        "state": "tokyo",
+        "boundary_source": "japan_n03_geojson",
+        "jp_prefecture_name": "東京都",
+        "jp_municipality_name": "港区",
         "jp_boundary_zip_url": TOKYO_ADMIN_BOUNDARY_ZIP,
     },
     "Nakano Ward": {
@@ -781,6 +914,13 @@ CITY_BOUNDARY_HINTS: dict[str, dict[str, str]] = {
         "jp_municipality_name": "世田谷区",
         "jp_boundary_zip_url": TOKYO_ADMIN_BOUNDARY_ZIP,
     },
+    "Shibuya Ward": {
+        "state": "tokyo",
+        "boundary_source": "japan_n03_geojson",
+        "jp_prefecture_name": "東京都",
+        "jp_municipality_name": "渋谷区",
+        "jp_boundary_zip_url": TOKYO_ADMIN_BOUNDARY_ZIP,
+    },
     "Shinagawa Ward": {
         "state": "tokyo",
         "boundary_source": "japan_n03_geojson",
@@ -793,6 +933,34 @@ CITY_BOUNDARY_HINTS: dict[str, dict[str, str]] = {
         "boundary_source": "japan_n03_geojson",
         "jp_prefecture_name": "東京都",
         "jp_municipality_name": "新宿区",
+        "jp_boundary_zip_url": TOKYO_ADMIN_BOUNDARY_ZIP,
+    },
+    "Suginami Ward": {
+        "state": "tokyo",
+        "boundary_source": "japan_n03_geojson",
+        "jp_prefecture_name": "東京都",
+        "jp_municipality_name": "杉並区",
+        "jp_boundary_zip_url": TOKYO_ADMIN_BOUNDARY_ZIP,
+    },
+    "Sumida Ward": {
+        "state": "tokyo",
+        "boundary_source": "japan_n03_geojson",
+        "jp_prefecture_name": "東京都",
+        "jp_municipality_name": "墨田区",
+        "jp_boundary_zip_url": TOKYO_ADMIN_BOUNDARY_ZIP,
+    },
+    "Taito Ward": {
+        "state": "tokyo",
+        "boundary_source": "japan_n03_geojson",
+        "jp_prefecture_name": "東京都",
+        "jp_municipality_name": "台東区",
+        "jp_boundary_zip_url": TOKYO_ADMIN_BOUNDARY_ZIP,
+    },
+    "Toshima Ward": {
+        "state": "tokyo",
+        "boundary_source": "japan_n03_geojson",
+        "jp_prefecture_name": "東京都",
+        "jp_municipality_name": "豊島区",
         "jp_boundary_zip_url": TOKYO_ADMIN_BOUNDARY_ZIP,
     },
     "Ann Arbor": {"state": "26"},
@@ -1353,7 +1521,7 @@ BOUNDARY_CACHE_ROOT = REFERENCE_DIR / "boundaries"
 BOUNDARY_CATALOG_PATH = REFERENCE_DIR / "boundary_catalog.v1.json"
 COVERAGE_STATUS_REGISTRY_PATH = REFERENCE_DIR / "coverage_status_registry.v1.json"
 CANADIAN_REGION_IDS = {"ab", "bc", "mb", "nb", "nl", "ns", "on", "pe", "qc", "sk"}
-JAPAN_REGION_IDS = {"tokyo"}
+JAPAN_REGION_IDS = {"fukushima", "hokkaido", "kanagawa", "nagano", "tokyo"}
 
 UW_SUPPLEMENTAL_PATH = SUPPLEMENTAL_DIR / "uw_prunus_overpass.json"
 UW_FEATURED_AREA_REFERENCE_PATH = REFERENCE_DIR / "uw_featured_area_reference.v1.json"
@@ -2563,8 +2731,27 @@ def canonical_ownership(raw_value: str | None) -> str:
     return "public"
 
 
+def japanese_common_name_species_group(common_name: str | None) -> str | None:
+    text = normalize_lookup_text(common_name)
+    if not text:
+        return None
+    if any(token in text for token in ("やまもも", "ヤマモモ", "山桃")):
+        return None
+    if any(token in text for token in ("さくら", "サクラ", "桜", "そめいよしの", "ソメイヨシノ", "しだれざくら", "シダレザクラ", "枝垂桜", "やえざくら", "ヤエザクラ", "やまざくら", "ヤマザクラ", "えぞやまざくら", "エゾヤマザクラ", "えどひがん", "エドヒガン")):
+        return "cherry"
+    if any(token in text for token in ("うめ", "ウメ", "梅", "あんず", "アンズ", "杏")):
+        return "plum"
+    if any(token in text for token in ("こぶし", "コブシ", "しでこぶし", "シデコブシ", "もくれん", "モクレン", "木蓮", "はくもくれん", "ハクモクレン", "白木蓮", "しもくれん", "シモクレン", "紫木蓮")):
+        return "magnolia"
+    if any(token in text for token in ("かいどう", "カイドウ", "海棠", "りんご", "リンゴ", "ひめりんご", "ヒメリンゴ", "えぞのこりんご", "エゾノコリンゴ")):
+        return "crabapple"
+    return None
+
+
 def generic_scientific_name_for_common_hint(common_name: str | None) -> str:
     hinted_species = tree_hint_species_group(common_name)
+    if not hinted_species:
+        hinted_species = japanese_common_name_species_group(common_name)
     if hinted_species in {"cherry", "plum", "peach"}:
         return "Prunus species"
     if hinted_species == "magnolia":
@@ -3103,6 +3290,8 @@ def classify_tree_record(
     if not species_group and subtype_match:
         species_group = subtype_match["species_group"]
     if not species_group:
+        species_group = tree_hint_species_group(common_name) or japanese_common_name_species_group(common_name)
+    if not species_group:
         return None, None
 
     subtype_name = subtype_match["subtype_name"] if subtype_match else fallback_subtype_name(
@@ -3241,11 +3430,16 @@ def load_first_feature(path: Path) -> dict[str, Any]:
 
 def write_json_atomic(path: Path, payload: Any, *, pretty: bool = False) -> None:
     ensure_dir(path.parent)
-    tmp_path = path.with_name(f"{path.name}.tmp")
-    tmp_path.write_text(
-        json.dumps(payload, ensure_ascii=False, indent=2 if pretty else None),
+    with _require_tempfile().NamedTemporaryFile(
+        "w",
         encoding="utf-8",
-    )
+        dir=path.parent,
+        prefix=f"{path.name}.",
+        suffix=".tmp",
+        delete=False,
+    ) as handle:
+        handle.write(json.dumps(payload, ensure_ascii=False, indent=2 if pretty else None))
+        tmp_path = Path(handle.name)
     tmp_path.replace(path)
 
 
@@ -3440,8 +3634,8 @@ def region_for_city(city: str) -> str:
         return REGION_CITY_OVERRIDES[city]
     hint = CITY_BOUNDARY_HINTS.get(city, {})
     state = str(hint.get("state", "")).strip()
-    if state == "tokyo":
-        return "tokyo"
+    if state in JAPAN_REGION_IDS:
+        return state
     if state == "53":
         return "wa"
     if state == "06":
@@ -4059,8 +4253,15 @@ def fetch_special_city_boundary_feature(city: str) -> dict[str, Any] | None:
         boundary_zip_url = str(hint.get("jp_boundary_zip_url") or TOKYO_ADMIN_BOUNDARY_ZIP).strip()
         prefecture_name = str(hint.get("jp_prefecture_name") or "").strip()
         municipality_name = str(hint.get("jp_municipality_name") or city).strip()
+        boundary_member_hint = str(hint.get("jp_boundary_member_hint") or "").strip()
+        if not boundary_member_hint:
+            zip_name = Path(boundary_zip_url).name
+            if zip_name.endswith("_GML.zip"):
+                boundary_member_hint = zip_name.replace("_GML.zip", ".geojson")
+            else:
+                boundary_member_hint = ".geojson"
         polygons: list[Any] = []
-        for feature in load_zipped_geojson_features(boundary_zip_url, member_hint=".geojson"):
+        for feature in load_zipped_geojson_features(boundary_zip_url, member_hint=boundary_member_hint):
             properties = feature.get("properties") or {}
             if prefecture_name and str(properties.get("N03_001") or "").strip() != prefecture_name:
                 continue
@@ -7377,7 +7578,11 @@ def main() -> int:
     country_by_region = {
         "ab": "Canada",
         "bc": "Canada",
+        "fukushima": "Japan",
+        "hokkaido": "Japan",
+        "kanagawa": "Japan",
         "mb": "Canada",
+        "nagano": "Japan",
         "nb": "Canada",
         "nl": "Canada",
         "ns": "Canada",

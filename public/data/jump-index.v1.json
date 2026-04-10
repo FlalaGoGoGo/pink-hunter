@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-04-09T18:24:08.636508+00:00",
+  "generated_at": "2026-04-10T01:04:31.825929+00:00",
   "countries": [
     {
       "id": "ca",
@@ -22,12 +22,12 @@
       "emoji": "🇯🇵",
       "bounds": [
         [
-          139.73570486,
+          -123.08,
           35.73856847
         ],
         [
           139.85880036,
-          35.81770595
+          48.08
         ]
       ]
     },
@@ -268,6 +268,74 @@
         ]
       ],
       "region_hint": null
+    },
+    {
+      "id": "fukushima",
+      "country_id": "jp",
+      "code": "Fukushima",
+      "label": "Fukushima",
+      "bounds": [
+        [
+          -123.08,
+          47.02
+        ],
+        [
+          -121.55,
+          48.08
+        ]
+      ],
+      "region_hint": "fukushima"
+    },
+    {
+      "id": "hokkaido",
+      "country_id": "jp",
+      "code": "Hokkaido",
+      "label": "Hokkaido",
+      "bounds": [
+        [
+          -123.08,
+          47.02
+        ],
+        [
+          -121.55,
+          48.08
+        ]
+      ],
+      "region_hint": "hokkaido"
+    },
+    {
+      "id": "kanagawa",
+      "country_id": "jp",
+      "code": "Kanagawa",
+      "label": "Kanagawa",
+      "bounds": [
+        [
+          -123.08,
+          47.02
+        ],
+        [
+          -121.55,
+          48.08
+        ]
+      ],
+      "region_hint": "kanagawa"
+    },
+    {
+      "id": "nagano",
+      "country_id": "jp",
+      "code": "Nagano",
+      "label": "Nagano",
+      "bounds": [
+        [
+          -123.08,
+          47.02
+        ],
+        [
+          -121.55,
+          48.08
+        ]
+      ],
+      "region_hint": "nagano"
     },
     {
       "id": "tokyo",
@@ -3016,6 +3084,86 @@
       "coverage_status": "covered"
     },
     {
+      "id": "fukushima:iwaki",
+      "country_id": "jp",
+      "state_id": "fukushima",
+      "jurisdiction": "Iwaki",
+      "display_name": "Iwaki",
+      "area_type": "city",
+      "bounds": [
+        [
+          140.56588678,
+          36.85616753
+        ],
+        [
+          141.00932126,
+          37.3195402
+        ]
+      ],
+      "region_hint": "fukushima",
+      "coverage_status": "covered"
+    },
+    {
+      "id": "hokkaido:ebetsu",
+      "country_id": "jp",
+      "state_id": "hokkaido",
+      "jurisdiction": "Ebetsu",
+      "display_name": "Ebetsu",
+      "area_type": "city",
+      "bounds": [
+        [
+          141.44439167,
+          43.01606917
+        ],
+        [
+          141.66880416,
+          43.17271472
+        ]
+      ],
+      "region_hint": "hokkaido",
+      "coverage_status": "covered"
+    },
+    {
+      "id": "kanagawa:hadano",
+      "country_id": "jp",
+      "state_id": "kanagawa",
+      "jurisdiction": "Hadano",
+      "display_name": "Hadano",
+      "area_type": "city",
+      "bounds": [
+        [
+          139.1412428,
+          35.34596561
+        ],
+        [
+          139.29189776,
+          35.46123086
+        ]
+      ],
+      "region_hint": "kanagawa",
+      "coverage_status": "covered"
+    },
+    {
+      "id": "nagano:chikuma",
+      "country_id": "jp",
+      "state_id": "nagano",
+      "jurisdiction": "Chikuma",
+      "display_name": "Chikuma",
+      "area_type": "city",
+      "bounds": [
+        [
+          138.02962939,
+          36.4365342
+        ],
+        [
+          138.20186119,
+          36.56008175
+        ]
+      ],
+      "region_hint": "nagano",
+      "coverage_status": "covered"
+    },
+    {
       "id": "tokyo:adachi-ward",
       "country_id": "jp",
       "state_id": "tokyo",
@@ -3030,6 +3178,46 @@
         [
           139.85880036,
           35.81770595
+        ]
+      ],
+      "region_hint": "tokyo",
+      "coverage_status": "covered"
+    },
+    {
+      "id": "tokyo:arakawa-ward",
+      "country_id": "jp",
+      "state_id": "tokyo",
+      "jurisdiction": "Arakawa Ward",
+      "display_name": "Arakawa Ward",
+      "area_type": "ward",
+      "bounds": [
+        [
+          139.7496375,
+          35.724611
+        ],
+        [
+          139.81466119,
+          35.75485517
+        ]
+      ],
+      "region_hint": "tokyo",
+      "coverage_status": "covered"
+    },
+    {
+      "id": "tokyo:bunkyo-ward",
+      "country_id": "jp",
+      "state_id": "tokyo",
+      "jurisdiction": "Bunkyo Ward",
+      "display_name": "Bunkyo Ward",
+      "area_type": "ward",
+      "bounds": [
+        [
+          139.71747294,
+          35.69963992
+        ],
+        [
+          139.7724017,
+          35.73585544
         ]
       ],
       "region_hint": "tokyo",
@@ -3056,6 +3244,26 @@
       "coverage_status": "covered"
     },
     {
+      "id": "tokyo:chuo-ward",
+      "country_id": "jp",
+      "state_id": "tokyo",
+      "jurisdiction": "Chuo Ward",
+      "display_name": "Chuo Ward",
+      "area_type": "ward",
+      "bounds": [
+        [
+          139.75855105,
+          35.6460388
+        ],
+        [
+          139.79275161,
+          35.69657131
+        ]
+      ],
+      "region_hint": "tokyo",
+      "coverage_status": "covered"
+    },
+    {
       "id": "tokyo:edogawa-ward",
       "country_id": "jp",
       "state_id": "tokyo",
@@ -3070,6 +3278,86 @@
         [
           139.91890837,
           35.75076503
+        ]
+      ],
+      "region_hint": "tokyo",
+      "coverage_status": "covered"
+    },
+    {
+      "id": "tokyo:hino",
+      "country_id": "jp",
+      "state_id": "tokyo",
+      "jurisdiction": "Hino",
+      "display_name": "Hino",
+      "area_type": "city",
+      "bounds": [
+        [
+          139.3573237,
+          35.63931611
+        ],
+        [
+          139.44201525,
+          35.69163141
+        ]
+      ],
+      "region_hint": "tokyo",
+      "coverage_status": "covered"
+    },
+    {
+      "id": "tokyo:inagi",
+      "country_id": "jp",
+      "state_id": "tokyo",
+      "jurisdiction": "Inagi",
+      "display_name": "Inagi",
+      "area_type": "city",
+      "bounds": [
+        [
+          139.4641582,
+          35.60431217
+        ],
+        [
+          139.52538875,
+          35.65268156
+        ]
+      ],
+      "region_hint": "tokyo",
+      "coverage_status": "covered"
+    },
+    {
+      "id": "tokyo:itabashi-ward",
+      "country_id": "jp",
+      "state_id": "tokyo",
+      "jurisdiction": "Itabashi Ward",
+      "display_name": "Itabashi Ward",
+      "area_type": "ward",
+      "bounds": [
+        [
+          139.62448891,
+          35.73586992
+        ],
+        [
+          139.72272776,
+          35.80087869
+        ]
+      ],
+      "region_hint": "tokyo",
+      "coverage_status": "covered"
+    },
+    {
+      "id": "tokyo:katsushika-ward",
+      "country_id": "jp",
+      "state_id": "tokyo",
+      "jurisdiction": "Katsushika Ward",
+      "display_name": "Katsushika Ward",
+      "area_type": "ward",
+      "bounds": [
+        [
+          139.81321047,
+          35.71085314
+        ],
+        [
+          139.8945683,
+          35.79734639
         ]
       ],
       "region_hint": "tokyo",
@@ -3096,6 +3384,26 @@
       "coverage_status": "covered"
     },
     {
+      "id": "tokyo:kodaira",
+      "country_id": "jp",
+      "state_id": "tokyo",
+      "jurisdiction": "Kodaira",
+      "display_name": "Kodaira",
+      "area_type": "city",
+      "bounds": [
+        [
+          139.42284805,
+          35.70803925
+        ],
+        [
+          139.52467109,
+          35.74585833
+        ]
+      ],
+      "region_hint": "tokyo",
+      "coverage_status": "covered"
+    },
+    {
       "id": "tokyo:koto-ward",
       "country_id": "jp",
       "state_id": "tokyo",
@@ -3110,6 +3418,66 @@
         [
           139.84822678,
           35.70800764
+        ]
+      ],
+      "region_hint": "tokyo",
+      "coverage_status": "covered"
+    },
+    {
+      "id": "tokyo:kunitachi",
+      "country_id": "jp",
+      "state_id": "tokyo",
+      "jurisdiction": "Kunitachi",
+      "display_name": "Kunitachi",
+      "area_type": "city",
+      "bounds": [
+        [
+          139.41756837,
+          35.67063767
+        ],
+        [
+          139.459611,
+          35.70441508
+        ]
+      ],
+      "region_hint": "tokyo",
+      "coverage_status": "covered"
+    },
+    {
+      "id": "tokyo:meguro-ward",
+      "country_id": "jp",
+      "state_id": "tokyo",
+      "jurisdiction": "Meguro Ward",
+      "display_name": "Meguro Ward",
+      "area_type": "ward",
+      "bounds": [
+        [
+          139.66148297,
+          35.60064714
+        ],
+        [
+          139.71765433,
+          35.66394875
+        ]
+      ],
+      "region_hint": "tokyo",
+      "coverage_status": "covered"
+    },
+    {
+      "id": "tokyo:minato-ward",
+      "country_id": "jp",
+      "state_id": "tokyo",
+      "jurisdiction": "Minato Ward",
+      "display_name": "Minato Ward",
+      "area_type": "ward",
+      "bounds": [
+        [
+          139.70856389,
+          35.62308395
+        ],
+        [
+          139.78237634,
+          35.68283223
         ]
       ],
       "region_hint": "tokyo",
@@ -3196,6 +3564,26 @@
       "coverage_status": "covered"
     },
     {
+      "id": "tokyo:shibuya-ward",
+      "country_id": "jp",
+      "state_id": "tokyo",
+      "jurisdiction": "Shibuya Ward",
+      "display_name": "Shibuya Ward",
+      "area_type": "ward",
+      "bounds": [
+        [
+          139.66159125,
+          35.64145814
+        ],
+        [
+          139.72356022,
+          35.6920245
+        ]
+      ],
+      "region_hint": "tokyo",
+      "coverage_status": "covered"
+    },
+    {
       "id": "tokyo:shinagawa-ward",
       "country_id": "jp",
       "state_id": "tokyo",
@@ -3230,6 +3618,86 @@
         [
           139.74587044,
           35.72951995
+        ]
+      ],
+      "region_hint": "tokyo",
+      "coverage_status": "covered"
+    },
+    {
+      "id": "tokyo:suginami-ward",
+      "country_id": "jp",
+      "state_id": "tokyo",
+      "jurisdiction": "Suginami Ward",
+      "display_name": "Suginami Ward",
+      "area_type": "ward",
+      "bounds": [
+        [
+          139.58491917,
+          35.66580551
+        ],
+        [
+          139.66776947,
+          35.73044889
+        ]
+      ],
+      "region_hint": "tokyo",
+      "coverage_status": "covered"
+    },
+    {
+      "id": "tokyo:sumida-ward",
+      "country_id": "jp",
+      "state_id": "tokyo",
+      "jurisdiction": "Sumida Ward",
+      "display_name": "Sumida Ward",
+      "area_type": "ward",
+      "bounds": [
+        [
+          139.78864635,
+          35.68677572
+        ],
+        [
+          139.84215477,
+          35.74342872
+        ]
+      ],
+      "region_hint": "tokyo",
+      "coverage_status": "covered"
+    },
+    {
+      "id": "tokyo:taito-ward",
+      "country_id": "jp",
+      "state_id": "tokyo",
+      "jurisdiction": "Taito Ward",
+      "display_name": "Taito Ward",
+      "area_type": "ward",
+      "bounds": [
+        [
+          139.76278878,
+          35.69470378
+        ],
+        [
+          139.80971861,
+          35.73121822
+        ]
+      ],
+      "region_hint": "tokyo",
+      "coverage_status": "covered"
+    },
+    {
+      "id": "tokyo:toshima-ward",
+      "country_id": "jp",
+      "state_id": "tokyo",
+      "jurisdiction": "Toshima Ward",
+      "display_name": "Toshima Ward",
+      "area_type": "ward",
+      "bounds": [
+        [
+          139.67734431,
+          35.71226577
+        ],
+        [
+          139.75276044,
+          35.74579267
         ]
       ],
       "region_hint": "tokyo",

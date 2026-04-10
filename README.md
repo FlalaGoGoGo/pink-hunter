@@ -21,22 +21,66 @@ Live domain:
 - Published region data must pass `./scripts/check_region_data_sizes.py --data-dir public/data` before sync/push.
 
 ## Coverage Areas
-All 50 U.S. states now have at least one covered city. On the Canada side, 9 of 10 provinces are covered; Newfoundland and Labrador is still waiting on a verified official public single-tree source that meets the project rules. Japan municipality-level pilot coverage now spans 11 Tokyo wards, all sourced from the official Tokyo Metropolitan Government single-tree street-tree dataset.
+All 50 U.S. states now have at least one covered city. On the Canada side, 9 of 10 provinces are covered; Newfoundland and Labrador is still waiting on a verified official public single-tree source that meets the project rules. Japan municipality-level coverage now spans 31 municipalities across 5 prefectures, led by all 23 Tokyo special wards plus official protected-tree municipality datasets in Tokyo, Hokkaido, Fukushima, Kanagawa, and Nagano.
 
 <details>
 <summary>Tokyo (Japan)</summary>
 
 - Adachi Ward
+- Arakawa Ward
+- Bunkyo Ward
 - Chiyoda Ward
+- Chuo Ward
 - Edogawa Ward
+- Hino
+- Inagi
+- Itabashi Ward
+- Katsushika Ward
 - Kita Ward
+- Kodaira
 - Koto Ward
+- Kunitachi
+- Meguro Ward
+- Minato Ward
 - Nakano Ward
 - Nerima Ward
 - Ota Ward
 - Setagaya Ward
+- Shibuya Ward
 - Shinagawa Ward
 - Shinjuku Ward
+- Suginami Ward
+- Sumida Ward
+- Taito Ward
+- Toshima Ward
+
+</details>
+
+<details>
+<summary>Hokkaido (Japan)</summary>
+
+- Ebetsu
+
+</details>
+
+<details>
+<summary>Fukushima (Japan)</summary>
+
+- Iwaki
+
+</details>
+
+<details>
+<summary>Kanagawa (Japan)</summary>
+
+- Hadano
+
+</details>
+
+<details>
+<summary>Nagano (Japan)</summary>
+
+- Chikuma
 
 </details>
 

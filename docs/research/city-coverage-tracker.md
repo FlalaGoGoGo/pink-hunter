@@ -714,6 +714,13 @@ These cities are not in `A2` yet because the official point-tree source is still
 - Integrated `Chiyoda Ward (379)`, `Edogawa Ward (1518)`, `Kita Ward (410)`, `Koto Ward (1203)`, `Nakano Ward (459)`, `Nerima Ward (1114)`, `Ota Ward (406)`, `Setagaya Ward (463)`, `Shinagawa Ward (293)`, and `Shinjuku Ward (751)`.
 - Tokyo now covers `11` wards and `9,152` in-scope blossom trees from the official `区部都道（単木単位）` source.
 
+## April 2026 Japan Municipality Expansion
+- Reused the same official Tokyo Metropolitan Government `Street Trees / 街路樹` single-tree shapefile plus MLIT 2024 administrative boundaries to add the remaining `12` Tokyo special wards: `Arakawa Ward (255)`, `Bunkyo Ward (186)`, `Chuo Ward (288)`, `Itabashi Ward (130)`, `Katsushika Ward (232)`, `Meguro Ward (86)`, `Minato Ward (86)`, `Shibuya Ward (186)`, `Suginami Ward (211)`, `Sumida Ward (247)`, `Taito Ward (186)`, and `Toshima Ward (263)`.
+- Added `Hino (1)` from the official Tokyo Metropolitan Government `保存樹木・生垣` point shapefile, again clipped to the official MLIT 2024 municipal boundary.
+- Added `Inagi (8)`, `Kodaira (6)`, and `Kunitachi (4)` from official Tokyo municipal protected-tree CSVs; direct coordinates were reused when published, and incomplete address rows were geocoded through the official GSI `AddressSearch` endpoint.
+- Added `Ebetsu (10)`, `Iwaki (8)`, `Hadano (1)`, and `Chikuma (4)` from official municipal protected-tree pages and CSV/HTML tables, with structured per-tree rows geocoded via the official GSI address-search service when no point coordinates were published.
+- Japan now covers `31` municipalities across `5` prefectures and `11,550` in-scope blossom trees, while keeping the same `country -> prefecture -> municipality` publish contract and no schema changes.
+
 ## March 2026 Intermountain / Great Lakes Follow-up
 - Integrated `Las Vegas` from the official City of Las Vegas `CLV Tree Sites` ArcGIS layer using blossom filtering on `SPP_BOT` / `SPP_COM`.
 - Integrated `Salt Lake City` from the official Salt Lake City Public Lands `Urban Forestry Inventory` ArcGIS layer; `Vacant = Yes` rows are excluded before blossom classification.

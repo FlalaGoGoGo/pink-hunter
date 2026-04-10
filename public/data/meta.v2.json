@@ -1,6 +1,6 @@
 {
   "version": "v2",
-  "generated_at": "2026-04-09T18:37:22.472424+00:00",
+  "generated_at": "2026-04-10T01:04:31.825929+00:00",
   "default_region": "wa",
   "coverage_rule": "official_jurisdiction_boundary_only",
   "coverage_skipped_cities": [
@@ -98,16 +98,16 @@
     "Yarrow Point"
   ],
   "coverage_official_unavailable_skipped_cities": [],
-  "source_count": 386,
-  "total_records": 4191515,
-  "included_records": 873014,
+  "source_count": 406,
+  "total_records": 4248749,
+  "included_records": 875412,
   "unknown_records": 1946599,
   "species_counts": {
-    "cherry": 272889,
-    "plum": 125041,
-    "peach": 9580,
-    "magnolia": 190374,
-    "crabapple": 275130
+    "cherry": 273781,
+    "plum": 125098,
+    "peach": 10038,
+    "magnolia": 190974,
+    "crabapple": 275521
   },
   "regions": [
     {
@@ -835,6 +835,55 @@
       "coverage_path": "/data/coverage.fl.v1.geojson"
     },
     {
+      "id": "fukushima",
+      "label": "Fukushima",
+      "available": true,
+      "bounds": [
+        [
+          140.56588678,
+          36.85616753
+        ],
+        [
+          141.00932126,
+          37.3195402
+        ]
+      ],
+      "data_path": null,
+      "tree_count": 8,
+      "city_count": 1,
+      "cities": [
+        "Iwaki"
+      ],
+      "species_counts": {
+        "cherry": 8,
+        "plum": 0,
+        "peach": 0,
+        "magnolia": 0,
+        "crabapple": 0
+      },
+      "ownership_groups": [
+        "unknown"
+      ],
+      "raw_bytes": 4357,
+      "gzip_bytes": 674,
+      "warning_level": "none",
+      "aggregate_raw_bytes": 4357,
+      "aggregate_gzip_bytes": 674,
+      "aggregate_warning_level": "none",
+      "largest_shard_raw_bytes": 4357,
+      "largest_shard_gzip_bytes": 674,
+      "largest_shard_area": "Iwaki",
+      "area_split": {
+        "strategy": "area_shard",
+        "index_path": "/data/trees.fukushima.area-index.v2.json",
+        "area_count": 1,
+        "shard_count": 1,
+        "ready": true
+      },
+      "largest_shard_warning_level": "none",
+      "coverage_path": "/data/coverage.fukushima.v1.geojson"
+    },
+    {
       "id": "ga",
       "label": "GA",
       "available": true,
@@ -934,6 +983,56 @@
       },
       "largest_shard_warning_level": "none",
       "coverage_path": "/data/coverage.hi.v1.geojson"
+    },
+    {
+      "id": "hokkaido",
+      "label": "Hokkaido",
+      "available": true,
+      "bounds": [
+        [
+          141.44439167,
+          43.01606917
+        ],
+        [
+          141.66880416,
+          43.17271472
+        ]
+      ],
+      "data_path": null,
+      "tree_count": 10,
+      "city_count": 1,
+      "cities": [
+        "Ebetsu"
+      ],
+      "species_counts": {
+        "cherry": 5,
+        "plum": 0,
+        "peach": 0,
+        "magnolia": 3,
+        "crabapple": 2
+      },
+      "ownership_groups": [
+        "private",
+        "unknown"
+      ],
+      "raw_bytes": 4827,
+      "gzip_bytes": 668,
+      "warning_level": "none",
+      "aggregate_raw_bytes": 4827,
+      "aggregate_gzip_bytes": 668,
+      "aggregate_warning_level": "none",
+      "largest_shard_raw_bytes": 4827,
+      "largest_shard_gzip_bytes": 668,
+      "largest_shard_area": "Ebetsu",
+      "area_split": {
+        "strategy": "area_shard",
+        "index_path": "/data/trees.hokkaido.area-index.v2.json",
+        "area_count": 1,
+        "shard_count": 1,
+        "ready": true
+      },
+      "largest_shard_warning_level": "none",
+      "coverage_path": "/data/coverage.hokkaido.v1.geojson"
     },
     {
       "id": "ia",
@@ -1140,6 +1239,55 @@
       },
       "largest_shard_warning_level": "none",
       "coverage_path": "/data/coverage.in.v1.geojson"
+    },
+    {
+      "id": "kanagawa",
+      "label": "Kanagawa",
+      "available": true,
+      "bounds": [
+        [
+          139.1412428,
+          35.34596561
+        ],
+        [
+          139.29189776,
+          35.46123086
+        ]
+      ],
+      "data_path": null,
+      "tree_count": 1,
+      "city_count": 1,
+      "cities": [
+        "Hadano"
+      ],
+      "species_counts": {
+        "cherry": 1,
+        "plum": 0,
+        "peach": 0,
+        "magnolia": 0,
+        "crabapple": 0
+      },
+      "ownership_groups": [
+        "unknown"
+      ],
+      "raw_bytes": 518,
+      "gzip_bytes": 338,
+      "warning_level": "none",
+      "aggregate_raw_bytes": 518,
+      "aggregate_gzip_bytes": 338,
+      "aggregate_warning_level": "none",
+      "largest_shard_raw_bytes": 518,
+      "largest_shard_gzip_bytes": 338,
+      "largest_shard_area": "Hadano",
+      "area_split": {
+        "strategy": "area_shard",
+        "index_path": "/data/trees.kanagawa.area-index.v2.json",
+        "area_count": 1,
+        "shard_count": 1,
+        "ready": true
+      },
+      "largest_shard_warning_level": "none",
+      "coverage_path": "/data/coverage.kanagawa.v1.geojson"
     },
     {
       "id": "ks",
@@ -1758,6 +1906,56 @@
       },
       "largest_shard_warning_level": "none",
       "coverage_path": "/data/coverage.mt.v1.geojson"
+    },
+    {
+      "id": "nagano",
+      "label": "Nagano",
+      "available": true,
+      "bounds": [
+        [
+          138.02962939,
+          36.4365342
+        ],
+        [
+          138.20186119,
+          36.56008175
+        ]
+      ],
+      "data_path": null,
+      "tree_count": 4,
+      "city_count": 1,
+      "cities": [
+        "Chikuma"
+      ],
+      "species_counts": {
+        "cherry": 3,
+        "plum": 1,
+        "peach": 0,
+        "magnolia": 0,
+        "crabapple": 0
+      },
+      "ownership_groups": [
+        "private",
+        "unknown"
+      ],
+      "raw_bytes": 1945,
+      "gzip_bytes": 469,
+      "warning_level": "none",
+      "aggregate_raw_bytes": 1945,
+      "aggregate_gzip_bytes": 469,
+      "aggregate_warning_level": "none",
+      "largest_shard_raw_bytes": 1945,
+      "largest_shard_gzip_bytes": 469,
+      "largest_shard_area": "Chikuma",
+      "area_split": {
+        "strategy": "area_shard",
+        "index_path": "/data/trees.nagano.area-index.v2.json",
+        "area_count": 1,
+        "shard_count": 1,
+        "ready": true
+      },
+      "largest_shard_warning_level": "none",
+      "coverage_path": "/data/coverage.nagano.v1.geojson"
     },
     {
       "id": "nb",
@@ -2936,7 +3134,7 @@
       "available": true,
       "bounds": [
         [
-          139.56278584,
+          139.3573237,
           35.52819808
         ],
         [
@@ -2945,36 +3143,53 @@
         ]
       ],
       "data_path": null,
-      "tree_count": 9152,
-      "city_count": 11,
+      "tree_count": 11527,
+      "city_count": 27,
       "cities": [
         "Adachi Ward",
+        "Arakawa Ward",
+        "Bunkyo Ward",
         "Chiyoda Ward",
+        "Chuo Ward",
         "Edogawa Ward",
+        "Hino",
+        "Inagi",
+        "Itabashi Ward",
+        "Katsushika Ward",
         "Kita Ward",
+        "Kodaira",
         "Koto Ward",
+        "Kunitachi",
+        "Meguro Ward",
+        "Minato Ward",
         "Nakano Ward",
         "Nerima Ward",
         "Ota Ward",
         "Setagaya Ward",
+        "Shibuya Ward",
         "Shinagawa Ward",
-        "Shinjuku Ward"
+        "Shinjuku Ward",
+        "Suginami Ward",
+        "Sumida Ward",
+        "Taito Ward",
+        "Toshima Ward"
       ],
       "species_counts": {
-        "cherry": 2664,
-        "plum": 226,
-        "peach": 1367,
-        "magnolia": 1786,
-        "crabapple": 3109
+        "cherry": 3539,
+        "plum": 282,
+        "peach": 1825,
+        "magnolia": 2383,
+        "crabapple": 3498
       },
       "ownership_groups": [
-        "public"
+        "public",
+        "unknown"
       ],
-      "raw_bytes": 4956910,
-      "gzip_bytes": 193565,
+      "raw_bytes": 6237821,
+      "gzip_bytes": 252892,
       "warning_level": "none",
-      "aggregate_raw_bytes": 4956910,
-      "aggregate_gzip_bytes": 193565,
+      "aggregate_raw_bytes": 6237821,
+      "aggregate_gzip_bytes": 252892,
       "aggregate_warning_level": "none",
       "largest_shard_raw_bytes": 1176449,
       "largest_shard_gzip_bytes": 43903,
@@ -2982,8 +3197,8 @@
       "area_split": {
         "strategy": "area_shard",
         "index_path": "/data/trees.tokyo.area-index.v2.json",
-        "area_count": 11,
-        "shard_count": 11,
+        "area_count": 27,
+        "shard_count": 27,
         "ready": true
       },
       "largest_shard_warning_level": "none",
@@ -5430,6 +5645,20 @@
       "state_province": "FL"
     },
     {
+      "jurisdiction": "Iwaki",
+      "region": "fukushima",
+      "tree_count": 8,
+      "species_counts": {
+        "cherry": 8,
+        "plum": 0,
+        "peach": 0,
+        "magnolia": 0,
+        "crabapple": 0
+      },
+      "jurisdiction_type": "city",
+      "state_province": "Fukushima"
+    },
+    {
       "jurisdiction": "Atlanta",
       "region": "ga",
       "tree_count": 1051,
@@ -5484,6 +5713,20 @@
       },
       "jurisdiction_type": "city",
       "state_province": "HI"
+    },
+    {
+      "jurisdiction": "Ebetsu",
+      "region": "hokkaido",
+      "tree_count": 10,
+      "species_counts": {
+        "cherry": 5,
+        "plum": 0,
+        "peach": 0,
+        "magnolia": 3,
+        "crabapple": 2
+      },
+      "jurisdiction_type": "city",
+      "state_province": "Hokkaido"
     },
     {
       "jurisdiction": "Burlington IA",
@@ -5666,6 +5909,20 @@
       },
       "jurisdiction_type": "city",
       "state_province": "IN"
+    },
+    {
+      "jurisdiction": "Hadano",
+      "region": "kanagawa",
+      "tree_count": 1,
+      "species_counts": {
+        "cherry": 1,
+        "plum": 0,
+        "peach": 0,
+        "magnolia": 0,
+        "crabapple": 0
+      },
+      "jurisdiction_type": "city",
+      "state_province": "Kanagawa"
     },
     {
       "jurisdiction": "Andover",
@@ -6198,6 +6455,20 @@
       },
       "jurisdiction_type": "city",
       "state_province": "MT"
+    },
+    {
+      "jurisdiction": "Chikuma",
+      "region": "nagano",
+      "tree_count": 4,
+      "species_counts": {
+        "cherry": 3,
+        "plum": 1,
+        "peach": 0,
+        "magnolia": 0,
+        "crabapple": 0
+      },
+      "jurisdiction_type": "city",
+      "state_province": "Nagano"
     },
     {
       "jurisdiction": "Fredericton",
@@ -7726,6 +7997,34 @@
       "state_province": "Tokyo"
     },
     {
+      "jurisdiction": "Arakawa Ward",
+      "region": "tokyo",
+      "tree_count": 255,
+      "species_counts": {
+        "cherry": 11,
+        "plum": 1,
+        "peach": 105,
+        "magnolia": 4,
+        "crabapple": 134
+      },
+      "jurisdiction_type": "ward",
+      "state_province": "Tokyo"
+    },
+    {
+      "jurisdiction": "Bunkyo Ward",
+      "region": "tokyo",
+      "tree_count": 186,
+      "species_counts": {
+        "cherry": 69,
+        "plum": 15,
+        "peach": 53,
+        "magnolia": 34,
+        "crabapple": 15
+      },
+      "jurisdiction_type": "ward",
+      "state_province": "Tokyo"
+    },
+    {
       "jurisdiction": "Chiyoda Ward",
       "region": "tokyo",
       "tree_count": 379,
@@ -7735,6 +8034,20 @@
         "peach": 0,
         "magnolia": 4,
         "crabapple": 6
+      },
+      "jurisdiction_type": "ward",
+      "state_province": "Tokyo"
+    },
+    {
+      "jurisdiction": "Chuo Ward",
+      "region": "tokyo",
+      "tree_count": 288,
+      "species_counts": {
+        "cherry": 123,
+        "plum": 6,
+        "peach": 125,
+        "magnolia": 34,
+        "crabapple": 0
       },
       "jurisdiction_type": "ward",
       "state_province": "Tokyo"
@@ -7754,6 +8067,62 @@
       "state_province": "Tokyo"
     },
     {
+      "jurisdiction": "Hino",
+      "region": "tokyo",
+      "tree_count": 1,
+      "species_counts": {
+        "cherry": 1,
+        "plum": 0,
+        "peach": 0,
+        "magnolia": 0,
+        "crabapple": 0
+      },
+      "jurisdiction_type": "city",
+      "state_province": "Tokyo"
+    },
+    {
+      "jurisdiction": "Inagi",
+      "region": "tokyo",
+      "tree_count": 8,
+      "species_counts": {
+        "cherry": 8,
+        "plum": 0,
+        "peach": 0,
+        "magnolia": 0,
+        "crabapple": 0
+      },
+      "jurisdiction_type": "city",
+      "state_province": "Tokyo"
+    },
+    {
+      "jurisdiction": "Itabashi Ward",
+      "region": "tokyo",
+      "tree_count": 130,
+      "species_counts": {
+        "cherry": 6,
+        "plum": 16,
+        "peach": 97,
+        "magnolia": 11,
+        "crabapple": 0
+      },
+      "jurisdiction_type": "ward",
+      "state_province": "Tokyo"
+    },
+    {
+      "jurisdiction": "Katsushika Ward",
+      "region": "tokyo",
+      "tree_count": 232,
+      "species_counts": {
+        "cherry": 7,
+        "plum": 0,
+        "peach": 6,
+        "magnolia": 180,
+        "crabapple": 39
+      },
+      "jurisdiction_type": "ward",
+      "state_province": "Tokyo"
+    },
+    {
       "jurisdiction": "Kita Ward",
       "region": "tokyo",
       "tree_count": 410,
@@ -7768,6 +8137,20 @@
       "state_province": "Tokyo"
     },
     {
+      "jurisdiction": "Kodaira",
+      "region": "tokyo",
+      "tree_count": 6,
+      "species_counts": {
+        "cherry": 3,
+        "plum": 1,
+        "peach": 0,
+        "magnolia": 2,
+        "crabapple": 0
+      },
+      "jurisdiction_type": "city",
+      "state_province": "Tokyo"
+    },
+    {
       "jurisdiction": "Koto Ward",
       "region": "tokyo",
       "tree_count": 1203,
@@ -7777,6 +8160,48 @@
         "peach": 306,
         "magnolia": 557,
         "crabapple": 142
+      },
+      "jurisdiction_type": "ward",
+      "state_province": "Tokyo"
+    },
+    {
+      "jurisdiction": "Kunitachi",
+      "region": "tokyo",
+      "tree_count": 4,
+      "species_counts": {
+        "cherry": 3,
+        "plum": 1,
+        "peach": 0,
+        "magnolia": 0,
+        "crabapple": 0
+      },
+      "jurisdiction_type": "city",
+      "state_province": "Tokyo"
+    },
+    {
+      "jurisdiction": "Meguro Ward",
+      "region": "tokyo",
+      "tree_count": 86,
+      "species_counts": {
+        "cherry": 25,
+        "plum": 1,
+        "peach": 3,
+        "magnolia": 0,
+        "crabapple": 57
+      },
+      "jurisdiction_type": "ward",
+      "state_province": "Tokyo"
+    },
+    {
+      "jurisdiction": "Minato Ward",
+      "region": "tokyo",
+      "tree_count": 86,
+      "species_counts": {
+        "cherry": 60,
+        "plum": 7,
+        "peach": 6,
+        "magnolia": 13,
+        "crabapple": 0
       },
       "jurisdiction_type": "ward",
       "state_province": "Tokyo"
@@ -7838,6 +8263,20 @@
       "state_province": "Tokyo"
     },
     {
+      "jurisdiction": "Shibuya Ward",
+      "region": "tokyo",
+      "tree_count": 186,
+      "species_counts": {
+        "cherry": 164,
+        "plum": 7,
+        "peach": 0,
+        "magnolia": 11,
+        "crabapple": 4
+      },
+      "jurisdiction_type": "ward",
+      "state_province": "Tokyo"
+    },
+    {
       "jurisdiction": "Shinagawa Ward",
       "region": "tokyo",
       "tree_count": 293,
@@ -7861,6 +8300,62 @@
         "peach": 67,
         "magnolia": 270,
         "crabapple": 70
+      },
+      "jurisdiction_type": "ward",
+      "state_province": "Tokyo"
+    },
+    {
+      "jurisdiction": "Suginami Ward",
+      "region": "tokyo",
+      "tree_count": 211,
+      "species_counts": {
+        "cherry": 99,
+        "plum": 0,
+        "peach": 9,
+        "magnolia": 28,
+        "crabapple": 75
+      },
+      "jurisdiction_type": "ward",
+      "state_province": "Tokyo"
+    },
+    {
+      "jurisdiction": "Sumida Ward",
+      "region": "tokyo",
+      "tree_count": 247,
+      "species_counts": {
+        "cherry": 23,
+        "plum": 0,
+        "peach": 16,
+        "magnolia": 208,
+        "crabapple": 0
+      },
+      "jurisdiction_type": "ward",
+      "state_province": "Tokyo"
+    },
+    {
+      "jurisdiction": "Taito Ward",
+      "region": "tokyo",
+      "tree_count": 186,
+      "species_counts": {
+        "cherry": 111,
+        "plum": 0,
+        "peach": 9,
+        "magnolia": 45,
+        "crabapple": 21
+      },
+      "jurisdiction_type": "ward",
+      "state_province": "Tokyo"
+    },
+    {
+      "jurisdiction": "Toshima Ward",
+      "region": "tokyo",
+      "tree_count": 263,
+      "species_counts": {
+        "cherry": 162,
+        "plum": 1,
+        "peach": 29,
+        "magnolia": 27,
+        "crabapple": 44
       },
       "jurisdiction_type": "ward",
       "state_province": "Tokyo"
@@ -8994,6 +9489,15 @@
       "note": "Integrated via the public Annapolis TreePlotter inventory page and official jurisdiction boundary clipping."
     },
     {
+      "name": "Street Trees / 街路樹",
+      "city": "Arakawa Ward",
+      "endpoint": "https://catalog.data.metro.tokyo.lg.jp/dataset/t000008d2000000024",
+      "last_edit_at": "",
+      "records_fetched": 2224,
+      "records_included": 255,
+      "note": "Integrated from the official Tokyo Metropolitan Government `Street Trees` single-tree shapefile for ward roads (`区部都道（単木単位）`) after filtering to `荒川区` and clipping to the official MLIT 2024 administrative boundary for Arakawa Ward."
+    },
+    {
       "name": "DPR Trees",
       "city": "Arlington",
       "endpoint": "https://www.arlingtonva.us/About-Arlington/Data-and-Research/Open-Data-Portal",
@@ -9243,6 +9747,15 @@
       "note": "Integrated from the official City of Buffalo public TreeKeeper inventory."
     },
     {
+      "name": "Street Trees / 街路樹",
+      "city": "Bunkyo Ward",
+      "endpoint": "https://catalog.data.metro.tokyo.lg.jp/dataset/t000008d2000000024",
+      "last_edit_at": "",
+      "records_fetched": 6936,
+      "records_included": 186,
+      "note": "Integrated from the official Tokyo Metropolitan Government `Street Trees` single-tree shapefile for ward roads (`区部都道（単木単位）`) after filtering to `文京区` and clipping to the official MLIT 2024 administrative boundary for Bunkyo Ward."
+    },
+    {
       "name": "TreeKeeper Inventory",
       "city": "Burbank",
       "endpoint": "https://burbankca.treekeepersoftware.com",
@@ -9368,6 +9881,14 @@
       "note": "Integrated from the official City of Chestermere public trees ArcGIS layer after restricting to active rows."
     },
     {
+      "name": "Preserved Trees / 保存樹木",
+      "city": "Chikuma",
+      "endpoint": "https://www.city.chikuma.lg.jp/soshiki/kankyo/kankyohozen/1997.html",
+      "records_fetched": 4,
+      "records_included": 4,
+      "note": "Integrated from the official Chikuma City preserved-tree table using the official GSI geocoder for published addresses, then clipped to the official MLIT municipality boundary."
+    },
+    {
       "name": "City Trees",
       "city": "Chino",
       "endpoint": "https://services2.arcgis.com/6f07Mm2LapX6mneF/arcgis/rest/services/CityTrees_ResCityMaintSpecIden/FeatureServer",
@@ -9384,6 +9905,15 @@
       "records_fetched": 6772,
       "records_included": 379,
       "note": "Integrated from the official Tokyo Metropolitan Government `Street Trees` single-tree shapefile for ward roads (`区部都道（単木単位）`) after filtering to `千代田区` and clipping to the official MLIT 2024 administrative boundary for Chiyoda Ward."
+    },
+    {
+      "name": "Street Trees / 街路樹",
+      "city": "Chuo Ward",
+      "endpoint": "https://catalog.data.metro.tokyo.lg.jp/dataset/t000008d2000000024",
+      "last_edit_at": "",
+      "records_fetched": 4755,
+      "records_included": 288,
+      "note": "Integrated from the official Tokyo Metropolitan Government `Street Trees` single-tree shapefile for ward roads (`区部都道（単木単位）`) after filtering to `中央区` and clipping to the official MLIT 2024 administrative boundary for Chuo Ward."
     },
     {
       "name": "Citrus Heights i-Tree Benefits",
@@ -9635,6 +10165,14 @@
       "records_fetched": 10253,
       "records_included": 521,
       "note": "Integrated from the official City of East Lansing public tree status ArcGIS service."
+    },
+    {
+      "name": "Preserved Trees / 保存樹木",
+      "city": "Ebetsu",
+      "endpoint": "https://www.city.ebetsu.hokkaido.jp/soshiki/kankyo/3294.html",
+      "records_fetched": 10,
+      "records_included": 10,
+      "note": "Integrated from the official Ebetsu City preserved-tree tables using the official GSI geocoder for published addresses, then clipped to the official MLIT municipality boundary."
     },
     {
       "name": "Boulevard / Open Space Trees",
@@ -9995,6 +10533,14 @@
       "note": "Integrated from the official City of Guelph public tree inventory ArcGIS layer."
     },
     {
+      "name": "Preserved Trees / 保存樹木",
+      "city": "Hadano",
+      "endpoint": "https://www.city.hadano.kanagawa.jp/soshiki/1/1005/1/1745.html",
+      "records_fetched": 1,
+      "records_included": 1,
+      "note": "Integrated from the official Hadano City preserved-tree CSV using the official GSI geocoder for published addresses, then clipped to the official MLIT municipality boundary."
+    },
+    {
       "name": "Tree Points - All (view)",
       "city": "Hales Corners",
       "endpoint": "https://experience.arcgis.com/experience/b1d9ccfd3a2949728e5b445bfdc78935",
@@ -10067,6 +10613,14 @@
       "note": "Integrated from the official Vermont Municipal Tree Inventory rows for the Town of Hinesburg."
     },
     {
+      "name": "Protected Trees and Hedges / 保存樹木・生垣",
+      "city": "Hino",
+      "endpoint": "https://catalog.data.metro.tokyo.lg.jp/dataset/t000008d2000000024",
+      "records_fetched": 1,
+      "records_included": 1,
+      "note": "Integrated from the official Tokyo green open-data protected-tree point shapefile and clipped to the official MLIT municipality boundary."
+    },
+    {
       "name": "TreeKeeper Inventory",
       "city": "Ho-Ho-Kus",
       "endpoint": "https://hohokusnj.treekeepersoftware.com",
@@ -10103,6 +10657,14 @@
       "note": "Integrated from the official City of Houston public Urban Forestry tree inventory web map and official jurisdiction boundary."
     },
     {
+      "name": "Protected Trees / 保護指定樹木",
+      "city": "Inagi",
+      "endpoint": "https://www.opendata.metro.tokyo.lg.jp/inagi/132250_inagishi_hogoshiteijumoku.csv",
+      "records_fetched": 8,
+      "records_included": 8,
+      "note": "Integrated from the official Tokyo open-data protected-tree CSV for Inagi City and clipped to the official MLIT municipality boundary."
+    },
+    {
       "name": "Inglewood Tree Layers",
       "city": "Inglewood",
       "endpoint": "https://services5.arcgis.com/t4zDNzBF9Dot8HEQ/arcgis/rest/services/Inglewood_Fruit_Tree_Recipients_view/FeatureServer",
@@ -10121,6 +10683,15 @@
       "note": "Integrated from the official City of Irvine City Trees layer and official city boundary."
     },
     {
+      "name": "Street Trees / 街路樹",
+      "city": "Itabashi Ward",
+      "endpoint": "https://catalog.data.metro.tokyo.lg.jp/dataset/t000008d2000000024",
+      "last_edit_at": "",
+      "records_fetched": 2895,
+      "records_included": 130,
+      "note": "Integrated from the official Tokyo Metropolitan Government `Street Trees` single-tree shapefile for ward roads (`区部都道（単木単位）`) after filtering to `板橋区` and clipping to the official MLIT 2024 administrative boundary for Itabashi Ward."
+    },
+    {
       "name": "TreeKeeper Inventory",
       "city": "Ithaca",
       "endpoint": "https://ithacany.treekeepersoftware.com",
@@ -10128,6 +10699,14 @@
       "records_fetched": 13332,
       "records_included": 1357,
       "note": "Integrated from the official City of Ithaca public TreeKeeper inventory."
+    },
+    {
+      "name": "Protected Green Information / 保護樹木",
+      "city": "Iwaki",
+      "endpoint": "https://iwakicity-park.or.jp/green-information/",
+      "records_fetched": 8,
+      "records_included": 8,
+      "note": "Integrated from the official Iwaki protected-green HTML tables using the official GSI geocoder for published addresses, then clipped to the official MLIT municipality boundary."
     },
     {
       "name": "Tree Inventory",
@@ -10182,6 +10761,15 @@
       "records_fetched": 1453,
       "records_included": 1453,
       "note": "Integrated from the official City of Kamloops public parks tree ArcGIS layer after restricting to public rows."
+    },
+    {
+      "name": "Street Trees / 街路樹",
+      "city": "Katsushika Ward",
+      "endpoint": "https://catalog.data.metro.tokyo.lg.jp/dataset/t000008d2000000024",
+      "last_edit_at": "",
+      "records_fetched": 3991,
+      "records_included": 232,
+      "note": "Integrated from the official Tokyo Metropolitan Government `Street Trees` single-tree shapefile for ward roads (`区部都道（単木単位）`) after filtering to `葛飾区` and clipping to the official MLIT 2024 administrative boundary for Katsushika Ward."
     },
     {
       "name": "Keizer Tree Inventory",
@@ -10254,6 +10842,14 @@
       "note": "Integrated from the official City of Kitchener tree inventory ArcGIS layer after restricting to `STATUS = 'ACTIVE'`."
     },
     {
+      "name": "Protected Trees / 保護指定樹木",
+      "city": "Kodaira",
+      "endpoint": "https://www.opendata.metro.tokyo.lg.jp/kodaira/132110_kodairashi_hogoshiteijumoku.csv",
+      "records_fetched": 6,
+      "records_included": 6,
+      "note": "Integrated from the official Tokyo open-data protected-tree CSV for Kodaira City using the official GSI geocoder for published addresses, then clipped to the official MLIT municipality boundary."
+    },
+    {
       "name": "Street Trees / 街路樹",
       "city": "Koto Ward",
       "endpoint": "https://catalog.data.metro.tokyo.lg.jp/dataset/t000008d2000000024",
@@ -10261,6 +10857,14 @@
       "records_fetched": 9486,
       "records_included": 1203,
       "note": "Integrated from the official Tokyo Metropolitan Government `Street Trees` single-tree shapefile for ward roads (`区部都道（単木単位）`) after filtering to `江東区` and clipping to the official MLIT 2024 administrative boundary for Koto Ward."
+    },
+    {
+      "name": "Protected Trees / 保護指定樹木",
+      "city": "Kunitachi",
+      "endpoint": "https://www.opendata.metro.tokyo.lg.jp/kunitachi/132152_kunitachishi_hogoshiteijumoku.csv",
+      "records_fetched": 4,
+      "records_included": 4,
+      "note": "Integrated from the official Tokyo open-data protected-tree CSV for Kunitachi City using the official GSI geocoder for published addresses, then clipped to the official MLIT municipality boundary."
     },
     {
       "name": "La Canada Flintridge Homepage Inventory",
@@ -10533,6 +11137,15 @@
       "note": "Integrated from the official City of Medicine Hat public tree inventory ArcGIS layer after restricting to living rows."
     },
     {
+      "name": "Street Trees / 街路樹",
+      "city": "Meguro Ward",
+      "endpoint": "https://catalog.data.metro.tokyo.lg.jp/dataset/t000008d2000000024",
+      "last_edit_at": "",
+      "records_fetched": 4441,
+      "records_included": 86,
+      "note": "Integrated from the official Tokyo Metropolitan Government `Street Trees` single-tree shapefile for ward roads (`区部都道（単木単位）`) after filtering to `目黒区` and clipping to the official MLIT 2024 administrative boundary for Meguro Ward."
+    },
+    {
       "name": "Mesa AZ iTree Inventory",
       "city": "Mesa",
       "endpoint": "https://tree-canopy-and-benefits-mesaaz.hub.arcgis.com/",
@@ -10593,6 +11206,15 @@
       "records_fetched": 28344,
       "records_included": 680,
       "note": "Integrated from the official Milwaukee County public tree viewer and official jurisdiction boundary clipping."
+    },
+    {
+      "name": "Street Trees / 街路樹",
+      "city": "Minato Ward",
+      "endpoint": "https://catalog.data.metro.tokyo.lg.jp/dataset/t000008d2000000024",
+      "last_edit_at": "",
+      "records_fetched": 8706,
+      "records_included": 86,
+      "note": "Integrated from the official Tokyo Metropolitan Government `Street Trees` single-tree shapefile for ward roads (`区部都道（単木単位）`) after filtering to `港区` and clipping to the official MLIT 2024 administrative boundary for Minato Ward."
     },
     {
       "name": "City Owned Tree Inventory",
@@ -11644,6 +12266,15 @@
     },
     {
       "name": "Street Trees / 街路樹",
+      "city": "Shibuya Ward",
+      "endpoint": "https://catalog.data.metro.tokyo.lg.jp/dataset/t000008d2000000024",
+      "last_edit_at": "",
+      "records_fetched": 6768,
+      "records_included": 186,
+      "note": "Integrated from the official Tokyo Metropolitan Government `Street Trees` single-tree shapefile for ward roads (`区部都道（単木単位）`) after filtering to `渋谷区` and clipping to the official MLIT 2024 administrative boundary for Shibuya Ward."
+    },
+    {
+      "name": "Street Trees / 街路樹",
       "city": "Shinagawa Ward",
       "endpoint": "https://catalog.data.metro.tokyo.lg.jp/dataset/t000008d2000000024",
       "last_edit_at": "",
@@ -11811,6 +12442,24 @@
       "note": "Integrated from the official Strathcona County managed-trees ArcGIS layer and official Statistics Canada CSD boundary."
     },
     {
+      "name": "Street Trees / 街路樹",
+      "city": "Suginami Ward",
+      "endpoint": "https://catalog.data.metro.tokyo.lg.jp/dataset/t000008d2000000024",
+      "last_edit_at": "",
+      "records_fetched": 7245,
+      "records_included": 211,
+      "note": "Integrated from the official Tokyo Metropolitan Government `Street Trees` single-tree shapefile for ward roads (`区部都道（単木単位）`) after filtering to `杉並区` and clipping to the official MLIT 2024 administrative boundary for Suginami Ward."
+    },
+    {
+      "name": "Street Trees / 街路樹",
+      "city": "Sumida Ward",
+      "endpoint": "https://catalog.data.metro.tokyo.lg.jp/dataset/t000008d2000000024",
+      "last_edit_at": "",
+      "records_fetched": 3127,
+      "records_included": 247,
+      "note": "Integrated from the official Tokyo Metropolitan Government `Street Trees` single-tree shapefile for ward roads (`区部都道（単木単位）`) after filtering to `墨田区` and clipping to the official MLIT 2024 administrative boundary for Sumida Ward."
+    },
+    {
       "name": "Tree Inventories in Santa Clara County",
       "city": "Sunnyvale",
       "endpoint": "https://www.arcgis.com/home/item.html?id=58f9d735c5b94915ba5374c82415a26f",
@@ -11827,6 +12476,15 @@
       "records_fetched": 9555,
       "records_included": 697,
       "note": "Integrated from the official City of Syracuse public TreeKeeper inventory."
+    },
+    {
+      "name": "Street Trees / 街路樹",
+      "city": "Taito Ward",
+      "endpoint": "https://catalog.data.metro.tokyo.lg.jp/dataset/t000008d2000000024",
+      "last_edit_at": "",
+      "records_fetched": 2152,
+      "records_included": 186,
+      "note": "Integrated from the official Tokyo Metropolitan Government `Street Trees` single-tree shapefile for ward roads (`区部都道（単木単位）`) after filtering to `台東区` and clipping to the official MLIT 2024 administrative boundary for Taito Ward."
     },
     {
       "name": "Tree Inventory",
@@ -11917,6 +12575,15 @@
       "records_fetched": 791,
       "records_included": 24,
       "note": "Integrated from the public City of Torrance tree layer and official jurisdiction boundary."
+    },
+    {
+      "name": "Street Trees / 街路樹",
+      "city": "Toshima Ward",
+      "endpoint": "https://catalog.data.metro.tokyo.lg.jp/dataset/t000008d2000000024",
+      "last_edit_at": "",
+      "records_fetched": 4687,
+      "records_included": 263,
+      "note": "Integrated from the official Tokyo Metropolitan Government `Street Trees` single-tree shapefile for ward roads (`区部都道（単木単位）`) after filtering to `豊島区` and clipping to the official MLIT 2024 administrative boundary for Toshima Ward."
     },
     {
       "name": "Tree Inventory",

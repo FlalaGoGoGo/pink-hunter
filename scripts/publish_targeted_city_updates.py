@@ -96,6 +96,14 @@ def _require_tempfile() -> Any:
         return _TempfileFallback
 
 
+def _require_bs4() -> Any:
+    try:
+        from bs4 import BeautifulSoup as beautiful_soup
+        return beautiful_soup
+    except Exception as exc:
+        raise RuntimeError("BeautifulSoup4 is required for official HTML table parsing.") from exc
+
+
 ROOT = Path(__file__).resolve().parents[1]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
@@ -201,16 +209,125 @@ OREGON_ODF_TREEPLOTTER_DATASET_PAGE = (
 )
 TOKYO_WARD_CONFIGS: dict[str, dict[str, str]] = {
     "Adachi Ward": {"municipality_name_jp": "足立区"},
+    "Arakawa Ward": {"municipality_name_jp": "荒川区"},
+    "Bunkyo Ward": {"municipality_name_jp": "文京区"},
     "Chiyoda Ward": {"municipality_name_jp": "千代田区"},
+    "Chuo Ward": {"municipality_name_jp": "中央区"},
     "Edogawa Ward": {"municipality_name_jp": "江戸川区"},
+    "Itabashi Ward": {"municipality_name_jp": "板橋区"},
+    "Katsushika Ward": {"municipality_name_jp": "葛飾区"},
     "Kita Ward": {"municipality_name_jp": "北区"},
     "Koto Ward": {"municipality_name_jp": "江東区"},
+    "Meguro Ward": {"municipality_name_jp": "目黒区"},
+    "Minato Ward": {"municipality_name_jp": "港区"},
     "Nakano Ward": {"municipality_name_jp": "中野区"},
     "Nerima Ward": {"municipality_name_jp": "練馬区"},
     "Ota Ward": {"municipality_name_jp": "大田区"},
     "Setagaya Ward": {"municipality_name_jp": "世田谷区"},
+    "Shibuya Ward": {"municipality_name_jp": "渋谷区"},
     "Shinagawa Ward": {"municipality_name_jp": "品川区"},
     "Shinjuku Ward": {"municipality_name_jp": "新宿区"},
+    "Suginami Ward": {"municipality_name_jp": "杉並区"},
+    "Sumida Ward": {"municipality_name_jp": "墨田区"},
+    "Taito Ward": {"municipality_name_jp": "台東区"},
+    "Toshima Ward": {"municipality_name_jp": "豊島区"},
+}
+TOKYO_GREEN_OPEN_DATASET_PAGE = "https://catalog.data.metro.tokyo.lg.jp/dataset/t000008d2000000024"
+TOKYO_JOUREI_ZIP = "https://data.storage.data.metro.tokyo.lg.jp/toshiseibi/13_jourei.zip"
+GSI_ADDRESS_SEARCH_URL = "https://msearch.gsi.go.jp/address-search/AddressSearch"
+TOKYO_PROTECTED_TREE_CSV_CONFIGS: dict[str, dict[str, str]] = {
+    "Inagi": {
+        "region": "tokyo",
+        "data_url": "https://www.opendata.metro.tokyo.lg.jp/inagi/132250_inagishi_hogoshiteijumoku.csv",
+        "dataset_page": "https://www.opendata.metro.tokyo.lg.jp/inagi/132250_inagishi_hogoshiteijumoku.csv",
+        "source_name": "Protected Trees / 保護指定樹木",
+        "source_department": "Inagi City",
+        "prefecture_name_jp": "東京都",
+        "municipality_name_jp": "稲城市",
+        "address_prefix": "東京都稲城市",
+        "note": "Integrated from the official Tokyo open-data protected-tree CSV for Inagi City and clipped to the official MLIT municipality boundary.",
+    },
+    "Kodaira": {
+        "region": "tokyo",
+        "data_url": "https://www.opendata.metro.tokyo.lg.jp/kodaira/132110_kodairashi_hogoshiteijumoku.csv",
+        "dataset_page": "https://www.opendata.metro.tokyo.lg.jp/kodaira/132110_kodairashi_hogoshiteijumoku.csv",
+        "source_name": "Protected Trees / 保護指定樹木",
+        "source_department": "Kodaira City",
+        "prefecture_name_jp": "東京都",
+        "municipality_name_jp": "小平市",
+        "address_prefix": "東京都小平市",
+        "note": "Integrated from the official Tokyo open-data protected-tree CSV for Kodaira City using the official GSI geocoder for published addresses, then clipped to the official MLIT municipality boundary.",
+    },
+    "Kunitachi": {
+        "region": "tokyo",
+        "data_url": "https://www.opendata.metro.tokyo.lg.jp/kunitachi/132152_kunitachishi_hogoshiteijumoku.csv",
+        "dataset_page": "https://www.opendata.metro.tokyo.lg.jp/kunitachi/132152_kunitachishi_hogoshiteijumoku.csv",
+        "source_name": "Protected Trees / 保護指定樹木",
+        "source_department": "Kunitachi City",
+        "prefecture_name_jp": "東京都",
+        "municipality_name_jp": "国立市",
+        "address_prefix": "東京都国立市",
+        "note": "Integrated from the official Tokyo open-data protected-tree CSV for Kunitachi City using the official GSI geocoder for published addresses, then clipped to the official MLIT municipality boundary.",
+    },
+}
+TOKYO_JOUREI_MUNICIPALITY_CONFIGS: dict[str, dict[str, str]] = {
+    "Hino": {
+        "region": "tokyo",
+        "prefecture_name_jp": "東京都",
+        "municipality_name_jp": "日野市",
+        "dataset_page": TOKYO_GREEN_OPEN_DATASET_PAGE,
+        "source_name": "Protected Trees and Hedges / 保存樹木・生垣",
+        "source_department": "Tokyo Metropolitan Government",
+        "note": "Integrated from the official Tokyo green open-data protected-tree point shapefile and clipped to the official MLIT municipality boundary.",
+    },
+}
+JAPAN_OFFICIAL_CSV_CONFIGS: dict[str, dict[str, str]] = {
+    "Hadano": {
+        "region": "kanagawa",
+        "data_url": "https://www.city.hadano.kanagawa.jp/material/files/group/6/142115_preserve_tree.csv",
+        "dataset_page": "https://www.city.hadano.kanagawa.jp/soshiki/1/1005/1/1745.html",
+        "source_name": "Preserved Trees / 保存樹木",
+        "source_department": "Hadano City",
+        "prefecture_name_jp": "神奈川県",
+        "municipality_name_jp": "秦野市",
+        "address_prefix": "神奈川県秦野市",
+        "note": "Integrated from the official Hadano City preserved-tree CSV using the official GSI geocoder for published addresses, then clipped to the official MLIT municipality boundary.",
+    },
+}
+JAPAN_HTML_TABLE_CONFIGS: dict[str, dict[str, str]] = {
+    "Chikuma": {
+        "region": "nagano",
+        "data_url": "https://www.city.chikuma.lg.jp/soshiki/kankyo/kankyohozen/1997.html",
+        "dataset_page": "https://www.city.chikuma.lg.jp/soshiki/kankyo/kankyohozen/1997.html",
+        "source_name": "Preserved Trees / 保存樹木",
+        "source_department": "Chikuma City",
+        "prefecture_name_jp": "長野県",
+        "municipality_name_jp": "千曲市",
+        "address_prefix": "長野県",
+        "note": "Integrated from the official Chikuma City preserved-tree table using the official GSI geocoder for published addresses, then clipped to the official MLIT municipality boundary.",
+    },
+    "Ebetsu": {
+        "region": "hokkaido",
+        "data_url": "https://www.city.ebetsu.hokkaido.jp/soshiki/kankyo/3294.html",
+        "dataset_page": "https://www.city.ebetsu.hokkaido.jp/soshiki/kankyo/3294.html",
+        "source_name": "Preserved Trees / 保存樹木",
+        "source_department": "Ebetsu City",
+        "prefecture_name_jp": "北海道",
+        "municipality_name_jp": "江別市",
+        "address_prefix": "北海道江別市",
+        "note": "Integrated from the official Ebetsu City preserved-tree tables using the official GSI geocoder for published addresses, then clipped to the official MLIT municipality boundary.",
+    },
+    "Iwaki": {
+        "region": "fukushima",
+        "data_url": "https://iwakicity-park.or.jp/green-information/",
+        "dataset_page": "https://iwakicity-park.or.jp/green-information/",
+        "source_name": "Protected Green Information / 保護樹木",
+        "source_department": "Iwaki City Park & Greenery Association",
+        "prefecture_name_jp": "福島県",
+        "municipality_name_jp": "いわき市",
+        "address_prefix": "福島県いわき市",
+        "note": "Integrated from the official Iwaki protected-green HTML tables using the official GSI geocoder for published addresses, then clipped to the official MLIT municipality boundary.",
+    },
 }
 SALINAS_DATASET = "https://cityofsalinas.opendatasoft.com/api/explore/v2.1/catalog/datasets/tree-inventory"
 PITTSBURGH_BASE = "https://pittsburghpa.treekeepersoftware.com"
@@ -5464,10 +5581,10 @@ def load_remote_geojson(url: str) -> dict[str, Any]:
     return json.loads(response.stdout.lstrip("\ufeff"))
 
 
-def iter_remote_csv_rows(url: str) -> Any:
+def fetch_bytes_via_curl(url: str) -> bytes:
     last_error: Exception | None = None
     for insecure in (False, True):
-        with _require_tempfile().NamedTemporaryFile("wb", suffix=".csv") as handle:
+        with _require_tempfile().NamedTemporaryFile("wb", suffix=".bin") as handle:
             cmd = ["curl", "-sL", "--max-time", "600", "-A", "Mozilla/5.0", "-o", handle.name]
             if insecure:
                 cmd.insert(3, "-k")
@@ -5476,11 +5593,99 @@ def iter_remote_csv_rows(url: str) -> Any:
             if result.returncode != 0:
                 last_error = RuntimeError(f"Failed to download CSV from {url}: {result.stderr.strip()}")
                 continue
-            with open(handle.name, "r", encoding="utf-8-sig", newline="") as csv_handle:
-                yield from csv.DictReader(csv_handle)
-                return
+            return Path(handle.name).read_bytes()
 
-    raise RuntimeError(f"Failed to download CSV from {url}: {last_error}")
+    raise RuntimeError(f"Failed to download bytes from {url}: {last_error}")
+
+
+def decode_text_with_fallback(content: bytes, encodings: tuple[str, ...]) -> str:
+    last_error: Exception | None = None
+    for encoding in encodings:
+        try:
+            return content.decode(encoding)
+        except Exception as exc:  # noqa: PERF203
+            last_error = exc
+    raise RuntimeError(f"Failed to decode remote text with encodings {encodings}: {last_error}")
+
+
+def iter_remote_csv_rows(url: str, encodings: tuple[str, ...] = ("utf-8-sig", "cp932", "utf-8", "shift_jis")) -> Any:
+    content = fetch_bytes_via_curl(url)
+    text = decode_text_with_fallback(content, encodings)
+    yield from csv.DictReader(io.StringIO(text))
+
+
+def clean_japanese_species_text(raw_value: str | None) -> str:
+    text = clean_display_name(raw_value) or ""
+    if not text:
+        return ""
+    text = html.unescape(text)
+    text = re.sub(r"[（(](?:JPEG|JPG|PNG|PDF)[:：][^）)]*[）)]", "", text, flags=re.IGNORECASE)
+    text = re.sub(r"\s+", " ", text)
+    return text.strip()
+
+
+def clean_japanese_address_text(raw_value: str | None) -> str:
+    text = clean_display_name(raw_value) or ""
+    if not text:
+        return ""
+    text = html.unescape(text)
+    text = re.sub(r"[（(][^）)]*[）)]", "", text)
+    text = re.sub(r"(?:PDF|JPEG|JPG|PNG)[^A-Za-z0-9]*\d+(?:\.\d+)?(?:KB|MB)", "", text, flags=re.IGNORECASE)
+    text = re.sub(r"\s+", "", text)
+    text = re.sub(r"(?<=\d)[ー－―ｰ‐‑](?=\d)", "-", text)
+    return text.strip()
+
+
+def build_prefixed_japan_address(address_prefix: str | None, raw_address: str | None) -> str:
+    address = clean_japanese_address_text(raw_address)
+    if not address:
+        return ""
+    prefix = clean_japanese_address_text(address_prefix)
+    if prefix and not address.startswith(prefix):
+        return f"{prefix}{address}"
+    return address
+
+
+@lru_cache(maxsize=4096)
+def geocode_japan_address(address: str) -> tuple[float | None, float | None]:
+    query = clean_japanese_address_text(address)
+    if not query:
+        return None, None
+    last_error: Exception | None = None
+    for attempt in range(1, 3):
+        result = subprocess.run(
+            ["curl", "-sL", "--max-time", "12", "--get", "--data-urlencode", f"q={query}", GSI_ADDRESS_SEARCH_URL],
+            capture_output=True,
+            text=True,
+            check=False,
+        )
+        if result.returncode != 0:
+            last_error = RuntimeError(f"curl failed ({result.returncode}): {result.stderr.strip()}")
+            time.sleep(0.25 * attempt)
+            continue
+        payload_text = result.stdout.strip()
+        if not payload_text:
+            return None, None
+        try:
+            payload = json.loads(payload_text)
+        except Exception as exc:  # noqa: PERF203
+            last_error = exc
+            time.sleep(0.25 * attempt)
+            continue
+        if not payload:
+            return None, None
+        coordinates = ((payload[0].get("geometry") or {}).get("coordinates")) or []
+        if len(coordinates) < 2:
+            return None, None
+        return parse_floatish(coordinates[0]), parse_floatish(coordinates[1])
+
+    raise RuntimeError(f"Failed to geocode Japanese address '{query}': {last_error}")
+
+
+def stable_city_row_id(city: str, *parts: Any) -> str:
+    token = "|".join(str(part or "") for part in parts)
+    digest = _require_hashlib().md5(token.encode("utf-8")).hexdigest()[:16]
+    return f"{slugify_token(city)}-{digest}"
 
 
 def parse_point_geometry_text(raw_value: str | None) -> tuple[float | None, float | None]:
@@ -5502,6 +5707,15 @@ def parse_point_geometry_text(raw_value: str | None) -> tuple[float | None, floa
         lon, lat = coordinates[:2]
         return float(lon), float(lat)
     return None, None
+
+
+def ownership_raw_for_japanese_label(raw_value: str | None) -> str:
+    text = clean_display_name(raw_value) or ""
+    if not text:
+        return ""
+    if "個人" in text or "私有" in text:
+        return "Private"
+    return ""
 
 
 def write_city_geojson(region: str, city: str, features: list[dict[str, Any]]) -> Path:
@@ -7613,6 +7827,251 @@ def load_tokyo_metro_street_tree_rows() -> tuple[list[dict[str, Any]], Counter[s
     return rows, municipality_counts
 
 
+def build_japan_blossom_inventory_result(
+    *,
+    city: str,
+    region: str,
+    rows: list[dict[str, Any]],
+    dataset_page: str,
+    source_name: str,
+    source_department: str,
+    note: str,
+) -> dict[str, Any]:
+    boundary_geometry = load_city_boundary_geometry(city, state_id=region, country_id="jp")
+    output_features: list[dict[str, Any]] = []
+    normalized_rows: list[dict[str, Any]] = []
+
+    for row in rows:
+        lon = parse_floatish(row.get("lon"))
+        lat = parse_floatish(row.get("lat"))
+        if lon is None or lat is None:
+            continue
+        if boundary_geometry and not point_in_geometry(lon, lat, boundary_geometry):
+            continue
+
+        common_name = str(row.get("common_name") or "")
+        scientific_raw = str(row.get("scientific_raw") or "")
+        subtype_name = str(row.get("subtype_name") or "")
+        species_group = str(row.get("species_group") or "")
+        address = str(row.get("address") or "")
+        ownership_raw = str(row.get("ownership_raw") or "")
+        row_id = stable_city_row_id(city, common_name, address, f"{lon:.6f}", f"{lat:.6f}")
+
+        normalized_rows.append(
+            {
+                "id": row_id,
+                "city": city,
+                "source_dataset": source_name,
+                "scientific_raw": scientific_raw,
+                "scientific_normalized": normalize_scientific_name(scientific_raw),
+                "common_name": common_name,
+                "subtype_name": subtype_name,
+                "zip_code": "",
+                "species_group": species_group,
+                "ownership": canonical_ownership(ownership_raw),
+                "ownership_raw": ownership_raw,
+                "lat": lat,
+                "lon": lon,
+                "included": "1",
+            }
+        )
+        output_features.append(
+            {
+                "type": "Feature",
+                "geometry": {"type": "Point", "coordinates": [lon, lat]},
+                "properties": {
+                    "id": row_id,
+                    "species_group": species_group,
+                    "scientific_name": scientific_raw,
+                    "common_name": common_name,
+                    "subtype_name": subtype_name,
+                    "zip_code": None,
+                    "ownership": canonical_ownership(ownership_raw),
+                    "ownership_raw": ownership_raw,
+                    "city": city,
+                    "source_dataset": source_name,
+                    "source_department": source_department,
+                    "source_last_edit_at": "",
+                },
+            }
+        )
+
+    return {
+        "city": city,
+        "region": region,
+        "features": output_features,
+        "normalized_rows": normalized_rows,
+        "source": {
+            "name": source_name,
+            "city": city,
+            "endpoint": dataset_page,
+            "records_fetched": len(rows),
+            "records_included": len(output_features),
+            "note": note,
+        },
+    }
+
+
+def standard_japanese_csv_address(row: dict[str, str], address_prefix: str | None = None) -> str:
+    address = clean_display_name(row.get("所在地_連結表記") or row.get("住所")) or ""
+    if not address:
+        address = "".join(
+            clean_display_name(row.get(field)) or ""
+            for field in ("所在地_都道府県", "所在地_市区町村", "所在地_町字", "所在地_番地以下")
+        )
+    return build_prefixed_japan_address(address_prefix, address)
+
+
+@lru_cache(maxsize=None)
+def load_tokyo_jourei_tree_rows() -> tuple[list[dict[str, Any]], Counter[str]]:
+    reader, _prj_text = load_zipped_shapefile(TOKYO_JOUREI_ZIP, member_hint="保存樹木")
+    field_names = [field[0] for field in reader.fields[1:]]
+    mapping_rows = load_mapping(MAPPING_PATH)
+    subtype_rows = load_subtype_mapping(SUBTYPE_MAPPING_PATH)
+    rows: list[dict[str, Any]] = []
+    municipality_counts: Counter[str] = Counter()
+
+    for shape_record in reader.iterShapeRecords():
+        shape = shape_record.shape
+        if not shape.points:
+            continue
+
+        attrs = dict(zip(field_names, list(shape_record.record), strict=False))
+        if clean_display_name(attrs.get("種別")) != "樹木":
+            continue
+        municipality_name_jp = clean_display_name(attrs.get("区市町村"))
+        if not municipality_name_jp:
+            continue
+        common_name = clean_common_name(clean_japanese_species_text(attrs.get("樹種")))
+        scientific_raw = generic_scientific_name_for_common_hint(common_name)
+        species_group, subtype_name = classify_tree_record(scientific_raw, common_name, mapping_rows, subtype_rows)
+        if not species_group:
+            continue
+
+        municipality_counts[municipality_name_jp] += 1
+        point_x, point_y = shape.points[0][:2]
+        lon, lat = jgd2011_japan_zone9_to_lon_lat(float(point_x), float(point_y))
+        address = clean_japanese_address_text(attrs.get("所在地"))
+
+        rows.append(
+            {
+                "municipality_name_jp": municipality_name_jp,
+                "common_name": common_name or "",
+                "scientific_raw": scientific_raw,
+                "subtype_name": subtype_name or "",
+                "species_group": species_group,
+                "address": address,
+                "ownership_raw": "",
+                "lon": lon,
+                "lat": lat,
+            }
+        )
+
+    return rows, municipality_counts
+
+
+@lru_cache(maxsize=None)
+def load_japan_protected_tree_csv_rows(data_url: str, address_prefix: str | None = None) -> list[dict[str, Any]]:
+    mapping_rows = load_mapping(MAPPING_PATH)
+    subtype_rows = load_subtype_mapping(SUBTYPE_MAPPING_PATH)
+    rows: list[dict[str, Any]] = []
+
+    for row in iter_remote_csv_rows(data_url):
+        common_name = clean_common_name(
+            clean_japanese_species_text(row.get("樹種名称") or row.get("樹種") or row.get("樹種名称_英字"))
+        )
+        scientific_raw = generic_scientific_name_for_common_hint(common_name)
+        species_group, subtype_name = classify_tree_record(scientific_raw, common_name, mapping_rows, subtype_rows)
+        if not species_group:
+            continue
+
+        lon = parse_floatish(row.get("経度"))
+        lat = parse_floatish(row.get("緯度"))
+        address = standard_japanese_csv_address(row, address_prefix=address_prefix)
+        if lon is None or lat is None:
+            lon, lat = geocode_japan_address(address)
+        if lon is None or lat is None:
+            continue
+
+        rows.append(
+            {
+                "common_name": common_name or "",
+                "scientific_raw": scientific_raw,
+                "subtype_name": subtype_name or "",
+                "species_group": species_group,
+                "address": address,
+                "ownership_raw": "",
+                "lon": lon,
+                "lat": lat,
+            }
+        )
+
+    return rows
+
+
+@lru_cache(maxsize=None)
+def load_japan_html_table_rows(data_url: str, address_prefix: str | None = None) -> list[dict[str, Any]]:
+    BeautifulSoup = _require_bs4()
+    content = fetch_bytes_via_curl(data_url)
+    html_text = decode_text_with_fallback(content, ("utf-8", "utf-8-sig", "cp932", "shift_jis", "euc-jp"))
+    soup = BeautifulSoup(html_text, "html.parser")
+    mapping_rows = load_mapping(MAPPING_PATH)
+    subtype_rows = load_subtype_mapping(SUBTYPE_MAPPING_PATH)
+    rows: list[dict[str, Any]] = []
+
+    for table in soup.find_all("table"):
+        table_rows = table.find_all("tr")
+        if not table_rows:
+            continue
+        header = [cell.get_text(" ", strip=True) for cell in table_rows[0].find_all(["th", "td"])]
+        species_index: int | None = None
+        address_index: int | None = None
+        owner_index: int | None = None
+        for index, value in enumerate(header):
+            if species_index is None and any(token in value for token in ("樹種", "樹木名", "樹木種類")):
+                species_index = index
+            if address_index is None and any(token in value for token in ("所在地", "所在", "場所")):
+                address_index = index
+            if owner_index is None and "所有" in value:
+                owner_index = index
+        if species_index is None or address_index is None:
+            continue
+
+        for tr in table_rows[1:]:
+            cells = [cell.get_text(" ", strip=True) for cell in tr.find_all(["th", "td"])]
+            if species_index >= len(cells) or address_index >= len(cells):
+                continue
+            common_name = clean_common_name(clean_japanese_species_text(cells[species_index]))
+            scientific_raw = generic_scientific_name_for_common_hint(common_name)
+            species_group, subtype_name = classify_tree_record(scientific_raw, common_name, mapping_rows, subtype_rows)
+            if not species_group:
+                continue
+
+            address = build_prefixed_japan_address(address_prefix, cells[address_index])
+            lon, lat = geocode_japan_address(address)
+            if lon is None or lat is None:
+                continue
+
+            ownership_raw = ""
+            if owner_index is not None and owner_index < len(cells):
+                ownership_raw = ownership_raw_for_japanese_label(cells[owner_index])
+
+            rows.append(
+                {
+                    "common_name": common_name or "",
+                    "scientific_raw": scientific_raw,
+                    "subtype_name": subtype_name or "",
+                    "species_group": species_group,
+                    "address": address,
+                    "ownership_raw": ownership_raw,
+                    "lon": lon,
+                    "lat": lat,
+                }
+            )
+
+    return rows
+
+
 def build_tokyo_ward_fetcher(city: str, config: dict[str, str]) -> Any:
     municipality_name_jp = config["municipality_name_jp"]
 
@@ -7696,6 +8155,57 @@ def build_tokyo_ward_fetcher(city: str, config: dict[str, str]) -> Any:
                 ),
             },
         }
+
+    return fetcher
+
+
+def build_tokyo_jourei_municipality_fetcher(city: str, config: dict[str, str]) -> Any:
+    municipality_name_jp = config["municipality_name_jp"]
+
+    def fetcher(city: str = city, config: dict[str, str] = config, municipality_name_jp: str = municipality_name_jp) -> dict[str, Any]:
+        rows, _municipality_counts = load_tokyo_jourei_tree_rows()
+        filtered_rows = [row for row in rows if row["municipality_name_jp"] == municipality_name_jp]
+        return build_japan_blossom_inventory_result(
+            city=city,
+            region=str(config["region"]),
+            rows=filtered_rows,
+            dataset_page=str(config["dataset_page"]),
+            source_name=str(config["source_name"]),
+            source_department=str(config["source_department"]),
+            note=str(config["note"]),
+        )
+
+    return fetcher
+
+
+def build_japan_protected_tree_csv_fetcher(city: str, config: dict[str, str]) -> Any:
+    def fetcher(city: str = city, config: dict[str, str] = config) -> dict[str, Any]:
+        rows = load_japan_protected_tree_csv_rows(str(config["data_url"]), str(config.get("address_prefix") or ""))
+        return build_japan_blossom_inventory_result(
+            city=city,
+            region=str(config["region"]),
+            rows=rows,
+            dataset_page=str(config["dataset_page"]),
+            source_name=str(config["source_name"]),
+            source_department=str(config["source_department"]),
+            note=str(config["note"]),
+        )
+
+    return fetcher
+
+
+def build_japan_html_table_fetcher(city: str, config: dict[str, str]) -> Any:
+    def fetcher(city: str = city, config: dict[str, str] = config) -> dict[str, Any]:
+        rows = load_japan_html_table_rows(str(config["data_url"]), str(config.get("address_prefix") or ""))
+        return build_japan_blossom_inventory_result(
+            city=city,
+            region=str(config["region"]),
+            rows=rows,
+            dataset_page=str(config["dataset_page"]),
+            source_name=str(config["source_name"]),
+            source_department=str(config["source_department"]),
+            note=str(config["note"]),
+        )
 
     return fetcher
 
@@ -12869,6 +13379,16 @@ CITY_FETCHERS.update({city: build_treeplotter_fetcher(city, config) for city, co
 CITY_FETCHERS.update({city: build_treeplotter_fetcher(city, config) for city, config in ZERO_COVERAGE_TREEPLOTTER_CONFIGS.items()})
 CITY_FETCHERS.update({city: build_oregon_odf_treeplotter_fetcher(city) for city in OREGON_ODF_TREEPLOTTER_CITIES})
 CITY_FETCHERS.update({city: build_tokyo_ward_fetcher(city, config) for city, config in TOKYO_WARD_CONFIGS.items()})
+CITY_FETCHERS.update(
+    {city: build_tokyo_jourei_municipality_fetcher(city, config) for city, config in TOKYO_JOUREI_MUNICIPALITY_CONFIGS.items()}
+)
+CITY_FETCHERS.update(
+    {city: build_japan_protected_tree_csv_fetcher(city, config) for city, config in TOKYO_PROTECTED_TREE_CSV_CONFIGS.items()}
+)
+CITY_FETCHERS.update(
+    {city: build_japan_protected_tree_csv_fetcher(city, config) for city, config in JAPAN_OFFICIAL_CSV_CONFIGS.items()}
+)
+CITY_FETCHERS.update({city: build_japan_html_table_fetcher(city, config) for city, config in JAPAN_HTML_TABLE_CONFIGS.items()})
 CITY_FETCHERS.update({city: build_nyc_metro_arcgis_fetcher(city, config) for city, config in NYC_METRO_ARCGIS_CONFIGS.items()})
 CITY_FETCHERS.update({city: build_arcgis_fetcher(city, config) for city, config in UNCOVERED_STATE_ARCGIS_CONFIGS.items()})
 CITY_FETCHERS.update({city: build_arcgis_fetcher(city, config) for city, config in WEST_COAST_ARCGIS_CONFIGS.items()})

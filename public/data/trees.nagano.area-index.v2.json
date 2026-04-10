@@ -1,0 +1,130 @@
+{
+  "generated_at": "2026-04-10T01:04:23.116453+00:00",
+  "region": "nagano",
+  "strategy": "area_shard",
+  "items": [
+    {
+      "jurisdiction": "Chikuma",
+      "slug": "chikuma",
+      "display_name": "Chikuma",
+      "jurisdiction_type": "city",
+      "state_province": "Nagano",
+      "country": "Japan",
+      "bounds": [
+        [
+          138.02962939,
+          36.4365342
+        ],
+        [
+          138.20186119,
+          36.56008175
+        ]
+      ],
+      "tree_count": 4,
+      "zip_codes": [
+        "None"
+      ],
+      "species_counts": {
+        "cherry": 3,
+        "plum": 1,
+        "peach": 0,
+        "magnolia": 0,
+        "crabapple": 0
+      },
+      "ownership_counts": {
+        "public": 0,
+        "private": 2,
+        "unknown": 2
+      },
+      "species_ownership_counts": {
+        "cherry": {
+          "public": 0,
+          "private": 1,
+          "unknown": 2
+        },
+        "plum": {
+          "public": 0,
+          "private": 1,
+          "unknown": 0
+        },
+        "peach": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        },
+        "magnolia": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        },
+        "crabapple": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        }
+      },
+      "ownership_groups": [
+        "private",
+        "unknown"
+      ],
+      "shards": [
+        {
+          "id": "chikuma-001",
+          "bounds": [
+            [
+              138.09343,
+              36.503777
+            ],
+            [
+              138.155472,
+              36.535606
+            ]
+          ],
+          "data_path": "/data/trees.nagano.area.chikuma.v2.geojson",
+          "tree_count": 4,
+          "ownership_counts": {
+            "public": 0,
+            "private": 2,
+            "unknown": 2
+          },
+          "species_counts": {
+            "cherry": 3,
+            "plum": 1,
+            "peach": 0,
+            "magnolia": 0,
+            "crabapple": 0
+          },
+          "species_ownership_counts": {
+            "cherry": {
+              "public": 0,
+              "private": 1,
+              "unknown": 2
+            },
+            "plum": {
+              "public": 0,
+              "private": 1,
+              "unknown": 0
+            },
+            "peach": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            },
+            "magnolia": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            },
+            "crabapple": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            }
+          },
+          "raw_bytes": 1945,
+          "gzip_bytes": 469
+        }
+      ]
+    }
+  ]
+}

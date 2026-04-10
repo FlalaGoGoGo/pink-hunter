@@ -1,17 +1,17 @@
 {
-  "generated_at": "2026-04-09T18:37:28+00:00",
+  "generated_at": "2026-04-10T01:16:20+00:00",
   "path": "/data/trees.render.v1.pmtiles",
   "vector_layer": "trees",
   "minzoom": 8,
   "maxzoom": 15,
-  "tree_count": 873014,
+  "tree_count": 875412,
   "bounds": [
     [
       -178.4435930001603,
       21.19923799969125
     ],
     [
-      139.91890837,
+      141.66880416,
       58.97133700005607
     ]
   ],
@@ -28,12 +28,15 @@
     "dc",
     "de",
     "fl",
+    "fukushima",
     "ga",
     "hi",
+    "hokkaido",
     "ia",
     "id",
     "il",
     "in",
+    "kanagawa",
     "ks",
     "ky",
     "la",
@@ -46,6 +49,7 @@
     "mo",
     "ms",
     "mt",
+    "nagano",
     "nb",
     "nc",
     "nd",

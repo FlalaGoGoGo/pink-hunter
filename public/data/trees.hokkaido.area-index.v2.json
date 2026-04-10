@@ -1,0 +1,130 @@
+{
+  "generated_at": "2026-04-10T01:04:23.116453+00:00",
+  "region": "hokkaido",
+  "strategy": "area_shard",
+  "items": [
+    {
+      "jurisdiction": "Ebetsu",
+      "slug": "ebetsu",
+      "display_name": "Ebetsu",
+      "jurisdiction_type": "city",
+      "state_province": "Hokkaido",
+      "country": "Japan",
+      "bounds": [
+        [
+          141.44439167,
+          43.01606917
+        ],
+        [
+          141.66880416,
+          43.17271472
+        ]
+      ],
+      "tree_count": 10,
+      "zip_codes": [
+        "None"
+      ],
+      "species_counts": {
+        "cherry": 5,
+        "plum": 0,
+        "peach": 0,
+        "magnolia": 3,
+        "crabapple": 2
+      },
+      "ownership_counts": {
+        "public": 0,
+        "private": 1,
+        "unknown": 9
+      },
+      "species_ownership_counts": {
+        "cherry": {
+          "public": 0,
+          "private": 1,
+          "unknown": 4
+        },
+        "plum": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        },
+        "peach": {
+          "public": 0,
+          "private": 0,
+          "unknown": 0
+        },
+        "magnolia": {
+          "public": 0,
+          "private": 0,
+          "unknown": 3
+        },
+        "crabapple": {
+          "public": 0,
+          "private": 0,
+          "unknown": 2
+        }
+      },
+      "ownership_groups": [
+        "private",
+        "unknown"
+      ],
+      "shards": [
+        {
+          "id": "ebetsu-001",
+          "bounds": [
+            [
+              141.490219,
+              43.05912
+            ],
+            [
+              141.568466,
+              43.096878
+            ]
+          ],
+          "data_path": "/data/trees.hokkaido.area.ebetsu.v2.geojson",
+          "tree_count": 10,
+          "ownership_counts": {
+            "public": 0,
+            "private": 1,
+            "unknown": 9
+          },
+          "species_counts": {
+            "cherry": 5,
+            "plum": 0,
+            "peach": 0,
+            "magnolia": 3,
+            "crabapple": 2
+          },
+          "species_ownership_counts": {
+            "cherry": {
+              "public": 0,
+              "private": 1,
+              "unknown": 4
+            },
+            "plum": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            },
+            "peach": {
+              "public": 0,
+              "private": 0,
+              "unknown": 0
+            },
+            "magnolia": {
+              "public": 0,
+              "private": 0,
+              "unknown": 3
+            },
+            "crabapple": {
+              "public": 0,
+              "private": 0,
+              "unknown": 2
+            }
+          },
+          "raw_bytes": 4827,
+          "gzip_bytes": 668
+        }
+      ]
+    }
+  ]
+}
