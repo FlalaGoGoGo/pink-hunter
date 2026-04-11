@@ -3815,10 +3815,22 @@ export default function App(): JSX.Element {
     return next;
   }, [jumpAreaDisplayStatusById, jumpIndex]);
 
-  const selectedJumpArea = useMemo(
-    () => (selectedJumpAreaId ? jumpAreaById.get(selectedJumpAreaId) ?? null : null),
-    [jumpAreaById, selectedJumpAreaId]
-  );
+  const selectedJumpArea = useMemo(() => {
+    if (!selectedJumpAreaId) {
+      return null;
+    }
+    const area = jumpAreaById.get(selectedJumpAreaId) ?? null;
+    if (!area) {
+      return null;
+    }
+    if (area.country_id !== jumpCountry) {
+      return null;
+    }
+    if (jumpState && area.state_id !== jumpState) {
+      return null;
+    }
+    return area;
+  }, [jumpAreaById, jumpCountry, jumpState, selectedJumpAreaId]);
   const selectedJumpAreaStatus = useMemo<JumpAreaDisplayStatusInfo | null>(
     () =>
       selectedJumpArea
@@ -3835,8 +3847,8 @@ export default function App(): JSX.Element {
     [jumpAreaDisplayStatusById, selectedJumpArea]
   );
   const selectedJumpState = useMemo(
-    () => (jumpState ? jumpStateById.get(jumpState) ?? null : null),
-    [jumpState, jumpStateById]
+    () => (jumpState ? jumpStates.find((item) => item.id === jumpState) ?? null : null),
+    [jumpState, jumpStates]
   );
   const selectedJumpStateStatus = useMemo(
     () => (selectedJumpState ? jumpStateDisplayStatusById.get(selectedJumpState.id) ?? null : null),
@@ -3965,6 +3977,16 @@ export default function App(): JSX.Element {
     setJumpCountry(area.country_id);
     setJumpState(area.state_id);
   }, [jumpAreaById, jumpIndex, selectedJumpAreaId]);
+
+  useEffect(() => {
+    if (!selectedJumpAreaId) {
+      return;
+    }
+    const area = jumpAreaById.get(selectedJumpAreaId);
+    if (!area || area.country_id !== jumpCountry || (jumpState && area.state_id !== jumpState)) {
+      setSelectedJumpAreaId(null);
+    }
+  }, [jumpAreaById, jumpCountry, jumpState, selectedJumpAreaId]);
 
   useEffect(() => {
     if (!jumpState) {
