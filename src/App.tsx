@@ -2158,6 +2158,20 @@ function normalizeBounds(bounds: BoundsTuple): BoundsTuple {
   ];
 }
 
+function unionBounds(boundsList: BoundsTuple[]): BoundsTuple | null {
+  if (boundsList.length === 0) {
+    return null;
+  }
+
+  return boundsList.reduce<BoundsTuple>((current, candidate) => {
+    const normalizedCandidate = normalizeBounds(candidate);
+    return [
+      [Math.min(current[0][0], normalizedCandidate[0][0]), Math.min(current[0][1], normalizedCandidate[0][1])],
+      [Math.max(current[1][0], normalizedCandidate[1][0]), Math.max(current[1][1], normalizedCandidate[1][1])]
+    ];
+  }, normalizeBounds(boundsList[0]));
+}
+
 function boundsIntersect(left: BoundsTuple, right: BoundsTuple): boolean {
   const [[leftMinX, leftMinY], [leftMaxX, leftMaxY]] = normalizeBounds(left);
   const [[rightMinX, rightMinY], [rightMaxX, rightMaxY]] = normalizeBounds(right);
@@ -3814,6 +3828,58 @@ export default function App(): JSX.Element {
 
     return next;
   }, [jumpAreaDisplayStatusById, jumpIndex]);
+
+  const jumpCountryFocusBoundsById = useMemo(() => {
+    const next = new Map<JumpCountry["id"], BoundsTuple>();
+    if (!jumpIndex) {
+      return next;
+    }
+
+    jumpIndex.countries.forEach((country) => {
+      const coveredStates = jumpIndex.states
+        .filter((state) => state.country_id === country.id)
+        .map((state) => {
+          const stateStatus = jumpStateDisplayStatusById.get(state.id);
+          return {
+            state,
+            coveredAreaCount: stateStatus?.kind === "covered" ? stateStatus.coveredAreaCount : 0,
+            center: boundsCenter(state.bounds)
+          };
+        })
+        .filter((entry) => entry.coveredAreaCount > 0);
+
+      if (coveredStates.length === 0) {
+        return;
+      }
+
+      const anchor = [...coveredStates].sort(
+        (left, right) =>
+          right.coveredAreaCount - left.coveredAreaCount ||
+          left.center[0] - right.center[0] ||
+          left.center[1] - right.center[1]
+      )[0];
+
+      const clusterSize = country.id === "jp" ? coveredStates.length : Math.min(5, coveredStates.length);
+      const clusterBounds = unionBounds(
+        [...coveredStates]
+          .sort((left, right) => {
+            const leftDistance =
+              (left.center[0] - anchor.center[0]) ** 2 + (left.center[1] - anchor.center[1]) ** 2;
+            const rightDistance =
+              (right.center[0] - anchor.center[0]) ** 2 + (right.center[1] - anchor.center[1]) ** 2;
+            return leftDistance - rightDistance || right.coveredAreaCount - left.coveredAreaCount;
+          })
+          .slice(0, clusterSize)
+          .map((entry) => entry.state.bounds)
+      );
+
+      if (clusterBounds) {
+        next.set(country.id, clusterBounds);
+      }
+    });
+
+    return next;
+  }, [jumpIndex, jumpStateDisplayStatusById]);
 
   const selectedJumpArea = useMemo(() => {
     if (!selectedJumpAreaId) {
@@ -5708,7 +5774,11 @@ export default function App(): JSX.Element {
     const selectedArea = selectedJumpArea;
     const selectedJumpState = jumpState ? jumpStates.find((item) => item.id === jumpState) ?? null : null;
     const selectedJumpCountry = jumpCountries.find((item) => item.id === jumpCountry) ?? null;
-    const targetBounds = selectedArea?.bounds ?? selectedJumpState?.bounds ?? selectedJumpCountry?.bounds ?? null;
+    const countryFocusBounds =
+      !selectedArea && !selectedJumpState
+        ? jumpCountryFocusBoundsById.get(jumpCountry) ?? selectedJumpCountry?.bounds ?? null
+        : selectedJumpCountry?.bounds ?? null;
+    const targetBounds = selectedArea?.bounds ?? selectedJumpState?.bounds ?? countryFocusBounds;
 
     setSelectedTree(null);
     setSelectedCoverage(null);
