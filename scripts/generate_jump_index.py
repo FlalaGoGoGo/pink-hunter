@@ -557,6 +557,22 @@ def union_bounds(all_bounds: list[list[list[float]]]) -> list[list[float]] | Non
     return [[min_x, min_y], [max_x, max_y]]
 
 
+def bounds_contains(
+    outer_bounds: list[list[float]] | None,
+    inner_bounds: list[list[float]] | None,
+    *,
+    epsilon: float = 1e-9,
+) -> bool:
+    if outer_bounds is None or inner_bounds is None:
+        return False
+    return (
+        outer_bounds[0][0] <= inner_bounds[0][0] + epsilon
+        and outer_bounds[0][1] <= inner_bounds[0][1] + epsilon
+        and outer_bounds[1][0] >= inner_bounds[1][0] - epsilon
+        and outer_bounds[1][1] >= inner_bounds[1][1] - epsilon
+    )
+
+
 def load_json(path: Path) -> Any:
     return json.loads(path.read_text(encoding="utf-8"))
 
@@ -726,13 +742,14 @@ def build_jump_index(data_dir: Path) -> dict[str, Any]:
     region_meta_by_id = {
         str(entry.get("id")): entry for entry in meta.get("regions", [])
     }
-    existing_state_bounds_by_id = {}
+    existing_state_bounds_by_key: dict[tuple[str, str], list[list[float]]] = {}
     if existing_jump_index:
         for state in existing_jump_index.get("states", []):
             state_id = str(state.get("id", "")).strip()
+            country_id = str(state.get("country_id", "")).strip()
             bounds = state.get("bounds")
-            if state_id and bounds:
-                existing_state_bounds_by_id[state_id] = bounds
+            if state_id and country_id and bounds:
+                existing_state_bounds_by_key[(country_id, state_id)] = bounds
 
     area_map: dict[tuple[str, str, str], dict[str, Any]] = {}
     coverage_status_map: dict[tuple[str, str, str], str] = {}
@@ -906,17 +923,16 @@ def build_jump_index(data_dir: Path) -> dict[str, Any]:
     states: list[dict[str, Any]] = []
     for state_meta in US_STATE_META_BY_FIPS.values():
         state_id = state_meta["code"]
-        state_bounds = None
-        if state_id in existing_state_bounds_by_id:
-            state_bounds = existing_state_bounds_by_id[state_id]
+        area_union_bounds = union_bounds(
+            [
+                item["bounds"]
+                for item in area_map.values()
+                if item.get("country_id") == "us" and item.get("state_id") == state_id and item.get("bounds")
+            ]
+        )
+        state_bounds = area_union_bounds
         if not state_bounds:
-            state_bounds = union_bounds(
-                [
-                    item["bounds"]
-                    for item in area_map.values()
-                    if item.get("country_id") == "us" and item.get("state_id") == state_id and item.get("bounds")
-                ]
-            )
+            state_bounds = existing_state_bounds_by_key.get(("us", state_id))
         if not state_bounds:
             state_fips = next((fips for fips, meta_item in US_STATE_META_BY_FIPS.items() if meta_item["code"] == state_id), None)
             if state_fips:
@@ -944,6 +960,17 @@ def build_jump_index(data_dir: Path) -> dict[str, Any]:
         state_bounds = province_meta["bounds"]
         if state_id in region_meta_by_id and region_meta_by_id[state_id].get("bounds"):
             state_bounds = region_meta_by_id[state_id]["bounds"]
+        area_union_bounds = union_bounds(
+            [
+                item["bounds"]
+                for item in area_map.values()
+                if item.get("country_id") == "ca" and item.get("state_id") == state_id and item.get("bounds")
+            ]
+        )
+        if area_union_bounds and not bounds_contains(state_bounds, area_union_bounds):
+            state_bounds = area_union_bounds
+        if not state_bounds:
+            state_bounds = existing_state_bounds_by_key.get(("ca", state_id))
         states.append(
             {
                 "id": state_id,
@@ -956,17 +983,22 @@ def build_jump_index(data_dir: Path) -> dict[str, Any]:
         )
 
     for state_id, prefecture_meta in JAPAN_PREFECTURE_META.items():
-        state_bounds = existing_state_bounds_by_id.get(state_id)
-        if not state_bounds and state_id in region_meta_by_id and region_meta_by_id[state_id].get("bounds"):
+        area_union_bounds = union_bounds(
+            [
+                item["bounds"]
+                for item in area_map.values()
+                if item.get("country_id") == "jp" and item.get("state_id") == state_id and item.get("bounds")
+            ]
+        )
+        state_bounds = None
+        if state_id in region_meta_by_id and region_meta_by_id[state_id].get("bounds"):
             state_bounds = region_meta_by_id[state_id]["bounds"]
         if not state_bounds:
-            state_bounds = union_bounds(
-                [
-                    item["bounds"]
-                    for item in area_map.values()
-                    if item.get("country_id") == "jp" and item.get("state_id") == state_id and item.get("bounds")
-                ]
-            )
+            state_bounds = area_union_bounds
+        elif area_union_bounds and not bounds_contains(state_bounds, area_union_bounds):
+            state_bounds = area_union_bounds
+        if not state_bounds:
+            state_bounds = existing_state_bounds_by_key.get(("jp", state_id))
         if not state_bounds:
             continue
         states.append(
